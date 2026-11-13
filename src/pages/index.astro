@@ -1,20 +1,44 @@
 ---
+/**
+ * Home page layout. The texts come from src/content/home.md; this file only
+ * decides how they look.
+ */
+import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const entry = await getEntry('home', 'home');
+if (!entry) throw new Error('Falta src/content/home.md');
+const { title, description, hero, build, uses, people, start, name, closing } = entry.data;
+
+/** A line break in a YAML title becomes <br>. */
+const lines = (s: string) => s.trim().split('\n');
+/** Kickers are numbered in page order: 01 — …, 02 — … */
+const kicker = (n: number, text: string) => `${String(n).padStart(2, '0')} — ${text}`;
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+/** Minimal highlighting for the config snippet: top-level lines, values and comments. */
+const highlight = (code: string) =>
+  code.trimEnd().split('\n').map((l) => {
+    if (/^\s*\/\//.test(l)) return `<span class="c">${esc(l)}</span>`;
+    if (/^\S/.test(l)) return `<span class="p">${esc(l)}</span>`;
+    const m = l.match(/^(\s*[\w$]+:\s*)(.+?)(,?)$/);
+    return m && !/^[{[]$/.test(m[2]) ? `${esc(m[1])}<span class="s">${esc(m[2])}</span>${m[3]}` : esc(l);
+  }).join('\n');
+const arrow = '<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg>';
 ---
-<Base>
+<Base title={title} description={description}>
 <section class="hero" data-hero>
 <canvas aria-hidden="true" data-net></canvas>
 <div class="shade" aria-hidden="true"></div>
 <Header />
 <div class="copy">
-<p class="lbl fade" style="margin: 0 0 28px; display: inline-flex; align-items: center; gap: 12px; color: #C9D0D6; animation-delay: .15s"><span class="live"></span>Protocolo blockchain de código abierto</p>
-<h1 class="fade" style="margin: 0; font-size: clamp(52px, 7.6vw, 116px); font-weight: 600; line-height: .95; letter-spacing: -0.05em; animation-delay: .25s">Infraestructura pública<br>para construir.</h1>
-<p class="fade" style="margin: 32px 0 0; max-width: 640px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #C9D0D6; animation-delay: .4s">42 Chain es una red blockchain para desplegar aplicaciones, registros y servicios que cualquiera puede verificar. Interoperable y compatible con los estándares de la industria.</p>
+<p class="lbl fade" style="margin: 0 0 28px; display: inline-flex; align-items: center; gap: 12px; color: #C9D0D6; animation-delay: .15s"><span class="live"></span>{hero.eyebrow}</p>
+<h1 class="fade" style="margin: 0; font-size: clamp(52px, 7.6vw, 116px); font-weight: 600; line-height: .95; letter-spacing: -0.05em; animation-delay: .25s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h1>
+<p class="fade" style="margin: 32px 0 0; max-width: 640px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #C9D0D6; animation-delay: .4s">{hero.lead}</p>
 <div class="fade" style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 40px; animation-delay: .55s">
-<a class="btn btn-p" href="/desarrolladores">Empieza a construir <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
-<a class="btn btn-g" href="/protocolo">Cómo funciona</a>
+<a class="btn btn-p" href={hero.primary.href}>{hero.primary.label} <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<a class="btn btn-g" href={hero.secondary.href}>{hero.secondary.label}</a>
 </div>
 </div>
 </section>
@@ -23,71 +47,53 @@ import Footer from '../components/Footer.astro';
 <div class="wrap">
 <div class="g2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center">
 <div>
-<p class="k">01 — Para quien construye</p>
-<h2 class="h2">Cambia la red.<br>Tu código sigue igual.</h2>
-<p class="lead">Los contratos se escriben con los lenguajes y las herramientas que ya usa la industria: Solidity, Hardhat, Foundry, MetaMask. Si ya construyes sobre blockchain, ya sabes construir aquí.</p>
-<a class="txl" href="/desarrolladores">Construir en 42 <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<p class="k">{kicker(1, build.kicker)}</p>
+<h2 class="h2">{lines(build.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{build.lead && <p class="lead">{build.lead}</p>}
+{build.link && <a class="txl" href={build.link.href}>{build.link.label} <Fragment set:html={arrow} /></a>}
 </div>
-<div class="code" role="img" aria-label="Ejemplo de configuración de Hardhat para conectarse a 42 Chain">
-<div class="bar"><i></i><i></i><i></i><span style="margin-left: 8px">hardhat.config.js</span></div>
-<pre><span class="p">networks: &#123;</span>
-  chain42: &#123;
-    url: <span class="s">"[RPC URL]"</span>,
-    chainId: <span class="s">[CHAIN ID]</span>,
-  &#125;,
-<span class="p">&#125;</span>
-
-<span class="c">// Ya está. Despliega como siempre.</span></pre>
+<div class="code" role="img" aria-label={build.code.label}>
+<div class="bar"><i></i><i></i><i></i><span style="margin-left: 8px">{build.code.file}</span></div>
+<pre set:html={highlight(build.code.text)}></pre>
 </div>
 </div>
 <div class="facts">
-<div><b>~2 s</b><span>Por bloque</span></div>
-<div><b>1 bloque</b><span>Para ser definitivo</span></div>
-<div><b>IBC</b><span>Interoperable</span></div>
-<div><b>Apache 2.0</b><span>Código abierto</span></div>
+{build.facts.map((f) => <div><b>{f.value}</b><span>{f.label}</span></div>)}
 </div>
 </div>
 </section>
 
 <section id="usos" class="paper">
 <div class="wrap">
-<p class="k">02 — Lo que permite</p>
-<h2 class="h2" style="max-width: 900px">Para qué sirve, en la práctica.</h2>
-<p class="lead">Cuando los datos y las reglas quedan en un registro público que nadie puede modificar, cualquiera puede comprobarlos sin depender de un intermediario. Tres ejemplos:</p>
+<p class="k">{kicker(2, uses.kicker)}</p>
+<h2 class="h2" style="max-width: 900px">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{uses.lead && <p class="lead">{uses.lead}</p>}
 <div class="stories">
-<div class="story rv"><span class="n">01</span><h3>Un título que se verifica solo.</h3><p>Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.</p></div>
-<div class="story rv"><span class="n">02</span><h3>Un acuerdo que se cumple tal como se escribió.</h3><p>Una cooperativa vota cómo repartir un fondo, y un contrato ejecuta el reparto con las reglas que todos aprobaron.</p></div>
-<div class="story rv"><span class="n">03</span><h3>Un origen que varias partes comparten.</h3><p>Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.</p></div>
+{uses.stories.map((s, i) => <div class="story rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{s.title}</h3><p>{s.text}</p></div>)}
 </div>
-<a class="txl" href="/protocolo/que-permite-construir" style="margin-top: 56px">Qué permite construir <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+{uses.link && <a class="txl" href={uses.link.href} style="margin-top: 56px">{uses.link.label} <Fragment set:html={arrow} /></a>}
 </div>
 </section>
 
 <section id="quien">
 <div class="wrap">
-<p class="k">03 — Quién la sostiene</p>
-<h2 class="h2" style="max-width: 900px">Funciona porque muchos deciden sostenerla.</h2>
-<p class="lead">Detrás de la red no hay una empresa que pueda cerrarla, cambiar sus reglas por su cuenta o elegir quién la usa. Cada parte la mantiene alguien distinto, por decisión propia.</p>
+<p class="k">{kicker(3, people.kicker)}</p>
+<h2 class="h2" style="max-width: 900px">{lines(people.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{people.lead && <p class="lead">{people.lead}</p>}
 <div class="rows">
-<div class="row"><b>Quienes escriben el código</b><span>Lo proponen y lo revisan en público, en un repositorio abierto.</span></div>
-<div class="row"><b>Quienes operan los nodos</b><span>Verifican cada bloque y dan acceso a la red a las aplicaciones.</span></div>
-<div class="row"><b>La DAO</b><span>Decide qué cambia en el protocolo y cuándo.</span></div>
-<div class="row"><b>Quienes construyen</b><span>Llevan la red a las personas a través de sus aplicaciones y servicios.</span></div>
+{people.rows.map((r) => <div class="row"><b>{r.who}</b><span>{r.what}</span></div>)}
 </div>
-<a class="txl" href="/proyecto#circulos">Cómo se sostiene <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+{people.link && <a class="txl" href={people.link.href}>{people.link.label} <Fragment set:html={arrow} /></a>}
 </div>
 </section>
 
 <section id="empezar">
 <div class="wrap" style="padding-top: 40px">
-<p class="k">04 — Por dónde empezar</p>
-<h2 class="h2">Elige por dónde entrar.</h2>
+<p class="k">{kicker(4, start.kicker)}</p>
+<h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{start.lead && <p class="lead">{start.lead}</p>}
 <div style="margin-top: 56px; border-bottom: 1px solid #1A1F26">
-<a class="path" href="/desarrolladores"><b>Construir una aplicación</b><span>Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
-<a class="path" href="/desarrolladores/nodos"><b>Operar un nodo</b><span>Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
-<a class="path" href="/desarrolladores/integrar"><b>Integrar la red</b><span>Conectar una billetera, una plataforma o un explorador.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
-<a class="path" href="/protocolo/gobernanza"><b>Participar en la DAO</b><span>Delegar y votar el rumbo del protocolo.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
-<a class="path" href="/comunidad"><b>Conversar</b><span>Preguntar y compartir en Infinite Drive, el chat de la comunidad.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+{start.paths.map((p) => <a class="path" href={p.href}><b>{p.label}</b><span>{p.text}</span><Fragment set:html={arrow} /></a>)}
 </div>
 </div>
 </section>
@@ -97,22 +103,21 @@ import Footer from '../components/Footer.astro';
 <div class="g2" style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center">
 <div aria-hidden="true" class="big42">42</div>
 <div>
-<p class="k">05 — El nombre</p>
-<h2 class="h2">¿Por qué 42?</h2>
-<p class="lead">En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. Esta red funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes la usan.</p>
-<a class="txl" href="/proyecto#porque42">Por qué 42 <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<p class="k">{kicker(5, name.kicker)}</p>
+<h2 class="h2">{lines(name.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{name.lead && <p class="lead">{name.lead}</p>}
+{name.link && <a class="txl" href={name.link.href}>{name.link.label} <Fragment set:html={arrow} /></a>}
 </div>
 </div>
 </div>
 </section>
 
-
 <Footer>
   <div class="fcta">
-    <h2>Construye sobre una red que no es de nadie.</h2>
+    <h2>{closing.title}</h2>
     <div class="acts">
-      <a class="btn btn-p" href="/desarrolladores">Empieza a construir</a>
-      <a class="btn btn-g" href="/comunidad">Conversar en Infinite Drive</a>
+      <a class="btn btn-p" href={closing.primary.href}>{closing.primary.label}</a>
+      <a class="btn btn-g" href={closing.secondary.href}>{closing.secondary.label}</a>
     </div>
   </div>
 </Footer>
