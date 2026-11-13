@@ -1,0 +1,58 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SideNav from '../components/SideNav.astro';
+import { GROUPS } from '../data/nav';
+import { EDIT_BASE } from '../config';
+
+interface Props {
+  title: string;
+  summary: string;
+  group: string; // protocolo | desarrolladores | comunidad | proyecto | legal
+  path: string; // route of this page, e.g. /protocolo/consenso
+  file: string; // content file, for "Editar esta página"
+  updated?: Date;
+}
+const { title, summary, group, path, file, updated } = Astro.props;
+// Legal pages live in the Proyecto side index.
+const navKey = group === 'legal' ? 'proyecto' : group;
+const g = GROUPS.find((x) => x.key === navKey)!;
+const showSide = g.items.length + g.refs.length > 1;
+const seq = g.sequential ? g.items : [];
+const i = seq.findIndex((x) => x.href === path);
+const prev = i > 0 ? seq[i - 1] : null;
+const next = i >= 0 && i < seq.length - 1 ? seq[i + 1] : null;
+const groupLabel = group === 'legal' ? 'Legal' : g.label;
+const fmt = updated ? new Intl.DateTimeFormat('es', { dateStyle: 'long' }).format(updated) : '[fecha]';
+---
+<Base title={title} description={summary} accent={group}>
+  <section class="band-top">
+    <div class="gridbg" aria-hidden="true"></div>
+    <div class="glow" aria-hidden="true"></div>
+    <Header current={navKey} />
+  </section>
+  <div class="rd">
+    <div class="lay">
+      {showSide && <SideNav group={g} path={path} />}
+      <main>
+        <div class="dochead">
+          <p class="dk">{groupLabel}</p>
+          <h1>{title}</h1>
+          <p class="ds">{summary}</p>
+          <p class="dm">Última revisión: {fmt} · <a href={EDIT_BASE + file}>Editar esta página ↗</a></p>
+        </div>
+        <div class="prose">
+          <slot />
+        </div>
+        {(prev || next) && (
+          <nav class="pn" aria-label="Capítulos">
+            {prev && <a class="pv" href={prev.href}><span>← Anterior</span>{prev.label}</a>}
+            {next && <a class="nx" href={next.href}><span>Siguiente →</span>{next.label}</a>}
+          </nav>
+        )}
+      </main>
+    </div>
+  </div>
+  <Footer />
+</Base>

@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base>
+<section class="hero" data-hero>
+<canvas aria-hidden="true" data-net></canvas>
+<div class="shade" aria-hidden="true"></div>
+<Header />
+<div class="copy">
+<p class="lbl fade" style="margin: 0 0 28px; display: inline-flex; align-items: center; gap: 12px; color: #C9D0D6; animation-delay: .15s"><span class="live"></span>Protocolo blockchain de código abierto</p>
+<h1 class="fade" style="margin: 0; font-size: clamp(52px, 7.6vw, 116px); font-weight: 600; line-height: .95; letter-spacing: -0.05em; animation-delay: .25s">Infraestructura pública<br>para construir.</h1>
+<p class="fade" style="margin: 32px 0 0; max-width: 640px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #C9D0D6; animation-delay: .4s">42 Chain es una red blockchain para desplegar aplicaciones, registros y servicios que cualquiera puede verificar. Interoperable y compatible con los estándares de la industria.</p>
+<div class="fade" style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 40px; animation-delay: .55s">
+<a class="btn btn-p" href="/desarrolladores">Empieza a construir <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<a class="btn btn-g" href="/protocolo">Cómo funciona</a>
+</div>
+</div>
+</section>
+
+<section id="compatibilidad">
+<div class="wrap">
+<div class="g2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center">
+<div>
+<p class="k">01 — Para quien construye</p>
+<h2 class="h2">Cambia la red.<br>Tu código sigue igual.</h2>
+<p class="lead">Los contratos se escriben con los lenguajes y las herramientas que ya usa la industria: Solidity, Hardhat, Foundry, MetaMask. Si ya construyes sobre blockchain, ya sabes construir aquí.</p>
+<a class="txl" href="/desarrolladores">Construir en 42 <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+</div>
+<div class="code" role="img" aria-label="Ejemplo de configuración de Hardhat para conectarse a 42 Chain">
+<div class="bar"><i></i><i></i><i></i><span style="margin-left: 8px">hardhat.config.js</span></div>
+<pre><span class="p">networks: &#123;</span>
+  chain42: &#123;
+    url: <span class="s">"[RPC URL]"</span>,
+    chainId: <span class="s">[CHAIN ID]</span>,
+  &#125;,
+<span class="p">&#125;</span>
+
+<span class="c">// Ya está. Despliega como siempre.</span></pre>
+</div>
+</div>
+<div class="facts">
+<div><b>~2 s</b><span>Por bloque</span></div>
+<div><b>1 bloque</b><span>Para ser definitivo</span></div>
+<div><b>IBC</b><span>Interoperable</span></div>
+<div><b>Apache 2.0</b><span>Código abierto</span></div>
+</div>
+</div>
+</section>
+
+<section id="usos" class="paper">
+<div class="wrap">
+<p class="k">02 — Lo que permite</p>
+<h2 class="h2" style="max-width: 900px">Para qué sirve, en la práctica.</h2>
+<p class="lead">Cuando los datos y las reglas quedan en un registro público que nadie puede modificar, cualquiera puede comprobarlos sin depender de un intermediario. Tres ejemplos:</p>
+<div class="stories">
+<div class="story rv"><span class="n">01</span><h3>Un título que se verifica solo.</h3><p>Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.</p></div>
+<div class="story rv"><span class="n">02</span><h3>Un acuerdo que se cumple tal como se escribió.</h3><p>Una cooperativa vota cómo repartir un fondo, y un contrato ejecuta el reparto con las reglas que todos aprobaron.</p></div>
+<div class="story rv"><span class="n">03</span><h3>Un origen que varias partes comparten.</h3><p>Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.</p></div>
+</div>
+<a class="txl" href="/protocolo/que-permite-construir" style="margin-top: 56px">Qué permite construir <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+</div>
+</section>
+
+<section id="quien">
+<div class="wrap">
+<p class="k">03 — Quién la sostiene</p>
+<h2 class="h2" style="max-width: 900px">Funciona porque muchos deciden sostenerla.</h2>
+<p class="lead">Detrás de la red no hay una empresa que pueda cerrarla, cambiar sus reglas por su cuenta o elegir quién la usa. Cada parte la mantiene alguien distinto, por decisión propia.</p>
+<div class="rows">
+<div class="row"><b>Quienes escriben el código</b><span>Lo proponen y lo revisan en público, en un repositorio abierto.</span></div>
+<div class="row"><b>Quienes operan los nodos</b><span>Verifican cada bloque y dan acceso a la red a las aplicaciones.</span></div>
+<div class="row"><b>La DAO</b><span>Decide qué cambia en el protocolo y cuándo.</span></div>
+<div class="row"><b>Quienes construyen</b><span>Llevan la red a las personas a través de sus aplicaciones y servicios.</span></div>
+</div>
+<a class="txl" href="/proyecto#circulos">Cómo se sostiene <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+</div>
+</section>
+
+<section id="empezar">
+<div class="wrap" style="padding-top: 40px">
+<p class="k">04 — Por dónde empezar</p>
+<h2 class="h2">Elige por dónde entrar.</h2>
+<div style="margin-top: 56px; border-bottom: 1px solid #1A1F26">
+<a class="path" href="/desarrolladores"><b>Construir una aplicación</b><span>Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<a class="path" href="/desarrolladores/nodos"><b>Operar un nodo</b><span>Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<a class="path" href="/desarrolladores/integrar"><b>Integrar la red</b><span>Conectar una billetera, una plataforma o un explorador.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<a class="path" href="/protocolo/gobernanza"><b>Participar en la DAO</b><span>Delegar y votar el rumbo del protocolo.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<a class="path" href="/comunidad"><b>Conversar</b><span>Preguntar y compartir en Infinite Drive, el chat de la comunidad.</span><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+</div>
+</div>
+</section>
+
+<section id="porque42">
+<div class="wrap" style="padding-bottom: 80px">
+<div class="g2" style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center">
+<div aria-hidden="true" class="big42">42</div>
+<div>
+<p class="k">05 — El nombre</p>
+<h2 class="h2">¿Por qué 42?</h2>
+<p class="lead">En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. Esta red funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes la usan.</p>
+<a class="txl" href="/proyecto#porque42">Por qué 42 <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+</div>
+</div>
+</div>
+</section>
+
+
+<Footer>
+  <div class="fcta">
+    <h2>Construye sobre una red que no es de nadie.</h2>
+    <div class="acts">
+      <a class="btn btn-p" href="/desarrolladores">Empieza a construir</a>
+      <a class="btn btn-g" href="/comunidad">Conversar en Infinite Drive</a>
+    </div>
+  </div>
+</Footer>
+</Base>
+
+<style is:global>
+
+.k{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc,#5BF0C8);margin:0 0 20px}
+.h2{margin:0;font-size:clamp(36px,4.2vw,60px);font-weight:600;letter-spacing:-0.035em;line-height:1.04}
+.lead{margin:24px 0 0;max-width:600px;font-size:18px;line-height:1.6;color:#AEB7C0}
+.wrap{max-width:1320px;margin:0 auto;padding:140px clamp(16px,4vw,56px);box-sizing:border-box}
+.code{border:1px solid #1E252D;border-radius:14px;background:#080B0F;overflow:hidden}
+.code .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #1A1F26;font-family:'Geist Mono',monospace;font-size:12.5px;color:#8E98A3}
+.code .bar i{width:9px;height:9px;border-radius:50%;background:#232A33;display:inline-block}
+.code pre{margin:0;padding:22px 22px 26px;font-family:'Geist Mono',monospace;font-size:14.5px;line-height:1.75;color:#C9D0D6;overflow-x:auto}
+.code .c{color:#5F6873}.code .s{color:var(--acc,#5BF0C8)}.code .p{color:#8E98A3}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:72px;border-top:1px solid #1A1F26}
+.facts div{padding:28px 24px 0 0;display:flex;flex-direction:column;gap:8px}
+.facts b{font-size:32px;font-weight:600;letter-spacing:-0.03em;color:#EEF1F3}
+.facts span{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8E98A3}
+.paper{background:#ECEBE6;color:#0B0D10}
+.paper .k{color:#0A7A5E}
+.paper .lead{color:#3A3F45}
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;margin-top:72px}
+.story{border-top:1px solid #0B0D10;padding-top:24px}
+.story .n{font-family:'Geist Mono',monospace;font-size:12.5px;color:#545A61}
+.story h3{margin:14px 0 12px;font-size:23px;font-weight:600;letter-spacing:-0.02em;line-height:1.2}
+.story p{margin:0;font-size:16px;line-height:1.65;color:#3A3F45}
+.rows{margin-top:64px;border-bottom:1px solid #1A1F26}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:32px;padding:26px 0;border-top:1px solid #1A1F26}
+.row b{font-size:21px;font-weight:600;letter-spacing:-0.02em;color:#EEF1F3}
+.row span{font-size:16.5px;line-height:1.6;color:#AEB7C0}
+.path{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) 24px;gap:32px;align-items:center;padding:26px 4px;border-top:1px solid #1A1F26;text-decoration:none;color:#EEF1F3;transition:background .25s,padding .3s}
+.path:hover{background:#0B0F14;padding-left:14px;color:#ffffff}
+.path b{font-size:21px;font-weight:600;letter-spacing:-0.02em}
+.path span{font-size:16px;line-height:1.55;color:#8E98A3}
+.path svg{color:#5F6873;transition:color .25s,transform .3s}
+.path:hover svg{color:var(--acc,#5BF0C8);transform:translateX(4px)}
+.paper .txl:hover{color:#0A7A5E}
+@media (max-width:900px){
+.stories{grid-template-columns:1fr;gap:36px}
+.facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+.row,.path{grid-template-columns:1fr;gap:6px}
+.path svg{display:none}
+.wrap{padding:96px 16px}
+}
+
+.hero{position:relative;min-height:900px;display:flex;flex-direction:column;padding:22px clamp(16px,4vw,56px) 32px;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,10,.55) 0%,rgba(5,7,10,0) 30%,rgba(5,7,10,0) 60%,#05070A 100%);pointer-events:none}
+.hero .copy{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1080px;padding:90px 0 60px}
+.big42{font-family:var(--font);font-weight:600;font-size:clamp(200px,28vw,420px);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,#C4A7FF 70%,transparent);user-select:none;transition:-webkit-text-stroke-color .6s}
+.big42:hover{-webkit-text-stroke-color:#C4A7FF}
+@media (max-width:900px){.g2{grid-template-columns:1fr !important}.hero{min-height:720px}}
+</style>
+
+<script>
+  import { startNetwork } from '../scripts/hero-network';
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-net]');
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  if (canvas && hero) startNetwork(canvas, hero);
+</script>
