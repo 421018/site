@@ -2,13 +2,20 @@
 import '../styles/global.css';
 import { SITE } from '../config';
 
-interface Props { title?: string; description?: string; accent?: string }
-const { title, description = SITE.description, accent = 'protocolo' } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  /** Section colors (frontmatter `section.accent` / `section.ink`); the defaults live in global.css. */
+  accent?: string;
+  ink?: string;
+}
+const { title, description = SITE.description, accent, ink } = Astro.props;
+const colors = [accent && `--acc: ${accent}`, ink && `--link: ${ink}`].filter(Boolean).join('; ') || undefined;
 const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — Protocolo blockchain de código abierto`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang={SITE.lang} data-accent={accent}>
+<html lang={SITE.lang} style={colors}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

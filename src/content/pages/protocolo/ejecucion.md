@@ -1,8 +1,7 @@
 ---
 title: "Ejecución"
 summary: "Qué guarda la red, cómo son las cuentas, qué ocurre con una transacción desde que se firma y cómo se ejecutan los contratos."
-group: protocolo
-slug: protocolo/ejecucion
+weight: 10
 ---
 
 ## Qué guarda la red: el estado {#estado}
@@ -13,7 +12,9 @@ Cada bloque nuevo parte del estado anterior, aplica sus transacciones en orden y
 
 La parte del protocolo que toma las transacciones de un bloque y calcula el estado nuevo se llama **ejecución**. El consenso decide qué transacciones entran en cada bloque y en qué orden. La ejecución decide qué efecto tiene cada una.
 
-<p class="msg"><a class="tx" href="/protocolo/consenso">Consenso y staking →</a></p>
+:::aparte
+[Consenso y staking →](/protocolo/consenso)
+:::
 
 ## Cuentas {#cuentas}
 
@@ -28,7 +29,9 @@ Cada cuenta se identifica con una **dirección**. En el protocolo, una misma cue
 
 Los dos formatos corresponden a la misma cuenta y al mismo saldo. Una billetera puede mostrar cualquiera de los dos.
 
-<p class="msg"><a class="tx" href="/docs">Cuentas y direcciones ↗</a></p>
+:::aparte
+[Cuentas y direcciones ↗](/docs)
+:::
 
 ## El recorrido de una transacción {#transacciones}
 
@@ -76,7 +79,9 @@ Los contratos para la EVM se escriben normalmente en **Solidity**, un lenguaje d
 
 Como la EVM es un estándar compartido, un contrato escrito para la EVM puede publicarse en la red sin cambios en su código. Lo mismo ocurre con las herramientas: las librerías, los entornos de prueba y las billeteras de ese estándar funcionan con la red.
 
-<p class="msg"><a class="tx" href="/protocolo/tarifas#tarifas">Qué es el gas y cómo se calcula una tarifa →</a></p>
+:::aparte
+[Qué es el gas y cómo se calcula una tarifa →](/protocolo/tarifas#tarifas)
+:::
 
 ## Funciones propias de la red {#nativas}
 
@@ -84,7 +89,9 @@ Además de la EVM, el protocolo tiene funciones propias: el staking, la gobernan
 
 Los contratos pueden usar estas funciones directamente, como si llamaran a otro contrato. Cada función propia tiene una dirección fija y conocida. Por ejemplo, un contrato puede delegar unidades en un validador, votar una propuesta o enviar unidades a otra red, sin depender de un servicio externo.
 
-<p class="msg"><a class="tx" href="/docs">Funciones propias de la red y sus direcciones ↗</a></p>
+:::aparte
+[Funciones propias de la red y sus direcciones ↗](/docs)
+:::
 
 ## Por qué el protocolo lo hace así {#porque}
 

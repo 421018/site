@@ -1,8 +1,7 @@
 ---
 title: "Contacto y soporte"
 summary: "Qué canales son oficiales, para qué sirve cada uno y qué ayuda puedes recibir por ellos."
-group: proyecto
-slug: proyecto/contacto
+weight: 20
 ---
 
 ## Con quién hablas {#entrada}
@@ -44,7 +43,9 @@ Pregunta en [Infinite Drive](/comunidad#portal), el chat de la comunidad. Si enc
 
 Si necesitas un servicio profesional con condiciones propias, como un desarrollo a la medida o plazos garantizados, contrátalo con un proveedor independiente. El proyecto no presta servicios pagados ni recomienda proveedores.
 
-<p class="msg"><a class="tx" href="/desarrolladores/integrar">Integrar la red →</a></p>
+:::aparte
+[Integrar la red →](/desarrolladores/integrar)
+:::
 
 ## Seguridad {#seguridad}
 
@@ -52,13 +53,17 @@ Si encuentras una vulnerabilidad, repórtala en privado al correo de seguridad, 
 
 Para que el reporte pueda atenderse rápido, describe qué encontraste, cómo reproducirlo y qué impacto podría tener. La recepción de cada reporte se confirma en un plazo de [plazo].
 
-<p class="msg"><a class="tx" href="/protocolo/seguridad#reportar">Divulgación responsable →</a></p>
+:::aparte
+[Divulgación responsable →](/protocolo/seguridad#reportar)
+:::
 
 ## Antes de escribirnos {#antes}
 
 Muchas dudas ya tienen respuesta en las [preguntas frecuentes](/proyecto/preguntas-frecuentes) o en la [documentación](/docs).
 
-<div class="note"><span class="nl">Nadie del proyecto te pedirá</span><p>Tu frase de recuperación, tus llaves privadas, que envíes unidades para "verificar" una cuenta ni que conectes tu billetera a un sitio que no aparezca en esta página.</p></div>
+:::nota[Nadie del proyecto te pedirá]
+Tu frase de recuperación, tus llaves privadas, que envíes unidades para "verificar" una cuenta ni que conectes tu billetera a un sitio que no aparezca en esta página.
+:::
 
 ## Lo que no se atiende por estos canales {#no-atiende}
 

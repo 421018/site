@@ -1,8 +1,7 @@
 ---
 title: "Interoperabilidad"
 summary: "Cómo se conecta la red con otras cadenas de bloques sin depender de intermediarios, y cómo viaja una transferencia de una red a otra."
-group: protocolo
-slug: protocolo/interoperabilidad
+weight: 40
 ---
 
 ## Por qué conectar redes {#porque-conectar}
@@ -51,7 +50,9 @@ Si la entrega no ocurre dentro de un plazo, la transferencia vence y las 10 unid
 
 El regreso funciona al revés. La red B destruye las 10 unidades que las representaban, y 42 Chain, tras verificar la prueba, desbloquea las originales.
 
-<p class="msg">Las cifras del ejemplo son ilustrativas.</p>
+:::aparte
+Las cifras del ejemplo son ilustrativas.
+:::
 
 ## Unidades que llegan de otras redes {#representacion}
 
@@ -65,7 +66,9 @@ IBC no solo transporta unidades. También transporta mensajes entre aplicaciones
 
 Desde un contrato, el envío entre redes se hace a través de una función propia del protocolo.
 
-<p class="msg"><a class="tx" href="/protocolo/ejecucion#nativas">Funciones propias de la red →</a></p>
+:::aparte
+[Funciones propias de la red →](/protocolo/ejecucion#nativas)
+:::
 
 ## Límites y riesgos {#limites}
 
@@ -75,7 +78,9 @@ IBC elimina la dependencia de intermediarios, pero no elimina todos los riesgos.
 - **La entrega depende de los retransmisores.** Un retransmisor no puede alterar un mensaje, pero puede no entregarlo. En ese caso, la transferencia vence y las unidades vuelven a su origen.
 - **Las representaciones no son las originales.** Una unidad que llegó de otra red vale lo que respalda su red de origen. Su ruta indica de dónde viene.
 
-<p class="msg"><a class="tx" href="/docs">Transferencias entre redes · Guía y referencia ↗</a></p>
+:::aparte
+[Transferencias entre redes · Guía y referencia ↗](/docs)
+:::
 
 ## Por qué el protocolo lo hace así {#porque}
 

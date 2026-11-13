@@ -1,8 +1,7 @@
 ---
 title: "Transparencia"
 summary: "Dónde comprobar, en fuentes públicas, lo que el sitio afirma sobre el protocolo y la red."
-group: proyecto
-slug: proyecto/transparencia
+weight: 30
 ---
 
 ## Comprobar en lugar de confiar {#entrada}
@@ -24,15 +23,15 @@ Algunas fuentes las mantiene el proyecto. Otras son independientes, y van marcad
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Los bloques y las transacciones | [Explorador] <span class="badge">Independiente</span> |
-| El conjunto activo de validadores y su poder de voto | [Explorador] <span class="badge">Independiente</span> |
+| Los bloques y las transacciones | [Explorador] _Independiente_{.badge} |
+| El conjunto activo de validadores y su poder de voto | [Explorador] _Independiente_{.badge} |
 | Los parámetros vigentes del protocolo | [Parámetros](/docs) |
 
 ## Gobernanza {#gobernanza}
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Las propuestas, sus votos y sus resultados | [Explorador de propuestas] <span class="badge">Independiente</span> |
+| Las propuestas, sus votos y sus resultados | [Explorador de propuestas] _Independiente_{.badge} |
 | El suministro inicial y el programa de recompensas | [Espacios oficiales de la DAO] |
 | Cómo funciona la DAO | [Gobernanza](/protocolo/gobernanza) |
 

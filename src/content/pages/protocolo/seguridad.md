@@ -1,8 +1,7 @@
 ---
 title: "Seguridad"
 summary: "Cómo está diseñado el protocolo para resistir fallas y ataques, de qué condiciones depende, cuáles son sus límites y cómo se cuida el código."
-group: protocolo
-slug: protocolo/seguridad
+weight: 60
 ---
 
 ## Qué significa que la red sea segura {#base}
@@ -23,7 +22,9 @@ Mientras se cumple el supuesto de seguridad, el protocolo está diseñado para q
 - **Las reglas sean iguales para todos.** Todas las transacciones se procesan con las mismas reglas. Ninguna cuenta ni aplicación tiene privilegios, y las reglas solo cambian mediante una actualización que aprueba la DAO.
 - **Cualquiera pueda comprobarlo.** Cualquiera puede ejecutar un nodo, repetir cada transacción y comprobar por su cuenta el estado de la red.
 
-<p class="msg"><a class="tx" href="/protocolo/consenso">El supuesto de seguridad en el consenso →</a></p>
+:::aparte
+[El supuesto de seguridad en el consenso →](/protocolo/consenso)
+:::
 
 ## Límites del protocolo {#limites}
 
@@ -36,7 +37,9 @@ Algunas cosas quedan fuera del alcance del protocolo. Conocerlas es parte de usa
 - **Errores en el propio software.** El software del protocolo lo escriben personas, y puede tener errores que nadie ha encontrado todavía. Las revisiones y las pruebas reducen ese riesgo, pero no lo eliminan.
 - **Funcionamiento continuo.** Si más de un tercio del poder de voto queda fuera de línea, la red se detiene hasta que se recupera la mayoría. Es una decisión de diseño: el protocolo prefiere detenerse antes que confirmar algo sin la mayoría necesaria.
 
-<p class="msg"><a class="tx" href="/legal#riesgos">Aviso de riesgos →</a></p>
+:::aparte
+[Aviso de riesgos →](/legal#riesgos)
+:::
 
 ## Cómo responde ante fallas {#fallas}
 
@@ -70,7 +73,9 @@ La forma correcta se llama divulgación responsable. La persona reporta la vulne
 
 Publicar una vulnerabilidad antes de corregirla permitiría que otros la aprovecharan. Por eso el reporte se hace en privado.
 
-<p class="msg"><a class="tx" href="/proyecto/contacto#seguridad">Canal de seguridad →</a></p>
+:::aparte
+[Canal de seguridad →](/proyecto/contacto#seguridad)
+:::
 
 ## Cómo protegerte {#protegerte}
 
@@ -88,4 +93,6 @@ Muchos riesgos para una persona no vienen del protocolo, sino de su propio entor
 - **Transparencia.** El código abierto y el registro público permiten que cualquiera compruebe cómo funciona la red, sin tener que confiar en nadie.
 - **Responsabilidad compartida.** El protocolo protege lo que sus reglas pueden proteger. Lo demás, como la llave privada, queda en manos de cada persona.
 
-<p class="msg">Esta página describe cómo está diseñado el protocolo. No es una promesa de resultados: el software se ofrece tal cual, sin garantías. <a class="tx" href="/legal#garantias">Legal y avisos</a></p>
+:::aparte
+Esta página describe cómo está diseñado el protocolo. No es una promesa de resultados: el software se ofrece tal cual, sin garantías. [Legal y avisos](/legal#garantias)
+:::

@@ -1,12 +1,13 @@
 ---
-import { FOOTER } from '../data/nav';
+import { getFooter } from '../lib/site';
 import { SITE } from '../config';
+const columns = await getFooter();
 ---
 <footer class="site-footer">
   <div class="inner">
     <slot />
     <div class="fcols">
-      {FOOTER.map((col) => (
+      {columns.map((col) => (
         <div>
           <p class="lbl">{col.label}</p>
           {col.links.map((l) => <a class="flink" href={l.href}>{l.label}</a>)}

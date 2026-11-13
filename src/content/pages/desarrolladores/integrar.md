@@ -1,8 +1,7 @@
 ---
 title: "Integrar la red"
 summary: "Qué tipos de integración existen, qué información necesita cada una y cómo es el proceso."
-group: desarrolladores
-slug: desarrolladores/integrar
+weight: 20
 ---
 
 ## Qué es integrar la red {#que-es}
@@ -21,7 +20,9 @@ Cada tipo de integración necesita cosas distintas:
 - **Sitios de datos.** Publican información de la red, como su nombre, su unidad nativa o su suministro. Necesitan datos oficiales y enlaces a los canales del proyecto.
 - **Infraestructura.** Por ejemplo, proveedores de acceso a nodos. Operan nodos y los ponen al servicio de otras aplicaciones.
 
-<p class="msg"><a class="tx" href="/desarrolladores/nodos">Operar un nodo →</a></p>
+:::aparte
+[Operar un nodo →](/desarrolladores/nodos)
+:::
 
 ## Qué información necesitas {#datos}
 
@@ -37,7 +38,9 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 | Emisión y suministro | Emisión por bloque · [en la documentación]. El suministro inicial lo publica la DAO en sus propios espacios |
 | Canales oficiales | Para enlazar desde el servicio · [Canales oficiales](/proyecto/contacto#canales) |
 
-<p class="msg"><a class="tx" href="/docs">Guías de integración ↗</a></p>
+:::aparte
+[Guías de integración ↗](/docs)
+:::
 
 ## Cómo es el proceso {#proceso}
 

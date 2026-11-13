@@ -1,13 +1,12 @@
 ---
 title: "Gobernanza"
 summary: "Por qué el protocolo necesita un gobierno, qué es una DAO, quién la forma y cómo se proponen, se votan y se aplican los cambios."
-group: protocolo
-slug: protocolo/gobernanza
+weight: 50
 ---
 
 import VoteSim from '../../../components/VoteSim.astro';
 
-<h2 id="necesidad">Por qué una red necesita gobierno</h2>
+## Por qué una red necesita gobierno {#necesidad}
 
 Ningún protocolo queda terminado. Con el tiempo hay que ajustar parámetros, corregir errores y adoptar mejoras. Alguien tiene que decidir esos cambios.
 
@@ -17,7 +16,7 @@ La alternativa opuesta sería que nadie pudiera cambiar las reglas. Pero una red
 
 El protocolo toma un tercer camino: los cambios los deciden los propios participantes de la red, con reglas públicas y votos registrados en la cadena. A ese sistema se le llama gobernanza en la cadena.
 
-<h2 id="dao">Qué es una DAO</h2>
+## Qué es una DAO {#dao}
 
 Una **DAO** (por sus siglas en inglés, *Decentralized Autonomous Organization*) es un sistema de decisión colectiva que funciona dentro de una cadena de bloques. Sus reglas están escritas en el protocolo, y sus decisiones se proponen, se votan y quedan registradas en la cadena.
 
@@ -33,9 +32,11 @@ En una red abierta, cualquiera puede crear tantas cuentas como quiera. Si cada c
 
 Por eso, en la DAO, el voto pesa según las unidades que el participante tiene en staking. Es la misma lógica que protege el consenso: el peso depende de algo que cuesta conseguir y que se pone en juego. Además, quienes protegen la red con sus unidades son quienes viven las consecuencias de cada cambio.
 
-<p class="msg"><a class="tx" href="/protocolo#validacion">Qué es el staking →</a></p>
+:::aparte
+[Qué es el staking →](/protocolo#validacion)
+:::
 
-<h2 id="quienes">Quién forma la DAO de 42 Chain</h2>
+## Quién forma la DAO de 42 Chain {#quienes}
 
 La DAO de 42 Chain la forman los validadores y las personas que les delegaron unidades. Cada participante vota con el peso de sus unidades en staking.
 
@@ -45,9 +46,11 @@ Quienes construyen sobre la red también participan. Con su propio programa de r
 
 La DAO se organiza y debate en sus propios [espacios](/comunidad#conversacion), que mantiene ella misma.
 
-<p class="msg">Nombre de la DAO: [por definir].</p>
+:::aparte
+Nombre de la DAO: [por definir].
+:::
 
-<h2 id="alcance">Qué decide la DAO</h2>
+## Qué decide la DAO {#alcance}
 
 La DAO decide sobre cuatro tipos de asuntos:
 
@@ -56,7 +59,7 @@ La DAO decide sobre cuatro tipos de asuntos:
 - **Fondo comunitario.** Por ejemplo, destinar unidades del fondo a una auditoría de seguridad o a una herramienta que necesita la red.
 - **Suministro inicial.** Por ejemplo, aprobar un programa que delega unidades a quienes contribuyen a la red.
 
-<h2 id="suministro">El suministro inicial</h2>
+## El suministro inicial {#suministro}
 
 En el primer bloque de la red, el bloque génesis, se crearon 100 millones de unidades. A esa cantidad se le llama **suministro inicial**.
 
@@ -80,9 +83,11 @@ Por ejemplo, si la liberación fuera pareja a lo largo de los 42 años, cada añ
 
 Además, la emisión constante crea unidades nuevas con cada bloque. Cuando terminen los 42 años, el suministro inicial será una proporción muy pequeña del total de unidades que existan en la red.
 
-<p class="msg">Las cifras del ejemplo son ilustrativas. [Calendario de liberación.]</p>
+:::aparte
+Las cifras del ejemplo son ilustrativas. [Calendario de liberación.]
+:::
 
-<h2 id="ciclo">El recorrido de una propuesta</h2>
+## El recorrido de una propuesta {#ciclo}
 
 Toda propuesta recorre cuatro etapas:
 
@@ -97,7 +102,9 @@ Un cambio de parámetro se aplica en cuanto termina la votación: desde ese bloq
 
 Una actualización del software necesita un paso más. La propuesta fija un bloque futuro, llamado **altura de actualización**. Al llegar a ese bloque, la red se detiene un momento, los validadores cambian a la versión nueva y la red continúa con las reglas nuevas. Así, todos los nodos cambian de versión en el mismo punto de la cadena.
 
-<p class="msg"><a class="tx" href="/desarrolladores/nodos#responsabilidades">Qué hace un validador en cada actualización →</a></p>
+:::aparte
+[Qué hace un validador en cada actualización →](/desarrolladores/nodos#responsabilidades)
+:::
 
 ### El voto de quien delega
 
@@ -105,7 +112,7 @@ Una persona que delegó unidades puede votar por su cuenta. En ese caso, su voto
 
 Si esa persona no vota, las unidades que delegó cuentan con el voto de su validador.
 
-<h2 id="conteo">Votos y conteo</h2>
+## Votos y conteo {#conteo}
 
 Para aprobarse, una propuesta tiene que cumplir tres condiciones al mismo tiempo:
 
@@ -125,13 +132,17 @@ Votan participantes que suman 45 de poder de voto: 25 por el Sí, 12 por el No, 
 
 La propuesta se aprueba. Los porcentajes reales de cada regla son parámetros del protocolo. [Quórum, umbral y límite de veto.]
 
-<p class="msg">Las cifras del ejemplo son ilustrativas.</p>
+:::aparte
+Las cifras del ejemplo son ilustrativas.
+:::
 
 <VoteSim />
 
-<p class="msg"><a class="tx" href="/docs">Parámetros de gobernanza y cómo votar ↗</a></p>
+:::aparte
+[Parámetros de gobernanza y cómo votar ↗](/docs)
+:::
 
-<h2 id="porque">Por qué el protocolo lo hace así</h2>
+## Por qué el protocolo lo hace así {#porque}
 
 - **Gobierno en la cadena.** Las propuestas, los votos y los resultados son públicos, y los cambios aprobados se aplican solos. Nadie puede cambiar las reglas a escondidas, y nadie puede bloquear una decisión tomada.
 - **Peso según el staking.** La misma lógica que protege el consenso protege las decisiones: crear cuentas no da poder, poner unidades en juego sí.

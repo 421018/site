@@ -1,13 +1,12 @@
 ---
 title: "Consenso y staking"
 summary: "Por qué la red necesita ponerse de acuerdo, cómo lo logra con el staking, cómo funciona la delegación y qué penaliza el protocolo."
-group: protocolo
-slug: protocolo/consenso
+weight: 20
 ---
 
 import ConsensusSim from '../../../components/ConsensusSim.astro';
 
-<h2 id="acuerdo">El problema del acuerdo</h2>
+## El problema del acuerdo {#acuerdo}
 
 Cada nodo guarda una copia del registro, y todas las copias deben coincidir. Para eso, todos los nodos tienen que aceptar los mismos bloques, en el mismo orden.
 
@@ -15,7 +14,7 @@ Lograrlo es difícil por tres razones. Los mensajes tardan en llegar de un nodo 
 
 A la forma de resolver este problema se le llama **mecanismo de consenso**. Un buen mecanismo de consenso logra que todos los nodos honestos acepten los mismos bloques, aunque una parte de los participantes falle o actúe mal.
 
-<h2 id="peso">Por qué el voto depende del staking</h2>
+## Por qué el voto depende del staking {#peso}
 
 Para ponerse de acuerdo, los nodos votan. La pregunta es cuánto pesa cada voto.
 
@@ -27,7 +26,7 @@ Si un validador rompe las reglas, pierde una parte de su respaldo. Así, hacer t
 
 Este mecanismo se llama **prueba de participación delegada**. "Prueba de participación", porque el voto depende de lo que cada validador pone en juego. "Delegada", porque otras personas pueden sumar sus unidades al respaldo de un validador.
 
-<h2 id="conjunto">El conjunto activo</h2>
+## El conjunto activo {#conjunto}
 
 No todos los validadores registrados confirman bloques. El protocolo ordena a los validadores según su poder de voto. Solo los validadores con más poder de voto forman el **conjunto activo**: el grupo que propone y confirma los bloques.
 
@@ -37,7 +36,7 @@ Un validador que queda fuera del conjunto activo sigue registrado. Pero no propo
 
 El conjunto activo se actualiza con cada bloque, a medida que cambian las unidades en staking de cada validador.
 
-<h2 id="ronda">Una ronda de consenso</h2>
+## Una ronda de consenso {#ronda}
 
 Cada bloque se decide en una ronda. Una ronda tiene cuatro etapas:
 
@@ -52,13 +51,13 @@ La segunda votación impide que eso ocurra. Un validador solo se compromete con 
 
 A veces una ronda no reúne los votos necesarios; por ejemplo, porque el validador que debía proponer está desconectado. En ese caso empieza una nueva ronda, y la propuesta le toca a otro validador.
 
-<div class="facts">
-<div><b>1 bloque</b><span>Finalidad</span></div>
-<div><b>&gt; 2/3</b><span>Poder de voto para confirmar</span></div>
-<div><b>&lt; 1/3</b><span>Fallas toleradas</span></div>
-</div>
+:::datos
+- **1 bloque** Finalidad
+- **&gt; 2/3** Poder de voto para confirmar
+- **&lt; 1/3** Fallas toleradas
+:::
 
-<h2 id="fallas">Qué pasa si fallan validadores</h2>
+## Qué pasa si fallan validadores {#fallas}
 
 El mecanismo de consenso tolera fallas. Mientras los validadores que fallan sumen menos de un tercio del poder de voto, los demás validadores siguen reuniendo los dos tercios necesarios. La red sigue confirmando bloques.
 
@@ -68,7 +67,7 @@ Esta pausa es una decisión de diseño. Un bloque confirmado ya no puede deshace
 
 <ConsensusSim />
 
-<h2 id="delegacion">Delegar unidades</h2>
+## Delegar unidades {#delegacion}
 
 Delegar es la forma de participar en la seguridad de la red sin operar un validador. La persona que delega elige un validador y le delega unidades. Esas unidades se suman al staking del validador elegido y aumentan su poder de voto.
 
@@ -94,7 +93,9 @@ El cálculo se entiende mejor con un ejemplo. Un validador tiene 1.000 unidades 
 
 Cada validador fija su propia comisión, y quien delega la conoce antes de elegirlo.
 
-<p class="msg">Las cifras del ejemplo son ilustrativas.</p>
+:::aparte
+Las cifras del ejemplo son ilustrativas.
+:::
 
 ### Riesgos y retiro
 
@@ -102,7 +103,7 @@ Si el validador elegido es penalizado, las unidades delegadas en ese validador t
 
 Para retirar una delegación hay que esperar un período definido por el protocolo. Durante ese período, las unidades no reciben compensación y no se pueden transferir. [Duración del período de espera.]
 
-<h2 id="penalizaciones">Penalizaciones</h2>
+## Penalizaciones {#penalizaciones}
 
 El protocolo penaliza automáticamente dos faltas:
 
@@ -113,9 +114,11 @@ Cuando un validador comete una de estas faltas, el protocolo le retira una parte
 
 La proporción que se retira y el tiempo que el validador queda fuera dependen de la falta.
 
-<p class="msg"><a class="tx" href="/docs">Reglas y parámetros de penalización ↗</a></p>
+:::aparte
+[Reglas y parámetros de penalización ↗](/docs)
+:::
 
-<h2 id="porque">Por qué el protocolo lo hace así</h2>
+## Por qué el protocolo lo hace así {#porque}
 
 - **Prueba de participación en lugar de un voto por nodo.** Crear nodos no da poder. Poner unidades en juego, sí. Así, el voto depende de algo que cuesta conseguir y que se pierde al hacer trampa.
 - **Finalidad inmediata.** Un bloque confirmado es definitivo desde el primer momento. Quien usa la red no tiene que esperar a que una transacción se vuelva más segura con el tiempo.

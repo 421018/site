@@ -1,40 +1,35 @@
 ---
-import type { Group } from '../data/nav';
-interface Props { group: Group; path: string }
-const { group, path } = Astro.props;
-const curItem = group.items.findIndex((i) => i.href === path);
-const curRef = group.refs.find((r) => r.href === path);
-const currentLabel = curItem >= 0
-  ? (group.numbered ? `${curItem + 1} · ${group.items[curItem].label}` : group.items[curItem].label)
-  : curRef?.label ?? '';
-const links = [
-  ...group.items.map((it, i) => ({ ...it, n: group.numbered ? String(i + 1) : '' , sep: false })),
-];
+import type { sideIndex } from '../lib/site';
+interface Props { nav: ReturnType<typeof sideIndex>; path: string }
+const { nav, path } = Astro.props;
+const cur = nav.items.find((i) => i.href === path);
+const currentLabel = cur ? (cur.n ? `${cur.n} · ${cur.label}` : cur.label) : nav.refs.find((r) => r.href === path)?.label ?? '';
+const isOn = (href: string) => href === path;
 ---
 <div class="sidewrap">
-  <nav class="side" aria-label={group.label}>
-    <p class="sk">{group.label}</p>
-    {links.map((l) => (
-      <a class:list={[{ on: l.href === path }]} href={l.href} aria-current={l.href === path ? 'page' : undefined}>
+  <nav class="side" aria-label={nav.label}>
+    <p class="sk">{nav.label}</p>
+    {nav.items.map((l) => (
+      <a class:list={[{ on: isOn(l.href) }]} href={l.href} aria-current={isOn(l.href) ? 'page' : undefined}>
         {l.n && <span class="n">{l.n}</span>}<span>{l.label}</span>
       </a>
     ))}
-    {group.refs.length > 0 && <div class="sep" role="presentation" />}
-    {group.refs.map((l) => (
-      <a class:list={[{ on: l.href === path }]} href={l.href} aria-current={l.href === path ? 'page' : undefined}><span>{l.label}</span></a>
+    {nav.refs.length > 0 && <div class="sep" role="presentation" />}
+    {nav.refs.map((l) => (
+      <a class:list={[{ on: isOn(l.href) }]} href={l.href} aria-current={isOn(l.href) ? 'page' : undefined}><span>{l.label}</span></a>
     ))}
   </nav>
   <details class="side-m">
-    <summary><span>{group.label} · <b>{currentLabel}</b></span><i aria-hidden="true">▾</i></summary>
-    <nav aria-label={group.label}>
-      {links.map((l) => (
-        <a class:list={[{ on: l.href === path }]} href={l.href} aria-current={l.href === path ? 'page' : undefined}>
+    <summary><span>{nav.label} · <b>{currentLabel}</b></span><i aria-hidden="true">▾</i></summary>
+    <nav aria-label={nav.label}>
+      {nav.items.map((l) => (
+        <a class:list={[{ on: isOn(l.href) }]} href={l.href} aria-current={isOn(l.href) ? 'page' : undefined}>
           {l.n && <span class="n">{l.n}</span>}<span>{l.label}</span>
         </a>
       ))}
-      {group.refs.length > 0 && <div class="sep" role="presentation" />}
-      {group.refs.map((l) => (
-        <a class:list={[{ on: l.href === path }]} href={l.href}><span>{l.label}</span></a>
+      {nav.refs.length > 0 && <div class="sep" role="presentation" />}
+      {nav.refs.map((l) => (
+        <a class:list={[{ on: isOn(l.href) }]} href={l.href}><span>{l.label}</span></a>
       ))}
     </nav>
   </details>

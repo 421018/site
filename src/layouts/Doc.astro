@@ -3,44 +3,35 @@ import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SideNav from '../components/SideNav.astro';
-import { GROUPS } from '../data/nav';
+import { getSection, sideIndex, prevNext, hrefOf, sectionKey, lastCommitDate, type Page } from '../lib/site';
 import { EDIT_BASE } from '../config';
 
-interface Props {
-  title: string;
-  summary: string;
-  group: string; // protocolo | desarrolladores | comunidad | proyecto | legal
-  path: string; // route of this page, e.g. /protocolo/consenso
-  file: string; // content file, for "Editar esta página"
-  updated?: Date;
-}
-const { title, summary, group, path, file, updated } = Astro.props;
-// Legal pages live in the Proyecto side index.
-const navKey = group === 'legal' ? 'proyecto' : group;
-const g = GROUPS.find((x) => x.key === navKey)!;
-const showSide = g.items.length + g.refs.length > 1;
-const seq = g.sequential ? g.items : [];
-const i = seq.findIndex((x) => x.href === path);
-const prev = i > 0 ? seq[i - 1] : null;
-const next = i >= 0 && i < seq.length - 1 ? seq[i + 1] : null;
-const groupLabel = group === 'legal' ? 'Legal' : g.label;
-const fmt = updated ? new Intl.DateTimeFormat('es', { dateStyle: 'long' }).format(updated) : '[fecha]';
+interface Props { page: Page }
+const { page } = Astro.props;
+const section = await getSection(sectionKey(page));
+const home = await getSection(section.home);
+const nav = sideIndex(home);
+const showSide = nav.items.length + nav.refs.length > 1;
+const path = hrefOf(page);
+const { prev, next } = prevNext(section, page);
+const updated = page.data.updated ?? lastCommitDate(page.filePath);
+const fmt = updated && new Intl.DateTimeFormat('es', { dateStyle: 'long' }).format(updated);
 ---
-<Base title={title} description={summary} accent={group}>
+<Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink}>
   <section class="band-top">
     <div class="gridbg" aria-hidden="true"></div>
     <div class="glow" aria-hidden="true"></div>
-    <Header current={navKey} />
+    <Header current={home.key} />
   </section>
   <div class="rd">
     <div class="lay">
-      {showSide && <SideNav group={g} path={path} />}
+      {showSide && <SideNav nav={nav} path={path} />}
       <main>
         <div class="dochead">
-          <p class="dk">{groupLabel}</p>
-          <h1>{title}</h1>
-          <p class="ds">{summary}</p>
-          <p class="dm">Última revisión: {fmt} · <a href={EDIT_BASE + file}>Editar esta página ↗</a></p>
+          <p class="dk">{section.label}</p>
+          <h1>{page.data.title}</h1>
+          <p class="ds">{page.data.summary}</p>
+          <p class="dm">{fmt && <>Última revisión: {fmt} · </>}<a href={EDIT_BASE + page.filePath}>Editar esta página ↗</a></p>
         </div>
         <div class="prose">
           <slot />

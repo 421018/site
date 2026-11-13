@@ -1,8 +1,14 @@
 ---
 title: "Infinite Improbability Drive"
 summary: "El protocolo 42, explicado desde sus bases: qué es, cómo funciona y qué permite construir."
-group: protocolo
-slug: protocolo
+menuTitle: "Visión general"
+section:
+  label: Protocolo
+  weight: 1
+  accent: "#5BF0C8"
+  ink: "#0A7A5E"
+  numbered: true
+  sequential: true
 ---
 
 ## Qué es el protocolo {#protocolo}
@@ -53,7 +59,9 @@ Para que el resultado de un contrato sea confiable, todos los nodos ejecutan el 
 
 La máquina virtual del protocolo sigue una especificación llamada **EVM**, la más usada para contratos inteligentes en cadenas de bloques. Como la EVM es un estándar compartido, los lenguajes, las herramientas y las billeteras que ya existen para la EVM funcionan con el protocolo sin cambios. Quien ya sabe escribir contratos para la EVM puede escribirlos para el protocolo desde el primer día.
 
-<p class="msg"><a class="tx" href="/protocolo/ejecucion">Ejecución →</a></p>
+:::aparte
+[Ejecución →](/protocolo/ejecucion)
+:::
 
 ## El costo de cada transacción {#unidad}
 
@@ -65,7 +73,9 @@ Las tarifas se pagan en la unidad propia del protocolo. A esa unidad se le llama
 
 La unidad nativa tiene además un segundo papel, quizá el más importante: protege la red. Para entender cómo, hay que ver primero quién decide qué bloques entran en la cadena.
 
-<p class="msg"><a class="tx" href="/protocolo/tarifas">Tarifas y emisión →</a></p>
+:::aparte
+[Tarifas y emisión →](/protocolo/tarifas)
+:::
 
 ## Quién añade los bloques {#validacion}
 
@@ -101,7 +111,9 @@ Un bloque confirmado no puede revertirse ni reemplazarse por otro. A esta propie
 
 Los validadores reciben una compensación por este trabajo. El protocolo les asigna una parte de las tarifas y de las unidades nuevas que crea con cada bloque. Cada validador comparte esa parte con las personas que le delegaron unidades.
 
-<p class="msg"><a class="tx" href="/protocolo/consenso">Consenso y staking →</a></p>
+:::aparte
+[Consenso y staking →](/protocolo/consenso)
+:::
 
 ## Una red entre otras redes {#ibc}
 
@@ -111,7 +123,9 @@ La forma más simple sería confiar en un intermediario: alguien que reciba las 
 
 Por eso el protocolo usa **IBC** (Inter-Blockchain Communication). IBC es un estándar abierto en el que cada red comprueba por sí misma, con pruebas criptográficas, lo que ocurrió en la otra red. Así, las unidades y los mensajes pueden pasar de una red a otra sin que ningún intermediario los custodie durante el traslado.
 
-<p class="msg"><a class="tx" href="/protocolo/interoperabilidad">Interoperabilidad →</a></p>
+:::aparte
+[Interoperabilidad →](/protocolo/interoperabilidad)
+:::
 
 ## Quién decide las reglas {#reglas}
 
@@ -121,7 +135,9 @@ El protocolo resuelve este problema con las piezas que ya se describieron. Cualq
 
 A este sistema de decisión colectiva se le llama **DAO** (por sus siglas en inglés, *Decentralized Autonomous Organization*). Con este sistema, quienes protegen la red con sus unidades en staking son también quienes deciden cómo evoluciona.
 
-<p class="msg"><a class="tx" href="/protocolo/gobernanza">Gobernanza →</a></p>
+:::aparte
+[Gobernanza →](/protocolo/gobernanza)
+:::
 
 ## Seguridad {#seguridad}
 
@@ -136,7 +152,9 @@ Además, el código del protocolo es abierto y se somete a **auditorías**. Una 
 
 Para no caer en sitios o perfiles falsos, usa solo los [canales oficiales](/proyecto/contacto#canales). Si encuentras una vulnerabilidad, repórtala en privado por el canal de seguridad indicado en la [documentación](/docs).
 
-<p class="msg"><a class="tx" href="/protocolo/seguridad">Seguridad →</a></p>
+:::aparte
+[Seguridad →](/protocolo/seguridad)
+:::
 
 ## Decisiones de diseño {#decisiones}
 
@@ -166,4 +184,6 @@ Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la re
 | Unidad nativa | Improbability (42) |
 | Gobernanza | En la cadena, mediante la DAO |
 
-<p class="msg"><a class="tx" href="/docs">Referencia técnica completa ↗</a></p>
+:::aparte
+[Referencia técnica completa ↗](/docs)
+:::

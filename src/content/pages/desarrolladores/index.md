@@ -1,8 +1,14 @@
 ---
 title: "Construir en 42"
 summary: "Qué es una aplicación sobre la red, qué se gana con la compatibilidad con la EVM, qué ofrece la red y cómo se lleva una aplicación del código a la red principal."
-group: desarrolladores
-slug: desarrolladores
+section:
+  label: Desarrolladores
+  weight: 2
+  accent: "#7C9CFF"
+  ink: "#3552C8"
+  links:
+    - { label: "Documentación ↗", href: /docs }
+    - { label: "Consola ↗", href: /consola }
 ---
 
 ## Qué es una aplicación sobre la red {#aplicacion}
@@ -17,7 +23,9 @@ No todo tiene que vivir en la cadena. Lo que debe ser verificable y compartido v
 
 Por ejemplo, en un registro de certificados, el contrato guarda la huella de cada certificado y quién lo emitió. El documento completo puede guardarse fuera de la cadena. Cualquiera puede comprobar, con la huella, que un documento es auténtico.
 
-<p class="msg"><a class="tx" href="/protocolo/ejecucion">Cómo se ejecutan los contratos →</a></p>
+:::aparte
+[Cómo se ejecutan los contratos →](/protocolo/ejecucion)
+:::
 
 ## La compatibilidad con la EVM, en la práctica {#evm}
 
@@ -33,7 +41,9 @@ Quien ya escribió contratos para la EVM puede publicarlos en la red sin cambios
 
 Además de la compatibilidad con la EVM, la red da a quien construye finalidad en segundos, conexión con otras redes mediante IBC, acceso desde los contratos a funciones propias como el staking y la gobernanza, y la libertad de publicar sin pedir permiso.
 
-<p class="msg"><a class="tx" href="/protocolo/que-permite-construir">Qué permite construir →</a></p>
+:::aparte
+[Qué permite construir →](/protocolo/que-permite-construir)
+:::
 
 ## Red principal y red de pruebas {#redes}
 

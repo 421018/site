@@ -1,8 +1,7 @@
 ---
 title: "Operar un nodo"
 summary: "Qué es un nodo, qué hace su software, qué tipos existen, qué se necesita para operarlo y cómo un nodo se convierte en validador."
-group: desarrolladores
-slug: desarrolladores/nodos
+weight: 10
 ---
 
 ## Qué es un nodo y para qué operar uno {#que-es}
@@ -43,7 +42,9 @@ Los recursos que necesita dependen del tipo de nodo. El almacenamiento es el que
 
 Los requisitos de procesador, memoria, almacenamiento y conexión de cada tipo de nodo están en la guía de nodos.
 
-<p class="msg"><a class="tx" href="/docs">Guía de nodos ↗</a></p>
+:::aparte
+[Guía de nodos ↗](/docs)
+:::
 
 ## Sincronizar un nodo {#sincronizar}
 
@@ -62,7 +63,9 @@ Un nodo se convierte en validador en tres pasos:
 - **2. Registrar.** Se envía una transacción que registra el nodo como validador. Esa transacción incluye las unidades que el validador pone en staking y la comisión que cobrará a sus delegadores.
 - **3. Entrar al conjunto activo.** Solo los validadores con más poder de voto forman el conjunto activo. Un validador recién registrado puede necesitar más unidades delegadas antes de entrar.
 
-<p class="msg"><a class="tx" href="/protocolo/consenso#conjunto">Qué es el conjunto activo →</a></p>
+:::aparte
+[Qué es el conjunto activo →](/protocolo/consenso#conjunto)
+:::
 
 ## Responsabilidades de un validador {#responsabilidades}
 
@@ -74,7 +77,9 @@ Un validador del conjunto activo tiene tres responsabilidades:
 
 Las penalizaciones también afectan a las unidades que otras personas delegaron en el validador. Por eso las personas que delegan revisan el historial de cada validador antes de elegirlo.
 
-<p class="msg"><a class="tx" href="/protocolo/consenso#penalizaciones">Penalizaciones →</a></p>
+:::aparte
+[Penalizaciones →](/protocolo/consenso#penalizaciones)
+:::
 
 ## Cómo se aplican las actualizaciones {#actualizaciones}
 
@@ -84,4 +89,6 @@ Para quien opera un nodo, el proceso tiene tres momentos. Antes de la altura, in
 
 Un nodo que no se actualiza a tiempo deja de seguir a la red: no puede verificar los bloques que se producen con las reglas nuevas.
 
-<p class="msg"><a class="tx" href="/protocolo/gobernanza#ciclo">Cómo se aprueba una actualización →</a></p>
+:::aparte
+[Cómo se aprueba una actualización →](/protocolo/gobernanza#ciclo)
+:::

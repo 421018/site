@@ -1,8 +1,12 @@
 ---
 title: "Comunidad"
 summary: "Dónde se conversa sobre la red y cómo encontrar a quienes la usan y construyen sobre ella."
-group: comunidad
-slug: comunidad
+menuTitle: "Explorar la comunidad"
+section:
+  label: Comunidad
+  weight: 3
+  accent: "#FFB547"
+  ink: "#9A5B00"
 ---
 
 ## Una conversación abierta {#conversacion}
@@ -17,6 +21,10 @@ Infinite Drive es el chat de la comunidad, en Telegram. Ahí se conversa sobre t
 
 Lo mantienen sus propios participantes, de forma voluntaria. No es un canal oficial del proyecto, y cada persona habla por sí misma.
 
-<p class="msg"><a class="tx" href="https://t.me/InfiniteDrive42">Unirse a Infinite Drive en Telegram ↗</a></p>
+:::aparte
+[Unirse a Infinite Drive en Telegram ↗](https://t.me/InfiniteDrive42)
+:::
 
-<div class="note" style="margin-top: 24px"><span class="nl">Antes de confiar en un mensaje</span><p>Nadie en una comunidad puede hablar en nombre del proyecto. Verifica cualquier anuncio en los canales oficiales.</p></div>
+:::nota[Antes de confiar en un mensaje]
+Nadie en una comunidad puede hablar en nombre del proyecto. Verifica cualquier anuncio en los canales oficiales.
+:::

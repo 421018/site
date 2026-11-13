@@ -1,15 +1,16 @@
 ---
-import { GROUPS } from '../data/nav';
+import { getMenu } from '../lib/site';
 interface Props { current?: string }
 const { current } = Astro.props;
+const menu = await getMenu();
 ---
 <header class="site-header">
   <a class="brand" href="/" aria-label="42 Chain, inicio">
     <span class="mark">42</span><span class="name">42 Chain</span>
   </a>
   <nav class="menu" aria-label="Principal">
-    {GROUPS.map((g) => (
-      <a class:list={['nl', { on: current === g.key }]} href={g.href} data-label={g.label} aria-current={current === g.key ? 'true' : undefined}>{g.label}</a>
+    {menu.map((s) => (
+      <a class:list={['nl', { on: current === s.key }]} href={s.href} data-label={s.label} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
     ))}
   </nav>
 </header>

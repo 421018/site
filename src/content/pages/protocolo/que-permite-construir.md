@@ -1,8 +1,7 @@
 ---
 title: "Qué permite construir"
 summary: "Qué cambia cuando una aplicación funciona sobre la red, qué tipos de uso hace posibles el protocolo y qué conviene dejar fuera de la cadena."
-group: protocolo
-slug: protocolo/que-permite-construir
+weight: 70
 ---
 
 ## Qué cambia cuando una aplicación vive en la red {#cambia}
@@ -30,7 +29,9 @@ En la red, quien emite un documento registra su huella y su firma. Cualquiera pu
 
 Por ejemplo, una universidad registra la huella de cada título que emite. Un empleador comprueba un título en segundos, aunque la universidad no responda.
 
-<p class="msg">Lo hacen posible: <a class="tx" href="/protocolo#registro">Huellas encadenadas</a> · <a class="tx" href="/protocolo#cuentas">Firmas</a></p>
+:::aparte
+Lo hacen posible: [Huellas encadenadas](/protocolo#registro) · [Firmas](/protocolo#cuentas)
+:::
 
 ### Pagos
 
@@ -40,7 +41,9 @@ En la red, un pago se confirma en segundos y es definitivo. Un contrato puede, a
 
 Por ejemplo, un comprador deposita el pago en un contrato. El contrato lo libera al vendedor cuando se confirma la entrega, o lo devuelve si vence el plazo.
 
-<p class="msg">Lo hacen posible: <a class="tx" href="/protocolo/consenso#ronda">Finalidad</a> · <a class="tx" href="/protocolo/ejecucion#contratos">Contratos</a></p>
+:::aparte
+Lo hacen posible: [Finalidad](/protocolo/consenso#ronda) · [Contratos](/protocolo/ejecucion#contratos)
+:::
 
 ### Constancias e identidad
 
@@ -50,7 +53,9 @@ En la red, quien otorga una constancia puede registrarla y asociarla a la cuenta
 
 Por ejemplo, una escuela de idiomas registra el nivel que aprobó cada alumno. Una empresa comprueba ese nivel directamente en la red, sin tener que llamar a la escuela.
 
-<p class="msg">Lo hacen posible: <a class="tx" href="/protocolo#cuentas">Cuentas y firmas</a> · <a class="tx" href="/protocolo/ejecucion#contratos">Contratos</a></p>
+:::aparte
+Lo hacen posible: [Cuentas y firmas](/protocolo#cuentas) · [Contratos](/protocolo/ejecucion#contratos)
+:::
 
 ### Cuentas programables
 
@@ -60,7 +65,9 @@ En la red, una cuenta puede ser un contrato con sus propias reglas: exigir varia
 
 Por ejemplo, un grupo de trabajo exige la firma de tres de sus cinco responsables para mover las unidades de su cuenta común.
 
-<p class="msg">Lo hacen posible: <a class="tx" href="/protocolo/ejecucion#cuentas">Cuentas</a> · <a class="tx" href="/protocolo/ejecucion#contratos">Contratos</a></p>
+:::aparte
+Lo hacen posible: [Cuentas](/protocolo/ejecucion#cuentas) · [Contratos](/protocolo/ejecucion#contratos)
+:::
 
 ### Decisiones colectivas
 
@@ -70,7 +77,9 @@ En la red, un grupo puede crear su propio sistema de votación en un contrato. L
 
 Por ejemplo, una cooperativa vota en qué usar su fondo común. Si la propuesta se aprueba, el contrato transfiere las unidades sin intervención de nadie.
 
-<p class="msg">Lo hacen posible: <a class="tx" href="/protocolo/gobernanza#dao">El modelo de la DAO</a> · <a class="tx" href="/protocolo/ejecucion#nativas">Funciones propias de la red</a></p>
+:::aparte
+Lo hacen posible: [El modelo de la DAO](/protocolo/gobernanza#dao) · [Funciones propias de la red](/protocolo/ejecucion#nativas)
+:::
 
 ### Aplicaciones entre redes
 
@@ -80,7 +89,9 @@ Con IBC, una aplicación en la red puede enviar unidades y mensajes a aplicacion
 
 Por ejemplo, una aplicación de pagos recibe unidades de otra red y las usa en un contrato de la red, en una sola transacción para quien la usa.
 
-<p class="msg">Lo hacen posible: <a class="tx" href="/protocolo/interoperabilidad">Interoperabilidad</a></p>
+:::aparte
+Lo hacen posible: [Interoperabilidad](/protocolo/interoperabilidad)
+:::
 
 ### Infraestructura de servicios
 
@@ -90,9 +101,13 @@ En la red, un servicio así no depende de un solo operador ni de que un servidor
 
 Por ejemplo, un municipio publica en la red los acuerdos que aprueba. Cualquier persona puede comprobar, años después, que un acuerdo no fue modificado.
 
-<p class="msg">Lo hacen posible: <a class="tx" href="/protocolo/seguridad#propiedades">Seguridad del protocolo</a> · <a class="tx" href="/protocolo/gobernanza">Gobernanza</a></p>
+:::aparte
+Lo hacen posible: [Seguridad del protocolo](/protocolo/seguridad#propiedades) · [Gobernanza](/protocolo/gobernanza)
+:::
 
-<p class="msg">Los ejemplos son ilustrativos. Los proyectos que ya construyen sobre la red se comparten en <a class="tx" href="/comunidad#portal">Infinite Drive, el chat de la comunidad</a>.</p>
+:::aparte
+Los ejemplos son ilustrativos. Los proyectos que ya construyen sobre la red se comparten en [Infinite Drive, el chat de la comunidad](/comunidad#portal).
+:::
 
 ## Qué no conviene poner en la cadena {#fuera}
 
@@ -104,7 +119,9 @@ Todo lo que se registra en la red es público y permanente. Por eso hay informac
 
 La solución habitual es separar el dato de su prueba. El dato queda fuera de la cadena, bajo el control de quien corresponda. En la cadena se registra solo su huella. Así, cualquiera puede comprobar que un dato es auténtico sin que el dato se haga público.
 
-<p class="msg"><a class="tx" href="/desarrolladores#aplicacion">Qué va dentro y fuera de la cadena →</a></p>
+:::aparte
+[Qué va dentro y fuera de la cadena →](/desarrolladores#aplicacion)
+:::
 
 ## Por qué el protocolo lo hace posible {#porque}
 

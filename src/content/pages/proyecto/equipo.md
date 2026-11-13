@@ -1,8 +1,7 @@
 ---
 title: "El equipo"
 summary: "Quiénes desarrollan el protocolo, qué hacen, hasta dónde llega su papel y cómo trabajan."
-group: proyecto
-slug: proyecto/equipo
+weight: 10
 ---
 
 ## Quiénes somos {#quienes}
@@ -21,7 +20,9 @@ Nuestro trabajo se organiza en cinco frentes:
 - **Cuidamos la seguridad del código.** Recibimos los reportes de vulnerabilidades, preparamos las correcciones, coordinamos las auditorías y publicamos los avisos de seguridad.
 - **Conectamos la red con el ecosistema.** Damos soporte técnico a billeteras, plataformas, exploradores y sitios de datos que quieren integrar la red.
 
-<p class="msg"><a class="tx" href="/proyecto/contacto#apoyo">Apoyo técnico →</a></p>
+:::aparte
+[Apoyo técnico →](/proyecto/contacto#apoyo)
+:::
 
 ## Hasta dónde llega nuestro papel {#limites}
 
@@ -35,7 +36,9 @@ Escribimos el software, pero la red no nos pertenece. Por eso hay cosas que no n
 - **No vendemos servicios a nombre del proyecto.** Si alguien del equipo ofrece asesoría profesional, lo hace por su cuenta, fuera del proyecto.
 - **No ofrecemos ni recomendamos la unidad nativa.** Nuestro trabajo es el protocolo, no el mercado.
 
-<p class="msg"><a class="tx" href="/protocolo/gobernanza">Cómo decide la DAO →</a></p>
+:::aparte
+[Cómo decide la DAO →](/protocolo/gobernanza)
+:::
 
 ## Cómo trabajamos {#trabajamos}
 
@@ -47,7 +50,9 @@ El código del protocolo, la documentación, las herramientas y este sitio son p
 - **Con la DAO.** Una versión nueva solo llega a la red principal si la DAO la aprueba.
 - **Contándolo.** Explicamos cada cambio en las notas de versión y lo anunciamos en los canales oficiales.
 
-<p class="msg"><a class="tx" href="/proyecto/transparencia">Dónde comprobarlo →</a></p>
+:::aparte
+[Dónde comprobarlo →](/proyecto/transparencia)
+:::
 
 ## Contribuir al protocolo {#contribuir}
 
@@ -64,7 +69,9 @@ Una propuesta de código no cambia la red por sí sola. Primero, el equipo y otr
 
 Las vulnerabilidades no se reportan en el repositorio público, sino en privado. [Reportar una vulnerabilidad](/protocolo/seguridad#reportar)
 
-<p class="st"><b>Pendiente</b> Enlace al repositorio público.</p>
+:::estado[Pendiente]
+Enlace al repositorio público.
+:::
 
 ## Hablar con el equipo {#hablar}
 

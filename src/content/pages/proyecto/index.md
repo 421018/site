@@ -1,8 +1,11 @@
 ---
 title: "Sobre 42 Chain"
 summary: "Qué es el proyecto, quién lo sostiene, de dónde viene su nombre y los principios que lo guían."
-group: proyecto
-slug: proyecto
+section:
+  label: Proyecto
+  weight: 4
+  accent: "#C4A7FF"
+  ink: "#6B4BC8"
 ---
 
 ## Qué es 42 Chain {#que-es}
@@ -71,13 +74,18 @@ Las reglas solo cambian mediante propuestas públicas y votos que quedan registr
 
 El proyecto parte de una tradición de ideas sobre un internet libre, abierto y sin intermediarios obligatorios.
 
-<div class="tl">
-<div class="it"><span class="d">1988</span><span class="t">Manifiesto criptoanarquista</span><span class="s">La criptografía como herramienta para proteger la libertad de las personas en las redes.</span></div>
-<div class="it"><span class="d">1993</span><span class="t">Manifiesto cypherpunk</span><span class="s">La privacidad como condición de una sociedad abierta, defendida con código.</span></div>
-<div class="it"><span class="d">1996</span><span class="t">Declaración de independencia del ciberespacio</span><span class="s">Internet como un espacio con normas propias, construido por quienes lo habitan.</span></div>
-<div class="it"><span class="d">2008</span><span class="t">Bitcoin</span><span class="s">Un sistema entre pares que funciona sin un intermediario de confianza.</span></div>
-<div class="it now"><span class="d">Hoy</span><span class="t">42 Chain</span><span class="s">Infraestructura pública y abierta.</span></div>
-</div>
+:::cronologia{actual="Hoy"}
+- **1988** Manifiesto criptoanarquista
+  La criptografía como herramienta para proteger la libertad de las personas en las redes.
+- **1993** Manifiesto cypherpunk
+  La privacidad como condición de una sociedad abierta, defendida con código.
+- **1996** Declaración de independencia del ciberespacio
+  Internet como un espacio con normas propias, construido por quienes lo habitan.
+- **2008** Bitcoin
+  Un sistema entre pares que funciona sin un intermediario de confianza.
+- **Hoy** 42 Chain
+  Infraestructura pública y abierta.
+:::
 
 ## Desarrollo continuo {#continuo}
 
@@ -87,4 +95,6 @@ El trabajo no termina. Consiste en mantener la red estable, corregir lo que haga
 
 Cada cambio sigue el mismo camino. Primero se propone en el repositorio público, después se prueba en la red de pruebas y solo llega a la red principal si la DAO lo aprueba. Por eso el proyecto no publica fechas de entrega: la DAO decide qué cambia y cuándo.
 
-<p class="msg"><a class="tx" href="/docs">Historial de versiones y actualizaciones · Referencia técnica ↗</a></p>
+:::aparte
+[Historial de versiones y actualizaciones · Referencia técnica ↗](/docs)
+:::

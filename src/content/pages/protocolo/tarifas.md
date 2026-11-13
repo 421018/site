@@ -1,8 +1,7 @@
 ---
 title: "Tarifas y emisión"
 summary: "Qué es la unidad nativa, por qué cada transacción paga una tarifa, cómo se crean unidades nuevas y cómo se reparten."
-group: protocolo
-slug: protocolo/tarifas
+weight: 30
 ---
 
 ## La unidad nativa {#unidad}
@@ -22,7 +21,9 @@ Una cadena de bloques sin dueño necesita una unidad que viva dentro de sus prop
 - **Alinear intereses.** Quien tiene unidades en staking tiene interés en que la red funcione bien, porque su respaldo y su compensación dependen de ella.
 - **Funcionar sin depender de nadie.** Con una unidad propia, la red puede operar, protegerse y decidir sin necesitar la autorización de ninguna entidad externa.
 
-<p class="msg"><a class="tx" href="/protocolo/consenso">Consenso y staking →</a></p>
+:::aparte
+[Consenso y staking →](/protocolo/consenso)
+:::
 
 ## Para qué existen las tarifas {#para-que}
 
@@ -40,7 +41,9 @@ El trabajo que exige una transacción se mide en una unidad llamada **gas**. Cad
 
 La tarifa se calcula multiplicando dos números:
 
-<p class="msg">tarifa = gas consumido × precio por unidad de gas</p>
+:::aparte
+tarifa = gas consumido × precio por unidad de gas
+:::
 
 Por ejemplo, si una transferencia consume 21.000 unidades de gas y el precio es de 0,000001 Improbability por unidad de gas, la tarifa es 21.000 × 0,000001 = 0,021 Improbability.
 
@@ -52,7 +55,9 @@ Al enviar una transacción, quien la envía fija también un **límite de gas**:
 
 Antes de firmar, la billetera estima el gas que la transacción va a consumir, propone un límite y muestra la tarifa. Así, quien envía la transacción conoce el costo antes de enviarla.
 
-<p class="msg">Las cifras del ejemplo son ilustrativas.</p>
+:::aparte
+Las cifras del ejemplo son ilustrativas.
+:::
 
 ## Emisión {#emision}
 
@@ -80,9 +85,13 @@ En un bloque, la emisión y las tarifas suman 100 unidades. Supongamos que el 10
 
 La proporción real que va al fondo comunitario es un parámetro del protocolo. [Proporción.]
 
-<p class="msg">Las cifras del ejemplo son ilustrativas.</p>
+:::aparte
+Las cifras del ejemplo son ilustrativas.
+:::
 
-<p class="msg"><a class="tx" href="/protocolo/consenso#delegacion">Cómo se calcula la comisión →</a></p>
+:::aparte
+[Cómo se calcula la comisión →](/protocolo/consenso#delegacion)
+:::
 
 ## El fondo comunitario {#fondo}
 
@@ -90,7 +99,9 @@ El **fondo comunitario** es una reserva de unidades que pertenece a la red. Nadi
 
 El fondo sirve para financiar lo que la red necesita y que nadie más financiaría. Por ejemplo, una auditoría de seguridad, una herramienta pública o la traducción de la documentación.
 
-<p class="msg"><a class="tx" href="/protocolo/gobernanza">Cómo decide la DAO →</a></p>
+:::aparte
+[Cómo decide la DAO →](/protocolo/gobernanza)
+:::
 
 ## Suministro inicial {#suministro}
 
@@ -98,7 +109,9 @@ El primer bloque de la red se llama **bloque génesis**. En ese bloque se creó 
 
 El suministro inicial no forma parte de la emisión ni de la distribución que se describen arriba. Lo administra la DAO, y el protocolo lo libera de forma gradual.
 
-<p class="msg"><a class="tx" href="/protocolo/gobernanza#suministro">El suministro inicial y la DAO →</a></p>
+:::aparte
+[El suministro inicial y la DAO →](/protocolo/gobernanza#suministro)
+:::
 
 ## Por qué el protocolo lo hace así {#porque}
 
@@ -107,4 +120,6 @@ El suministro inicial no forma parte de la emisión ni de la distribución que s
 - **Emisión constante.** La seguridad de la red no depende de cuánto se use en cada momento. Quienes la protegen reciben una compensación estable.
 - **Un fondo que decide la DAO.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
 
-<p class="msg"><a class="tx" href="/docs">Parámetros de tarifas y emisión ↗</a> · <a class="tx" href="/legal#riesgos">Avisos legales</a></p>
+:::aparte
+[Parámetros de tarifas y emisión ↗](/docs) · [Avisos legales](/legal#riesgos)
+:::
