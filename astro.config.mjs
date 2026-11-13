@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import remarkHeadingId from 'remark-heading-id';
+import { satteri } from '@astrojs/markdown-satteri';
 import { SITE, LINKS } from './src/config.ts';
 
 export default defineConfig({
@@ -9,7 +9,8 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'directory' },
   integrations: [mdx()],
-  markdown: { remarkPlugins: [remarkHeadingId] },
+  // {#id} anchors on headings and ::: content blocks are native Sätteri features.
+  markdown: { processor: satteri({ features: { attributes: true, directive: true } }) },
   // Internal shortcuts used in content. Change the targets in src/config.ts.
   redirects: {
     '/docs': LINKS.docs,

@@ -5,7 +5,7 @@ Sitio informativo del protocolo 42 Chain. Está hecho con [Astro](https://astro.
 ## Empezar
 
 ```bash
-nvm use            # Node 22 (ver .nvmrc)
+nvm use            # Node 24 (ver .nvmrc; Astro 7 exige ≥ 22.23.4)
 npm install
 npm run dev        # http://localhost:4321
 ```
@@ -74,7 +74,7 @@ Para agregar una página: crea el archivo y agrégala en `src/data/nav.ts`.
    - Framework preset: **Astro**
    - Build command: `npm run build`
    - Build output directory: `dist`
-   - Variable de entorno: `NODE_VERSION = 22`
+   - Variable de entorno: `NODE_VERSION = 24`
 4. Agrega el dominio propio en **Custom domains**.
 
 `public/_headers` define encabezados de seguridad básicos para Cloudflare Pages.
