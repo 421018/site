@@ -148,7 +148,9 @@ img, svg { display: block; }
 .prose .tl .s { display: block; font-size: 15px; color: var(--ink); }
 
 /* side index */
-.side { flex: 0 0 212px; margin-right: 56px; padding-top: 50px; font-size: 14.5px; line-height: 1.35; }
+/* .sidewrap is the flex item (SideNav wraps both navs), so the fixed column width lives here */
+.sidewrap { flex: 0 0 212px; min-width: 0; margin-right: 56px; }
+.side { padding-top: 50px; font-size: 14.5px; line-height: 1.35; }
 .side .sk { margin: 0 0 12px; padding: 0 10px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .side a, .side-m a { display: flex; gap: 10px; align-items: baseline; padding: 8px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
 .side a:hover { background: var(--panel); color: var(--head); }
@@ -166,6 +168,7 @@ img, svg { display: block; }
 
 @media (max-width: 1000px) {
   .lay { flex-direction: column; }
+  .sidewrap { flex: none; margin-right: 0; }
   .side { display: none; }
   .side-m { display: block; margin: 8px 0 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--bg); }
   .side-m summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 46px; padding: 0 14px; cursor: pointer; list-style: none; font-size: 14.5px; color: var(--head); }
