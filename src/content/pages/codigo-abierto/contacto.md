@@ -44,7 +44,7 @@ Pregunta en el espacio de discusiones del repositorio público. Si encontraste u
 Si necesitas un servicio profesional con condiciones propias, como un desarrollo a la medida o plazos garantizados, contrátalo con un proveedor independiente. El proyecto no presta servicios pagados ni recomienda proveedores.
 
 :::aside
-[Integrar la red →](/implementar/integrar)
+[Integrar sistemas →](/implementar/integrar)
 :::
 
 ## Seguridad {#seguridad}

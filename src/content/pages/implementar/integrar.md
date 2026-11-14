@@ -1,24 +1,24 @@
 ---
-title: "Integrar la red"
-summary: "Qué tipos de integración existen, qué información necesita cada una y cómo es el proceso."
+title: "Integrar sistemas"
+summary: "Cómo conectar a la red los sistemas que ya usa una organización, sus dispositivos, las herramientas de firma y consulta, y otras redes."
 weight: 20
 ---
 
-## Qué es integrar la red {#que-es}
+## Qué es integrar {#que-es}
 
-Integrar la red significa conectar un servicio a ella para ofrecerla a sus propios usuarios. Por ejemplo, una billetera que permite usar cuentas de la red, una plataforma que acepta depósitos y retiros de la unidad nativa, un explorador que muestra sus bloques o un sitio que publica sus datos.
+Integrar significa conectar a la red un sistema que ya existe, para que lea o escriba en el registro compartido. Por ejemplo, el sistema de gestión de un municipio que registra cada orden de trabajo, un sensor que firma sus lecturas o un explorador que muestra los bloques.
 
-Integrar la red no requiere permiso ni aprobación. Toda la información necesaria es pública, y las dudas técnicas se resuelven en el repositorio público.
+Integrar no requiere permiso ni aprobación. Toda la información necesaria es pública, y las dudas técnicas se resuelven en el repositorio público.
 
 ## Tipos de integración {#tipos}
 
 Cada tipo de integración necesita cosas distintas:
 
-- **Billeteras.** Crean cuentas, firman transacciones y muestran saldos. Necesitan conocer los formatos de dirección de la red y cómo conectarse a un nodo.
-- **Plataformas que guardan unidades de sus usuarios.** Por ejemplo, exchanges o servicios de custodia. Reciben depósitos y procesan retiros. Necesitan saber cuándo una transacción es definitiva.
-- **Exploradores e indexadores.** Leen todos los bloques y los presentan o los organizan para consultarlos. Suelen necesitar un nodo de archivo.
-- **Sitios de datos.** Publican información de la red, como su nombre, su unidad nativa o su suministro. Necesitan los parámetros de la red y enlaces a los canales del proyecto.
-- **Infraestructura.** Por ejemplo, proveedores de acceso a nodos. Operan nodos y los ponen al servicio de otras aplicaciones.
+- **Sistemas de gestión.** ERP, sistemas de mantenimiento, registros documentales. Escriben en los contratos y consultan su estado. Necesitan un nodo, propio o de un proveedor, y una cuenta con la que firmar. Si las tarifas deben ir a cargo de la organización, se usan [tarifas a cargo de la organización](/implementar#tarifas).
+- **Dispositivos.** Sensores, medidores y equipos de campo que firman sus propios registros. Pueden firmar con llaves guardadas en su chip seguro, con [firmas P-256](/implementar#firmas).
+- **Herramientas de firma.** Billeteras y dispositivos de firma compatibles con la EVM. Necesitan los parámetros de la red y los formatos de dirección.
+- **Exploradores e indexadores.** Leen todos los bloques y los organizan para consultarlos. Suelen necesitar un nodo de archivo.
+- **Otras redes.** Redes que ejecutan el protocolo, u otras redes compatibles con IBC, que intercambian transferencias o comprueban datos entre sí. [Integración entre redes](/casos-de-uso/integracion)
 
 :::aside
 [Operar un nodo →](/implementar/nodos)
@@ -32,11 +32,10 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 |---|---|
 | Identificadores de red | Uno para la red principal y otro para la red de pruebas · [Parámetros de red](/implementar/conectarse#parametros) |
 | Puntos de conexión | Los ofrecen proveedores independientes, o un nodo propio · [Directorio de proveedores](/implementar/conectarse#proveedores) |
+| Interfaces del nodo | JSON-RPC compatible con la EVM, y las interfaces propias de la red · [en la documentación] |
 | Formatos de dirección | Formato 0x, compatible con la EVM, y formato propio de la red; los dos corresponden a la misma cuenta |
-| Unidad nativa | Improbability · símbolo 42 · [Decimales](/implementar/conectarse#parametros) |
-| Finalidad | Una transacción es definitiva en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |
-| Emisión | Emisión por bloque · [en la documentación] |
-| Canales oficiales | Para enlazar desde el servicio · [Canales oficiales](/codigo-abierto/contacto#canales) |
+| Finalidad | Un registro es definitivo en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |
+| Funciones propias de la red | Direcciones fijas para usarlas desde contratos · [en la documentación] |
 
 :::aside
 [Guías de integración ↗](/docs)
@@ -48,12 +47,6 @@ Una integración suele seguir cinco pasos:
 
 - **1. Revisar la documentación.** La sección de integración de la documentación explica cada tipo de integración paso a paso.
 - **2. Probar en la red de pruebas.** La integración se prueba primero en la red de pruebas, con unidades de prueba.
-- **3. Resolver dudas.** Si algo no está claro, pregunta en el espacio de discusiones del repositorio público o escribe al correo de contacto.
+- **3. Resolver dudas.** Si algo no está claro, pregunta en el espacio de discusiones del repositorio público.
 - **4. Pasar a la red principal.** Con la integración probada, se conecta a la red principal. Solo cambian los parámetros de conexión.
-- **5. Seguir las actualizaciones.** Cuando se aprueba por gobernanza una versión nueva del protocolo, los servicios integrados actualizan sus nodos antes de la altura de actualización. Las notas de cada versión se publican en la documentación.
-
-## Contacto técnico {#contacto}
-
-Los canales para dudas técnicas sobre una integración están en [Contacto y soporte](/codigo-abierto/contacto#apoyo).
-
-La ayuda técnica es voluntaria. No habla en nombre de otros proyectos y no incluye acuerdos comerciales.
+- **5. Seguir las actualizaciones.** Cuando se aprueba por gobernanza una versión nueva del protocolo, quienes operan nodos los actualizan antes de la altura de actualización. Las notas de cada versión se publican en la documentación.

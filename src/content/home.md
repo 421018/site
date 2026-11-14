@@ -68,7 +68,8 @@ start:
     - { label: Conectarse a la red, href: /implementar/conectarse, text: "Parámetros de red, billeteras y proveedores de RPC." }
     - { label: Construir una aplicación, href: /implementar, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
     - { label: Operar un nodo, href: /implementar/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
-    - { label: Integrar la red, href: /implementar/integrar, text: "Conectar una billetera, una plataforma o un explorador." }
+    - { label: Integrar sistemas, href: /implementar/integrar, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
+    - { label: Desplegar el protocolo, href: /implementar/desplegar, text: "Una red propia para un consorcio, con sus propios participantes y reglas." }
     - { label: Entender la gobernanza, href: /protocolo/gobernanza, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
 
 name:

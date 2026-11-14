@@ -11,8 +11,8 @@ Un **nodo** es una computadora que ejecuta el protocolo. Guarda una copia del re
 Cualquiera puede operar un nodo, sin pedir permiso. Hay tres razones habituales para hacerlo:
 
 - **Verificar por cuenta propia.** Quien opera su propio nodo no necesita confiar en un servicio externo para saber el estado de la red: lo comprueba directamente.
-- **Dar servicio a aplicaciones.** Las aplicaciones necesitan un nodo para leer datos de la red y enviar transacciones. Muchos proyectos operan su propio nodo para no depender de terceros.
-- **Participar en el consenso.** Un nodo puede convertirse en validador y proponer y confirmar bloques, a cambio de una compensación.
+- **Dar servicio a aplicaciones.** Las aplicaciones necesitan un nodo para leer datos de la red y enviar transacciones. Cada organización que participa en una aplicación puede operar su propio nodo, para no depender de terceros.
+- **Participar en el consenso.** Un nodo puede convertirse en validador y proponer y confirmar bloques. El protocolo compensa ese trabajo.
 
 ## Qué hace el software de un nodo {#software}
 
