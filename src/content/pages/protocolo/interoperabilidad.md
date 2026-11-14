@@ -62,9 +62,15 @@ Las representaciones pueden usarse como cualquier otra unidad: transferirse entr
 
 ## Más que transferencias {#mensajes}
 
-IBC no solo transporta unidades. También transporta mensajes entre aplicaciones. Un contrato en la red puede enviar un mensaje a una aplicación en otra red, y recibir su respuesta, con el mismo mecanismo de verificación.
+IBC no solo sirve para mover unidades. Desde un contrato, el protocolo ofrece tres capacidades entre redes:
 
-Desde un contrato, el envío entre redes se hace a través de una función propia del protocolo.
+- **Transferencias con instrucciones.** Una transferencia puede llevar instrucciones para la red de destino. Al llegar, la red de destino ejecuta un contrato con esas instrucciones, en la misma operación. A la red de origen le llega un aviso cuando la transferencia se completa o vence, y el contrato que la envió puede actuar en consecuencia. A estos avisos se les llama **callbacks**.
+- **Comprobar el estado de otra red.** Un contrato puede preguntar al cliente ligero de otra red si un dato forma parte de su registro, presentando una prueba. Si la prueba es válida, el contrato sabe que ese dato existe en la otra red, sin depender de quien se la entregó.
+- **Transferencias con IBC v2.** El protocolo admite también la versión 2 de IBC, que simplifica la conexión entre redes.
+
+El conjunto de estándares IBC incluye además aplicaciones para ejecutar llamadas entre contratos de redes distintas y para operar cuentas en otra red. Forman parte del mismo software abierto, y cada red que ejecuta el protocolo decide, mediante una actualización, si las activa.
+
+Desde un contrato, estas capacidades se usan a través de funciones propias del protocolo.
 
 :::aside
 [Funciones propias de la red →](/protocolo/ejecucion#nativas)
