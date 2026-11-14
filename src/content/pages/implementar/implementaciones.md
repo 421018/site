@@ -8,7 +8,7 @@ weight: 40
 
 La documentación y las herramientas abiertas bastan para construir una aplicación sobre 42 Chain o para integrar un sistema. Algunos proyectos, en cambio, requieren una implementación a medida:
 
-- **Entornos internos.** Una organización necesita mantener parte de sus datos separados de la red pública, en un entorno interno conectado a 42 Chain. [Entornos internos conectados a 42 Chain](/casos-de-uso#entornos-internos)
+- **Entornos internos.** Una organización necesita mantener parte de sus datos separados de la red pública, en un entorno interno conectado a 42. [Entornos internos conectados a 42 Chain](/casos-de-uso#entornos-internos)
 - **Integraciones complejas.** Varios sistemas existentes, dispositivos de campo o procesos que tienen que conectarse a la red con requisitos propios.
 - **Diseño y revisión.** Una organización quiere ayuda para decidir qué va dentro y fuera de la cadena, o una revisión técnica antes de pasar a operación.
 

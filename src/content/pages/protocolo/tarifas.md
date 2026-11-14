@@ -6,13 +6,33 @@ weight: 30
 
 ## La unidad nativa {#unidad}
 
-El protocolo tiene una unidad propia. A esa unidad se le llama **unidad nativa**. La unidad nativa del protocolo se llama **Improbability**, y su símbolo es **42**.
+El protocolo tiene una unidad propia, la **unidad nativa**. Se llama **Improbability**, y su símbolo es **42**.
 
-La unidad nativa es un recurso técnico del protocolo, como el gas que mide el trabajo de cada transacción. Cumple tres funciones:
+La unidad nativa es el recurso técnico con el que funciona el protocolo. Cumple tres funciones:
 
 - **Pagar el uso de la red.** Las tarifas se cobran en una unidad que la propia red registra y verifica, sin depender de un sistema de pagos externo.
 - **Respaldar a los validadores.** Los validadores bloquean unidades como respaldo de su compromiso de seguir las reglas. Como el respaldo vive dentro del protocolo, el protocolo puede retirar una parte automáticamente cuando un validador comete una falta.
 - **Medir el poder de voto.** El peso de cada validador en el consenso y en la gobernanza se mide en unidades en staking, con la misma regla para todos.
+
+### Gotas y tazas {#medidas}
+
+Una unidad se divide en 18 decimales. La fracción más pequeña, que ya no puede dividirse, se llama **gota**. Una unidad completa equivale a un trillón de gotas (10¹⁸).
+
+| Medida | Qué es | Equivalencia |
+|---|---|---|
+| Gota | La fracción más pequeña de la unidad | 0,000000000000000001 Improbability (10⁻¹⁸) |
+| Taza | Nombre coloquial de una unidad completa | 1 Improbability = 10¹⁸ gotas |
+| 42 | Símbolo de la unidad | Lo que muestran las billeteras y los exploradores |
+
+Entre quienes desarrollan sobre la red es común decir **una taza** en lugar de «una Improbability», y **gotas** para las fracciones. Es un nombre de uso, para hablar de cantidades sin repetir la palabra completa. En el registro, en los contratos y en las billeteras, la unidad sigue siendo Improbability, con símbolo 42.
+
+Los contratos trabajan siempre en gotas, como en cualquier red compatible con la EVM: una taza se escribe en un contrato como `1000000000000000000`.
+
+:::lore[Bitácora del motor]
+El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que miles de computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
+
+Ese combustible se mide en gotas, la cantidad más pequeña que existe, como un átomo. En el taller se habla de tazas: una taza es una unidad completa, lo que cabe en la mano. El gas no es el combustible. Es el medidor que dice cuántas gotas pide cada maniobra.
+:::
 
 :::aside
 [Consenso y staking →](/protocolo/consenso)
@@ -38,7 +58,7 @@ La tarifa se calcula multiplicando dos números:
 tarifa = gas consumido × precio por unidad de gas
 :::
 
-Por ejemplo, si una transferencia consume 21.000 unidades de gas y el precio es de 0,000001 Improbability por unidad de gas, la tarifa es 21.000 × 0,000001 = 0,021 Improbability.
+Por ejemplo, si una transferencia consume 21.000 unidades de gas y el precio es de 0,000001 Improbability por unidad de gas (un billón de gotas), la tarifa es 21.000 × 0,000001 = 0,021 Improbability.
 
 El precio por unidad de gas tiene dos partes:
 

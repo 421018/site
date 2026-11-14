@@ -21,18 +21,18 @@ Los clientes ligeros se mantienen al día con programas llamados **retransmisore
 
 ## Un ejemplo {#ejemplo}
 
-Un consorcio de laboratorios opera un entorno interno conectado a 42 Chain. Ahí registra los resultados de sus análisis, que solo ven los miembros del consorcio. Algunos certificados, en cambio, tienen que poder verificarlos terceros.
+Un consorcio de laboratorios opera un entorno interno conectado a 42. Ahí registra los resultados de sus análisis, que solo ven los miembros del consorcio. Algunos certificados, en cambio, tienen que poder verificarlos terceros.
 
 - **1. El certificado se emite en el entorno interno.** El laboratorio registra el certificado en el entorno interno del consorcio.
-- **2. Se presenta la prueba en la red pública.** El laboratorio, o cualquier otra parte, presenta a un contrato en 42 Chain la huella del certificado junto con la prueba de que esa huella está registrada en el entorno interno.
-- **3. La red pública lo comprueba.** El contrato consulta el cliente ligero del entorno interno que lleva 42 Chain. Si la prueba es válida, registra la huella y la altura del entorno interno en la que se comprobó.
-- **4. Cualquiera verifica.** Quien recibe el certificado comprueba su huella en 42 Chain y sabe que está registrada en el entorno interno del consorcio, sin tener acceso a él.
+- **2. Se presenta la prueba en la red pública.** El laboratorio, o cualquier otra parte, presenta a un contrato en 42 la huella del certificado junto con la prueba de que esa huella está registrada en el entorno interno.
+- **3. La red pública lo comprueba.** El contrato consulta el cliente ligero del entorno interno que lleva 42. Si la prueba es válida, registra la huella y la altura del entorno interno en la que se comprobó.
+- **4. Cualquiera verifica.** Quien recibe el certificado comprueba su huella en 42 y sabe que está registrada en el entorno interno del consorcio, sin tener acceso a él.
 
-Los datos reservados se quedan en el entorno interno. A 42 Chain solo llega lo que tiene que ser verificable por cualquiera.
+Los datos reservados se quedan en el entorno interno. A 42 solo llega lo que tiene que ser verificable por cualquiera.
 
 ## Qué va en la cadena y qué no {#datos}
 
-| En 42 Chain | En el entorno interno o fuera de la cadena |
+| En 42 | En el entorno interno o fuera de la cadena |
 |---|---|
 | Las huellas y los estados que deben ser verificables | Los registros completos del consorcio |
 | La altura del entorno interno en la que se comprobó cada huella | Los datos reservados de cada miembro |
@@ -42,7 +42,7 @@ Los datos reservados se quedan en el entorno interno. A 42 Chain solo llega lo q
 - **IBC y clientes ligeros.** Cada red comprueba por sí misma lo que ocurrió en la otra. [Qué es IBC](/protocolo/interoperabilidad#ibc)
 - **Pruebas desde contratos.** Un contrato comprueba, con el cliente ligero, que un dato forma parte del registro de otra red. [Más que transferencias](/protocolo/interoperabilidad#mensajes)
 - **Transferencias con instrucciones.** Cuando la integración necesita mover unidades, la transferencia puede ejecutar un contrato al llegar. [Más que transferencias](/protocolo/interoperabilidad#mensajes)
-- **Entornos internos.** Los datos reservados se quedan separados de la red pública, y sus pruebas se comprueban en 42 Chain. [Entornos internos conectados a 42 Chain](/casos-de-uso#entornos-internos)
+- **Entornos internos.** Los datos reservados se quedan separados de la red pública, y sus pruebas se comprueban en 42. [Entornos internos conectados a 42 Chain](/casos-de-uso#entornos-internos)
 
 :::aside
 Los ejemplos son ilustrativos.

@@ -8,6 +8,9 @@
  *   :::aside                   Side remark in small mono type: "read more" links,
  *                              pending placeholders, footnotes.
  *   :::status[Draft]           Status line (badge + short text).
+ *   :::lore[Heading]           Narrative aside (the protocol's sci-fi lore), visually
+ *                              distinct from technical content. Never the only place
+ *                              where a technical fact is stated.
  *   :::facts                   Key figures. One list item per figure: `- **Value** Label`.
  *   :::timeline{current="…"}   Timeline. One list item per milestone:
  *                              `- **Date** Title` and the description on the next line.
@@ -76,6 +79,12 @@ export const contentBlocks = defineMdastPlugin({
         ] as never);
         return;
       }
+      case 'lore': {
+        const heading = needLabel('the heading');
+        setTag(ctx, node as never, 'aside', 'lore');
+        setTag(ctx, heading, 'span', 'll');
+        return;
+      }
       case 'aside': {
         const paras = children.filter((c) => c.type === 'paragraph');
         if (!paras.length) fail(ctx, node, 'needs at least one paragraph.');
@@ -104,7 +113,7 @@ export const contentBlocks = defineMdastPlugin({
         return;
       }
       default:
-        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, facts, timeline.');
+        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, lore, facts, timeline.');
     }
   },
 });

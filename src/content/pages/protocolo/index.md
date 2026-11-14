@@ -17,9 +17,17 @@ Cuando varias computadoras tienen que trabajar juntas sin que ninguna mande sobr
 
 El correo electrónico es un buen ejemplo. Un mensaje puede viajar entre servidores administrados por personas distintas. Los servidores se entienden entre sí porque todos siguen el mismo protocolo.
 
-El Protocolo 42 es un protocolo de ese tipo. Su nombre formal es *Infinite Improbability Drive*. Su propósito es que muchas computadoras lleven, entre todas, un mismo registro de información, sin depender de ninguna de ellas en particular. A cada computadora que ejecuta el protocolo se le llama **nodo**. Al conjunto de todos los nodos se le llama **red**.
+El **Infinite Improbability Drive**, conocido como **Protocolo 42**, es un protocolo de ese tipo. Su propósito es que muchas computadoras lleven, entre todas, un mismo registro de información, sin depender de ninguna de ellas en particular. A cada computadora que ejecuta el protocolo se le llama **nodo**. Al conjunto de todos los nodos se le llama **red**.
+
+El nombre formal describe el conjunto completo: el Infinite Improbability Drive es el motor entero de la red. El consenso que acuerda cada bloque, la máquina virtual que ejecuta los contratos, las tarifas que miden el trabajo, la gobernanza que decide los cambios y la conexión con otras redes son sus piezas, y cada capítulo de esta sección describe una de ellas. En el texto corriente se le llama simplemente Protocolo 42.
 
 El protocolo está construido con tecnología abierta del ecosistema Cosmos: Cosmos SDK como base, CometBFT para el consenso e IBC para la comunicación entre redes. Los contratos se ejecutan en la máquina virtual de Ethereum (EVM), compatible con sus lenguajes y sus herramientas.
+
+:::lore[Bitácora del motor]
+En la novela de Douglas Adams, el motor de improbabilidad infinita lleva una nave de un punto a otro haciendo que, por un instante, lo improbable ocurra. Este motor hace algo parecido, con menos espectáculo: consigue que miles de computadoras que no se conocen, y que no tienen por qué confiar entre sí, lleguen al mismo registro, bloque tras bloque.
+
+Lo improbable no es un efecto secundario. Es el trabajo diario del motor.
+:::
 
 Para entender cómo funciona el protocolo, conviene empezar por ese registro.
 

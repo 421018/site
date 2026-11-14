@@ -40,15 +40,15 @@ Cualquiera puede operar un retransmisor. Un retransmisor no puede alterar un men
 
 La transferencia de unidades es la aplicación más usada de IBC, y muestra bien el recorrido completo. Supongamos que una cuenta envía 10 unidades de Improbability desde 42 Chain hasta otra red, a la que llamaremos red B.
 
-- **1. Bloqueo.** La cuenta envía una transacción en 42 Chain. El protocolo bloquea sus 10 unidades en una cuenta especial de la propia red, donde quedan guardadas. Las unidades no salen de 42 Chain.
+- **1. Bloqueo.** La cuenta envía una transacción en 42. El protocolo bloquea sus 10 unidades en una cuenta especial de la propia red, donde quedan guardadas. Las unidades no salen de 42 Chain.
 - **2. Traslado.** Un retransmisor toma el mensaje de la transferencia y lo entrega en la red B, junto con la prueba de que las 10 unidades quedaron bloqueadas.
-- **3. Verificación.** La red B comprueba la prueba con su cliente ligero de 42 Chain.
+- **3. Verificación.** La red B comprueba la prueba con su cliente ligero de 42.
 - **4. Representación.** Si la prueba es válida, la red B crea 10 unidades que representan a las bloqueadas y las entrega a la cuenta de destino.
-- **5. Confirmación.** Un retransmisor lleva de vuelta a 42 Chain la confirmación de que la entrega se completó.
+- **5. Confirmación.** Un retransmisor lleva de vuelta a 42 la confirmación de que la entrega se completó.
 
 Si la entrega no ocurre dentro de un plazo, la transferencia vence y las 10 unidades se desbloquean en la cuenta de origen. En ese proceso, las unidades no pasan a manos de un tercero.
 
-El regreso funciona al revés. La red B destruye las 10 unidades que las representaban, y 42 Chain, tras verificar la prueba, desbloquea las originales.
+El regreso funciona al revés. La red B destruye las 10 unidades que las representaban, y 42, tras verificar la prueba, desbloquea las originales.
 
 :::aside
 Las cifras del ejemplo son ilustrativas.

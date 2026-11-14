@@ -102,11 +102,15 @@ Special elements are written as `:::` blocks, never as HTML:
 
 ```md
 :::note[Antes de confiar en un mensaje]
-Nadie puede hablar en nombre del proyecto.
+Ningún canal del proyecto te pedirá tus llaves.
 :::
 
 :::faq[¿Qué es 42 Chain?]
-Una red pública de cadena de bloques. [Visión general](/protocolo)
+Una red pública de infraestructura. [Visión general](/protocolo)
+:::
+
+:::lore[Bitácora del motor]
+El motor funciona con improbabilidad. El gas dice cuánta pide cada maniobra.
 :::
 
 :::aside
@@ -123,10 +127,10 @@ Pendiente de revisión legal.
 :::
 
 :::timeline{current="Hoy"}
-- **1988** Manifiesto criptoanarquista
-  La criptografía como herramienta para proteger la libertad.
-- **Hoy** 42 Chain
-  Infraestructura pública y abierta.
+- **Año** Hito
+  Descripción breve del hito.
+- **Hoy** Situación actual
+  Descripción breve.
 :::
 ```
 
@@ -136,6 +140,7 @@ Pendiente de revisión legal.
 | `:::faq[question]` | Collapsible FAQ entry |
 | `:::aside` | Small mono text: "read more" links, pending placeholders, clarifications |
 | `:::status[status]` | Status badge followed by a short sentence |
+| `:::lore[heading]` | Narrative aside from the protocol's sci-fi lore, set apart from technical text. At most one per page, always after the technical explanation, and only in Protocolo, Tarifas and "Por qué 42". Never the only place a technical fact is stated; no price, value or scarcity |
 | `:::facts` | Key figures in columns |
 | `:::timeline` | Timeline; `current="…"` highlights the milestone with that date |
 
