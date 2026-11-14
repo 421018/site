@@ -113,6 +113,13 @@ Una red pública de infraestructura. [Visión general](/protocolo)
 El motor funciona con improbabilidad. El gas dice cuánta pide cada maniobra.
 :::
 
+:::diagram[Las cinco piezas del motor.]{name="motor"}
+:::
+
+:::figure[Un municipio registra cada intervención en el alumbrado.]
+![Farolas de una calle al atardecer](../../../assets/images/alumbrado.jpg)
+:::
+
 :::aside
 [Operar un nodo →](/implementar/nodos)
 :::
@@ -141,6 +148,8 @@ Pendiente de revisión legal.
 | `:::aside` | Small mono text: "read more" links, pending placeholders, clarifications |
 | `:::status[status]` | Status badge followed by a short sentence |
 | `:::lore[heading]` | Narrative aside from the protocol's sci-fi lore, set apart from technical text. At most one per page, always after the technical explanation, and only in Protocolo, Tarifas and "Por qué 42". Never the only place a technical fact is stated; no price, value or scarcity |
+| `:::diagram[caption]{name="…"}` | Inserts `src/content/diagrams/<name>.html` (preferred: responsive) or `<name>.svg`, with the caption. Diagram text is content too; every diagram must also be explained in the page text |
+| `:::figure[caption]` | Wraps a Markdown image with its caption. Images live in `src/assets/images/` and are optimized at build time; they must be local (the CSP only allows the site's own images). Record author and license in `src/assets/images/CREDITS.md` |
 | `:::facts` | Key figures in columns |
 | `:::timeline` | Timeline; `current="…"` highlights the milestone with that date |
 

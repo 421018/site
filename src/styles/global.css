@@ -144,6 +144,41 @@ img, svg { display: block; }
 .prose .lore p { margin: 0; font-size: 15.5px; line-height: 1.65; color: inherit; }
 .prose .lore p + p { margin-top: 10px; }
 .prose .lore strong { color: #fff; }
+
+/* ---------- visual aids ---------- */
+/* Interactive widgets: dark panel so they read as something to use, not more text. */
+.widget { --w-fg: #C9D0D6; --w-dim: #8A939C; --w-rule: rgba(255,255,255,.12); margin: 12px 0 36px; padding: clamp(20px, 3vw, 30px); border-radius: 18px; background: var(--night); color: var(--w-fg); font-size: 15.5px; line-height: 1.6; box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 18px 40px -24px rgba(5,7,10,.55); }
+.widget .w-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 18px; }
+.widget .w-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--acc); }
+.widget .w-tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--acc); }
+.widget .w-meta { font-family: var(--mono); font-size: 11.5px; color: var(--w-dim); }
+.widget .w-note { margin: 14px 0 0; font-family: var(--mono); font-size: 11.5px; color: var(--w-dim); }
+.widget input[type=range] { width: 100%; min-height: 40px; accent-color: var(--acc); }
+
+/* Diagrams: quiet, on the reading surface; the section colour marks what matters. */
+.prose .diagram { margin: 16px 0 36px; }
+.prose .diagram > svg { display: block; width: 100%; height: auto; }
+.prose .diagram figcaption, .prose .photo figcaption { margin-top: 12px; font-family: var(--mono); font-size: 12px; line-height: 1.5; color: var(--muted); }
+.prose .photo { margin: 16px 0 36px; display: flex; flex-direction: column-reverse; }
+.prose .photo img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.prose .photo p { margin: 0; }
+
+/* Diagram: the engine (protocolo/index) */
+.prose .dg-motor { display: grid; gap: 14px; }
+.prose .dg-core { padding: 18px 22px; border: 1px solid var(--link); border-radius: 14px; background: color-mix(in srgb, var(--link) 7%, var(--bg)); display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.prose .dg-core strong { font-size: 20px; color: var(--head); letter-spacing: -.01em; }
+.prose .dg-core span { color: var(--muted); font-size: 14.5px; }
+.prose .dg-motor .dg-k { width: 100%; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--link); }
+.prose .dg-parts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.prose .dg-parts li { position: relative; margin: 0; padding: 0; }
+.prose .dg-parts li::before { content: ""; position: absolute; left: 50%; top: -14px; height: 14px; border-left: 1px dashed var(--rule2); }
+.prose .dg-parts a { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; padding: 14px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--ink); text-decoration: none; transition: border-color .2s, transform .2s; }
+.prose .dg-parts a:hover { border-color: var(--link); transform: translateY(-2px); }
+.prose .dg-parts b { color: var(--head); font-size: 15px; line-height: 1.3; }
+.prose .dg-parts span { font-size: 13px; line-height: 1.45; color: var(--muted); }
+.prose .dg-parts .dg-k { width: auto; letter-spacing: .04em; overflow-wrap: anywhere; }
+@media (max-width: 900px) { .prose .dg-parts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .prose .dg-parts li::before { display: none; } }
+@media (max-width: 520px) { .prose .dg-parts { grid-template-columns: 1fr; } }
 .prose .st { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 22px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
 .prose .st b { font-weight: 500; padding: 3px 9px; border-radius: 999px; border: 1px solid currentColor; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--link); }
 .badge { display: inline-block; vertical-align: middle; margin-left: 6px; padding: 2px 8px; border: 1px solid var(--rule2); border-radius: 999px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; font-weight: 400; font-style: normal; }

@@ -2,8 +2,8 @@
 // Illustrative consensus round with 30 validators of equal voting power.
 const phases = ['Propuesta', 'Pre-voto', 'Pre-compromiso', 'Confirmado'];
 ---
-<div class="sim" data-consensus>
-  <p class="bl">Ronda de consenso · bloque #<span data-round>4.218.307</span></p>
+<div class="widget sim" data-consensus>
+  <div class="w-head"><span class="w-tag">Simulador interactivo</span><span class="w-meta">Ronda de consenso · bloque #<span data-round>4.218.307</span></span></div>
   <div class="phases">
     {phases.map((p, i) => (
       <div class="phase" data-phase={i}><span class="mono">0{i + 1}</span><span>{p}</span></div>
@@ -19,28 +19,25 @@ const phases = ['Propuesta', 'Pre-voto', 'Pre-compromiso', 'Confirmado'];
     <span class="mono" data-title>Produciendo bloques</span>
     <span data-desc>Los validadores en línea suman más de dos tercios del poder de voto. Los bloques se siguen confirmando.</span>
   </div>
-  <p class="bl note">Simulación ilustrativa con 30 validadores de igual poder de voto.</p>
+  <p class="w-note">Mueve el control para desconectar validadores. Simulación ilustrativa con 30 validadores de igual poder de voto.</p>
 </div>
 
 <style>
-  .sim { margin: 8px 0 32px; padding: clamp(20px, 3vw, 30px); border-radius: 18px; background: var(--panel); border: 1px solid var(--rule); font-size: 15.5px; line-height: 1.6; }
-  .bl { margin: 0 0 12px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-  .note { margin: 12px 0 0; text-transform: none; letter-spacing: 0; }
+  .bl { margin: 0; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--w-fg); }
   .phases { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-  .phase { flex: 1; min-width: 110px; padding: 12px; border: 1px solid var(--rule); border-radius: 10px; display: flex; flex-direction: column; gap: 4px; color: var(--muted); font-size: 14.5px; font-weight: 500; transition: all .45s cubic-bezier(.16,1,.3,1); }
+  .phase { flex: 1; min-width: 110px; padding: 12px; border: 1px solid var(--w-rule); border-radius: 10px; display: flex; flex-direction: column; gap: 4px; color: var(--w-dim); font-size: 14.5px; font-weight: 500; transition: all .45s cubic-bezier(.16,1,.3,1); }
   .phase .mono { font-size: 11px; font-weight: 400; }
-  .phase.on { border-color: var(--head); color: var(--head); }
+  .phase.on { border-color: var(--acc); color: #fff; background: color-mix(in srgb, var(--acc) 12%, transparent); }
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .row .bl { margin: 0; color: var(--ink); }
-  .big { font-size: 20px; color: var(--head); }
-  .range { width: 100%; accent-color: var(--link); min-height: 40px; }
+  .big { font-size: 20px; color: #fff; }
   .vgrid { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 6px; margin: 14px 0 18px; }
-  .v { aspect-ratio: 1; border-radius: 5px; transition: background .3s; }
-  .v.up { background: color-mix(in srgb, var(--link) 70%, transparent); }
-  .v.down { border: 1px dashed var(--muted); }
-  .status { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--link); }
-  .status .mono { font-size: 12.5px; white-space: nowrap; color: var(--head); }
-  .sim.halted .status { border-color: #A66A00; }
+  .v { aspect-ratio: 1; border-radius: 5px; transition: background .3s, border-color .3s; }
+  .v.up { background: color-mix(in srgb, var(--acc) 75%, transparent); }
+  .v.down { border: 1px dashed var(--w-dim); }
+  .status { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--acc); }
+  .status .mono { font-size: 12.5px; white-space: nowrap; color: #fff; }
+  .sim.halted .status { border-color: #F2A93B; }
+  .sim.halted .status .mono { color: #F2A93B; }
   @media (max-width: 900px) { .vgrid { grid-template-columns: repeat(10, minmax(0, 1fr)); } }
 </style>
 

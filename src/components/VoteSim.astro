@@ -1,15 +1,17 @@
 ---
-// Illustrative vote count. Thresholds below are examples, not network parameters.
-const Q = 33.4, T = 50, V = 33.4;
+// Illustrative vote count. Same rules and starting values as the worked
+// example in gobernanza.mdx (quorum 40 %, threshold 50 %, veto 33 %;
+// 45 % turnout with 25 Yes, 12 No, 3 Veto and 5 Abstain), not network parameters.
+const Q = 40, T = 50, V = 33;
 const sliders = [
-  ['turn', 'Participación', 48],
-  ['yes', 'Sí', 62],
-  ['no', 'No', 18],
-  ['veto', 'No con veto', 6],
+  ['turn', 'Participación', 45],
+  ['yes', 'Sí', 56],
+  ['no', 'No', 27],
+  ['veto', 'No con veto', 7],
 ] as const;
 ---
-<div class="sim" data-vote data-q={Q} data-t={T} data-v={V}>
-  <div class="head"><span class="bl">Simulador de conteo</span><span class="bl lc">Ilustrativo: quórum {Q}% · umbral {T}% · veto {V}%</span></div>
+<div class="widget sim" data-vote data-q={Q} data-t={T} data-v={V}>
+  <div class="w-head"><span class="w-tag">Simulador interactivo</span><span class="w-meta">Mismas reglas que el ejemplo: quórum {Q}% · umbral {T}% · veto {V}%</span></div>
   <div class="grid">
     {sliders.map(([k, label, val]) => (
       <div>
@@ -19,7 +21,7 @@ const sliders = [
     ))}
   </div>
   <div class="vbar" aria-hidden="true"><span data-w="yes" class="y"></span><span data-w="no" class="n"></span><span data-w="veto" class="x"></span><span data-w="abs" class="a"></span></div>
-  <p class="bl lc" data-abs>Abstención: 14% de los votos emitidos</p>
+  <p class="abs" data-abs>Abstención: 10% de los votos emitidos</p>
   <div class="chk"><span>Quórum alcanzado</span><span class="mono" data-r="1"></span></div>
   <div class="chk"><span>Sí supera el umbral</span><span class="mono" data-r="2"></span></div>
   <div class="chk"><span>Veto bajo su umbral</span><span class="mono" data-r="3"></span></div>
@@ -27,30 +29,25 @@ const sliders = [
 </div>
 
 <style>
-  .sim { margin: 8px 0 32px; padding: clamp(20px, 3vw, 30px); border-radius: 18px; background: var(--panel); border: 1px solid var(--rule); font-size: 15.5px; line-height: 1.6; }
-  .bl { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-  .lc { text-transform: none; letter-spacing: 0; }
-  .head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
   .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
-  .lab { display: flex; justify-content: space-between; color: var(--head); }
-  .range { width: 100%; accent-color: var(--link); min-height: 40px; }
-  .vbar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--rule); margin: 14px 0 6px; }
+  .lab { display: flex; justify-content: space-between; color: #fff; }
+  .vbar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--w-rule); margin: 14px 0 6px; }
   .vbar span { display: block; height: 100%; transition: width .35s cubic-bezier(.16,1,.3,1); }
-  .vbar .y { background: var(--link); } .vbar .n { background: #8E98A3; } .vbar .x { background: #D9644F; } .vbar .a { background: #C9C6BE; }
-  p.bl { margin: 0 0 12px; }
-  .chk { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--rule); font-size: 14.5px; }
-  .chk .ok { color: var(--link); } .chk .bad { color: #B4432F; }
-  .res { margin-top: 12px; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--link); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .res.bad { border-color: #B4432F; }
-  .rt { font-size: 18px; font-weight: 600; color: var(--head); }
-  .rn { font-size: 14px; color: var(--muted); }
+  .vbar .y { background: var(--acc); } .vbar .n { background: #8E98A3; } .vbar .x { background: #F07A62; } .vbar .a { background: #3A424B; }
+  .abs { margin: 0 0 12px; font-family: var(--mono); font-size: 11.5px; color: var(--w-dim); }
+  .chk { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--w-rule); font-size: 14.5px; }
+  .chk .ok { color: var(--acc); } .chk .bad { color: #F07A62; }
+  .res { margin-top: 12px; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--acc); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .res.bad { border-color: #F07A62; }
+  .rt { font-size: 18px; font-weight: 600; color: #fff; }
+  .rn { font-size: 14px; color: var(--w-dim); }
   @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
 </style>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-vote]').forEach((root) => {
     const Q = +root.dataset.q!, T = +root.dataset.t!, V = +root.dataset.v!;
-    const st: Record<string, number> = { turn: 48, yes: 62, no: 18, veto: 6 };
+    const st: Record<string, number> = { turn: 45, yes: 56, no: 27, veto: 7 };
     const inputs = [...root.querySelectorAll<HTMLInputElement>('input[data-key]')];
     const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
     const paint = () => {

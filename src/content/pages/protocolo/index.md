@@ -21,6 +21,9 @@ El **Infinite Improbability Drive**, conocido como **Protocolo 42**, es un proto
 
 El nombre formal describe el conjunto completo: el Infinite Improbability Drive es el motor entero de la red. El consenso que acuerda cada bloque, la máquina virtual que ejecuta los contratos, las tarifas que miden el trabajo, la gobernanza que decide los cambios y la conexión con otras redes son sus piezas, y cada capítulo de esta sección describe una de ellas. En el texto corriente se le llama simplemente Protocolo 42.
 
+:::diagram[Las cinco piezas del motor. Cada una enlaza a su capítulo.]{name="motor"}
+:::
+
 El protocolo está construido con tecnología abierta del ecosistema Cosmos: Cosmos SDK como base, CometBFT para el consenso e IBC para la comunicación entre redes. Los contratos se ejecutan en la máquina virtual de Ethereum (EVM), compatible con sus lenguajes y sus herramientas.
 
 :::lore[Bitácora del motor]

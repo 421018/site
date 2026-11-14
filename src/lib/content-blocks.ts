@@ -11,6 +11,10 @@
  *   :::lore[Heading]           Narrative aside (the protocol's sci-fi lore), visually
  *                              distinct from technical content. Never the only place
  *                              where a technical fact is stated.
+ *   :::diagram[Caption]{name="motor"}
+ *                              Inserts src/content/diagrams/<name>.html (responsive,
+ *                              preferred) or <name>.svg, with the caption below.
+ *   :::figure[Caption]         Wraps a Markdown image (![alt](path)) with a caption.
  *   :::facts                   Key figures. One list item per figure: `- **Value** Label`.
  *   :::timeline{current="…"}   Timeline. One list item per milestone:
  *                              `- **Date** Title` and the description on the next line.
@@ -19,6 +23,8 @@
  * An unknown block name, or a block missing its required [label], stops the
  * build with the file and line, so mistakes never reach the published site.
  */
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { defineMdastPlugin, type MdastVisitorContext } from 'satteri';
 import type { ContainerDirective } from 'satteri';
 
@@ -85,6 +91,27 @@ export const contentBlocks = defineMdastPlugin({
         setTag(ctx, heading, 'span', 'll');
         return;
       }
+      case 'diagram': {
+        const caption = needLabel('the caption');
+        const name = node.attributes?.name;
+        if (!name || !/^[a-z0-9-]+$/.test(name)) fail(ctx, node, 'needs a name: :::diagram[Caption]{name="file-name"}.');
+        const dir = join(process.cwd(), 'src/content/diagrams');
+        const file = ['html', 'svg'].map((ext) => join(dir, `${name}.${ext}`)).find((f) => existsSync(f));
+        if (!file) fail(ctx, node, `no file src/content/diagrams/${name}.html or .svg.`);
+        const body = readFileSync(file, 'utf8').replace(/<!--[\s\S]*?-->/g, '').trim();
+        const text = esc(ctx.textContent(caption as never).trim());
+        ctx.replaceNode(node, rawHtml(`<figure class="diagram">${body}<figcaption>${text}</figcaption></figure>`));
+        return;
+      }
+      case 'figure': {
+        const caption = needLabel('the caption');
+        if (!children.some((c) => c !== caption && c.type === 'paragraph' && c.children?.some((k) => k.type === 'image'))) {
+          fail(ctx, node, 'needs a Markdown image inside: ![description](path).');
+        }
+        setTag(ctx, node as never, 'figure', 'photo');
+        setTag(ctx, caption, 'figcaption');
+        return;
+      }
       case 'aside': {
         const paras = children.filter((c) => c.type === 'paragraph');
         if (!paras.length) fail(ctx, node, 'needs at least one paragraph.');
@@ -113,7 +140,7 @@ export const contentBlocks = defineMdastPlugin({
         return;
       }
       default:
-        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, lore, facts, timeline.');
+        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, lore, diagram, figure, facts, timeline.');
     }
   },
 });
