@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Checks every internal link and #anchor in the built site (run `npm run build` first).
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';

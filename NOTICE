@@ -18,3 +18,5 @@ repository's history.
 Third-party components:
 - Geist and Geist Mono fonts, by Vercel, are downloaded at build time and
   distributed under the SIL Open Font License 1.1.
+- Pagefind, by CloudCannon, generates the documentation's search index and
+  script at build time; it is distributed under the MIT License.

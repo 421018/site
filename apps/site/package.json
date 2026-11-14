@@ -10,8 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "check:links": "node scripts/check-links.mjs",
-    "verify": "astro check && astro build && node scripts/check-links.mjs"
+    "check:links": "check-links",
+    "verify": "astro check && astro build && check-links"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.10",
@@ -20,7 +20,8 @@
     "astro": "7.4.12",
     "@42chain/content": "*",
     "@42chain/ui": "*",
-    "@42chain/network": "*"
+    "@42chain/network": "*",
+    "@42chain/kit": "*"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",

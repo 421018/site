@@ -1,0 +1,15 @@
+---
+import { render } from 'astro:content';
+import Doc from '@42chain/kit/layouts/Doc.astro';
+import { getSections } from '@42chain/kit/site';
+
+export async function getStaticPaths() {
+  const sections = await getSections();
+  return [...sections.values()].flatMap((s) => s.pages.map((page) => ({ params: { slug: page.id }, props: { page } })));
+}
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+<Doc page={page}>
+  <Content />
+</Doc>

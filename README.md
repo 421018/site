@@ -183,33 +183,38 @@ The build stops and names the file and the problem: a misspelled field, a folder
 
 ## Code structure
 
-The repository is an npm workspace: apps (the sites) and packages (what they share). Commands run from the root.
+The repository is an npm workspace: two apps (the sites) and the packages they share. Commands run from the root:
+
+| Command | What it does |
+|---|---|
+| `npm run dev` / `npm run dev:docs` | Local server for the site / the documentation |
+| `npm run build` / `npm run build:docs` | Builds the site into `apps/site/dist/` / the docs into `apps/docs/dist/` (with the Pagefind search index) |
+| `npm run verify` | Types, build and link check for every app |
 
 ```
 apps/
   site/                          42chain.org
-    astro.config.mjs             Astro config: Markdown, CSP, fonts, redirects
+    astro.config.mjs             Shared config + site URL, redirects, languages
     src/config.ts                Domain, language, external URLs, repository
-    src/content.config.ts        Content schema (valid and required fields)
-    src/content/site.md          Site-wide text: brand, footer, page labels, 404
-    src/content/home.md          Home page text
-    src/content/pages/           Interior pages, one folder per section
-    src/content/diagrams/        Diagrams used by :::diagram
+    src/content.config.ts        Collections: pages, home, site, network data
+    src/content/                 site.md, home.md, pages/, diagrams/
     src/assets/images/           Local images (and CREDITS.md)
-    src/lib/site.ts              Menu, side index, previous/next and footer, derived from content
-    src/layouts/                 Base (<head>, fonts, section colors) and Doc (interior pages)
-    src/components/              Header, footer, side index
     src/scripts/hero-network.ts  Home page background animation
     src/pages/                   Home page, interior pages, 404, robots.txt
     public/_headers              Security headers and caching (Cloudflare Pages)
-    scripts/check-links.mjs      Internal link and anchor checker
+  docs/                          Documentation (docs.42chain.org): same structure, with search
 packages/
+  kit/       @42chain/kit       Shared engine: Base and Doc layouts, header, footer, side index,
+                                search, navigation derived from content (site.ts), content schemas,
+                                shared Astro config and the link checker (check-links)
   content/   @42chain/content   ::: content blocks (Sätteri plugin)
   ui/        @42chain/ui        Global styles and color tokens, interactive widgets
   network/   @42chain/network   Network parameters and provider directory: data, schemas, components
 ```
 
-A package exports source files (TypeScript and Astro components), and apps import them by name, e.g. `@42chain/ui/components/FeeCalc.astro`. The packages are meant to be shared with the documentation site (`apps/docs`), which can later move to its own repository and install them like any other dependency.
+Each app passes its own settings to the kit with the `kit({ lang, ogLocale, editBase, search })` integration in its `astro.config.mjs`; the kit's components read them as `virtual:42chain/kit`. Packages export source files (TypeScript and Astro components), and apps import them by name, e.g. `@42chain/ui/components/FeeCalc.astro`. The docs app can move to its own repository later and install the packages like any other dependency.
+
+Sections can contain one level of groups: a folder inside a section with its own `index.md` (e.g. `construir/precompiles/`) is shown in the side index as a group, with its pages indented under it.
 
 Technical notes:
 
@@ -226,6 +231,7 @@ Technical notes:
    - Framework preset: **Astro**
    - Build command: `npm run build`
    - Build output directory: `apps/site/dist`
+   - For the documentation, create a second Pages project from the same repository with build command `npm run build:docs` and output directory `apps/docs/dist`.
    - Environment variable: `NODE_VERSION = 24`
 4. Add the custom domain under **Custom domains**.
 

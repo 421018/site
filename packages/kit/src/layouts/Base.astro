@@ -1,8 +1,8 @@
 ---
 import '@42chain/ui/styles/global.css';
 import { Font } from 'astro:assets';
-import { SITE } from '../config';
-import { getSiteText } from '../lib/site';
+import kit from 'virtual:42chain/kit';
+import { getSiteText } from '../site';
 
 interface Props {
   title?: string;
@@ -18,7 +18,7 @@ const fullTitle = title ? `${title} — ${text.name}` : `${text.name} — ${text
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang={SITE.lang} style={colors}>
+<html lang={kit.lang} style={colors}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,7 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={text.name} />
-    <meta property="og:locale" content={SITE.ogLocale} />
+    <meta property="og:locale" content={kit.ogLocale} />
     <meta name="twitter:card" content="summary" />
     <meta name="theme-color" content="#05070A" />
     <link rel="sitemap" href="/sitemap-index.xml" />

@@ -27,6 +27,10 @@ export type Section = {
 
 const sectionOf = (p: Page) => p.id.split('/')[0];
 const isIndex = (p: Page) => !p.id.includes('/');
+/** 0 for a section's index, 1 for a page or a group's index, 2 for a page inside a group. */
+const depthOf = (p: Page) => p.id.split('/').length - 1;
+/** The page's slug at the section level, or its group's slug. */
+const topOf = (p: Page) => p.id.split('/')[1] ?? '';
 export const hrefOf = (p: Page) => '/' + p.id;
 export const menuLabel = (p: Page) => p.data.menuTitle ?? p.data.title;
 
@@ -56,12 +60,24 @@ async function build() {
     }
   }
   for (const p of pages) {
+    if (depthOf(p) > 2) errors.push(`${p.filePath}: pages can be nested one level deep at most (section/group/page).`);
     const s = sections.get(sectionOf(p));
     if (!s) { if (!isIndex(p)) errors.push(`${p.filePath}: folder "${sectionOf(p)}" has no index.md.`); continue; }
     s.pages.push(p);
   }
   for (const s of sections.values()) {
-    s.pages.sort((a, b) => Number(!isIndex(a)) - Number(!isIndex(b)) || a.data.weight - b.data.weight || a.id.localeCompare(b.id));
+    // A group is a folder inside a section (section/group/page.md); its index.md
+    // (section/group) is the group's own page and sets its position.
+    const groupWeight = new Map<string, number>();
+    for (const p of s.pages) if (depthOf(p) === 1) groupWeight.set(topOf(p), p.data.weight);
+    for (const p of s.pages) if (depthOf(p) === 2 && !groupWeight.has(topOf(p))) errors.push(`${p.filePath}: group folder "${s.key}/${topOf(p)}" needs an index.md.`);
+    s.pages.sort((a, b) =>
+      Number(!isIndex(a)) - Number(!isIndex(b)) ||
+      (groupWeight.get(topOf(a)) ?? 0) - (groupWeight.get(topOf(b)) ?? 0) ||
+      topOf(a).localeCompare(topOf(b)) ||
+      depthOf(a) - depthOf(b) ||
+      a.data.weight - b.data.weight ||
+      a.id.localeCompare(b.id));
     const parentKey = pages.find((p) => p.id === s.key)?.data.section?.attachTo;
     if (!parentKey) continue;
     const parent = sections.get(parentKey);
@@ -90,9 +106,18 @@ export async function getSection(key: string): Promise<Section> {
 
 export const sectionKey = sectionOf;
 
-/** Side index of a section: its own pages, then links and attached sections after a separator. */
+/**
+ * Side index of a section: its own pages (pages inside a group are indented
+ * under the group's page), then links and attached sections after a separator.
+ */
 export function sideIndex(s: Section) {
-  const items = s.pages.map((p, i) => ({ href: hrefOf(p), label: menuLabel(p), n: s.numbered ? String(i + 1) : '' }));
+  let top = 0, sub = 0;
+  const items = s.pages.map((p) => {
+    const depth = depthOf(p) === 2 ? 1 : 0;
+    if (depth === 0) { top++; sub = 0; } else sub++;
+    const n = s.numbered ? (depth === 0 ? String(top) : `${top}.${sub}`) : '';
+    return { href: hrefOf(p), label: menuLabel(p), n, depth };
+  });
   const refs: Link[] = [...s.links, ...s.attached.flatMap((a) => a.pages.map((p) => ({ href: hrefOf(p), label: menuLabel(p) })))];
   return { label: s.label, items, refs };
 }
@@ -109,7 +134,7 @@ export async function getFooter() {
   return (await getMenu()).map((s) => ({
     label: s.label,
     links: [
-      ...s.pages.map((p) => ({ href: hrefOf(p), label: menuLabel(p) })),
+      ...s.pages.filter((p) => depthOf(p) < 2).map((p) => ({ href: hrefOf(p), label: menuLabel(p) })),
       ...s.links,
       ...s.attached.map((a) => ({ href: a.href, label: menuLabel(a.pages[0]) })),
     ],

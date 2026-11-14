@@ -1,5 +1,7 @@
 ---
-import { getMenu, getSiteText } from '../lib/site';
+import kit from 'virtual:42chain/kit';
+import { getMenu, getSiteText } from '../site';
+import Search from './Search.astro';
 interface Props { current?: string }
 const { current } = Astro.props;
 const menu = await getMenu();
@@ -13,6 +15,8 @@ const text = await getSiteText();
     {menu.map((s) => (
       <a class:list={['nl', { on: current === s.key }]} href={s.href} data-label={s.label} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
     ))}
+    {text.header.links.map((l) => <a class="nl" href={l.href} data-label={l.label}>{l.label}</a>)}
+    {kit.search && text.header.search && <Search label={text.header.search} />}
   </nav>
   {/* Narrow screens: the same links behind a disclosure (no script, CSP-safe). */}
   <details class="menu-m">
@@ -21,6 +25,8 @@ const text = await getSiteText();
       {menu.map((s) => (
         <a class:list={['ml', { on: current === s.key }]} href={s.href} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
       ))}
+      {text.header.links.map((l) => <a class="ml" href={l.href}>{l.label}</a>)}
+      {kit.search && text.header.search && <button type="button" class="ml" data-search-open>{text.header.search}</button>}
     </nav>
   </details>
 </header>
