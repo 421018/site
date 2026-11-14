@@ -74,7 +74,7 @@ La forma correcta se llama divulgación responsable. La persona reporta la vulne
 Publicar una vulnerabilidad antes de corregirla permitiría que otros la aprovecharan. Por eso el reporte se hace en privado.
 
 :::aside
-[Canal de seguridad →](/codigo-abierto/contacto#seguridad)
+[Reportar una vulnerabilidad →](/codigo-abierto/seguridad#reportar)
 :::
 
 ## Cómo protegerte {#protegerte}
@@ -84,7 +84,7 @@ Muchos riesgos para una persona no vienen del protocolo, sino de su propio entor
 - **Guarda tu frase de recuperación fuera de línea.** La frase de recuperación permite reconstruir tu llave privada. Quien la tiene controla tu cuenta.
 - **Nadie del proyecto te pedirá tus llaves.** Nadie que participe en el protocolo o en la red necesita tu llave privada ni tu frase de recuperación. Quien te la pide intenta engañarte.
 - **Revisa lo que firmas.** Antes de firmar, lee en tu billetera qué hace la transacción y a qué contrato llama.
-- **Usa los canales oficiales.** Verifica cualquier anuncio, enlace o aplicación en los canales oficiales.
+- **Usa los canales del proyecto.** Verifica cualquier anuncio, enlace o aplicación en los [canales del proyecto](/codigo-abierto/verificar#canales).
 
 ## Por qué el protocolo lo hace así {#porque}
 

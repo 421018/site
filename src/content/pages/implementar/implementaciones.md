@@ -37,5 +37,5 @@ Los proveedores que quieran aparecer en esta lista pueden proponerlo en el repos
 Para preguntas técnicas sobre el protocolo, la red o una integración, el espacio de discusiones del repositorio público está abierto a cualquiera, sin costo. Ahí se responden dudas técnicas; los servicios profesionales no se ofrecen ni se contratan en ese espacio.
 
 :::aside
-[Contacto y canales →](/codigo-abierto/contacto#canales)
+[Preguntas técnicas →](/codigo-abierto/contribuir#preguntas)
 :::

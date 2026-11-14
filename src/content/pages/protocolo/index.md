@@ -152,7 +152,7 @@ La seguridad de la red no depende de una sola pieza, sino de varias que se refue
 
 Además, el código del protocolo es abierto y se somete a **auditorías**. Una auditoría es una revisión a fondo del código, hecha por especialistas independientes. [Estado de las auditorías y enlace a los informes.]
 
-Para no caer en sitios o perfiles falsos, usa solo los [canales oficiales](/codigo-abierto/contacto#canales). Si encuentras una vulnerabilidad, repórtala en privado por el canal de seguridad indicado en la [documentación](/docs).
+Para no caer en sitios o perfiles falsos, usa solo los [canales oficiales](/codigo-abierto/verificar#canales). Si encuentras una vulnerabilidad, repórtala en privado por el canal de seguridad indicado en la [documentación](/docs).
 
 :::aside
 [Seguridad →](/protocolo/seguridad)

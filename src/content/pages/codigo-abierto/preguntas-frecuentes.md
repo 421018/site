@@ -83,25 +83,29 @@ Pierdes el acceso a tu cuenta. El protocolo no tiene ningún mecanismo para rest
 :::
 
 :::faq[¿Alguien del proyecto me pedirá mis llaves?]
-Nunca. Nadie del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales oficiales](/codigo-abierto/contacto#canales).
+No. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales del proyecto](/codigo-abierto/verificar#canales).
 :::
 
 :::faq[¿Cómo reporto una vulnerabilidad?]
-En privado, por el canal de seguridad indicado en la documentación. [Reportar una vulnerabilidad](/protocolo/seguridad#reportar)
+En privado, a los mantenedores del código, nunca en un espacio público. [Reportar una vulnerabilidad](/codigo-abierto/seguridad#reportar)
 :::
 
 ## El proyecto {#proyecto}
 
 :::faq[¿Quién desarrolla el protocolo?]
-Contribuidores independientes que trabajan en abierto. Cualquiera puede sumarse. [El equipo](/codigo-abierto/equipo)
+Contribuidores que trabajan en abierto, en repositorios públicos. Cualquiera puede sumarse. [Contribuir](/codigo-abierto/contribuir)
 :::
 
 :::faq[¿Hay una hoja de ruta?]
 No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y cada cambio se decide por gobernanza en la cadena. [Desarrollo continuo](/codigo-abierto#continuo)
 :::
 
-:::faq[¿Cómo integro la red en mi servicio?]
-Pregunta en el espacio de discusiones del repositorio público, o escribe al correo de contacto si prefieres tratarlo en privado. [Apoyo técnico](/codigo-abierto/contacto#apoyo)
+:::faq[¿Dónde hago una pregunta técnica?]
+En el espacio de discusiones del repositorio público. Está abierto a cualquiera y no tiene costo. [Preguntas técnicas](/codigo-abierto/contribuir#preguntas)
+:::
+
+:::faq[¿Hay servicios de implementación a medida?]
+Sí, de proveedores independientes, que se contratan directamente con ellos. Ofrecen implementación y asesoría técnica, nunca la venta ni la custodia de activos. [Implementaciones a medida](/implementar/implementaciones)
 :::
 
 ## Legal y uso del sitio {#legal}
@@ -110,12 +114,12 @@ Pregunta en el espacio de discusiones del repositorio público, o escribe al cor
 No. Este sitio no ofrece, no vende y no recomienda la unidad nativa ni ningún otro activo. Tampoco recomienda plataformas ni intermediarios.
 :::
 
-:::faq[¿Quién opera este sitio?]
-Nadie en particular. Lo escriben, lo revisan y lo mantienen en línea contribuidores independientes, como el resto del proyecto. [Sobre este sitio](/legal#independencia)
+:::faq[¿Quién mantiene este sitio?]
+Este sitio y la documentación son mantenidos por contribuidores del Protocolo 42. El código es abierto: cualquiera puede revisarlo, proponer cambios o contribuir. [Sobre este sitio](/legal#independencia)
 :::
 
 :::faq[¿Los servicios de terceros que aparecen en el sitio están respaldados por 42 Chain?]
-No. Los proveedores de RPC y de exploradores que se listan en el sitio son independientes, y cada uno responde por su servicio. Que aparezcan en el sitio no implica respaldo.
+No. Los proveedores de RPC, de exploradores y de implementaciones que se listan en el sitio son independientes, y cada uno responde por su servicio. Que aparezcan en el sitio no implica respaldo.
 :::
 
 :::faq[¿Qué datos recopila este sitio?]
