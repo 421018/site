@@ -17,7 +17,7 @@ Conectar dos sistemas suele requerir un intermediario que lea un sistema y escri
 
 Un contrato puede usar ese cliente ligero directamente. Si alguien le presenta un dato de la otra red junto con su **prueba**, el contrato comprueba que el dato forma parte del registro de la otra red. Quien entrega la prueba no puede falsificarla: si el dato no está en la otra red, la comprobación falla.
 
-Los clientes ligeros se mantienen al día con procesos llamados **relayers**, que cualquiera puede operar. Un relayer solo transporta información: la red que la recibe la comprueba antes de aceptarla.
+Los clientes ligeros se mantienen al día con programas llamados **retransmisores** (*relayers*), que cualquiera puede operar. Un retransmisor solo transporta información: la red que la recibe la comprueba antes de aceptarla.
 
 ## Un ejemplo {#ejemplo}
 

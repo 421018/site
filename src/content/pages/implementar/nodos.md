@@ -75,7 +75,7 @@ Un validador del conjunto activo tiene tres responsabilidades:
 - **Seguridad de la llave.** La llave privada del validador tiene que estar protegida. Si alguien la roba, puede provocar una doble firma, que es la falta más grave.
 - **Actualización.** El validador tiene que aplicar a tiempo las actualizaciones que se aprueban por gobernanza.
 
-Las penalizaciones también afectan a las unidades que otras personas delegaron en el validador. Por eso las personas que delegan revisan el historial de cada validador antes de elegirlo.
+Las penalizaciones también afectan a las unidades delegadas en el validador.
 
 :::aside
 [Penalizaciones →](/protocolo/consenso#penalizaciones)

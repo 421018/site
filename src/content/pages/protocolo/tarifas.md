@@ -42,7 +42,7 @@ Por ejemplo, si una transferencia consume 21.000 unidades de gas y el precio es 
 
 El precio por unidad de gas tiene dos partes:
 
-- **Una tarifa base.** El protocolo la ajusta en cada bloque según la demanda: sube cuando los bloques se llenan y baja cuando hay capacidad libre. Nunca baja de un mínimo, que es un parámetro de la red. Es el mismo mecanismo que usan las redes compatibles con la EVM (EIP-1559).
+- **Una tarifa base.** El protocolo la ajusta en cada bloque según la demanda: sube cuando los bloques se llenan y baja cuando hay capacidad libre. Nunca baja de un mínimo, que es un parámetro de la red. Es el mecanismo que introdujo Ethereum con el EIP-1559.
 - **Una propina opcional.** Quien envía la transacción puede añadirla para darle prioridad cuando la red está ocupada.
 
 Así, el costo de una transacción es predecible: la billetera conoce la tarifa base del bloque y la muestra antes de firmar.

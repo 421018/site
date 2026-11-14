@@ -20,7 +20,7 @@ La parte del protocolo que toma las transacciones de un bloque y calcula el esta
 
 El estado se organiza en cuentas. Hay dos tipos de cuenta:
 
-- **Cuentas de usuario.** Pertenecen a una persona, que las controla con su llave privada. Guardan un saldo de unidades y un contador de las transacciones que la cuenta ha enviado. El contador impide que alguien envíe dos veces la misma transacción firmada.
+- **Cuentas de usuario.** Pertenecen a una persona, un sistema o un dispositivo, que las controla con su llave privada. Guardan un saldo de unidades y un contador de las transacciones que la cuenta ha enviado. El contador impide que alguien envíe dos veces la misma transacción firmada.
 - **Cuentas de contrato.** Pertenecen a un contrato inteligente. No tienen llave privada: las controla el código del contrato. Además del saldo, guardan el código del contrato y sus datos.
 
 ### Direcciones
@@ -61,7 +61,7 @@ Si un contrato tiene un error, el error queda publicado con él. Por eso los con
 
 Para usar un contrato, se envía una transacción que llama a una de sus funciones. Todos los nodos ejecutan esa función con los mismos datos y llegan al mismo resultado.
 
-Un contrato también puede llamar a funciones de otros contratos. Así, aplicaciones distintas pueden combinarse: un contrato de pagos puede usar un contrato de registro de identidades, por ejemplo, sin pedir permiso a sus autores.
+Un contrato también puede llamar a funciones de otros contratos. Así, aplicaciones distintas pueden combinarse: un contrato de trazabilidad puede usar un contrato de registro de certificados, por ejemplo, sin pedir permiso a sus autores.
 
 ### Leer y escribir
 

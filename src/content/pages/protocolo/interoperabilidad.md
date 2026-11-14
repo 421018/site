@@ -32,7 +32,7 @@ Con esa información, el cliente ligero puede comprobar una **prueba**: un dato 
 
 ### Los retransmisores
 
-Las redes no se hablan directamente. Los mensajes entre ellas los transportan los **retransmisores**: programas que leen los mensajes de una red y los entregan en la otra, junto con su prueba.
+Las redes no se hablan directamente. Los mensajes entre ellas los transportan los **retransmisores** (*relayers*): programas que leen los mensajes de una red y los entregan en la otra, junto con su prueba.
 
 Cualquiera puede operar un retransmisor. Un retransmisor no puede alterar un mensaje, porque la red de destino comprueba la prueba antes de aceptarlo. Lo único que puede hacer un retransmisor es entregar el mensaje, o no entregarlo.
 

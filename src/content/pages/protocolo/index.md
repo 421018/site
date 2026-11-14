@@ -55,7 +55,7 @@ Quien pierde su llave privada pierde el acceso a su cuenta. No existe ninguna pe
 
 La transacción más simple es una transferencia: mover unidades de una cuenta a otra. Pero el registro puede guardar algo más que saldos. También puede guardar programas, y la red puede ejecutarlos. A un programa publicado en la cadena se le llama **contrato inteligente**.
 
-Un contrato inteligente funciona como un acuerdo que se cumple solo. Sus reglas están escritas en código, y cualquiera puede leerlas. Una vez publicado, nadie puede cambiar el contrato. Por ejemplo, un contrato puede llevar un registro de certificados, administrar un fondo común con reglas de votación o liberar un pago cuando se cumple una condición.
+Un contrato inteligente funciona como un acuerdo que se cumple solo. Sus reglas están escritas en código, y cualquiera puede leerlas. Una vez publicado, nadie puede cambiar el contrato. Por ejemplo, un contrato puede llevar un registro de certificados, guardar el historial de intervenciones de un activo o aplicar un cambio solo cuando lo aprueban varias organizaciones. [Casos de uso](/casos-de-uso)
 
 Para que el resultado de un contrato sea confiable, todos los nodos ejecutan el contrato y todos tienen que llegar exactamente al mismo resultado. Para eso, todos los nodos deben ejecutarlo en el mismo entorno y con las mismas instrucciones. A ese entorno se le llama **máquina virtual**.
 
@@ -152,7 +152,7 @@ La seguridad de la red no depende de una sola pieza, sino de varias que se refue
 
 Además, el código del protocolo es abierto y se somete a **auditorías**. Una auditoría es una revisión a fondo del código, hecha por especialistas independientes. [Estado de las auditorías y enlace a los informes.]
 
-Para no caer en sitios o perfiles falsos, usa solo los [canales oficiales](/codigo-abierto/verificar#canales). Si encuentras una vulnerabilidad, repórtala en privado por el canal de seguridad indicado en la [documentación](/docs).
+Para no caer en sitios o perfiles falsos, usa solo los [canales del proyecto](/codigo-abierto/verificar#canales). Si encuentras una vulnerabilidad, [repórtala en privado](/codigo-abierto/seguridad#reportar).
 
 :::aside
 [Seguridad →](/protocolo/seguridad)

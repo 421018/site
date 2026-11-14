@@ -38,7 +38,7 @@ Algunas cosas quedan fuera del alcance del protocolo. Conocerlas es parte de usa
 - **Funcionamiento continuo.** Si más de un tercio del poder de voto queda fuera de línea, la red se detiene hasta que se recupera la mayoría. Es una decisión de diseño: el protocolo prefiere detenerse antes que confirmar algo sin la mayoría necesaria.
 
 :::aside
-[Aviso de riesgos →](/legal#riesgos)
+[Riesgos de uso →](/legal#riesgos)
 :::
 
 ## Cómo responde ante fallas {#fallas}

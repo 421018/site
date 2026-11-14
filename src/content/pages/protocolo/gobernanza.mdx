@@ -10,11 +10,9 @@ import VoteSim from '../../../components/VoteSim.astro';
 
 Ningún protocolo queda terminado. Con el tiempo hay que ajustar parámetros, corregir errores y adoptar mejoras. Alguien tiene que decidir esos cambios.
 
-En una red con dueño, decide el dueño. Pero una red que tiene dueño depende de las decisiones de una sola parte, y eso es justo lo que una red pública busca evitar.
+Si los cambios los decidiera una sola parte, todas las organizaciones que usan la red dependerían de ella. Si las reglas no pudieran cambiar nunca, la red no podría corregir sus errores ni adaptarse con el tiempo.
 
-La alternativa opuesta sería que nadie pudiera cambiar las reglas. Pero una red así no podría corregir sus errores ni adaptarse con el tiempo.
-
-El protocolo toma un tercer camino: los cambios los deciden los propios participantes de la red, con reglas públicas y votos registrados en la cadena. A ese sistema se le llama gobernanza en la cadena.
+El protocolo resuelve las dos cosas: los cambios los deciden los propios participantes de la red, con reglas públicas y votos registrados en la cadena. A ese sistema se le llama gobernanza en la cadena.
 
 ## Gobernanza en la cadena {#modelo}
 
@@ -107,7 +105,7 @@ Las cifras del ejemplo son ilustrativas.
 
 ## Por qué el protocolo lo hace así {#porque}
 
-- **Gobierno en la cadena.** Las propuestas, los votos y los resultados son públicos, y los cambios aprobados se aplican solos. Nadie puede cambiar las reglas a escondidas, y nadie puede bloquear una decisión tomada.
+- **Gobierno en la cadena.** Las propuestas, los votos y los resultados son públicos, y los cambios aprobados se aplican solos. Ningún cambio se aplica sin quedar registrado, y los cambios aprobados se aplican con las mismas reglas para todos.
 - **Peso según el staking.** La misma lógica que protege el consenso protege las decisiones: crear cuentas no da poder, poner unidades en juego sí.
 - **Depósito y veto.** El depósito desalienta las propuestas sin sentido. El veto permite rechazar una propuesta dañina aunque tenga mayoría.
 - **Proponer y decidir están separados.** Cualquiera puede presentar una propuesta, también quienes escriben el código. La decisión la toman los votos registrados en la cadena.

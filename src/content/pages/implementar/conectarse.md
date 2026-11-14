@@ -37,8 +37,8 @@ Las billeteras compatibles con la EVM, como MetaMask, permiten añadir una red a
 
 Las unidades de la red de pruebas se obtienen gratis en el faucet de la [Consola](/consola).
 
-:::note[Comprueba el chain ID]
-Una red falsa puede usar el mismo nombre y el mismo símbolo, pero no el mismo chain ID. Antes de firmar una transacción, comprueba que el chain ID que muestra tu billetera coincide con el de esta página.
+:::note[Comprueba de dónde te conectas]
+Una red falsa puede copiar el nombre, el símbolo e incluso el chain ID. Usa solo una URL de RPC del [directorio](#proveedores) o de un nodo propio, y comprueba que el chain ID que muestra tu billetera coincide con el de esta página.
 :::
 
 ## Proveedores de RPC y exploradores {#proveedores}

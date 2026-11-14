@@ -10,6 +10,14 @@ weight: 40
 Una red pública de infraestructura que ejecuta el Protocolo 42. Permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, con contratos en la EVM y conexión con otras redes mediante IBC. [Visión general](/protocolo)
 :::
 
+:::faq[¿Para qué sirve 42 Chain?]
+Para que varias organizaciones compartan un registro sin que ninguna tenga que custodiarlo sola: registros y documentos verificables, trazabilidad entre organizaciones, operación y mantenimiento de infraestructura, autorizaciones compartidas e integración entre redes. Si una sola organización genera y consulta los datos, una base de datos tradicional es más sencilla. [Casos de uso](/casos-de-uso)
+:::
+
+:::faq[¿Puedo mantener datos reservados?]
+Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra solo su huella. Si una organización necesita, además, un entorno separado de la red pública, puede tener un entorno interno conectado a 42 Chain, que requiere una implementación a medida. [Qué va dentro y fuera de la cadena](/casos-de-uso#fuera) · [Entornos internos](/casos-de-uso#entornos-internos)
+:::
+
 :::faq[¿Qué es el Protocolo 42?]
 Es el protocolo de la red, y su nombre formal es *Infinite Improbability Drive*. Define las reglas que siguen todos los nodos para llevar un registro compartido, ejecutar contratos, ponerse de acuerdo sobre cada bloque y decidir cambios. Está construido con tecnología abierta del ecosistema Cosmos (Cosmos SDK, CometBFT e IBC) y ejecuta los contratos en la máquina virtual de Ethereum (EVM).
 :::
@@ -27,7 +35,7 @@ Segundos. Una vez confirmada, la transacción es definitiva: no puede revertirse
 :::
 
 :::faq[¿Con qué otras redes se conecta?]
-Con cualquier red que use el estándar IBC. Cada red comprueba por sí misma lo que ocurre en la otra, sin intermediarios. [Interoperabilidad](/protocolo/interoperabilidad)
+Con las redes compatibles con IBC con las que se establece una conexión. Cada red comprueba por sí misma lo que ocurre en la otra, sin intermediarios. [Interoperabilidad](/protocolo/interoperabilidad)
 :::
 
 ## Construir {#construir}
