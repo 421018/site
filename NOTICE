@@ -1,0 +1,18 @@
+42 Chain website
+Copyright 2026 The 42 Chain Authors
+
+This product includes software developed by The 42 Chain Authors
+(https://github.com/[organization]/42chain-site).
+
+Licensing:
+- Source code (everything outside src/content/) is licensed under the
+  Apache License, Version 2.0. See LICENSE.
+- Content (everything under src/content/: page text, home page and
+  site-wide text) is licensed under the Creative Commons Attribution 4.0
+  International License (CC BY 4.0). See LICENSE-CONTENT.
+
+The "42 Chain" name and logo are not covered by either license.
+
+Third-party components:
+- Geist and Geist Mono fonts, by Vercel, are downloaded at build time and
+  distributed under the SIL Open Font License 1.1.
