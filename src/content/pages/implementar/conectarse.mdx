@@ -5,6 +5,8 @@ menuTitle: "Conectarse a la red"
 weight: 5
 ---
 
+import AddNetwork from '../../../components/AddNetwork.astro';
+
 ## La red y el protocolo {#red}
 
 42 Chain es una red pública que ejecuta el protocolo. Hay dos redes con el mismo software: la **red principal**, donde las transacciones tienen efecto real, y la **red de pruebas**, que sirve para desarrollar y probar con unidades sin uso fuera de ella.
@@ -15,10 +17,10 @@ Para conectarse a cualquiera de las dos hacen falta dos cosas: sus parámetros, 
 
 | Parámetro | Red principal | Red de pruebas |
 |---|---|---|
-| Nombre de la red | 42 Chain | [nombre de la red de pruebas] |
-| Chain ID (EVM) | [chain ID] | [chain ID] |
+| Nombre de la red | 42 Chain | 42 Chain Testnet |
+| Chain ID (EVM) | 421018 (`0x66c9a`) | 421018001 (`0x19183991`) |
 | Chain ID (nativo) | [chain ID nativo] | [chain ID nativo] |
-| Unidad nativa | Improbability · símbolo 42 | Improbability de prueba · [símbolo] |
+| Unidad nativa | Improbability · símbolo 42 | TestImprobability · símbolo TEST42 |
 | Decimales | 18 | 18 |
 | Denominación base | `drop` | `tdrop` |
 | Prefijo de dirección nativa | [prefijo] | [prefijo] |
@@ -28,29 +30,36 @@ Los parámetros vigentes y su historial están en la [referencia técnica](/docs
 
 ## Añadir la red a una billetera {#billetera}
 
-Las billeteras compatibles con la EVM, como MetaMask, permiten añadir una red a mano con cinco datos:
+La forma más rápida es con estos botones. La billetera muestra los datos y pide confirmación antes de añadir la red:
+
+<AddNetwork />
+
+También se puede añadir a mano, con cinco datos:
 
 - **Nombre de la red.** El de la tabla de parámetros.
 - **URL de RPC.** La de un proveedor del [directorio](#proveedores) o la de un nodo propio.
 - **Chain ID.** El chain ID (EVM) de la red que quieres usar.
-- **Símbolo.** 42 en la red principal, o el de la red de pruebas.
+- **Símbolo.** 42 en la red principal, o TEST42 en la red de pruebas.
 - **Explorador.** La dirección de un explorador del [directorio](#proveedores). Es opcional.
 
-Las unidades de la red de pruebas se obtienen gratis en el faucet de la [Consola](/consola).
+Las unidades de la red de pruebas se obtienen gratis en un faucet del [directorio](#proveedores).
 
 :::note[Comprueba de dónde te conectas]
 Una red falsa puede copiar el nombre, el símbolo e incluso el chain ID. Usa solo una URL de RPC del [directorio](#proveedores) o de un nodo propio, y comprueba que el chain ID que muestra tu billetera coincide con el de esta página.
 :::
 
-## Proveedores de RPC y exploradores {#proveedores}
+## Proveedores de RPC, exploradores y faucets {#proveedores}
 
-Los puntos de conexión y los exploradores los operan proveedores independientes, cada uno con su propio dominio. Ninguno es un punto de conexión oficial de la red, y cada proveedor responde por su servicio. Que aparezcan aquí no implica respaldo.
+Los puntos de conexión, los exploradores y los faucets los operan proveedores independientes, cada uno con su propio dominio. Ninguno es un punto de conexión oficial de la red, y cada proveedor responde por su servicio. Que aparezcan aquí no implica respaldo.
 
 | Proveedor | Servicio | Red | Dirección |
 |---|---|---|---|
-| [Proveedor] _Independiente_{.badge} | RPC (EVM) | Red principal | [URL] |
-| [Proveedor] _Independiente_{.badge} | RPC (EVM) | Red de pruebas | [URL] |
-| [Proveedor] _Independiente_{.badge} | Explorador | Red principal | [URL] |
+| Infinite Drive <em class="badge">Independiente</em> | RPC (EVM) | Red principal | `https://evm.infinitedrive.xyz` |
+| mschihuahua.org <em class="badge">Independiente</em> | RPC (EVM) | Red principal | `https://evm-rpc-infinite.mschihuahua.org` |
+| Infinite Drive <em class="badge">Independiente</em> | RPC (EVM) | Red de pruebas | `https://evm-rpc-testnet.infinitedrive.xyz` |
+| Infinite Drive <em class="badge">Independiente</em> | Explorador | Red principal | [scan.infinitedrive.xyz ↗](https://scan.infinitedrive.xyz) |
+| Infinite Drive <em class="badge">Independiente</em> | Explorador | Red de pruebas | [testnet-scan.infinitedrive.xyz ↗](https://testnet-scan.infinitedrive.xyz) |
+| xenia88.xyz <em class="badge">Independiente</em> | Faucet | Red de pruebas | [testnet-faucet.xenia88.xyz ↗](https://testnet-faucet.xenia88.xyz) |
 
 Para no depender de un proveedor, cualquiera puede operar su propio nodo y conectarse a él. [Operar un nodo →](/implementar/nodos)
 

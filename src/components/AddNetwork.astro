@@ -1,0 +1,77 @@
+---
+// Adds 42 Chain (mainnet or testnet) to an EVM wallet with EIP-3085
+// (wallet_addEthereumChain). Values match implementar/conectarse.mdx and the
+// Chainlist entries (chain IDs 421018 and 421018001). The RPC and explorer are
+// the first entries of the provider directory on that page; the wallet lets the
+// person change them afterwards.
+const networks = [
+  {
+    key: 'main',
+    label: 'Añadir 42 Chain',
+    params: {
+      chainId: '0x66c9a',
+      chainName: '42 Chain',
+      nativeCurrency: { name: 'Improbability', symbol: '42', decimals: 18 },
+      rpcUrls: ['https://evm.infinitedrive.xyz'],
+      blockExplorerUrls: ['https://scan.infinitedrive.xyz'],
+    },
+  },
+  {
+    key: 'test',
+    label: 'Añadir 42 Chain Testnet',
+    params: {
+      chainId: '0x19183991',
+      chainName: '42 Chain Testnet',
+      nativeCurrency: { name: 'TestImprobability', symbol: 'TEST42', decimals: 18 },
+      rpcUrls: ['https://evm-rpc-testnet.infinitedrive.xyz'],
+      blockExplorerUrls: ['https://testnet-scan.infinitedrive.xyz'],
+    },
+  },
+];
+---
+<div class="widget an" data-addnet>
+  <div class="w-head"><span class="w-tag">Herramienta</span><span class="w-meta">Billeteras compatibles con la EVM (EIP-3085)</span></div>
+  <div class="btns">
+    {networks.map((n) => (
+      <button type="button" class="add" data-params={JSON.stringify(n.params)}>
+        <b>{n.label}</b>
+        <span>Chain ID {parseInt(n.params.chainId, 16)} · {n.params.rpcUrls[0].replace('https://', '')}</span>
+      </button>
+    ))}
+  </div>
+  <p class="msg" role="status" data-msg></p>
+  <p class="w-note">La billetera muestra los datos y pide confirmación antes de añadir la red. Comprueba que el chain ID coincida con la tabla de parámetros. El punto de conexión es el primero del directorio; puedes cambiarlo después en la billetera.</p>
+</div>
+
+<style>
+  .btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .add { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-height: 64px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--acc); background: color-mix(in srgb, var(--acc) 10%, transparent); color: #fff; font: inherit; text-align: left; cursor: pointer; transition: background .2s; }
+  .add:hover { background: color-mix(in srgb, var(--acc) 20%, transparent); }
+  .add b { font-size: 15.5px; font-weight: 600; }
+  .add span { font-family: var(--mono); font-size: 11.5px; color: var(--w-dim); }
+  .msg { margin: 12px 0 0; min-height: 1.6em; font-size: 14px; color: var(--w-fg); }
+  .msg.bad { color: #F07A62; }
+  @media (max-width: 560px) { .btns { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  type Eip1193 = { request: (a: { method: string; params?: unknown[] }) => Promise<unknown> };
+  document.querySelectorAll<HTMLElement>('[data-addnet]').forEach((root) => {
+    const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const say = (text: string, bad = false) => { msg.textContent = text; msg.classList.toggle('bad', bad); };
+    root.querySelectorAll<HTMLButtonElement>('button[data-params]').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const eth = (window as unknown as { ethereum?: Eip1193 }).ethereum;
+        if (!eth) { say('No se detectó una billetera compatible con la EVM en este navegador. Puedes añadir la red a mano con los datos de la tabla.', true); return; }
+        const params = JSON.parse(btn.dataset.params!);
+        try {
+          await eth.request({ method: 'wallet_addEthereumChain', params: [params] });
+          say(`${params.chainName} está disponible en tu billetera.`);
+        } catch (e) {
+          const code = (e as { code?: number }).code;
+          say(code === 4001 ? 'Se canceló la solicitud en la billetera.' : 'La billetera no pudo añadir la red. Puedes añadirla a mano con los datos de la tabla.', true);
+        }
+      });
+    });
+  });
+</script>

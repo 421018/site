@@ -71,7 +71,7 @@ const block = { kicker: z.string(), title: z.string(), lead: z.string().optional
 
 const home = defineCollection({
   loader: glob({ pattern: 'home.md', base: './src/content' }),
-  schema: z
+  schema: ({ image }) => z
     .object({
       title: z.string().optional(),
       description: z.string().optional(),
@@ -83,7 +83,26 @@ const home = defineCollection({
           facts: z.array(z.object({ value: z.string(), label: z.string() }).strict()),
         })
         .strict(),
-      uses: z.object({ ...block, stories: z.array(z.object({ title: z.string(), text: z.string() }).strict()) }).strict(),
+      uses: z
+        .object({
+          ...block,
+          stories: z.array(
+            z
+              .object({
+                title: z.string(),
+                text: z.string(),
+                /** Optional photo (path relative to home.md) with its required description and credit. */
+                image: image().optional(),
+                alt: z.string().optional(),
+                credit: z.string().optional(),
+                /** Optional link to the use case page. */
+                href: z.string().optional(),
+              })
+              .strict()
+              .refine((s) => !s.image || (s.alt && s.credit), 'a story with an image needs "alt" and "credit"'),
+          ),
+        })
+        .strict(),
       people: z.object({ ...block, rows: z.array(z.object({ who: z.string(), what: z.string() }).strict()) }).strict(),
       start: z.object({ ...block, paths: z.array(z.object({ label: z.string(), text: z.string(), href: z.string() }).strict()) }).strict(),
       name: z.object({ ...block }).strict(),

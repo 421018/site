@@ -57,7 +57,7 @@ En la red principal, las transacciones tienen efecto real. La red de pruebas sir
 :::
 
 :::faq[¿Cómo obtengo unidades de prueba?]
-Desde el faucet de la Consola: un servicio que entrega unidades de prueba gratis.
+Desde un faucet de la red de pruebas: un servicio que entrega unidades de prueba gratis. [Directorio de proveedores](/implementar/conectarse#proveedores)
 :::
 
 ## Nodos, validadores y delegación {#nodos}

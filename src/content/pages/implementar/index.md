@@ -21,6 +21,9 @@ Una aplicación sobre la red tiene, por lo general, tres partes:
 
 No todo tiene que vivir en la cadena. Lo que debe ser verificable y compartido va en los contratos. Lo pesado o lo reservado se queda fuera, y en la cadena se registra su huella.
 
+:::diagram[Las tres partes de una aplicación sobre la red.]{name="arquitectura"}
+:::
+
 Por ejemplo, en un registro de certificados, el contrato guarda la huella de cada certificado y quién lo emitió. El documento completo se queda en los sistemas del emisor. Cualquiera puede comprobar, con la huella, que un documento es auténtico.
 
 :::aside
@@ -48,6 +51,9 @@ Cada transacción paga una tarifa. En una aplicación de infraestructura, quien 
 - **Para operaciones con contratos**, el protocolo admite cuentas que delegan su lógica en un contrato (EIP-7702). Así, la persona o el dispositivo firma la operación, y otra cuenta, la de la organización, la envía y paga la tarifa.
 - **Para operaciones propias de la red**, como transferencias o votos, una cuenta puede conceder a otra una **asignación de tarifas**: la cuenta que recibe la asignación opera, y las tarifas se descuentan de la cuenta que la concedió, hasta el límite fijado.
 
+:::diagram[Quién firma y quién paga, con cada uno de los dos mecanismos.]{name="tarifas-patrocinadas"}
+:::
+
 ### Permisos delegados {#permisos}
 
 Una organización puede autorizar a otra cuenta a hacer ciertas operaciones en su nombre, por ejemplo a un contratista, sin entregarle su llave.
@@ -71,7 +77,7 @@ Los contratos pueden usar directamente las funciones propias del protocolo: cons
 
 Hay dos redes que ejecutan el mismo protocolo.
 
-La **red de pruebas** sirve para desarrollar y probar. Es pública y usa unidades de prueba, que no tienen uso fuera de ella. Las unidades de prueba se obtienen gratis en la Consola.
+La **red de pruebas** sirve para desarrollar y probar. Es pública y usa unidades de prueba, que no tienen uso fuera de ella. Las unidades de prueba se obtienen gratis en un [faucet del directorio](/implementar/conectarse#proveedores).
 
 La **red principal** es la red donde los registros tienen efecto real.
 

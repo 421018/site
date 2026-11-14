@@ -1,0 +1,21 @@
+<!-- Diagram: fees paid by the organization, two mechanisms. Used in implementar/index.md. -->
+<div class="dg-compare" role="group" aria-label="Dos formas de que la organización pague las tarifas">
+  <div class="dg-col on">
+    <span class="dg-k">Operaciones con contratos · EIP-7702</span>
+    <b>La organización envía y paga</b>
+    <div class="dg-node"><b>1. Un técnico o un sensor firma</b><span>La operación sobre el contrato, con su propia llave.</span></div>
+    <div class="dg-arrow" aria-hidden="true">↓</div>
+    <div class="dg-node"><b>2. La cuenta de la organización la envía</b><span>Y paga la tarifa.</span></div>
+    <div class="dg-arrow" aria-hidden="true">↓</div>
+    <div class="dg-node hub"><b>3. El contrato la aplica</b><span>Como una operación de quien la firmó.</span></div>
+  </div>
+  <div class="dg-col on">
+    <span class="dg-k">Operaciones propias de la red · asignación de tarifas</span>
+    <b>La organización concede un límite</b>
+    <div class="dg-node"><b>1. La organización concede una asignación</b><span>A otra cuenta, con un límite y, si quiere, una fecha de vencimiento.</span></div>
+    <div class="dg-arrow" aria-hidden="true">↓</div>
+    <div class="dg-node"><b>2. Esa cuenta opera</b><span>Transferencias, votos u otras operaciones propias de la red.</span></div>
+    <div class="dg-arrow" aria-hidden="true">↓</div>
+    <div class="dg-node hub"><b>3. La tarifa se descuenta de la organización</b><span>Hasta agotar el límite concedido.</span></div>
+  </div>
+</div>

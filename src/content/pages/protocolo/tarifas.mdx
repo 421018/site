@@ -5,6 +5,7 @@ weight: 30
 ---
 
 import FeeCalc from '../../../components/FeeCalc.astro';
+import UnitConverter from '../../../components/UnitConverter.astro';
 
 ## La unidad nativa {#unidad}
 
@@ -31,6 +32,8 @@ El drop es también la denominación base de la red: en las transacciones y las 
 Entre quienes desarrollan sobre la red es común decir **una cup** en lugar de «una Improbability», y **drops** para las fracciones. Es un nombre de uso, para hablar de cantidades sin repetir la palabra completa. En el registro, en los contratos y en las billeteras, la unidad sigue siendo Improbability, con símbolo 42.
 
 Los contratos trabajan siempre en drops, como en cualquier red compatible con la EVM: una cup se escribe en un contrato como `1000000000000000000`.
+
+<UnitConverter />
 
 :::lore[Bitácora del motor]
 El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que miles de computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
