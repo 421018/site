@@ -1,127 +1,128 @@
-# 42 Chain — sitio oficial
+# 42 Chain — official website
 
-Sitio informativo del protocolo 42 Chain. Está hecho con [Astro](https://astro.build) 7 y se publica como sitio estático.
+Informational website for the 42 Chain protocol, built with [Astro](https://astro.build) 7 and published as a static site. The site is in Spanish; the codebase, tooling and documentation are in English.
 
-**Todo el contenido vive en archivos Markdown.** Para agregar, cambiar, reordenar o quitar una página basta con editar archivos en `src/content/`: el menú, el índice lateral, los enlaces anterior/siguiente y el pie de página se generan solos.
+**All content lives in Markdown files.** Adding, editing, reordering or removing a page only means editing files in `src/content/`: the main menu, side index, previous/next links and footer are generated from them.
 
-## Empezar
+## Getting started
 
 ```bash
-nvm use            # Node 24 (ver .nvmrc; Astro 7 exige ≥ 22.23.4)
+nvm use            # Node 24 (see .nvmrc; Astro 7 requires ≥ 22.23.4)
 npm install
 npm run dev        # http://localhost:4321
 ```
 
-| Comando | Qué hace |
+| Command | What it does |
 |---|---|
-| `npm run dev` | Servidor local con recarga automática (muestra también los borradores) |
-| `npm run build` | Genera el sitio en `dist/` |
-| `npm run preview` | Sirve `dist/` en local |
-| `npm run check` | Revisa tipos y plantillas |
-| `npm run check:links` | Revisa los enlaces internos y las anclas del sitio generado (después de `build`) |
-| `npm run verify` | Las tres comprobaciones anteriores juntas. Es lo que ejecuta la CI en cada PR |
+| `npm run dev` | Local server with live reload (drafts included) |
+| `npm run build` | Builds the site into `dist/` |
+| `npm run preview` | Serves `dist/` locally |
+| `npm run check` | Type-checks code and templates |
+| `npm run check:links` | Checks internal links and anchors in the built site (run after `build`) |
+| `npm run verify` | All three checks above. This is what CI runs on every pull request |
 
-## Editar el contenido
+## Editing content
 
-### Dónde está cada cosa
+### Where things live
 
-| Qué | Archivo |
+| What | File |
 |---|---|
-| Textos de la portada | `src/content/home.md` |
-| Páginas interiores | `src/content/pages/<sección>/<página>.md` |
-| Dominio, enlaces externos y repositorio | `src/config.ts` |
+| Interior pages | `src/content/pages/<section>/<page>.md` |
+| Home page text | `src/content/home.md` |
+| Site-wide text: brand, footer, page labels, 404 | `src/content/site.md` |
+| Domain, external URLs, repository | `src/config.ts` |
 
-La ruta del archivo es la dirección de la página:
+The file path is the page URL. Folder and file names are public URLs, so they stay in Spanish:
 
-| Archivo | Dirección |
+| File | URL |
 |---|---|
 | `protocolo/index.md` | `/protocolo` |
 | `protocolo/consenso.mdx` | `/protocolo/consenso` |
 | `proyecto/contacto.md` | `/proyecto/contacto` |
 
-### Agregar una página
+### Adding a page
 
-1. Crea el archivo en la carpeta de su sección, por ejemplo `src/content/pages/protocolo/staking-liquido.md`.
-2. Escribe el encabezado:
+1. Create the file in its section folder, e.g. `src/content/pages/protocolo/staking-liquido.md`.
+2. Add the frontmatter:
 
 ```md
 ---
 title: "Staking líquido"
-summary: "Una frase que resume la página. Aparece bajo el título y en buscadores."
-weight: 25           # orden dentro de la sección (menor va primero)
+summary: "One sentence that sums up the page. Shown under the title and to search engines."
+weight: 25           # order within the section (lower comes first)
 ---
 
 ## Primera sección {#primera}
 
-Texto…
+Text…
 ```
 
-Listo: la página aparece en el índice lateral, en anterior/siguiente y en el pie.
+That's it: the page shows up in the side index, in previous/next and in the footer.
 
-Campos del encabezado:
+Frontmatter fields:
 
-| Campo | Obligatorio | Para qué sirve |
+| Field | Required | Purpose |
 |---|---|---|
-| `title` | sí | Título de la página |
-| `summary` | sí | Resumen bajo el título y descripción para buscadores |
-| `weight` | no | Orden dentro de la sección. El `index.md` siempre va primero |
-| `menuTitle` | no | Nombre en el índice lateral y el pie, si debe ser distinto del título |
-| `updated` | no | Fecha de "Última revisión". Si no se indica, se usa la del último commit del archivo |
-| `draft` | no | `true` la muestra en `npm run dev` y la deja fuera del sitio publicado |
+| `title` | yes | Page title |
+| `summary` | yes | Subtitle and meta description |
+| `weight` | no | Order within the section. The section's `index.md` always comes first |
+| `menuTitle` | no | Label in the side index and footer, when it should differ from the title |
+| `updated` | no | "Last reviewed" date. Defaults to the date of the file's last commit |
+| `draft` | no | `true` shows the page in `npm run dev` and leaves it out of the published site |
 
-### Secciones
+### Sections
 
-Cada carpeta es una sección y su `index.md` la describe con un bloque `section:`:
+Each folder is a section, described by a `section:` block in its `index.md`:
 
 ```yaml
 section:
-  label: Protocolo        # nombre en el menú principal
-  weight: 1               # orden en el menú y el pie
-  accent: "#5BF0C8"       # color de acento sobre fondo oscuro
-  ink: "#0A7A5E"          # color de los enlaces sobre fondo claro
-  numbered: true          # numera las páginas en el índice lateral
-  sequential: true        # muestra anterior / siguiente
-  links:                  # enlaces extra bajo una línea en el índice lateral
+  label: Protocolo        # name in the main menu
+  weight: 1               # order in the main menu and footer
+  accent: "#5BF0C8"       # accent color on dark backgrounds
+  ink: "#0A7A5E"          # link color on the light reading surface
+  numbered: true          # numbers pages in the side index
+  sequential: true        # shows previous / next at the end of each page
+  links:                  # extra links below a separator in the side index
     - { label: "Documentación ↗", href: /docs }
-  attachTo: proyecto      # opcional: aparece dentro de otra sección en vez del menú principal
+  attachTo: proyecto      # optional: list this section inside another one instead of the main menu
 ```
 
-Para crear una sección nueva: crea la carpeta y su `index.md` con ese bloque.
+To add a section, create the folder and its `index.md` with that block.
 
-### Escribir
+### Writing
 
-- Cada `##` abre una sección numerada. El texto entre llaves es el ancla: `## Canales oficiales {#canales}` se enlaza como `/proyecto/contacto#canales`. No cambies un ancla sin buscar antes quién la enlaza; `npm run verify` avisa si alguna queda rota.
-- Los enlaces internos usan rutas absolutas: `/protocolo/gobernanza#suministro`.
-- `/docs` y `/consola` redirigen a las direcciones definidas en `src/config.ts`.
-- Una etiqueta pequeña dentro del texto: `_Independiente_{.badge}`.
+- Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#canales}` is linked as `/proyecto/contacto#canales`. Before renaming an anchor, search for links to it; `npm run verify` reports any that break.
+- Internal links use absolute paths: `/protocolo/gobernanza#suministro`.
+- `/docs` and `/consola` redirect to the URLs set in `src/config.ts`.
+- Small inline badge: `_Independiente_{.badge}`.
 
-### Bloques de contenido
+### Content blocks
 
-Para los elementos especiales no se escribe HTML: se usan bloques `:::`.
+Special elements are written as `:::` blocks, never as HTML:
 
 ```md
-:::nota[Antes de confiar en un mensaje]
+:::note[Antes de confiar en un mensaje]
 Nadie puede hablar en nombre del proyecto.
 :::
 
-:::pregunta[¿Qué es 42 Chain?]
+:::faq[¿Qué es 42 Chain?]
 Una red pública de cadena de bloques. [Visión general](/protocolo)
 :::
 
-:::aparte
+:::aside
 [Operar un nodo →](/desarrolladores/nodos)
 :::
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
-:::datos
+:::facts
 - **1 bloque** Finalidad
 - **> 2/3** Poder de voto para confirmar
 :::
 
-:::cronologia{actual="Hoy"}
+:::timeline{current="Hoy"}
 - **1988** Manifiesto criptoanarquista
   La criptografía como herramienta para proteger la libertad.
 - **Hoy** 42 Chain
@@ -129,20 +130,20 @@ Pendiente de revisión legal.
 :::
 ```
 
-| Bloque | Se ve como |
+| Block | Renders as |
 |---|---|
-| `:::nota[título]` | Recuadro destacado con título |
-| `:::pregunta[pregunta]` | Pregunta frecuente desplegable |
-| `:::aparte` | Texto pequeño en tipografía mono: enlaces "ver más", marcadores pendientes, aclaraciones |
-| `:::estado[estado]` | Etiqueta de estado con una frase |
-| `:::datos` | Cifras destacadas en columnas |
-| `:::cronologia` | Línea de tiempo; `actual="…"` marca el hito actual |
+| `:::note[label]` | Highlighted box with a label |
+| `:::faq[question]` | Collapsible FAQ entry |
+| `:::aside` | Small mono text: "read more" links, pending placeholders, clarifications |
+| `:::status[status]` | Status badge followed by a short sentence |
+| `:::facts` | Key figures in columns |
+| `:::timeline` | Timeline; `current="…"` highlights the milestone with that date |
 
-Los bloques funcionan igual en `.md` y en `.mdx`. Se definen en `src/lib/content-blocks.ts`.
+Blocks work the same in `.md` and `.mdx` files. They are defined in `src/lib/content-blocks.ts`.
 
-### Componentes interactivos (MDX)
+### Interactive components (MDX)
 
-Los archivos `.mdx` pueden incluir componentes de Astro. Consenso y Gobernanza los usan para sus simuladores:
+`.mdx` files can include Astro components. The Consensus and Governance pages use them for their simulators:
 
 ```mdx
 import VoteSim from '../../../components/VoteSim.astro';
@@ -150,63 +151,70 @@ import VoteSim from '../../../components/VoteSim.astro';
 <VoteSim />
 ```
 
-### Si algo está mal escrito
+### When something is wrong
 
-El build se detiene y dice qué archivo corregir y por qué: un campo con un nombre equivocado, una carpeta sin `index.md`, un bloque `:::` desconocido o una pregunta sin texto. La CI ejecuta las mismas comprobaciones en cada pull request, así que un error no llega al sitio publicado.
+The build stops and names the file and the problem: a misspelled field, a folder without `index.md`, an unknown `:::` block or a FAQ without a question. CI runs the same checks on every pull request, so errors never reach the published site.
 
-## Estructura del código
+## Code structure
 
 ```
 src/
-  config.ts                 Dominio, enlaces externos y repositorio
-  content.config.ts         Esquema del contenido (campos válidos y obligatorios)
-  content/home.md           Textos de la portada
-  content/pages/            Páginas interiores, una carpeta por sección
-  lib/site.ts               Menú, índice lateral, anterior/siguiente y pie, a partir del contenido
-  lib/content-blocks.ts     Bloques ::: del Markdown
-  styles/global.css         Estilos y colores (tokens en :root)
-  layouts/Base.astro        <head> común: metadatos, fuentes, colores de sección
-  layouts/Doc.astro         Plantilla de las páginas interiores
-  components/               Encabezado, pie, índice lateral y simuladores
-  scripts/hero-network.ts   Animación de fondo de la portada
-  pages/index.astro         Diseño de la portada
-  pages/[...slug].astro     Genera cada página interior
-  pages/robots.txt.ts       robots.txt con el enlace al sitemap
+  config.ts                 Domain, language, external URLs, repository
+  content.config.ts         Content schema (valid and required fields)
+  content/site.md           Site-wide text: brand, footer, page labels, 404
+  content/home.md           Home page text
+  content/pages/            Interior pages, one folder per section
+  lib/site.ts               Menu, side index, previous/next and footer, derived from content
+  lib/content-blocks.ts     ::: content blocks
+  styles/global.css         Styles and color tokens (:root)
+  layouts/Base.astro        Shared <head>: metadata, fonts, section colors
+  layouts/Doc.astro         Interior page layout
+  components/               Header, footer, side index and simulators
+  scripts/hero-network.ts   Home page background animation
+  pages/index.astro         Home page layout
+  pages/[...slug].astro     Generates every interior page
+  pages/robots.txt.ts       robots.txt pointing to the sitemap
 ```
 
-Notas técnicas:
+Technical notes:
 
-- Markdown se procesa con Sätteri, el procesador nativo de Astro 7.
-- Las fuentes (Geist y Geist Mono) se descargan al compilar y se sirven desde el propio sitio.
-- Astro genera una Content-Security-Policy con hashes de sus scripts en cada página. Un script externo o `<script>` inline nuevo necesita revisarse contra esa política (`astro.config.mjs → security.csp`).
+- Markdown is processed by Sätteri, Astro 7's native Markdown processor.
+- Fonts (Geist and Geist Mono) are downloaded at build time and served from the site itself.
+- Astro emits a Content-Security-Policy with hashes for its scripts on every page. Any new external or inline script must be checked against it (`astro.config.mjs → security.csp`).
+- The simulators' visible text is Spanish and lives in their components, since each message is tied to a state of the calculation.
 
-## Publicar en Cloudflare Pages
+## Deploying to Cloudflare Pages
 
-1. Sube el repositorio a GitHub.
-2. En Cloudflare: **Workers & Pages → Create → Pages → Connect to Git** y elige el repositorio.
-3. Configuración de compilación:
+1. Push the repository to GitHub.
+2. In Cloudflare: **Workers & Pages → Create → Pages → Connect to Git** and pick the repository.
+3. Build settings:
    - Framework preset: **Astro**
    - Build command: `npm run build`
    - Build output directory: `dist`
-   - Variable de entorno: `NODE_VERSION = 24`
-4. Agrega el dominio propio en **Custom domains**.
+   - Environment variable: `NODE_VERSION = 24`
+4. Add the custom domain under **Custom domains**.
 
-`public/_headers` define los encabezados de seguridad (HSTS, marcos, tipo de contenido) y la caché de los archivos con hash.
+`public/_headers` sets the security headers (HSTS, framing, content type) and long-term caching for hashed assets.
 
-"Última revisión" se calcula con el historial de git. Si la plataforma clona el repositorio sin historial completo, todas las páginas mostrarán la fecha del último commit; en ese caso, indica `updated:` en las páginas donde la fecha importe.
+The "last reviewed" date comes from git history. If the platform clones without full history, every page shows the date of the latest commit; set `updated:` on pages where the date matters.
 
-## Pendientes antes de publicar
+## Before going live
 
-Los valores entre `[corchetes]` son marcadores. Los principales:
+Values in `[brackets]` are placeholders. The main ones:
 
-- `src/config.ts`: dominio, direcciones de la documentación y la Consola, y repositorio. El dominio también define las direcciones del sitemap y de `robots.txt`.
-- Datos de la red: Chain ID (EVM y nativo) de la red principal y de pruebas, endpoints, decimales y tiempo de bloque (`src/content/home.md` y `desarrolladores/`).
-- Canales oficiales: X, foro, correo de contacto y correo de seguridad (`proyecto/contacto.md`).
-- Licencia del contenido del sitio (archivo `LICENSE`) y de la documentación.
-- Imagen para redes sociales (`og:image`).
+- `src/config.ts`: domain, docs and console URLs, repository. The domain also sets the sitemap and `robots.txt` URLs.
+- Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`src/content/home.md` and `desarrolladores/`).
+- Official channels: X, forum, contact and security email (`proyecto/contacto.md`).
+- License for the site content (`LICENSE` file) and the documentation.
+- Social sharing image (`og:image`).
 
-Para encontrarlos todos: `grep -rn "\[" src/content src/config.ts`.
+To find them all: `grep -rn "\[" src/content src/config.ts`.
 
-## Idiomas
+## Languages
 
-El sitio está en español y la configuración de i18n de Astro ya está activa (`astro.config.mjs`). Agregar otro idioma requiere adaptar `src/lib/site.ts` para que las carpetas de idioma (`src/content/pages/en/…`) no se interpreten como secciones.
+The site is in Spanish and Astro's i18n config is enabled (`astro.config.mjs`). Adding another language requires adapting `src/lib/site.ts` so language folders (`src/content/pages/en/…`) are not read as sections, plus a translated `site.md` and `home.md`.
+
+## Conventions
+
+- Code, file names, frontmatter keys, block names, comments, error messages, documentation and commit messages: **English**.
+- Visitor-facing text and page URLs: **Spanish**.
