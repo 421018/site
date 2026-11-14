@@ -112,12 +112,8 @@ No. Es un proyecto de código abierto, sin dueño. Cada parte la sostienen parti
 No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y la DAO decide qué cambia y cuándo. [Desarrollo continuo](/proyecto#continuo)
 :::
 
-:::faq[¿Dónde se conversa sobre la red?]
-En los espacios de la comunidad. Son independientes del proyecto, y cada participante habla por sí mismo. [Comunidad](/comunidad)
-:::
-
 :::faq[¿Cómo integro la red en mi servicio?]
-Pregunta en Infinite Drive, el chat de la comunidad, o escribe al correo de contacto si prefieres tratarlo en privado. [Apoyo técnico](/proyecto/contacto#apoyo)
+Pregunta en el espacio de discusiones del repositorio público, o escribe al correo de contacto si prefieres tratarlo en privado. [Apoyo técnico](/proyecto/contacto#apoyo)
 :::
 
 ## Legal y uso del sitio {#legal}
@@ -134,8 +130,8 @@ Nadie en particular. Lo escriben, lo revisan y lo mantienen en línea contribuid
 No. La DAO publica su información en sus propios espacios.
 :::
 
-:::faq[¿Los proyectos que aparecen en el sitio están respaldados por 42 Chain?]
-No. Los proyectos, herramientas y comunidades externos se marcan como independientes. Que aparezcan en el sitio no implica respaldo.
+:::faq[¿Los servicios de terceros que aparecen en el sitio están respaldados por 42 Chain?]
+No. Los proveedores de RPC y de exploradores que se listan en el sitio son independientes, y cada uno responde por su servicio. Que aparezcan en el sitio no implica respaldo.
 :::
 
 :::faq[¿Qué datos recopila este sitio?]

@@ -8,7 +8,7 @@ weight: 20
 
 Los canales de esta página son los oficiales del proyecto. Por ellos se publica información sobre el protocolo, se reciben los reportes de seguridad y se atienden consultas sobre integraciones.
 
-Algunos temas se tratan en otros lugares. Las decisiones sobre la red las toma la DAO, en sus propios espacios. Los proyectos construidos sobre la red responden por sí mismos. Y la conversación del día a día ocurre en [Infinite Drive](/comunidad), el chat de la comunidad, que es independiente del proyecto.
+Algunos temas se tratan en otros lugares. Las decisiones sobre la red las toma la DAO, en sus propios espacios. Los proyectos construidos sobre la red responden por sí mismos.
 
 ## Canales oficiales {#canales}
 
@@ -20,7 +20,7 @@ Estos son los únicos canales oficiales del proyecto. Cada uno tiene un propósi
 | Documentación | Guías paso a paso y referencia técnica | [docs.dominio] |
 | X | Anuncios del protocolo | [@usuario] |
 | Foro informativo | Actualizaciones importantes del protocolo, explicadas en detalle | [foro.dominio] |
-| Repositorio | Código fuente, reportes de errores y contribuciones | [repositorio] |
+| Repositorio | Código fuente, preguntas técnicas, reportes de errores y contribuciones | [repositorio] |
 | Correo de seguridad | Reportes de vulnerabilidades, en privado | [seguridad@dominio] |
 | Correo de contacto | Dudas técnicas e integraciones | [contacto@dominio] |
 
@@ -39,7 +39,7 @@ Esta ayuda es una contribución al proyecto, igual que el código: es voluntaria
 
 ### Cómo pedirlo
 
-Pregunta en [Infinite Drive](/comunidad#portal), el chat de la comunidad. Si encontraste un error en el software, repórtalo en el repositorio. Para una integración que prefieras no tratar en público, escribe al correo de contacto, [contacto@dominio]. Para responder mejor, incluye en tu mensaje qué quieres construir o integrar, en qué etapa estás y qué tipo de apoyo necesitas.
+Pregunta en el espacio de discusiones del repositorio público. Si encontraste un error en el software, repórtalo ahí mismo. Para una integración que prefieras no tratar en público, escribe al correo de contacto, [contacto@dominio]. Para responder mejor, incluye en tu mensaje qué quieres construir o integrar, en qué etapa estás y qué tipo de apoyo necesitas.
 
 Si necesitas un servicio profesional con condiciones propias, como un desarrollo a la medida o plazos garantizados, contrátalo con un proveedor independiente. El proyecto no presta servicios pagados ni recomienda proveedores.
 

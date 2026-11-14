@@ -73,7 +73,7 @@ Llevar una aplicación a la red principal suele seguir cinco pasos:
 | Desarrollo | Hardhat, Foundry, Remix |
 | Librerías | Viem, Ethers.js, Web3.js |
 | Billeteras | MetaMask y billeteras EVM · [Billetera nativa] |
-| Infraestructura | Nodos RPC, indexadores y oráculos los ofrece quien quiera. Se comparten en [Infinite Drive](/comunidad#portal) |
+| Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio |
 
 ## Documentación y contacto {#soporte}
 

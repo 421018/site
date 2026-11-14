@@ -69,7 +69,6 @@ start:
     - { label: Operar un nodo, href: /desarrolladores/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
     - { label: Integrar la red, href: /desarrolladores/integrar, text: "Conectar una billetera, una plataforma o un explorador." }
     - { label: Participar en la DAO, href: /protocolo/gobernanza, text: "Delegar y votar el rumbo del protocolo." }
-    - { label: Conversar, href: /comunidad, text: "Preguntar y compartir en Infinite Drive, el chat de la comunidad." }
 
 name:
   kicker: El nombre
@@ -80,5 +79,5 @@ name:
 closing:
   title: Construye sobre una red que no es de nadie.
   primary: { label: Empieza a construir, href: /desarrolladores }
-  secondary: { label: Conversar en Infinite Drive, href: /comunidad }
+  secondary: { label: Leer la documentación, href: /docs }
 ---

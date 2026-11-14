@@ -106,7 +106,7 @@ Lo hacen posible: [Seguridad del protocolo](/protocolo/seguridad#propiedades) ·
 :::
 
 :::aside
-Los ejemplos son ilustrativos. Los proyectos que ya construyen sobre la red se comparten en [Infinite Drive, el chat de la comunidad](/comunidad#portal).
+Los ejemplos son ilustrativos.
 :::
 
 ## Qué no conviene poner en la cadena {#fuera}

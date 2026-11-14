@@ -24,7 +24,7 @@ Nadie es dueño de la red. El código es público y cualquiera puede participar.
 - **Las decisiones.** Las toma la DAO, formada por los validadores y por quienes les delegan unidades. Se organiza en sus propios espacios.
 - **Las aplicaciones y los servicios.** Los construyen proyectos independientes, y cada uno responde por lo suyo.
 - **La documentación, las herramientas y este sitio.** Los escriben, los publican y los mantienen en línea contribuidores, igual que el software.
-- **La ayuda técnica.** La dan, por los canales del proyecto y en los espacios de la comunidad, personas que conocen la red y quieren que otros la usen bien.
+- **La ayuda técnica.** La dan, en el repositorio público, personas que conocen la red y quieren que otros la usen bien.
 
 Como ninguna parte tiene dueño, ninguna habla por las demás. Quien contribuye en una parte responde por su propio trabajo, no por el conjunto.
 
