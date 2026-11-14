@@ -1,21 +1,28 @@
 // Checks every internal link and #anchor in the built site (run `npm run build` first).
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const DIST = 'dist';
+if (!existsSync(DIST)) { console.error('✗ dist/ no existe: ejecuta `npm run build` primero.'); process.exit(1); }
+
 const files = [];
-const walk = (d) => readdirSync(d).forEach((f) => { const p = join(d, f); statSync(p).isDirectory() ? walk(p) : p.endsWith('.html') && files.push(p); });
+const walk = (d) => readdirSync(d).forEach((f) => { const p = join(d, f); statSync(p).isDirectory() ? walk(p) : files.push(p); });
 walk(DIST);
 
+const html = files.filter((f) => f.endsWith('.html'));
+if (!html.length) { console.error('✗ dist/ no contiene páginas.'); process.exit(1); }
+
 const route = (f) => '/' + f.slice(DIST.length + 1).replace(/index\.html$/, '').replace(/\/$/, '');
-const pages = new Map(files.map((f) => [route(f).replace(/\/$/, '') || '/', readFileSync(f, 'utf8')]));
-const ids = (html) => new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+const pages = new Map(html.map((f) => [route(f).replace(/\/$/, '') || '/', readFileSync(f, 'utf8')]));
+const assets = new Set(files.map((f) => '/' + f.slice(DIST.length + 1)));
+const ids = (doc) => new Set([...doc.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
 
 let bad = 0;
-for (const [from, html] of pages) {
-  for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
-    if (/^(https?:|mailto:|tel:)/.test(href) || href.startsWith('/_astro') || href === '/favicon.svg') continue;
+for (const [from, doc] of pages) {
+  for (const [, href] of doc.matchAll(/href="([^"]+)"/g)) {
+    if (/^(https?:|mailto:|tel:)/.test(href)) continue;
     const [path, hash] = href.split('#');
+    if (assets.has(path)) continue;
     const target = path === '' ? from : (path.replace(/\/$/, '') || '/');
     const page = pages.get(target);
     if (!page) { console.log(`✗ ${from} → ${href} (page not found)`); bad++; continue; }
