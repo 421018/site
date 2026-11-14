@@ -1,28 +1,28 @@
 ---
 title: "Interoperabilidad"
-summary: "Cómo se conecta la red con otras cadenas de bloques sin depender de intermediarios, y cómo viaja una transferencia de una red a otra."
+summary: "Cómo la red comprueba lo que ocurrió en otras redes sin depender de intermediarios, qué es IBC y qué capacidades ofrece entre redes."
 weight: 40
 ---
 
 ## Por qué conectar redes {#porque-conectar}
 
-Existen muchas cadenas de bloques. Cada una lleva su propio registro, con sus propias cuentas y sus propias unidades. Una red, por sí sola, no puede ver lo que ocurre en otra.
+Cada red lleva su propio registro, con sus propias cuentas y sus propias reglas. Una red, por sí sola, no puede ver lo que ocurre en otra.
 
-Sin embargo, a menudo conviene que las redes se comuniquen. Una persona puede querer llevar unidades de una red a otra. Una aplicación puede necesitar reaccionar a algo que ocurrió en otra red. A la capacidad de las redes para comunicarse entre sí se le llama **interoperabilidad**.
+Sin embargo, a menudo hace falta que las redes se comuniquen. Una organización puede necesitar que un dato registrado en un entorno interno sea verificable en 42 Chain. Una aplicación puede necesitar reaccionar a algo que ocurrió en otra red, o recibir unidades desde ella. A la capacidad de las redes para comunicarse entre sí se le llama **interoperabilidad**.
 
 ## El problema del intermediario {#intermediario}
 
-La forma más simple de conectar dos redes es usar un intermediario. La persona entrega sus unidades al intermediario en una red, y el intermediario le entrega una cantidad equivalente en la otra.
+La forma más simple de conectar dos redes es usar un intermediario: un servicio que observa una red y escribe en la otra lo que, según él, ocurrió.
 
-El problema es que, durante todo ese tiempo, el intermediario custodia las unidades. Si el intermediario falla, comete un error o alguien toma el control de sus llaves, las unidades pueden perderse. Además, ese intermediario vuelve a introducir lo que una cadena de bloques busca evitar: depender de que alguien en particular actúe bien.
+El problema es que la red de destino tiene que creerle. Si el intermediario falla, comete un error o alguien toma el control de sus llaves, la red de destino acepta algo que no ocurrió. Y si además custodia unidades durante el traslado, esas unidades pueden perderse.
 
-Por eso el protocolo no se conecta con otras redes a través de intermediarios que custodien unidades. Usa un estándar en el que cada red comprueba por sí misma lo que ocurrió en la otra.
+Por eso el protocolo no se conecta con otras redes a través de intermediarios de confianza. Usa un estándar en el que cada red comprueba por sí misma lo que ocurrió en la otra.
 
 ## Qué es IBC {#ibc}
 
 El estándar que usa el protocolo se llama **IBC** (Inter-Blockchain Communication). Es un estándar abierto: cualquier red que lo implemente puede conectarse con cualquier otra que también lo implemente.
 
-La idea central de IBC es que cada red puede comprobar lo que ocurrió en la otra sin confiar en nadie. Para eso, cada red ejecuta un **cliente ligero** de la otra.
+La idea central de IBC es que cada red puede comprobar por sí misma lo que ocurrió en la otra. Para eso, cada red ejecuta un **cliente ligero** de la otra.
 
 ### El cliente ligero
 
@@ -38,9 +38,9 @@ Cualquiera puede operar un retransmisor. Un retransmisor no puede alterar un men
 
 ## Cómo viaja una transferencia {#transferencia}
 
-Un ejemplo muestra el recorrido completo. Una persona quiere llevar 10 unidades de Improbability desde 42 Chain hasta otra red, a la que llamaremos red B.
+La transferencia de unidades es la aplicación más usada de IBC, y muestra bien el recorrido completo. Supongamos que una cuenta envía 10 unidades de Improbability desde 42 Chain hasta otra red, a la que llamaremos red B.
 
-- **1. Bloqueo.** La persona envía una transacción en 42 Chain. El protocolo bloquea sus 10 unidades en una cuenta especial de la propia red, donde quedan guardadas. Las unidades no salen de 42 Chain.
+- **1. Bloqueo.** La cuenta envía una transacción en 42 Chain. El protocolo bloquea sus 10 unidades en una cuenta especial de la propia red, donde quedan guardadas. Las unidades no salen de 42 Chain.
 - **2. Traslado.** Un retransmisor toma el mensaje de la transferencia y lo entrega en la red B, junto con la prueba de que las 10 unidades quedaron bloqueadas.
 - **3. Verificación.** La red B comprueba la prueba con su cliente ligero de 42 Chain.
 - **4. Representación.** Si la prueba es válida, la red B crea 10 unidades que representan a las bloqueadas y las entrega a la cuenta de destino.
@@ -78,11 +78,11 @@ Desde un contrato, estas capacidades se usan a través de funciones propias del 
 
 ## Límites y riesgos {#limites}
 
-IBC elimina la dependencia de intermediarios, pero no elimina todos los riesgos. Quien envía unidades entre redes debe conocer tres límites:
+IBC elimina la dependencia de intermediarios, pero no elimina todos los riesgos. Toda conexión entre redes tiene tres límites:
 
 - **La seguridad de la otra red.** Una conexión es tan segura como las dos redes que conecta. Si la otra red falla o sus validadores actúan mal, las unidades que llegaron desde ella pueden verse afectadas.
 - **La entrega depende de los retransmisores.** Un retransmisor no puede alterar un mensaje, pero puede no entregarlo. En ese caso, la transferencia vence y las unidades vuelven a su origen.
-- **Las representaciones no son las originales.** Una unidad que llegó de otra red vale lo que respalda su red de origen. Su ruta indica de dónde viene.
+- **Las representaciones no son las originales.** Una unidad que llegó de otra red depende de la seguridad de su red de origen. Su ruta indica de dónde viene.
 
 :::aside
 [Transferencias entre redes · Guía y referencia ↗](/docs)
@@ -90,6 +90,6 @@ IBC elimina la dependencia de intermediarios, pero no elimina todos los riesgos.
 
 ## Por qué el protocolo lo hace así {#porque}
 
-- **Verificación en lugar de confianza.** Cada red comprueba por sí misma lo que ocurrió en la otra. Nadie tiene que custodiar unidades durante el traslado.
+- **Verificación en lugar de confianza.** Cada red comprueba por sí misma lo que ocurrió en la otra. Ningún intermediario custodia unidades durante el traslado.
 - **Un estándar abierto en lugar de uno propio.** IBC lo usan muchas redes. Conectarse a ellas no requiere acuerdos especiales ni desarrollos a medida.
 - **Retransmisores sin permiso.** Cualquiera puede transportar mensajes, y ninguno puede alterarlos. Así, la comunicación entre redes no depende de un operador en particular.

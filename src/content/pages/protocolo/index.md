@@ -1,6 +1,6 @@
 ---
-title: "Infinite Improbability Drive"
-summary: "El protocolo 42, explicado desde sus bases: qué es, cómo funciona y qué permite construir."
+title: "Protocolo 42"
+summary: "El Protocolo 42, explicado desde sus bases: qué es, cómo funciona y en qué se apoya."
 menuTitle: "Visión general"
 section:
   label: Protocolo
@@ -17,7 +17,7 @@ Cuando varias computadoras tienen que trabajar juntas sin que ninguna mande sobr
 
 El correo electrónico es un buen ejemplo. Un mensaje puede viajar entre servidores administrados por personas distintas. Los servidores se entienden entre sí porque todos siguen el mismo protocolo.
 
-El Infinite Improbability Drive es un protocolo de ese tipo. Su propósito es que muchas computadoras lleven, entre todas, un mismo registro de información, sin depender de ninguna de ellas en particular. A cada computadora que ejecuta el protocolo se le llama **nodo**. Al conjunto de todos los nodos se le llama **red**.
+El Protocolo 42 es un protocolo de ese tipo. Su nombre formal es *Infinite Improbability Drive*. Su propósito es que muchas computadoras lleven, entre todas, un mismo registro de información, sin depender de ninguna de ellas en particular. A cada computadora que ejecuta el protocolo se le llama **nodo**. Al conjunto de todos los nodos se le llama **red**.
 
 El protocolo está construido con tecnología abierta del ecosistema Cosmos: Cosmos SDK como base, CometBFT para el consenso e IBC para la comunicación entre redes. Los contratos se ejecutan en la máquina virtual de Ethereum (EVM), compatible con sus lenguajes y sus herramientas.
 
@@ -59,7 +59,7 @@ Un contrato inteligente funciona como un acuerdo que se cumple solo. Sus reglas 
 
 Para que el resultado de un contrato sea confiable, todos los nodos ejecutan el contrato y todos tienen que llegar exactamente al mismo resultado. Para eso, todos los nodos deben ejecutarlo en el mismo entorno y con las mismas instrucciones. A ese entorno se le llama **máquina virtual**.
 
-La máquina virtual del protocolo sigue una especificación llamada **EVM**, la más usada para contratos inteligentes en cadenas de bloques. Como la EVM es un estándar compartido, los lenguajes, las herramientas y las billeteras que ya existen para la EVM funcionan con el protocolo sin cambios. Quien ya sabe escribir contratos para la EVM puede escribirlos para el protocolo desde el primer día.
+La máquina virtual del protocolo es la máquina virtual de Ethereum, conocida como **EVM**: el estándar más extendido para contratos inteligentes. Como la EVM es un estándar compartido, los lenguajes, las herramientas y las billeteras que ya existen para la EVM funcionan con el protocolo sin cambios. Quien ya sabe escribir contratos para la EVM puede escribirlos para el protocolo desde el primer día.
 
 :::aside
 [Ejecución →](/protocolo/ejecucion)
@@ -93,7 +93,7 @@ Cuantas más unidades tiene un validador en staking, más pesa su voto. A ese pe
 
 ### Delegación
 
-Una persona que tiene unidades pero no quiere operar su propio validador también puede participar en la seguridad de la red. Para hacerlo, elige un validador y le delega sus unidades. Esas unidades se suman al staking del validador elegido y aumentan su poder de voto. A esto se le llama **delegación**.
+Quien tiene unidades y no opera un validador también puede sumarlas al respaldo de la red. Para hacerlo, elige un validador y le delega sus unidades. Esas unidades se suman al staking del validador elegido y aumentan su poder de voto. A esto se le llama **delegación**.
 
 Las unidades delegadas siguen siendo de la persona que las delega. El validador no puede usarlas ni transferirlas.
 
@@ -119,11 +119,11 @@ Los validadores reciben una compensación por este trabajo. El protocolo les asi
 
 ## Una red entre otras redes {#ibc}
 
-Existen muchas cadenas de bloques, y cada una lleva su propio registro. A menudo conviene mover información o unidades de una cadena a otra.
+Cada red lleva su propio registro. A menudo hace falta que una red compruebe algo que ocurrió en otra, o que reciba unidades desde ella.
 
-La forma más simple sería confiar en un intermediario: alguien que reciba las unidades en una red y las entregue en la otra. Pero eso reintroduce justo lo que una cadena de bloques busca evitar: depender de alguien.
+La forma más simple sería confiar en un intermediario que observe una red y escriba en la otra. Pero entonces el resultado depende de que ese intermediario actúe bien.
 
-Por eso el protocolo usa **IBC** (Inter-Blockchain Communication). IBC es un estándar abierto en el que cada red comprueba por sí misma, con pruebas criptográficas, lo que ocurrió en la otra red. Así, las unidades y los mensajes pueden pasar de una red a otra sin que ningún intermediario los custodie durante el traslado.
+Por eso el protocolo usa **IBC** (Inter-Blockchain Communication). IBC es un estándar abierto en el que cada red comprueba por sí misma, con pruebas criptográficas, lo que ocurrió en la otra red. Así, los datos y las unidades pueden pasar de una red a otra sin que ningún intermediario tenga que ser de confianza.
 
 :::aside
 [Interoperabilidad →](/protocolo/interoperabilidad)
@@ -176,7 +176,7 @@ Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la re
 
 |  |  |
 |---|---|
-| Protocolo | Infinite Improbability Drive · código abierto · Apache 2.0 |
+| Protocolo | Protocolo 42 (*Infinite Improbability Drive*) · código abierto · Apache 2.0 |
 | Base tecnológica | Cosmos SDK · CometBFT · IBC |
 | Red | Pública, sin permisos |
 | Consenso | Prueba de participación delegada |

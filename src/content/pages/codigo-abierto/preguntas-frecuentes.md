@@ -7,11 +7,11 @@ weight: 40
 ## La red y el protocolo {#red}
 
 :::faq[¿Qué es 42 Chain?]
-Una red pública de cadena de bloques. Su protocolo es de código abierto, compatible con la EVM y se conecta con otras redes mediante IBC. [Visión general](/protocolo)
+Una red pública de infraestructura que ejecuta el Protocolo 42. Permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, con contratos en la EVM y conexión con otras redes mediante IBC. [Visión general](/protocolo)
 :::
 
-:::faq[¿Qué es el Infinite Improbability Drive?]
-Es el protocolo de la red: las reglas que siguen todos los nodos para llevar un registro compartido, ejecutar contratos, ponerse de acuerdo sobre cada bloque y decidir cambios. Está construido con tecnología abierta del ecosistema Cosmos (Cosmos SDK, CometBFT e IBC) y ejecuta los contratos en la máquina virtual de Ethereum (EVM).
+:::faq[¿Qué es el Protocolo 42?]
+Es el protocolo de la red, y su nombre formal es *Infinite Improbability Drive*. Define las reglas que siguen todos los nodos para llevar un registro compartido, ejecutar contratos, ponerse de acuerdo sobre cada bloque y decidir cambios. Está construido con tecnología abierta del ecosistema Cosmos (Cosmos SDK, CometBFT e IBC) y ejecuta los contratos en la máquina virtual de Ethereum (EVM).
 :::
 
 :::faq[¿Necesito permiso para usar la red?]
@@ -19,7 +19,7 @@ No. Cualquiera puede usar la red, publicar aplicaciones u operar un nodo sin reg
 :::
 
 :::faq[¿Qué es Improbability?]
-Es la unidad nativa del protocolo. Con ella se pagan las tarifas de las transacciones, y los validadores la usan como respaldo en el staking. [Tarifas y emisión](/protocolo/tarifas)
+Es la unidad nativa del protocolo, y su símbolo es 42. Es un recurso técnico: con ella se pagan las tarifas de las transacciones, y los validadores la usan como respaldo en el staking. [Tarifas y emisión](/protocolo/tarifas)
 :::
 
 :::faq[¿Cuánto tarda en confirmarse una transacción?]
@@ -59,11 +59,7 @@ El nodo se registra como validador con una transacción que incluye unidades en 
 :::
 
 :::faq[¿Qué es la delegación?]
-Una persona elige un validador y le delega unidades. Esas unidades aumentan el poder de voto del validador, pero siguen siendo de la persona.
-:::
-
-:::faq[¿Puedo perder unidades al delegar?]
-Sí. Si el validador elegido es penalizado, las unidades delegadas en ese validador también pierden una parte. Por eso conviene revisar el historial de un validador antes de elegirlo. [Delegar unidades](/protocolo/consenso#delegacion)
+Una cuenta elige un validador y le delega unidades. Esas unidades aumentan el poder de voto del validador, siguen siendo de quien las delega y comparten las penalizaciones del validador. [Delegación](/protocolo/consenso#delegacion)
 :::
 
 ## Gobernanza {#gobernanza}

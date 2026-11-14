@@ -1,6 +1,6 @@
 ---
 title: "Tarifas y emisión"
-summary: "Qué es la unidad nativa, por qué cada transacción paga una tarifa, cómo se crean unidades nuevas y cómo se reparten."
+summary: "Qué papel técnico tiene la unidad nativa, por qué cada transacción paga una tarifa, cómo se calcula y cómo se sostiene la operación de la red."
 weight: 30
 ---
 
@@ -8,18 +8,11 @@ weight: 30
 
 El protocolo tiene una unidad propia. A esa unidad se le llama **unidad nativa**. La unidad nativa del protocolo se llama **Improbability**, y su símbolo es **42**.
 
-La unidad nativa tiene dos usos. El primero es pagar las tarifas de las transacciones. El segundo es servir de respaldo en el staking: los validadores bloquean unidades para respaldar su compromiso de seguir las reglas.
+La unidad nativa es un recurso técnico del protocolo, como el gas que mide el trabajo de cada transacción. Cumple tres funciones:
 
-### Por qué una cadena de bloques necesita una unidad propia
-
-Una cadena de bloques sin dueño necesita una unidad que viva dentro de sus propias reglas. Esa unidad cumple varias funciones que ninguna otra pieza puede cumplir:
-
-- **Pagar el uso de la red.** Las tarifas se cobran en una unidad que la propia red registra y verifica. La red no depende de una moneda externa ni de un intermediario que procese los pagos.
-- **Proteger la red.** El respaldo del staking se bloquea en la unidad nativa. Como el respaldo vive dentro del protocolo, el protocolo puede retirarla automáticamente cuando un validador rompe las reglas.
-- **Medir la participación.** El poder de voto en el consenso y en la gobernanza se mide en unidades en staking. Una medida común permite comparar la participación de cada quien con reglas iguales para todos.
-- **Compensar a quienes operan la red.** Como la unidad es propia, el protocolo puede crear unidades nuevas con cada bloque y asignarlas a quienes protegen la red, sin depender de que alguien externo los financie.
-- **Alinear intereses.** Quien tiene unidades en staking tiene interés en que la red funcione bien, porque su respaldo y su compensación dependen de ella.
-- **Funcionar sin depender de nadie.** Con una unidad propia, la red puede operar, protegerse y decidir sin necesitar la autorización de ninguna entidad externa.
+- **Pagar el uso de la red.** Las tarifas se cobran en una unidad que la propia red registra y verifica, sin depender de un sistema de pagos externo.
+- **Respaldar a los validadores.** Los validadores bloquean unidades como respaldo de su compromiso de seguir las reglas. Como el respaldo vive dentro del protocolo, el protocolo puede retirar una parte automáticamente cuando un validador comete una falta.
+- **Medir el poder de voto.** El peso de cada validador en el consenso y en la gobernanza se mide en unidades en staking, con la misma regla para todos.
 
 :::aside
 [Consenso y staking →](/protocolo/consenso)
@@ -33,7 +26,7 @@ Cada transacción que se envía a la red la procesan todos los nodos. Procesarla
 - **Evitar abusos.** Si las transacciones fueran gratuitas, alguien podría saturar la red enviando millones de transacciones inútiles. La tarifa vuelve ese abuso costoso.
 - **Ordenar el uso.** Cada transacción paga según el trabajo que exige. Una transacción sencilla paga poco; una transacción compleja paga más.
 
-La tarifa la paga la cuenta que envía la transacción, en la unidad nativa.
+La tarifa la paga la cuenta que envía la transacción, en la unidad nativa. En una aplicación de infraestructura, la tarifa puede quedar a cargo de la organización y no de quien firma cada registro. [Tarifas a cargo de la organización](/implementar#tarifas)
 
 ## Cómo se calcula una tarifa {#tarifas}
 
@@ -47,7 +40,12 @@ tarifa = gas consumido × precio por unidad de gas
 
 Por ejemplo, si una transferencia consume 21.000 unidades de gas y el precio es de 0,000001 Improbability por unidad de gas, la tarifa es 21.000 × 0,000001 = 0,021 Improbability.
 
-El precio por unidad de gas tiene un mínimo que fija el protocolo. [Cómo se determina el precio del gas.]
+El precio por unidad de gas tiene dos partes:
+
+- **Una tarifa base.** El protocolo la ajusta en cada bloque según la demanda: sube cuando los bloques se llenan y baja cuando hay capacidad libre. Nunca baja de un mínimo, que es un parámetro de la red. Es el mismo mecanismo que usan las redes compatibles con la EVM (EIP-1559).
+- **Una propina opcional.** Quien envía la transacción puede añadirla para darle prioridad cuando la red está ocupada.
+
+Así, el costo de una transacción es predecible: la billetera conoce la tarifa base del bloque y la muestra antes de firmar.
 
 ### El límite de gas
 
@@ -63,7 +61,7 @@ Las cifras del ejemplo son ilustrativas.
 
 Además de cobrar tarifas, el protocolo crea unidades nuevas con cada bloque. A la creación de unidades nuevas se le llama **emisión**.
 
-La emisión existe para compensar a quienes protegen la red. Las tarifas dependen de cuánto se use la red, y ese uso cambia con el tiempo. La emisión, en cambio, es estable. Con ella, operar un validador se sostiene de forma continua, aunque el uso de la red varíe.
+La emisión sostiene la operación de la red. Las tarifas dependen de cuánto se use la red, y ese uso cambia con el tiempo. La emisión, en cambio, es estable. Con ella, la operación de los validadores se sostiene de forma continua, aunque el uso de la red varíe.
 
 La emisión es **constante**: el protocolo crea unidades nuevas a un ritmo fijo, definido en sus parámetros. Ese ritmo solo cambia si se aprueba una propuesta de gobernanza. Como la emisión no se detiene, el número total de unidades crece con el tiempo. [Tasa de emisión.]
 
@@ -73,24 +71,12 @@ Las unidades nuevas y las tarifas de cada bloque se reparten de forma automátic
 
 - **Fondo comunitario.** Una proporción fija va al fondo comunitario, que se describe en la sección siguiente.
 - **Validadores.** El resto se reparte entre los validadores, según las unidades que cada uno tiene en staking, propias y delegadas.
-- **Delegadores.** La parte de cada validador que corresponde a unidades delegadas se reparte entre las personas que las delegaron, después de que el validador cobra su comisión.
+- **Delegaciones.** La parte de cada validador que corresponde a unidades delegadas se asigna a las cuentas que las delegaron, después de la comisión del validador.
 
-### Un ejemplo
-
-En un bloque, la emisión y las tarifas suman 100 unidades. Supongamos que el 10 % va al fondo comunitario.
-
-- 10 unidades van al fondo comunitario.
-- Las 90 restantes se reparten entre los validadores. Un validador que tiene el 20 % de todas las unidades en staking recibe 18.
-- De esas 18, la parte que corresponde a sus unidades delegadas se reparte entre sus delegadores, después de su comisión.
-
-La proporción real que va al fondo comunitario es un parámetro del protocolo. [Proporción.]
+La proporción que va al fondo comunitario es un parámetro de la red. [Proporción.]
 
 :::aside
-Las cifras del ejemplo son ilustrativas.
-:::
-
-:::aside
-[Cómo se calcula la comisión →](/protocolo/consenso#delegacion)
+[Delegación y comisión →](/protocolo/consenso#delegacion)
 :::
 
 ## El fondo comunitario {#fondo}
@@ -113,7 +99,8 @@ El suministro inicial no forma parte de la emisión ni de la distribución que s
 
 - **Una unidad propia.** El respaldo del staking tiene que poder retirarse automáticamente cuando alguien rompe las reglas. Eso solo es posible con una unidad que vive dentro del protocolo.
 - **Tarifas medidas en gas.** Cada transacción paga según el trabajo que exige, y el costo se conoce antes de enviarla.
-- **Emisión constante.** La seguridad de la red no depende de cuánto se use en cada momento. Quienes la protegen reciben una compensación estable.
+- **Emisión constante.** La operación de la red no depende de cuánto se use en cada momento.
+- **Tarifa base ajustable.** El costo sigue la demanda real de la red y se conoce antes de firmar.
 - **Un fondo que se asigna por gobernanza.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
 
 :::aside

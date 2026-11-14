@@ -1,6 +1,6 @@
 ---
 title: "Consenso y staking"
-summary: "Por qué la red necesita ponerse de acuerdo, cómo lo logra con el staking, cómo funciona la delegación y qué penaliza el protocolo."
+summary: "Por qué la red necesita ponerse de acuerdo, cómo lo logra con el staking, qué papel tiene la delegación y qué penaliza el protocolo."
 weight: 20
 ---
 
@@ -67,41 +67,21 @@ Esta pausa es una decisión de diseño. Un bloque confirmado ya no puede deshace
 
 <ConsensusSim />
 
-## Delegar unidades {#delegacion}
+## Delegación {#delegacion}
 
-Delegar es la forma de participar en la seguridad de la red sin operar un validador. La persona que delega elige un validador y le delega unidades. Esas unidades se suman al staking del validador elegido y aumentan su poder de voto.
+El poder de voto de un validador no depende solo de sus propias unidades. Otras cuentas pueden **delegarle** unidades, que se suman a su staking y aumentan su poder de voto. Así, el respaldo de la red no se limita a quienes operan servidores.
 
-Las unidades delegadas siguen siendo de la persona que las delega. El validador no puede usarlas ni transferirlas.
+El protocolo fija tres reglas para la delegación:
 
-### Cómo elegir un validador
+- **Las unidades siguen siendo de quien las delega.** El validador no puede usarlas ni transferirlas.
+- **Comparten las penalizaciones.** Si el validador comete una falta, las unidades delegadas en él también pierden una parte.
+- **Retirarlas lleva un período de espera.** Una delegación retirada queda bloqueada durante un período fijo antes de poder transferirse. [Duración del período de espera.]
 
-Antes de delegar, conviene revisar tres datos del validador:
-
-- **Disponibilidad.** Un validador que se desconecta con frecuencia puede ser penalizado, y la penalización también afecta a las unidades delegadas.
-- **Comisión.** Es el porcentaje que el validador cobra sobre la compensación de sus delegadores.
-- **Poder de voto.** Delegar en validadores con menos poder de voto ayuda a que el poder no se concentre en pocos validadores.
-
-### La comisión
-
-Operar un validador cuesta: hay que mantener servidores, conexión y seguridad. La **comisión** es lo que el validador cobra por ese trabajo a las personas que le delegan unidades.
-
-El cálculo se entiende mejor con un ejemplo. Un validador tiene 1.000 unidades en staking: 200 son suyas y 800 se las delegaron otras personas. En un período, el protocolo le asigna 100 unidades de compensación.
-
-- 20 de esas 100 unidades corresponden a sus 200 unidades propias. Son del validador.
-- 80 corresponden a las 800 unidades delegadas. Si su comisión es del 10 %, el validador se queda con 8.
-- Las 72 restantes se reparten entre las personas que le delegaron unidades, según lo que delegó cada una.
-
-Cada validador fija su propia comisión, y quien delega la conoce antes de elegirlo.
+Cada validador fija una **comisión**: la parte de la compensación correspondiente a las unidades delegadas que retiene por operar su infraestructura.
 
 :::aside
-Las cifras del ejemplo son ilustrativas.
+[Parámetros de staking y delegación ↗](/docs)
 :::
-
-### Riesgos y retiro
-
-Si el validador elegido es penalizado, las unidades delegadas en ese validador también pierden una parte. Quien delega comparte el riesgo del validador que elige.
-
-Para retirar una delegación hay que esperar un período definido por el protocolo. Durante ese período, las unidades no reciben compensación y no se pueden transferir. [Duración del período de espera.]
 
 ## Penalizaciones {#penalizaciones}
 
@@ -123,5 +103,5 @@ La proporción que se retira y el tiempo que el validador queda fuera dependen d
 - **Prueba de participación en lugar de un voto por nodo.** Crear nodos no da poder. Poner unidades en juego, sí. Así, el voto depende de algo que cuesta conseguir y que se pierde al hacer trampa.
 - **Finalidad inmediata.** Un bloque confirmado es definitivo desde el primer momento. Quien usa la red no tiene que esperar a que una transacción se vuelva más segura con el tiempo.
 - **Detenerse antes que arriesgar.** Si no se reúne la mayoría necesaria, la red se detiene en lugar de confirmar bloques dudosos.
-- **Delegación abierta.** Cualquiera con unidades puede participar en la seguridad de la red, sin operar un servidor.
+- **Delegación.** El respaldo de la red puede sumarse a un validador sin operar un servidor, y comparte sus penalizaciones.
 - **Penalizaciones automáticas.** Las faltas quedan probadas en el registro y se castigan sin que nadie tenga que decidirlo.
