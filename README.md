@@ -118,7 +118,7 @@ Values in `[brackets]` are placeholders. The main ones:
 - Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`content/network/networks.yaml`).
 - Project channels: site, docs, repository and security email (`codigo-abierto/verificar.md`, `codigo-abierto/seguridad.md`).
 - Repository URLs (`[organization]`) in `apps/*/src/config.ts` and `content/.github/ISSUE_TEMPLATE/config.yml`.
-- Copyright holder (`[HOLDER]`) in `LICENSE` and `NOTICE`, and `[TITULAR]` on the legal page.
+- Copyright holder of the engine ("The 42 Chain contributors", provisional) in `LICENSE`, `NOTICE` and the legal page: confirm with legal review.
 - Contact emails in `content/SECURITY.md` (`[security email]`) and `content/CODE_OF_CONDUCT.md` (`[conduct email]`).
 - Licenses of the documentation site and the console (`legal/index.md`).
 - Hosting provider named in the privacy section (`legal/index.md`).

@@ -64,7 +64,7 @@ Todo lo que se registra en la red, como direcciones, transacciones o contratos, 
 |---|---|
 | Software del protocolo | Apache License 2.0 |
 | Textos y datos de este sitio | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
-| Diseño, marca y código de este sitio | Todos los derechos reservados, [TITULAR] |
+| Diseño, marca y código de este sitio | © 2026 Los contribuidores de 42 Chain. Todos los derechos reservados |
 | Documentación | [LICENCIA DE LA DOCUMENTACIÓN] |
 | Código de la Consola | [LICENCIA] |
 
