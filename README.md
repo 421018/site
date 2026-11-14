@@ -155,6 +155,18 @@ Pendiente de revisión legal.
 
 Blocks work the same in `.md` and `.mdx` files. They are defined in `src/lib/content-blocks.ts`.
 
+### Network data and provider directory
+
+The connection page (`implementar/conectarse.mdx`) is generated from three data files in `src/content/data/`:
+
+| File | What it holds |
+|---|---|
+| `networks.yaml` | Each network's parameters (name, chain IDs, unit, prefix…). Must match `assets.infinitedrive.xyz/<network>/network-data.json` |
+| `services.yaml` | Kinds of public service (EVM RPC, CometBFT RPC, gRPC, explorers, faucets), with label, description and anchor |
+| `providers.yaml` | One line per public endpoint: provider, network, service, URL |
+
+To list a new provider, add a line to `providers.yaml`; the page updates itself, whether it lists five endpoints or hundreds. Order matters: within a network and service, the first entry is the default one, and the "add to wallet" button uses the first EVM RPC and explorer. A provider that names an unknown network or service stops the build. Visitors pick a network with a switch at the top of the page; without JavaScript, both networks are shown, one after the other.
+
 ### Interactive components (MDX)
 
 `.mdx` files can include Astro components. The Consensus and Governance pages use them for their simulators:

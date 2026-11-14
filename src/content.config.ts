@@ -6,12 +6,14 @@
  *   each folder also describes its section (`section:` block).
  * - `home`: the text of the home page (src/content/home.md, frontmatter only).
  * - `site`: site-wide text: brand, footer, interface labels, 404 (src/content/site.md).
+ * - `networks`, `services`, `providers`: network parameters and the public
+ *   provider directory (src/content/data/*.yaml), used by implementar/conectarse.
  *
  * The schemas are strict: a misspelled or missing field stops the build with
  * the file and field name.
  */
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const color = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'use a 6-digit hex color, e.g. "#5BF0C8"');
@@ -126,4 +128,40 @@ const site = defineCollection({
     .strict(),
 });
 
-export const collections = { pages, home, site };
+const networks = defineCollection({
+  loader: file('src/content/data/networks.yaml'),
+  schema: z
+    .object({
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      label: z.string(),
+      name: z.string(),
+      evmChainId: z.number().int().positive(),
+      chainId: z.string(),
+      identifier: z.string(),
+      bech32Prefix: z.string(),
+      unit: z.object({ name: z.string(), symbol: z.string(), decimals: z.number().int(), base: z.string() }).strict(),
+      blockTime: z.string(),
+      data: z.url(),
+    })
+    .strict(),
+});
+
+const services = defineCollection({
+  loader: file('src/content/data/services.yaml'),
+  schema: z.object({ id: z.string().regex(/^[a-z0-9-]+$/), anchor: z.string(), label: z.string(), description: z.string(), emptyNote: z.string().optional() }).strict(),
+});
+
+const providers = defineCollection({
+  loader: file('src/content/data/providers.yaml'),
+  schema: z
+    .object({
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      provider: z.string(),
+      network: z.string(),
+      service: z.string(),
+      url: z.url(),
+    })
+    .strict(),
+});
+
+export const collections = { pages, home, site, networks, services, providers };

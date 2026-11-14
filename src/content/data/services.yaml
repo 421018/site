@@ -1,0 +1,29 @@
+# Kinds of public service listed in the provider directory, in display order.
+# "anchor" is the link target on implementar/conectarse (#<anchor>).
+# "emptyNote" (optional) replaces the generic text when a network has no entries.
+
+- id: evm
+  anchor: rpc-evm
+  label: RPC EVM (JSON-RPC)
+  description: Para billeteras y herramientas compatibles con la EVM, como MetaMask, Hardhat, Foundry, Viem o Ethers.js.
+
+- id: comet
+  anchor: rpc-comet
+  label: RPC de CometBFT
+  description: Para billeteras nativas, retransmisores IBC y herramientas del ecosistema Cosmos. Da acceso a los bloques, al consenso y al envío de transacciones nativas.
+
+- id: grpc
+  anchor: grpc
+  label: gRPC
+  description: Para consultar desde servicios e indexadores el estado de los módulos propios de la red, como el staking, la gobernanza o los saldos.
+
+- id: explorer
+  anchor: exploradores
+  label: Exploradores
+  description: Para consultar bloques, transacciones, cuentas y contratos desde el navegador.
+
+- id: faucet
+  anchor: faucets
+  label: Faucets
+  description: Entregan unidades de prueba gratis, para desarrollar y probar.
+  emptyNote: La red principal no tiene faucets, porque sus unidades tienen uso real.

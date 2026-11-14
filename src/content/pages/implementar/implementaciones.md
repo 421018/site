@@ -26,7 +26,7 @@ Cada proveedor es independiente y responde por su servicio. El sitio no intervie
 
 | Proveedor | Servicios | Sitio |
 |---|---|---|
-| [Proveedor] _Independiente_{.badge} | Entornos internos, integración y asesoría técnica | [dominio del proveedor] |
+| [Proveedor] | Entornos internos, integración y asesoría técnica | [dominio del proveedor] |
 
 :::aside
 Los proveedores que quieran aparecer en esta lista pueden proponerlo en el repositorio público, como cualquier otro cambio al sitio.

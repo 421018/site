@@ -22,8 +22,8 @@ Algunas fuentes las mantienen los contribuidores del protocolo. Otras son de pro
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Los bloques y las transacciones | [Explorador](/implementar/conectarse#exploradores) _Independiente_{.badge} |
-| El conjunto activo de validadores y su poder de voto | [Explorador](/implementar/conectarse#exploradores) _Independiente_{.badge} |
+| Los bloques y las transacciones | [Explorador](/implementar/conectarse#exploradores) |
+| El conjunto activo de validadores y su poder de voto | [Explorador](/implementar/conectarse#exploradores) |
 | Los parámetros de la red | [Parámetros de red](/implementar/conectarse#parametros) · [Archivo de datos de la red ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) |
 | El estado inicial de la red | [Archivo génesis ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) |
 
@@ -31,7 +31,7 @@ Algunas fuentes las mantienen los contribuidores del protocolo. Otras son de pro
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Las propuestas, sus votos y sus resultados | [Explorador](/implementar/conectarse#exploradores) _Independiente_{.badge} |
+| Las propuestas, sus votos y sus resultados | [Explorador](/implementar/conectarse#exploradores) |
 | Cómo funciona la gobernanza | [Gobernanza](/protocolo/gobernanza) |
 
 ## Seguridad {#seguridad}

@@ -1,111 +1,55 @@
 ---
 title: "Conectarse a 42 Chain"
-summary: "Los parámetros técnicos de la red principal y de la red de pruebas, cómo añadir la red a una billetera y dónde encontrar proveedores de RPC y exploradores."
+summary: "Todo lo que necesitas para conectar una billetera, una aplicación o un nodo a 42 Chain: los datos de cada red y dónde encontrar un punto de acceso."
 menuTitle: "Conectarse a la red"
 weight: 5
 ---
 
+import NetworkSwitch from '../../../components/NetworkSwitch.astro';
+import NetworkParams from '../../../components/NetworkParams.astro';
 import AddNetwork from '../../../components/AddNetwork.astro';
+import ProviderDirectory from '../../../components/ProviderDirectory.astro';
 
-## La red y el protocolo {#red}
+## Dos redes, el mismo software {#red}
 
-42 Chain es una red pública que ejecuta el protocolo. Hay dos redes con el mismo software: la **red principal**, donde las transacciones tienen efecto real, y la **red de pruebas**, que sirve para desarrollar y probar con unidades sin uso fuera de ella.
+42 Chain funciona en dos redes que ejecutan el mismo software. En la **red principal**, cada transacción tiene efecto real. La **red de pruebas** es para desarrollar y probar sin riesgo: sus unidades no sirven fuera de ella.
 
-Para conectarse a cualquiera de las dos hacen falta dos cosas: sus parámetros, que identifican la red, y un punto de conexión a un nodo, que ofrece un proveedor o que se obtiene operando un nodo propio.
+Para conectarte a cualquiera de las dos necesitas sus datos y un punto de acceso a un nodo. Elige la red y esta página te muestra solo lo que le corresponde:
+
+<NetworkSwitch />
 
 ## Parámetros de red {#parametros}
 
-| Parámetro | Red principal | Red de pruebas |
-|---|---|---|
-| Nombre de la red | 42 Chain | 42 Chain Testnet |
-| Chain ID (EVM) | 421018 (`0x66c9a`) | 421018001 (`0x19183991`) |
-| Chain ID (nativo) | `infinite_421018-1` | `infinite_421018001-1` |
-| Identificador técnico | `infinite` | `infinite` |
-| Unidad nativa | Improbability · símbolo 42 | TestImprobability · símbolo TEST42 |
-| Decimales | 18 | 18 |
-| Denominación base | `drop` | `tdrop` |
-| Prefijo de dirección nativa | `infinite` (direcciones `infinite1…`) | `infinite` (direcciones `infinite1…`) |
-| Tiempo de bloque | ~2 s | ~2 s |
+<NetworkParams />
 
 ### Por qué «infinite» {#infinite}
 
-El identificador técnico de la red es `infinite`, por el nombre formal del protocolo, el Infinite Improbability Drive. Por eso el chain ID nativo empieza por `infinite_`, las direcciones nativas empiezan por `infinite1` y el nombre corto de la red en los registros de cadenas es `infinite`. Son la misma red que 42 Chain: el nombre es para las personas, y el identificador, para las máquinas.
+El identificador técnico de la red es `infinite`, por el nombre formal del protocolo, el Infinite Improbability Drive. Por eso el chain ID nativo empieza por `infinite_`, las direcciones nativas empiezan por `infinite1` y el nombre corto de la red en los registros de cadenas es `infinite`. Es la misma red que 42 Chain: el nombre es para las personas, y el identificador, para las máquinas.
 
-Los parámetros vigentes y su historial están en la [referencia técnica](/docs). También se publican en un archivo legible por máquina: [red principal ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) · [red de pruebas ↗](https://assets.infinitedrive.xyz/testnet/network-data.json).
+Los parámetros vigentes y su historial están en la [referencia técnica](/docs).
 
 ## Añadir la red a una billetera {#billetera}
 
-La forma más rápida es con estos botones. La billetera muestra los datos y pide confirmación antes de añadir la red:
+La forma más rápida es este botón. Tu billetera muestra los datos y te pide confirmación antes de añadir la red:
 
 <AddNetwork />
 
-También se puede añadir a mano, con cinco datos:
-
-- **Nombre de la red.** El de la tabla de parámetros.
-- **URL de RPC.** La de un proveedor del [directorio](#proveedores) o la de un nodo propio.
-- **Chain ID.** El chain ID (EVM) de la red que quieres usar.
-- **Símbolo.** 42 en la red principal, o TEST42 en la red de pruebas.
-- **Explorador.** La dirección de un explorador del [directorio](#proveedores). Es opcional.
-
-Las unidades de la red de pruebas se obtienen gratis en un faucet del [directorio](#proveedores).
+También puedes añadirla a mano con cinco datos de la tabla de parámetros: el nombre de la red, el chain ID (EVM), el símbolo, una URL de RPC del [directorio](#proveedores) o de tu propio nodo y, si quieres, un explorador.
 
 :::note[Comprueba de dónde te conectas]
-Una red falsa puede copiar el nombre, el símbolo e incluso el chain ID. Usa solo una URL de RPC del [directorio](#proveedores) o de un nodo propio, y comprueba que el chain ID que muestra tu billetera coincide con el de esta página.
+Una red falsa puede copiar el nombre, el símbolo e incluso el chain ID. Usa solo una URL de RPC del [directorio](#proveedores) o de tu propio nodo, y comprueba que el chain ID que muestra tu billetera coincide con el de esta página.
 :::
 
 ## Proveedores de RPC, exploradores y faucets {#proveedores}
 
-Los puntos de conexión, los exploradores y los faucets los operan proveedores independientes, cada uno con su propio dominio. Ninguno es un punto de conexión oficial de la red, y cada proveedor responde por su servicio. Que aparezcan aquí no implica respaldo.
+Los puntos de acceso a 42 los ofrecen operadores independientes, cada uno con su propia infraestructura y su propio dominio. Que haya varios es lo que hace resistente el acceso a la red: si uno deja de responder, los demás siguen disponibles, y siempre puedes operar tu propio nodo. Ninguno es un punto de acceso oficial, cada operador responde por su servicio, y aparecer aquí no implica respaldo.
 
-### RPC EVM (JSON-RPC) {#rpc-evm}
+<NetworkSwitch />
 
-Para billeteras y herramientas compatibles con la EVM: MetaMask, Hardhat, Foundry, Viem o Ethers.js.
+<ProviderDirectory />
 
-| Proveedor | Red | Dirección |
-|---|---|---|
-| Infinite Drive <em class="badge">Independiente</em> | Red principal | `https://evm.infinitedrive.xyz` |
-| mschihuahua.org <em class="badge">Independiente</em> | Red principal | `https://evm-rpc-infinite.mschihuahua.org` |
-| infinitepanda.xyz <em class="badge">Independiente</em> | Red principal | `https://evm-rpc.infinitepanda.xyz` |
-| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | `https://evm-rpc-testnet.infinitedrive.xyz` |
-
-### RPC de CometBFT {#rpc-comet}
-
-Para billeteras nativas, retransmisores IBC y herramientas del ecosistema Cosmos. Da acceso a los bloques, al consenso y al envío de transacciones nativas.
-
-| Proveedor | Red | Dirección |
-|---|---|---|
-| Infinite Drive <em class="badge">Independiente</em> | Red principal | `https://comet-rpc.infinitedrive.xyz` |
-| mschihuahua.org <em class="badge">Independiente</em> | Red principal | `https://comet-rpc-infinite.mschihuahua.org` |
-| infinitepanda.xyz <em class="badge">Independiente</em> | Red principal | `https://comet-rpc.infinitepanda.xyz` |
-| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | `https://comet-rpc-testnet.infinitedrive.xyz` |
-
-### gRPC {#grpc}
-
-Para consultar el estado de los módulos propios de la red (staking, gobernanza, saldos) desde servicios e indexadores.
-
-| Proveedor | Red | Dirección |
-|---|---|---|
-| Infinite Drive <em class="badge">Independiente</em> | Red principal | `https://grpc.infinitedrive.xyz` |
-| mschihuahua.org <em class="badge">Independiente</em> | Red principal | `https://grpc-infinite.mschihuahua.org` |
-| infinitepanda.xyz <em class="badge">Independiente</em> | Red principal | `https://grpc.infinitepanda.xyz` |
-| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | `https://grpc-testnet.infinitedrive.xyz` |
-
-### Exploradores {#exploradores}
-
-| Proveedor | Red | Dirección |
-|---|---|---|
-| Infinite Drive <em class="badge">Independiente</em> | Red principal | [scan.infinitedrive.xyz ↗](https://scan.infinitedrive.xyz) |
-| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | [testnet-scan.infinitedrive.xyz ↗](https://testnet-scan.infinitedrive.xyz) |
-| DriveStats <em class="badge">Independiente</em> | Las dos | [drivestats.online ↗](https://drivestats.online) |
-
-### Faucets {#faucets}
-
-| Proveedor | Red | Dirección |
-|---|---|---|
-| xenia88.xyz <em class="badge">Independiente</em> | Red de pruebas | [testnet-faucet.xenia88.xyz ↗](https://testnet-faucet.xenia88.xyz) |
-
-Para no depender de un proveedor, cualquiera puede operar su propio nodo y conectarse a él. [Operar un nodo →](/implementar/nodos)
+[Operar tu propio nodo →](/implementar/nodos)
 
 :::aside
-Los proveedores que quieran aparecer en el directorio pueden proponerlo en el repositorio público, como cualquier otro cambio al sitio.
+Quien opere un servicio público para 42 puede proponer su inclusión en el directorio desde el repositorio público: basta con añadir una entrada al archivo de proveedores.
 :::
