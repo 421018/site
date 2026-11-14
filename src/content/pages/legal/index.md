@@ -148,7 +148,7 @@ Los textos de este sitio pueden copiarse, traducirse, adaptarse y publicarse en 
 
 ### Software de terceros
 
-El software del protocolo se construye sobre Cosmos EVM, Cosmos SDK, CometBFT e ibc-go, software de código abierto desarrollado por terceros y publicado también bajo la licencia Apache 2.0. Sus avisos de derechos de autor y de atribución se conservan íntegros en los archivos LICENSE y NOTICE del repositorio público, como exige esa licencia.
+El software del protocolo se construye sobre software de código abierto del ecosistema Cosmos, como Cosmos SDK, CometBFT e ibc-go, desarrollado por terceros y publicado también bajo la licencia Apache 2.0. Sus avisos de derechos de autor y de atribución se conservan íntegros en los archivos LICENSE y NOTICE del repositorio público, como exige esa licencia.
 
 :::aside
 [Licencia completa (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.es) · [Archivos LICENSE y NOTICE en el repositorio]

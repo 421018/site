@@ -19,7 +19,7 @@ El correo electrónico es un buen ejemplo. Un mensaje puede viajar entre servido
 
 El Infinite Improbability Drive es un protocolo de ese tipo. Su propósito es que muchas computadoras lleven, entre todas, un mismo registro de información, sin depender de ninguna de ellas en particular. A cada computadora que ejecuta el protocolo se le llama **nodo**. Al conjunto de todos los nodos se le llama **red**.
 
-El protocolo está construido con tecnología abierta del ecosistema Cosmos: Cosmos SDK como base, CometBFT para el consenso, Cosmos EVM para la ejecución de contratos e IBC para la comunicación entre redes.
+El protocolo está construido con tecnología abierta del ecosistema Cosmos: Cosmos SDK como base, CometBFT para el consenso e IBC para la comunicación entre redes. Los contratos se ejecutan en la máquina virtual de Ethereum (EVM), compatible con sus lenguajes y sus herramientas.
 
 Para entender cómo funciona el protocolo, conviene empezar por ese registro.
 
@@ -177,12 +177,12 @@ Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la re
 |  |  |
 |---|---|
 | Protocolo | Infinite Improbability Drive · código abierto · Apache 2.0 |
-| Base tecnológica | Cosmos SDK · CometBFT · Cosmos EVM · IBC |
+| Base tecnológica | Cosmos SDK · CometBFT · IBC |
 | Red | Pública, sin permisos |
 | Consenso | Prueba de participación delegada |
 | Finalidad | Inmediata, en un bloque |
 | Tolerancia a fallas | Menos de un tercio del poder de voto |
-| Ejecución | Máquina virtual compatible con la EVM |
+| Ejecución | Máquina virtual de Ethereum (EVM) |
 | Interoperabilidad | IBC (versiones 1 y 2) |
 | Unidad nativa | Improbability (42) |
 | Gobernanza | En la cadena, con voto ponderado por staking |
