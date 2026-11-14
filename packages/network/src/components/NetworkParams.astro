@@ -1,0 +1,30 @@
+---
+// Parameters of each network, one table per network (from networks.yaml).
+import { getDirectory } from '../directory';
+const { networks } = await getDirectory();
+const hex = (n: number) => '0x' + n.toString(16);
+---
+{networks.map((n) => (
+  <div data-for-net={n.id}>
+    <p class="net-cap">{n.label}</p>
+    <table>
+      <tbody>
+        <tr><td>Nombre de la red</td><td>{n.name}</td></tr>
+        <tr><td>Chain ID (EVM)</td><td>{n.evmChainId} (<code>{hex(n.evmChainId)}</code>)</td></tr>
+        <tr><td>Chain ID (nativo)</td><td><code>{n.chainId}</code></td></tr>
+        <tr><td>Identificador técnico</td><td><code>{n.identifier}</code></td></tr>
+        <tr><td>Unidad nativa</td><td>{n.unit.name} · símbolo {n.unit.symbol}</td></tr>
+        <tr><td>Decimales</td><td>{n.unit.decimals}</td></tr>
+        <tr><td>Denominación base</td><td><code>{n.unit.base}</code></td></tr>
+        <tr><td>Prefijo de dirección nativa</td><td><code>{n.bech32Prefix}</code> (direcciones <code>{n.bech32Prefix}1…</code>)</td></tr>
+        <tr><td>Tiempo de bloque</td><td>{n.blockTime}</td></tr>
+        <tr><td>Datos de red</td><td><a href={n.data}>network-data.json ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+))}
+
+<style>
+  .net-cap { margin: 20px 0 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--link); }
+  td:first-child { width: 40%; }
+</style>

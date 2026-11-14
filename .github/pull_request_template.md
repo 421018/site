@@ -4,7 +4,7 @@
 
 ## Type
 
-- [ ] Content (text in `src/content/`)
+- [ ] Content (text in `apps/*/src/content/` or network data in `packages/network/data/`)
 - [ ] Design or layout
 - [ ] Code, tooling or dependencies
 

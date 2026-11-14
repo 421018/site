@@ -44,8 +44,8 @@ npm run verify     # run before opening a pull request: types, build and links
 
 **Code.**
 
-- Keep visitor-facing text in `src/content/`, not in templates.
-- New scripts or external resources must work with the Content-Security-Policy (`astro.config.mjs → security.csp`).
+- Keep visitor-facing text in each app's `src/content/` (for the site, `apps/site/src/content/`), not in templates.
+- New scripts or external resources must work with the Content-Security-Policy (`apps/site/astro.config.mjs → security.csp`).
 - Check visual changes on desktop and mobile widths.
 
 **Pull requests.**
@@ -59,7 +59,7 @@ npm run verify     # run before opening a pull request: types, build and links
 By contributing, you agree that:
 
 - Code contributions are licensed under the [Apache License 2.0](LICENSE).
-- Content contributions (anything under `src/content/`) are licensed under [CC BY 4.0](LICENSE-CONTENT).
+- Content contributions (anything under `apps/*/src/content/` or `packages/network/data/`) are licensed under [CC BY 4.0](LICENSE-CONTENT).
 
 Only contribute work that you wrote or that you have the right to publish under these licenses.
 

@@ -5,11 +5,12 @@ This product includes software developed by The 42 Chain contributors
 (https://github.com/[organization]/42chain-site).
 
 Licensing:
-- Source code (everything outside src/content/) is licensed under the
-  Apache License, Version 2.0. See LICENSE.
-- Content (everything under src/content/: page text, home page and
-  site-wide text) is licensed under the Creative Commons Attribution 4.0
-  International License (CC BY 4.0). See LICENSE-CONTENT.
+- Content (everything under apps/*/src/content/: page text, home page,
+  site-wide text and diagrams; and the network data under
+  packages/network/data/) is licensed under the Creative Commons
+  Attribution 4.0 International License (CC BY 4.0). See LICENSE-CONTENT.
+- Everything else (source code) is licensed under the Apache License,
+  Version 2.0. See LICENSE.
 
 "The 42 Chain contributors" are the individual contributors recorded in the
 repository's history.

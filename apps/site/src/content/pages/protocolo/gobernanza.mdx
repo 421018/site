@@ -1,0 +1,114 @@
+---
+title: "Gobernanza"
+summary: "Las reglas de la red tienen que poder cambiar. Quién decide esos cambios, cómo se votan y cómo llegan a todos los nodos a la vez."
+weight: 50
+---
+
+import VoteSim from '@42chain/ui/components/VoteSim.astro';
+
+## Por qué una red necesita gobierno {#necesidad}
+
+Ningún protocolo queda terminado. Con el tiempo hay que ajustar parámetros, corregir errores y adoptar mejoras. Alguien tiene que decidir esos cambios.
+
+Si los cambios los decidiera una sola parte, todas las organizaciones que usan la red dependerían de ella. Si las reglas no pudieran cambiar nunca, la red no podría corregir sus errores ni adaptarse con el tiempo.
+
+El protocolo resuelve las dos cosas: los cambios los deciden los propios participantes de la red, con reglas públicas y votos registrados en la cadena. A ese sistema se le llama gobernanza en la cadena.
+
+## Gobernanza en la cadena {#modelo}
+
+En la gobernanza en la cadena, las reglas para decidir están escritas en el protocolo, y cada decisión se propone, se vota y queda registrada en la propia cadena.
+
+Este modelo se diferencia de una forma tradicional de decidir en tres puntos:
+
+- **Quién vota lo definen las reglas del protocolo.** No hace falta una inscripción ni la aprobación de nadie. Quien cumple las reglas puede votar.
+- **Las decisiones se ejecutan solas.** Cuando una propuesta se aprueba, la red aplica el cambio. Ningún administrador tiene que llevarlo a cabo, y ninguno puede impedirlo.
+- **Todo es público.** Cada propuesta, cada voto y cada resultado quedan registrados en la cadena. Cualquiera puede revisarlos.
+
+### Por qué el voto pesa según el staking
+
+En una red abierta, cualquiera puede crear tantas cuentas como quiera. Si cada cuenta tuviera un voto, quien creara miles de cuentas controlaría cualquier decisión.
+
+Por eso, en la gobernanza, el voto pesa según las unidades que el participante tiene en staking. Es la misma lógica que protege el consenso: el peso depende de algo que cuesta conseguir y que se pone en juego. Además, quienes protegen la red con sus unidades son quienes viven las consecuencias de cada cambio.
+
+:::aside
+[Qué es el staking →](/protocolo#validacion)
+:::
+
+## Quién vota {#quienes}
+
+Votan los validadores y las personas que les delegaron unidades. Cada participante vota con el peso de sus unidades en staking.
+
+Quienes desarrollan el protocolo pueden presentar propuestas, como cualquier otro participante. Sus propuestas se deciden con los mismos votos que las demás.
+
+## Qué se decide {#alcance}
+
+Mediante propuestas se decide sobre tres tipos de asuntos:
+
+- **Parámetros del protocolo.** Por ejemplo, subir el precio mínimo del gas, ampliar el número de lugares del conjunto activo o cambiar la penalización por inactividad.
+- **Actualizaciones del software.** Por ejemplo, adoptar una versión nueva del protocolo que corrige un error o añade una función.
+- **Fondo comunitario.** Por ejemplo, destinar unidades del fondo a una auditoría de seguridad o a una herramienta que necesita la red.
+
+## El recorrido de una propuesta {#ciclo}
+
+Toda propuesta recorre cuatro etapas:
+
+- **1. Discusión.** Antes de llegar a la cadena, quien propone suele presentar la idea en público para ajustarla y medir el apoyo que tiene. Esta etapa no forma parte del protocolo.
+- **2. Propuesta.** Alguien presenta la propuesta en la cadena y deja una cantidad de unidades como **depósito**. El depósito evita que se presenten propuestas sin sentido. Si la propuesta recibe un veto, el depósito se pierde. [Monto mínimo del depósito.]
+- **3. Votación.** Durante un período fijo, los participantes votan. Cada participante elige una de cuatro opciones: Sí, No, Abstención o No con veto.
+- **4. Ejecución.** Si la propuesta se aprueba, la red aplica el cambio por sí misma.
+
+:::diagram[El recorrido de una propuesta y sus tres resultados posibles.]{name="propuesta"}
+:::
+
+### Cómo se aplica un cambio
+
+Un cambio de parámetro se aplica en cuanto termina la votación: desde ese bloque, la red usa el valor nuevo.
+
+Una actualización del software necesita un paso más. La propuesta fija un bloque futuro, llamado **altura de actualización**. Al llegar a ese bloque, la red se detiene un momento, los validadores cambian a la versión nueva y la red continúa con las reglas nuevas. Así, todos los nodos cambian de versión en el mismo punto de la cadena.
+
+:::aside
+[Qué hace un validador en cada actualización →](/implementar/nodos#responsabilidades)
+:::
+
+### El voto de quien delega
+
+Una persona que delegó unidades puede votar por su cuenta. En ese caso, su voto cuenta para las unidades que delegó.
+
+Si esa persona no vota, las unidades que delegó cuentan con el voto de su validador.
+
+## Votos y conteo {#conteo}
+
+Para aprobarse, una propuesta tiene que cumplir tres condiciones al mismo tiempo:
+
+- **Quórum.** Tiene que votar una parte mínima del poder de voto total. Si votan muy pocos participantes, la propuesta no se aprueba. El quórum evita que una minoría decida cuando casi nadie participa.
+- **Umbral.** Entre los votos emitidos, sin contar las abstenciones, los votos por el Sí tienen que superar una proporción mínima.
+- **Veto.** El No con veto sirve para rechazar propuestas que se consideran dañinas. Si los votos por el No con veto superan su propio límite, la propuesta se rechaza aunque tenga mayoría. Además, quien la presentó pierde el depósito.
+
+### Un ejemplo
+
+Supongamos que el poder de voto total de la red es 100, y que las reglas exigen un quórum del 40 %, un umbral del 50 % y un límite de veto del 33 %.
+
+Votan participantes que suman 45 de poder de voto: 25 por el Sí, 12 por el No, 3 por el No con veto y 5 por la Abstención.
+
+- **Quórum.** Votó el 45 % del poder de voto total. Supera el 40 %: se cumple.
+- **Umbral.** Sin las abstenciones quedan 40 votos. El Sí tiene 25 de 40, es decir, el 62,5 %. Supera el 50 %: se cumple.
+- **Veto.** El No con veto tiene 3 de 45 votos, menos del 7 %. No llega al 33 %: no hay veto.
+
+La propuesta se aprueba. Los porcentajes reales de cada regla son parámetros del protocolo. [Quórum, umbral y límite de veto.]
+
+:::aside
+Las cifras del ejemplo son ilustrativas.
+:::
+
+<VoteSim />
+
+:::aside
+[Parámetros de gobernanza y cómo votar ↗](/docs)
+:::
+
+## Por qué el protocolo lo hace así {#porque}
+
+- **Gobierno en la cadena.** Las propuestas, los votos y los resultados son públicos, y los cambios aprobados se aplican solos. Ningún cambio se aplica sin quedar registrado, y los cambios aprobados se aplican con las mismas reglas para todos.
+- **Peso según el staking.** La misma lógica que protege el consenso protege las decisiones: crear cuentas no da poder, poner unidades en juego sí.
+- **Depósito y veto.** El depósito desalienta las propuestas sin sentido. El veto permite rechazar una propuesta dañina aunque tenga mayoría.
+- **Proponer y decidir están separados.** Cualquiera puede presentar una propuesta, también quienes escriben el código. La decisión la toman los votos registrados en la cadena.
