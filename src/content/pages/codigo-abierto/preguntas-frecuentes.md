@@ -1,6 +1,6 @@
 ---
 title: "Preguntas frecuentes"
-summary: "Respuestas breves sobre la red, el protocolo, el proyecto y el uso de este sitio."
+summary: "Las preguntas que más se hacen sobre 42, con respuestas cortas y enlaces para ir más a fondo."
 weight: 40
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Operar un nodo"
-summary: "Qué es un nodo, qué hace su software, qué tipos existen, qué se necesita para operarlo y cómo un nodo se convierte en validador."
+summary: "Tener tu propio nodo es la forma de leer la red sin depender de nadie. Lo que necesitas para ponerlo en marcha y, si quieres, para validar bloques."
 weight: 10
 ---
 

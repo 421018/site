@@ -1,6 +1,6 @@
 ---
 title: "Seguridad y reportes"
-summary: "Cómo reportar en privado una vulnerabilidad en el código, qué incluir en el reporte y para qué no sirve este canal."
+summary: "Si encuentras un fallo en el código, este es el camino para reportarlo sin ponerlo al alcance de quien podría aprovecharlo."
 menuTitle: "Seguridad y reportes"
 weight: 20
 ---

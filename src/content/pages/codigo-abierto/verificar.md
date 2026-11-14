@@ -1,6 +1,6 @@
 ---
 title: "Verificar"
-summary: "Dónde comprobar, en fuentes públicas, lo que el sitio afirma sobre el protocolo y la red, y cuáles son los canales del proyecto."
+summary: "Nada de lo que dice este sitio debería creerse sin más. Dónde comprobarlo, y cuáles son los únicos canales del proyecto."
 weight: 30
 ---
 
@@ -8,7 +8,7 @@ weight: 30
 
 El protocolo está diseñado para que sus resultados puedan comprobarse. El sitio sigue el mismo criterio: cada afirmación importante sobre el protocolo y la red tiene una fuente pública donde verificarla.
 
-Algunas fuentes las mantienen los contribuidores del protocolo. Otras son de proveedores independientes, y van marcadas así.
+Algunas fuentes las mantienen los contribuidores del protocolo; otras, como los exploradores, las ofrecen proveedores independientes.
 
 ## Código y versiones {#codigo}
 

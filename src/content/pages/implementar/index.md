@@ -1,6 +1,6 @@
 ---
 title: "Construir aplicaciones"
-summary: "Cómo se arma una aplicación sobre el protocolo, qué aporta la EVM, qué patrones resuelven los problemas habituales de una aplicación de infraestructura y cómo se lleva a producción."
+summary: "Si ya sabes construir para la EVM, ya sabes construir aquí. Lo que cambia es el tipo de problema: varias organizaciones, dispositivos que firman y tarifas que paga alguien más."
 section:
   label: Implementar
   weight: 3

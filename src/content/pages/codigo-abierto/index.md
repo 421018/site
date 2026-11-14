@@ -1,6 +1,6 @@
 ---
 title: "Sobre 42 Chain"
-summary: "Qué es 42 Chain, cómo se organizan el código, la red y las decisiones, de dónde viene su nombre y los principios que lo guían."
+summary: "42 Chain es una red pública, su protocolo es código abierto y su nombre viene de una novela. Cómo encaja todo eso y qué principios lo guían."
 section:
   label: Código abierto
   weight: 4

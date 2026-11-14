@@ -1,6 +1,6 @@
 ---
 title: "Operación y mantenimiento de infraestructura"
-summary: "Cómo quien es dueño de una infraestructura y quienes la mantienen comparten un inventario de activos y un historial de intervenciones que ninguno puede reescribir."
+summary: "Cuando el dueño de una infraestructura, sus contratistas y sus inspectores llevan registros distintos, saber qué se hizo exige una auditoría. Así comparten uno solo, firmado y fechado."
 menuTitle: "Infraestructura"
 weight: 30
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Contribuir"
-summary: "Cómo se desarrolla el protocolo, de qué formas se puede contribuir, cómo llega un cambio a la red y dónde se hacen las preguntas técnicas."
+summary: "El protocolo se construye en abierto, y cualquiera puede sumarse: con código, revisando cambios, mejorando la documentación o respondiendo preguntas."
 weight: 10
 ---
 

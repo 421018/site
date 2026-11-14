@@ -1,6 +1,6 @@
 ---
 title: "Legal y avisos"
-summary: "El carácter informativo de este sitio, la ausencia de garantías, los riesgos de uso, qué datos pasan por el sitio, las licencias y los enlaces a terceros."
+summary: "En pocas palabras: este sitio es informativo, usar la red tiene riesgos que conviene conocer, el sitio no recoge datos por su cuenta y todo se publica con licencias abiertas."
 section:
   label: Legal
   weight: 1

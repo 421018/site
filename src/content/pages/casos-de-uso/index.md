@@ -1,6 +1,6 @@
 ---
 title: "Casos de uso"
-summary: "Qué problema resuelve el protocolo, cuándo conviene usarlo y cuándo no, qué va dentro y fuera de la cadena, y los casos de uso más habituales."
+summary: "Un registro compartido sirve cuando varias organizaciones necesitan los mismos datos y ninguna debería custodiarlos sola. Cuándo conviene, cuándo no, y cinco casos concretos."
 menuTitle: "Cuándo usar el protocolo"
 section:
   label: Casos de uso

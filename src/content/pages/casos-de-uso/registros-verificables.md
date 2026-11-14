@@ -1,6 +1,6 @@
 ---
 title: "Registros y documentos verificables"
-summary: "Cómo registrar títulos, certificados, constancias y actos públicos para que cualquiera pueda comprobar que son auténticos y que no cambiaron."
+summary: "Un título, un certificado o un acta valen poco si comprobarlos exige llamar a quien los emitió. Así se vuelven verificables por cualquiera, en segundos y años después."
 menuTitle: "Registros verificables"
 weight: 10
 ---

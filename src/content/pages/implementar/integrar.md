@@ -1,6 +1,6 @@
 ---
 title: "Integrar sistemas"
-summary: "Cómo conectar a la red los sistemas que ya usa una organización, sus dispositivos, las herramientas de firma y consulta, y otras redes."
+summary: "Tus sistemas no tienen que cambiar para trabajar con la red. Qué necesita cada tipo de integración y dónde están los datos para hacerla."
 weight: 20
 ---
 

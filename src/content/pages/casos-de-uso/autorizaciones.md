@@ -1,6 +1,6 @@
 ---
 title: "Autorizaciones compartidas"
-summary: "Cómo hacer que un cambio en un registro común solo se aplique cuando lo aprueban varias organizaciones, con reglas que todas pueden revisar."
+summary: "Algunos cambios no deberían depender de una sola organización. Así se exige que varias los aprueben, con reglas que todas pueden leer."
 menuTitle: "Autorizaciones compartidas"
 weight: 40
 ---

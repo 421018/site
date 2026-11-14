@@ -1,6 +1,6 @@
 ---
 title: "Integración entre redes"
-summary: "Cómo 42 Chain comprueba lo que ocurrió en otras redes, incluidos entornos internos de una organización, y coordina operaciones con ellas, sin un intermediario de confianza."
+summary: "Un dato reservado puede quedarse en casa y, aun así, ser verificable por cualquiera. Así se comprueban entre sí 42 y otras redes, incluidos los entornos internos de una organización."
 menuTitle: "Integración entre redes"
 weight: 50
 ---

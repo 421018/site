@@ -1,6 +1,6 @@
 ---
 title: "Implementaciones a medida"
-summary: "Qué cubre una implementación a medida, qué no incluye, y un directorio de proveedores independientes que ofrecen implementación y asesoría técnica."
+summary: "A la mayoría de los proyectos les bastan la documentación y las herramientas abiertas. Para los que necesitan algo a medida, hay proveedores que lo ofrecen."
 weight: 40
 ---
 

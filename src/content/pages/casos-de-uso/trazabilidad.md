@@ -1,6 +1,6 @@
 ---
 title: "Trazabilidad entre organizaciones"
-summary: "Cómo varias organizaciones registran el recorrido de un producto o de un lote en un registro común, sin que ninguna tenga que custodiar los datos de las demás."
+summary: "Un lote pasa por muchas manos, y cada una guarda su parte del historial. Así se convierte en un solo historial compartido, que nadie tiene que reconstruir."
 menuTitle: "Trazabilidad"
 weight: 20
 ---
