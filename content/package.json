@@ -3,5 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "description": "Public content catalog of 42 Chain: pages, site text, diagrams, images and network data for 42chain.org and its documentation. Markdown and YAML only, no code.",
-  "license": "CC-BY-4.0"
+  "license": "CC-BY-4.0",
+  "scripts": {
+    "validate": "node tools/validate.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "yaml": "2.9.1"
+  }
 }

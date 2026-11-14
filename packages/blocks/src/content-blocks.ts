@@ -62,6 +62,9 @@ function listItems(ctx: MdastVisitorContext, node: ContainerDirective): [string,
   });
 }
 
+/** Names of the ::: blocks, exported to the content contract. */
+export const blockNames = ['note', 'faq', 'aside', 'status', 'lore', 'diagram', 'widget', 'figure', 'facts', 'timeline'] as const;
+
 /**
  * Options: diagramsDir is the folder :::diagram reads (the app's diagrams in the
  * catalog); widgets lists the names :::widget accepts.
@@ -161,7 +164,7 @@ export const contentBlocks = ({ diagramsDir, widgets = [] }: BlockOptions = {}) 
         return;
       }
       default:
-        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, lore, diagram, widget, figure, facts, timeline.');
+        fail(ctx, node, `unknown block. Available: ${blockNames.join(', ')}.`);
     }
   },
 });

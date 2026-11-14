@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "header": {
+      "type": "object",
+      "properties": {
+        "homeLink": {
+          "type": "string"
+        },
+        "mainNav": {
+          "type": "string"
+        },
+        "menuButton": {
+          "type": "string"
+        },
+        "links": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "href"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "search": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "homeLink",
+        "mainNav",
+        "menuButton"
+      ],
+      "additionalProperties": false
+    },
+    "footer": {
+      "type": "object",
+      "properties": {
+        "credit": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "credit",
+        "license",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "lastReviewed": {
+          "type": "string"
+        },
+        "editPage": {
+          "type": "string"
+        },
+        "previous": {
+          "type": "string"
+        },
+        "next": {
+          "type": "string"
+        },
+        "chapters": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lastReviewed",
+        "editPage",
+        "previous",
+        "next",
+        "chapters"
+      ],
+      "additionalProperties": false
+    },
+    "notFound": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "heading": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "label",
+        "heading",
+        "action"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "name",
+    "tagline",
+    "description",
+    "header",
+    "footer",
+    "page",
+    "notFound"
+  ],
+  "additionalProperties": false
+}
