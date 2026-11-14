@@ -7,14 +7,17 @@
 import { fontProviders } from 'astro/config';
 import type { AstroUserConfig } from 'astro';
 import { satteri } from '@astrojs/markdown-satteri';
-import { contentBlocks } from '@42chain/content/blocks';
+import { contentBlocks } from '@42chain/blocks';
+import { catalogPath } from './catalog';
 
 export interface SharedOptions {
+  /** The app's folder in the content catalog: "site" or "docs". */
+  catalog: string;
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
 }
 
-export function sharedConfig({ scriptSources = [] }: SharedOptions = {}): AstroUserConfig {
+export function sharedConfig({ catalog, scriptSources = [] }: SharedOptions): AstroUserConfig {
   return {
     trailingSlash: 'never',
     build: { format: 'directory' },
@@ -24,7 +27,7 @@ export function sharedConfig({ scriptSources = [] }: SharedOptions = {}): AstroU
       syntaxHighlight: 'prism',
       processor: satteri({
         features: { attributes: true, directive: true },
-        mdastPlugins: [contentBlocks],
+        mdastPlugins: [contentBlocks({ diagramsDir: catalogPath(catalog, 'diagrams') })],
       }),
     },
     // Fonts are downloaded at build time and served from the site itself: no

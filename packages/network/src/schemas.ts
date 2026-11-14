@@ -4,18 +4,14 @@
  *
  *   networks: defineCollection({ loader: file(dataFile('networks')), schema: networkSchema })
  *
- * dataFile() resolves the YAML through the installed @42chain/network package, so
- * it works the same inside this monorepo and in a separate repository.
+ * The YAML files live in the public content catalog (@42chain/catalog), under
+ * network/. dataFile() resolves them through the installed catalog package.
  */
-import { createRequire } from 'node:module';
-import { dirname, join } from 'node:path';
 import { z } from 'astro/zod';
+import { catalogPath } from '@42chain/kit/catalog';
 
-const require = createRequire(join(process.cwd(), 'package.json'));
-
-/** Absolute path of a data file of this package: networks, services or providers. */
-export const dataFile = (name: 'networks' | 'services' | 'providers') =>
-  join(dirname(require.resolve('@42chain/network/package.json')), 'data', `${name}.yaml`);
+/** Absolute path of a network data file in the catalog: networks, services or providers. */
+export const dataFile = (name: 'networks' | 'services' | 'providers') => catalogPath('network', `${name}.yaml`);
 
 const id = z.string().regex(/^[a-z0-9-]+$/);
 

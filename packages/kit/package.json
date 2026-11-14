@@ -12,10 +12,12 @@
     "./site": "./src/site.ts",
     "./virtual": "./src/virtual.d.ts",
     "./layouts/*": "./src/layouts/*",
-    "./components/*": "./src/components/*"
+    "./components/*": "./src/components/*",
+    "./catalog": "./src/catalog.ts"
   },
   "dependencies": {
-    "@42chain/content": "*",
+    "@42chain/blocks": "*",
+    "@42chain/catalog": "*",
     "@42chain/ui": "*"
   },
   "peerDependencies": {

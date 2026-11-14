@@ -7,7 +7,8 @@
   "license": "Apache-2.0",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "content"
   ],
   "scripts": {
     "dev": "npm run dev -w @42chain/site",

@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import SideNav from '../components/SideNav.astro';
 import { getSection, getSiteText, sideIndex, prevNext, hrefOf, sectionKey, lastCommitDate, type Page } from '../site';
 import kit from 'virtual:42chain/kit';
+import { catalogRelative } from '../catalog';
 
 interface Props { page: Page }
 const { page } = Astro.props;
@@ -31,7 +32,7 @@ const { page: ui } = await getSiteText();
           <p class="dk">{section.label}</p>
           <h1>{page.data.title}</h1>
           <p class="ds">{page.data.summary}</p>
-          <p class="dm">{fmt && <>{ui.lastReviewed}: {fmt} · </>}<a href={kit.editBase + page.filePath}>{ui.editPage}</a></p>
+          <p class="dm">{fmt && <>{ui.lastReviewed}: {fmt} · </>}<a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a></p>
         </div>
         <div class="prose">
           <slot />

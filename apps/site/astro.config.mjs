@@ -8,7 +8,7 @@ import { SITE, LINKS, EDIT_BASE } from './src/config.ts';
 
 // Markdown, fonts, CSP and i18n are shared by every app (packages/kit/src/config.ts).
 export default defineConfig({
-  ...sharedConfig(),
+  ...sharedConfig({ catalog: 'site' }),
   site: SITE.url,
   integrations: [mdx(), sitemap(), kit({ lang: SITE.lang, ogLocale: SITE.ogLocale, editBase: EDIT_BASE })],
   i18n: {

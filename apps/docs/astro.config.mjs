@@ -9,7 +9,7 @@ import { SITE, EDIT_BASE } from './src/config.ts';
 // Markdown, fonts and CSP are shared with the main site (packages/kit/src/config.ts).
 // Search (Pagefind) runs WebAssembly, so this app also allows 'wasm-unsafe-eval'.
 export default defineConfig({
-  ...sharedConfig({ scriptSources: ["'wasm-unsafe-eval'"] }),
+  ...sharedConfig({ catalog: 'docs', scriptSources: ["'wasm-unsafe-eval'"] }),
   site: SITE.url,
   integrations: [mdx(), sitemap(), kit({ lang: SITE.lang, ogLocale: SITE.ogLocale, editBase: EDIT_BASE, search: true })],
   i18n: {

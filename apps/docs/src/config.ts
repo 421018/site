@@ -11,8 +11,8 @@ export const SITE = {
 
 export const LINKS = {
   site: 'https://example.org', // [official domain]
-  repo: 'https://github.com/[organization]/42chain-site', // [site repository]
+  content: 'https://github.com/[organization]/42chain-content', // [public content repository]
 };
 
-/** The "edit this page" link points here: repo + branch + path of the content file. */
-export const EDIT_BASE = `${LINKS.repo}/edit/main/apps/docs/`;
+/** The "edit this page" link points to the content repository; the file's path in the catalog is appended. */
+export const EDIT_BASE = `${LINKS.content}/edit/main/`;

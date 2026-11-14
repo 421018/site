@@ -6,7 +6,7 @@ weight: 10
 ---
 
 :::figure[Imagen ilustrativa. Foto: Quilia, Unsplash.]{ratio="wide"}
-![Diploma enmarcado con un sello dorado](../../../assets/images/casos/registros.jpg)
+![Diploma enmarcado con un sello dorado](../../images/casos/registros.jpg)
 :::
 
 ## El problema {#problema}

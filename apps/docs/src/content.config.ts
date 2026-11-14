@@ -7,14 +7,15 @@ import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { pageSchema, pagesLoader, siteTextSchema } from '@42chain/kit/schemas';
+import { catalogPath } from '@42chain/kit/catalog';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from '@42chain/network/schemas';
 
-const pages = defineCollection({ loader: pagesLoader(), schema: pageSchema });
+const pages = defineCollection({ loader: pagesLoader(catalogPath('docs', 'pages')), schema: pageSchema });
 const home = defineCollection({
-  loader: glob({ pattern: 'home.md', base: './src/content' }),
+  loader: glob({ pattern: 'home.md', base: catalogPath('docs') }),
   schema: z.object({ eyebrow: z.string(), title: z.string(), lead: z.string(), searchPrompt: z.string() }).strict(),
 });
-const site = defineCollection({ loader: glob({ pattern: 'site.md', base: './src/content' }), schema: siteTextSchema });
+const site = defineCollection({ loader: glob({ pattern: 'site.md', base: catalogPath('docs') }), schema: siteTextSchema });
 const networks = defineCollection({ loader: file(dataFile('networks')), schema: networkSchema });
 const services = defineCollection({ loader: file(dataFile('services')), schema: serviceSchema });
 const providers = defineCollection({ loader: file(dataFile('providers')), schema: providerSchema });

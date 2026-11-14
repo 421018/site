@@ -1,6 +1,6 @@
 /**
- * Network parameters and the public provider directory, from this package's
- * data/{networks,services,providers}.yaml, read through the app's content
+ * Network parameters and the public provider directory, from the catalog's
+ * network/{networks,services,providers}.yaml, read through the app's content
  * collections of the same names. Order follows the files.
  * A provider that names an unknown network or service stops the build.
  */
@@ -31,7 +31,7 @@ export function getDirectory() {
     const bad = providers.filter((p) => !nets.has(p.network) || !svcs.has(p.service));
     if (bad.length) {
       throw new Error(
-        '@42chain/network data/providers.yaml: unknown network or service in ' +
+        'catalog network/providers.yaml: unknown network or service in ' +
           bad.map((p) => `${p.id} (network "${p.network}", service "${p.service}")`).join(', '),
       );
     }

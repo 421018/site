@@ -12,7 +12,7 @@
  *                              distinct from technical content. Never the only place
  *                              where a technical fact is stated.
  *   :::diagram[Caption]{name="motor"}
- *                              Inserts the app's src/content/diagrams/<name>.html (responsive,
+ *                              Inserts the app's diagrams/<name>.html from the catalog (responsive,
  *                              preferred) or <name>.svg, with the caption below.
  *   :::figure[Caption]         Wraps a Markdown image (![alt](path)) with a caption.
  *                              {ratio="wide"} crops it to 16:9 so headers line up.
@@ -60,7 +60,10 @@ function listItems(ctx: MdastVisitorContext, node: ContainerDirective): [string,
   });
 }
 
-export const contentBlocks = defineMdastPlugin({
+/** Options: diagramsDir is the folder :::diagram reads (the app's diagrams in the catalog). */
+export interface BlockOptions { diagramsDir?: string }
+
+export const contentBlocks = ({ diagramsDir }: BlockOptions = {}) => defineMdastPlugin({
   name: '42chain-content-blocks',
   containerDirective(node, ctx) {
     const children = node.children as Node[];
@@ -96,9 +99,10 @@ export const contentBlocks = defineMdastPlugin({
         const caption = needLabel('the caption');
         const name = node.attributes?.name;
         if (!name || !/^[a-z0-9-]+$/.test(name)) fail(ctx, node, 'needs a name: :::diagram[Caption]{name="file-name"}.');
-        const dir = join(process.cwd(), 'src/content/diagrams');
+        if (!diagramsDir) fail(ctx, node, 'diagrams are not enabled for this app (no diagramsDir).');
+        const dir = diagramsDir;
         const file = ['html', 'svg'].map((ext) => join(dir, `${name}.${ext}`)).find((f) => existsSync(f));
-        if (!file) fail(ctx, node, `no file src/content/diagrams/${name}.html or .svg.`);
+        if (!file) fail(ctx, node, `no file diagrams/${name}.html or .svg in the catalog.`);
         const body = readFileSync(file, 'utf8').replace(/<!--[\s\S]*?-->/g, '').trim();
         const text = esc(ctx.textContent(caption as never).trim());
         ctx.replaceNode(node, rawHtml(`<figure class="diagram">${body}<figcaption>${text}</figcaption></figure>`));

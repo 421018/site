@@ -6,7 +6,7 @@ weight: 20
 ---
 
 :::figure[Imagen ilustrativa. Foto: Tatiana Fernández R, Unsplash.]{ratio="wide"}
-![Saco de yute lleno de granos de café](../../../assets/images/casos/trazabilidad.jpg)
+![Saco de yute lleno de granos de café](../../images/casos/trazabilidad.jpg)
 :::
 
 ## El problema {#problema}

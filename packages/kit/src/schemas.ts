@@ -3,8 +3,8 @@
  * content.config.ts under these collection names, which the kit's navigation
  * reads: `pages` (interior pages) and `site` (site-wide text).
  *
- *   pages: defineCollection({ loader: pagesLoader(), schema: pageSchema }),
- *   site: defineCollection({ loader: glob({ pattern: 'site.md', base: './src/content' }), schema: siteTextSchema }),
+ *   pages: defineCollection({ loader: pagesLoader(catalogPath('site', 'pages')), schema: pageSchema }),
+ *   site: defineCollection({ loader: glob({ pattern: 'site.md', base: catalogPath('site') }), schema: siteTextSchema }),
  *
  * The schemas are strict: a misspelled or missing field stops the build with
  * the file and field name.
@@ -57,14 +57,14 @@ export const pageSchema = z
   .strict();
 
 /**
- * Loader for src/content/pages. The file path is the URL:
+ * Loader for an app's pages folder in the catalog. The file path is the URL:
  * protocolo/index.md → protocolo, protocolo/consenso.mdx → protocolo/consenso,
  * construir/precompiles/index.md → construir/precompiles (a group inside a section).
  */
-export const pagesLoader = () =>
+export const pagesLoader = (base: string) =>
   glob({
-    pattern: '**/*.{md,mdx}',
-    base: './src/content/pages',
+    pattern: '**/*.{md,mdx}', // TEMPORARY: .mdx is removed in the next step (widgets as ::: blocks)
+    base,
     generateId: ({ entry }) => entry.replace(/\.mdx?$/, '').replace(/(^|\/)index$/, ''),
   });
 

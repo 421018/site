@@ -1,0 +1,14 @@
+{
+  "name": "@42chain/blocks",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Markdown content blocks (::: shortcuts) of the 42 Chain engine.",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/content-blocks.ts"
+  },
+  "peerDependencies": {
+    "satteri": "*"
+  }
+}

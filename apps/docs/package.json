@@ -14,7 +14,7 @@
     "verify": "astro check && npm run build && check-links"
   },
   "dependencies": {
-    "@42chain/content": "*",
+    "@42chain/catalog": "*",
     "@42chain/kit": "*",
     "@42chain/network": "*",
     "@42chain/ui": "*",

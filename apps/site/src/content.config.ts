@@ -17,14 +17,15 @@ import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from '@42chain/network/schemas';
 import { pageSchema, pagesLoader, siteTextSchema } from '@42chain/kit/schemas';
+import { catalogPath } from '@42chain/kit/catalog';
 
-const pages = defineCollection({ loader: pagesLoader(), schema: pageSchema });
+const pages = defineCollection({ loader: pagesLoader(catalogPath('site', 'pages')), schema: pageSchema });
 
 const cta = z.object({ label: z.string(), href: z.string() }).strict();
 const block = { kicker: z.string(), title: z.string(), lead: z.string().optional(), link: cta.optional() };
 
 const home = defineCollection({
-  loader: glob({ pattern: 'home.md', base: './src/content' }),
+  loader: glob({ pattern: 'home.md', base: catalogPath('site') }),
   schema: ({ image }) => z
     .object({
       title: z.string().optional(),
@@ -78,7 +79,7 @@ const home = defineCollection({
 });
 
 const site = defineCollection({
-  loader: glob({ pattern: 'site.md', base: './src/content' }),
+  loader: glob({ pattern: 'site.md', base: catalogPath('site') }),
   schema: siteTextSchema,
 });
 

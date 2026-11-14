@@ -4,6 +4,7 @@
  * the side index, previous/next and the footer on the next build.
  */
 import { execFileSync } from 'node:child_process';
+import { basename, dirname, resolve } from 'node:path';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 export type Page = CollectionEntry<'pages'>;
@@ -47,7 +48,7 @@ async function build() {
   const sections = new Map<string, Section>();
 
   for (const p of pages) {
-    if (p.id === '') errors.push('src/content/pages/index.md: the home page is edited in src/content/home.md.');
+    if (p.id === '') errors.push('pages/index.md: the home page is edited in the catalog\'s home.md, not in pages/.');
     if (isIndex(p)) {
       const s = p.data.section;
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
@@ -81,7 +82,7 @@ async function build() {
     const parentKey = pages.find((p) => p.id === s.key)?.data.section?.attachTo;
     if (!parentKey) continue;
     const parent = sections.get(parentKey);
-    if (!parent) { errors.push(`src/content/pages/${s.key}/index.md: attachTo "${parentKey}" is not a section.`); continue; }
+    if (!parent) { errors.push(`pages/${s.key}/index.md: attachTo "${parentKey}" is not a section.`); continue; }
     s.home = parent.key;
     s.accent ??= parent.accent;
     s.ink ??= parent.ink;
@@ -149,16 +150,18 @@ export async function getFooter() {
 export function lastCommitDate(filePath: string | undefined): Date | undefined {
   if (!filePath) return undefined;
   try {
-    const out = execFileSync('git', ['log', '-1', '--follow', '--diff-filter=AM', '--format=%cI', '--', filePath], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    // Run git in the file's own folder: the catalog may be a submodule with its own history.
+    const abs = resolve(process.cwd(), filePath);
+    const out = execFileSync('git', ['-C', dirname(abs), 'log', '-1', '--follow', '--diff-filter=AM', '--format=%cI', '--', basename(abs)], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
     return out ? new Date(out) : undefined;
   } catch {
     return undefined;
   }
 }
 
-/** Site-wide visitor-facing text (src/content/site.md). */
+/** Site-wide visitor-facing text (the app's site.md in the catalog). */
 export async function getSiteText() {
   const entry = await getEntry('site', 'site');
-  if (!entry) throw new Error('Missing src/content/site.md');
+  if (!entry) throw new Error("Missing the app's site.md in the content catalog");
   return entry.data;
 }

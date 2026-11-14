@@ -14,7 +14,8 @@ export const LINKS = {
   docs: 'https://example.org/docs', // [docs domain]
   console: 'https://example.org/consola', // [console domain]
   repo: 'https://github.com/[organization]/42chain-site', // [site repository]
+  content: 'https://github.com/[organization]/42chain-content', // [public content repository]
 };
 
-/** The "edit this page" link points here: repo + branch + path of the content file. */
-export const EDIT_BASE = `${LINKS.repo}/edit/main/apps/site/`;
+/** The "edit this page" link points to the content repository; the file's path in the catalog is appended. */
+export const EDIT_BASE = `${LINKS.content}/edit/main/`;
