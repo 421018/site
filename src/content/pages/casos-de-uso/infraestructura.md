@@ -5,6 +5,10 @@ menuTitle: "Infraestructura"
 weight: 30
 ---
 
+:::figure[Imagen ilustrativa. Foto: Kim R-K, Unsplash.]{ratio="wide"}
+![Farola de doble brazo encendida al atardecer](../../../assets/images/casos/infraestructura.jpg)
+:::
+
 ## El problema {#problema}
 
 Una red de agua, el alumbrado público, una red eléctrica o una red de telecomunicaciones tienen miles de activos repartidos en el territorio. Su operación involucra a varias partes: quien es dueño de la infraestructura, los contratistas que la mantienen, los inspectores que la revisan y, a veces, un regulador.
@@ -31,6 +35,9 @@ Un municipio contrata a dos empresas para mantener su alumbrado público, y una 
 - **5. Cualquiera revisa el historial.** Ante un reclamo o una auditoría, el historial de cada luminaria muestra qué se hizo, quién lo hizo y cuándo, sin depender del archivo de ninguna de las partes.
 
 El mismo esquema sirve para otras infraestructuras: redes de agua y de energía, puentes y carreteras, o los recursos que comparten varios operadores de una red.
+
+:::diagram[Quién registra qué en el mantenimiento, y qué queda registrado en 42.]{name="carriles-infraestructura"}
+:::
 
 ## Qué va en la cadena y qué no {#datos}
 

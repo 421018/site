@@ -5,6 +5,10 @@ menuTitle: "Registros verificables"
 weight: 10
 ---
 
+:::figure[Imagen ilustrativa. Foto: Quilia, Unsplash.]{ratio="wide"}
+![Diploma enmarcado con un sello dorado](../../../assets/images/casos/registros.jpg)
+:::
+
 ## El problema {#problema}
 
 Muchos documentos valen solo si se puede comprobar que son auténticos: un título universitario, un certificado de calibración, una constancia de un curso, el acta de una sesión de un concejo municipal.
@@ -30,6 +34,9 @@ Una universidad emite títulos y quiere que cualquier empleador pueda comprobarl
 - **5. Revocar, si hace falta.** Si un título se anula, la universidad registra la revocación en el mismo contrato. La verificación muestra que el título existió y que fue revocado, y cuándo.
 
 El mismo esquema sirve para certificados técnicos, constancias de formación o actas públicas: cambia quién emite y quién verifica, no el mecanismo.
+
+:::diagram[Quién hace qué en el ejemplo, y qué queda registrado en 42.]{name="carriles-registros"}
+:::
 
 ## Qué va en la cadena y qué no {#datos}
 

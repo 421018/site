@@ -5,6 +5,10 @@ menuTitle: "Integración entre redes"
 weight: 50
 ---
 
+:::figure[Imagen ilustrativa. Foto: Trnava University, Unsplash.]{ratio="wide"}
+![Mesa de laboratorio con un microscopio y equipos de análisis](../../../assets/images/casos/integracion.jpg)
+:::
+
 ## El problema {#problema}
 
 Un registro rara vez vive solo. Una organización que mantiene datos reservados en un entorno interno puede necesitar que terceros verifiquen algunos de ellos. Dos sistemas distintos pueden necesitar reaccionar a lo que ocurre en el otro.
@@ -29,6 +33,9 @@ Un consorcio de laboratorios opera un entorno interno conectado a 42. Ahí regis
 - **4. Cualquiera verifica.** Quien recibe el certificado comprueba su huella en 42 y sabe que está registrada en el entorno interno del consorcio, sin tener acceso a él.
 
 Los datos reservados se quedan en el entorno interno. A 42 solo llega lo que tiene que ser verificable por cualquiera.
+
+:::diagram[Cómo una huella del entorno interno llega a comprobarse en 42.]{name="carriles-integracion"}
+:::
 
 ## Qué va en la cadena y qué no {#datos}
 

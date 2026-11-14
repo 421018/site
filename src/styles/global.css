@@ -162,6 +162,31 @@ img, svg { display: block; }
 .prose .photo { margin: 16px 0 36px; display: flex; flex-direction: column-reverse; }
 .prose .photo img { display: block; width: 100%; height: auto; border-radius: 14px; }
 .prose .photo p { margin: 0; }
+.prose .photo.wide img { aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* Diagram: lanes, who does what in an example (casos de uso) */
+.prose .dg-lanes { display: grid; gap: 8px; }
+.prose .dg-lane { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 12px; align-items: start; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); }
+.prose .dg-lane > b { color: var(--head); font-size: 14.5px; line-height: 1.35; padding-top: 4px; }
+.prose .dg-lane ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.prose .dg-lane li { margin: 0; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rule); font-size: 13.5px; line-height: 1.4; color: var(--ink); }
+.prose .dg-lane li i { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--link); margin-right: 6px; }
+.prose .dg-lane.chain { border-color: var(--link); background: color-mix(in srgb, var(--link) 7%, var(--bg)); }
+.prose .dg-lane.chain > b { color: var(--link); font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
+.prose .dg-lane.chain li { border-color: color-mix(in srgb, var(--link) 45%, var(--rule)); background: var(--bg); }
+/* Diagram: before / after comparison (casos de uso) */
+.prose .dg-compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.prose .dg-col { padding: 16px; border: 1px solid var(--rule); border-radius: 14px; display: flex; flex-direction: column; gap: 10px; }
+.prose .dg-col > b { color: var(--head); font-size: 16px; margin-top: -4px; }
+.prose .dg-col.on { border-color: var(--link); }
+.prose .dg-col:not(.on) .dg-node.hub { border-color: var(--rule2); background: var(--panel); }
+.prose .dg-col:not(.on) .dg-k { color: var(--muted); }
+.prose .dg-orgs { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.prose .dg-orgs span { padding: 5px 10px; border-radius: 999px; border: 1px solid var(--rule); font-size: 13px; color: var(--ink); }
+.prose .dg-orgs.nodes span { border-color: color-mix(in srgb, var(--link) 45%, var(--rule)); }
+.prose .dg-cap { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+@media (max-width: 640px) { .prose .dg-compare { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .prose .dg-lane { grid-template-columns: 1fr; gap: 8px; } }
 
 /* Diagram: the engine (protocolo/index) */
 .prose .dg-motor { display: grid; gap: 14px; }

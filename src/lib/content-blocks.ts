@@ -15,6 +15,7 @@
  *                              Inserts src/content/diagrams/<name>.html (responsive,
  *                              preferred) or <name>.svg, with the caption below.
  *   :::figure[Caption]         Wraps a Markdown image (![alt](path)) with a caption.
+ *                              {ratio="wide"} crops it to 16:9 so headers line up.
  *   :::facts                   Key figures. One list item per figure: `- **Value** Label`.
  *   :::timeline{current="…"}   Timeline. One list item per milestone:
  *                              `- **Date** Title` and the description on the next line.
@@ -108,7 +109,9 @@ export const contentBlocks = defineMdastPlugin({
         if (!children.some((c) => c !== caption && c.type === 'paragraph' && c.children?.some((k) => k.type === 'image'))) {
           fail(ctx, node, 'needs a Markdown image inside: ![description](path).');
         }
-        setTag(ctx, node as never, 'figure', 'photo');
+        const ratio = node.attributes?.ratio;
+        if (ratio && ratio !== 'wide') fail(ctx, node, 'ratio can only be "wide".');
+        setTag(ctx, node as never, 'figure', ratio === 'wide' ? 'photo wide' : 'photo');
         setTag(ctx, caption, 'figcaption');
         return;
       }

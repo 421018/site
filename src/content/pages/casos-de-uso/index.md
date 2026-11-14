@@ -23,6 +23,9 @@ El Protocolo 42 resuelve ese problema de otra forma. Cada organización puede op
 - **Reglas públicas.** Cualquier participante puede leer las reglas y comprobar que se aplicaron.
 - **Verificación directa.** Un tercero comprueba un dato en el registro, sin tener que pedírselo a quien lo registró.
 
+:::diagram[El mismo problema resuelto de dos formas: un registro central y un registro compartido.]{name="patron-comun"}
+:::
+
 :::aside
 [Un registro que comparten muchos →](/protocolo#registro)
 :::

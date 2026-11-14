@@ -5,6 +5,10 @@ menuTitle: "Trazabilidad"
 weight: 20
 ---
 
+:::figure[Imagen ilustrativa. Foto: Tatiana Fernández R, Unsplash.]{ratio="wide"}
+![Saco de yute lleno de granos de café](../../../assets/images/casos/trazabilidad.jpg)
+:::
+
 ## El problema {#problema}
 
 Un producto pasa por muchas manos antes de llegar a su destino: quien lo produce, quien lo procesa, quien lo transporta, quien lo almacena y quien lo compra. Cada una de esas partes sabe lo que ocurrió mientras el producto estuvo a su cargo, y cada una lo registra en sus propios sistemas.
@@ -28,6 +32,9 @@ Una cooperativa de café exporta lotes que pasan por un beneficio, un transporti
 - **5. El comprador consulta el historial.** El importador consulta el lote y ve cada etapa, quién la registró y cuándo. Puede comprobar los documentos que le entreguen contra sus huellas.
 
 Si una etapa no se registra, el hueco queda a la vista. Si un registro es incorrecto, la corrección se añade como un registro nuevo, y el historial muestra los dos.
+
+:::diagram[Quién registra cada etapa del lote, y qué queda registrado en 42.]{name="carriles-trazabilidad"}
+:::
 
 ## Qué va en la cadena y qué no {#datos}
 

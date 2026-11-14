@@ -5,6 +5,10 @@ menuTitle: "Autorizaciones compartidas"
 weight: 40
 ---
 
+:::figure[Imagen ilustrativa. Foto: Artan, Unsplash.]{ratio="wide"}
+![Terminal portuaria con contenedores y camiones](../../../assets/images/casos/autorizaciones.jpg)
+:::
+
 ## El problema {#problema}
 
 Cuando varias organizaciones comparten un registro, algunos cambios no deberían depender de una sola de ellas: dar de alta a un participante nuevo, cambiar una regla del registro o retirar una autorización.
@@ -28,6 +32,9 @@ Cinco empresas de transporte comparten un registro de vehículos habilitados par
 - **3. Las demás revisan.** Cada empresa comprueba la documentación y, si está en orden, aprueba con su cuenta.
 - **4. El contrato aplica el cambio.** Con la tercera aprobación, el vehículo queda habilitado en el registro. El sistema de acceso de la terminal consulta el registro y deja pasar al vehículo.
 - **5. El historial queda a la vista.** Cualquiera de las empresas puede ver quién propuso y quién aprobó cada alta o baja.
+
+:::diagram[Quién propone, aprueba y aplica el cambio, y qué queda registrado en 42.]{name="carriles-autorizaciones"}
+:::
 
 ## Qué va en la cadena y qué no {#datos}
 
