@@ -13,11 +13,13 @@ import { catalogPath } from './catalog';
 export interface SharedOptions {
   /** The app's folder in the content catalog: "site" or "docs". */
   catalog: string;
+  /** Names accepted by :::widget (from @42chain/widgets/names). */
+  widgets?: readonly string[];
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
 }
 
-export function sharedConfig({ catalog, scriptSources = [] }: SharedOptions): AstroUserConfig {
+export function sharedConfig({ catalog, widgets = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
   return {
     trailingSlash: 'never',
     build: { format: 'directory' },
@@ -27,7 +29,7 @@ export function sharedConfig({ catalog, scriptSources = [] }: SharedOptions): As
       syntaxHighlight: 'prism',
       processor: satteri({
         features: { attributes: true, directive: true },
-        mdastPlugins: [contentBlocks({ diagramsDir: catalogPath(catalog, 'diagrams') })],
+        mdastPlugins: [contentBlocks({ diagramsDir: catalogPath(catalog, 'diagrams'), widgets })],
       }),
     },
     // Fonts are downloaded at build time and served from the site itself: no

@@ -1,0 +1,42 @@
+---
+/**
+ * Places widgets in a rendered page. The content blocks turn
+ * :::widget{name="x"} into an empty <div data-widget="x"></div>; this component
+ * renders the page (its default slot), cuts it at those markers and puts the
+ * real component in each place. Content stays plain Markdown, with no code.
+ */
+import HashChain from '@42chain/ui/components/HashChain.astro';
+import FeeCalc from '@42chain/ui/components/FeeCalc.astro';
+import UnitConverter from '@42chain/ui/components/UnitConverter.astro';
+import ConsensusSim from '@42chain/ui/components/ConsensusSim.astro';
+import VoteSim from '@42chain/ui/components/VoteSim.astro';
+import IbcSim from '@42chain/ui/components/IbcSim.astro';
+import NetworkSwitch from '@42chain/network/components/NetworkSwitch.astro';
+import NetworkParams from '@42chain/network/components/NetworkParams.astro';
+import ProviderDirectory from '@42chain/network/components/ProviderDirectory.astro';
+import AddNetwork from '@42chain/network/components/AddNetwork.astro';
+import type { WidgetName } from './names';
+
+const components: Record<WidgetName, (props: Record<string, never>) => unknown> = {
+  'hash-chain': HashChain,
+  'fee-calc': FeeCalc,
+  'unit-converter': UnitConverter,
+  'consensus-sim': ConsensusSim,
+  'vote-sim': VoteSim,
+  'ibc-sim': IbcSim,
+  'network-switch': NetworkSwitch,
+  'network-params': NetworkParams,
+  'provider-directory': ProviderDirectory,
+  'add-network': AddNetwork,
+};
+
+const html = await Astro.slots.render('default');
+// split() with a capture group alternates: html, name, html, name, html…
+const parts = html.split(/<div data-widget="([a-z0-9-]+)"><\/div>/);
+---
+{parts.map((part, i) => {
+  if (i % 2 === 0) return <Fragment set:html={part} />;
+  const Widget = components[part as WidgetName];
+  if (!Widget) throw new Error(`Unknown widget "${part}" in the page.`);
+  return <Widget />;
+})}

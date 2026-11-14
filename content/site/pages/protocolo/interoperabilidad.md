@@ -4,8 +4,6 @@ summary: "Ninguna red vive aislada. Cómo comprueba 42 lo que ocurrió en otra r
 weight: 40
 ---
 
-import IbcSim from '@42chain/ui/components/IbcSim.astro';
-
 ## Por qué conectar redes {#porque-conectar}
 
 Cada red lleva su propio registro, con sus propias cuentas y sus propias reglas. Una red, por sí sola, no puede ver lo que ocurre en otra.
@@ -52,7 +50,8 @@ Si la entrega no ocurre dentro de un plazo, la transferencia vence y las 10 unid
 
 El regreso funciona al revés. La red B destruye las 10 unidades que las representaban, y 42, tras verificar la prueba, desbloquea las originales.
 
-<IbcSim />
+:::widget{name="ibc-sim"}
+:::
 
 :::aside
 Las cifras del ejemplo son ilustrativas.

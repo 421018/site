@@ -4,9 +4,6 @@ summary: "Cada operación en la red tiene un costo pequeño y predecible. De dó
 weight: 30
 ---
 
-import FeeCalc from '@42chain/ui/components/FeeCalc.astro';
-import UnitConverter from '@42chain/ui/components/UnitConverter.astro';
-
 ## La unidad nativa {#unidad}
 
 Cada operación en la red pone a trabajar a miles de nodos, y ese trabajo se paga en la unidad propia del protocolo: la **unidad nativa**, que se llama **Improbability** y tiene el símbolo **42**.
@@ -33,7 +30,8 @@ Entre quienes desarrollan sobre la red es común decir **una cup** en lugar de �
 
 Los contratos trabajan siempre en drops, como en cualquier red compatible con la EVM: una cup se escribe en un contrato como `1000000000000000000`.
 
-<UnitConverter />
+:::widget{name="unit-converter"}
+:::
 
 :::lore[Bitácora del motor]
 El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que miles de computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
@@ -76,7 +74,8 @@ El precio por unidad de gas tiene dos partes:
 
 Así, el costo de una transacción es predecible: la billetera conoce la tarifa base del bloque y la muestra antes de firmar.
 
-<FeeCalc />
+:::widget{name="fee-calc"}
+:::
 
 ### El límite de gas
 

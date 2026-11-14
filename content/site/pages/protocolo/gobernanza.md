@@ -4,8 +4,6 @@ summary: "Las reglas de la red tienen que poder cambiar. Quién decide esos camb
 weight: 50
 ---
 
-import VoteSim from '@42chain/ui/components/VoteSim.astro';
-
 ## Por qué una red necesita gobierno {#necesidad}
 
 Ningún protocolo queda terminado. Con el tiempo hay que ajustar parámetros, corregir errores y adoptar mejoras. Alguien tiene que decidir esos cambios.
@@ -100,7 +98,8 @@ La propuesta se aprueba. Los porcentajes reales de cada regla son parámetros de
 Las cifras del ejemplo son ilustrativas.
 :::
 
-<VoteSim />
+:::widget{name="vote-sim"}
+:::
 
 :::aside
 [Parámetros de gobernanza y cómo votar ↗](/docs)

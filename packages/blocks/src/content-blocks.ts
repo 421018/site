@@ -14,6 +14,8 @@
  *   :::diagram[Caption]{name="motor"}
  *                              Inserts the app's diagrams/<name>.html from the catalog (responsive,
  *                              preferred) or <name>.svg, with the caption below.
+ *   :::widget{name="fee-calc"} Interactive widget or data view rendered by the engine
+ *                              (the names are listed in @42chain/widgets/names).
  *   :::figure[Caption]         Wraps a Markdown image (![alt](path)) with a caption.
  *                              {ratio="wide"} crops it to 16:9 so headers line up.
  *   :::facts                   Key figures. One list item per figure: `- **Value** Label`.
@@ -60,10 +62,13 @@ function listItems(ctx: MdastVisitorContext, node: ContainerDirective): [string,
   });
 }
 
-/** Options: diagramsDir is the folder :::diagram reads (the app's diagrams in the catalog). */
-export interface BlockOptions { diagramsDir?: string }
+/**
+ * Options: diagramsDir is the folder :::diagram reads (the app's diagrams in the
+ * catalog); widgets lists the names :::widget accepts.
+ */
+export interface BlockOptions { diagramsDir?: string; widgets?: readonly string[] }
 
-export const contentBlocks = ({ diagramsDir }: BlockOptions = {}) => defineMdastPlugin({
+export const contentBlocks = ({ diagramsDir, widgets = [] }: BlockOptions = {}) => defineMdastPlugin({
   name: '42chain-content-blocks',
   containerDirective(node, ctx) {
     const children = node.children as Node[];
@@ -108,6 +113,15 @@ export const contentBlocks = ({ diagramsDir }: BlockOptions = {}) => defineMdast
         ctx.replaceNode(node, rawHtml(`<figure class="diagram">${body}<figcaption>${text}</figcaption></figure>`));
         return;
       }
+      case 'widget': {
+        const name = node.attributes?.name;
+        if (!name || !widgets.includes(name)) {
+          fail(ctx, node, `unknown widget "${name ?? ''}". Available: ${widgets.join(', ') || 'none'}.`);
+        }
+        // An empty marker; the engine puts the widget's component here when it renders the page.
+        ctx.replaceNode(node, rawHtml(`<div data-widget="${name}"></div>`));
+        return;
+      }
       case 'figure': {
         const caption = needLabel('the caption');
         if (!children.some((c) => c !== caption && c.type === 'paragraph' && c.children?.some((k) => k.type === 'image'))) {
@@ -147,7 +161,7 @@ export const contentBlocks = ({ diagramsDir }: BlockOptions = {}) => defineMdast
         return;
       }
       default:
-        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, lore, diagram, figure, facts, timeline.');
+        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, lore, diagram, widget, figure, facts, timeline.');
     }
   },
 });

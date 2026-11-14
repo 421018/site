@@ -63,7 +63,8 @@ export const pageSchema = z
  */
 export const pagesLoader = (base: string) =>
   glob({
-    pattern: '**/*.{md,mdx}', // TEMPORARY: .mdx is removed in the next step (widgets as ::: blocks)
+    // Plain Markdown only: content never carries code (widgets are ::: blocks).
+    pattern: '**/*.md',
     base,
     generateId: ({ entry }) => entry.replace(/\.mdx?$/, '').replace(/(^|\/)index$/, ''),
   });

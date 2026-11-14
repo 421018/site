@@ -4,8 +4,6 @@ summary: "Miles de computadoras que no se conocen acuerdan el mismo bloque cada 
 weight: 20
 ---
 
-import ConsensusSim from '@42chain/ui/components/ConsensusSim.astro';
-
 ## El problema del acuerdo {#acuerdo}
 
 Cada nodo guarda una copia del registro, y todas las copias deben coincidir. Para eso, todos los nodos tienen que aceptar los mismos bloques, en el mismo orden.
@@ -65,7 +63,8 @@ Si los validadores desconectados suman más de un tercio del poder de voto, ning
 
 Esta pausa es una decisión de diseño. Un bloque confirmado ya no puede deshacerse, así que el protocolo prefiere detenerse antes que confirmar un bloque sin la mayoría necesaria. Cuando los validadores se reconectan y se recupera la mayoría, la red continúa desde el último bloque confirmado.
 
-<ConsensusSim />
+:::widget{name="consensus-sim"}
+:::
 
 ## Delegación {#delegacion}
 

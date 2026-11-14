@@ -11,8 +11,6 @@ section:
   sequential: true
 ---
 
-import HashChain from '@42chain/ui/components/HashChain.astro';
-
 ## Qué es el protocolo {#protocolo}
 
 Cuando varias computadoras tienen que trabajar juntas sin que ninguna mande sobre las demás, necesitan un acuerdo sobre cómo hacerlo. Ese acuerdo se escribe como un conjunto de reglas precisas. A ese conjunto de reglas se le llama **protocolo**.
@@ -48,7 +46,8 @@ Cada bloque incluye la **huella** del bloque anterior. La huella es un código q
 
 Si alguien alterara un bloque antiguo, la huella de ese bloque cambiaría. Ya no coincidiría con la huella guardada en el bloque siguiente, y cualquier nodo detectaría la alteración.
 
-<HashChain />
+:::widget{name="hash-chain"}
+:::
 
 De aquí se desprende algo importante: para confiar en el registro no hace falta confiar en ninguna persona en particular, porque cualquiera puede comprobar que el registro está intacto. Por eso el protocolo no pide permiso para participar. Cualquiera puede ejecutar el protocolo en su propia computadora, convertirse en nodo y revisar el historial completo. Por eso se dice que la red es **pública**.
 

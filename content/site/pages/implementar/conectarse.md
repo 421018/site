@@ -5,22 +5,19 @@ menuTitle: "Conectarse a la red"
 weight: 5
 ---
 
-import NetworkSwitch from '@42chain/network/components/NetworkSwitch.astro';
-import NetworkParams from '@42chain/network/components/NetworkParams.astro';
-import AddNetwork from '@42chain/network/components/AddNetwork.astro';
-import ProviderDirectory from '@42chain/network/components/ProviderDirectory.astro';
-
 ## Dos redes, el mismo software {#red}
 
 42 Chain funciona en dos redes que ejecutan el mismo software. En la **red principal**, cada transacción tiene efecto real. La **red de pruebas** es para desarrollar y probar sin riesgo: sus unidades no sirven fuera de ella.
 
 Para conectarte a cualquiera de las dos necesitas sus datos y un punto de acceso a un nodo. Elige la red y esta página te muestra solo lo que le corresponde:
 
-<NetworkSwitch />
+:::widget{name="network-switch"}
+:::
 
 ## Parámetros de red {#parametros}
 
-<NetworkParams />
+:::widget{name="network-params"}
+:::
 
 ### Por qué «infinite» {#infinite}
 
@@ -32,7 +29,8 @@ Los parámetros vigentes y su historial están en la [referencia técnica](/docs
 
 La forma más rápida es este botón. Tu billetera muestra los datos y te pide confirmación antes de añadir la red:
 
-<AddNetwork />
+:::widget{name="add-network"}
+:::
 
 También puedes añadirla a mano con cinco datos de la tabla de parámetros: el nombre de la red, el chain ID (EVM), el símbolo, una URL de RPC del [directorio](#proveedores) o de tu propio nodo y, si quieres, un explorador.
 
@@ -44,9 +42,11 @@ Una red falsa puede copiar el nombre, el símbolo e incluso el chain ID. Usa sol
 
 Los puntos de acceso a 42 los ofrecen operadores independientes, cada uno con su propia infraestructura y su propio dominio. Que haya varios es lo que hace resistente el acceso a la red: si uno deja de responder, los demás siguen disponibles, y siempre puedes operar tu propio nodo. Ninguno es un punto de acceso oficial, cada operador responde por su servicio, y aparecer aquí no implica respaldo.
 
-<NetworkSwitch />
+:::widget{name="network-switch"}
+:::
 
-<ProviderDirectory />
+:::widget{name="provider-directory"}
+:::
 
 [Operar tu propio nodo →](/implementar/nodos)
 

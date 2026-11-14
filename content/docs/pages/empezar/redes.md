@@ -4,22 +4,21 @@ summary: "Los datos de la red principal y de la red de pruebas, y los proveedore
 weight: 20
 ---
 
-import NetworkSwitch from '@42chain/network/components/NetworkSwitch.astro';
-import NetworkParams from '@42chain/network/components/NetworkParams.astro';
-import ProviderDirectory from '@42chain/network/components/ProviderDirectory.astro';
-
 ## Elige la red {#red}
 
 Estos datos son los mismos que publica el sitio de 42 Chain: los dos leen la misma fuente.
 
-<NetworkSwitch />
+:::widget{name="network-switch"}
+:::
 
 ## Parámetros {#parametros}
 
-<NetworkParams />
+:::widget{name="network-params"}
+:::
 
 ## Puntos de acceso {#proveedores}
 
 Cada proveedor mantiene su propia infraestructura. Usa el que prefieras, o tu propio nodo.
 
-<ProviderDirectory />
+:::widget{name="provider-directory"}
+:::

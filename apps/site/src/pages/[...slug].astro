@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Doc from '@42chain/kit/layouts/Doc.astro';
+import Splice from '@42chain/widgets/Splice.astro';
 import { getSections } from '@42chain/kit/site';
 
 export async function getStaticPaths() {
@@ -11,5 +12,5 @@ const { page } = Astro.props;
 const { Content } = await render(page);
 ---
 <Doc page={page}>
-  <Content />
+  <Splice><Content /></Splice>
 </Doc>
