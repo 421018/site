@@ -17,7 +17,7 @@ Cada tipo de integración necesita cosas distintas:
 - **Billeteras.** Crean cuentas, firman transacciones y muestran saldos. Necesitan conocer los formatos de dirección de la red y cómo conectarse a un nodo.
 - **Plataformas que guardan unidades de sus usuarios.** Por ejemplo, exchanges o servicios de custodia. Reciben depósitos y procesan retiros. Necesitan saber cuándo una transacción es definitiva.
 - **Exploradores e indexadores.** Leen todos los bloques y los presentan o los organizan para consultarlos. Suelen necesitar un nodo de archivo.
-- **Sitios de datos.** Publican información de la red, como su nombre, su unidad nativa o su suministro. Necesitan datos oficiales y enlaces a los canales del proyecto.
+- **Sitios de datos.** Publican información de la red, como su nombre, su unidad nativa o su suministro. Necesitan los parámetros de la red y enlaces a los canales del proyecto.
 - **Infraestructura.** Por ejemplo, proveedores de acceso a nodos. Operan nodos y los ponen al servicio de otras aplicaciones.
 
 :::aside
@@ -30,10 +30,10 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 
 | Dato | Detalle |
 |---|---|
-| Identificadores de red | Uno para la red principal y otro para la red de pruebas · [en la documentación] |
-| Endpoints oficiales | Puntos de conexión a nodos de cada red · [en la documentación] |
+| Identificadores de red | Uno para la red principal y otro para la red de pruebas · [Parámetros de red](/desarrolladores/conectarse#parametros) |
+| Puntos de conexión | Los ofrecen proveedores independientes, o un nodo propio · [Directorio de proveedores](/desarrolladores/conectarse#proveedores) |
 | Formatos de dirección | Formato 0x, compatible con la EVM, y formato propio de la red; los dos corresponden a la misma cuenta |
-| Unidad nativa | Improbability · símbolo 42 · [decimales] |
+| Unidad nativa | Improbability · símbolo 42 · [Decimales](/desarrolladores/conectarse#parametros) |
 | Finalidad | Una transacción es definitiva en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |
 | Emisión | Emisión por bloque · [en la documentación] |
 | Canales oficiales | Para enlazar desde el servicio · [Canales oficiales](/proyecto/contacto#canales) |

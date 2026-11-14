@@ -53,7 +53,7 @@ La **red de pruebas** sirve para desarrollar y probar. Es pública y usa unidade
 
 La **red principal** es la red donde las transacciones tienen efecto real.
 
-Como las dos redes ejecutan el mismo protocolo, una aplicación pasa de la red de pruebas a la red principal sin cambiar su código. Solo cambian los parámetros de conexión. Los parámetros oficiales se publican únicamente en la [documentación](/docs).
+Como las dos redes ejecutan el mismo protocolo, una aplicación pasa de la red de pruebas a la red principal sin cambiar su código. Solo cambian los parámetros de conexión, que están en [Conectarse a 42 Chain](/desarrolladores/conectarse#parametros).
 
 ## Del código a la red principal {#produccion}
 
@@ -73,10 +73,10 @@ Llevar una aplicación a la red principal suele seguir cinco pasos:
 | Desarrollo | Hardhat, Foundry, Remix |
 | Librerías | Viem, Ethers.js, Web3.js |
 | Billeteras | MetaMask y billeteras EVM · [Billetera nativa] |
-| Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio |
+| Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio · [Directorio](/desarrolladores/conectarse#proveedores) |
 
 ## Documentación y contacto {#soporte}
 
-Las guías, los parámetros de conexión y la referencia técnica completa están en la [documentación](/docs).
+Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/desarrolladores/conectarse). Las guías y la referencia técnica completa están en la [documentación](/docs).
 
 Si vas a integrar la red en tu servicio, consulta [Integrar la red](/desarrolladores/integrar). Si quieres contribuir al software del protocolo, consulta [Contribuir al protocolo](/proyecto/equipo#contribuir).

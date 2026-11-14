@@ -65,6 +65,7 @@ start:
   kicker: Por dónde empezar
   title: Elige por dónde entrar.
   paths:
+    - { label: Conectarse a la red, href: /desarrolladores/conectarse, text: "Parámetros de red, billeteras y proveedores de RPC." }
     - { label: Construir una aplicación, href: /desarrolladores, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
     - { label: Operar un nodo, href: /desarrolladores/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
     - { label: Integrar la red, href: /desarrolladores/integrar, text: "Conectar una billetera, una plataforma o un explorador." }

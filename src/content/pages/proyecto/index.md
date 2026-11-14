@@ -70,23 +70,6 @@ El protocolo usa estándares abiertos y se comunica directamente con otras redes
 
 Las reglas solo cambian mediante propuestas públicas y votos que quedan registrados en la cadena.
 
-## Las ideas de las que parte {#raices}
-
-El proyecto parte de una tradición de ideas sobre un internet libre, abierto y sin intermediarios obligatorios.
-
-:::timeline{current="Hoy"}
-- **1988** Manifiesto criptoanarquista
-  La criptografía como herramienta para proteger la libertad de las personas en las redes.
-- **1993** Manifiesto cypherpunk
-  La privacidad como condición de una sociedad abierta, defendida con código.
-- **1996** Declaración de independencia del ciberespacio
-  Internet como un espacio con normas propias, construido por quienes lo habitan.
-- **2008** Bitcoin
-  Un sistema entre pares que funciona sin un intermediario de confianza.
-- **Hoy** 42 Chain
-  Infraestructura pública y abierta.
-:::
-
 ## Desarrollo continuo {#continuo}
 
 El proyecto no tiene una hoja de ruta con fecha de término. Como toda infraestructura, se mantiene y se mejora mientras está en uso.
