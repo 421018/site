@@ -13,7 +13,7 @@ header:
 
 footer:
   credit: Proyecto de código abierto
-  license: Apache 2.0
+  license: Código Apache 2.0 · Textos CC BY 4.0
   note: Desarrollado en abierto
 
 page:

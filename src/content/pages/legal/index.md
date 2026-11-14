@@ -129,8 +129,10 @@ Pendiente de revisión legal.
 | Qué | Licencia |
 |---|---|
 | Software del protocolo | Apache License 2.0 |
+| Código de este sitio | Apache License 2.0 |
+| Textos de este sitio | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
 | Documentación | [LICENCIA DE LA DOCUMENTACIÓN] |
-| Código de este sitio y de la Consola | [LICENCIA] |
+| Código de la Consola | [LICENCIA] |
 
 ### Qué permite la licencia del protocolo
 
@@ -140,12 +142,16 @@ La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribu
 
 La licencia no da derecho a usar los nombres ni las marcas de quienes contribuyen al software. Además, el software se ofrece tal cual: la licencia excluye toda garantía y limita la responsabilidad de quienes lo publican y de quienes contribuyen a él.
 
+### Qué permite la licencia de los textos
+
+Los textos de este sitio pueden copiarse, traducirse, adaptarse y publicarse en cualquier medio, también con fines comerciales, siempre que se cite la fuente: el nombre del proyecto y un enlace al sitio o a la página de origen. La licencia no autoriza a usar el nombre ni el logotipo del proyecto de forma que sugiera una relación o un respaldo que no existe.
+
 ### Software de terceros
 
 El software del protocolo incluye software de código abierto desarrollado por terceros, también publicado bajo la licencia Apache 2.0. Sus avisos de derechos de autor y de atribución se conservan íntegros en los archivos LICENSE y NOTICE del repositorio público, como exige esa licencia.
 
 :::aside
-[Licencia completa (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Archivos LICENSE y NOTICE en el repositorio]
+[Licencia completa (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.es) · [Archivos LICENSE y NOTICE en el repositorio]
 :::
 
 ## Nombre y marca {#marca}
