@@ -208,6 +208,8 @@ Values in `[brackets]` are placeholders. The main ones:
 - Repository URL (`[organization]`) in `src/config.ts`, `NOTICE` and `.github/ISSUE_TEMPLATE/config.yml`.
 - Contact emails in `SECURITY.md` (`[security email]`) and `CODE_OF_CONDUCT.md` (`[conduct email]`).
 - Licenses of the documentation site and the console (`legal/index.md`).
+- Hosting provider named in the privacy section (`legal/index.md`).
+- Custom implementation providers (`implementar/implementaciones.md`) and RPC/explorer providers (`implementar/conectarse.md`).
 - Social sharing image (`og:image`).
 
 To find them all: `grep -rn "\[" src/content src/config.ts NOTICE SECURITY.md CODE_OF_CONDUCT.md .github`.

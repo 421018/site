@@ -123,5 +123,5 @@ No. Los proveedores de RPC, de exploradores y de implementaciones que se listan 
 :::
 
 :::faq[¿Qué datos recopila este sitio?]
-Casi ninguno. El sitio no pide registro y no usa analítica que identifique a las personas. [Privacidad y cookies](/legal/privacidad)
+Ninguno por su cuenta. El sitio no tiene formularios, no usa cookies ni analítica y sirve todos sus recursos desde el propio sitio. El proveedor de alojamiento procesa datos técnicos de cada visita, como la dirección IP, para entregar las páginas. [Privacidad](/legal#privacidad)
 :::
