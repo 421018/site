@@ -33,7 +33,7 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 | Identificadores de red | Uno para la red principal y otro para la red de pruebas · [Parámetros de red](/implementar/conectarse#parametros) |
 | Puntos de conexión | Los ofrecen proveedores independientes, o un nodo propio · [Directorio de proveedores](/implementar/conectarse#proveedores) |
 | Interfaces del nodo | JSON-RPC compatible con la EVM, y las interfaces propias de la red · [en la documentación] |
-| Unidad y denominación base | Improbability, símbolo 42, 18 decimales · denominación base `drop` (gota) · [Gotas y tazas](/protocolo/tarifas#medidas) |
+| Unidad y denominación base | Improbability, símbolo 42, 18 decimales · denominación base `drop` (`tdrop` en la red de pruebas) · [Drops y cups](/protocolo/tarifas#medidas) |
 | Formatos de dirección | Formato 0x, compatible con la EVM, y formato propio de la red; los dos corresponden a la misma cuenta |
 | Finalidad | Un registro es definitivo en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |
 | Funciones propias de la red | Direcciones fijas para usarlas desde contratos · [en la documentación] |

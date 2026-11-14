@@ -30,8 +30,8 @@ No. Cualquiera puede usar la red, publicar aplicaciones u operar un nodo sin reg
 Es la unidad nativa del protocolo, y su símbolo es 42. Es un recurso técnico: con ella se pagan las tarifas de las transacciones, y los validadores la usan como respaldo en el staking. [Tarifas y emisión](/protocolo/tarifas)
 :::
 
-:::faq[¿Qué son una gota y una taza?]
-Dos nombres de medida de Improbability. Una **gota** es la fracción más pequeña y la denominación base de la red, con el nombre técnico `drop`: la unidad tiene 18 decimales, así que una unidad completa son 10¹⁸ gotas. **Taza** es el nombre coloquial de una unidad completa, que se usa para hablar de cantidades sin repetir «Improbability». En billeteras y exploradores, la unidad aparece siempre con su símbolo, 42. [Gotas y tazas](/protocolo/tarifas#medidas)
+:::faq[¿Qué son un drop y una cup?]
+Dos nombres de medida de Improbability. Un **drop** es la fracción más pequeña y la denominación base de la red (`drop`, y `tdrop` en la red de pruebas): la unidad tiene 18 decimales, así que una unidad completa son 10¹⁸ drops. **Cup** es el nombre coloquial de una unidad completa, que se usa para hablar de cantidades sin repetir «Improbability». En billeteras y exploradores, la unidad aparece siempre con su símbolo, 42. [Drops y cups](/protocolo/tarifas#medidas)
 :::
 
 :::faq[¿Cuánto tarda en confirmarse una transacción?]

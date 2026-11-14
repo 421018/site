@@ -47,7 +47,7 @@ El protocolo se piensa de la misma forma. Ofrece reglas precisas y resultados ve
 
 En la misma historia, una nave viaja con un motor de improbabilidad infinita, el *Infinite Improbability Drive*. El motor no sigue las rutas normales: hace posible, por un instante, lo que parecía imposible.
 
-De ese motor vienen dos nombres. El nombre formal del protocolo, **Infinite Improbability Drive**, y el de su unidad nativa, **Improbability**, cuyo símbolo es 42: la improbabilidad es el combustible del motor. Su fracción más pequeña se llama **gota**, y una unidad completa, de manera coloquial, **taza**. [Gotas y tazas](/protocolo/tarifas#medidas) Una infraestructura compartida entre organizaciones que no dependen unas de otras parece improbable. El nombre recuerda que el protocolo existe para hacerla posible.
+De ese motor vienen dos nombres. El nombre formal del protocolo, **Infinite Improbability Drive**, y el de su unidad nativa, **Improbability**, cuyo símbolo es 42: la improbabilidad es el combustible del motor. Su fracción más pequeña se llama **drop**, y una unidad completa, de manera coloquial, **cup**. [Drops y cups](/protocolo/tarifas#medidas) Una infraestructura compartida entre organizaciones que no dependen unas de otras parece improbable. El nombre recuerda que el protocolo existe para hacerla posible.
 
 ## Principios {#principios}
 

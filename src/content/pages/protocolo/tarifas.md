@@ -14,26 +14,26 @@ La unidad nativa es el recurso técnico con el que funciona el protocolo. Cumple
 - **Respaldar a los validadores.** Los validadores bloquean unidades como respaldo de su compromiso de seguir las reglas. Como el respaldo vive dentro del protocolo, el protocolo puede retirar una parte automáticamente cuando un validador comete una falta.
 - **Medir el poder de voto.** El peso de cada validador en el consenso y en la gobernanza se mide en unidades en staking, con la misma regla para todos.
 
-### Gotas y tazas {#medidas}
+### Drops y cups {#medidas}
 
-Una unidad se divide en 18 decimales. La fracción más pequeña, que ya no puede dividirse, se llama **gota**. Una unidad completa equivale a un trillón de gotas (10¹⁸).
+Una unidad se divide en 18 decimales. La fracción más pequeña, que ya no puede dividirse, se llama **drop**. Una unidad completa equivale a un trillón de drops (10¹⁸).
 
-La gota es también la denominación base de la red: en las transacciones y las interfaces propias de la red, las cantidades se expresan en gotas con el nombre técnico `drop`.
+El drop es también la denominación base de la red: en las transacciones y las interfaces propias de la red, las cantidades se expresan en drops (`drop` en la red principal y `tdrop` en la red de pruebas).
 
 | Medida | Qué es | Equivalencia |
 |---|---|---|
-| Gota (`drop`) | La fracción más pequeña de la unidad y denominación base de la red | 0,000000000000000001 Improbability (10⁻¹⁸) |
-| Taza | Nombre coloquial de una unidad completa | 1 Improbability = 10¹⁸ gotas |
+| Drop | La fracción más pequeña de la unidad y denominación base de la red (`drop`; `tdrop` en la red de pruebas) | 0,000000000000000001 Improbability (10⁻¹⁸) |
+| Cup | Nombre coloquial de una unidad completa | 1 Improbability = 10¹⁸ drops |
 | 42 | Símbolo de la unidad | Lo que muestran las billeteras y los exploradores |
 
-Entre quienes desarrollan sobre la red es común decir **una taza** en lugar de «una Improbability», y **gotas** para las fracciones. Es un nombre de uso, para hablar de cantidades sin repetir la palabra completa. En el registro, en los contratos y en las billeteras, la unidad sigue siendo Improbability, con símbolo 42.
+Entre quienes desarrollan sobre la red es común decir **una cup** en lugar de «una Improbability», y **drops** para las fracciones. Es un nombre de uso, para hablar de cantidades sin repetir la palabra completa. En el registro, en los contratos y en las billeteras, la unidad sigue siendo Improbability, con símbolo 42.
 
-Los contratos trabajan siempre en gotas, como en cualquier red compatible con la EVM: una taza se escribe en un contrato como `1000000000000000000`.
+Los contratos trabajan siempre en drops, como en cualquier red compatible con la EVM: una cup se escribe en un contrato como `1000000000000000000`.
 
 :::lore[Bitácora del motor]
 El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que miles de computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
 
-Ese combustible se mide en gotas, la cantidad más pequeña que existe, como un átomo. En el taller se habla de tazas: una taza es una unidad completa, lo que cabe en la mano. El gas no es el combustible. Es el medidor que dice cuántas gotas pide cada maniobra.
+Ese combustible se mide en drops, la cantidad más pequeña que existe, como un átomo. En el taller se habla de cups: una cup es una unidad completa, lo que cabe en la mano. El gas no es el combustible. Es el medidor que dice cuántos drops pide cada maniobra.
 :::
 
 :::aside
@@ -60,7 +60,7 @@ La tarifa se calcula multiplicando dos números:
 tarifa = gas consumido × precio por unidad de gas
 :::
 
-Por ejemplo, si una transferencia consume 21.000 unidades de gas y el precio es de 0,000001 Improbability por unidad de gas (un billón de gotas), la tarifa es 21.000 × 0,000001 = 0,021 Improbability.
+Por ejemplo, si una transferencia consume 21.000 unidades de gas y el precio es de 0,000001 Improbability por unidad de gas (un billón de drops), la tarifa es 21.000 × 0,000001 = 0,021 Improbability.
 
 El precio por unidad de gas tiene dos partes:
 
