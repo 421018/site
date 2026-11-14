@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Design system of the 42 Chain sites: tokens, global styles and interactive widgets.",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "exports": {
     "./styles/global.css": "./src/styles/global.css",
     "./components/*": "./src/components/*"

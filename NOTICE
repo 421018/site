@@ -1,22 +1,13 @@
-42 Chain website
-Copyright 2026 The 42 Chain contributors
+42 Chain website and documentation engine
+Copyright (c) 2026 [HOLDER]. All rights reserved (see LICENSE).
 
-This product includes software developed by The 42 Chain contributors
-(https://github.com/[organization]/42chain-site).
+Content catalog (content/): Copyright 2026 The 42 Chain contributors,
+licensed under CC BY 4.0 (see content/LICENSE).
 
-Licensing:
-- Content (everything under apps/*/src/content/: page text, home page,
-  site-wide text and diagrams; and the network data under
-  packages/network/data/) is licensed under the Creative Commons
-  Attribution 4.0 International License (CC BY 4.0). See LICENSE-CONTENT.
-- Everything else (source code) is licensed under the Apache License,
-  Version 2.0. See LICENSE.
-
-"The 42 Chain contributors" are the individual contributors recorded in the
-repository's history.
-
-Third-party components:
-- Geist and Geist Mono fonts, by Vercel, are downloaded at build time and
-  distributed under the SIL Open Font License 1.1.
-- Pagefind, by CloudCannon, generates the documentation's search index and
-  script at build time; it is distributed under the MIT License.
+This product uses third-party open-source software, each under its own
+license, including:
+- Astro (MIT License)
+- Pagefind (MIT License)
+- Geist and Geist Mono fonts (SIL Open Font License 1.1)
+Their license texts are distributed with the packages in node_modules/ and
+with the built site's assets where required.

@@ -58,7 +58,7 @@ export const pageSchema = z
 
 /**
  * Loader for an app's pages folder in the catalog. The file path is the URL:
- * protocolo/index.md → protocolo, protocolo/consenso.mdx → protocolo/consenso,
+ * protocolo/index.md → protocolo, protocolo/consenso.md → protocolo/consenso,
  * construir/precompiles/index.md → construir/precompiles (a group inside a section).
  */
 export const pagesLoader = (base: string) =>
@@ -66,7 +66,7 @@ export const pagesLoader = (base: string) =>
     // Plain Markdown only: content never carries code (widgets are ::: blocks).
     pattern: '**/*.md',
     base,
-    generateId: ({ entry }) => entry.replace(/\.mdx?$/, '').replace(/(^|\/)index$/, ''),
+    generateId: ({ entry }) => entry.replace(/\.md$/, '').replace(/(^|\/)index$/, ''),
   });
 
 export const siteTextSchema = z

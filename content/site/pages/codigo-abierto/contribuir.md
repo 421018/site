@@ -58,7 +58,7 @@ Antes de preguntar, conviene revisar las [preguntas frecuentes](/codigo-abierto/
 
 ## Licencias de las contribuciones {#licencias}
 
-Las contribuciones de código se publican bajo la licencia Apache 2.0, y las de textos de este sitio, bajo CC BY 4.0. Quien contribuye solo debe aportar trabajo propio o que tenga derecho a publicar bajo esas licencias.
+Las contribuciones de código al protocolo se publican bajo la licencia Apache 2.0, y las de textos y datos de este sitio, bajo CC BY 4.0. Quien contribuye solo debe aportar trabajo propio o que tenga derecho a publicar bajo esas licencias.
 
 :::aside
 [Licencias →](/legal#licencia)

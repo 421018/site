@@ -1,5 +1,5 @@
 /**
- * Technical settings. Visitor-facing text lives in src/content/site.md.
+ * Technical settings. Visitor-facing text lives in the catalog's site/site.md.
  * Every value in [brackets] is a placeholder to replace before going live.
  * Content links to /docs and /consola; those redirect to the URLs below
  * (see astro.config.mjs).

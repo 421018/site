@@ -41,7 +41,7 @@ function fail(ctx: MdastVisitorContext, node: ContainerDirective, msg: string): 
   throw new Error(`${file}${line ? `:${line}` : ''} — :::${node.name}: ${msg}`);
 }
 
-/** HTML block that works in both .md and .mdx output. */
+/** Raw HTML node for the rendered page. */
 const rawHtml = (html: string) => ({ raw: html, mdxExpressions: false });
 
 function setTag(ctx: MdastVisitorContext, node: Node, hName: string, className?: string) {

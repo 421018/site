@@ -2,13 +2,13 @@
 
 ## Scope
 
-This repository contains the 42 Chain **website** only. Vulnerabilities in the protocol, the node software or the console are reported to the maintainers of that code, as described on the site's security page ([`/codigo-abierto/seguridad`](apps/site/src/content/pages/codigo-abierto/seguridad.md)).
+This repository contains the **content** of the 42 Chain website and documentation. Vulnerabilities in the protocol, the node software or the console are reported to the maintainers of that code, as described on the site's security page ([`/codigo-abierto/seguridad`](site/pages/codigo-abierto/seguridad.md)).
 
 Relevant reports for this repository include, for example:
 
-- Cross-site scripting or content injection on the site.
-- Weaknesses in the Content-Security-Policy or response headers (`apps/site/astro.config.mjs`, `apps/site/public/_headers`).
-- Vulnerable dependencies that affect the published site or its build.
+- Cross-site scripting or content injection on the site or its pull request previews.
+- Content that gets past the validator and runs code or loads external resources.
+- Weaknesses in the published site's Content-Security-Policy or response headers.
 - Content that could mislead visitors into unsafe actions, such as a fake project channel or a phishing link.
 
 This channel is for vulnerabilities in code only. It does not handle network support, accounts, funds or third-party services.
@@ -24,4 +24,4 @@ Include what you found, where (URL or file), how to reproduce it and its potenti
 
 ## Supported versions
 
-Only the current version of the site, deployed from the `main` branch, is supported.
+Only the current version of the content, published from the `main` branch, is supported.

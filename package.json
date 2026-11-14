@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "42 Chain websites (42chain.org and its documentation) and their shared packages.",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "workspaces": [
     "apps/*",
     "packages/*",

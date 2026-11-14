@@ -1,6 +1,6 @@
 ---
 /**
- * Home page of the documentation: the text comes from src/content/home.md and
+ * Home page of the documentation: the text comes from the catalog's docs/home.md and
  * one card per section from the content folders.
  */
 import { getEntry, getCollection } from 'astro:content';
@@ -10,7 +10,7 @@ import Footer from '@42chain/kit/components/Footer.astro';
 import { getMenu } from '@42chain/kit/site';
 
 const entry = await getEntry('home', 'home');
-if (!entry) throw new Error('Missing src/content/home.md');
+if (!entry) throw new Error('Missing docs/home.md in the content catalog');
 const { eyebrow, title, lead, searchPrompt } = entry.data;
 const menu = await getMenu();
 const pages = await getCollection('pages');

@@ -63,8 +63,8 @@ Todo lo que se registra en la red, como direcciones, transacciones o contratos, 
 | Qué | Licencia |
 |---|---|
 | Software del protocolo | Apache License 2.0 |
-| Código de este sitio | Apache License 2.0 |
-| Textos de este sitio | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
+| Textos y datos de este sitio | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
+| Diseño, marca y código de este sitio | Todos los derechos reservados, [TITULAR] |
 | Documentación | [LICENCIA DE LA DOCUMENTACIÓN] |
 | Código de la Consola | [LICENCIA] |
 
@@ -74,7 +74,9 @@ La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribu
 
 ### Qué permite la licencia de los textos
 
-Los textos de este sitio pueden copiarse, traducirse, adaptarse y publicarse en cualquier medio, también con fines comerciales, siempre que se cite la fuente: el nombre del proyecto y un enlace al sitio o a la página de origen. La licencia no autoriza a sugerir una relación o un respaldo que no existe.
+Los textos de este sitio y los datos de la red que publica, como parámetros y listas de proveedores, pueden copiarse, traducirse, adaptarse y publicarse en cualquier medio, también con fines comerciales, siempre que se cite la fuente: el nombre del proyecto y un enlace al sitio o a la página de origen. La licencia no autoriza a sugerir una relación o un respaldo que no existe.
+
+La licencia de los textos no incluye el diseño del sitio, su código ni los elementos de marca, como el logotipo y la identidad visual. Esos elementos no pueden copiarse ni reutilizarse sin autorización.
 
 ### Software de terceros
 

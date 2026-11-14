@@ -1,13 +1,13 @@
 /**
  * Content model. Everything the site shows comes from these collections:
  *
- * - `pages`: one Markdown/MDX file per interior page under src/content/pages/.
+ * - `pages`: one Markdown file per interior page under the catalog's site/pages/.
  *   The folder is the section and the file path is the URL. The `index.md` of
  *   each folder also describes its section (`section:` block).
- * - `home`: the text of the home page (src/content/home.md, frontmatter only).
- * - `site`: site-wide text: brand, footer, interface labels, 404 (src/content/site.md).
+ * - `home`: the text of the home page (site/home.md, frontmatter only).
+ * - `site`: site-wide text: brand, footer, interface labels, 404 (site/site.md).
  * - `networks`, `services`, `providers`: network parameters and the public
- *   provider directory, from the @42chain/network package (packages/network/data).
+ *   provider directory, from the catalog's network/ folder.
  *
  * The schemas are strict: a misspelled or missing field stops the build with
  * the file and field name.

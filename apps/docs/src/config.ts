@@ -1,6 +1,6 @@
 /**
  * Technical settings of the documentation site. Visitor-facing text lives in
- * src/content/site.md. Every value in [brackets] is a placeholder to replace
+ * the catalog's docs/site.md. Every value in [brackets] is a placeholder to replace
  * before going live.
  */
 export const SITE = {

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Shared engine of the 42 Chain sites: layouts, navigation derived from content, content schemas and Astro configuration.",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "exports": {
     "./integration": "./src/integration.ts",
     "./config": "./src/config.ts",

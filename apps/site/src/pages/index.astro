@@ -1,6 +1,6 @@
 ---
 /**
- * Home page layout. The texts come from src/content/home.md; this file only
+ * Home page layout. The texts come from the catalog's site/home.md; this file only
  * decides how they look.
  */
 import { getEntry } from 'astro:content';
@@ -10,7 +10,7 @@ import Header from '@42chain/kit/components/Header.astro';
 import Footer from '@42chain/kit/components/Footer.astro';
 
 const entry = await getEntry('home', 'home');
-if (!entry) throw new Error('Missing src/content/home.md');
+if (!entry) throw new Error('Missing site/home.md in the content catalog');
 const { title, description, hero, build, uses, people, start, name, closing } = entry.data;
 
 /** A line break in a YAML title becomes <br>. */

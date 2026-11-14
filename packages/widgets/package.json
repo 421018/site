@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Widgets that content inserts with :::widget{name=\"…\"}: the registry of names and the component that places them in a rendered page.",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "exports": {
     "./names": "./src/names.ts",
     "./Splice.astro": "./src/Splice.astro"

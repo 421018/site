@@ -1,8 +1,8 @@
-# 42 Chain — official website
+# 42 Chain — website and documentation engine
 
-Informational website for the 42 Chain protocol, built with [Astro](https://astro.build) 7 and published as a static site. The site is in Spanish; the codebase, tooling and documentation are in English.
+**Private repository.** The engine, components, design and brand of [42chain.org](https://42chain.org) and its documentation site, built with [Astro](https://astro.build) 7 and published as static sites. The code and this documentation are in English; the sites are in Spanish.
 
-**All content lives in Markdown files.** Adding, editing, reordering or removing a page only means editing files in `apps/site/src/content/`: the main menu, side index, previous/next links and footer are generated from them.
+The text and data the sites publish live in a separate, public **content catalog** (`content/`, package `@42chain/catalog`): plain Markdown and YAML, licensed CC BY 4.0, open to pull requests from anyone. Its [README](content/README.md) is the guide for editing content. This repository compiles it; nothing in the catalog is code.
 
 ## Getting started
 
@@ -21,165 +21,25 @@ npm run dev        # http://localhost:4321
 | `npm run check:links` | Checks internal links and anchors in the built site (run after `build`) |
 | `npm run verify` | All three checks above. This is what CI runs on every pull request |
 
-## Editing content
+## The content catalog
 
-### Where things live
+`content/` holds everything contributors edit and nothing else. Here it is an npm workspace package; in production it is its own public repository, added back at the same path as a git submodule.
 
-| What | File |
-|---|---|
-| Interior pages | `apps/site/src/content/pages/<section>/<page>.md` |
-| Home page text | `apps/site/src/content/home.md` |
-| Site-wide text: brand, footer, page labels, 404 | `apps/site/src/content/site.md` |
-| Domain, external URLs, repository | `apps/site/src/config.ts` |
-
-The file path is the page URL. Folder and file names are public URLs, so they stay in Spanish:
-
-| File | URL |
-|---|---|
-| `protocolo/index.mdx` | `/protocolo` |
-| `protocolo/consenso.mdx` | `/protocolo/consenso` |
-| `codigo-abierto/verificar.md` | `/codigo-abierto/verificar` |
-
-### Adding a page
-
-1. Create the file in its section folder, e.g. `apps/site/src/content/pages/protocolo/staking-liquido.md`.
-2. Add the frontmatter:
-
-```md
----
-title: "Staking líquido"
-summary: "One sentence that sums up the page. Shown under the title and to search engines."
-weight: 25           # order within the section (lower comes first)
----
-
-## Primera sección {#primera}
-
-Text…
+```
+content/
+  site/        site.md, home.md, pages/, diagrams/, images/   (42chain.org)
+  docs/        site.md, home.md, pages/                       (documentation)
+  network/     networks.yaml, services.yaml, providers.yaml
+  contract/    JSON Schemas and block/widget names (generated)
+  tools/       validate.mjs: the public validator (ajv + yaml only)
+  .github/     validation and preview-request workflows, issue and PR templates
 ```
 
-That's it: the page shows up in the side index, in previous/next and in the footer.
+The engine reads it through `@42chain/kit/catalog` (`catalogPath()`, `catalogRelative()`). "Editar esta página" links point to the content repository (`EDIT_BASE` in each app's `src/config.ts`).
 
-Frontmatter fields:
+**Content never carries code.** Pages are `.md` only (MDX would run JavaScript at build time, and previews build untrusted pull requests). Interactive elements are inserted with `:::widget{name="…"}`: the blocks plugin leaves an empty marker, and `@42chain/widgets/Splice.astro` renders the page, cuts it at the markers and places the real component. To add a widget, add its name to `packages/widgets/src/names.ts` and its component to `Splice.astro`.
 
-| Field | Required | Purpose |
-|---|---|---|
-| `title` | yes | Page title |
-| `summary` | yes | Subtitle and meta description |
-| `weight` | no | Order within the section. The section's `index.md` always comes first |
-| `menuTitle` | no | Label in the side index and footer, when it should differ from the title |
-| `updated` | no | "Last reviewed" date. Defaults to the date of the file's last commit |
-| `draft` | no | `true` shows the page in `npm run dev` and leaves it out of the published site |
-
-### Sections
-
-Each folder is a section, described by a `section:` block in its `index.md`:
-
-```yaml
-section:
-  label: Protocolo        # name in the main menu
-  weight: 1               # order in the main menu and footer
-  accent: "#5BF0C8"       # accent color on dark backgrounds
-  ink: "#0A7A5E"          # link color on the light reading surface
-  numbered: true          # numbers pages in the side index
-  sequential: true        # shows previous / next at the end of each page
-  links:                  # extra links below a separator in the side index
-    - { label: "Documentación ↗", href: /docs }
-  attachTo: proyecto      # optional: list this section inside another one instead of the main menu
-```
-
-To add a section, create the folder and its `index.md` with that block.
-
-### Writing
-
-- Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#canales}` is linked as `/codigo-abierto/verificar#canales`. Before renaming an anchor, search for links to it; `npm run verify` reports any that break.
-- Internal links use absolute paths: `/protocolo/gobernanza#ciclo`.
-- `/docs` and `/consola` redirect to the URLs set in `apps/site/src/config.ts`.
-- Small inline badge: `_Independiente_{.badge}`.
-
-### Content blocks
-
-Special elements are written as `:::` blocks, never as HTML:
-
-```md
-:::note[Antes de confiar en un mensaje]
-Ningún canal del proyecto te pedirá tus llaves.
-:::
-
-:::faq[¿Qué es 42 Chain?]
-Una red pública de infraestructura. [Visión general](/protocolo)
-:::
-
-:::lore[Bitácora del motor]
-El motor funciona con improbabilidad. El gas dice cuánta pide cada maniobra.
-:::
-
-:::diagram[Las cinco piezas del motor.]{name="motor"}
-:::
-
-:::figure[Un municipio registra cada intervención en el alumbrado.]
-![Farolas de una calle al atardecer](../../../assets/images/alumbrado.jpg)
-:::
-
-:::aside
-[Operar un nodo →](/implementar/nodos)
-:::
-
-:::status[Borrador]
-Pendiente de revisión legal.
-:::
-
-:::facts
-- **1 bloque** Finalidad
-- **> 2/3** Poder de voto para confirmar
-:::
-
-:::timeline{current="Hoy"}
-- **Año** Hito
-  Descripción breve del hito.
-- **Hoy** Situación actual
-  Descripción breve.
-:::
-```
-
-| Block | Renders as |
-|---|---|
-| `:::note[label]` | Highlighted box with a label |
-| `:::faq[question]` | Collapsible FAQ entry |
-| `:::aside` | Small mono text: "read more" links, pending placeholders, clarifications |
-| `:::status[status]` | Status badge followed by a short sentence |
-| `:::lore[heading]` | Narrative aside from the protocol's sci-fi lore, set apart from technical text. At most one per page, always after the technical explanation, and only in Protocolo, Tarifas and "Por qué 42". Never the only place a technical fact is stated; no price, value or scarcity |
-| `:::diagram[caption]{name="…"}` | Inserts the app's `src/content/diagrams/<name>.html` (preferred: responsive) or `<name>.svg`, with the caption. Diagram text is content too; every diagram must also be explained in the page text |
-| `:::figure[caption]` | Wraps a Markdown image with its caption. Images live in `apps/site/src/assets/images/` and are optimized at build time; they must be local (the CSP only allows the site's own images). Record author and license in `apps/site/src/assets/images/CREDITS.md` |
-| `:::facts` | Key figures in columns |
-| `:::timeline` | Timeline; `current="…"` highlights the milestone with that date |
-
-Blocks work the same in `.md` and `.mdx` files. They are defined in `packages/content` (`@42chain/content/blocks`).
-
-### Network data and provider directory
-
-The connection page (`implementar/conectarse.mdx`) is generated from three data files in `packages/network/data/` (package `@42chain/network`), shared with every app of the repository:
-
-| File | What it holds |
-|---|---|
-| `networks.yaml` | Each network's parameters (name, chain IDs, unit, prefix…). Must match `assets.infinitedrive.xyz/<network>/network-data.json` |
-| `services.yaml` | Kinds of public service (EVM RPC, CometBFT RPC, gRPC, explorers, faucets), with label, description and anchor |
-| `providers.yaml` | One line per public endpoint: provider, network, service, URL |
-
-To list a new provider, add a line to `providers.yaml`; the page updates itself, whether it lists five endpoints or hundreds. Order matters: within a network and service, the first entry is the default one, and the "add to wallet" button uses the first EVM RPC and explorer. A provider that names an unknown network or service stops the build. Visitors pick a network with a switch at the top of the page; without JavaScript, both networks are shown, one after the other.
-
-### Interactive components (MDX)
-
-`.mdx` files can include Astro components. The Consensus and Governance pages use them for their simulators:
-
-```mdx
-import VoteSim from '../../../components/VoteSim.astro';
-
-<VoteSim />
-```
-
-### When something is wrong
-
-The build stops and names the file and the problem: a misspelled field, a folder without `index.md`, an unknown `:::` block or a FAQ without a question. CI runs the same checks on every pull request, so errors never reach the published site.
+**The content contract.** `npm run export:contract` writes `content/contract/` from the engine's Zod schemas, block names and widget names. Run it after changing a schema, a block or a widget, and commit the result to the content repository: the public validator (`npm run validate:content`) checks pull requests against it, and the engine applies the same rules, and more, when it builds.
 
 ## Code structure
 
@@ -194,83 +54,86 @@ The repository is an npm workspace: two apps (the sites) and the packages they s
 ```
 apps/
   site/                          42chain.org
-    astro.config.mjs             Shared config + site URL, redirects, languages
-    src/config.ts                Domain, language, external URLs, repository
-    src/content.config.ts        Collections: pages, home, site, network data
-    src/content/                 site.md, home.md, pages/, diagrams/
-    src/assets/images/           Local images (and CREDITS.md)
+    astro.config.mjs             Shared config + site URL, redirects, languages, widget names
+    src/config.ts                Domain, language, external URLs, content repository (EDIT_BASE)
+    src/content.config.ts        Collections read from the catalog: pages, home, site, network data
     src/scripts/hero-network.ts  Home page background animation
     src/pages/                   Home page, interior pages, 404, robots.txt
     public/_headers              Security headers and caching (Cloudflare Pages)
-  docs/                          Documentation (docs.42chain.org): same structure, with search
+  docs/                          Documentation: same structure, with Pagefind search
 packages/
-  kit/       @42chain/kit       Shared engine: Base and Doc layouts, header, footer, side index,
-                                search, navigation derived from content (site.ts), content schemas,
-                                shared Astro config and the link checker (check-links)
-  content/   @42chain/content   ::: content blocks (Sätteri plugin)
+  kit/       @42chain/kit       Shared engine: layouts, header, footer, side index, search,
+                                navigation derived from content (site.ts), content schemas,
+                                catalog paths, shared Astro config, link checker (check-links)
+  blocks/    @42chain/blocks    ::: content blocks (Sätteri plugin)
+  widgets/   @42chain/widgets   Widget names and Splice.astro, which places widgets in pages
   ui/        @42chain/ui        Global styles and color tokens, interactive widgets
-  network/   @42chain/network   Network parameters and provider directory: data, schemas, components
+  network/   @42chain/network   Network schemas, directory logic and data components
+tools/
+  export-contract.ts            Writes content/contract/ from the engine's schemas
+content/                        Public content catalog (see above)
 ```
 
-Each app passes its own settings to the kit with the `kit({ lang, ogLocale, editBase, search })` integration in its `astro.config.mjs`; the kit's components read them as `virtual:42chain/kit`. Packages export source files (TypeScript and Astro components), and apps import them by name, e.g. `@42chain/ui/components/FeeCalc.astro`. The docs app can move to its own repository later and install the packages like any other dependency.
-
-Sections can contain one level of groups: a folder inside a section with its own `index.md` (e.g. `construir/precompiles/`) is shown in the side index as a group, with its pages indented under it.
+Each app passes its own settings to the kit with the `kit({ lang, ogLocale, editBase, search })` integration in its `astro.config.mjs`; the kit's components read them as `virtual:42chain/kit`. Packages export source files (TypeScript and Astro components), and apps import them by name. The docs app can move to its own repository later and install the packages like any other dependency.
 
 Technical notes:
 
 - Markdown is processed by Sätteri, Astro 7's native Markdown processor.
 - Fonts (Geist and Geist Mono) are downloaded at build time and served from the site itself.
 - Astro emits a Content-Security-Policy with hashes for its scripts on every page. Any new external or inline script must be checked against it (`apps/site/astro.config.mjs → security.csp`).
-- The simulators' visible text is Spanish and lives in their components, since each message is tied to a state of the calculation.
+- The widgets' visible text is Spanish and lives in their components, since each message is tied to a state of the calculation. It moves to per-language dictionaries with i18n.
 
 ## Deploying to Cloudflare Pages
 
-1. Push the repository to GitHub.
-2. In Cloudflare: **Workers & Pages → Create → Pages → Connect to Git** and pick the repository.
+1. Push the repository to GitHub, with the content repository as a submodule at `content/`.
+2. In Cloudflare: **Workers & Pages → Create → Pages → Connect to Git** and pick this repository.
 3. Build settings:
    - Framework preset: **Astro**
-   - Build command: `npm run build`
+   - Build command: `git submodule update --init --remote && npm ci && npm run build`
    - Build output directory: `apps/site/dist`
-   - For the documentation, create a second Pages project from the same repository with build command `npm run build:docs` and output directory `apps/docs/dist`.
+   - For the documentation, a second Pages project with build command ending in `npm run build:docs` and output directory `apps/docs/dist`.
    - Environment variable: `NODE_VERSION = 24`
-4. Add the custom domain under **Custom domains**.
+4. Add the custom domains under **Custom domains**.
+5. To publish when content changes, add a Cloudflare deploy hook for each project and call it from the content repository on pushes to `main`.
 
 `apps/site/public/_headers` sets the security headers (HSTS, framing, content type) and long-term caching for hashed assets.
 
-The "last reviewed" date comes from git history. If the platform clones without full history, every page shows the date of the latest commit; set `updated:` on pages where the date matters.
+The "last reviewed" date comes from the content repository's git history. If the platform clones without full history, every page shows the date of the latest commit; set `updated:` on pages where the date matters.
+
+## Pull request previews
+
+Contributors open pull requests in the public content repository, which never sees this repository's code or secrets:
+
+1. `content/.github/workflows/validate.yml` runs the public validator. No secrets.
+2. `content/.github/workflows/preview-request.yml` (`pull_request_target`) sends the pull request's repository, commit and number to this repository with `repository_dispatch`. It never checks out or runs the pull request. Secret `PREVIEW_DISPATCH_TOKEN` (fine-grained, this repository only, Contents: read and write); variable `ENGINE_REPOSITORY`.
+3. `.github/workflows/content-preview.yml` here checks out the pull request's content into `content/`, validates it, builds both apps and deploys them as Cloudflare Pages preview branches (`pr-<number>`), then comments the links on the pull request. Secrets `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `CONTENT_REPO_TOKEN` (content repository, Pull requests: write); variables `CF_SITE_PROJECT`, `CF_DOCS_PROJECT`.
+
+Building untrusted content is safe because it is data only: no MDX, no scripts (the validator and the engine both reject them), widgets and diagrams resolved by name. Diagrams are HTML/SVG files from the catalog inserted as markup, so they are reviewed like any other change and constrained by the site's CSP.
 
 ## Before going live
 
 Values in `[brackets]` are placeholders. The main ones:
 
-- `apps/site/src/config.ts`: domain, docs and console URLs, repository. The domain also sets the sitemap and `robots.txt` URLs.
-- Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`packages/network/data/networks.yaml`).
+- `apps/*/src/config.ts`: domain, docs and console URLs, content repository. The domain also sets the sitemap and `robots.txt` URLs.
+- Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`content/network/networks.yaml`).
 - Project channels: site, docs, repository and security email (`codigo-abierto/verificar.md`, `codigo-abierto/seguridad.md`).
-- Repository URL (`[organization]`) in `apps/site/src/config.ts`, `NOTICE` and `.github/ISSUE_TEMPLATE/config.yml`.
-- Contact emails in `SECURITY.md` (`[security email]`) and `CODE_OF_CONDUCT.md` (`[conduct email]`).
+- Repository URLs (`[organization]`) in `apps/*/src/config.ts` and `content/.github/ISSUE_TEMPLATE/config.yml`.
+- Copyright holder (`[HOLDER]`) in `LICENSE` and `NOTICE`, and `[TITULAR]` on the legal page.
+- Contact emails in `content/SECURITY.md` (`[security email]`) and `content/CODE_OF_CONDUCT.md` (`[conduct email]`).
 - Licenses of the documentation site and the console (`legal/index.md`).
 - Hosting provider named in the privacy section (`legal/index.md`).
 - Custom implementation providers (`implementar/implementaciones.md`) and RPC/explorer providers (`implementar/conectarse.md`).
 - Social sharing image (`og:image`).
 
-To find them all: `grep -rn "\[" apps/site/src/content apps/site/src/config.ts packages/network/data NOTICE SECURITY.md CODE_OF_CONDUCT.md .github`.
+To find them all: `grep -rn "\[" content apps/*/src/config.ts LICENSE NOTICE`.
 
 ## Languages
 
-The site is in Spanish and Astro's i18n config is enabled (`apps/site/astro.config.mjs`). Adding another language requires adapting `apps/site/src/lib/site.ts` so language folders (`apps/site/src/content/pages/en/…`) are not read as sections, plus a translated `site.md` and `home.md`.
-
-## Contributing
-
-Contributions are welcome, from fixing a typo in the browser to adding sections. See [CONTRIBUTING.md](CONTRIBUTING.md) (it includes a short guide in Spanish for content editors), the [Code of Conduct](CODE_OF_CONDUCT.md) and, for vulnerabilities, [SECURITY.md](SECURITY.md).
+The sites are in Spanish and Astro's i18n config is enabled. Adding another language requires language-aware routing in `packages/kit/src/site.ts` (so language folders are not read as sections), translated `site.md` and `home.md` in the catalog, and per-language dictionaries for the widgets' text.
 
 ## License
 
-| What | License |
-|---|---|
-| Source code (everything not listed as content) | [Apache License 2.0](LICENSE) |
-| Content (`apps/*/src/content/` and `packages/network/data/`) | [CC BY 4.0](LICENSE-CONTENT) |
-
-Copyright 2026 The 42 Chain contributors. See [NOTICE](NOTICE).
+This repository is proprietary: all rights reserved (see [LICENSE](LICENSE)). The content catalog in `content/` is licensed separately under [CC BY 4.0](content/LICENSE). Third-party software keeps its own license; see [NOTICE](NOTICE).
 
 ## Conventions
 

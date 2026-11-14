@@ -1,6 +1,6 @@
-# Contributing to the 42 Chain website
+# Contributing to 42 Chain content
 
-Thanks for helping improve the site. Most contributions are text changes, and those don't require installing anything.
+Thanks for helping improve the site and the documentation. Most contributions are text changes, and those don't require installing anything.
 
 > **¿Prefieres leer en español?** Hay una guía breve para editar contenido al final: [Guía rápida en español](#guía-rápida-en-español).
 
@@ -10,8 +10,9 @@ Thanks for helping improve the site. Most contributions are text changes, and th
 |---|---|
 | Fix a typo or improve a page | Use **Editar esta página ↗** at the top of the page, or edit the file on GitHub, and open a pull request |
 | Add a page or a section | Follow [Adding a page](README.md#adding-a-page) in the README and open a pull request |
+| List a provider | Add a line to `network/providers.yaml` and open a pull request |
 | Report an error or suggest content | [Open an issue](../../issues/new/choose) |
-| Change design, layout or behavior | Open an issue first to agree on the approach, then a pull request |
+| Suggest a design change or a new widget | [Open an issue](../../issues/new/choose); the design and code are maintained separately |
 | Report a security problem | **Don't open an issue.** See [SECURITY.md](SECURITY.md) |
 
 ## Editing content from the browser
@@ -20,33 +21,28 @@ Thanks for helping improve the site. Most contributions are text changes, and th
 2. Make your change. Content is plain Markdown plus a few `:::` blocks, described in the [README](README.md#content-blocks).
 3. Describe the change and choose **Propose changes**, then **Create pull request**.
 4. Automated checks run on your pull request. If something is wrong (a misspelled field, an unknown block, a broken link), the check names the file and the problem. Fix it in the same pull request.
+5. A preview of the site with your change is built and its links are posted on the pull request. Check that your page looks as expected.
 
 ## Working locally
 
 ```bash
-nvm use            # Node 24
-npm install
-npm run dev        # http://localhost:4321
-npm run verify     # run before opening a pull request: types, build and links
+npm install        # Node 22 or later
+npm run validate   # run before opening a pull request
 ```
+
+The validator checks front matter, sections, blocks, widgets, diagrams, images, internal links and network data against the [content contract](contract/). The full site is built by the preview on your pull request.
 
 ## Guidelines
 
-**Language.** Visitor-facing text is Spanish. Code, file names, frontmatter keys, comments, documentation and commit messages are English. Page URLs (content folder and file names) are Spanish because they are public addresses.
+**Language.** Visitor-facing text is Spanish. Front matter keys, block names, this documentation and commit messages are English. Page URLs (folder and file names) are Spanish because they are public addresses.
 
 **Content.**
 
 - Write for people who are new to blockchain: short sentences, one idea per paragraph, terms explained the first time they appear.
 - Keep claims verifiable. Figures, parameters and dates should match the protocol and its documentation.
-- Don't rename an anchor (`{#id}`) or move a page without updating the links that point to it. `npm run verify` reports broken links and anchors.
-- Use `:::` blocks instead of HTML. If you need an element that doesn't exist, open an issue.
+- Don't rename an anchor (`{#id}`) or move a page without updating the links that point to it. `npm run validate` reports broken links.
+- Use `:::` blocks instead of HTML. Scripts, styles, iframes and MDX are not accepted. If you need an element that doesn't exist, open an issue.
 - Don't add personal opinions, promotions or links to third-party projects as if they were endorsed by the project.
-
-**Code.**
-
-- Keep visitor-facing text in each app's `src/content/` (for the site, `apps/site/src/content/`), not in templates.
-- New scripts or external resources must work with the Content-Security-Policy (`apps/site/astro.config.mjs → security.csp`).
-- Check visual changes on desktop and mobile widths.
 
 **Pull requests.**
 
@@ -56,12 +52,7 @@ npm run verify     # run before opening a pull request: types, build and links
 
 ## Licensing of contributions
 
-By contributing, you agree that:
-
-- Code contributions are licensed under the [Apache License 2.0](LICENSE).
-- Content contributions (anything under `apps/*/src/content/` or `packages/network/data/`) are licensed under [CC BY 4.0](LICENSE-CONTENT).
-
-Only contribute work that you wrote or that you have the right to publish under these licenses.
+By contributing, you agree that your contribution is licensed under [CC BY 4.0](LICENSE). Only contribute work that you wrote or that you have the right to publish under this license, including images and diagrams (record an image's author and license in `site/images/CREDITS.md`).
 
 ## Code of conduct
 
@@ -88,6 +79,8 @@ Esta guía es para quienes quieren corregir o agregar **textos** del sitio. No h
 
 **Agregar una página:** crea un archivo `.md` en la carpeta de su sección con `title`, `summary` y `weight` en el encabezado. La página aparece sola en los menús. El README tiene el ejemplo completo en [Adding a page](README.md#adding-a-page).
 
+**Antes de enviar:** si trabajas en tu equipo, `npm run validate` revisa tus cambios. En el pull request aparece además un enlace a una vista previa del sitio con tu cambio.
+
 **Elementos especiales** (notas, preguntas frecuentes, cifras, línea de tiempo): se escriben con bloques `:::`. Los ejemplos están en [Content blocks](README.md#content-blocks).
 
 **Reglas básicas**
@@ -95,7 +88,8 @@ Esta guía es para quienes quieren corregir o agregar **textos** del sitio. No h
 - Escribe para quien no conoce blockchain: frases cortas y términos explicados.
 - Las cifras y los datos deben coincidir con el protocolo y su documentación.
 - No cambies un ancla `{#…}` sin corregir los enlaces que la usan.
-- Tus textos se publican bajo la licencia [CC BY 4.0](LICENSE-CONTENT).
+- No uses HTML ni código: los elementos especiales se escriben con bloques `:::`.
+- Tus textos se publican bajo la licencia [CC BY 4.0](LICENSE).
 - En el espacio de discusiones del repositorio solo se tratan temas técnicos. Ahí no se ofrecen ni se contratan servicios; para implementaciones a medida, enlaza a la página [Implementaciones a medida](https://example.org/implementar/implementaciones).
 
 ¿Dudas? [Abre un issue](../../issues/new/choose) y pregunta.

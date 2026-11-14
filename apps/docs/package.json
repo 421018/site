@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Documentation of 42 Chain and the Protocolo 42 (docs.42chain.org).",
-  "license": "Apache-2.0",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",

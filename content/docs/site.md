@@ -16,7 +16,7 @@ header:
 
 footer:
   credit: Documentación de código abierto
-  license: Código Apache 2.0 · Textos CC BY 4.0
+  license: Textos CC BY 4.0
   note: © 2026 Los contribuidores de 42 Chain
 
 page:
