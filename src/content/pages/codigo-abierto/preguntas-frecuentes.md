@@ -51,7 +51,7 @@ Desde el faucet de la Consola: un servicio que entrega unidades de prueba gratis
 ## Nodos, validadores y delegación {#nodos}
 
 :::faq[¿Qué necesito para operar un nodo?]
-Un servidor Linux estándar. Los requisitos de cada tipo de nodo están en la guía de nodos de la documentación. [Operar un nodo](/desarrolladores/nodos)
+Un servidor Linux estándar. Los requisitos de cada tipo de nodo están en la guía de nodos de la documentación. [Operar un nodo](/implementar/nodos)
 :::
 
 :::faq[¿Cómo se convierte un nodo en validador?]
@@ -83,7 +83,7 @@ Pierdes el acceso a tu cuenta. El protocolo no tiene ningún mecanismo para rest
 :::
 
 :::faq[¿Alguien del proyecto me pedirá mis llaves?]
-Nunca. Nadie del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales oficiales](/proyecto/contacto#canales).
+Nunca. Nadie del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales oficiales](/codigo-abierto/contacto#canales).
 :::
 
 :::faq[¿Cómo reporto una vulnerabilidad?]
@@ -93,15 +93,15 @@ En privado, por el canal de seguridad indicado en la documentación. [Reportar u
 ## El proyecto {#proyecto}
 
 :::faq[¿Quién desarrolla el protocolo?]
-Contribuidores independientes que trabajan en abierto. Cualquiera puede sumarse. [El equipo](/proyecto/equipo)
+Contribuidores independientes que trabajan en abierto. Cualquiera puede sumarse. [El equipo](/codigo-abierto/equipo)
 :::
 
 :::faq[¿Hay una hoja de ruta?]
-No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y cada cambio se decide por gobernanza en la cadena. [Desarrollo continuo](/proyecto#continuo)
+No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y cada cambio se decide por gobernanza en la cadena. [Desarrollo continuo](/codigo-abierto#continuo)
 :::
 
 :::faq[¿Cómo integro la red en mi servicio?]
-Pregunta en el espacio de discusiones del repositorio público, o escribe al correo de contacto si prefieres tratarlo en privado. [Apoyo técnico](/proyecto/contacto#apoyo)
+Pregunta en el espacio de discusiones del repositorio público, o escribe al correo de contacto si prefieres tratarlo en privado. [Apoyo técnico](/codigo-abierto/contacto#apoyo)
 :::
 
 ## Legal y uso del sitio {#legal}

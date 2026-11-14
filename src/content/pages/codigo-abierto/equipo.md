@@ -21,7 +21,7 @@ Nuestro trabajo se organiza en cinco frentes:
 - **Conectamos la red con el ecosistema.** Damos soporte técnico a billeteras, plataformas, exploradores y sitios de datos que quieren integrar la red.
 
 :::aside
-[Apoyo técnico →](/proyecto/contacto#apoyo)
+[Apoyo técnico →](/codigo-abierto/contacto#apoyo)
 :::
 
 ## Hasta dónde llega nuestro papel {#limites}
@@ -50,7 +50,7 @@ El código del protocolo, la documentación, las herramientas y este sitio son p
 - **Contándolo.** Explicamos cada cambio en las notas de versión y lo anunciamos en los canales oficiales.
 
 :::aside
-[Dónde comprobarlo →](/proyecto/transparencia)
+[Dónde comprobarlo →](/codigo-abierto/transparencia)
 :::
 
 ## Contribuir al protocolo {#contribuir}
@@ -74,4 +74,4 @@ Enlace al repositorio público.
 
 ## Hablar con el equipo {#hablar}
 
-Para dudas técnicas, apoyo o reportes de seguridad, todos los canales están en [Contacto y soporte](/proyecto/contacto).
+Para dudas técnicas, apoyo o reportes de seguridad, todos los canales están en [Contacto y soporte](/codigo-abierto/contacto).

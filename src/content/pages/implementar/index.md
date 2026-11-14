@@ -1,9 +1,9 @@
 ---
-title: "Construir en 42"
+title: "Construir aplicaciones"
 summary: "Qué es una aplicación sobre la red, qué se gana con la compatibilidad con la EVM, qué ofrece la red y cómo se lleva una aplicación del código a la red principal."
 section:
-  label: Desarrolladores
-  weight: 2
+  label: Implementar
+  weight: 3
   accent: "#7C9CFF"
   ink: "#3552C8"
   links:
@@ -42,7 +42,7 @@ Quien ya escribió contratos para la EVM puede publicarlos en la red sin cambios
 Además de la compatibilidad con la EVM, la red da a quien construye finalidad en segundos, conexión con otras redes mediante IBC, acceso desde los contratos a funciones propias como el staking y la gobernanza, y la libertad de publicar sin pedir permiso.
 
 :::aside
-[Qué permite construir →](/protocolo/que-permite-construir)
+[Casos de uso →](/casos-de-uso)
 :::
 
 ## Red principal y red de pruebas {#redes}
@@ -53,7 +53,7 @@ La **red de pruebas** sirve para desarrollar y probar. Es pública y usa unidade
 
 La **red principal** es la red donde las transacciones tienen efecto real.
 
-Como las dos redes ejecutan el mismo protocolo, una aplicación pasa de la red de pruebas a la red principal sin cambiar su código. Solo cambian los parámetros de conexión, que están en [Conectarse a 42 Chain](/desarrolladores/conectarse#parametros).
+Como las dos redes ejecutan el mismo protocolo, una aplicación pasa de la red de pruebas a la red principal sin cambiar su código. Solo cambian los parámetros de conexión, que están en [Conectarse a 42 Chain](/implementar/conectarse#parametros).
 
 ## Del código a la red principal {#produccion}
 
@@ -73,10 +73,10 @@ Llevar una aplicación a la red principal suele seguir cinco pasos:
 | Desarrollo | Hardhat, Foundry, Remix |
 | Librerías | Viem, Ethers.js, Web3.js |
 | Billeteras | MetaMask y billeteras EVM · [Billetera nativa] |
-| Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio · [Directorio](/desarrolladores/conectarse#proveedores) |
+| Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio · [Directorio](/implementar/conectarse#proveedores) |
 
 ## Documentación y contacto {#soporte}
 
-Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/desarrolladores/conectarse). Las guías y la referencia técnica completa están en la [documentación](/docs).
+Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/implementar/conectarse). Las guías y la referencia técnica completa están en la [documentación](/docs).
 
-Si vas a integrar la red en tu servicio, consulta [Integrar la red](/desarrolladores/integrar). Si quieres contribuir al software del protocolo, consulta [Contribuir al protocolo](/proyecto/equipo#contribuir).
+Si vas a integrar la red en tu servicio, consulta [Integrar la red](/implementar/integrar). Si quieres contribuir al software del protocolo, consulta [Contribuir al protocolo](/codigo-abierto/equipo#contribuir).

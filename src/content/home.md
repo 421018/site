@@ -10,13 +10,13 @@ hero:
     que cualquiera puede verificar.
   lead: El Protocolo 42 permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, sin depender de los sistemas de una sola de ellas. 42 Chain es la red pública que lo ejecuta.
   primary: { label: Cómo funciona, href: /protocolo }
-  secondary: { label: Conectarse a la red, href: /desarrolladores/conectarse }
+  secondary: { label: Conectarse a la red, href: /implementar/conectarse }
 
 uses:
   kicker: Casos de uso
   title: Para qué sirve, en la práctica.
   lead: "Cuando varias partes necesitan los mismos datos y las mismas reglas, un registro distribuido evita que una sola de ellas tenga que custodiarlos. Cada parte opera su copia, cualquier alteración queda a la vista y cualquiera puede comprobar el resultado. Tres ejemplos:"
-  link: { label: Qué permite construir, href: /protocolo/que-permite-construir }
+  link: { label: Ver los casos de uso, href: /casos-de-uso }
   stories:
     - title: Un título que se verifica solo.
       text: Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.
@@ -31,7 +31,7 @@ build:
     Herramientas conocidas.
     Reglas verificables.
   lead: "Los contratos se escriben con lenguajes y herramientas estándar: Solidity, Hardhat, Foundry. Una aplicación que ya funciona en una red compatible con la EVM funciona aquí sin cambios en su código."
-  link: { label: Construir en 42, href: /desarrolladores }
+  link: { label: Construir aplicaciones, href: /implementar }
   code:
     file: hardhat.config.js
     label: Ejemplo de configuración de Hardhat para conectarse a 42 Chain
@@ -54,7 +54,7 @@ people:
   kicker: Cómo se organiza
   title: Cada función, en manos distintas.
   lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados, y cada parte se puede comprobar: el código en un repositorio público, la operación y las decisiones en la propia cadena."
-  link: { label: Cómo se organiza, href: "/proyecto#circulos" }
+  link: { label: Cómo se organiza, href: "/codigo-abierto#circulos" }
   rows:
     - { who: Contribuidores del código, what: "Proponen y revisan cambios en un repositorio público." }
     - { who: Validadores y operadores de nodos, what: "Verifican cada bloque y dan acceso a la red." }
@@ -65,20 +65,20 @@ start:
   kicker: Por dónde empezar
   title: Elige por dónde entrar.
   paths:
-    - { label: Conectarse a la red, href: /desarrolladores/conectarse, text: "Parámetros de red, billeteras y proveedores de RPC." }
-    - { label: Construir una aplicación, href: /desarrolladores, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
-    - { label: Operar un nodo, href: /desarrolladores/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
-    - { label: Integrar la red, href: /desarrolladores/integrar, text: "Conectar una billetera, una plataforma o un explorador." }
+    - { label: Conectarse a la red, href: /implementar/conectarse, text: "Parámetros de red, billeteras y proveedores de RPC." }
+    - { label: Construir una aplicación, href: /implementar, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
+    - { label: Operar un nodo, href: /implementar/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
+    - { label: Integrar la red, href: /implementar/integrar, text: "Conectar una billetera, una plataforma o un explorador." }
     - { label: Entender la gobernanza, href: /protocolo/gobernanza, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
 
 name:
   kicker: El nombre
   title: ¿Por qué 42?
   lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes lo usan."
-  link: { label: Por qué 42, href: "/proyecto#porque42" }
+  link: { label: Por qué 42, href: "/codigo-abierto#porque42" }
 
 closing:
   title: Infraestructura compartida, reglas a la vista.
-  primary: { label: Empieza a construir, href: /desarrolladores }
+  primary: { label: Empieza a construir, href: /implementar }
   secondary: { label: Leer la documentación, href: /docs }
 ---

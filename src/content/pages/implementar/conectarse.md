@@ -51,7 +51,7 @@ Los puntos de conexión y los exploradores los operan proveedores independientes
 | [Proveedor] _Independiente_{.badge} | RPC (EVM) | Red de pruebas | [URL] |
 | [Proveedor] _Independiente_{.badge} | Explorador | Red principal | [URL] |
 
-Para no depender de un proveedor, cualquiera puede operar su propio nodo y conectarse a él. [Operar un nodo →](/desarrolladores/nodos)
+Para no depender de un proveedor, cualquiera puede operar su propio nodo y conectarse a él. [Operar un nodo →](/implementar/nodos)
 
 :::aside
 Los proveedores que quieran aparecer en el directorio pueden proponerlo en el repositorio público, como cualquier otro cambio al sitio.

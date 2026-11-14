@@ -150,7 +150,7 @@ La seguridad de la red no depende de una sola pieza, sino de varias que se refue
 
 Además, el código del protocolo es abierto y se somete a **auditorías**. Una auditoría es una revisión a fondo del código, hecha por especialistas independientes. [Estado de las auditorías y enlace a los informes.]
 
-Para no caer en sitios o perfiles falsos, usa solo los [canales oficiales](/proyecto/contacto#canales). Si encuentras una vulnerabilidad, repórtala en privado por el canal de seguridad indicado en la [documentación](/docs).
+Para no caer en sitios o perfiles falsos, usa solo los [canales oficiales](/codigo-abierto/contacto#canales). Si encuentras una vulnerabilidad, repórtala en privado por el canal de seguridad indicado en la [documentación](/docs).
 
 :::aside
 [Seguridad →](/protocolo/seguridad)
@@ -168,7 +168,7 @@ El protocolo se apoya en siete decisiones de diseño. Cada una se desarrolla en 
 - **Las reglas se deciden en la cadena.** Quien escribe el código propone; quienes protegen la red deciden. [Gobernanza](/protocolo/gobernanza#porque)
 - **Seguridad en capas y a la vista.** Varias protecciones se refuerzan entre sí, y cualquiera puede comprobarlas. [Seguridad](/protocolo/seguridad#porque)
 
-Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la red. [Qué permite construir →](/protocolo/que-permite-construir)
+Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la red. [Casos de uso →](/casos-de-uso)
 
 ## Ficha técnica {#ficha}
 

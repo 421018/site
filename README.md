@@ -38,7 +38,7 @@ The file path is the page URL. Folder and file names are public URLs, so they st
 |---|---|
 | `protocolo/index.md` | `/protocolo` |
 | `protocolo/consenso.mdx` | `/protocolo/consenso` |
-| `proyecto/contacto.md` | `/proyecto/contacto` |
+| `codigo-abierto/contacto.md` | `/codigo-abierto/contacto` |
 
 ### Adding a page
 
@@ -91,7 +91,7 @@ To add a section, create the folder and its `index.md` with that block.
 
 ### Writing
 
-- Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#canales}` is linked as `/proyecto/contacto#canales`. Before renaming an anchor, search for links to it; `npm run verify` reports any that break.
+- Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#canales}` is linked as `/codigo-abierto/contacto#canales`. Before renaming an anchor, search for links to it; `npm run verify` reports any that break.
 - Internal links use absolute paths: `/protocolo/gobernanza#ciclo`.
 - `/docs` and `/consola` redirect to the URLs set in `src/config.ts`.
 - Small inline badge: `_Independiente_{.badge}`.
@@ -110,7 +110,7 @@ Una red pública de cadena de bloques. [Visión general](/protocolo)
 :::
 
 :::aside
-[Operar un nodo →](/desarrolladores/nodos)
+[Operar un nodo →](/implementar/nodos)
 :::
 
 :::status[Borrador]
@@ -203,8 +203,8 @@ The "last reviewed" date comes from git history. If the platform clones without 
 Values in `[brackets]` are placeholders. The main ones:
 
 - `src/config.ts`: domain, docs and console URLs, repository. The domain also sets the sitemap and `robots.txt` URLs.
-- Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`src/content/home.md` and `desarrolladores/`).
-- Official channels: X, forum, contact and security email (`proyecto/contacto.md`).
+- Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`src/content/home.md` and `implementar/`).
+- Official channels: X, forum, contact and security email (`codigo-abierto/contacto.md`).
 - Repository URL (`[organization]`) in `src/config.ts`, `NOTICE` and `.github/ISSUE_TEMPLATE/config.yml`.
 - Contact emails in `SECURITY.md` (`[security email]`) and `CODE_OF_CONDUCT.md` (`[conduct email]`).
 - Licenses of the documentation site and the console (`legal/index.md`).

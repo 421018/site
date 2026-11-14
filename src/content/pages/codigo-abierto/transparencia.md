@@ -43,4 +43,4 @@ Algunas fuentes las mantiene el proyecto. Otras son independientes, y van marcad
 
 ## Qué es oficial {#oficial}
 
-Los canales oficiales del proyecto están en [Contacto y soporte](/proyecto/contacto#canales). Cualquier canal que no aparezca ahí no es oficial.
+Los canales oficiales del proyecto están en [Contacto y soporte](/codigo-abierto/contacto#canales). Cualquier canal que no aparezca ahí no es oficial.

@@ -4,7 +4,7 @@ summary: "Quién opera este sitio, qué riesgos conviene conocer, en qué condic
 section:
   label: Legal
   weight: 1
-  attachTo: proyecto # listed in the Proyecto side index, using its colors
+  attachTo: codigo-abierto # listed in the Código abierto side index, using its colors
 ---
 
 ## Sobre este sitio {#independencia}
@@ -163,7 +163,7 @@ Pendiente de revisión legal.
 Si investigas la seguridad del protocolo de buena fe, reportas lo que encuentras por el canal de seguridad, no aprovechas la vulnerabilidad, no la publicas antes de que se corrija y no afectas a otras personas, el reporte se trata con confidencialidad y se reconoce públicamente tu aporte, si así lo deseas.
 
 :::aside
-[Divulgación responsable](/protocolo/seguridad#reportar) · [Canal de seguridad](/proyecto/contacto#seguridad)
+[Divulgación responsable](/protocolo/seguridad#reportar) · [Canal de seguridad](/codigo-abierto/contacto#seguridad)
 :::
 
 ## Contacto legal y vigencia {#vigencia}

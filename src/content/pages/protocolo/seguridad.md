@@ -74,7 +74,7 @@ La forma correcta se llama divulgación responsable. La persona reporta la vulne
 Publicar una vulnerabilidad antes de corregirla permitiría que otros la aprovecharan. Por eso el reporte se hace en privado.
 
 :::aside
-[Canal de seguridad →](/proyecto/contacto#seguridad)
+[Canal de seguridad →](/codigo-abierto/contacto#seguridad)
 :::
 
 ## Cómo protegerte {#protegerte}

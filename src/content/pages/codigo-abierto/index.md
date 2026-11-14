@@ -2,7 +2,7 @@
 title: "Sobre 42 Chain"
 summary: "Qué es el proyecto, quién lo sostiene, de dónde viene su nombre y los principios que lo guían."
 section:
-  label: Proyecto
+  label: Código abierto
   weight: 4
   accent: "#C4A7FF"
   ink: "#6B4BC8"

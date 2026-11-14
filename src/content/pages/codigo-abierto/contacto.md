@@ -44,7 +44,7 @@ Pregunta en el espacio de discusiones del repositorio público. Si encontraste u
 Si necesitas un servicio profesional con condiciones propias, como un desarrollo a la medida o plazos garantizados, contrátalo con un proveedor independiente. El proyecto no presta servicios pagados ni recomienda proveedores.
 
 :::aside
-[Integrar la red →](/desarrolladores/integrar)
+[Integrar la red →](/implementar/integrar)
 :::
 
 ## Seguridad {#seguridad}
@@ -59,7 +59,7 @@ Para que el reporte pueda atenderse rápido, describe qué encontraste, cómo re
 
 ## Antes de escribirnos {#antes}
 
-Muchas dudas ya tienen respuesta en las [preguntas frecuentes](/proyecto/preguntas-frecuentes) o en la [documentación](/docs).
+Muchas dudas ya tienen respuesta en las [preguntas frecuentes](/codigo-abierto/preguntas-frecuentes) o en la [documentación](/docs).
 
 :::note[Nadie del proyecto te pedirá]
 Tu frase de recuperación, tus llaves privadas, que envíes unidades para "verificar" una cuenta ni que conectes tu billetera a un sitio que no aparezca en esta página.
