@@ -15,9 +15,9 @@ Pendiente de revisión legal.
 
 ### 1.1 Un proyecto comunitario
 
-Este sitio, la documentación y la Consola forman parte de 42 Chain, un proyecto de código abierto. Los escriben, los revisan y los mantienen en línea contribuyentes independientes, igual que el software del protocolo. Ninguna empresa ni institución opera el sitio ni la red.
+Este sitio, la documentación y la Consola forman parte de 42 Chain, un proyecto de código abierto. Los escriben, los revisan y los mantienen en línea contribuidores independientes, igual que el software del protocolo. Ninguna empresa ni institución opera el sitio ni la red.
 
-En estos avisos, «los contribuyentes» son las personas que escriben, revisan, publican o mantienen en línea el software del protocolo, la documentación, la Consola o este sitio.
+En estos avisos, «los contribuidores» son las personas que escriben, revisan, publican o mantienen en línea el software del protocolo, la documentación, la Consola o este sitio.
 
 ### 1.2 Qué no es
 
@@ -39,7 +39,7 @@ El protocolo, su software, la documentación, la Consola y las demás herramient
 
 La red no la opera ninguna entidad: la forman nodos y validadores independientes que ejecutan el protocolo. Nadie puede garantizar que la red funcione sin interrupciones, ni el resultado de una transacción o de un contrato.
 
-En la medida en que lo permita la ley aplicable, los contribuyentes no responden por daños o pérdidas derivados del uso o de la imposibilidad de usar el protocolo, la red, el software o las herramientas. Esto incluye, entre otras, la pérdida de unidades o de acceso a una cuenta, las interrupciones de la red, los errores del software, las fallas de contratos o servicios de terceros y los ataques de terceros.
+En la medida en que lo permita la ley aplicable, los contribuidores no responden por daños o pérdidas derivados del uso o de la imposibilidad de usar el protocolo, la red, el software o las herramientas. Esto incluye, entre otras, la pérdida de unidades o de acceso a una cuenta, las interrupciones de la red, los errores del software, las fallas de contratos o servicios de terceros y los ataques de terceros.
 
 Mantener el software y ayudar a quien usa la red no implica ofrecer garantías. La ayuda se da de buena fe, pero cada persona u organización decide cómo usa la red y asume los riesgos de esa decisión.
 
@@ -98,7 +98,7 @@ Los términos de uso establecen las condiciones para usar este sitio, la documen
 - **Uso libre.** Puedes consultar el sitio y usar sus herramientas sin registrarte.
 - **Herramientas sin garantías.** La Consola y el faucet se ofrecen tal cual. Las unidades de prueba no tienen uso fuera de la red de pruebas.
 - **Usos no permitidos.** No está permitido usar el sitio o sus herramientas para dañar la red, a otras personas o a los propios servicios.
-- **Responsabilidad limitada.** Los contribuyentes no responden por pérdidas derivadas del uso de la red o de servicios de terceros.
+- **Responsabilidad limitada.** Los contribuidores no responden por pérdidas derivadas del uso de la red o de servicios de terceros.
 
 :::aside
 [Leer los términos de uso completos →](/legal/terminos)
@@ -140,7 +140,7 @@ La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribu
 
 ### Lo que la licencia no da
 
-La licencia no da derecho a usar los nombres ni las marcas de quienes contribuyen al software. Además, el software se ofrece tal cual: la licencia excluye toda garantía y limita la responsabilidad de quienes lo publican y de quienes contribuyen a él.
+La licencia no da derecho a usar los nombres de quienes contribuyen al software. Además, el software se ofrece tal cual: la licencia excluye toda garantía y limita la responsabilidad de quienes lo publican y de quienes contribuyen a él.
 
 ### Qué permite la licencia de los textos
 
@@ -153,16 +153,6 @@ El software del protocolo incluye software de código abierto desarrollado por t
 :::aside
 [Licencia completa (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.es) · [Archivos LICENSE y NOTICE en el repositorio]
 :::
-
-## Nombre y marca {#marca}
-
-:::status[Borrador]
-Pendiente de revisión legal.
-:::
-
-"42 Chain" es el nombre del proyecto.
-
-Puedes usar el nombre para referirte al protocolo o a la red; por ejemplo, para decir que tu aplicación funciona sobre 42 Chain. No lo uses de una forma que haga creer que tu producto es oficial o que el proyecto lo respalda.
 
 ## Investigación de seguridad {#investigacion}
 

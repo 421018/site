@@ -50,7 +50,7 @@ La Consola, el faucet y las demás herramientas se ofrecen tal cual, sin garant�
 
 ## Límite de responsabilidad {#responsabilidad}
 
-El protocolo, el software y las herramientas se ofrecen tal cual. En la medida en que lo permita la ley aplicable, los contribuyentes no responden por pérdidas derivadas del uso de la red, de contratos de terceros o de servicios externos.
+El protocolo, el software y las herramientas se ofrecen tal cual. En la medida en que lo permita la ley aplicable, los contribuidores no responden por pérdidas derivadas del uso de la red, de contratos de terceros o de servicios externos.
 
 :::aside
 [Pendiente de redacción legal: límites de responsabilidad conforme a la ley aplicable]
@@ -66,10 +66,10 @@ La ayuda técnica que se ofrece por los canales del proyecto es voluntaria y no 
 
 ## Propiedad intelectual y licencias {#propiedad}
 
-El código y la documentación se publican bajo las licencias indicadas en Legal y avisos. El nombre del proyecto se usa según lo indicado en Nombre y marca.
+El código y la documentación se publican bajo las licencias indicadas en Legal y avisos.
 
 :::aside
-[Pendiente de redacción legal: derechos sobre contenidos y marca]
+[Pendiente de redacción legal: derechos sobre contenidos]
 :::
 
 ## Enlaces y servicios de terceros {#terceros}

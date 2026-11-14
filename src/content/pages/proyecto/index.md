@@ -18,12 +18,12 @@ Nadie es dueño de la red. El código es público y cualquiera puede participar.
 
 42 Chain no tiene un operador. Cada parte que hace funcionar la red, y todo lo que la rodea, la sostienen participantes independientes que deciden por su cuenta contribuir. Nadie dirige el conjunto, y ninguna parte depende de que una sola persona o un solo grupo siga ahí.
 
-- **El software del protocolo.** Lo escriben y lo revisan contribuyentes independientes, en un repositorio público. Cualquiera puede proponer cambios.
+- **El software del protocolo.** Lo escriben y lo revisan contribuidores independientes, en un repositorio público. Cualquiera puede proponer cambios.
 - **La red.** La forman los nodos y los validadores que operan personas y proyectos distintos. Los validadores reciben recompensas del protocolo por su trabajo, pero nadie les asigna ese papel.
 - **El acceso a la red.** Los nodos RPC, los exploradores y otros servicios públicos los ofrecen quienes quieren facilitar el acceso a otros. Cualquiera puede ofrecer el suyo.
 - **Las decisiones.** Las toma la DAO, formada por los validadores y por quienes les delegan unidades. Se organiza en sus propios espacios.
 - **Las aplicaciones y los servicios.** Los construyen proyectos independientes, y cada uno responde por lo suyo.
-- **La documentación, las herramientas y este sitio.** Los escriben, los publican y los mantienen en línea contribuyentes, igual que el software.
+- **La documentación, las herramientas y este sitio.** Los escriben, los publican y los mantienen en línea contribuidores, igual que el software.
 - **La ayuda técnica.** La dan, por los canales del proyecto y en los espacios de la comunidad, personas que conocen la red y quieren que otros la usen bien.
 
 Como ninguna parte tiene dueño, ninguna habla por las demás. Quien contribuye en una parte responde por su propio trabajo, no por el conjunto.

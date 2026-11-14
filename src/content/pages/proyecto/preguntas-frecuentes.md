@@ -101,7 +101,7 @@ En privado, por el canal de seguridad indicado en la documentación. [Reportar u
 ## El proyecto {#proyecto}
 
 :::faq[¿Quién desarrolla el protocolo?]
-Contribuyentes independientes que trabajan en abierto. Cualquiera puede sumarse. [El equipo](/proyecto/equipo)
+Contribuidores independientes que trabajan en abierto. Cualquiera puede sumarse. [El equipo](/proyecto/equipo)
 :::
 
 :::faq[¿42 Chain es una empresa?]
@@ -127,7 +127,7 @@ No. Este sitio no ofrece, no vende y no recomienda la unidad nativa ni ningún o
 :::
 
 :::faq[¿Quién opera este sitio?]
-Nadie en particular. Lo escriben, lo revisan y lo mantienen en línea contribuyentes independientes, como el resto del proyecto. [Sobre este sitio](/legal#independencia)
+Nadie en particular. Lo escriben, lo revisan y lo mantienen en línea contribuidores independientes, como el resto del proyecto. [Sobre este sitio](/legal#independencia)
 :::
 
 :::faq[¿Este sitio habla en nombre de la DAO?]

@@ -227,7 +227,7 @@ Contributions are welcome, from fixing a typo in the browser to adding sections.
 | Source code (everything outside `src/content/`) | [Apache License 2.0](LICENSE) |
 | Content (everything under `src/content/`) | [CC BY 4.0](LICENSE-CONTENT) |
 
-Copyright 2026 The 42 Chain Authors. See [NOTICE](NOTICE). The "42 Chain" name and logo are not covered by these licenses.
+Copyright 2026 The 42 Chain contributors. See [NOTICE](NOTICE).
 
 ## Conventions
 

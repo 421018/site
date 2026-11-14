@@ -10,7 +10,7 @@ weight: 20
 Pendiente de revisión legal.
 :::
 
-Este sitio lo mantienen contribuyentes independientes, no una empresa. Está pensado para pasar por él la menor cantidad de datos posible: no pide registro y no usa analítica que identifique a las personas.
+Este sitio lo mantienen contribuidores independientes, no una empresa. Está pensado para pasar por él la menor cantidad de datos posible: no pide registro y no usa analítica que identifique a las personas.
 
 :::aside
 [Pendiente de redacción legal: alcance de la política en un proyecto comunitario]

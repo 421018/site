@@ -6,7 +6,7 @@ weight: 10
 
 ## Quiénes somos {#quienes}
 
-Somos contribuyentes independientes que desarrollan el software del protocolo. Nadie nos asigna ese papel: cada quien contribuye por decisión propia, en abierto, y cualquiera puede sumarse. Todo lo que hacemos se puede ver, revisar y discutir.
+Somos contribuidores independientes que desarrollan el software del protocolo. Nadie nos asigna ese papel: cada quien contribuye por decisión propia, en abierto, y cualquiera puede sumarse. Todo lo que hacemos se puede ver, revisar y discutir.
 
 Nuestro trabajo es que el protocolo funcione bien, que sea fácil de usar y que quien quiera construir sobre la red encuentre lo que necesita.
 
