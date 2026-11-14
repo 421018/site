@@ -21,8 +21,9 @@
   --rule2: #BDBAB2;
   --panel: #EAE9E3;
   --link: #0A7A5E;
-  --font: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* Self-hosted at build time (astro.config.mjs → fonts). */
+  --font: var(--font-geist);
+  --mono: var(--font-geist-mono);
 }
 /* Each section overrides --acc and --link from its index.md (section.accent / section.ink). */
 
