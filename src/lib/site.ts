@@ -4,7 +4,7 @@
  * the side index, previous/next and the footer on the next build.
  */
 import { execFileSync } from 'node:child_process';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 
 export type Page = CollectionEntry<'pages'>;
 export type Link = { href: string; label: string };
@@ -43,21 +43,21 @@ async function build() {
   const sections = new Map<string, Section>();
 
   for (const p of pages) {
-    if (p.id === '') errors.push('src/content/pages/index.md: la portada se edita en src/content/home.md.');
+    if (p.id === '') errors.push('src/content/pages/index.md: the home page is edited in src/content/home.md.');
     if (isIndex(p)) {
       const s = p.data.section;
-      if (!s) { errors.push(`${p.filePath}: el index.md de una sección necesita un bloque "section:".`); continue; }
+      if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
       sections.set(p.id, {
         key: p.id, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
         numbered: s.numbered, sequential: s.sequential, home: p.id, pages: [], links: s.links, attached: [],
       });
     } else if (p.data.section) {
-      errors.push(`${p.filePath}: "section:" solo va en el index.md de la carpeta.`);
+      errors.push(`${p.filePath}: "section:" is only allowed in the folder's index.md.`);
     }
   }
   for (const p of pages) {
     const s = sections.get(sectionOf(p));
-    if (!s) { if (!isIndex(p)) errors.push(`${p.filePath}: la carpeta "${sectionOf(p)}" no tiene index.md.`); continue; }
+    if (!s) { if (!isIndex(p)) errors.push(`${p.filePath}: folder "${sectionOf(p)}" has no index.md.`); continue; }
     s.pages.push(p);
   }
   for (const s of sections.values()) {
@@ -65,7 +65,7 @@ async function build() {
     const parentKey = pages.find((p) => p.id === s.key)?.data.section?.attachTo;
     if (!parentKey) continue;
     const parent = sections.get(parentKey);
-    if (!parent) { errors.push(`src/content/pages/${s.key}/index.md: attachTo "${parentKey}" no es una sección.`); continue; }
+    if (!parent) { errors.push(`src/content/pages/${s.key}/index.md: attachTo "${parentKey}" is not a section.`); continue; }
     s.home = parent.key;
     s.accent ??= parent.accent;
     s.ink ??= parent.ink;
@@ -73,7 +73,7 @@ async function build() {
   }
   for (const s of sections.values()) s.attached.sort((a, b) => a.weight - b.weight);
 
-  if (errors.length) throw new Error('Contenido inválido:\n  ' + errors.join('\n  '));
+  if (errors.length) throw new Error('Invalid content:\n  ' + errors.join('\n  '));
   return sections;
 }
 
@@ -84,7 +84,7 @@ export async function getMenu(): Promise<Section[]> {
 
 export async function getSection(key: string): Promise<Section> {
   const s = (await getSections()).get(key);
-  if (!s) throw new Error(`Sección desconocida: ${key}`);
+  if (!s) throw new Error(`Unknown section: ${key}`);
   return s;
 }
 
@@ -125,4 +125,11 @@ export function lastCommitDate(filePath: string | undefined): Date | undefined {
   } catch {
     return undefined;
   }
+}
+
+/** Site-wide visitor-facing text (src/content/site.md). */
+export async function getSiteText() {
+  const entry = await getEntry('site', 'site');
+  if (!entry) throw new Error('Missing src/content/site.md');
+  return entry.data;
 }

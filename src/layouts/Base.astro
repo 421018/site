@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { Font } from 'astro:assets';
 import { SITE } from '../config';
+import { getSiteText } from '../lib/site';
 
 interface Props {
   title?: string;
@@ -10,9 +11,10 @@ interface Props {
   accent?: string;
   ink?: string;
 }
-const { title, description = SITE.description, accent, ink } = Astro.props;
+const text = await getSiteText();
+const { title, description = text.description, accent, ink } = Astro.props;
 const colors = [accent && `--acc: ${accent}`, ink && `--link: ${ink}`].filter(Boolean).join('; ') || undefined;
-const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — Protocolo blockchain de código abierto`;
+const fullTitle = title ? `${title} — ${text.name}` : `${text.name} — ${text.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -28,8 +30,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content={SITE.name} />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={text.name} />
+    <meta property="og:locale" content={SITE.ogLocale} />
     <meta name="twitter:card" content="summary" />
     <meta name="theme-color" content="#05070A" />
     <link rel="sitemap" href="/sitemap-index.xml" />

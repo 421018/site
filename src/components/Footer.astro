@@ -1,7 +1,7 @@
 ---
-import { getFooter } from '../lib/site';
-import { SITE } from '../config';
+import { getFooter, getSiteText } from '../lib/site';
 const columns = await getFooter();
+const text = await getSiteText();
 ---
 <footer class="site-footer">
   <div class="inner">
@@ -14,7 +14,7 @@ const columns = await getFooter();
         </div>
       ))}
     </div>
-    <div aria-hidden="true" class="megatype">42 Chain</div>
-    <div class="fbase"><span>42 Chain · Proyecto de código abierto · {SITE.license}</span><span>Desarrollado en abierto</span></div>
+    <div aria-hidden="true" class="megatype">{text.name}</div>
+    <div class="fbase"><span>{text.name} · {text.footer.credit} · {text.footer.license}</span><span>{text.footer.note}</span></div>
   </div>
 </footer>

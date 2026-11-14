@@ -1,14 +1,15 @@
 ---
-import { getMenu } from '../lib/site';
+import { getMenu, getSiteText } from '../lib/site';
 interface Props { current?: string }
 const { current } = Astro.props;
 const menu = await getMenu();
+const text = await getSiteText();
 ---
 <header class="site-header">
-  <a class="brand" href="/" aria-label="42 Chain, inicio">
-    <span class="mark">42</span><span class="name">42 Chain</span>
+  <a class="brand" href="/" aria-label={text.header.homeLink}>
+    <span class="mark">42</span><span class="name">{text.name}</span>
   </a>
-  <nav class="menu" aria-label="Principal">
+  <nav class="menu" aria-label={text.header.mainNav}>
     {menu.map((s) => (
       <a class:list={['nl', { on: current === s.key }]} href={s.href} data-label={s.label} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
     ))}

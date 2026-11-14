@@ -1,10 +1,11 @@
 /**
- * Content model. Everything the site shows comes from these two collections:
+ * Content model. Everything the site shows comes from these collections:
  *
  * - `pages`: one Markdown/MDX file per interior page under src/content/pages/.
  *   The folder is the section and the file path is the URL. The `index.md` of
  *   each folder also describes its section (`section:` block).
- * - `home`: the texts of the home page (src/content/home.md, frontmatter only).
+ * - `home`: the text of the home page (src/content/home.md, frontmatter only).
+ * - `site`: site-wide text: brand, footer, interface labels, 404 (src/content/site.md).
  *
  * The schemas are strict: a misspelled or missing field stops the build with
  * the file and field name.
@@ -13,7 +14,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const color = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'usa un color hexadecimal de 6 dígitos, p. ej. "#5BF0C8"');
+const color = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'use a 6-digit hex color, e.g. "#5BF0C8"');
 const link = z.object({ label: z.string(), href: z.string() }).strict();
 
 /** Section settings, only valid in a folder's index.md. */
@@ -56,7 +57,7 @@ const pages = defineCollection({
       menuTitle: z.string().optional(),
       /** Order inside the section (lower goes first). The index page always goes first. */
       weight: z.number().int().default(100),
-      /** Optional. Without it, "Última revisión" uses the date of the file's last commit. */
+      /** Optional. Without it, the "last reviewed" date is the file's last commit date. */
       updated: z.coerce.date().optional(),
       /** Drafts are visible with `npm run dev` and left out of the published site. */
       draft: z.boolean().default(false),
@@ -91,4 +92,19 @@ const home = defineCollection({
     .strict(),
 });
 
-export const collections = { pages, home };
+const site = defineCollection({
+  loader: glob({ pattern: 'site.md', base: './src/content' }),
+  schema: z
+    .object({
+      name: z.string(),
+      tagline: z.string(),
+      description: z.string(),
+      header: z.object({ homeLink: z.string(), mainNav: z.string() }).strict(),
+      footer: z.object({ credit: z.string(), license: z.string(), note: z.string() }).strict(),
+      page: z.object({ lastReviewed: z.string(), editPage: z.string(), previous: z.string(), next: z.string(), chapters: z.string() }).strict(),
+      notFound: z.object({ title: z.string(), label: z.string(), heading: z.string(), action: z.string() }).strict(),
+    })
+    .strict(),
+});
+
+export const collections = { pages, home, site };
