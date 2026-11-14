@@ -205,14 +205,29 @@ Values in `[brackets]` are placeholders. The main ones:
 - `src/config.ts`: domain, docs and console URLs, repository. The domain also sets the sitemap and `robots.txt` URLs.
 - Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`src/content/home.md` and `desarrolladores/`).
 - Official channels: X, forum, contact and security email (`proyecto/contacto.md`).
-- License for the site content (`LICENSE` file) and the documentation.
+- Repository URL (`[organization]`) in `src/config.ts`, `NOTICE` and `.github/ISSUE_TEMPLATE/config.yml`.
+- Contact emails in `SECURITY.md` (`[security email]`) and `CODE_OF_CONDUCT.md` (`[conduct email]`).
+- Licenses of the documentation site and the console (`legal/index.md`).
 - Social sharing image (`og:image`).
 
-To find them all: `grep -rn "\[" src/content src/config.ts`.
+To find them all: `grep -rn "\[" src/content src/config.ts NOTICE SECURITY.md CODE_OF_CONDUCT.md .github`.
 
 ## Languages
 
 The site is in Spanish and Astro's i18n config is enabled (`astro.config.mjs`). Adding another language requires adapting `src/lib/site.ts` so language folders (`src/content/pages/en/…`) are not read as sections, plus a translated `site.md` and `home.md`.
+
+## Contributing
+
+Contributions are welcome, from fixing a typo in the browser to adding sections. See [CONTRIBUTING.md](CONTRIBUTING.md) (it includes a short guide in Spanish for content editors), the [Code of Conduct](CODE_OF_CONDUCT.md) and, for vulnerabilities, [SECURITY.md](SECURITY.md).
+
+## License
+
+| What | License |
+|---|---|
+| Source code (everything outside `src/content/`) | [Apache License 2.0](LICENSE) |
+| Content (everything under `src/content/`) | [CC BY 4.0](LICENSE-CONTENT) |
+
+Copyright 2026 The 42 Chain Authors. See [NOTICE](NOTICE). The "42 Chain" name and logo are not covered by these licenses.
 
 ## Conventions
 
