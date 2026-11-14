@@ -4,6 +4,8 @@ summary: "Cómo la red comprueba lo que ocurrió en otras redes sin depender de 
 weight: 40
 ---
 
+import IbcSim from '../../../components/IbcSim.astro';
+
 ## Por qué conectar redes {#porque-conectar}
 
 Cada red lleva su propio registro, con sus propias cuentas y sus propias reglas. Una red, por sí sola, no puede ver lo que ocurre en otra.
@@ -49,6 +51,8 @@ La transferencia de unidades es la aplicación más usada de IBC, y muestra bien
 Si la entrega no ocurre dentro de un plazo, la transferencia vence y las 10 unidades se desbloquean en la cuenta de origen. En ese proceso, las unidades no pasan a manos de un tercero.
 
 El regreso funciona al revés. La red B destruye las 10 unidades que las representaban, y 42, tras verificar la prueba, desbloquea las originales.
+
+<IbcSim />
 
 :::aside
 Las cifras del ejemplo son ilustrativas.

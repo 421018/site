@@ -45,6 +45,9 @@ Desde que se firma hasta que tiene efecto, una transacción pasa por cinco etapa
 - **4. Inclusión.** Un validador incluye la transacción en el bloque que propone. Cuando el bloque se confirma, todos los nodos ejecutan la transacción.
 - **5. Resultado.** La transacción tiene éxito o falla. Si tiene éxito, el estado cambia. Si falla, por ejemplo porque un contrato rechaza la llamada, el estado queda como estaba; aun así, la transacción paga la tarifa del trabajo que se hizo.
 
+:::diagram[Las cinco etapas de una transacción, de la firma al resultado.]{name="transaccion"}
+:::
+
 Una transacción incluida en un bloque confirmado es definitiva: su resultado no puede revertirse.
 
 ## Contratos inteligentes {#contratos}

@@ -11,6 +11,8 @@ section:
   sequential: true
 ---
 
+import HashChain from '../../../components/HashChain.astro';
+
 ## Qué es el protocolo {#protocolo}
 
 Cuando varias computadoras tienen que trabajar juntas sin que ninguna mande sobre las demás, necesitan un acuerdo sobre cómo hacerlo. Ese acuerdo se escribe como un conjunto de reglas precisas. A ese conjunto de reglas se le llama **protocolo**.
@@ -45,6 +47,8 @@ La red no se pone de acuerdo transacción por transacción. Las transacciones se
 Cada bloque incluye la **huella** del bloque anterior. La huella es un código que se calcula a partir del contenido de un bloque, y cambia por completo si se altera un solo dato de ese bloque. Como cada bloque guarda la huella del anterior, todos los bloques quedan encadenados. De ahí viene el nombre de **cadena de bloques**.
 
 Si alguien alterara un bloque antiguo, la huella de ese bloque cambiaría. Ya no coincidiría con la huella guardada en el bloque siguiente, y cualquier nodo detectaría la alteración.
+
+<HashChain />
 
 De aquí se desprende algo importante: para confiar en el registro no hace falta confiar en ninguna persona en particular, porque cualquiera puede comprobar que el registro está intacto. Por eso el protocolo no pide permiso para participar. Cualquiera puede ejecutar el protocolo en su propia computadora, convertirse en nodo y revisar el historial completo. Por eso se dice que la red es **pública**.
 

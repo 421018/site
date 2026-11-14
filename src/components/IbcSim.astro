@@ -1,0 +1,110 @@
+---
+// Illustrative IBC transfer of 10 units from 42 to "red B", step by step, with an
+// alternative path where no relayer delivers the packet and the transfer times out.
+// Steps and wording follow protocolo/interoperabilidad.mdx.
+---
+<div class="widget ibc" data-ibc>
+  <div class="w-head"><span class="w-tag">Simulador interactivo</span><span class="w-meta">Transferencia de 10 unidades por IBC</span></div>
+
+  <div class="stage" aria-hidden="true">
+    <div class="net">
+      <span class="nn">42</span>
+      <div class="acct"><span>Cuenta de origen</span><b data-src>100</b></div>
+      <div class="acct"><span>Reserva de la conexión</span><b data-esc>0</b></div>
+    </div>
+    <div class="lane">
+      <span class="lane-l">Retransmisor</span>
+      <span class="pkt" data-pkt></span>
+    </div>
+    <div class="net">
+      <span class="nn">Red B</span>
+      <div class="acct"><span>Cuenta de destino</span><b data-dst>0</b></div>
+      <div class="acct"><span>Cliente ligero de 42</span><b data-lc>—</b></div>
+    </div>
+  </div>
+
+  <div class="step" role="status">
+    <span class="mono" data-title></span>
+    <span data-desc></span>
+  </div>
+
+  <div class="ctl">
+    <button type="button" data-prev>← Anterior</button>
+    <button type="button" data-next>Siguiente →</button>
+    <label class="tgl"><input type="checkbox" data-timeout /> <span>Simular que no se entrega</span></label>
+  </div>
+  <p class="w-note">Ilustrativo. Un retransmisor puede entregar el mensaje o no entregarlo, pero no puede alterarlo.</p>
+</div>
+
+<style>
+  .stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(90px, .8fr) minmax(0, 1fr); gap: 12px; align-items: stretch; margin-bottom: 16px; }
+  .net { padding: 14px; border: 1px solid var(--w-rule); border-radius: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .nn { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+  .acct { display: flex; justify-content: space-between; gap: 8px; font-size: 13.5px; color: var(--w-dim); }
+  .acct b { font-family: var(--mono); color: #fff; font-weight: 500; transition: color .3s; }
+  .acct b.chg { color: var(--acc); }
+  .lane { position: relative; display: flex; align-items: center; justify-content: center; border-top: 1px dashed var(--w-rule); border-bottom: 1px dashed var(--w-rule); }
+  .lane-l { position: absolute; top: 6px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); }
+  .pkt { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 4px; background: var(--acc); transform: translate(-50%, -50%); transition: left .6s cubic-bezier(.16,1,.3,1), opacity .3s, background .3s; left: 0%; opacity: 0; }
+  .pkt.a { left: 4%; opacity: 1; } .pkt.mid { left: 50%; opacity: 1; } .pkt.b { left: 96%; opacity: 1; }
+  .pkt.ack { left: 4%; opacity: 1; background: #fff; }
+  .pkt.lost { left: 50%; opacity: .5; background: #F07A62; }
+  .step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--acc); min-height: 52px; }
+  .step .mono { font-size: 12.5px; white-space: nowrap; color: #fff; }
+  .ibc.timeout .step { border-color: #F2A93B; }
+  .ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 12px; }
+  .ctl button { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--w-rule); background: transparent; color: #fff; font: inherit; font-size: 14.5px; cursor: pointer; }
+  .ctl button:hover:not(:disabled) { border-color: var(--acc); }
+  .ctl button:disabled { opacity: .35; cursor: default; }
+  .tgl { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: var(--w-fg); cursor: pointer; }
+  .tgl input { accent-color: var(--acc); width: 18px; height: 18px; }
+  @media (max-width: 640px) { .stage { grid-template-columns: 1fr; } .lane { min-height: 56px; } }
+</style>
+
+<script>
+  type S = { t: string; d: string; src: number; esc: number; dst: number; lc: string; pkt: string };
+  const start: S = { t: 'Inicio', d: 'La cuenta de origen tiene 100 unidades en 42.', src: 100, esc: 0, dst: 0, lc: '—', pkt: '' };
+  const locked: S = { t: '1. Bloqueo', d: 'La cuenta envía la transferencia. El protocolo bloquea 10 unidades en la reserva de la conexión, dentro de 42.', src: 90, esc: 10, dst: 0, lc: '—', pkt: 'a' };
+  const ok: S[] = [
+    start,
+    locked,
+    { t: '2. Traslado', d: 'Un retransmisor lleva el mensaje a la red B, junto con la prueba de que las unidades quedaron bloqueadas.', src: 90, esc: 10, dst: 0, lc: '—', pkt: 'mid' },
+    { t: '3. Verificación', d: 'La red B comprueba la prueba con su cliente ligero de 42. Nadie tiene que confiar en el retransmisor.', src: 90, esc: 10, dst: 0, lc: 'Prueba válida', pkt: 'b' },
+    { t: '4. Representación', d: 'La red B crea 10 unidades que representan a las bloqueadas y las entrega en la cuenta de destino.', src: 90, esc: 10, dst: 10, lc: 'Prueba válida', pkt: 'b' },
+    { t: '5. Confirmación', d: 'Un retransmisor lleva la confirmación de vuelta a 42. La transferencia está completa.', src: 90, esc: 10, dst: 10, lc: 'Prueba válida', pkt: 'ack' },
+  ];
+  const timeout: S[] = [
+    start,
+    locked,
+    { t: '2. Sin entrega', d: 'Ningún retransmisor entrega el mensaje antes del plazo fijado en la transferencia.', src: 90, esc: 10, dst: 0, lc: '—', pkt: 'lost' },
+    { t: '3. Vencimiento', d: 'La transferencia vence y las 10 unidades vuelven a la cuenta de origen. En ningún momento pasaron a manos de un tercero.', src: 100, esc: 0, dst: 0, lc: '—', pkt: '' },
+  ];
+  document.querySelectorAll<HTMLElement>('[data-ibc]').forEach((root) => {
+    const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]')!;
+    const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
+    const tgl = root.querySelector<HTMLInputElement>('[data-timeout]')!;
+    let i = 0, last: S = start;
+    const paint = () => {
+      const path = tgl.checked ? timeout : ok;
+      i = Math.min(i, path.length - 1);
+      const s = path[i];
+      (['src', 'esc', 'dst', 'lc'] as const).forEach((k) => {
+        const el = $(`[data-${k}]`);
+        el.textContent = String(s[k]);
+        el.classList.toggle('chg', s[k] !== last[k]);
+      });
+      $('[data-pkt]').className = 'pkt ' + s.pkt;
+      $('[data-title]').textContent = s.t;
+      $('[data-desc]').textContent = s.d;
+      root.classList.toggle('timeout', tgl.checked && i >= 2);
+      prev.disabled = i === 0;
+      next.disabled = i === path.length - 1;
+      last = s;
+    };
+    prev.addEventListener('click', () => { i--; paint(); });
+    next.addEventListener('click', () => { i++; paint(); });
+    tgl.addEventListener('change', () => { i = 0; last = start; paint(); });
+    paint();
+  });
+</script>

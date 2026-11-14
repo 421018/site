@@ -22,6 +22,9 @@ Mientras se cumple el supuesto de seguridad, el protocolo está diseñado para q
 - **Las reglas sean iguales para todos.** Todas las transacciones se procesan con las mismas reglas. Ninguna cuenta ni aplicación tiene privilegios, y las reglas solo cambian mediante una actualización que se aprueba por gobernanza.
 - **Cualquiera pueda comprobarlo.** Cualquiera puede ejecutar un nodo, repetir cada transacción y comprobar por su cuenta el estado de la red.
 
+:::diagram[Capas de protección: cada una cubre lo que las demás no pueden.]{name="capas-seguridad"}
+:::
+
 :::aside
 [El supuesto de seguridad en el consenso →](/protocolo/consenso)
 :::

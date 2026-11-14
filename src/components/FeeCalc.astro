@@ -1,0 +1,92 @@
+---
+// Illustrative fee calculator: fee = gas used × (base fee + tip), shown in drops
+// and in cups (1 cup = 10^18 drops). The default reproduces the worked example in
+// tarifas.mdx: 21,000 gas at 0.000001 per gas unit = 0.021. Values are examples;
+// the real base fee is the one the wallet shows for the current block.
+const presets = [
+  ['21000', 'Transferencia simple'],
+  ['50000', 'Registro en un contrato'],
+  ['250000', 'Contrato complejo'],
+] as const;
+---
+<div class="widget fc" data-fees>
+  <div class="w-head"><span class="w-tag">Calculadora interactiva</span><span class="w-meta">tarifa = gas × (tarifa base + propina)</span></div>
+
+  <fieldset class="presets">
+    <legend class="lb">Operación</legend>
+    {presets.map(([gas, label], i) => (
+      <label class="chip"><input type="radio" name="fc-gas" value={gas} checked={i === 0} /><span>{label}<em>{Number(gas).toLocaleString('es')} de gas</em></span></label>
+    ))}
+  </fieldset>
+
+  <div class="row">
+    <label class="lb" for="fc-base">Tarifa base por unidad de gas</label>
+    <span class="val" data-base-label></span>
+  </div>
+  <input id="fc-base" type="range" min="36" max="52" step="1" value="48" />
+
+  <fieldset class="presets tip">
+    <legend class="lb">Propina</legend>
+    {[0, 10, 25].map((p, i) => (
+      <label class="chip"><input type="radio" name="fc-tip" value={p} checked={i === 0} /><span>{p === 0 ? 'Sin propina' : `+${p} %`}</span></label>
+    ))}
+  </fieldset>
+
+  <div class="out" role="status">
+    <span class="lb">Tarifa</span>
+    <strong data-cups></strong>
+    <span class="drops" data-drops></span>
+  </div>
+  <p class="w-note">Valores ilustrativos. La tarifa base real cambia con cada bloque, y la billetera la muestra antes de firmar.</p>
+</div>
+
+<style>
+  .lb { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); }
+  .presets { border: 0; margin: 0 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .presets legend { margin-bottom: 8px; padding: 0; }
+  .chip { position: relative; cursor: pointer; }
+  .chip input { position: absolute; opacity: 0; }
+  .chip span { display: inline-flex; flex-direction: column; justify-content: center; min-height: 44px; padding: 8px 14px; border: 1px solid var(--w-rule); border-radius: 10px; color: var(--w-fg); font-size: 14px; transition: border-color .2s, background .2s; }
+  .chip em { font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--w-dim); }
+  .chip input:checked + span { border-color: var(--acc); background: color-mix(in srgb, var(--acc) 12%, transparent); color: #fff; }
+  .chip input:focus-visible + span { outline: 2px solid var(--acc); outline-offset: 2px; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .val { font-family: var(--mono); font-size: 13px; color: #fff; text-align: right; }
+  .tip { margin-top: 14px; }
+  .out { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--acc); }
+  .out strong { font-size: clamp(22px, 3vw, 30px); font-weight: 600; color: #fff; letter-spacing: -.01em; word-break: break-all; }
+  .drops { font-family: var(--mono); font-size: 12.5px; color: var(--w-dim); word-break: break-all; }
+</style>
+
+<script>
+  const ONE = 10n ** 18n;
+  const group = (n: bigint) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  /** Drops → decimal Improbability string with up to six significant fraction digits. */
+  const cups = (d: bigint) => {
+    const int = d / ONE;
+    let frac = (d % ONE).toString().padStart(18, '0');
+    const firstSig = frac.search(/[1-9]/);
+    frac = firstSig < 0 ? '' : frac.slice(0, Math.min(18, firstSig + 6)).replace(/0+$/, '');
+    return group(int) + (frac ? ',' + frac : '');
+  };
+  document.querySelectorAll<HTMLElement>('[data-fees]').forEach((root) => {
+    const base = root.querySelector<HTMLInputElement>('#fc-base')!;
+    const baseLabel = root.querySelector('[data-base-label]')!;
+    const outCups = root.querySelector('[data-cups]')!;
+    const outDrops = root.querySelector('[data-drops]')!;
+    const paint = () => {
+      const gas = BigInt(root.querySelector<HTMLInputElement>('input[name=fc-gas]:checked')!.value);
+      const tip = BigInt(root.querySelector<HTMLInputElement>('input[name=fc-tip]:checked')!.value);
+      // Slider in quarter powers of ten: 36 → 10^9 drops, 48 → 10^12, 52 → 10^13 per gas unit.
+      const exp = Number(base.value) / 4;
+      const basePrice = BigInt(Math.round(10 ** exp));
+      const price = basePrice + (basePrice * tip) / 100n;
+      const fee = gas * price;
+      baseLabel.textContent = `${cups(basePrice)} cups · ${group(basePrice)} drops`;
+      outCups.textContent = `${cups(fee)} Improbability`;
+      outDrops.textContent = `${group(fee)} drops`;
+    };
+    root.querySelectorAll('input').forEach((i) => i.addEventListener('input', paint));
+    paint();
+  });
+</script>

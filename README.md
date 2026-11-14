@@ -36,7 +36,7 @@ The file path is the page URL. Folder and file names are public URLs, so they st
 
 | File | URL |
 |---|---|
-| `protocolo/index.md` | `/protocolo` |
+| `protocolo/index.mdx` | `/protocolo` |
 | `protocolo/consenso.mdx` | `/protocolo/consenso` |
 | `codigo-abierto/verificar.md` | `/codigo-abierto/verificar` |
 
