@@ -18,9 +18,11 @@ La unidad nativa es el recurso técnico con el que funciona el protocolo. Cumple
 
 Una unidad se divide en 18 decimales. La fracción más pequeña, que ya no puede dividirse, se llama **gota**. Una unidad completa equivale a un trillón de gotas (10¹⁸).
 
+La gota es también la denominación base de la red: en las transacciones y las interfaces propias de la red, las cantidades se expresan en gotas con el nombre técnico `drop`.
+
 | Medida | Qué es | Equivalencia |
 |---|---|---|
-| Gota | La fracción más pequeña de la unidad | 0,000000000000000001 Improbability (10⁻¹⁸) |
+| Gota (`drop`) | La fracción más pequeña de la unidad y denominación base de la red | 0,000000000000000001 Improbability (10⁻¹⁸) |
 | Taza | Nombre coloquial de una unidad completa | 1 Improbability = 10¹⁸ gotas |
 | 42 | Símbolo de la unidad | Lo que muestran las billeteras y los exploradores |
 

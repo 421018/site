@@ -19,7 +19,8 @@ Para conectarse a cualquiera de las dos hacen falta dos cosas: sus parámetros, 
 | Chain ID (EVM) | [chain ID] | [chain ID] |
 | Chain ID (nativo) | [chain ID nativo] | [chain ID nativo] |
 | Unidad nativa | Improbability · símbolo 42 | Improbability de prueba · [símbolo] |
-| Decimales | [decimales] | [decimales] |
+| Decimales | 18 | 18 |
+| Denominación base | `drop` (gota) | [denominación base de prueba] |
 | Prefijo de dirección nativa | [prefijo] | [prefijo] |
 | Tiempo de bloque | ~2 s | ~2 s |
 
