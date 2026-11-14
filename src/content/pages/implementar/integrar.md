@@ -18,7 +18,7 @@ Cada tipo de integración necesita cosas distintas:
 - **Dispositivos.** Sensores, medidores y equipos de campo que firman sus propios registros. Pueden firmar con llaves guardadas en su chip seguro, con [firmas P-256](/implementar#firmas).
 - **Herramientas de firma.** Billeteras y dispositivos de firma compatibles con la EVM. Necesitan los parámetros de la red y los formatos de dirección.
 - **Exploradores e indexadores.** Leen todos los bloques y los organizan para consultarlos. Suelen necesitar un nodo de archivo.
-- **Otras redes.** Redes que ejecutan el protocolo, u otras redes compatibles con IBC, que intercambian transferencias o comprueban datos entre sí. [Integración entre redes](/casos-de-uso/integracion)
+- **Otras redes.** Redes compatibles con IBC, incluidos entornos internos conectados a 42 Chain, que intercambian transferencias o comprueban datos entre sí. [Integración entre redes](/casos-de-uso/integracion)
 
 :::aside
 [Operar un nodo →](/implementar/nodos)

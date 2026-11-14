@@ -66,11 +66,13 @@ La solución habitual es separar el dato de su prueba. El dato se queda fuera de
 [Qué va dentro y fuera de la cadena en una aplicación →](/implementar#aplicacion)
 :::
 
-## Red pública o red propia {#redes}
+## Entornos internos conectados a 42 Chain {#entornos-internos}
 
-42 Chain es una red pública que ejecuta el protocolo: cualquiera puede leer su registro y verificar lo que contiene. Es la opción natural cuando la verificación tiene que estar abierta a terceros.
+42 Chain es una red pública: cualquiera puede leer su registro y verificar lo que contiene. Por eso es donde un dato se vuelve verificable por terceros.
 
-El Protocolo 42 es software abierto, y también puede desplegarse en otras redes, incluidas redes privadas en las que solo participan las organizaciones de un consorcio. Las redes que ejecutan el protocolo pueden comunicarse entre sí mediante IBC.
+Algunas organizaciones necesitan, además, mantener parte de sus datos separados de la red pública: resultados internos, información de clientes o datos de operación. Para esos casos, la misma tecnología permite un **entorno interno** encapsulado, conectado a 42 Chain mediante IBC. Los datos reservados se quedan en el entorno interno, y sus pruebas se comprueban en 42 Chain, donde cualquiera puede verificarlas.
+
+Un entorno interno requiere una implementación a medida. [Implementaciones a medida](/implementar/implementaciones)
 
 ## Por qué el protocolo lo hace posible {#porque}
 

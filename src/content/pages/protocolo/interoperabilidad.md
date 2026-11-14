@@ -68,7 +68,7 @@ IBC no solo sirve para mover unidades. Desde un contrato, el protocolo ofrece tr
 - **Comprobar el estado de otra red.** Un contrato puede preguntar al cliente ligero de otra red si un dato forma parte de su registro, presentando una prueba. Si la prueba es válida, el contrato sabe que ese dato existe en la otra red, sin depender de quien se la entregó.
 - **Transferencias con IBC v2.** El protocolo admite también la versión 2 de IBC, que simplifica la conexión entre redes.
 
-El conjunto de estándares IBC incluye además aplicaciones para ejecutar llamadas entre contratos de redes distintas y para operar cuentas en otra red. Forman parte del mismo software abierto, y cada red que ejecuta el protocolo decide, mediante una actualización, si las activa.
+El conjunto de estándares IBC incluye además aplicaciones para ejecutar llamadas entre contratos de redes distintas y para operar cuentas en otra red. Forman parte del mismo software abierto, y una red puede activarlas mediante una actualización aprobada por gobernanza.
 
 Desde un contrato, estas capacidades se usan a través de funciones propias del protocolo.
 

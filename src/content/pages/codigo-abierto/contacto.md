@@ -41,7 +41,7 @@ Esta ayuda es una contribución al proyecto, igual que el código: es voluntaria
 
 Pregunta en el espacio de discusiones del repositorio público. Si encontraste un error en el software, repórtalo ahí mismo. Para una integración que prefieras no tratar en público, escribe al correo de contacto, [contacto@dominio]. Para responder mejor, incluye en tu mensaje qué quieres construir o integrar, en qué etapa estás y qué tipo de apoyo necesitas.
 
-Si necesitas un servicio profesional con condiciones propias, como un desarrollo a la medida o plazos garantizados, contrátalo con un proveedor independiente. El proyecto no presta servicios pagados ni recomienda proveedores.
+Si necesitas un servicio profesional con condiciones propias, como una implementación a medida o plazos garantizados, consulta el directorio de [Implementaciones a medida](/implementar/implementaciones). Los proveedores de esa lista son independientes, y se contratan directamente con ellos.
 
 :::aside
 [Integrar sistemas →](/implementar/integrar)
@@ -69,5 +69,5 @@ Tu frase de recuperación, tus llaves privadas, que envíes unidades para "verif
 
 - **Decisiones de gobernanza.** Las propuestas y los votos ocurren en la cadena.
 - **Proyectos de terceros.** Para cualquier tema sobre un proyecto construido sobre la red, contacta directamente a ese proyecto.
-- **Servicios pagados.** El proyecto no presta servicios profesionales ni firma contratos de soporte.
+- **Servicios pagados.** Estos canales no ofrecen ni contratan servicios profesionales. [Implementaciones a medida](/implementar/implementaciones)
 - **Compra o venta de la unidad nativa.** El proyecto no ofrece, no vende y no recomienda la unidad nativa ni ningún otro activo.

@@ -105,9 +105,9 @@ El fondo sirve para financiar lo que la red necesita y que nadie más financiar�
 
 ## Suministro inicial {#suministro}
 
-El primer bloque de una red se llama **bloque génesis**. Cada red que ejecuta el protocolo define en su bloque génesis una cantidad inicial de unidades, a la que se le llama **suministro inicial**, y cómo se asigna.
+El primer bloque de la red se llama **bloque génesis**. En el bloque génesis se define una cantidad inicial de unidades, a la que se le llama **suministro inicial**, y cómo se asigna.
 
-El suministro inicial no forma parte de la emisión ni de la distribución que se describen arriba. Su cantidad y su asignación son datos de cada red, no reglas del protocolo.
+El suministro inicial no forma parte de la emisión ni de la distribución que se describen arriba. Su cantidad y su asignación son datos de la red, no reglas del protocolo.
 
 ## Por qué el protocolo lo hace así {#porque}
 

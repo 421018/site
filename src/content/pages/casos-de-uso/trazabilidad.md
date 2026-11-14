@@ -38,7 +38,7 @@ Si una etapa no se registra, el hueco queda a la vista. Si un registro es incorr
 | Pesos, fechas y estados acordados | Documentos completos: certificados, guías y facturas |
 | Las huellas de los documentos | |
 
-Si algunos datos solo deben verlos las partes del consorcio, el mismo esquema puede funcionar en una red propia que ejecute el protocolo. [Red pública o red propia](/casos-de-uso#redes)
+Si algunos datos solo deben verlos las partes del consorcio, pueden quedarse en un entorno interno conectado a 42 Chain, y en la red pública registrarse solo sus pruebas. [Entornos internos](/casos-de-uso#entornos-internos)
 
 ## Mecanismos que intervienen {#mecanismos}
 
