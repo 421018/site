@@ -43,11 +43,23 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true
 </div>
 </section>
 
+<section id="usos" class="paper">
+<div class="wrap">
+<p class="k">{kicker(1, uses.kicker)}</p>
+<h2 class="h2" style="max-width: 900px">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{uses.lead && <p class="lead">{uses.lead}</p>}
+<div class="stories">
+{uses.stories.map((s, i) => <div class="story rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{s.title}</h3><p>{s.text}</p></div>)}
+</div>
+{uses.link && <a class="txl" href={uses.link.href} style="margin-top: 56px">{uses.link.label} <Fragment set:html={arrow} /></a>}
+</div>
+</section>
+
 <section id="compatibilidad">
 <div class="wrap">
 <div class="g2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center">
 <div>
-<p class="k">{kicker(1, build.kicker)}</p>
+<p class="k">{kicker(2, build.kicker)}</p>
 <h2 class="h2">{lines(build.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {build.lead && <p class="lead">{build.lead}</p>}
 {build.link && <a class="txl" href={build.link.href}>{build.link.label} <Fragment set:html={arrow} /></a>}
@@ -60,18 +72,6 @@ const arrow = '<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true
 <div class="facts">
 {build.facts.map((f) => <div><b>{f.value}</b><span>{f.label}</span></div>)}
 </div>
-</div>
-</section>
-
-<section id="usos" class="paper">
-<div class="wrap">
-<p class="k">{kicker(2, uses.kicker)}</p>
-<h2 class="h2" style="max-width: 900px">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
-{uses.lead && <p class="lead">{uses.lead}</p>}
-<div class="stories">
-{uses.stories.map((s, i) => <div class="story rv"><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{s.title}</h3><p>{s.text}</p></div>)}
-</div>
-{uses.link && <a class="txl" href={uses.link.href} style="margin-top: 56px">{uses.link.label} <Fragment set:html={arrow} /></a>}
 </div>
 </section>
 

@@ -4,20 +4,33 @@
 # Blocks are numbered automatically (01, 02…) in the order they appear on the page.
 
 hero:
-  eyebrow: Protocolo blockchain de código abierto
+  eyebrow: Protocolo abierto de infraestructura
   title: |
-    Infraestructura pública
-    para construir.
-  lead: 42 Chain es una red blockchain para desplegar aplicaciones, registros y servicios que cualquiera puede verificar. Interoperable y compatible con los estándares de la industria.
-  primary: { label: Empieza a construir, href: /desarrolladores }
-  secondary: { label: Cómo funciona, href: /protocolo }
+    Infraestructura compartida
+    que cualquiera puede verificar.
+  lead: El Protocolo 42 permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, sin depender de los sistemas de una sola de ellas. 42 Chain es la red pública que lo ejecuta.
+  primary: { label: Cómo funciona, href: /protocolo }
+  secondary: { label: Conectarse a la red, href: /desarrolladores/conectarse }
+
+uses:
+  kicker: Casos de uso
+  title: Para qué sirve, en la práctica.
+  lead: "Cuando varias partes necesitan los mismos datos y las mismas reglas, un registro distribuido evita que una sola de ellas tenga que custodiarlos. Cada parte opera su copia, cualquier alteración queda a la vista y cualquiera puede comprobar el resultado. Tres ejemplos:"
+  link: { label: Qué permite construir, href: /protocolo/que-permite-construir }
+  stories:
+    - title: Un título que se verifica solo.
+      text: Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.
+    - title: Un origen que varias partes comparten.
+      text: Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.
+    - title: Un historial de mantenimiento que nadie reescribe.
+      text: Un municipio y sus contratistas registran cada intervención en el alumbrado o en la red de agua. Todas las partes ven el mismo historial, firmado y fechado.
 
 build:
   kicker: Para quien construye
   title: |
-    Cambia la red.
-    Tu código sigue igual.
-  lead: "Los contratos se escriben con los lenguajes y las herramientas que ya usa la industria: Solidity, Hardhat, Foundry, MetaMask. Si ya construyes sobre blockchain, ya sabes construir aquí."
+    Herramientas conocidas.
+    Reglas verificables.
+  lead: "Los contratos se escriben con lenguajes y herramientas estándar: Solidity, Hardhat, Foundry. Una aplicación que ya funciona en una red compatible con la EVM funciona aquí sin cambios en su código."
   link: { label: Construir en 42, href: /desarrolladores }
   code:
     file: hardhat.config.js
@@ -34,32 +47,19 @@ build:
   facts:
     - { value: ~2 s, label: Por bloque }
     - { value: 1 bloque, label: Para ser definitivo }
-    - { value: IBC, label: Interoperable }
+    - { value: IBC, label: Conexión con otras redes }
     - { value: Apache 2.0, label: Código abierto }
 
-uses:
-  kicker: Lo que permite
-  title: Para qué sirve, en la práctica.
-  lead: "Cuando los datos y las reglas quedan en un registro público que nadie puede modificar, cualquiera puede comprobarlos sin depender de un intermediario. Tres ejemplos:"
-  link: { label: Qué permite construir, href: /protocolo/que-permite-construir }
-  stories:
-    - title: Un título que se verifica solo.
-      text: Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.
-    - title: Un acuerdo que se cumple tal como se escribió.
-      text: Una cooperativa vota cómo repartir un fondo, y un contrato ejecuta el reparto con las reglas que todos aprobaron.
-    - title: Un origen que varias partes comparten.
-      text: Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.
-
 people:
-  kicker: Quién la sostiene
-  title: Funciona porque muchos deciden sostenerla.
-  lead: Detrás de la red no hay una empresa que pueda cerrarla, cambiar sus reglas por su cuenta o elegir quién la usa. Cada parte la mantiene alguien distinto, por decisión propia.
-  link: { label: Cómo se sostiene, href: "/proyecto#circulos" }
+  kicker: Cómo se organiza
+  title: Cada función, en manos distintas.
+  lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados, y cada parte se puede comprobar: el código en un repositorio público, la operación y las decisiones en la propia cadena."
+  link: { label: Cómo se organiza, href: "/proyecto#circulos" }
   rows:
-    - { who: Quienes escriben el código, what: "Lo proponen y lo revisan en público, en un repositorio abierto." }
-    - { who: Quienes operan los nodos, what: "Verifican cada bloque y dan acceso a la red a las aplicaciones." }
-    - { who: La gobernanza en la cadena, what: "Los validadores y quienes les delegan votan qué cambia y cuándo." }
-    - { who: Quienes construyen, what: "Llevan la red a las personas a través de sus aplicaciones y servicios." }
+    - { who: Contribuidores del código, what: "Proponen y revisan cambios en un repositorio público." }
+    - { who: Validadores y operadores de nodos, what: "Verifican cada bloque y dan acceso a la red." }
+    - { who: Gobernanza en la cadena, what: "Los validadores y quienes les delegan votan qué cambia y cuándo." }
+    - { who: Quienes construyen, what: "Ofrecen aplicaciones y servicios sobre la red, y cada uno responde por lo suyo." }
 
 start:
   kicker: Por dónde empezar
@@ -74,11 +74,11 @@ start:
 name:
   kicker: El nombre
   title: ¿Por qué 42?
-  lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. Esta red funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes la usan."
+  lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes lo usan."
   link: { label: Por qué 42, href: "/proyecto#porque42" }
 
 closing:
-  title: Construye sobre una red que no es de nadie.
+  title: Infraestructura compartida, reglas a la vista.
   primary: { label: Empieza a construir, href: /desarrolladores }
   secondary: { label: Leer la documentación, href: /docs }
 ---

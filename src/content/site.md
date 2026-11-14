@@ -4,8 +4,8 @@
 # home page in src/content/home.md.
 
 name: 42 Chain
-tagline: Protocolo blockchain de código abierto # tab title of the home page: "<name> — <tagline>"
-description: Protocolo blockchain de código abierto. Infraestructura pública para construir. # default meta description
+tagline: Protocolo abierto de infraestructura # tab title of the home page: "<name> — <tagline>"
+description: "42 Chain ejecuta el Protocolo 42, un protocolo de código abierto para operar infraestructura sobre registros distribuidos: datos compartidos, reglas verificables y servicios entre organizaciones." # default meta description
 
 header:
   homeLink: 42 Chain, inicio # accessible name of the logo link
