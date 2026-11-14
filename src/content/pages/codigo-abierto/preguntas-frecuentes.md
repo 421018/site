@@ -11,7 +11,7 @@ Una red pública de cadena de bloques. Su protocolo es de código abierto, compa
 :::
 
 :::faq[¿Qué es el Infinite Improbability Drive?]
-Es el protocolo de la red: las reglas que siguen todos los nodos para llevar un registro compartido, ejecutar contratos, ponerse de acuerdo sobre cada bloque y decidir cambios.
+Es el protocolo de la red: las reglas que siguen todos los nodos para llevar un registro compartido, ejecutar contratos, ponerse de acuerdo sobre cada bloque y decidir cambios. Está construido con tecnología abierta del ecosistema Cosmos: Cosmos SDK, CometBFT, Cosmos EVM e IBC.
 :::
 
 :::faq[¿Necesito permiso para usar la red?]
