@@ -99,7 +99,7 @@ const site = defineCollection({
       name: z.string(),
       tagline: z.string(),
       description: z.string(),
-      header: z.object({ homeLink: z.string(), mainNav: z.string() }).strict(),
+      header: z.object({ homeLink: z.string(), mainNav: z.string(), menuButton: z.string() }).strict(),
       footer: z.object({ credit: z.string(), license: z.string(), note: z.string() }).strict(),
       page: z.object({ lastReviewed: z.string(), editPage: z.string(), previous: z.string(), next: z.string(), chapters: z.string() }).strict(),
       notFound: z.object({ title: z.string(), label: z.string(), heading: z.string(), action: z.string() }).strict(),

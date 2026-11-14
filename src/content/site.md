@@ -10,6 +10,7 @@ description: "42 Chain ejecuta el Protocolo 42, un protocolo de código abierto 
 header:
   homeLink: 42 Chain, inicio # accessible name of the logo link
   mainNav: Principal # accessible name of the main menu
+  menuButton: Menú # label of the collapsed main menu on narrow screens
 
 footer:
   credit: Proyecto de código abierto

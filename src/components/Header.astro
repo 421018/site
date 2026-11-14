@@ -14,4 +14,13 @@ const text = await getSiteText();
       <a class:list={['nl', { on: current === s.key }]} href={s.href} data-label={s.label} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
     ))}
   </nav>
+  {/* Narrow screens: the same links behind a disclosure (no script, CSP-safe). */}
+  <details class="menu-m">
+    <summary class="nl">{text.header.menuButton}</summary>
+    <nav aria-label={text.header.mainNav}>
+      {menu.map((s) => (
+        <a class:list={['ml', { on: current === s.key }]} href={s.href} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
+      ))}
+    </nav>
+  </details>
 </header>

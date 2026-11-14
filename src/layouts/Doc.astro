@@ -20,8 +20,7 @@ const { page: ui } = await getSiteText();
 ---
 <Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink}>
   <section class="band-top">
-    <div class="gridbg" aria-hidden="true"></div>
-    <div class="glow" aria-hidden="true"></div>
+    <div class="band-deco" aria-hidden="true"><div class="gridbg"></div><div class="glow"></div></div>
     <Header current={home.key} />
   </section>
   <div class="rd">
