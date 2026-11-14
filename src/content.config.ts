@@ -77,7 +77,19 @@ const home = defineCollection({
     .object({
       title: z.string().optional(),
       description: z.string().optional(),
-      hero: z.object({ eyebrow: z.string(), title: z.string(), lead: z.string(), primary: cta, secondary: cta }).strict(),
+      hero: z
+        .object({
+          eyebrow: z.string(),
+          title: z.string(),
+          lead: z.string(),
+          primary: cta,
+          secondary: cta,
+          /** Technical signature shown under the buttons. */
+          specs: z.array(z.string()).optional(),
+          /** Label of the illustrative block strip at the bottom of the hero. */
+          chainLabel: z.string().optional(),
+        })
+        .strict(),
       build: z
         .object({
           ...block,

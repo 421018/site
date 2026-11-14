@@ -11,6 +11,8 @@ hero:
   lead: El Protocolo 42 permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, sin depender de los sistemas de una sola de ellas. 42 Chain es la red pública que lo ejecuta.
   primary: { label: Cómo funciona, href: /protocolo }
   secondary: { label: Conectarse a la red, href: /implementar/conectarse }
+  specs: [Infinite Improbability Drive, Finalidad en 1 bloque, ~2 s por bloque, EVM, IBC v2, Cosmos SDK]
+  chainLabel: Registro compartido · ilustración
 
 uses:
   kicker: Casos de uso

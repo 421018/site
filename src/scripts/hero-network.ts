@@ -3,7 +3,7 @@
 // visitor prefers reduced motion.
 const VS = 'attribute vec2 a; void main(){ gl_Position = vec4(a, 0.0, 1.0); }';
 const FS = `precision highp float;
-uniform vec2 r; uniform float t; uniform vec2 m; uniform vec3 acc;
+uniform vec2 r; uniform float t; uniform vec2 m; uniform vec3 acc; uniform float fl;
 float h1(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 vec2 h2(vec2 p){ return fract(sin(vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)))) * 43758.5453); }
 vec2 pt(vec2 c){ vec2 o = h2(c); return c + 0.5 + 0.36*sin(t*0.35 + 6.2831*o); }
@@ -23,7 +23,7 @@ vec3 net(vec2 p, float sc, float w, vec2 mp){
       float ln = smoothstep(w, 0.0, d);
       float ph = fract(t*0.28 + h1(n*1.7 + o*5.3));
       float pulse = exp(-abs(k - ph)*26.0) * step(0.45, h1(n + o*9.0 + floor(t*0.28 + h1(n*1.7 + o*5.3))));
-      col += acc * ln * (0.10 + 0.5*near) + acc * smoothstep(w*3.5, 0.0, d) * pulse * 1.4;
+      col += acc * ln * (0.10 + 0.5*near) * (1.0 + 2.2*fl) + acc * smoothstep(w*3.5, 0.0, d) * pulse * (1.4 + 2.0*fl);
     }
   }}
   return col;
@@ -49,15 +49,18 @@ function rgb(hex: string): [number, number, number] {
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
 }
 
-export function startNetwork(c: HTMLCanvasElement, area: HTMLElement) {
+/** Starts the animation. Returns flash(): a brief glow across the network, used when a block is agreed. */
+export function startNetwork(c: HTMLCanvasElement, area: HTMLElement): { flash: () => void } {
+  let fl = 0;
+  const api = { flash: () => { fl = 1; } };
   const gl = c.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'high-performance' });
-  if (!gl) return;
+  if (!gl) return api;
   const mk = (type: number, src: string) => { const s = gl.createShader(type)!; gl.shaderSource(s, src); gl.compileShader(s); return s; };
   const pr = gl.createProgram()!;
   gl.attachShader(pr, mk(gl.VERTEX_SHADER, VS));
   gl.attachShader(pr, mk(gl.FRAGMENT_SHADER, FS));
   gl.linkProgram(pr);
-  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return api;
   gl.useProgram(pr);
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
@@ -65,7 +68,7 @@ export function startNetwork(c: HTMLCanvasElement, area: HTMLElement) {
   gl.enableVertexAttribArray(loc);
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
   const uR = gl.getUniformLocation(pr, 'r'), uT = gl.getUniformLocation(pr, 't');
-  const uM = gl.getUniformLocation(pr, 'm'), uA = gl.getUniformLocation(pr, 'acc');
+  const uM = gl.getUniformLocation(pr, 'm'), uA = gl.getUniformLocation(pr, 'acc'), uF = gl.getUniformLocation(pr, 'fl');
   const acc = rgb(getComputedStyle(document.documentElement).getPropertyValue('--acc') || '#5BF0C8');
   const mouse = [0.7, 0.6], target = [0.7, 0.6];
   area.addEventListener('mousemove', (e) => {
@@ -84,9 +87,11 @@ export function startNetwork(c: HTMLCanvasElement, area: HTMLElement) {
     mouse[0] += (target[0] - mouse[0]) * 0.05;
     mouse[1] += (target[1] - mouse[1]) * 0.05;
     gl.uniform2f(uR, w, h); gl.uniform1f(uT, time);
-    gl.uniform2f(uM, mouse[0], mouse[1]); gl.uniform3f(uA, acc[0], acc[1], acc[2]);
+    fl *= Math.pow(0.12, dt);
+    gl.uniform2f(uM, mouse[0], mouse[1]); gl.uniform3f(uA, acc[0], acc[1], acc[2]); gl.uniform1f(uF, fl);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     if (!reduce) requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
+  return api;
 }
