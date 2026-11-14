@@ -1,16 +1,16 @@
 ---
 title: "Ejecución"
-summary: "Qué guarda la red, cómo son las cuentas, qué ocurre con una transacción desde que se firma y cómo se ejecutan los contratos."
+summary: "Lo que pasa entre el momento en que alguien firma una operación y el momento en que el registro cambia, igual en todos los nodos."
 weight: 10
 ---
 
-## Qué guarda la red: el estado {#estado}
+## Del bloque al registro {#estado}
 
-La red lleva un registro de todas las transacciones confirmadas. A partir de ese registro, cada nodo calcula cómo están las cosas en este momento: cuántas unidades tiene cada cuenta, qué contratos existen y qué datos guarda cada contrato. A esa fotografía del momento actual se le llama **estado**.
+Cada vez que alguien registra un dato, aprueba un cambio o mueve unidades, la red tiene que aplicar esa operación exactamente igual en miles de computadoras. De eso se encarga la **ejecución**: toma las transacciones de cada bloque y calcula cómo queda el registro después de aplicarlas.
 
-Cada bloque nuevo parte del estado anterior, aplica sus transacciones en orden y produce un estado nuevo. Todos los nodos aplican las mismas transacciones, en el mismo orden y con las mismas reglas. Por eso todos los nodos llegan al mismo estado.
+Para eso, cada nodo lleva una fotografía del momento actual: cuántas unidades tiene cada cuenta, qué contratos existen y qué datos guarda cada uno. A esa fotografía se le llama **estado**. Cada bloque parte del estado anterior, aplica sus transacciones en orden y produce uno nuevo. Como todos los nodos aplican las mismas transacciones, en el mismo orden y con las mismas reglas, todos llegan al mismo resultado.
 
-La parte del protocolo que toma las transacciones de un bloque y calcula el estado nuevo se llama **ejecución**. El consenso decide qué transacciones entran en cada bloque y en qué orden. La ejecución decide qué efecto tiene cada una.
+El consenso decide qué transacciones entran en cada bloque y en qué orden; la ejecución decide qué efecto tiene cada una.
 
 :::aside
 [Consenso y staking →](/protocolo/consenso)

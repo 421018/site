@@ -1,6 +1,6 @@
 ---
 title: "Seguridad"
-summary: "Cómo está diseñado el protocolo para resistir fallas y ataques, de qué condiciones depende, cuáles son sus límites y cómo se cuida el código."
+summary: "Qué protege el diseño del protocolo, bajo qué condición lo hace y qué queda en manos de cada persona."
 weight: 60
 ---
 
