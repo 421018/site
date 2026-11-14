@@ -8,7 +8,7 @@ weight: 20
 
 Los canales de esta página son los oficiales del proyecto. Por ellos se publica información sobre el protocolo, se reciben los reportes de seguridad y se atienden consultas sobre integraciones.
 
-Algunos temas se tratan en otros lugares. Las decisiones sobre la red las toma la DAO, en sus propios espacios. Los proyectos construidos sobre la red responden por sí mismos.
+Algunos temas se tratan en otros lugares. Las decisiones sobre la red se toman mediante gobernanza en la cadena. Los proyectos construidos sobre la red responden por sí mismos.
 
 ## Canales oficiales {#canales}
 
@@ -67,7 +67,7 @@ Tu frase de recuperación, tus llaves privadas, que envíes unidades para "verif
 
 ## Lo que no se atiende por estos canales {#no-atiende}
 
-- **Decisiones de la DAO.** Las propuestas, los votos y los programas de la DAO se tratan en sus propios espacios.
+- **Decisiones de gobernanza.** Las propuestas y los votos ocurren en la cadena.
 - **Proyectos de terceros.** Para cualquier tema sobre un proyecto construido sobre la red, contacta directamente a ese proyecto.
 - **Servicios pagados.** El proyecto no presta servicios profesionales ni firma contratos de soporte.
 - **Compra o venta de la unidad nativa.** El proyecto no ofrece, no vende y no recomienda la unidad nativa ni ningún otro activo.

@@ -129,11 +129,11 @@ Por eso el protocolo usa **IBC** (Inter-Blockchain Communication). IBC es un est
 
 ## Quién decide las reglas {#reglas}
 
-Todo lo anterior depende de que los nodos sigan las mismas reglas. Pero ningún protocolo queda terminado. Con el tiempo hay que ajustar parámetros, corregir errores o adoptar mejoras. Como la red no tiene dueño, hace falta una forma de decidir esos cambios en la que ningún participante pueda imponerse a los demás.
+Todo lo anterior depende de que los nodos sigan las mismas reglas. Pero ningún protocolo queda terminado. Con el tiempo hay que ajustar parámetros, corregir errores o adoptar mejoras. Hace falta una forma de decidir esos cambios en la que ningún participante pueda imponerse a los demás.
 
 El protocolo resuelve este problema con las piezas que ya se describieron. Cualquier cambio se presenta como una propuesta, y la propuesta queda registrada en la cadena. Los validadores y las personas que les delegaron unidades votan la propuesta. Cada voto pesa según las unidades que ese participante tiene en staking. Si la propuesta se aprueba, la red aplica el cambio.
 
-A este sistema de decisión colectiva se le llama **DAO** (por sus siglas en inglés, *Decentralized Autonomous Organization*). Con este sistema, quienes protegen la red con sus unidades en staking son también quienes deciden cómo evoluciona.
+A este sistema se le llama **gobernanza en la cadena**. Con él, quienes protegen la red con sus unidades en staking son también quienes deciden cómo evoluciona.
 
 :::aside
 [Gobernanza →](/protocolo/gobernanza)
@@ -165,7 +165,7 @@ El protocolo se apoya en siete decisiones de diseño. Cada una se desarrolla en 
 - **Detenerse antes que arriesgar.** Sin la mayoría necesaria, la red se detiene en lugar de confirmar bloques dudosos. [Consenso y staking](/protocolo/consenso#fallas)
 - **Una unidad propia y una emisión constante.** La seguridad de la red no depende de nadie externo ni de cuánto se use la red. [Tarifas y emisión](/protocolo/tarifas#porque)
 - **Verificación en lugar de intermediarios.** Las redes conectadas se comprueban entre sí; nadie custodia unidades en el traslado. [Interoperabilidad](/protocolo/interoperabilidad#porque)
-- **Las reglas las decide la DAO.** Quien escribe el código propone; quienes protegen la red deciden. [Gobernanza](/protocolo/gobernanza#porque)
+- **Las reglas se deciden en la cadena.** Quien escribe el código propone; quienes protegen la red deciden. [Gobernanza](/protocolo/gobernanza#porque)
 - **Seguridad en capas y a la vista.** Varias protecciones se refuerzan entre sí, y cualquiera puede comprobarlas. [Seguridad](/protocolo/seguridad#porque)
 
 Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la red. [Qué permite construir →](/protocolo/que-permite-construir)
@@ -182,7 +182,7 @@ Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la re
 | Ejecución | Máquina virtual compatible con la EVM |
 | Interoperabilidad | IBC |
 | Unidad nativa | Improbability (42) |
-| Gobernanza | En la cadena, mediante la DAO |
+| Gobernanza | En la cadena, con voto ponderado por staking |
 
 :::aside
 [Referencia técnica completa ↗](/docs)

@@ -12,7 +12,7 @@ section:
 
 42 Chain es un proyecto de código abierto. Lo forman un protocolo de cadena de bloques, el Infinite Improbability Drive, la red pública que funciona con ese protocolo y las personas que usan, protegen y desarrollan esa red.
 
-Nadie es dueño de la red. El código es público y cualquiera puede participar. Las decisiones sobre la red las toma la DAO, mediante votaciones registradas en la propia cadena.
+El código es público y cualquiera puede participar. Los cambios a la red se deciden mediante gobernanza en la cadena: propuestas y votos registrados en la propia red.
 
 ## Quién sostiene 42 Chain {#circulos}
 
@@ -21,7 +21,7 @@ Nadie es dueño de la red. El código es público y cualquiera puede participar.
 - **El software del protocolo.** Lo escriben y lo revisan contribuidores independientes, en un repositorio público. Cualquiera puede proponer cambios.
 - **La red.** La forman los nodos y los validadores que operan personas y proyectos distintos. Los validadores reciben recompensas del protocolo por su trabajo, pero nadie les asigna ese papel.
 - **El acceso a la red.** Los nodos RPC, los exploradores y otros servicios públicos los ofrecen quienes quieren facilitar el acceso a otros. Cualquiera puede ofrecer el suyo.
-- **Las decisiones.** Las toma la DAO, formada por los validadores y por quienes les delegan unidades. Se organiza en sus propios espacios.
+- **Las decisiones.** Se toman mediante gobernanza en la cadena: votan los validadores y quienes les delegan unidades.
 - **Las aplicaciones y los servicios.** Los construyen proyectos independientes, y cada uno responde por lo suyo.
 - **La documentación, las herramientas y este sitio.** Los escriben, los publican y los mantienen en línea contribuidores, igual que el software.
 - **La ayuda técnica.** La dan, en el repositorio público, personas que conocen la red y quieren que otros la usen bien.
@@ -93,7 +93,7 @@ El proyecto no tiene una hoja de ruta con fecha de término. Como toda infraestr
 
 El trabajo no termina. Consiste en mantener la red estable, corregir lo que haga falta e incorporar las mejoras que aparecen con el tiempo en la tecnología, en los protocolos y en las herramientas.
 
-Cada cambio sigue el mismo camino. Primero se propone en el repositorio público, después se prueba en la red de pruebas y solo llega a la red principal si la DAO lo aprueba. Por eso el proyecto no publica fechas de entrega: la DAO decide qué cambia y cuándo.
+Cada cambio sigue el mismo camino. Primero se propone en el repositorio público, después se prueba en la red de pruebas y solo llega a la red principal si se aprueba por gobernanza. Por eso el proyecto no publica fechas de entrega: qué cambia y cuándo se decide en la cadena.
 
 :::aside
 [Historial de versiones y actualizaciones · Referencia técnica ↗](/docs)

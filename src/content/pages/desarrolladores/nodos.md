@@ -73,7 +73,7 @@ Un validador del conjunto activo tiene tres responsabilidades:
 
 - **Disponibilidad.** El nodo tiene que estar en línea. Si deja de firmar bloques durante demasiado tiempo, el protocolo lo penaliza.
 - **Seguridad de la llave.** La llave privada del validador tiene que estar protegida. Si alguien la roba, puede provocar una doble firma, que es la falta más grave.
-- **Actualización.** El validador tiene que aplicar a tiempo las actualizaciones que aprueba la DAO.
+- **Actualización.** El validador tiene que aplicar a tiempo las actualizaciones que se aprueban por gobernanza.
 
 Las penalizaciones también afectan a las unidades que otras personas delegaron en el validador. Por eso las personas que delegan revisan el historial de cada validador antes de elegirlo.
 
@@ -83,7 +83,7 @@ Las penalizaciones también afectan a las unidades que otras personas delegaron 
 
 ## Cómo se aplican las actualizaciones {#actualizaciones}
 
-Cuando la DAO aprueba una versión nueva del software, la propuesta fija un bloque futuro, llamado **altura de actualización**. Todos los nodos tienen que cambiar de versión en ese bloque.
+Cuando se aprueba por gobernanza una versión nueva del software, la propuesta fija un bloque futuro, llamado **altura de actualización**. Todos los nodos tienen que cambiar de versión en ese bloque.
 
 Para quien opera un nodo, el proceso tiene tres momentos. Antes de la altura, instala la versión nueva sin activarla. Al llegar a la altura, el nodo se detiene. Entonces arranca con la versión nueva y continúa con la red.
 

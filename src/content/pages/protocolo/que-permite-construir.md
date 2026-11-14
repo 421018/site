@@ -78,7 +78,7 @@ En la red, un grupo puede crear su propio sistema de votación en un contrato. L
 Por ejemplo, una cooperativa vota en qué usar su fondo común. Si la propuesta se aprueba, el contrato transfiere las unidades sin intervención de nadie.
 
 :::aside
-Lo hacen posible: [El modelo de la DAO](/protocolo/gobernanza#dao) · [Funciones propias de la red](/protocolo/ejecucion#nativas)
+Lo hacen posible: [Gobernanza en la cadena](/protocolo/gobernanza#modelo) · [Funciones propias de la red](/protocolo/ejecucion#nativas)
 :::
 
 ### Aplicaciones entre redes
@@ -129,4 +129,4 @@ La solución habitual es separar el dato de su prueba. El dato queda fuera de la
 - **Compatibilidad con la EVM.** Quien construye usa lenguajes y herramientas que ya conoce, y empieza desde el primer día.
 - **Funciones propias de la red.** Staking, gobernanza e interoperabilidad están al alcance de cualquier contrato.
 - **IBC.** Las aplicaciones pueden trabajar con otras redes sin intermediarios.
-- **Reglas que nadie cambia solo.** Quien construye sabe que las reglas de la red no cambiarán sin una decisión pública de la DAO.
+- **Reglas que nadie cambia solo.** Quien construye sabe que las reglas de la red no cambiarán sin una decisión pública tomada en la cadena.

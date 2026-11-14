@@ -19,7 +19,7 @@ Mientras se cumple el supuesto de seguridad, el protocolo está diseñado para q
 - **El registro no pueda alterarse.** Cada bloque guarda la huella del anterior. Si alguien cambia una transacción pasada, la huella deja de coincidir y los nodos lo detectan.
 - **Una transacción confirmada sea definitiva.** El consenso confirma cada bloque en un solo paso. Una vez confirmado, el bloque no se reemplaza por otro.
 - **Solo la llave privada mueva una cuenta.** Cada transacción lleva una firma hecha con la llave privada de la cuenta. Sin esa firma, la red rechaza la transacción, venga de quien venga.
-- **Las reglas sean iguales para todos.** Todas las transacciones se procesan con las mismas reglas. Ninguna cuenta ni aplicación tiene privilegios, y las reglas solo cambian mediante una actualización que aprueba la DAO.
+- **Las reglas sean iguales para todos.** Todas las transacciones se procesan con las mismas reglas. Ninguna cuenta ni aplicación tiene privilegios, y las reglas solo cambian mediante una actualización que se aprueba por gobernanza.
 - **Cualquiera pueda comprobarlo.** Cualquiera puede ejecutar un nodo, repetir cada transacción y comprobar por su cuenta el estado de la red.
 
 :::aside
@@ -50,8 +50,8 @@ Las reglas del protocolo prevén una respuesta para los tipos de falla más cono
 | Un validador firma dos bloques distintos para la misma posición | La red lo detecta, le retira automáticamente una parte de las unidades en staking y lo saca del conjunto activo |
 | Un validador deja de participar durante demasiado tiempo | Recibe una penalización menor y sale del conjunto activo hasta que vuelve |
 | Más de un tercio del poder de voto queda fuera de línea | La red deja de producir bloques y continúa desde el último bloque confirmado cuando se recupera la mayoría |
-| Se descubre un error en el software | Se prepara una corrección; si la DAO la aprueba, la red la aplica en una altura de actualización |
-| Una propuesta de la DAO se considera dañina | Los participantes pueden votar No con veto; si el veto supera su límite, la propuesta se rechaza |
+| Se descubre un error en el software | Se prepara una corrección; si se aprueba por gobernanza, la red la aplica en una altura de actualización |
+| Una propuesta de gobernanza se considera dañina | Los participantes pueden votar No con veto; si el veto supera su límite, la propuesta se rechaza |
 
 ## Cómo se cuida el código {#codigo}
 
@@ -61,7 +61,7 @@ Cada cambio en el software pasa por varias etapas antes de llegar a la red princ
 - **Revisión de cada cambio.** Ningún cambio entra al código sin que otra persona lo revise.
 - **Red de pruebas.** Cada versión nueva funciona primero en la red de pruebas, en condiciones reales, antes de proponerse para la red principal.
 - **Auditorías.** Especialistas independientes pueden revisar el código a fondo. [Estado de las auditorías y enlace a los informes.]
-- **Actualizaciones coordinadas.** Una versión nueva solo llega a la red principal si la DAO la aprueba, y todos los nodos cambian de versión en el mismo bloque.
+- **Actualizaciones coordinadas.** Una versión nueva solo llega a la red principal si se aprueba por gobernanza, y todos los nodos cambian de versión en el mismo bloque.
 
 Estas prácticas reducen el riesgo de errores. No lo eliminan.
 
@@ -82,7 +82,7 @@ Publicar una vulnerabilidad antes de corregirla permitiría que otros la aprovec
 Muchos riesgos para una persona no vienen del protocolo, sino de su propio entorno. Cuatro prácticas reducen los más comunes:
 
 - **Guarda tu frase de recuperación fuera de línea.** La frase de recuperación permite reconstruir tu llave privada. Quien la tiene controla tu cuenta.
-- **Nadie del proyecto te pedirá tus llaves.** Nadie del proyecto, de la DAO ni de la comunidad necesita tu llave privada ni tu frase de recuperación. Quien te la pide intenta engañarte.
+- **Nadie del proyecto te pedirá tus llaves.** Nadie que participe en el protocolo o en la red necesita tu llave privada ni tu frase de recuperación. Quien te la pide intenta engañarte.
 - **Revisa lo que firmas.** Antes de firmar, lee en tu billetera qué hace la transacción y a qué contrato llama.
 - **Usa los canales oficiales.** Verifica cualquier anuncio, enlace o aplicación en los canales oficiales.
 

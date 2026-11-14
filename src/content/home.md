@@ -58,7 +58,7 @@ people:
   rows:
     - { who: Quienes escriben el código, what: "Lo proponen y lo revisan en público, en un repositorio abierto." }
     - { who: Quienes operan los nodos, what: "Verifican cada bloque y dan acceso a la red a las aplicaciones." }
-    - { who: La DAO, what: "Decide qué cambia en el protocolo y cuándo." }
+    - { who: La gobernanza en la cadena, what: "Los validadores y quienes les delegan votan qué cambia y cuándo." }
     - { who: Quienes construyen, what: "Llevan la red a las personas a través de sus aplicaciones y servicios." }
 
 start:
@@ -68,7 +68,7 @@ start:
     - { label: Construir una aplicación, href: /desarrolladores, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
     - { label: Operar un nodo, href: /desarrolladores/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
     - { label: Integrar la red, href: /desarrolladores/integrar, text: "Conectar una billetera, una plataforma o un explorador." }
-    - { label: Participar en la DAO, href: /protocolo/gobernanza, text: "Delegar y votar el rumbo del protocolo." }
+    - { label: Entender la gobernanza, href: /protocolo/gobernanza, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
 
 name:
   kicker: El nombre

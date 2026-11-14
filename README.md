@@ -92,7 +92,7 @@ To add a section, create the folder and its `index.md` with that block.
 ### Writing
 
 - Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#canales}` is linked as `/proyecto/contacto#canales`. Before renaming an anchor, search for links to it; `npm run verify` reports any that break.
-- Internal links use absolute paths: `/protocolo/gobernanza#suministro`.
+- Internal links use absolute paths: `/protocolo/gobernanza#ciclo`.
 - `/docs` and `/consola` redirect to the URLs set in `src/config.ts`.
 - Small inline badge: `_Independiente_{.badge}`.
 

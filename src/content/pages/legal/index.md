@@ -21,13 +21,13 @@ En estos avisos, «los contribuidores» son las personas que escriben, revisan, 
 
 ### 1.2 Qué no es
 
-La DAO de 42 Chain no opera este sitio, y este sitio no habla en nombre de la DAO. Este sitio no vende activos. Las decisiones sobre la red solo se toman mediante propuestas y votos en la cadena.
+Este sitio es informativo y no vende activos. La operación y las decisiones de la red corresponden a sus validadores mediante gobernanza en la cadena.
 
 La ayuda técnica que se ofrece por los canales del proyecto es voluntaria y no tiene costo. No es un servicio contratado.
 
 ### 1.3 Terceros
 
-La DAO, los validadores, los constructores y los servicios mencionados en este sitio operan de forma autónoma. Que se mencionen aquí no implica respaldo ni relación comercial. Los enlaces a sitios externos se ofrecen solo por conveniencia.
+Los validadores, los proveedores de servicios y los proyectos mencionados en este sitio operan de forma autónoma. Que se mencionen aquí no implica respaldo ni relación comercial. Los enlaces a sitios externos se ofrecen solo por conveniencia.
 
 ## Sin garantías y límite de responsabilidad {#garantias}
 
@@ -73,7 +73,7 @@ El software del protocolo se revisa y se audita, pero puede contener errores que
 
 ### 2.5 Actualizaciones de la red
 
-Las actualizaciones que aprueba la DAO pueden requerir que operadores de nodos y servicios integrados actualicen su software. Un servicio que no se actualiza a tiempo puede dejar de funcionar.
+Las actualizaciones que se aprueban por gobernanza pueden requerir que operadores de nodos y servicios integrados actualicen su software. Un servicio que no se actualiza a tiempo puede dejar de funcionar.
 
 ### 2.6 Transferencias entre redes
 

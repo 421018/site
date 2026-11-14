@@ -16,7 +16,7 @@ Una cadena de bloques sin dueño necesita una unidad que viva dentro de sus prop
 
 - **Pagar el uso de la red.** Las tarifas se cobran en una unidad que la propia red registra y verifica. La red no depende de una moneda externa ni de un intermediario que procese los pagos.
 - **Proteger la red.** El respaldo del staking se bloquea en la unidad nativa. Como el respaldo vive dentro del protocolo, el protocolo puede retirarla automáticamente cuando un validador rompe las reglas.
-- **Medir la participación.** El poder de voto en el consenso y en la DAO se mide en unidades en staking. Una medida común permite comparar la participación de cada quien con reglas iguales para todos.
+- **Medir la participación.** El poder de voto en el consenso y en la gobernanza se mide en unidades en staking. Una medida común permite comparar la participación de cada quien con reglas iguales para todos.
 - **Compensar a quienes operan la red.** Como la unidad es propia, el protocolo puede crear unidades nuevas con cada bloque y asignarlas a quienes protegen la red, sin depender de que alguien externo los financie.
 - **Alinear intereses.** Quien tiene unidades en staking tiene interés en que la red funcione bien, porque su respaldo y su compensación dependen de ella.
 - **Funcionar sin depender de nadie.** Con una unidad propia, la red puede operar, protegerse y decidir sin necesitar la autorización de ninguna entidad externa.
@@ -65,7 +65,7 @@ Además de cobrar tarifas, el protocolo crea unidades nuevas con cada bloque. A 
 
 La emisión existe para compensar a quienes protegen la red. Las tarifas dependen de cuánto se use la red, y ese uso cambia con el tiempo. La emisión, en cambio, es estable. Con ella, operar un validador se sostiene de forma continua, aunque el uso de la red varíe.
 
-La emisión es **constante**: el protocolo crea unidades nuevas a un ritmo fijo, definido en sus parámetros. Ese ritmo solo puede cambiarlo la DAO, mediante una propuesta. Como la emisión no se detiene, el número total de unidades crece con el tiempo. [Tasa de emisión.]
+La emisión es **constante**: el protocolo crea unidades nuevas a un ritmo fijo, definido en sus parámetros. Ese ritmo solo cambia si se aprueba una propuesta de gobernanza. Como la emisión no se detiene, el número total de unidades crece con el tiempo. [Tasa de emisión.]
 
 ## Distribución {#distribucion}
 
@@ -95,30 +95,26 @@ Las cifras del ejemplo son ilustrativas.
 
 ## El fondo comunitario {#fondo}
 
-El **fondo comunitario** es una reserva de unidades que pertenece a la red. Nadie lo controla por su cuenta: para usar unidades del fondo, alguien presenta una propuesta y la DAO la vota.
+El **fondo comunitario** es una reserva de unidades que pertenece a la red. Nadie lo controla por su cuenta: para usar unidades del fondo, alguien presenta una propuesta y los participantes la votan.
 
 El fondo sirve para financiar lo que la red necesita y que nadie más financiaría. Por ejemplo, una auditoría de seguridad, una herramienta pública o la traducción de la documentación.
 
 :::aside
-[Cómo decide la DAO →](/protocolo/gobernanza)
+[Gobernanza →](/protocolo/gobernanza)
 :::
 
 ## Suministro inicial {#suministro}
 
-El primer bloque de la red se llama **bloque génesis**. En ese bloque se creó una cantidad inicial de unidades, a la que se le llama **suministro inicial**.
+El primer bloque de una red se llama **bloque génesis**. Cada red que ejecuta el protocolo define en su bloque génesis una cantidad inicial de unidades, a la que se le llama **suministro inicial**, y cómo se asigna.
 
-El suministro inicial no forma parte de la emisión ni de la distribución que se describen arriba. Lo administra la DAO, y el protocolo lo libera de forma gradual.
-
-:::aside
-[El suministro inicial y la DAO →](/protocolo/gobernanza#suministro)
-:::
+El suministro inicial no forma parte de la emisión ni de la distribución que se describen arriba. Su cantidad y su asignación son datos de cada red, no reglas del protocolo.
 
 ## Por qué el protocolo lo hace así {#porque}
 
 - **Una unidad propia.** El respaldo del staking tiene que poder retirarse automáticamente cuando alguien rompe las reglas. Eso solo es posible con una unidad que vive dentro del protocolo.
 - **Tarifas medidas en gas.** Cada transacción paga según el trabajo que exige, y el costo se conoce antes de enviarla.
 - **Emisión constante.** La seguridad de la red no depende de cuánto se use en cada momento. Quienes la protegen reciben una compensación estable.
-- **Un fondo que decide la DAO.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
+- **Un fondo que se asigna por gobernanza.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
 
 :::aside
 [Parámetros de tarifas y emisión ↗](/docs) · [Avisos legales](/legal#riesgos)

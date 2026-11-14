@@ -1,6 +1,6 @@
 ---
 title: "Gobernanza"
-summary: "Por qué el protocolo necesita un gobierno, qué es una DAO, quién la forma y cómo se proponen, se votan y se aplican los cambios."
+summary: "Por qué el protocolo necesita un mecanismo de gobierno, quién vota y cómo se proponen, se votan y se aplican los cambios."
 weight: 50
 ---
 
@@ -16,11 +16,11 @@ La alternativa opuesta sería que nadie pudiera cambiar las reglas. Pero una red
 
 El protocolo toma un tercer camino: los cambios los deciden los propios participantes de la red, con reglas públicas y votos registrados en la cadena. A ese sistema se le llama gobernanza en la cadena.
 
-## Qué es una DAO {#dao}
+## Gobernanza en la cadena {#modelo}
 
-Una **DAO** (por sus siglas en inglés, *Decentralized Autonomous Organization*) es un sistema de decisión colectiva que funciona dentro de una cadena de bloques. Sus reglas están escritas en el protocolo, y sus decisiones se proponen, se votan y quedan registradas en la cadena.
+En la gobernanza en la cadena, las reglas para decidir están escritas en el protocolo, y cada decisión se propone, se vota y queda registrada en la propia cadena.
 
-Una DAO se diferencia de una forma tradicional de decidir en tres puntos:
+Este modelo se diferencia de una forma tradicional de decidir en tres puntos:
 
 - **Quién vota lo definen las reglas del protocolo.** No hace falta una inscripción ni la aprobación de nadie. Quien cumple las reglas puede votar.
 - **Las decisiones se ejecutan solas.** Cuando una propuesta se aprueba, la red aplica el cambio. Ningún administrador tiene que llevarlo a cabo, y ninguno puede impedirlo.
@@ -30,68 +30,31 @@ Una DAO se diferencia de una forma tradicional de decidir en tres puntos:
 
 En una red abierta, cualquiera puede crear tantas cuentas como quiera. Si cada cuenta tuviera un voto, quien creara miles de cuentas controlaría cualquier decisión.
 
-Por eso, en la DAO, el voto pesa según las unidades que el participante tiene en staking. Es la misma lógica que protege el consenso: el peso depende de algo que cuesta conseguir y que se pone en juego. Además, quienes protegen la red con sus unidades son quienes viven las consecuencias de cada cambio.
+Por eso, en la gobernanza, el voto pesa según las unidades que el participante tiene en staking. Es la misma lógica que protege el consenso: el peso depende de algo que cuesta conseguir y que se pone en juego. Además, quienes protegen la red con sus unidades son quienes viven las consecuencias de cada cambio.
 
 :::aside
 [Qué es el staking →](/protocolo#validacion)
 :::
 
-## Quién forma la DAO de 42 Chain {#quienes}
+## Quién vota {#quienes}
 
-La DAO de 42 Chain la forman los validadores y las personas que les delegaron unidades. Cada participante vota con el peso de sus unidades en staking.
+Votan los validadores y las personas que les delegaron unidades. Cada participante vota con el peso de sus unidades en staking.
 
-Quienes desarrollan el protocolo pueden proponer cambios, como cualquier otro participante. Pero no deciden si un cambio se aplica: eso lo decide la DAO.
+Quienes desarrollan el protocolo pueden presentar propuestas, como cualquier otro participante. Sus propuestas se deciden con los mismos votos que las demás.
 
-Quienes construyen sobre la red también participan. Con su propio programa de recompensas, la DAO les delega unidades del suministro inicial como reconocimiento a su contribución. Con esas unidades delegadas, quienes construyen también votan.
+## Qué se decide {#alcance}
 
-La DAO se organiza y debate en sus propios espacios, que mantiene ella misma.
-
-:::aside
-Nombre de la DAO: [por definir].
-:::
-
-## Qué decide la DAO {#alcance}
-
-La DAO decide sobre cuatro tipos de asuntos:
+Mediante propuestas se decide sobre tres tipos de asuntos:
 
 - **Parámetros del protocolo.** Por ejemplo, subir el precio mínimo del gas, ampliar el número de lugares del conjunto activo o cambiar la penalización por inactividad.
 - **Actualizaciones del software.** Por ejemplo, adoptar una versión nueva del protocolo que corrige un error o añade una función.
 - **Fondo comunitario.** Por ejemplo, destinar unidades del fondo a una auditoría de seguridad o a una herramienta que necesita la red.
-- **Suministro inicial.** Por ejemplo, aprobar un programa que delega unidades a quienes contribuyen a la red.
-
-## El suministro inicial {#suministro}
-
-En el primer bloque de la red, el bloque génesis, se crearon 100 millones de unidades. A esa cantidad se le llama **suministro inicial**.
-
-El suministro inicial está bajo el control de la DAO. Su propósito es servir a lo que la red necesite, y la DAO decide cómo se usa.
-
-### El programa de recompensas de la DAO
-
-La DAO definió un programa de recompensas para el suministro inicial. El programa no gasta esas unidades: las delega a quienes contribuyen al ecosistema, como quienes crean aplicaciones, operan validadores o mejoran el protocolo.
-
-Esa delegación tiene dos efectos para quien la recibe. Primero, le da poder de voto en las decisiones de la DAO. Segundo, al tener más participación en el staking, recibe también una parte mayor de la distribución del protocolo.
-
-Así, el suministro inicial no se usa para gastar, sino para que el poder de voto quede en manos de quienes construyen el ecosistema. Los detalles del programa los publica la DAO en sus propios espacios.
-
-### La liberación gradual, una protección adicional
-
-El suministro inicial está bloqueado, y el protocolo lo libera de forma gradual durante 42 años. Este ritmo está escrito en el protocolo: ni la DAO ni ningún otro participante puede acelerarlo.
-
-La liberación gradual es un mecanismo de seguridad. Aunque la DAO decidiera mover el suministro inicial, o alguien intentara extraerlo, solo podría mover la parte que ya se liberó en ese momento. El resto sigue bloqueado.
-
-Por ejemplo, si la liberación fuera pareja a lo largo de los 42 años, cada año se liberarían alrededor de 2,4 millones de unidades. En cualquier momento, la parte que se podría mover sería pequeña frente al total.
-
-Además, la emisión constante crea unidades nuevas con cada bloque. Cuando terminen los 42 años, el suministro inicial será una proporción muy pequeña del total de unidades que existan en la red.
-
-:::aside
-Las cifras del ejemplo son ilustrativas. [Calendario de liberación.]
-:::
 
 ## El recorrido de una propuesta {#ciclo}
 
 Toda propuesta recorre cuatro etapas:
 
-- **1. Discusión.** Antes de llegar a la cadena, la idea se debate en los espacios de la DAO. Ahí se ajusta y se mide el apoyo que tiene.
+- **1. Discusión.** Antes de llegar a la cadena, quien propone suele presentar la idea en público para ajustarla y medir el apoyo que tiene. Esta etapa no forma parte del protocolo.
 - **2. Propuesta.** Alguien presenta la propuesta en la cadena y deja una cantidad de unidades como **depósito**. El depósito evita que se presenten propuestas sin sentido. Si la propuesta recibe un veto, el depósito se pierde. [Monto mínimo del depósito.]
 - **3. Votación.** Durante un período fijo, los participantes votan. Cada participante elige una de cuatro opciones: Sí, No, Abstención o No con veto.
 - **4. Ejecución.** Si la propuesta se aprueba, la red aplica el cambio por sí misma.
@@ -147,6 +110,4 @@ Las cifras del ejemplo son ilustrativas.
 - **Gobierno en la cadena.** Las propuestas, los votos y los resultados son públicos, y los cambios aprobados se aplican solos. Nadie puede cambiar las reglas a escondidas, y nadie puede bloquear una decisión tomada.
 - **Peso según el staking.** La misma lógica que protege el consenso protege las decisiones: crear cuentas no da poder, poner unidades en juego sí.
 - **Depósito y veto.** El depósito desalienta las propuestas sin sentido. El veto permite rechazar una propuesta dañina aunque tenga mayoría.
-- **Quien escribe el código no decide.** Cualquiera puede proponer; solo la DAO decide. Así, ninguna parte controla sola el rumbo del protocolo.
-- **Delegar en lugar de gastar.** El suministro inicial se delega a quienes construyen. Así, el poder de decidir el rumbo de la red queda en manos de quienes la hacen crecer.
-- **Liberación en 42 años.** Ni la DAO ni nadie más puede mover el suministro inicial de una sola vez. En cualquier momento, solo puede moverse lo que ya se liberó, y el ritmo de liberación está escrito en el protocolo.
+- **Proponer y decidir están separados.** Cualquiera puede presentar una propuesta, también quienes escriben el código. La decisión la toman los votos registrados en la cadena.

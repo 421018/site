@@ -14,10 +14,6 @@ Una red pública de cadena de bloques. Su protocolo es de código abierto, compa
 Es el protocolo de la red: las reglas que siguen todos los nodos para llevar un registro compartido, ejecutar contratos, ponerse de acuerdo sobre cada bloque y decidir cambios.
 :::
 
-:::faq[¿Quién controla la red?]
-Ninguna entidad por sí sola. La red la gobierna la DAO, formada por los validadores y las personas que les delegan unidades. La DAO decide mediante propuestas que se votan en la propia red.
-:::
-
 :::faq[¿Necesito permiso para usar la red?]
 No. Cualquiera puede usar la red, publicar aplicaciones u operar un nodo sin registrarse ni pedir aprobación.
 :::
@@ -77,17 +73,13 @@ Cualquiera puede presentar una propuesta, dejando un depósito. Los validadores 
 :::
 
 :::faq[¿Quién decide los cambios al protocolo?]
-La DAO. Cualquiera puede proponer cambios al software, también quienes lo desarrollan, pero solo la DAO decide si se aplican.
-:::
-
-:::faq[¿Quién administra el suministro inicial?]
-La DAO. Su programa de recompensas delega esas unidades a quienes contribuyen al ecosistema, y el protocolo las libera de forma gradual durante 42 años. [El suministro inicial](/protocolo/gobernanza#suministro)
+Los votos registrados en la cadena. Cualquiera puede proponer cambios, también quienes desarrollan el software, y un cambio se aplica solo si lo aprueban los validadores y quienes les delegan unidades.
 :::
 
 ## Seguridad {#seguridad}
 
 :::faq[¿Qué pasa si pierdo mi llave privada?]
-Pierdes el acceso a tu cuenta. Nadie puede restablecer una llave privada: ni quienes desarrollan el protocolo ni la DAO.
+Pierdes el acceso a tu cuenta. El protocolo no tiene ningún mecanismo para restablecer una llave privada.
 :::
 
 :::faq[¿Alguien del proyecto me pedirá mis llaves?]
@@ -104,12 +96,8 @@ En privado, por el canal de seguridad indicado en la documentación. [Reportar u
 Contribuidores independientes que trabajan en abierto. Cualquiera puede sumarse. [El equipo](/proyecto/equipo)
 :::
 
-:::faq[¿42 Chain es una empresa?]
-No. Es un proyecto de código abierto, sin dueño. Cada parte la sostienen participantes independientes: el software, los nodos, los servicios de acceso a la red y este sitio. La red la gobierna la DAO. [Quién sostiene 42 Chain](/proyecto#circulos)
-:::
-
 :::faq[¿Hay una hoja de ruta?]
-No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y la DAO decide qué cambia y cuándo. [Desarrollo continuo](/proyecto#continuo)
+No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y cada cambio se decide por gobernanza en la cadena. [Desarrollo continuo](/proyecto#continuo)
 :::
 
 :::faq[¿Cómo integro la red en mi servicio?]
@@ -124,10 +112,6 @@ No. Este sitio no ofrece, no vende y no recomienda la unidad nativa ni ningún o
 
 :::faq[¿Quién opera este sitio?]
 Nadie en particular. Lo escriben, lo revisan y lo mantienen en línea contribuidores independientes, como el resto del proyecto. [Sobre este sitio](/legal#independencia)
-:::
-
-:::faq[¿Este sitio habla en nombre de la DAO?]
-No. La DAO publica su información en sus propios espacios.
 :::
 
 :::faq[¿Los servicios de terceros que aparecen en el sitio están respaldados por 42 Chain?]

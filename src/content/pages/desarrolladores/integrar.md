@@ -35,7 +35,7 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 | Formatos de dirección | Formato 0x, compatible con la EVM, y formato propio de la red; los dos corresponden a la misma cuenta |
 | Unidad nativa | Improbability · símbolo 42 · [decimales] |
 | Finalidad | Una transacción es definitiva en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |
-| Emisión y suministro | Emisión por bloque · [en la documentación]. El suministro inicial lo publica la DAO en sus propios espacios |
+| Emisión | Emisión por bloque · [en la documentación] |
 | Canales oficiales | Para enlazar desde el servicio · [Canales oficiales](/proyecto/contacto#canales) |
 
 :::aside
@@ -50,10 +50,10 @@ Una integración suele seguir cinco pasos:
 - **2. Probar en la red de pruebas.** La integración se prueba primero en la red de pruebas, con unidades de prueba.
 - **3. Resolver dudas.** Si algo no está claro, pregunta en el espacio de discusiones del repositorio público o escribe al correo de contacto.
 - **4. Pasar a la red principal.** Con la integración probada, se conecta a la red principal. Solo cambian los parámetros de conexión.
-- **5. Seguir las actualizaciones.** Cuando la DAO aprueba una versión nueva del protocolo, los servicios integrados actualizan sus nodos antes de la altura de actualización. Las notas de cada versión se publican en la documentación.
+- **5. Seguir las actualizaciones.** Cuando se aprueba por gobernanza una versión nueva del protocolo, los servicios integrados actualizan sus nodos antes de la altura de actualización. Las notas de cada versión se publican en la documentación.
 
 ## Contacto técnico {#contacto}
 
 Los canales para dudas técnicas sobre una integración están en [Contacto y soporte](/proyecto/contacto#apoyo).
 
-La ayuda técnica es voluntaria. No habla en nombre de la DAO ni de otros proyectos, y no incluye acuerdos comerciales.
+La ayuda técnica es voluntaria. No habla en nombre de otros proyectos y no incluye acuerdos comerciales.

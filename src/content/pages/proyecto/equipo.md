@@ -28,16 +28,15 @@ Nuestro trabajo se organiza en cinco frentes:
 
 Escribimos el software, pero la red no nos pertenece. Por eso hay cosas que no nos corresponden:
 
-- **No decidimos los cambios.** Proponemos mejoras al protocolo, pero solo la DAO decide si se aplican.
+- **No decidimos los cambios.** Proponemos mejoras al protocolo, pero si se aplican se decide por gobernanza en la cadena.
 - **No operamos la red.** Los nodos, los validadores, los nodos RPC y los exploradores los operan otros participantes, cada uno por su cuenta.
 - **No controlamos ninguna cuenta.** No podemos mover las unidades de nadie ni revertir una transacción confirmada. Nadie puede.
-- **No administramos el suministro inicial.** Lo administra la DAO, con su propio programa de recompensas.
-- **No hablamos en nombre de otros.** No representamos a la DAO ni a los proyectos que se construyen sobre la red. Cada uno habla por sí mismo.
+- **No hablamos en nombre de otros.** No representamos a los validadores ni a los proyectos que se construyen sobre la red. Cada uno habla por sí mismo.
 - **No vendemos servicios a nombre del proyecto.** Si alguien del equipo ofrece asesoría profesional, lo hace por su cuenta, fuera del proyecto.
 - **No ofrecemos ni recomendamos la unidad nativa.** Nuestro trabajo es el protocolo, no el mercado.
 
 :::aside
-[Cómo decide la DAO →](/protocolo/gobernanza)
+[Gobernanza →](/protocolo/gobernanza)
 :::
 
 ## Cómo trabajamos {#trabajamos}
@@ -47,7 +46,7 @@ El código del protocolo, la documentación, las herramientas y este sitio son p
 - **En abierto.** Las propuestas de código, las revisiones y las discusiones técnicas ocurren en el repositorio público.
 - **Con revisión.** Ningún cambio entra al código sin que otra persona lo revise.
 - **Con pruebas.** Cada versión nueva funciona primero en la red de pruebas, en condiciones reales, antes de proponerse para la red principal.
-- **Con la DAO.** Una versión nueva solo llega a la red principal si la DAO la aprueba.
+- **Con gobernanza.** Una versión nueva solo llega a la red principal si se aprueba en la cadena.
 - **Contándolo.** Explicamos cada cambio en las notas de versión y lo anunciamos en los canales oficiales.
 
 :::aside
@@ -65,7 +64,7 @@ El software del protocolo es de código abierto. Cualquiera puede contribuir, si
 
 ### Cómo llega un cambio a la red
 
-Una propuesta de código no cambia la red por sí sola. Primero, el equipo y otras personas la revisan. Si se acepta, entra en una versión nueva del software, que se prueba en la red de pruebas. Después, esa versión se presenta a la DAO. Solo si la DAO la aprueba, la red la adopta en una altura de actualización.
+Una propuesta de código no cambia la red por sí sola. Primero, el equipo y otras personas la revisan. Si se acepta, entra en una versión nueva del software, que se prueba en la red de pruebas. Después, esa versión se presenta como propuesta de gobernanza. Solo si se aprueba, la red la adopta en una altura de actualización.
 
 Las vulnerabilidades no se reportan en el repositorio público, sino en privado. [Reportar una vulnerabilidad](/protocolo/seguridad#reportar)
 
