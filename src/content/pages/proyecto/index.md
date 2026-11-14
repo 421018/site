@@ -74,7 +74,7 @@ Las reglas solo cambian mediante propuestas públicas y votos que quedan registr
 
 El proyecto parte de una tradición de ideas sobre un internet libre, abierto y sin intermediarios obligatorios.
 
-:::cronologia{actual="Hoy"}
+:::timeline{current="Hoy"}
 - **1988** Manifiesto criptoanarquista
   La criptografía como herramienta para proteger la libertad de las personas en las redes.
 - **1993** Manifiesto cypherpunk
@@ -95,6 +95,6 @@ El trabajo no termina. Consiste en mantener la red estable, corregir lo que haga
 
 Cada cambio sigue el mismo camino. Primero se propone en el repositorio público, después se prueba en la red de pruebas y solo llega a la red principal si la DAO lo aprueba. Por eso el proyecto no publica fechas de entrega: la DAO decide qué cambia y cuándo.
 
-:::aparte
+:::aside
 [Historial de versiones y actualizaciones · Referencia técnica ↗](/docs)
 :::

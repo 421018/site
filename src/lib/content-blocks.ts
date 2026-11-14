@@ -3,14 +3,15 @@
  * (the equivalent of Hugo shortcodes). Each one turns plain Markdown into the
  * markup the site's styles expect, so content files never need HTML.
  *
- *   :::nota[Título]            Highlighted note with a label.
- *   :::pregunta[¿Pregunta?]    Collapsible FAQ entry.
- *   :::aparte                  Side remark in small mono type: "read more" links,
+ *   :::note[Label]             Highlighted note with a label.
+ *   :::faq[Question?]          Collapsible FAQ entry.
+ *   :::aside                   Side remark in small mono type: "read more" links,
  *                              pending placeholders, footnotes.
- *   :::estado[Borrador]        Status line (badge + short text).
- *   :::datos                   Key figures. One list item per figure: `- **Valor** Etiqueta`.
- *   :::cronologia{actual="Hoy"} Timeline. One list item per milestone:
- *                                `- **Fecha** Título` and the description on the next line.
+ *   :::status[Draft]           Status line (badge + short text).
+ *   :::facts                   Key figures. One list item per figure: `- **Value** Label`.
+ *   :::timeline{current="…"}   Timeline. One list item per milestone:
+ *                              `- **Date** Title` and the description on the next line.
+ *                              The item whose date equals `current` is highlighted.
  *
  * An unknown block name, or a block missing its required [label], stops the
  * build with the file and line, so mistakes never reach the published site.
@@ -23,7 +24,7 @@ type Node = { type: string; value?: string; data?: Record<string, unknown>; chil
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 function fail(ctx: MdastVisitorContext, node: ContainerDirective, msg: string): never {
-  const file = ctx.fileURL ? decodeURIComponent(ctx.fileURL.pathname.replace(/^.*\/src\//, 'src/')) : 'contenido';
+  const file = ctx.fileURL ? decodeURIComponent(ctx.fileURL.pathname.replace(/^.*\/src\//, 'src/')) : 'content';
   const line = node.position?.start.line;
   throw new Error(`${file}${line ? `:${line}` : ''} — :::${node.name}: ${msg}`);
 }
@@ -35,14 +36,14 @@ function setTag(ctx: MdastVisitorContext, node: Node, hName: string, className?:
   ctx.setField(node as never, 'data', { ...(node.data ?? {}), hName, ...(className ? { hProperties: { className: [className] } } : {}) });
 }
 
-/** Splits `- **Valor** resto` list items into [strong text, remaining text]. */
+/** Splits `- **Value** rest` list items into [strong text, remaining text]. */
 function listItems(ctx: MdastVisitorContext, node: ContainerDirective): [string, string][] {
   const list = (node.children as Node[]).find((c) => c.type === 'list');
-  if (!list) fail(ctx, node, 'necesita una lista con un elemento por línea (`- **Valor** texto`).');
+  if (!list) fail(ctx, node, 'needs a list with one item per line (`- **Value** text`).');
   return (list.children ?? []).map((item) => {
     const para = item.children?.[0];
     const strong = para?.children?.find((c) => c.type === 'strong');
-    if (!para || !strong) fail(ctx, node, 'cada elemento de la lista debe empezar con **negritas**.');
+    if (!para || !strong) fail(ctx, node, 'each list item must start with **bold** text.');
     const head = ctx.textContent(strong as never).trim();
     const rest = (para.children ?? []).filter((c) => c !== strong).map((c) => ctx.textContent(c as never)).join('');
     return [head, rest.trim()];
@@ -55,18 +56,18 @@ export const contentBlocks = defineMdastPlugin({
     const children = node.children as Node[];
     const label = children[0]?.data?.directiveLabel ? children[0] : undefined;
     const needLabel = (what: string) => {
-      if (!label) fail(ctx, node, `falta ${what} entre corchetes: :::${node.name}[…]`);
+      if (!label) fail(ctx, node, `missing ${what} in brackets: :::${node.name}[…]`);
       return label;
     };
 
     switch (node.name) {
-      case 'nota': {
+      case 'note': {
         setTag(ctx, node as never, 'div', 'note');
         if (label) setTag(ctx, label, 'span', 'nl');
         return;
       }
-      case 'pregunta': {
-        const summary = needLabel('la pregunta');
+      case 'faq': {
+        const summary = needLabel('the question');
         setTag(ctx, node as never, 'details', 'faq');
         setTag(ctx, summary, 'summary');
         ctx.appendChild(summary as never, [
@@ -75,26 +76,26 @@ export const contentBlocks = defineMdastPlugin({
         ] as never);
         return;
       }
-      case 'aparte': {
+      case 'aside': {
         const paras = children.filter((c) => c.type === 'paragraph');
-        if (!paras.length) fail(ctx, node, 'necesita al menos un párrafo.');
+        if (!paras.length) fail(ctx, node, 'needs at least one paragraph.');
         ctx.replaceNode(node, paras.map((p) => ({ type: 'paragraph', data: { hProperties: { className: ['msg'] } }, children: p.children })) as never);
         return;
       }
-      case 'estado': {
-        const badge = needLabel('el estado');
+      case 'status': {
+        const badge = needLabel('the status');
         setTag(ctx, node as never, 'p', 'st');
         setTag(ctx, badge, 'b');
         for (const c of children.slice(1)) if (c.type === 'paragraph') setTag(ctx, c, 'span');
         return;
       }
-      case 'datos': {
+      case 'facts': {
         const html = listItems(ctx, node).map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('');
         ctx.replaceNode(node, rawHtml(`<div class="facts">${html}</div>`));
         return;
       }
-      case 'cronologia': {
-        const current = node.attributes?.actual;
+      case 'timeline': {
+        const current = node.attributes?.current;
         const html = listItems(ctx, node).map(([date, rest]) => {
           const [title, ...desc] = rest.split('\n');
           return `<div class="it${date === current ? ' now' : ''}"><span class="d">${esc(date)}</span><span class="t">${esc(title.trim())}</span><span class="s">${esc(desc.join(' ').trim())}</span></div>`;
@@ -103,7 +104,7 @@ export const contentBlocks = defineMdastPlugin({
         return;
       }
       default:
-        fail(ctx, node, 'bloque desconocido. Disponibles: nota, pregunta, aparte, estado, datos, cronologia.');
+        fail(ctx, node, 'unknown block. Available: note, faq, aside, status, facts, timeline.');
     }
   },
 });

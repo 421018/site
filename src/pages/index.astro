@@ -9,7 +9,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const entry = await getEntry('home', 'home');
-if (!entry) throw new Error('Falta src/content/home.md');
+if (!entry) throw new Error('Missing src/content/home.md');
 const { title, description, hero, build, uses, people, start, name, closing } = entry.data;
 
 /** A line break in a YAML title becomes <br>. */

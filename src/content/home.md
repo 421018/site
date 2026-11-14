@@ -1,7 +1,7 @@
 ---
-# Portada. Solo textos: el diseño vive en src/pages/index.astro.
-# Un salto de línea en un título (con "|") se muestra como salto de línea en la página.
-# Los bloques se numeran solos (01, 02…) en el orden en que aparecen en la portada.
+# Home page text. The layout lives in src/pages/index.astro.
+# A line break in a title (written with "|") is shown as a line break on the page.
+# Blocks are numbered automatically (01, 02…) in the order they appear on the page.
 
 hero:
   eyebrow: Protocolo blockchain de código abierto

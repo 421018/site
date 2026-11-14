@@ -3,14 +3,14 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const DIST = 'dist';
-if (!existsSync(DIST)) { console.error('✗ dist/ no existe: ejecuta `npm run build` primero.'); process.exit(1); }
+if (!existsSync(DIST)) { console.error('✗ dist/ does not exist: run `npm run build` first.'); process.exit(1); }
 
 const files = [];
 const walk = (d) => readdirSync(d).forEach((f) => { const p = join(d, f); statSync(p).isDirectory() ? walk(p) : files.push(p); });
 walk(DIST);
 
 const html = files.filter((f) => f.endsWith('.html'));
-if (!html.length) { console.error('✗ dist/ no contiene páginas.'); process.exit(1); }
+if (!html.length) { console.error('✗ dist/ contains no pages.'); process.exit(1); }
 
 const route = (f) => '/' + f.slice(DIST.length + 1).replace(/index\.html$/, '').replace(/\/$/, '');
 const pages = new Map(html.map((f) => [route(f).replace(/\/$/, '') || '/', readFileSync(f, 'utf8')]));

@@ -43,7 +43,7 @@ Pregunta en [Infinite Drive](/comunidad#portal), el chat de la comunidad. Si enc
 
 Si necesitas un servicio profesional con condiciones propias, como un desarrollo a la medida o plazos garantizados, contrátalo con un proveedor independiente. El proyecto no presta servicios pagados ni recomienda proveedores.
 
-:::aparte
+:::aside
 [Integrar la red →](/desarrolladores/integrar)
 :::
 
@@ -53,7 +53,7 @@ Si encuentras una vulnerabilidad, repórtala en privado al correo de seguridad, 
 
 Para que el reporte pueda atenderse rápido, describe qué encontraste, cómo reproducirlo y qué impacto podría tener. La recepción de cada reporte se confirma en un plazo de [plazo].
 
-:::aparte
+:::aside
 [Divulgación responsable →](/protocolo/seguridad#reportar)
 :::
 
@@ -61,7 +61,7 @@ Para que el reporte pueda atenderse rápido, describe qué encontraste, cómo re
 
 Muchas dudas ya tienen respuesta en las [preguntas frecuentes](/proyecto/preguntas-frecuentes) o en la [documentación](/docs).
 
-:::nota[Nadie del proyecto te pedirá]
+:::note[Nadie del proyecto te pedirá]
 Tu frase de recuperación, tus llaves privadas, que envíes unidades para "verificar" una cuenta ni que conectes tu billetera a un sitio que no aparezca en esta página.
 :::
 

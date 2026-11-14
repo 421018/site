@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Sitio oficial del protocolo 42 Chain.",
+  "description": "Official website of the 42 Chain protocol.",
   "license": "Apache-2.0",
   "scripts": {
     "dev": "astro dev",

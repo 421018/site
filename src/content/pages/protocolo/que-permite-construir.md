@@ -29,7 +29,7 @@ En la red, quien emite un documento registra su huella y su firma. Cualquiera pu
 
 Por ejemplo, una universidad registra la huella de cada título que emite. Un empleador comprueba un título en segundos, aunque la universidad no responda.
 
-:::aparte
+:::aside
 Lo hacen posible: [Huellas encadenadas](/protocolo#registro) · [Firmas](/protocolo#cuentas)
 :::
 
@@ -41,7 +41,7 @@ En la red, un pago se confirma en segundos y es definitivo. Un contrato puede, a
 
 Por ejemplo, un comprador deposita el pago en un contrato. El contrato lo libera al vendedor cuando se confirma la entrega, o lo devuelve si vence el plazo.
 
-:::aparte
+:::aside
 Lo hacen posible: [Finalidad](/protocolo/consenso#ronda) · [Contratos](/protocolo/ejecucion#contratos)
 :::
 
@@ -53,7 +53,7 @@ En la red, quien otorga una constancia puede registrarla y asociarla a la cuenta
 
 Por ejemplo, una escuela de idiomas registra el nivel que aprobó cada alumno. Una empresa comprueba ese nivel directamente en la red, sin tener que llamar a la escuela.
 
-:::aparte
+:::aside
 Lo hacen posible: [Cuentas y firmas](/protocolo#cuentas) · [Contratos](/protocolo/ejecucion#contratos)
 :::
 
@@ -65,7 +65,7 @@ En la red, una cuenta puede ser un contrato con sus propias reglas: exigir varia
 
 Por ejemplo, un grupo de trabajo exige la firma de tres de sus cinco responsables para mover las unidades de su cuenta común.
 
-:::aparte
+:::aside
 Lo hacen posible: [Cuentas](/protocolo/ejecucion#cuentas) · [Contratos](/protocolo/ejecucion#contratos)
 :::
 
@@ -77,7 +77,7 @@ En la red, un grupo puede crear su propio sistema de votación en un contrato. L
 
 Por ejemplo, una cooperativa vota en qué usar su fondo común. Si la propuesta se aprueba, el contrato transfiere las unidades sin intervención de nadie.
 
-:::aparte
+:::aside
 Lo hacen posible: [El modelo de la DAO](/protocolo/gobernanza#dao) · [Funciones propias de la red](/protocolo/ejecucion#nativas)
 :::
 
@@ -89,7 +89,7 @@ Con IBC, una aplicación en la red puede enviar unidades y mensajes a aplicacion
 
 Por ejemplo, una aplicación de pagos recibe unidades de otra red y las usa en un contrato de la red, en una sola transacción para quien la usa.
 
-:::aparte
+:::aside
 Lo hacen posible: [Interoperabilidad](/protocolo/interoperabilidad)
 :::
 
@@ -101,11 +101,11 @@ En la red, un servicio así no depende de un solo operador ni de que un servidor
 
 Por ejemplo, un municipio publica en la red los acuerdos que aprueba. Cualquier persona puede comprobar, años después, que un acuerdo no fue modificado.
 
-:::aparte
+:::aside
 Lo hacen posible: [Seguridad del protocolo](/protocolo/seguridad#propiedades) · [Gobernanza](/protocolo/gobernanza)
 :::
 
-:::aparte
+:::aside
 Los ejemplos son ilustrativos. Los proyectos que ya construyen sobre la red se comparten en [Infinite Drive, el chat de la comunidad](/comunidad#portal).
 :::
 
@@ -119,7 +119,7 @@ Todo lo que se registra en la red es público y permanente. Por eso hay informac
 
 La solución habitual es separar el dato de su prueba. El dato queda fuera de la cadena, bajo el control de quien corresponda. En la cadena se registra solo su huella. Así, cualquiera puede comprobar que un dato es auténtico sin que el dato se haga público.
 
-:::aparte
+:::aside
 [Qué va dentro y fuera de la cadena →](/desarrolladores#aplicacion)
 :::
 

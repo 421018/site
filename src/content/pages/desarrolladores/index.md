@@ -23,7 +23,7 @@ No todo tiene que vivir en la cadena. Lo que debe ser verificable y compartido v
 
 Por ejemplo, en un registro de certificados, el contrato guarda la huella de cada certificado y quién lo emitió. El documento completo puede guardarse fuera de la cadena. Cualquiera puede comprobar, con la huella, que un documento es auténtico.
 
-:::aparte
+:::aside
 [Cómo se ejecutan los contratos →](/protocolo/ejecucion)
 :::
 
@@ -41,7 +41,7 @@ Quien ya escribió contratos para la EVM puede publicarlos en la red sin cambios
 
 Además de la compatibilidad con la EVM, la red da a quien construye finalidad en segundos, conexión con otras redes mediante IBC, acceso desde los contratos a funciones propias como el staking y la gobernanza, y la libertad de publicar sin pedir permiso.
 
-:::aparte
+:::aside
 [Qué permite construir →](/protocolo/que-permite-construir)
 :::
 

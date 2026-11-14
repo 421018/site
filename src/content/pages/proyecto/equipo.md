@@ -20,7 +20,7 @@ Nuestro trabajo se organiza en cinco frentes:
 - **Cuidamos la seguridad del código.** Recibimos los reportes de vulnerabilidades, preparamos las correcciones, coordinamos las auditorías y publicamos los avisos de seguridad.
 - **Conectamos la red con el ecosistema.** Damos soporte técnico a billeteras, plataformas, exploradores y sitios de datos que quieren integrar la red.
 
-:::aparte
+:::aside
 [Apoyo técnico →](/proyecto/contacto#apoyo)
 :::
 
@@ -36,7 +36,7 @@ Escribimos el software, pero la red no nos pertenece. Por eso hay cosas que no n
 - **No vendemos servicios a nombre del proyecto.** Si alguien del equipo ofrece asesoría profesional, lo hace por su cuenta, fuera del proyecto.
 - **No ofrecemos ni recomendamos la unidad nativa.** Nuestro trabajo es el protocolo, no el mercado.
 
-:::aparte
+:::aside
 [Cómo decide la DAO →](/protocolo/gobernanza)
 :::
 
@@ -50,7 +50,7 @@ El código del protocolo, la documentación, las herramientas y este sitio son p
 - **Con la DAO.** Una versión nueva solo llega a la red principal si la DAO la aprueba.
 - **Contándolo.** Explicamos cada cambio en las notas de versión y lo anunciamos en los canales oficiales.
 
-:::aparte
+:::aside
 [Dónde comprobarlo →](/proyecto/transparencia)
 :::
 
@@ -69,7 +69,7 @@ Una propuesta de código no cambia la red por sí sola. Primero, el equipo y otr
 
 Las vulnerabilidades no se reportan en el repositorio público, sino en privado. [Reportar una vulnerabilidad](/protocolo/seguridad#reportar)
 
-:::estado[Pendiente]
+:::status[Pendiente]
 Enlace al repositorio público.
 :::
 

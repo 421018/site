@@ -4,12 +4,12 @@ summary: "Quién opera este sitio, qué riesgos conviene conocer, en qué condic
 section:
   label: Legal
   weight: 1
-  attachTo: proyecto  # aparece en el índice lateral de Proyecto y usa sus colores
+  attachTo: proyecto # listed in the Proyecto side index, using its colors
 ---
 
 ## Sobre este sitio {#independencia}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
@@ -31,7 +31,7 @@ La DAO, los validadores, los constructores y los servicios mencionados en este s
 
 ## Sin garantías y límite de responsabilidad {#garantias}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
@@ -43,13 +43,13 @@ En la medida en que lo permita la ley aplicable, los contribuyentes no responden
 
 Mantener el software y ayudar a quien usa la red no implica ofrecer garantías. La ayuda se da de buena fe, pero cada persona u organización decide cómo usa la red y asume los riesgos de esa decisión.
 
-:::aparte
+:::aside
 Esta exclusión es coherente con la licencia del software del protocolo. [Licencia y avisos de terceros](#licencia)
 :::
 
 ## Aviso de riesgos {#riesgos}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
@@ -89,7 +89,7 @@ Este sitio no ofrece, no vende y no recomienda la unidad nativa de la red ni nin
 
 ## Términos de uso {#terminos}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
@@ -100,13 +100,13 @@ Los términos de uso establecen las condiciones para usar este sitio, la documen
 - **Usos no permitidos.** No está permitido usar el sitio o sus herramientas para dañar la red, a otras personas o a los propios servicios.
 - **Responsabilidad limitada.** Los contribuyentes no responden por pérdidas derivadas del uso de la red o de servicios de terceros.
 
-:::aparte
+:::aside
 [Leer los términos de uso completos →](/legal/terminos)
 :::
 
 ## Privacidad y cookies {#privacidad}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
@@ -116,13 +116,13 @@ La política de privacidad explica qué datos se recogen, para qué y cómo pued
 - **Lo que está en la cadena es público.** Todo lo que se registra en la red es público y permanente. Nadie puede borrarlo, tampoco quienes mantienen el sitio.
 - **Tus mensajes.** Si escribes a un canal del proyecto, tu mensaje solo se usa para responderte, y puedes pedir que se borre.
 
-:::aparte
+:::aside
 [Leer la política de privacidad completa →](/legal/privacidad)
 :::
 
 ## Licencia y avisos de terceros {#licencia}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
@@ -144,13 +144,13 @@ La licencia no da derecho a usar los nombres ni las marcas de quienes contribuye
 
 El software del protocolo incluye software de código abierto desarrollado por terceros, también publicado bajo la licencia Apache 2.0. Sus avisos de derechos de autor y de atribución se conservan íntegros en los archivos LICENSE y NOTICE del repositorio público, como exige esa licencia.
 
-:::aparte
+:::aside
 [Licencia completa (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Archivos LICENSE y NOTICE en el repositorio]
 :::
 
 ## Nombre y marca {#marca}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
@@ -160,13 +160,13 @@ Puedes usar el nombre para referirte al protocolo o a la red; por ejemplo, para 
 
 ## Investigación de seguridad {#investigacion}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
 Si investigas la seguridad del protocolo de buena fe, reportas lo que encuentras por el canal de seguridad, no aprovechas la vulnerabilidad, no la publicas antes de que se corrija y no afectas a otras personas, el reporte se trata con confidencialidad y se reconoce públicamente tu aporte, si así lo deseas.
 
-:::aparte
+:::aside
 [Divulgación responsable](/protocolo/seguridad#reportar) · [Canal de seguridad](/proyecto/contacto#seguridad)
 :::
 

@@ -12,7 +12,7 @@ Cada bloque nuevo parte del estado anterior, aplica sus transacciones en orden y
 
 La parte del protocolo que toma las transacciones de un bloque y calcula el estado nuevo se llama **ejecución**. El consenso decide qué transacciones entran en cada bloque y en qué orden. La ejecución decide qué efecto tiene cada una.
 
-:::aparte
+:::aside
 [Consenso y staking →](/protocolo/consenso)
 :::
 
@@ -29,7 +29,7 @@ Cada cuenta se identifica con una **dirección**. En el protocolo, una misma cue
 
 Los dos formatos corresponden a la misma cuenta y al mismo saldo. Una billetera puede mostrar cualquiera de los dos.
 
-:::aparte
+:::aside
 [Cuentas y direcciones ↗](/docs)
 :::
 
@@ -79,7 +79,7 @@ Los contratos para la EVM se escriben normalmente en **Solidity**, un lenguaje d
 
 Como la EVM es un estándar compartido, un contrato escrito para la EVM puede publicarse en la red sin cambios en su código. Lo mismo ocurre con las herramientas: las librerías, los entornos de prueba y las billeteras de ese estándar funcionan con la red.
 
-:::aparte
+:::aside
 [Qué es el gas y cómo se calcula una tarifa →](/protocolo/tarifas#tarifas)
 :::
 
@@ -89,7 +89,7 @@ Además de la EVM, el protocolo tiene funciones propias: el staking, la gobernan
 
 Los contratos pueden usar estas funciones directamente, como si llamaran a otro contrato. Cada función propia tiene una dirección fija y conocida. Por ejemplo, un contrato puede delegar unidades en un validador, votar una propuesta o enviar unidades a otra red, sin depender de un servicio externo.
 
-:::aparte
+:::aside
 [Funciones propias de la red y sus direcciones ↗](/docs)
 :::
 

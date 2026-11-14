@@ -6,13 +6,13 @@ weight: 20
 
 ## Un sitio sin operador {#responsable}
 
-:::estado[Borrador]
+:::status[Borrador]
 Pendiente de revisión legal.
 :::
 
 Este sitio lo mantienen contribuyentes independientes, no una empresa. Está pensado para pasar por él la menor cantidad de datos posible: no pide registro y no usa analítica que identifique a las personas.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: alcance de la política en un proyecto comunitario]
 :::
 
@@ -20,7 +20,7 @@ Este sitio lo mantienen contribuyentes independientes, no una empresa. Está pen
 
 Solo dos tipos de datos: el correo y el mensaje de quien escribe a un canal del proyecto, y la dirección de cuenta y la dirección IP de quien usa el faucet, para evitar abusos.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: inventario completo de datos y su origen]
 :::
 
@@ -28,7 +28,7 @@ Solo dos tipos de datos: el correo y el mensaje de quien escribe a un canal del 
 
 Los mensajes se usan solo para responder, y los datos del faucet solo para evitar abusos. No se venden ni se usan para publicidad.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: finalidades y base legal de cada tratamiento]
 :::
 
@@ -36,7 +36,7 @@ Los mensajes se usan solo para responder, y los datos del faucet solo para evita
 
 Los datos solo se comparten con los proveedores que alojan el sitio y sus herramientas, y cuando lo exija la ley.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: lista de encargados y transferencias]
 :::
 
@@ -44,7 +44,7 @@ Los datos solo se comparten con los proveedores que alojan el sitio y sus herram
 
 Los datos se guardan solo el tiempo necesario para la finalidad para la que se recogieron.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: plazos de conservación por tipo de dato]
 :::
 
@@ -52,7 +52,7 @@ Los datos se guardan solo el tiempo necesario para la finalidad para la que se r
 
 Puedes pedir que se borren tus mensajes o los datos del faucet escribiendo al canal por el que los enviaste.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: derechos aplicables según la normativa y cómo ejercerlos]
 :::
 
@@ -60,7 +60,7 @@ Puedes pedir que se borren tus mensajes o los datos del faucet escribiendo al ca
 
 El sitio usa solo las cookies necesarias para funcionar. No usa cookies de seguimiento.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: tipos de cookies, finalidad y consentimiento]
 :::
 
@@ -68,7 +68,7 @@ El sitio usa solo las cookies necesarias para funcionar. No usa cookies de segui
 
 Todo lo que se registra en la red, como direcciones, transacciones o contratos, es público y permanente. Nadie puede modificarlo ni borrarlo, tampoco quienes mantienen el sitio. Por eso no conviene registrar datos personales en la cadena.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: alcance de la política respecto a datos públicos de la red]
 :::
 
@@ -76,6 +76,6 @@ Todo lo que se registra en la red, como direcciones, transacciones o contratos, 
 
 Esta política puede actualizarse. La fecha de la versión vigente se indica en Legal y avisos.
 
-:::aparte
+:::aside
 [Pendiente de redacción legal: procedimiento de modificación y aviso]
 :::

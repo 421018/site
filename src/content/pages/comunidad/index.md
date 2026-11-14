@@ -21,10 +21,10 @@ Infinite Drive es el chat de la comunidad, en Telegram. Ahí se conversa sobre t
 
 Lo mantienen sus propios participantes, de forma voluntaria. No es un canal oficial del proyecto, y cada persona habla por sí misma.
 
-:::aparte
+:::aside
 [Unirse a Infinite Drive en Telegram ↗](https://t.me/InfiniteDrive42)
 :::
 
-:::nota[Antes de confiar en un mensaje]
+:::note[Antes de confiar en un mensaje]
 Nadie en una comunidad puede hablar en nombre del proyecto. Verifica cualquier anuncio en los canales oficiales.
 :::

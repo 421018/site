@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          fetch-depth: 0 # full history: "Última revisión" uses each file's last commit date
+          fetch-depth: 0 # full history: the "last reviewed" date uses each file's last commit
       - uses: actions/setup-node@v7.1.0
         with:
           node-version-file: .nvmrc

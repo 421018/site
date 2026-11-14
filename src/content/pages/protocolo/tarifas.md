@@ -21,7 +21,7 @@ Una cadena de bloques sin dueño necesita una unidad que viva dentro de sus prop
 - **Alinear intereses.** Quien tiene unidades en staking tiene interés en que la red funcione bien, porque su respaldo y su compensación dependen de ella.
 - **Funcionar sin depender de nadie.** Con una unidad propia, la red puede operar, protegerse y decidir sin necesitar la autorización de ninguna entidad externa.
 
-:::aparte
+:::aside
 [Consenso y staking →](/protocolo/consenso)
 :::
 
@@ -41,7 +41,7 @@ El trabajo que exige una transacción se mide en una unidad llamada **gas**. Cad
 
 La tarifa se calcula multiplicando dos números:
 
-:::aparte
+:::aside
 tarifa = gas consumido × precio por unidad de gas
 :::
 
@@ -55,7 +55,7 @@ Al enviar una transacción, quien la envía fija también un **límite de gas**:
 
 Antes de firmar, la billetera estima el gas que la transacción va a consumir, propone un límite y muestra la tarifa. Así, quien envía la transacción conoce el costo antes de enviarla.
 
-:::aparte
+:::aside
 Las cifras del ejemplo son ilustrativas.
 :::
 
@@ -85,11 +85,11 @@ En un bloque, la emisión y las tarifas suman 100 unidades. Supongamos que el 10
 
 La proporción real que va al fondo comunitario es un parámetro del protocolo. [Proporción.]
 
-:::aparte
+:::aside
 Las cifras del ejemplo son ilustrativas.
 :::
 
-:::aparte
+:::aside
 [Cómo se calcula la comisión →](/protocolo/consenso#delegacion)
 :::
 
@@ -99,7 +99,7 @@ El **fondo comunitario** es una reserva de unidades que pertenece a la red. Nadi
 
 El fondo sirve para financiar lo que la red necesita y que nadie más financiaría. Por ejemplo, una auditoría de seguridad, una herramienta pública o la traducción de la documentación.
 
-:::aparte
+:::aside
 [Cómo decide la DAO →](/protocolo/gobernanza)
 :::
 
@@ -109,7 +109,7 @@ El primer bloque de la red se llama **bloque génesis**. En ese bloque se creó 
 
 El suministro inicial no forma parte de la emisión ni de la distribución que se describen arriba. Lo administra la DAO, y el protocolo lo libera de forma gradual.
 
-:::aparte
+:::aside
 [El suministro inicial y la DAO →](/protocolo/gobernanza#suministro)
 :::
 
@@ -120,6 +120,6 @@ El suministro inicial no forma parte de la emisión ni de la distribución que s
 - **Emisión constante.** La seguridad de la red no depende de cuánto se use en cada momento. Quienes la protegen reciben una compensación estable.
 - **Un fondo que decide la DAO.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
 
-:::aparte
+:::aside
 [Parámetros de tarifas y emisión ↗](/docs) · [Avisos legales](/legal#riesgos)
 :::

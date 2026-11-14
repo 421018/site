@@ -59,7 +59,7 @@ Para que el resultado de un contrato sea confiable, todos los nodos ejecutan el 
 
 La máquina virtual del protocolo sigue una especificación llamada **EVM**, la más usada para contratos inteligentes en cadenas de bloques. Como la EVM es un estándar compartido, los lenguajes, las herramientas y las billeteras que ya existen para la EVM funcionan con el protocolo sin cambios. Quien ya sabe escribir contratos para la EVM puede escribirlos para el protocolo desde el primer día.
 
-:::aparte
+:::aside
 [Ejecución →](/protocolo/ejecucion)
 :::
 
@@ -73,7 +73,7 @@ Las tarifas se pagan en la unidad propia del protocolo. A esa unidad se le llama
 
 La unidad nativa tiene además un segundo papel, quizá el más importante: protege la red. Para entender cómo, hay que ver primero quién decide qué bloques entran en la cadena.
 
-:::aparte
+:::aside
 [Tarifas y emisión →](/protocolo/tarifas)
 :::
 
@@ -111,7 +111,7 @@ Un bloque confirmado no puede revertirse ni reemplazarse por otro. A esta propie
 
 Los validadores reciben una compensación por este trabajo. El protocolo les asigna una parte de las tarifas y de las unidades nuevas que crea con cada bloque. Cada validador comparte esa parte con las personas que le delegaron unidades.
 
-:::aparte
+:::aside
 [Consenso y staking →](/protocolo/consenso)
 :::
 
@@ -123,7 +123,7 @@ La forma más simple sería confiar en un intermediario: alguien que reciba las 
 
 Por eso el protocolo usa **IBC** (Inter-Blockchain Communication). IBC es un estándar abierto en el que cada red comprueba por sí misma, con pruebas criptográficas, lo que ocurrió en la otra red. Así, las unidades y los mensajes pueden pasar de una red a otra sin que ningún intermediario los custodie durante el traslado.
 
-:::aparte
+:::aside
 [Interoperabilidad →](/protocolo/interoperabilidad)
 :::
 
@@ -135,7 +135,7 @@ El protocolo resuelve este problema con las piezas que ya se describieron. Cualq
 
 A este sistema de decisión colectiva se le llama **DAO** (por sus siglas en inglés, *Decentralized Autonomous Organization*). Con este sistema, quienes protegen la red con sus unidades en staking son también quienes deciden cómo evoluciona.
 
-:::aparte
+:::aside
 [Gobernanza →](/protocolo/gobernanza)
 :::
 
@@ -152,7 +152,7 @@ Además, el código del protocolo es abierto y se somete a **auditorías**. Una 
 
 Para no caer en sitios o perfiles falsos, usa solo los [canales oficiales](/proyecto/contacto#canales). Si encuentras una vulnerabilidad, repórtala en privado por el canal de seguridad indicado en la [documentación](/docs).
 
-:::aparte
+:::aside
 [Seguridad →](/protocolo/seguridad)
 :::
 
@@ -184,6 +184,6 @@ Juntas, estas decisiones son las que hacen posibles las aplicaciones sobre la re
 | Unidad nativa | Improbability (42) |
 | Gobernanza | En la cadena, mediante la DAO |
 
-:::aparte
+:::aside
 [Referencia técnica completa ↗](/docs)
 :::
