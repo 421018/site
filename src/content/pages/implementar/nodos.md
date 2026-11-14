@@ -55,6 +55,22 @@ Hay dos formas de sincronizar un nodo:
 - **Desde el principio.** El nodo descarga y verifica todos los bloques, desde el bloque génesis. Es la forma más lenta, pero el nodo comprueba por sí mismo toda la historia de la red.
 - **Desde una instantánea.** El nodo descarga una copia reciente del estado, llamada instantánea, y verifica que coincida con la red. Desde ahí sigue bloque a bloque. Es mucho más rápida.
 
+Para empezar, el nodo necesita el **archivo génesis** de la red y al menos un **par inicial**: otro nodo al que conectarse por primera vez para descubrir al resto.
+
+| Dato | Red principal | Red de pruebas |
+|---|---|---|
+| Chain ID (nativo) | `infinite_421018-1` | `infinite_421018001-1` |
+| Archivo génesis | [genesis.json ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json ↗](https://assets.infinitedrive.xyz/testnet/genesis.json) |
+
+Pares iniciales:
+
+- **Red principal.** `fe304bbda1a243eb2bd30a4558923b39d04ca5eb@server-xenia88.infinitedrive.xyz:26656`
+- **Red de pruebas.** `ed3a45ee1ad114830afe6de7dc90c61f893c04da@server-xenia88.infinitedrive.xyz:26666`
+
+:::aside
+Los pares iniciales los publican sus operadores en el [archivo de datos de la red ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json). Una vez conectado, el nodo descubre al resto de la red por su cuenta.
+:::
+
 ## De nodo a validador {#registro}
 
 Un nodo se convierte en validador en tres pasos:

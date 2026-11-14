@@ -127,6 +127,7 @@ img, svg { display: block; }
 .prose a { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--link) 40%, transparent); }
 .prose a:hover { text-decoration-color: var(--link); }
 .prose ul, .prose ol { margin: 0 0 24px; padding-left: 20px; }
+.prose li code, .prose td code { overflow-wrap: anywhere; }
 .prose li { margin: 0 0 10px; }
 .prose code { font-family: var(--mono); font-size: .86em; padding: 2px 6px; border-radius: 5px; background: var(--panel); color: var(--head); }
 .prose table { width: 100%; border-collapse: collapse; margin: 8px 0 28px; font-size: 15.5px; line-height: 1.5; }

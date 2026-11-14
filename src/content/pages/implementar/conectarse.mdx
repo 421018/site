@@ -19,14 +19,19 @@ Para conectarse a cualquiera de las dos hacen falta dos cosas: sus parámetros, 
 |---|---|---|
 | Nombre de la red | 42 Chain | 42 Chain Testnet |
 | Chain ID (EVM) | 421018 (`0x66c9a`) | 421018001 (`0x19183991`) |
-| Chain ID (nativo) | [chain ID nativo] | [chain ID nativo] |
+| Chain ID (nativo) | `infinite_421018-1` | `infinite_421018001-1` |
+| Identificador técnico | `infinite` | `infinite` |
 | Unidad nativa | Improbability · símbolo 42 | TestImprobability · símbolo TEST42 |
 | Decimales | 18 | 18 |
 | Denominación base | `drop` | `tdrop` |
-| Prefijo de dirección nativa | [prefijo] | [prefijo] |
+| Prefijo de dirección nativa | `infinite` (direcciones `infinite1…`) | `infinite` (direcciones `infinite1…`) |
 | Tiempo de bloque | ~2 s | ~2 s |
 
-Los parámetros vigentes y su historial están en la [referencia técnica](/docs).
+### Por qué «infinite» {#infinite}
+
+El identificador técnico de la red es `infinite`, por el nombre formal del protocolo, el Infinite Improbability Drive. Por eso el chain ID nativo empieza por `infinite_`, las direcciones nativas empiezan por `infinite1` y el nombre corto de la red en los registros de cadenas es `infinite`. Son la misma red que 42 Chain: el nombre es para las personas, y el identificador, para las máquinas.
+
+Los parámetros vigentes y su historial están en la [referencia técnica](/docs). También se publican en un archivo legible por máquina: [red principal ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) · [red de pruebas ↗](https://assets.infinitedrive.xyz/testnet/network-data.json).
 
 ## Añadir la red a una billetera {#billetera}
 
@@ -52,14 +57,52 @@ Una red falsa puede copiar el nombre, el símbolo e incluso el chain ID. Usa sol
 
 Los puntos de conexión, los exploradores y los faucets los operan proveedores independientes, cada uno con su propio dominio. Ninguno es un punto de conexión oficial de la red, y cada proveedor responde por su servicio. Que aparezcan aquí no implica respaldo.
 
-| Proveedor | Servicio | Red | Dirección |
-|---|---|---|---|
-| Infinite Drive <em class="badge">Independiente</em> | RPC (EVM) | Red principal | `https://evm.infinitedrive.xyz` |
-| mschihuahua.org <em class="badge">Independiente</em> | RPC (EVM) | Red principal | `https://evm-rpc-infinite.mschihuahua.org` |
-| Infinite Drive <em class="badge">Independiente</em> | RPC (EVM) | Red de pruebas | `https://evm-rpc-testnet.infinitedrive.xyz` |
-| Infinite Drive <em class="badge">Independiente</em> | Explorador | Red principal | [scan.infinitedrive.xyz ↗](https://scan.infinitedrive.xyz) |
-| Infinite Drive <em class="badge">Independiente</em> | Explorador | Red de pruebas | [testnet-scan.infinitedrive.xyz ↗](https://testnet-scan.infinitedrive.xyz) |
-| xenia88.xyz <em class="badge">Independiente</em> | Faucet | Red de pruebas | [testnet-faucet.xenia88.xyz ↗](https://testnet-faucet.xenia88.xyz) |
+### RPC EVM (JSON-RPC) {#rpc-evm}
+
+Para billeteras y herramientas compatibles con la EVM: MetaMask, Hardhat, Foundry, Viem o Ethers.js.
+
+| Proveedor | Red | Dirección |
+|---|---|---|
+| Infinite Drive <em class="badge">Independiente</em> | Red principal | `https://evm.infinitedrive.xyz` |
+| mschihuahua.org <em class="badge">Independiente</em> | Red principal | `https://evm-rpc-infinite.mschihuahua.org` |
+| infinitepanda.xyz <em class="badge">Independiente</em> | Red principal | `https://evm-rpc.infinitepanda.xyz` |
+| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | `https://evm-rpc-testnet.infinitedrive.xyz` |
+
+### RPC de CometBFT {#rpc-comet}
+
+Para billeteras nativas, retransmisores IBC y herramientas del ecosistema Cosmos. Da acceso a los bloques, al consenso y al envío de transacciones nativas.
+
+| Proveedor | Red | Dirección |
+|---|---|---|
+| Infinite Drive <em class="badge">Independiente</em> | Red principal | `https://comet-rpc.infinitedrive.xyz` |
+| mschihuahua.org <em class="badge">Independiente</em> | Red principal | `https://comet-rpc-infinite.mschihuahua.org` |
+| infinitepanda.xyz <em class="badge">Independiente</em> | Red principal | `https://comet-rpc.infinitepanda.xyz` |
+| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | `https://comet-rpc-testnet.infinitedrive.xyz` |
+
+### gRPC {#grpc}
+
+Para consultar el estado de los módulos propios de la red (staking, gobernanza, saldos) desde servicios e indexadores.
+
+| Proveedor | Red | Dirección |
+|---|---|---|
+| Infinite Drive <em class="badge">Independiente</em> | Red principal | `https://grpc.infinitedrive.xyz` |
+| mschihuahua.org <em class="badge">Independiente</em> | Red principal | `https://grpc-infinite.mschihuahua.org` |
+| infinitepanda.xyz <em class="badge">Independiente</em> | Red principal | `https://grpc.infinitepanda.xyz` |
+| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | `https://grpc-testnet.infinitedrive.xyz` |
+
+### Exploradores {#exploradores}
+
+| Proveedor | Red | Dirección |
+|---|---|---|
+| Infinite Drive <em class="badge">Independiente</em> | Red principal | [scan.infinitedrive.xyz ↗](https://scan.infinitedrive.xyz) |
+| Infinite Drive <em class="badge">Independiente</em> | Red de pruebas | [testnet-scan.infinitedrive.xyz ↗](https://testnet-scan.infinitedrive.xyz) |
+| DriveStats <em class="badge">Independiente</em> | Las dos | [drivestats.online ↗](https://drivestats.online) |
+
+### Faucets {#faucets}
+
+| Proveedor | Red | Dirección |
+|---|---|---|
+| xenia88.xyz <em class="badge">Independiente</em> | Red de pruebas | [testnet-faucet.xenia88.xyz ↗](https://testnet-faucet.xenia88.xyz) |
 
 Para no depender de un proveedor, cualquiera puede operar su propio nodo y conectarse a él. [Operar un nodo →](/implementar/nodos)
 
