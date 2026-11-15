@@ -18,10 +18,12 @@ import { z } from 'astro/zod';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from '@42chain/network/schemas';
 import { pageSchema, pagesLoader, perLanguage, siteTextSchema } from '@42chain/kit/schemas';
 import { catalogPath } from '@42chain/kit/catalog';
+import { iconNames } from '@42chain/ui/art/icons.ts';
 
 const pages = defineCollection({ loader: pagesLoader(catalogPath('site')), schema: pageSchema });
 
 const cta = z.object({ label: z.string(), href: z.string() }).strict();
+const icon = z.enum(iconNames);
 const block = { kicker: z.string(), title: z.string(), lead: z.string().optional(), link: cta.optional() };
 
 const home = defineCollection({
@@ -37,17 +39,27 @@ const home = defineCollection({
           lead: z.string(),
           primary: cta,
           secondary: cta,
-          /** Technical signature shown under the buttons. */
-          specs: z.array(z.string()).optional(),
-          /** Label of the illustrative block strip at the bottom of the hero. */
-          chainLabel: z.string().optional(),
+        })
+        .strict(),
+      /** Strip of verifiable protocol figures under the hero. */
+      figures: z.array(z.object({ value: z.string(), label: z.string() }).strict()).min(3).max(6),
+      /** The engine, piece by piece: one tab per piece. */
+      engine: z
+        .object({
+          ...block,
+          pieces: z
+            .array(
+              z
+                .object({ icon, label: z.string(), title: z.string(), text: z.string(), points: z.array(z.string()).default([]), link: cta })
+                .strict(),
+            )
+            .min(2),
         })
         .strict(),
       build: z
         .object({
           ...block,
           code: z.object({ file: z.string(), label: z.string(), text: z.string() }).strict(),
-          facts: z.array(z.object({ value: z.string(), label: z.string() }).strict()),
         })
         .strict(),
       uses: z
@@ -56,6 +68,8 @@ const home = defineCollection({
           stories: z.array(
             z
               .object({
+                /** Short label on the card, e.g. "Registros verificables". */
+                tag: z.string().optional(),
                 title: z.string(),
                 text: z.string(),
                 /** Optional photo (path relative to home.md) with its required description and credit. */
@@ -71,7 +85,7 @@ const home = defineCollection({
         })
         .strict(),
       people: z.object({ ...block, rows: z.array(z.object({ who: z.string(), what: z.string() }).strict()) }).strict(),
-      start: z.object({ ...block, paths: z.array(z.object({ label: z.string(), text: z.string(), href: z.string() }).strict()) }).strict(),
+      start: z.object({ ...block, paths: z.array(z.object({ icon, label: z.string(), text: z.string(), href: z.string() }).strict()) }).strict(),
       name: z.object({ ...block }).strict(),
       closing: z.object({ title: z.string(), primary: cta, secondary: cta }).strict(),
     })

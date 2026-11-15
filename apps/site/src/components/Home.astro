@@ -10,11 +10,15 @@ import Header from '@42chain/kit/components/Header.astro';
 import Footer from '@42chain/kit/components/Footer.astro';
 import { langOf } from '@42chain/kit/i18n';
 import { homeAlternates } from '@42chain/kit/site';
+import OrbitHero from '@42chain/ui/art/OrbitHero.astro';
+import RingedPlanet from '@42chain/ui/art/RingedPlanet.astro';
+import EnginePanel from '@42chain/ui/art/EnginePanel.astro';
+import Icon from '@42chain/ui/art/Icon.astro';
 
 const lang = langOf(Astro);
 const entry = await getEntry('home', lang);
 if (!entry) throw new Error(`Missing site/${lang}/home.md in the content catalog`);
-const { title, description, hero, build, uses, people, start, name, closing } = entry.data;
+const { title, description, hero, figures, engine, build, uses, people, start, name, closing } = entry.data;
 
 /** A line break in a YAML title becomes <br>. */
 const lines = (s: string) => s.trim().split('\n');
@@ -29,208 +33,285 @@ const highlight = (code: string) =>
     const m = l.match(/^(\s*[\w$]+:\s*)(.+?)(,?)$/);
     return m && !/^[{[]$/.test(m[2]) ? `${esc(m[1])}<span class="s">${esc(m[2])}</span>${m[3]}` : esc(l);
   }).join('\n');
-const arrow = '<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg>';
+const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg>';
+/** Photo tints cycle through the brand colours. */
+const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 ---
 <Base title={title} description={description} alternates={homeAlternates()}>
-<section class="hero" data-hero>
-<canvas aria-hidden="true" data-net></canvas>
-<div class="shade" aria-hidden="true"></div>
+<section class="hero">
+<div class="hero-sky stars" aria-hidden="true"></div>
+<div class="hero-art" aria-hidden="true"><OrbitHero /></div>
+<div class="hero-field" aria-hidden="true"></div>
+<div class="hero-in">
 <Header alternates={homeAlternates()} />
 <div class="copy">
-<p class="lbl fade" style="margin: 0 0 28px; display: inline-flex; align-items: center; gap: 12px; color: #C9D0D6; animation-delay: .15s"><span class="live"></span>{hero.eyebrow}</p>
-<h1 class="fade" style="margin: 0; font-size: clamp(52px, 7.6vw, 116px); font-weight: 600; line-height: .95; letter-spacing: -0.05em; animation-delay: .25s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h1>
-<p class="fade" style="margin: 32px 0 0; max-width: 640px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #C9D0D6; animation-delay: .4s">{hero.lead}</p>
-<div class="fade" style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 40px; animation-delay: .55s">
-<a class="btn btn-p" href={hero.primary.href}>{hero.primary.label} <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<p class="lbl eyebrow fade" style="animation-delay: .1s"><span class="dot"></span>{hero.eyebrow}</p>
+<h1 class="fade" style="animation-delay: .2s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h1>
+<p class="hero-lead fade" style="animation-delay: .35s">{hero.lead}</p>
+<div class="acts fade" style="animation-delay: .5s">
+<a class="btn btn-p" href={hero.primary.href}>{hero.primary.label} <Fragment set:html={arrow} /></a>
 <a class="btn btn-g" href={hero.secondary.href}>{hero.secondary.label}</a>
 </div>
-{hero.specs && <ul class="specs fade" style="animation-delay: .7s">{hero.specs.map((s) => <li>{s}</li>)}</ul>}
 </div>
-{hero.chainLabel && <div class="chainstrip" aria-hidden="true"><span class="cs-l">{hero.chainLabel}</span><div class="cs-blocks" data-blocks></div></div>}
+</div>
 </section>
 
-<section id="usos" class="paper">
+<section class="figures" aria-label={figures.map((f) => `${f.value} ${f.label}`).join(' · ')}>
+<div class="wrap figs">
+{figures.map((f) => <div><b>{f.value}</b><span>{f.label}</span></div>)}
+</div>
+</section>
+
+<section id="motor">
 <div class="wrap">
-<p class="k">{kicker(1, uses.kicker)}</p>
-<h2 class="h2" style="max-width: 900px">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
-{uses.lead && <p class="lead">{uses.lead}</p>}
-<div class="stories">
-{uses.stories.map((s, i) => (
-  <div class="story rv">
-    {s.image && <figure class="sp"><Image src={s.image} alt={s.alt!} widths={[480, 800]} sizes="(max-width: 900px) 100vw, 33vw" /><figcaption>{s.credit}</figcaption></figure>}
-    <span class="n">{String(i + 1).padStart(2, '0')}</span>
-    <h3>{s.href ? <a href={s.href}>{s.title}</a> : s.title}</h3>
-    <p>{s.text}</p>
-  </div>
+<p class="k">{kicker(1, engine.kicker)}</p>
+<h2 class="h2">{lines(engine.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{engine.lead && <p class="lead">{engine.lead}</p>}
+<div class="eng" data-eng>
+<div class="eng-tabs" role="tablist" aria-label={engine.kicker}>
+{engine.pieces.map((p, i) => <button type="button" role="tab" id={`eng-t${i}`} aria-controls={`eng-p${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{p.label}</button>)}
+</div>
+{engine.pieces.map((p, i) => (
+<div class:list={['eng-card', { on: i === 0 }]} role="tabpanel" id={`eng-p${i}`} aria-labelledby={`eng-t${i}`}>
+<div class="eng-text">
+<p class="eng-n">{String(i + 1).padStart(2, '0')} · {p.label}</p>
+<h3>{p.title}</h3>
+<p class="eng-d">{p.text}</p>
+{p.points.length > 0 && <ul>{p.points.map((pt) => <li>{pt}</li>)}</ul>}
+<a class="eng-l" href={p.link.href}>{p.link.label} →</a>
+</div>
+<EnginePanel name={p.icon} />
+</div>
 ))}
 </div>
-{uses.link && <a class="txl" href={uses.link.href} style="margin-top: 56px">{uses.link.label} <Fragment set:html={arrow} /></a>}
+</div>
+</section>
+
+<section id="usos">
+<div class="wrap">
+<div class="headrow">
+<div>
+<p class="k">{kicker(2, uses.kicker)}</p>
+<h2 class="h2">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+</div>
+{uses.link && <a class="more" href={uses.link.href}>{uses.link.label} →</a>}
+</div>
+{uses.lead && <p class="lead">{uses.lead}</p>}
+<div class="cards3">
+{uses.stories.map((s, i) => (
+  <article class="ucard">
+    {s.image && <figure class="duo uimg" style={`--tint: ${tints[i % tints.length]}`}><Image src={s.image} alt={s.alt!} widths={[480, 800]} sizes="(max-width: 900px) 100vw, 33vw" /></figure>}
+    <div class="ubody">
+      {s.tag && <p class="pill">{s.tag}</p>}
+      <h3>{s.href ? <a href={s.href}>{s.title}</a> : s.title}</h3>
+      <p>{s.text}</p>
+      {s.credit && <p class="credit">{s.credit}</p>}
+    </div>
+  </article>
+))}
+</div>
 </div>
 </section>
 
 <section id="compatibilidad">
 <div class="wrap">
-<div class="g2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center">
+<div class="g2">
 <div>
-<p class="k">{kicker(2, build.kicker)}</p>
+<p class="k">{kicker(3, build.kicker)}</p>
 <h2 class="h2">{lines(build.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {build.lead && <p class="lead">{build.lead}</p>}
-{build.link && <a class="txl" href={build.link.href}>{build.link.label} <Fragment set:html={arrow} /></a>}
+{build.link && <a class="more" href={build.link.href}>{build.link.label} →</a>}
 </div>
 <div class="code" role="img" aria-label={build.code.label}>
-<div class="bar"><i></i><i></i><i></i><span style="margin-left: 8px">{build.code.file}</span></div>
+<div class="bar"><i></i><i></i><i></i><span>{build.code.file}</span></div>
 <pre set:html={highlight(build.code.text)}></pre>
 </div>
-</div>
-<div class="facts">
-{build.facts.map((f) => <div><b>{f.value}</b><span>{f.label}</span></div>)}
 </div>
 </div>
 </section>
 
 <section id="quien">
 <div class="wrap">
-<p class="k">{kicker(3, people.kicker)}</p>
-<h2 class="h2" style="max-width: 900px">{lines(people.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+<p class="k">{kicker(4, people.kicker)}</p>
+<h2 class="h2">{lines(people.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {people.lead && <p class="lead">{people.lead}</p>}
-<div class="rows">
-{people.rows.map((r) => <div class="row"><b>{r.who}</b><span>{r.what}</span></div>)}
+<div class="roles">
+{people.rows.map((r) => <div class="role"><b>{r.who}</b><span>{r.what}</span></div>)}
 </div>
-{people.link && <a class="txl" href={people.link.href}>{people.link.label} <Fragment set:html={arrow} /></a>}
-</div>
-</section>
-
-<section id="empezar">
-<div class="wrap" style="padding-top: 40px">
-<p class="k">{kicker(4, start.kicker)}</p>
-<h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
-{start.lead && <p class="lead">{start.lead}</p>}
-<div style="margin-top: 56px; border-bottom: 1px solid #1A1F26">
-{start.paths.map((p) => <a class="path" href={p.href}><b>{p.label}</b><span>{p.text}</span><Fragment set:html={arrow} /></a>)}
-</div>
+{people.link && <a class="more" href={people.link.href}>{people.link.label} →</a>}
 </div>
 </section>
 
 <section id="porque42">
-<div class="wrap" style="padding-bottom: 80px">
-<div class="g2" style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center">
-<div aria-hidden="true" class="big42">42</div>
-<div>
-<p class="k">{kicker(5, name.kicker)}</p>
+<div class="wrap">
+<div class="lore-band stars">
+<div class="lore-text">
+<p class="k star">{kicker(5, name.kicker)}</p>
 <h2 class="h2">{lines(name.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {name.lead && <p class="lead">{name.lead}</p>}
-{name.link && <a class="txl" href={name.link.href}>{name.link.label} <Fragment set:html={arrow} /></a>}
+{name.link && <a class="more star" href={name.link.href}>{name.link.label} →</a>}
+</div>
+<div class="lore-art" aria-hidden="true"><RingedPlanet /></div>
+</div>
+</div>
+</section>
+
+<section id="empezar">
+<div class="wrap">
+<p class="k">{kicker(6, start.kicker)}</p>
+<h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{start.lead && <p class="lead">{start.lead}</p>}
+<div class="paths">
+{start.paths.map((p) => <a class="path" href={p.href}><Icon name={p.icon} size={28} class="pi" /><b>{p.label}</b><span>{p.text}</span></a>)}
+</div>
+</div>
+</section>
+
+<section id="cierre">
+<div class="wrap">
+<div class="closing stars">
+<svg class="horizon" aria-hidden="true" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0 160 Q600 20 1200 160 Z" fill="#0E1620"></path><path d="M0 160 Q600 20 1200 160" fill="none" stroke="rgba(91,240,200,.35)" stroke-width="1.5"></path></svg>
+<h2 class="h2">{closing.title}</h2>
+<div class="acts">
+<a class="btn btn-p" href={closing.primary.href}>{closing.primary.label} <Fragment set:html={arrow} /></a>
+<a class="btn btn-g" href={closing.secondary.href}>{closing.secondary.label}</a>
 </div>
 </div>
 </div>
 </section>
 
-<Footer>
-  <div class="fcta">
-    <h2>{closing.title}</h2>
-    <div class="acts">
-      <a class="btn btn-p" href={closing.primary.href}>{closing.primary.label}</a>
-      <a class="btn btn-g" href={closing.secondary.href}>{closing.secondary.label}</a>
-    </div>
-  </div>
-</Footer>
+<Footer />
 </Base>
 
 <style is:global>
+.k{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:0 0 16px}
+.k.star,.more.star{color:var(--star)}
+.h2{margin:0;font-size:clamp(30px,7.4vw,54px);font-weight:500;letter-spacing:-0.035em;line-height:1.04}
+.lead{margin:20px 0 0;max-width:640px;font-size:17.5px;line-height:1.65;color:var(--fg-3)}
+.wrap{max-width:1280px;margin:0 auto;padding:120px clamp(16px,4vw,40px) 0;box-sizing:border-box}
+.more{display:inline-flex;align-items:center;min-height:44px;margin-top:24px;color:var(--acc);text-decoration:none;font-size:15px}
+.more:hover{text-decoration:underline;text-underline-offset:4px}
 
-.k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc,#5BF0C8);margin:0 0 20px}
-.h2{margin:0;font-size:clamp(36px,4.2vw,60px);font-weight:600;letter-spacing:-0.035em;line-height:1.04}
-.lead{margin:24px 0 0;max-width:600px;font-size:18px;line-height:1.6;color:#AEB7C0}
-.wrap{max-width:1320px;margin:0 auto;padding:140px clamp(16px,4vw,56px);box-sizing:border-box}
-.code{border:1px solid #1E252D;border-radius:14px;background:#080B0F;overflow:hidden}
-.code .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #1A1F26;font-family:var(--mono);font-size:12.5px;color:#8E98A3}
-.code .bar i{width:9px;height:9px;border-radius:50%;background:#232A33;display:inline-block}
-.code pre{margin:0;padding:22px 22px 26px;font-family:var(--mono);font-size:14.5px;line-height:1.75;color:#C9D0D6;overflow-x:auto}
-.code .c{color:#5F6873}.code .s{color:var(--acc,#5BF0C8)}.code .p{color:#8E98A3}
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:72px;border-top:1px solid #1A1F26}
-.facts div{padding:28px 24px 0 0;display:flex;flex-direction:column;gap:8px}
-.facts b{font-size:32px;font-weight:600;letter-spacing:-0.03em;color:#EEF1F3}
-.facts span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8E98A3}
-.paper{background:#ECEBE6;color:#0B0D10}
-.paper .k{color:#0A7A5E}
-.paper .lead{color:#3A3F45}
-.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;margin-top:72px}
-.story{border-top:1px solid #0B0D10;padding-top:24px}
-.story .n{font-family:var(--mono);font-size:12.5px;color:#545A61}
-.story h3{margin:14px 0 12px;font-size:23px;font-weight:600;letter-spacing:-0.02em;line-height:1.2}
-.story p{margin:0;font-size:16px;line-height:1.65;color:#3A3F45}
-.story .sp{margin:0 0 20px}
-.story .sp img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px}
-.story .sp figcaption{margin-top:8px;font-family:var(--mono);font-size:11px;color:#6A7077}
-.story h3 a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
-.story h3 a:hover{border-bottom-color:currentColor}
-.rows{margin-top:64px;border-bottom:1px solid #1A1F26}
-.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:32px;padding:26px 0;border-top:1px solid #1A1F26}
-.row b{font-size:21px;font-weight:600;letter-spacing:-0.02em;color:#EEF1F3}
-.row span{font-size:16.5px;line-height:1.6;color:#AEB7C0}
-.path{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) 24px;gap:32px;align-items:center;padding:26px 4px;border-top:1px solid #1A1F26;text-decoration:none;color:#EEF1F3;transition:background .25s,padding .3s}
-.path:hover{background:#0B0F14;padding-left:14px;color:#ffffff}
-.path b{font-size:21px;font-weight:600;letter-spacing:-0.02em}
-.path span{font-size:16px;line-height:1.55;color:#8E98A3}
-.path svg{color:#5F6873;transition:color .25s,transform .3s}
-.path:hover svg{color:var(--acc,#5BF0C8);transform:translateX(4px)}
-.paper .txl:hover{color:#0A7A5E}
+/* hero */
+.hero{position:relative;overflow:hidden;min-height:clamp(680px,92svh,860px);display:flex}
+.hero-sky{position:absolute;inset:0;opacity:.9}
+.hero-art{position:absolute;right:-60px;top:20px;width:min(900px,70vw);aspect-ratio:900/760}
+.hero-art svg{width:100%;height:100%}
+.hero-field{position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,var(--night) 38%,rgba(4,6,11,.85) 52%,rgba(4,6,11,0) 72%)}
+.hero-in{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;max-width:1280px;margin:0 auto;padding:22px clamp(16px,4vw,40px) 72px;box-sizing:border-box}
+.hero .copy{flex:1;display:flex;flex-direction:column;justify-content:center;padding:72px 0 24px}
+.eyebrow{margin:0 0 28px;display:inline-flex;align-items:center;gap:12px;color:var(--fg-3);letter-spacing:.14em}
+.hero h1{margin:0;max-width:760px;font-size:clamp(34px,9.6vw,88px);hyphens:manual;font-weight:500;line-height:.98;letter-spacing:-0.045em}
+.hero-lead{margin:30px 0 0;max-width:580px;font-size:clamp(17px,1.4vw,19px);line-height:1.6;color:var(--fg-2)}
+.acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
 @media (max-width:900px){
-.stories{grid-template-columns:1fr;gap:36px}
-.facts{grid-template-columns:repeat(2,minmax(0,1fr))}
-.row,.path{grid-template-columns:1fr;gap:6px}
-.path svg{display:none}
-.wrap{padding:96px 16px}
+.hero-art{right:-35%;top:auto;bottom:-10%;width:130vw;opacity:.45}
+.hero-field{background:linear-gradient(180deg,var(--night) 0%,var(--night) 55%,rgba(4,6,11,.6) 100%)}
 }
 
-.hero{position:relative;min-height:clamp(720px,100svh,960px);display:flex;flex-direction:column;padding:22px clamp(16px,4vw,56px) 32px;overflow:hidden}
-.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,10,.55) 0%,rgba(5,7,10,0) 30%,rgba(5,7,10,0) 60%,#05070A 100%);pointer-events:none}
-.hero .copy{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1080px;padding:90px 0 130px}
-.specs{list-style:none;margin:36px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 0;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:#8A939C}
-.specs li{margin:0}
-.specs li+li::before{content:"·";margin:0 10px;color:#4A535C}
-.chainstrip{position:absolute;left:0;right:0;bottom:28px;padding:0 clamp(16px,4vw,56px);display:flex;align-items:center;gap:18px;pointer-events:none}
-.cs-l{flex:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6A737C}
-.cs-blocks{flex:1;display:flex;justify-content:flex-end;gap:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
-.blk{flex:none;display:flex;align-items:center}
-.blk b{display:flex;flex-direction:column;gap:2px;min-width:92px;padding:7px 10px;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(5,7,10,.55);font-family:var(--mono);font-weight:400;font-size:10.5px;line-height:1.3;color:#8A939C}
-.blk b i{font-style:normal;color:#C9D0D6}
-.blk::before{content:"";width:22px;height:1px;background:rgba(255,255,255,.18)}
-.blk.new b{border-color:var(--acc);color:#C9D0D6;animation:blkin .7s cubic-bezier(.16,1,.3,1)}
-.blk.new b i{color:var(--acc)}
-@keyframes blkin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media (max-width:640px){.cs-l{display:none}.hero .copy{padding-bottom:110px}}
-.big42{font-family:var(--font);font-weight:600;font-size:clamp(200px,28vw,420px);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,#C4A7FF 70%,transparent);user-select:none;transition:-webkit-text-stroke-color .6s}
-.big42:hover{-webkit-text-stroke-color:#C4A7FF}
-@media (max-width:900px){.g2{grid-template-columns:1fr !important}.hero{min-height:720px}}
+/* figures */
+.figures{border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
+.figs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding-top:36px;padding-bottom:36px}
+.figs b{display:block;font-size:32px;font-weight:500;letter-spacing:-0.03em}
+.figs span{display:block;margin-top:6px;font-size:14px;color:var(--fg-3)}
+
+/* engine tabs */
+.eng{margin-top:40px}
+.eng-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.eng-tabs button{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:transparent;color:var(--fg-2);font:inherit;font-size:14.5px;cursor:pointer}
+.eng-tabs button[aria-selected="true"]{background:var(--fg);color:var(--night);border-color:var(--fg)}
+.eng:not(.js) .eng-tabs{display:none}
+.eng.js .eng-card:not(.on){display:none}
+.eng:not(.js) .eng-card+.eng-card{margin-top:16px}
+.eng-card{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border:1px solid rgba(255,255,255,.10);border-radius:22px;overflow:hidden;background:var(--hull)}
+.eng-text{padding:clamp(28px,4vw,48px)}
+.eng-n{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-4)}
+.eng-card h3{margin:14px 0 0;font-size:32px;line-height:1.15;letter-spacing:-0.025em;font-weight:500}
+.eng-d{margin:18px 0 0;font-size:16.5px;line-height:1.65;color:var(--fg-2)}
+.eng-card ul{margin:24px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.eng-card li{position:relative;padding-left:18px;font-size:15px;line-height:1.55;color:var(--fg-2)}
+.eng-card li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:2px;background:var(--acc)}
+.eng-l{display:inline-flex;align-items:center;min-height:44px;margin-top:20px;color:var(--acc);text-decoration:none;font-size:15px}
+.eng-card .engine-panel{border-left:1px solid rgba(255,255,255,.06)}
+@media (max-width:900px){.eng-card{grid-template-columns:1fr}.eng-card .engine-panel{border-left:0;border-top:1px solid rgba(255,255,255,.06);min-height:260px}}
+
+/* use cases */
+.headrow{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.headrow .more{margin-top:0}
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
+.ucard{display:flex;flex-direction:column;padding:12px;border-radius:20px;background:var(--hull);border:1px solid rgba(255,255,255,.08)}
+.uimg{margin:0;height:220px;border-radius:14px}
+.ubody{padding:20px 12px 12px}
+.ubody .pill{margin:0;color:var(--fg-3);border-color:rgba(255,255,255,.16)}
+.ucard h3{margin:16px 0 0;font-size:22px;line-height:1.25;letter-spacing:-0.02em;font-weight:500}
+.ucard h3 a{color:inherit;text-decoration:none}
+.ucard h3 a:hover{text-decoration:underline;text-underline-offset:4px}
+.ucard p{margin:10px 0 0;font-size:15px;line-height:1.6;color:var(--fg-3)}
+.ucard .credit{font-family:var(--mono);font-size:11px;color:var(--fg-4)}
+
+/* build */
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.code{border:1px solid var(--line-d2);border-radius:18px;background:var(--hull);overflow:hidden}
+.code .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line-d);font-family:var(--mono);font-size:12.5px;color:var(--fg-4)}
+.code .bar i{width:9px;height:9px;border-radius:50%;background:#232A33;display:inline-block}
+.code .bar span{margin-left:8px}
+.code pre{margin:0;padding:22px 22px 26px;font-family:var(--mono);font-size:14.5px;line-height:1.75;color:var(--fg-2);overflow-x:auto}
+.code .c{color:#6A7480}.code .s{color:var(--acc)}.code .p{color:var(--fg-4)}
+
+/* roles */
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:48px}
+.role{padding:24px;border-radius:18px;background:var(--hull);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:10px}
+.role b{font-size:18px;font-weight:500;letter-spacing:-0.01em}
+.role span{font-size:15px;line-height:1.55;color:var(--fg-3)}
+
+/* lore band */
+.lore-band{display:flex;flex-wrap:wrap;align-items:center;border-radius:28px;border:1px solid rgba(255,255,255,.08);background-color:var(--night-2);overflow:hidden}
+.lore-text{flex:1 1 480px;min-width:0;padding:clamp(32px,5vw,64px)}
+.lore-art{flex:1 1 380px;min-width:0;display:flex;justify-content:center;padding:0 24px}
+.lore-art svg{width:100%;max-width:520px;height:auto}
+
+/* ways in */
+.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
+.path{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:18px;background:var(--hull);border:1px solid rgba(255,255,255,.08);color:var(--fg);text-decoration:none;transition:border-color .2s}
+.path:hover{border-color:color-mix(in srgb,var(--acc) 50%,transparent)}
+.path .pi{color:var(--acc)}
+.path b{font-size:19px;font-weight:500}
+.path span{font-size:14.5px;line-height:1.55;color:var(--fg-3)}
+
+/* closing */
+#cierre .wrap{padding-bottom:120px}
+.closing{position:relative;overflow:hidden;border-radius:28px;background-color:var(--night-2);border:1px solid rgba(255,255,255,.08);padding:88px 24px 120px;text-align:center}
+.closing .horizon{position:absolute;left:0;right:0;bottom:0;width:100%;height:140px}
+.closing .h2{position:relative;max-width:760px;margin:0 auto}
+.closing .acts{position:relative;justify-content:center}
+
+@media (max-width:900px){
+.wrap{padding-top:88px}
+.figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cards3,.paths,.g2{grid-template-columns:1fr}
+.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g2{gap:40px}
+}
+@media (max-width:560px){.roles{grid-template-columns:1fr}}
 </style>
 
 <script>
-  import { startNetwork } from '../scripts/hero-network';
-  const canvas = document.querySelector<HTMLCanvasElement>('[data-net]');
-  const hero = document.querySelector<HTMLElement>('[data-hero]');
-  const net = canvas && hero ? startNetwork(canvas, hero) : undefined;
-
-  // Illustrative strip of chained blocks: a new block about every two seconds,
-  // each showing the start of its own hash and of the previous one.
-  const strip = document.querySelector<HTMLElement>('[data-blocks]');
-  if (strip) {
-    const hex = (n: number) => Array.from(crypto.getRandomValues(new Uint8Array(n)), (b) => b.toString(16).padStart(2, '0')).join('');
-    let prev = hex(3);
-    const add = (animate: boolean) => {
-      const h = hex(3);
-      const el = document.createElement('span');
-      el.className = animate ? 'blk new' : 'blk';
-      el.innerHTML = `<b><i>${h}…</i>← ${prev}…</b>`;
-      prev = h;
-      strip.querySelectorAll('.blk.new').forEach((b) => b.classList.remove('new'));
-      strip.appendChild(el);
-      while (strip.children.length > 12) strip.firstElementChild!.remove();
+  // Engine tabs: without JavaScript every piece is shown, one after another.
+  document.querySelectorAll<HTMLElement>('[data-eng]').forEach((root) => {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[role="tabpanel"]')];
+    const show = (i: number, focus = false) => {
+      tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
+      panels.forEach((p, j) => p.classList.toggle('on', i === j));
+      if (focus) tabs[i].focus();
     };
-    for (let i = 0; i < 9; i++) add(false);
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInterval(() => { add(true); net?.flash(); }, 2200);
-    }
-  }
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(i));
+      t.addEventListener('keydown', (e) => {
+        const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); show((i + d + tabs.length) % tabs.length, true); }
+      });
+    });
+    root.classList.add('js');
+  });
 </script>

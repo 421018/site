@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Design system of the 42 Chain sites: tokens, global styles and interactive widgets.",
+  "description": "Design system of the 42 Chain sites: tokens, global styles, brand art and interactive widgets.",
   "license": "UNLICENSED",
   "exports": {
     "./styles/global.css": "./src/styles/global.css",
-    "./components/*": "./src/components/*"
+    "./components/*": "./src/components/*",
+    "./art/*": "./src/art/*"
   },
   "peerDependencies": {
     "astro": "^7.4.0"

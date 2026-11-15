@@ -1,17 +1,21 @@
-/* 42 Chain — global styles.
-   One type family (Geist), one mono (Geist Mono). The accent color lives only in
-   small functional details: labels, links, highlights. */
+/* 42 Chain — global styles. All rights reserved (see LICENSE).
+   Galactic, sober, legible: a calm dark space, one cold accent (aurora) for
+   functional details and one warm accent (star) for ships and lore. Text never
+   sits on an illustration: always on a plain field. Nothing pulses. */
 
 :root {
-  --acc: #5BF0C8;
-  --night: #05070A;
-  --night-2: #080B0F;
-  --line-d: #1A1F26;
+  --acc: #5BF0C8;        /* aurora */
+  --star: #F2C879;       /* ships, lore */
+  --nebula: #7C9CFF;
+  --night: #04060B;      /* void */
+  --night-2: #070B12;
+  --hull: #0B1018;       /* cards on dark */
+  --line-d: #161C25;
   --line-d2: #26303A;
-  --fg: #EEF1F3;
-  --fg-2: #C9D0D6;
-  --fg-3: #AEB7C0;
-  --fg-4: #8E98A3;
+  --fg: #ECEFF4;
+  --fg-2: #C5CCD4;
+  --fg-3: #A3ADB8;       /* dust */
+  --fg-4: #8792A0;
   /* reading surface (interiors) */
   --bg: #F4F3EF;
   --ink: #2E3338;
@@ -64,20 +68,51 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 }
 
 /* ---------- buttons & links ---------- */
-.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 500; transition: transform .3s cubic-bezier(.16,1,.3,1), background .3s, color .3s, border-color .3s; }
-.btn:hover { transform: translateY(-2px); }
-.btn-p { background: var(--acc); color: #04110D; }
-.btn-p:hover { background: #fff; color: var(--night); }
-.btn-g { border: 1px solid #2A313A; color: var(--fg); background: rgba(5,7,10,.4); backdrop-filter: blur(8px); }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; transition: background .25s, color .25s, border-color .25s; }
+.btn-p { background: var(--fg); color: var(--night); }
+.btn-p:hover { background: #fff; }
+.btn-g { border: 1px solid rgba(255,255,255,.22); color: var(--fg); background: transparent; }
 .btn-g:hover { border-color: var(--acc); }
 .txl { color: inherit; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; margin-top: 28px; border-bottom: 1px solid currentColor; font-size: 15.5px; }
 .txl:hover { color: var(--acc); }
 
-/* ---------- motion ---------- */
+/* ---------- motion: slow and continuous, or once; never pulsing ---------- */
 .fade { animation: fadeUp 1.1s cubic-bezier(.16,1,.3,1) backwards; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
-.live { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); animation: livep 2s infinite; }
-@keyframes livep { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--acc) 60%, transparent); } 100% { box-shadow: 0 0 0 10px transparent; } }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--acc); }
+
+/* ---------- space ---------- */
+/* Static starfield: a few points of light, no twinkling. */
+.stars { background-image:
+  radial-gradient(1px 1px at 8% 14%, rgba(255,255,255,.55), transparent 60%),
+  radial-gradient(1px 1px at 22% 72%, rgba(255,255,255,.35), transparent 60%),
+  radial-gradient(1.5px 1.5px at 31% 33%, rgba(255,255,255,.45), transparent 60%),
+  radial-gradient(1px 1px at 44% 86%, rgba(255,255,255,.3), transparent 60%),
+  radial-gradient(1px 1px at 53% 9%, rgba(255,255,255,.5), transparent 60%),
+  radial-gradient(1.5px 1.5px at 61% 58%, rgba(242,200,121,.55), transparent 60%),
+  radial-gradient(1px 1px at 69% 24%, rgba(255,255,255,.4), transparent 60%),
+  radial-gradient(1px 1px at 77% 79%, rgba(255,255,255,.35), transparent 60%),
+  radial-gradient(1.5px 1.5px at 86% 41%, rgba(255,255,255,.5), transparent 60%),
+  radial-gradient(1px 1px at 93% 12%, rgba(255,255,255,.4), transparent 60%),
+  radial-gradient(1px 1px at 15% 47%, rgba(255,255,255,.3), transparent 60%),
+  radial-gradient(1px 1px at 96% 66%, rgba(255,255,255,.4), transparent 60%),
+  radial-gradient(1px 1px at 4% 88%, rgba(255,255,255,.35), transparent 60%); }
+/* Hero orbit: the inner orbit's dashes drift; the ship crosses once and stops. */
+.orbit-hero .orb-flow { animation: orbflow 90s linear infinite; }
+@keyframes orbflow { to { stroke-dashoffset: -400; } }
+.orbit-hero .ship-in { animation: shipin 2.6s cubic-bezier(.16,1,.3,1) .6s backwards; }
+.orbit-hero .ship-trail { animation: trailin 2.6s cubic-bezier(.16,1,.3,1) .6s backwards; }
+@keyframes shipin { from { transform: translate(560px, 140px); opacity: 0; } }
+@keyframes trailin { from { opacity: 0; } }
+/* Engine panel: orbits around one icon. */
+.engine-panel { position: relative; display: flex; align-items: center; justify-content: center; min-height: 360px; background-color: var(--night-2); }
+.engine-panel .ep-orbits { width: min(360px, 90%); height: auto; }
+.engine-panel .ep-icon { position: absolute; color: var(--acc); }
+/* Photos: monochrome, tinted with the colour of what they illustrate. */
+.duo { position: relative; overflow: hidden; background: var(--night-2); }
+.duo img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.15) brightness(.92); }
+.duo::after { content: ""; position: absolute; inset: 0; background: var(--tint, var(--acc)); mix-blend-mode: color; opacity: .55; pointer-events: none; }
+.pill { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; border: 1px solid currentColor; border-radius: 999px; padding: 5px 10px; }
 @supports (animation-timeline: view()) {
   .rv { animation: rv linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; }
   @keyframes rv { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
@@ -85,9 +120,9 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; } }
 
 /* ---------- footer ---------- */
-.site-footer { border-top: 1px solid var(--line-d); padding: 96px clamp(16px, 4vw, 56px) 36px; overflow: hidden; }
+.site-footer { border-top: 1px solid var(--line-d); padding: 56px clamp(16px, 4vw, 56px) 36px; overflow: hidden; }
 .site-footer .inner { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
-.fcols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; padding-top: 40px; border-top: 1px solid var(--line-d); }
+.fcols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
 .fcols > div { display: flex; flex-direction: column; }
 .fcols .lbl { margin: 0 0 14px; color: var(--fg-4); }
 .flink { color: var(--fg-3); text-decoration: none; font-size: 15px; padding: 8px 0; display: inline-block; }

@@ -12,8 +12,64 @@ hero:
   lead: Protocol 42 lets several organizations keep the same ledger and apply the same rules, without depending on the systems of any one of them. 42 Chain is the public network that runs it.
   primary: { label: How it works, href: /en/protocol }
   secondary: { label: Connect to the network, href: /en/implement/connect }
-  specs: [Infinite Improbability Drive, Finality in 1 block, ~2 s per block, EVM, IBC v2, Cosmos SDK]
-  chainLabel: Shared ledger · illustration
+
+figures:
+  - { value: ~2 s, label: per block }
+  - { value: 1 block, label: to be final }
+  - { value: IBC v2, label: connection to other networks }
+  - { value: EVM, label: standard tools }
+  - { value: Apache 2.0, label: open source }
+
+engine:
+  kicker: The engine
+  title: Five parts. One ledger.
+  lead: The Infinite Improbability Drive is the network's entire engine. Choose a part to see what it does.
+  pieces:
+    - icon: execution
+      label: Execution
+      title: Runs the contracts.
+      text: Contracts run on the Ethereum Virtual Machine (EVM). Every node reaches exactly the same result.
+      points:
+        - "Solidity and Vyper, without code changes."
+        - "Hardhat, Foundry, Viem and EVM wallets."
+        - "The network's own functions available from contracts."
+      link: { label: Read the chapter (in Spanish), href: /protocolo/ejecucion }
+    - icon: consensus
+      label: Consensus
+      title: Agrees on each block.
+      text: Validators propose and sign blocks. With more than two thirds of the voting power, the block is confirmed and final.
+      points:
+        - "Finality in one block."
+        - "Tolerates faults of less than a third of the voting power."
+        - "Without a majority, the network halts rather than take risks."
+      link: { label: Read the chapter, href: /en/protocol/consensus }
+    - icon: fees
+      label: Fees
+      title: Measures and pays for the work.
+      text: "Every transaction pays a fee proportional to the work it requires, in the native unit: Improbability."
+      points:
+        - "Public rules: the cost is known before sending."
+        - "The organization can pay for whoever signs."
+        - "Units in drops and cups."
+      link: { label: Read the chapter (in Spanish), href: /protocolo/tarifas }
+    - icon: interop
+      label: Interoperability
+      title: Connects to other networks.
+      text: With IBC, each network checks for itself, with cryptographic proofs, what happened on the other. Nobody holds the units in transit.
+      points:
+        - "IBC, versions 1 and 2."
+        - "No trusted intermediaries."
+        - "Data and units across networks."
+      link: { label: Read the chapter (in Spanish), href: /protocolo/interoperabilidad }
+    - icon: governance
+      label: Governance
+      title: Decides the changes.
+      text: Changes are proposed and voted on the chain. Each vote weighs according to the units in staking.
+      points:
+        - "Proposals recorded on the chain."
+        - "Public quorum, threshold and veto."
+        - "The network applies what is approved."
+      link: { label: Read the chapter (in Spanish), href: /protocolo/gobernanza }
 
 uses:
   kicker: Use cases
@@ -21,19 +77,22 @@ uses:
   lead: "When several parties need the same data and the same rules, a distributed ledger spares any one of them from having to hold it. Each party runs its own copy, any tampering is visible and anyone can check the result. Three examples:"
   link: { label: See the use cases (in Spanish), href: /casos-de-uso }
   stories:
-    - title: A diploma that verifies itself.
+    - tag: Verifiable records
+      title: A diploma that verifies itself.
       text: A university records the fingerprint of every diploma it issues. Any employer can check in seconds that it is authentic, without calling anyone.
       image: ../images/casos/registros.jpg
       alt: Framed diploma with a gold seal
       credit: "Photo: Quilia, Unsplash"
       href: /casos-de-uso/registros-verificables
-    - title: An origin that several parties share.
+    - tag: Traceability
+      title: An origin that several parties share.
       text: Producers, carriers and buyers record every step of a batch. None of them depends on another keeping the data properly.
       image: ../images/casos/trazabilidad.jpg
       alt: Jute sack full of coffee beans
       credit: "Photo: Tatiana Fernández R, Unsplash"
       href: /casos-de-uso/trazabilidad
-    - title: A maintenance history nobody rewrites.
+    - tag: Infrastructure
+      title: A maintenance history nobody rewrites.
       text: A city and its contractors record every repair to the street lighting or the water network. Every party sees the same history, signed and dated.
       image: ../images/casos/infraestructura.jpg
       alt: Double-armed street lamp lit at dusk
@@ -59,11 +118,6 @@ build:
       }
 
       // That's it. Deploy as usual.
-  facts:
-    - { value: ~2 s, label: Per block }
-    - { value: 1 block, label: To be final }
-    - { value: IBC, label: Connection to other networks }
-    - { value: Apache 2.0, label: Open source }
 
 people:
   kicker: How it is organized
@@ -80,11 +134,12 @@ start:
   kicker: Where to start
   title: Choose your way in.
   paths:
-    - { label: Connect to the network, href: /en/implement/connect, text: "Network parameters, wallets and RPC providers." }
-    - { label: Build an application, href: /en/implement, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
-    - { label: Run a node, href: /implementar/nodos, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
-    - { label: Integrate systems, href: /implementar/integrar, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
-    - { label: Understand governance, href: /protocolo/gobernanza, text: "How changes to the protocol are proposed, voted on and applied. (In Spanish.)" }
+    - { icon: connect, label: Connect to the network, href: /en/implement/connect, text: "Network parameters, wallets and RPC providers." }
+    - { icon: build, label: Build an application, href: /en/implement, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
+    - { icon: node, label: Run a node, href: /implementar/nodos, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
+    - { icon: integrate, label: Integrate systems, href: /implementar/integrar, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
+    - { icon: governance, label: Understand governance, href: /protocolo/gobernanza, text: "How changes to the protocol are proposed, voted on and applied. (In Spanish.)" }
+    - { icon: docs, label: Read the documentation, href: /docs, text: "Guides and technical reference, from connecting a wallet to running a validator." }
 
 name:
   kicker: The name
