@@ -29,6 +29,7 @@ const switcher = await Promise.all(
     </div>
   </div>
   <nav class="dh-tabs" aria-label={text.header.mainNav}>
+    {text.header.home && <a href={homeHref(lang)} aria-current={!current && Astro.url.pathname.replace(/\/$/, '') === homeHref(lang).replace(/\/$/, '') ? 'true' : undefined}>{text.header.home}</a>}
     {menu.map((s) => <a href={s.href} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>)}
   </nav>
 </header>

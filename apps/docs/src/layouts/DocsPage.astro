@@ -9,6 +9,7 @@ import Footer from '@42chain/kit/components/Footer.astro';
 import SideNav from '@42chain/kit/components/SideNav.astro';
 import { catalogRelative } from '@42chain/kit/catalog';
 import { getAlternates, getSection, getSiteText, hrefOf, lastCommitDate, pageLang, prevNext, sectionKey, sideIndex, type Page } from '@42chain/kit/site';
+import { homeHref } from '@42chain/kit/i18n';
 import DocsHeader from '../components/DocsHeader.astro';
 import '../styles/docs.css';
 interface Props { page: Page; headings: { depth: number; slug: string; text: string }[] }
@@ -21,7 +22,8 @@ const alternates = await getAlternates(page);
 const { prev, next } = prevNext(section, page);
 const updated = page.data.updated ?? lastCommitDate(page.filePath);
 const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(updated);
-const { page: ui } = await getSiteText(lang);
+const { page: ui, header } = await getSiteText(lang);
+const isIndex = page.id.split('/').length === 2;
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const markdown = `# ${page.data.title}\n\n${page.data.summary}\n\n${page.body ?? ''}`;
 ---
@@ -30,7 +32,7 @@ const markdown = `# ${page.data.title}\n\n${page.data.summary}\n\n${page.body ??
   <div class="dl">
     <SideNav nav={nav} path={hrefOf(page)} />
     <main data-pagefind-body={kit.search ? true : undefined}>
-      <p class="dl-crumb">{section.label}</p>
+      <nav class="dl-crumb" aria-label={header.mainNav}>{header.home && <><a href={homeHref(lang)}>{header.home}</a> / </>}{isIndex ? section.label : <a href={section.href}>{section.label}</a>}</nav>
       <div class="dl-title">
         <h1 data-pagefind-meta="title">{page.data.title}</h1>
         {ui.copyPage && <button type="button" class="dl-copy" data-copy-page data-copied={ui.copied} data-pagefind-ignore><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" /><path d="M11 5 V3 A1 1 0 0 0 10 2 H3 A1 1 0 0 0 2 3 V10 A1 1 0 0 0 3 11 H5" /></svg><span>{ui.copyPage}</span></button>}

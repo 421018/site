@@ -20,6 +20,9 @@
         "homeLink": {
           "type": "string"
         },
+        "home": {
+          "type": "string"
+        },
         "mainNav": {
           "type": "string"
         },

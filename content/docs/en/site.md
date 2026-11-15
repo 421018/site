@@ -9,6 +9,7 @@ description: Technical documentation of 42 Chain and Protocol 42. Connect, build
 
 header:
   homeLink: 42 Chain documentation, home
+  home: Home # first item of the main menu and of the breadcrumbs
   mainNav: Main
   menuButton: Menu
   languageNav: Language
@@ -27,6 +28,11 @@ footer:
   credit: Open-source documentation
   license: Text CC BY 4.0
   note: © 2026 The 42 Chain contributors
+  extra: # extra column: the other products
+    label: Tools
+    links:
+      - { label: "Console ↗", href: "console:/" }
+      - { label: "42chain.org ↗", href: "https://example.org/en" } # [official domain]
 
 page:
   lastReviewed: Last reviewed

@@ -14,13 +14,13 @@
 [data-product="docs"] body { background: var(--bg); color: var(--ink); }
 /* header */
 .dh { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--rule); }
-.dh-top { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.dh-top { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 20px; }
 .dh-brand { display: flex; align-items: center; gap: 10px; color: var(--head); text-decoration: none; font-weight: 500; }
 .dh-mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: var(--head); color: var(--bg); font-family: var(--mono); font-size: 12px; font-weight: 600; }
-.dh-search { flex: 1 1 280px; max-width: 460px; }
+.dh-search { flex: 1 1 200px; min-width: 0; max-width: 460px; }
 .dh-search .sbtn { width: 100%; justify-content: flex-start; min-height: 40px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 10px; background: var(--soft); color: var(--muted); }
 .dh-search .sbtn:hover { color: var(--head); background: var(--soft); border-color: var(--rule2); }
-.dh-tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.dh-tools { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; }
 .dh-net .netsw { margin: 0; }
 .dh-theme { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--head); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
 .dh-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
@@ -36,6 +36,8 @@
 .dl .side { padding-top: 32px; position: sticky; top: 112px; max-height: calc(100vh - 130px); overflow-y: auto; }
 .dl main { flex: 1 1 640px; min-width: 0; max-width: 780px; padding-top: 32px; }
 .dl-crumb { margin: 0; font-size: 13px; color: var(--muted); }
+.dl-crumb a { color: var(--muted); }
+.dl-crumb a:hover { color: var(--link); }
 .dl-title { margin-top: 10px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
 .dl-title h1 { margin: 0; font-size: clamp(30px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 500; color: var(--head); }
 .dl-copy { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--head); font: inherit; font-size: 13.5px; cursor: pointer; }
@@ -55,6 +57,8 @@
 [data-product="docs"] .side a.on, [data-product="docs"] .side-m a.on { color: var(--link); box-shadow: inset 2px 0 0 var(--link); }
 @media (max-width: 1180px) { .dl-toc { display: none; } }
 @media (max-width: 1000px) { .dl { flex-direction: column; gap: 0; } .dl .side { position: static; max-height: none; } }
-@media (max-width: 720px) { .dh-net { display: none; } }
+/* the pages with network data have their own switch */
+@media (max-width: 1180px) { .dh-net { display: none; } }
+@media (max-width: 640px) { .dh-link:not(.mono) { display: none; } .dh-search .sbtn span { display: none; } }
 /* the footer keeps the brand's dark space in both themes */
 [data-product="docs"] .site-footer { background: var(--night); color: var(--fg); }

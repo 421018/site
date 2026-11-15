@@ -128,6 +128,8 @@ export const siteTextSchema = z
     header: z
       .object({
         homeLink: z.string(),
+        /** Label of the "home" item at the start of the main menu and of the breadcrumbs. */
+        home: z.string().optional(),
         mainNav: z.string(),
         menuButton: z.string(),
         /** Accessible name of the language switcher. */

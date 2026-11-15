@@ -10,6 +10,7 @@ description: "42 Chain runs Protocol 42, an open-source protocol for operating i
 
 header:
   homeLink: 42 Chain, home # accessible name of the logo link
+  home: Home # first item of the main menu and of the breadcrumbs
   mainNav: Main # accessible name of the main menu
   menuButton: Menu # label of the collapsed main menu on narrow screens
   languageNav: Language # accessible name of the language switcher

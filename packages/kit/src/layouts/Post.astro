@@ -11,7 +11,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 import { catalogRelative } from '../catalog';
-import { langPrefix } from '../i18n';
+import { homeHref, langPrefix } from '../i18n';
+import { getSiteText } from '../site';
 import { blogHref, categoryOf, categoryTint, postDate, postLang, readingMinutes, relatedPosts, type Blog, type Post } from '../blog';
 interface Props { post: Post; blog: Blog; headings: { depth: number; slug: string; text: string }[] }
 const { post, blog, headings } = Astro.props;
@@ -21,6 +22,7 @@ const published = postDate(post);
 const date = published && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(published);
 const toc = headings.filter((h) => h.depth === 2);
 const related = await relatedPosts(post);
+const home = (await getSiteText(lang)).header.home;
 const index = blogHref(blog, lang);
 // A category with its own path (casos-de-uso) belongs to that section; the others to the blog.
 const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.id}`;
@@ -29,7 +31,7 @@ const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.i
   <section class="band-top post-band stars">
     <Header current={cat.path} currentHref={cat.path ? undefined : index} />
     <div class="post-head">
-      <nav class="crumbs" aria-label={cat.path ? cat.plural : blog.kicker}>{cat.path ? <a href={catHref}>{cat.plural}</a> : <><a href={index}>{blog.kicker}</a> <span aria-hidden="true">/</span> <a href={catHref}>{cat.plural}</a></>}</nav>
+      <nav class="crumbs" aria-label={cat.path ? cat.plural : blog.kicker}>{home && <><a href={homeHref(lang)}>{home}</a> <span aria-hidden="true">/</span> </>}{cat.path ? <a href={catHref}>{cat.plural}</a> : <><a href={index}>{blog.kicker}</a> <span aria-hidden="true">/</span> <a href={catHref}>{cat.plural}</a></>}</nav>
       <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{date && <span>{date}</span>}</p>
       <h1>{post.data.title}</h1>
       <p class="post-sum">{post.data.summary}</p>

@@ -4,7 +4,8 @@ import BandOrbit from '@42chain/ui/art/BandOrbit.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SideNav from '../components/SideNav.astro';
-import { getAlternates, getSection, getSiteText, sideIndex, prevNext, hrefOf, pageLang, sectionKey, lastCommitDate, type Page } from '../site';
+import { getAlternates, getSection, getSiteText, sideIndex, prevNext, hrefOf, pageLang, sectionKey, lastCommitDate, menuLabel, type Page } from '../site';
+import { homeHref } from '../i18n';
 import kit from 'virtual:42chain/kit';
 import { catalogRelative } from '../catalog';
 
@@ -20,7 +21,15 @@ const path = hrefOf(page);
 const { prev, next } = prevNext(section, page);
 const updated = page.data.updated ?? lastCommitDate(page.filePath);
 const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(updated);
-const { page: ui } = await getSiteText(lang);
+const { page: ui, header } = await getSiteText(lang);
+// Breadcrumbs: home › section › group (for pages inside a group); the page itself is the title below.
+const parts = page.id.split('/').slice(1);
+const group = parts.length === 3 ? section.pages.find((p) => p.id === page.id.split('/').slice(0, 3).join('/')) : undefined;
+const crumbs = [
+  ...(header.home ? [{ href: homeHref(lang), label: header.home }] : []),
+  ...(parts.length > 1 ? [{ href: section.href, label: section.label }] : [{ href: '', label: section.label }]),
+  ...(group ? [{ href: hrefOf(group), label: menuLabel(group) }] : []),
+];
 ---
 <Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates}>
   <section class="band-top stars">
@@ -28,7 +37,7 @@ const { page: ui } = await getSiteText(lang);
     <div class="band-field" aria-hidden="true"></div>
     <Header current={home.key} alternates={alternates} />
     <div class="dochead">
-      <p class="dk">{section.label}</p>
+      <nav class="dk crumbs-d" aria-label={header.mainNav}>{crumbs.map((c, i) => <>{i > 0 && <span aria-hidden="true"> / </span>}{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</>)}</nav>
       <h1 data-pagefind-meta="title">{page.data.title}</h1>
       <p class="ds">{page.data.summary}</p>
       <p class="dm">{fmt && <>{ui.lastReviewed}: {fmt} · </>}<a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a></p>
