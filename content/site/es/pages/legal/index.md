@@ -63,10 +63,9 @@ Todo lo que se registra en la red, como direcciones, transacciones o contratos, 
 | Qué | Licencia |
 |---|---|
 | Software del protocolo | Apache License 2.0 |
-| Textos y datos de este sitio | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
-| Diseño, marca y código de este sitio | © 2026 Los contribuidores de 42 Chain. Todos los derechos reservados |
-| Documentación | [LICENCIA DE LA DOCUMENTACIÓN] |
-| Código de la Consola | [LICENCIA] |
+| Textos y datos del sitio, la documentación y la Consola | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
+| Librería de lógica de la Consola: conversiones y construcción de lo que firma la billetera | Apache License 2.0 |
+| Diseño, marca, interfaz y demás código del sitio, la documentación y la Consola | © 2026 Los contribuidores de 42 Chain. Todos los derechos reservados |
 
 ### Qué permite la licencia del software
 
@@ -76,7 +75,11 @@ La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribu
 
 Los textos de este sitio y los datos de la red que publica, como parámetros y listas de proveedores, pueden copiarse, traducirse, adaptarse y publicarse en cualquier medio, también con fines comerciales, siempre que se cite la fuente: el nombre del proyecto y un enlace al sitio o a la página de origen. La licencia no autoriza a sugerir una relación o un respaldo que no existe.
 
-La licencia de los textos no incluye el diseño del sitio, su código ni los elementos de marca, como el logotipo y la identidad visual. Esos elementos no pueden copiarse ni reutilizarse sin autorización.
+La licencia de los textos no incluye el diseño, la interfaz, el código ni los elementos de marca, como el logotipo y la identidad visual, del sitio, la documentación y la Consola. Esos elementos no pueden copiarse ni reutilizarse sin autorización.
+
+### Por qué la lógica de la Consola es pública
+
+La Consola se conecta a la billetera de quien la usa. Para que cualquiera pueda comprobar qué se le pide firmar, la lógica que convierte direcciones y unidades y que construye cada operación se publica como una librería aparte, bajo la licencia Apache 2.0. La librería no incluye la interfaz ni el diseño de la Consola.
 
 ### Software de terceros
 
