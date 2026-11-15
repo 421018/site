@@ -28,6 +28,14 @@ const switcher = await Promise.all(
       {text.header.links.map((l) => <a class="dh-link" href={resolveHref(l.href, lang)}>{l.label}</a>)}
     </div>
   </div>
+  {text.header.notice && (
+    <div class="dh-notice" role="note">
+      <div class="dh-notice-in">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L22 20 H2 Z" /><path d="M12 10 V14 M12 17.5 V17.6" /></svg>
+        <p><b>{text.header.notice.label}</b> {text.header.notice.text}</p>
+      </div>
+    </div>
+  )}
   <nav class="dh-tabs" aria-label={text.header.mainNav}>
     {text.header.home && <a href={homeHref(lang)} aria-current={!current && Astro.url.pathname.replace(/\/$/, '') === homeHref(lang).replace(/\/$/, '') ? 'true' : undefined}>{text.header.home}</a>}
     {menu.map((s) => <a href={s.href} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>)}

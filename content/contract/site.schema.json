@@ -77,6 +77,22 @@
           ],
           "additionalProperties": false
         },
+        "notice": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "text"
+          ],
+          "additionalProperties": false
+        },
         "themeDark": {
           "type": "string"
         },

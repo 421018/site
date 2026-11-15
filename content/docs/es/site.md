@@ -14,6 +14,9 @@ header:
   mainNav: Principal
   menuButton: Menú
   languageNav: Idioma
+  notice: # shown under the header on every page while the documentation is being written
+    label: Documentación en construcción.
+    text: "Estamos escribiendo e integrando esta documentación: muchas páginas están incompletas, algunas guías aún no existen y ciertos datos pueden cambiar. Comprueba los valores críticos antes de usarlos en la red principal."
   themeDark: Cambiar a tema oscuro
   themeLight: Cambiar a tema claro
   search:

@@ -62,3 +62,10 @@
 @media (max-width: 640px) { .dh-link:not(.mono) { display: none; } .dh-search .sbtn span { display: none; } }
 /* the footer keeps the brand's dark space in both themes */
 [data-product="docs"] .site-footer { background: var(--night); color: var(--fg); }
+/* notice under the header (e.g. under construction): visible on every page */
+.dh-notice { background: #FBEFD3; border-top: 1px solid #EBD29A; border-bottom: 1px solid #EBD29A; color: #5C4410; }
+[data-theme="dark"] .dh-notice { background: #2A2210; border-color: #4A3B17; color: #F2D58E; }
+.dh-notice-in { max-width: 1440px; margin: 0 auto; padding: 10px clamp(16px, 3vw, 32px); display: flex; gap: 12px; align-items: flex-start; }
+.dh-notice-in svg { flex: none; margin-top: 2px; }
+.dh-notice p { margin: 0; font-size: 14px; line-height: 1.55; }
+.dh-notice b { font-weight: 600; }

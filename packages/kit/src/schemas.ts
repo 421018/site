@@ -137,6 +137,8 @@ export const siteTextSchema = z
         links: z.array(headerLink).default([]),
         /** Optional highlighted button at the end of the header, e.g. the documentation. */
         cta: link.optional(),
+        /** A notice shown under the header on every page, e.g. "under construction". */
+        notice: z.object({ label: z.string(), text: z.string() }).strict().optional(),
         /** Documentation: accessible names of the theme button. */
         themeDark: z.string().optional(),
         themeLight: z.string().optional(),
