@@ -3,13 +3,19 @@
  * Validates the content catalog against its contract (contract/), without the
  * engine. Run from the catalog root:  npm run validate
  *
+ * Content is organized by language: <app>/<lang>/{site.md,home.md,pages/,diagrams/}
+ * (languages in contract/languages.json; the default one is the source).
+ *
  * Checks:
  * - Front matter of pages and site.md against the JSON Schemas.
+ * - Translations: "translationOf" only outside the default language, pointing
+ *   to an existing page; ui/<lang>.yaml has exactly the keys of the default one.
  * - Sections: "section:" only in a section's index.md; folders need index.md;
  *   at most one level of groups (section/group/page.md).
  * - Markdown only: no .mdx files, no <script>, <style>, <iframe>, inline event
  *   handlers or javascript: links.
- * - ::: blocks and widget names are known; :::diagram files exist.
+ * - ::: blocks and widget names are known; :::diagram files exist (in the
+ *   page's language or the default one).
  * - Images and internal links (/section/page) point to existing files.
  * - Network data (network/*.yaml) against its schemas, with unique ids and
  *   providers that reference existing networks and services.
@@ -26,6 +32,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const apps = ['site', 'docs'];
 const contract = (name) => JSON.parse(readFileSync(join(root, 'contract', name), 'utf8'));
 const { blocks, widgets } = contract('blocks.json');
+const { default: defaultLang, languages } = contract('languages.json');
+const prefix = (lang) => (lang === defaultLang ? '' : `/${lang}`);
 
 const ajv = new Ajv2020({ allErrors: true, strict: false });
 ajv.addFormat('uri', (s) => /^https?:\/\/\S+$/.test(s));
@@ -75,57 +83,93 @@ const unsafe = [
 ];
 
 for (const app of apps) {
-  const base = join(root, app);
-  const pagesDir = join(base, 'pages');
-  const files = walk(pagesDir);
-  const routes = new Set([...files.filter((f) => f.endsWith('.md')).map((f) => '/' + rel(f).slice(`${app}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, ''))].map((r) => r.replace(/\/$/, '') || '/'));
-  routes.add('/');
-  const diagrams = new Set(walk(join(base, 'diagrams')).map((f) => f.split(sep).pop().replace(/\.(html|svg)$/, '')));
-
-  for (const f of files.filter((f) => f.endsWith('.mdx'))) report(f, 0, 'MDX is not allowed: use .md and ::: blocks (widgets: :::widget{name="…"})');
-
-  for (const file of files.filter((f) => f.endsWith('.md'))) {
-    const id = rel(file).slice(`${app}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, '');
-    const depth = id.split('/').length - 1;
-    const text = readFileSync(file, 'utf8');
-    const { data, body, offset } = frontMatter(file, text);
-    if (data) {
-      schemaErrors(file, validators.page, data);
-      if (depth === 0 && !data.section) report(file, 0, 'a section\'s index.md needs a "section:" block');
-      if (depth > 0 && data.section) report(file, 0, '"section:" is only allowed in a section\'s index.md');
-    }
-    if (depth > 2) report(file, 0, 'pages can be nested one level deep at most (section/group/page)');
-    const section = id.split('/')[0];
-    if (!existsSync(join(pagesDir, section, 'index.md'))) report(file, 0, `folder "${section}" has no index.md`);
-    if (depth === 2 && !existsSync(join(pagesDir, section, id.split('/')[1], 'index.md'))) report(file, 0, `group folder "${section}/${id.split('/')[1]}" needs an index.md`);
-
-    body.split('\n').forEach((line, i) => {
-      const n = i + 1 + offset;
-      if (/^\s*(import|export)\s/.test(line)) report(file, n, 'import/export statements are not allowed (no MDX)');
-      for (const [re, msg] of unsafe) if (re.test(line)) report(file, n, msg);
-      const block = line.match(/^:::([a-z]+)/);
-      if (block) {
-        if (!blocks.includes(block[1])) report(file, n, `unknown block ":::${block[1]}". Available: ${blocks.join(', ')}`);
-        const name = line.match(/name="([^"]*)"/)?.[1];
-        if (block[1] === 'widget' && !widgets.includes(name)) report(file, n, `unknown widget "${name ?? ''}". Available: ${widgets.join(', ')}`);
-        if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/diagrams/`);
-      }
-      for (const [, target] of line.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)) {
-        if (!/^https?:/.test(target) && !existsSync(join(dirname(file), target))) report(file, n, `image not found: ${target}`);
-      }
-      for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\((\/[^)\s#]*)/g)) {
-        const path = href.replace(/\/$/, '') || '/';
-        if (/^\/(docs|consola)(\/|$)/.test(path)) continue; // redirects to external sites
-        if (!routes.has(path)) report(file, n, `link to a page that does not exist: ${href}`);
-      }
-    });
+  const appDir = join(root, app);
+  for (const d of existsSync(appDir) ? readdirSync(appDir) : []) {
+    if (statSync(join(appDir, d)).isDirectory() && d !== 'images' && !languages.includes(d)) report(join(appDir, d), 0, `"${d}" is not a language (${languages.join(', ')}) nor images/`);
   }
+  // Every page of every language, as URL paths, for link checks.
+  const routes = new Set(languages.map((l) => prefix(l) || '/'));
+  const pagesOf = (lang) => walk(join(appDir, lang, 'pages'));
+  const idOf = (lang, f) => rel(f).slice(`${app}/${lang}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, '');
+  for (const lang of languages) for (const f of pagesOf(lang)) if (f.endsWith('.md')) routes.add(`${prefix(lang)}/${idOf(lang, f)}`);
+  const originals = new Set(pagesOf(defaultLang).filter((f) => f.endsWith('.md')).map((f) => idOf(defaultLang, f)));
+  const diagramsIn = (lang) => new Set(walk(join(appDir, lang, 'diagrams')).map((f) => f.split(sep).pop().replace(/\.(html|svg)$/, '')));
+  const defaultDiagrams = diagramsIn(defaultLang);
 
-  const siteFile = join(base, 'site.md');
-  if (existsSync(siteFile)) {
-    const { data } = frontMatter(siteFile, readFileSync(siteFile, 'utf8'));
-    if (data) schemaErrors(siteFile, validators.site, data);
-  } else report(siteFile, 0, 'missing');
+  for (const lang of languages) {
+    const base = join(appDir, lang);
+    if (!existsSync(base)) { if (lang === defaultLang) report(base, 0, 'missing: the default language is required'); continue; }
+    const pagesDir = join(base, 'pages');
+    const files = pagesOf(lang);
+    const diagrams = new Set([...diagramsIn(lang), ...defaultDiagrams]);
+
+    for (const f of files.filter((f) => f.endsWith('.mdx'))) report(f, 0, 'MDX is not allowed: use .md and ::: blocks (widgets: :::widget{name="…"})');
+
+    for (const file of files.filter((f) => f.endsWith('.md'))) {
+      const id = idOf(lang, file);
+      const depth = id.split('/').length - 1;
+      const text = readFileSync(file, 'utf8');
+      const { data, body, offset } = frontMatter(file, text);
+      if (data) {
+        schemaErrors(file, validators.page, data);
+        if (depth === 0 && !data.section) report(file, 0, 'a section\'s index.md needs a "section:" block');
+        if (depth > 0 && data.section) report(file, 0, '"section:" is only allowed in a section\'s index.md');
+        if (lang === defaultLang && data.translationOf) report(file, 0, `"translationOf" is only for languages other than ${defaultLang}`);
+        if (data.translationOf && !originals.has(data.translationOf)) report(file, 0, `translationOf "${data.translationOf}" is not a page in ${app}/${defaultLang}/pages/`);
+      }
+      if (depth > 2) report(file, 0, 'pages can be nested one level deep at most (section/group/page)');
+      const section = id.split('/')[0];
+      if (!existsSync(join(pagesDir, section, 'index.md'))) report(file, 0, `folder "${section}" has no index.md`);
+      if (depth === 2 && !existsSync(join(pagesDir, section, id.split('/')[1], 'index.md'))) report(file, 0, `group folder "${section}/${id.split('/')[1]}" needs an index.md`);
+
+      body.split('\n').forEach((line, i) => {
+        const n = i + 1 + offset;
+        if (/^\s*(import|export)\s/.test(line)) report(file, n, 'import/export statements are not allowed (no MDX)');
+        for (const [re, msg] of unsafe) if (re.test(line)) report(file, n, msg);
+        const block = line.match(/^:::([a-z]+)/);
+        if (block) {
+          if (!blocks.includes(block[1])) report(file, n, `unknown block ":::${block[1]}". Available: ${blocks.join(', ')}`);
+          const name = line.match(/name="([^"]*)"/)?.[1];
+          if (block[1] === 'widget' && !widgets.includes(name)) report(file, n, `unknown widget "${name ?? ''}". Available: ${widgets.join(', ')}`);
+          if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/${lang}/diagrams/ or ${app}/${defaultLang}/diagrams/`);
+        }
+        for (const [, target] of line.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)) {
+          if (!/^https?:/.test(target) && !existsSync(join(dirname(file), target))) report(file, n, `image not found: ${target}`);
+        }
+        for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\((\/[^)\s#]*)/g)) {
+          const path = href.replace(/\/$/, '') || '/';
+          if (/^\/(docs|consola)(\/|$)/.test(path)) continue; // redirects to external sites
+          if (!routes.has(path)) report(file, n, `link to a page that does not exist: ${href}`);
+        }
+      });
+    }
+
+    const siteFile = join(base, 'site.md');
+    if (existsSync(siteFile)) {
+      const { data } = frontMatter(siteFile, readFileSync(siteFile, 'utf8'));
+      if (data) schemaErrors(siteFile, validators.site, data);
+    } else report(siteFile, 0, 'missing');
+    if (!existsSync(join(base, 'home.md'))) report(join(base, 'home.md'), 0, 'missing');
+  }
+}
+
+// Interface dictionaries: every language has exactly the default language's keys.
+const keysOf = (o, p = '') =>
+  o && typeof o === 'object' && !Array.isArray(o)
+    ? Object.entries(o).flatMap(([k, v]) => keysOf(v, p ? `${p}.${k}` : k))
+    : [Array.isArray(o) ? `${p}[${o.length}]` : p];
+const dict = (lang) => {
+  const file = join(root, 'ui', `${lang}.yaml`);
+  if (!existsSync(file)) { report(file, 0, 'missing'); return null; }
+  try { return { file, keys: new Set(keysOf(parseYaml(readFileSync(file, 'utf8')))) }; }
+  catch (e) { report(file, 0, `not valid YAML: ${e.message.split('\n')[0]}`); return null; }
+};
+const reference = dict(defaultLang);
+for (const lang of languages.filter((l) => l !== defaultLang)) {
+  const d = dict(lang);
+  if (!reference || !d) continue;
+  for (const k of reference.keys) if (!d.keys.has(k)) report(d.file, 0, `missing or different from ${defaultLang}.yaml: ${k}`);
+  for (const k of d.keys) if (!reference.keys.has(k)) report(d.file, 0, `not in ${defaultLang}.yaml: ${k}`);
 }
 
 // Network data
@@ -140,6 +184,9 @@ for (const [name, kind] of [['networks', 'network'], ['services', 'service'], ['
   ids[name] = new Set();
   items.forEach((item, i) => {
     schemaErrors(file, validators[kind], item, `/${i}`);
+    for (const [k, v] of Object.entries(item)) {
+      if (v && typeof v === 'object' && !Array.isArray(v) && k !== 'unit' && !(defaultLang in v)) report(file, 0, `${item.id}.${k}: needs a "${defaultLang}" value`);
+    }
     if (ids[name].has(item.id)) report(file, 0, `duplicate id "${item.id}"`);
     ids[name].add(item.id);
   });

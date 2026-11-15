@@ -4,18 +4,18 @@
  * @42chain/network, the same files the main site reads.
  */
 import { defineCollection } from 'astro:content';
-import { file, glob } from 'astro/loaders';
+import { file } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { pageSchema, pagesLoader, siteTextSchema } from '@42chain/kit/schemas';
+import { pageSchema, pagesLoader, perLanguage, siteTextSchema } from '@42chain/kit/schemas';
 import { catalogPath } from '@42chain/kit/catalog';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from '@42chain/network/schemas';
 
-const pages = defineCollection({ loader: pagesLoader(catalogPath('docs', 'pages')), schema: pageSchema });
+const pages = defineCollection({ loader: pagesLoader(catalogPath('docs')), schema: pageSchema });
 const home = defineCollection({
-  loader: glob({ pattern: 'home.md', base: catalogPath('docs') }),
+  loader: perLanguage(catalogPath('docs'), 'home.md'),
   schema: z.object({ eyebrow: z.string(), title: z.string(), lead: z.string(), searchPrompt: z.string() }).strict(),
 });
-const site = defineCollection({ loader: glob({ pattern: 'site.md', base: catalogPath('docs') }), schema: siteTextSchema });
+const site = defineCollection({ loader: perLanguage(catalogPath('docs'), 'site.md'), schema: siteTextSchema });
 const networks = defineCollection({ loader: file(dataFile('networks')), schema: networkSchema });
 const services = defineCollection({ loader: file(dataFile('services')), schema: serviceSchema });
 const providers = defineCollection({ loader: file(dataFile('providers')), schema: providerSchema });

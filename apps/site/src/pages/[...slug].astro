@@ -2,11 +2,11 @@
 import { render } from 'astro:content';
 import Doc from '@42chain/kit/layouts/Doc.astro';
 import Splice from '@42chain/widgets/Splice.astro';
-import { getSections } from '@42chain/kit/site';
+import { getAllPages, hrefOf } from '@42chain/kit/site';
 
+// Every interior page of every language: /protocolo/consenso, /en/protocol/consensus…
 export async function getStaticPaths() {
-  const sections = await getSections();
-  return [...sections.values()].flatMap((s) => s.pages.map((page) => ({ params: { slug: page.id }, props: { page } })));
+  return (await getAllPages()).map((page) => ({ params: { slug: hrefOf(page).slice(1) }, props: { page } }));
 }
 const { page } = Astro.props;
 const { Content } = await render(page);

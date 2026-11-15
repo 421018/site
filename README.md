@@ -27,8 +27,9 @@ npm run dev        # http://localhost:4321
 
 ```
 content/
-  site/        site.md, home.md, pages/, diagrams/, images/   (42chain.org)
-  docs/        site.md, home.md, pages/                       (documentation)
+  site/        es/ and en/ (site.md, home.md, pages/, diagrams/), images/   (42chain.org)
+  docs/        es/ and en/ (site.md, home.md, pages/)                       (documentation)
+  ui/          es.yaml, en.yaml: widget and data view text
   network/     networks.yaml, services.yaml, providers.yaml
   contract/    JSON Schemas and block/widget names (generated)
   tools/       validate.mjs: the public validator (ajv + yaml only)
@@ -56,9 +57,10 @@ apps/
   site/                          42chain.org
     astro.config.mjs             Shared config + site URL, redirects, languages, widget names
     src/config.ts                Domain, language, external URLs, content repository (EDIT_BASE)
-    src/content.config.ts        Collections read from the catalog: pages, home, site, network data
+    src/content.config.ts        Collections read from the catalog (every language): pages, home, site, network data
+    src/components/Home.astro    Home page layout, shared by every language
     src/scripts/hero-network.ts  Home page background animation
-    src/pages/                   Home page, interior pages, 404, robots.txt
+    src/pages/                   Interior pages, home and 404 per language (en/), robots.txt
     public/_headers              Security headers and caching (Cloudflare Pages)
   docs/                          Documentation: same structure, with Pagefind search
 packages/
@@ -81,7 +83,7 @@ Technical notes:
 - Markdown is processed by Sätteri, Astro 7's native Markdown processor.
 - Fonts (Geist and Geist Mono) are downloaded at build time and served from the site itself.
 - Astro emits a Content-Security-Policy with hashes for its scripts on every page. Any new external or inline script must be checked against it (`apps/site/astro.config.mjs → security.csp`).
-- The widgets' visible text is Spanish and lives in their components, since each message is tied to a state of the calculation. It moves to per-language dictionaries with i18n.
+- The widgets' visible text lives in the catalog's `ui/<lang>.yaml`; components contain no visitor-facing text.
 
 ## Deploying to Cloudflare Pages
 
@@ -129,7 +131,12 @@ To find them all: `grep -rn "\[" content apps/*/src/config.ts LICENSE NOTICE`.
 
 ## Languages
 
-The sites are in Spanish and Astro's i18n config is enabled. Adding another language requires language-aware routing in `packages/kit/src/site.ts` (so language folders are not read as sections), translated `site.md` and `home.md` in the catalog, and per-language dictionaries for the widgets' text.
+Spanish is the default language, served at the root; English is served under `/en` with translated URLs. Languages are set per app in `src/config.ts` (`SITE.defaultLang`, `SITE.languages`) and passed to the kit and to Astro's i18n.
+
+- **Catalog:** each app has a folder per language (`content/site/es/`, `content/site/en/`) with `site.md`, `home.md`, `pages/` and `diagrams/`; images are shared. Widget text lives in `content/ui/<lang>.yaml`; network data has per-language fields (`{ es, en }`).
+- **Engine:** `@42chain/kit/i18n` (`langOf(Astro)`, `langPrefix`, `homeHref`) resolves the language of the page from `Astro.currentLocale`. Page ids are `<lang>/<path>`; `site.ts` builds sections per language and links translations through `translationOf` (`getAlternates()`), which feed the language switcher in the header and the `hreflang` links. `@42chain/kit/dictionary` (`ui(lang)`, `fill()`) reads the widget text; strings needed by client scripts travel in a `data-i18n` attribute.
+- **Routes:** `[...slug].astro` serves every page of every language; `index.astro` and `404.astro` exist once per language (`src/pages/en/`), rendering the shared `Home.astro` and the kit's `NotFound.astro`.
+- **Adding a language:** add it to `SITE.languages` in both apps, create the catalog folders and `ui/<lang>.yaml`, add `src/pages/<lang>/index.astro` and `404.astro`, and run `npm run export:contract`.
 
 ## License
 

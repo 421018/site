@@ -2,16 +2,25 @@
 // Illustrative vote count. Same rules and starting values as the worked
 // example in gobernanza.md (quorum 40 %, threshold 50 %, veto 33 %;
 // 45 % turnout with 25 Yes, 12 No, 3 Veto and 5 Abstain), not network parameters.
+// Text: catalog ui/<lang>.yaml → vote.
+import { langOf } from '@42chain/kit/i18n';
+import { fill, ui } from '@42chain/kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.vote;
 const Q = 40, T = 50, V = 33;
 const sliders = [
-  ['turn', 'Participación', 45],
-  ['yes', 'Sí', 56],
-  ['no', 'No', 27],
-  ['veto', 'No con veto', 7],
+  ['turn', t.turnout, 45],
+  ['yes', t.yes, 56],
+  ['no', t.no, 27],
+  ['veto', t.veto, 7],
 ] as const;
+const i18n = JSON.stringify({
+  abstain: t.abstain, pass: t.pass, fail: t.fail,
+  approved: [t.approved, t.approvedNote], noQuorum: [t.noQuorum, t.noQuorumNote], vetoed: [t.vetoed, t.vetoedNote], rejected: [t.rejected, t.rejectedNote],
+});
 ---
-<div class="widget sim" data-vote data-q={Q} data-t={T} data-v={V}>
-  <div class="w-head"><span class="w-tag">Simulador interactivo</span><span class="w-meta">Mismas reglas que el ejemplo: quórum {Q}% · umbral {T}% · veto {V}%</span></div>
+<div class="widget sim" data-vote data-q={Q} data-t={T} data-v={V} data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{fill(t.meta, { q: Q, t: T, v: V })}</span></div>
   <div class="grid">
     {sliders.map(([k, label, val]) => (
       <div>
@@ -21,10 +30,10 @@ const sliders = [
     ))}
   </div>
   <div class="vbar" aria-hidden="true"><span data-w="yes" class="y"></span><span data-w="no" class="n"></span><span data-w="veto" class="x"></span><span data-w="abs" class="a"></span></div>
-  <p class="abs" data-abs>Abstención: 10% de los votos emitidos</p>
-  <div class="chk"><span>Quórum alcanzado</span><span class="mono" data-r="1"></span></div>
-  <div class="chk"><span>Sí supera el umbral</span><span class="mono" data-r="2"></span></div>
-  <div class="chk"><span>Veto bajo su umbral</span><span class="mono" data-r="3"></span></div>
+  <p class="abs" data-abs>{fill(t.abstain, { n: 10 })}</p>
+  <div class="chk"><span>{t.quorum}</span><span class="mono" data-r="1"></span></div>
+  <div class="chk"><span>{t.threshold}</span><span class="mono" data-r="2"></span></div>
+  <div class="chk"><span>{t.vetoBelow}</span><span class="mono" data-r="3"></span></div>
   <div class="res" role="status"><span class="rt" data-result></span><span class="rn" data-note></span></div>
 </div>
 
@@ -50,6 +59,7 @@ const sliders = [
     const st: Record<string, number> = { turn: 45, yes: 56, no: 27, veto: 7 };
     const inputs = [...root.querySelectorAll<HTMLInputElement>('input[data-key]')];
     const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
+    const t = JSON.parse(root.dataset.i18n!) as Record<'abstain' | 'pass' | 'fail', string> & Record<'approved' | 'noQuorum' | 'vetoed' | 'rejected', [string, string]>;
     const paint = () => {
       const abs = Math.max(0, 100 - st.yes - st.no - st.veto);
       const nonAbs = st.yes + st.no + st.veto;
@@ -59,15 +69,13 @@ const sliders = [
       $('[data-w=no]').style.width = st.no + '%';
       $('[data-w=veto]').style.width = st.veto + '%';
       $('[data-w=abs]').style.width = abs + '%';
-      $('[data-abs]').textContent = `Abstención: ${abs}% de los votos emitidos`;
+      $('[data-abs]').textContent = t.abstain.replace('{n}', String(abs));
       const set = (n: string, ok: boolean, txt: string) => { const e = $(`[data-r="${n}"]`); e.textContent = txt; e.className = 'mono ' + (ok ? 'ok' : 'bad'); };
-      set('1', ok1, (ok1 ? 'Sí · ' : 'No · ') + st.turn + '%');
-      set('2', ok2, ok2 ? 'Sí' : 'No');
-      set('3', ok3, (ok3 ? 'Sí · ' : 'No · ') + st.veto + '%');
-      let result = 'Aprobada', note = 'Se cumplen las tres condiciones.';
-      if (!ok1) { result = 'No alcanza quórum'; note = 'Se rechaza por falta de participación.'; }
-      else if (!ok3) { result = 'Rechazada por veto'; note = 'El veto supera su umbral; el depósito se pierde.'; }
-      else if (!ok2) { result = 'Rechazada'; note = 'Los votos a favor no superan el umbral.'; }
+      const yn = (ok: boolean) => (ok ? t.pass : t.fail);
+      set('1', ok1, `${yn(ok1)} · ${st.turn}%`);
+      set('2', ok2, yn(ok2));
+      set('3', ok3, `${yn(ok3)} · ${st.veto}%`);
+      const [result, note] = !ok1 ? t.noQuorum : !ok3 ? t.vetoed : !ok2 ? t.rejected : t.approved;
       $('[data-result]').textContent = result; $('[data-note]').textContent = note;
       $('.res').classList.toggle('bad', !(ok1 && ok2 && ok3));
     };

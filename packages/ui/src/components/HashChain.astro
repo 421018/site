@@ -2,34 +2,35 @@
 // Illustrative hash chain: four blocks; each hash is SHA-256 of (previous hash | data).
 // The recorded hashes are computed from the original data when the page loads;
 // editing a block recomputes its hash and shows where the chain stops matching.
-const blocks = [
-  'Título 2031-0457 emitido por la universidad',
-  'Lote 88 entregado en el almacén de exportación',
-  'Luminaria L-120 reparada por el contratista',
-  'Inspección de la luminaria L-120 aprobada',
-];
+// Text: catalog ui/<lang>.yaml → hashChain.
+import { langOf } from '@42chain/kit/i18n';
+import { fill, ui } from '@42chain/kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.hashChain;
+const blocks: string[] = t.blocks;
+const i18n = JSON.stringify({ intact: [t.intactTitle, t.intactText], altered: t.alteredTitle, next: t.alteredNext, last: t.alteredLast });
 ---
-<div class="widget hc" data-hashchain>
-  <div class="w-head"><span class="w-tag">Simulador interactivo</span><span class="w-meta">Cadena de huellas · SHA-256</span></div>
+<div class="widget hc" data-hashchain data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{t.meta}</span></div>
   <ol class="blocks">
     {blocks.map((data, i) => (
       <li class="blk" data-i={i}>
-        <span class="bn">Bloque {i + 1}</span>
-        <label class="lb" for={`hc-${i}`}>Datos</label>
+        <span class="bn">{fill(t.block, { n: i + 1 })}</span>
+        <label class="lb" for={`hc-${i}`}>{t.data}</label>
         <input id={`hc-${i}`} class="in" type="text" value={data} data-orig={data} spellcheck="false" />
-        <span class="lb">Huella del bloque anterior</span>
+        <span class="lb">{t.prevHash}</span>
         <code class="h" data-prev>…</code>
-        <span class="lb">Huella de este bloque</span>
+        <span class="lb">{t.hash}</span>
         <code class="h" data-hash>…</code>
       </li>
     ))}
   </ol>
   <div class="status" role="status">
-    <span class="mono" data-title>Cadena íntegra</span>
-    <span data-desc>Cada bloque guarda la huella del anterior, y todas coinciden.</span>
+    <span class="mono" data-title>{t.intactTitle}</span>
+    <span data-desc>{t.intactText}</span>
   </div>
-  <button type="button" class="reset" data-reset hidden>Restaurar los datos</button>
-  <p class="w-note">Cambia una letra en los datos de cualquier bloque. Ilustrativo: la red calcula las huellas sobre el contenido completo de cada bloque.</p>
+  <button type="button" class="reset" data-reset hidden>{t.reset}</button>
+  <p class="w-note">{t.note}</p>
 </div>
 
 <style>
@@ -66,6 +67,7 @@ const blocks = [
     const title = root.querySelector('[data-title]')!;
     const desc = root.querySelector('[data-desc]')!;
     const reset = root.querySelector<HTMLButtonElement>('[data-reset]')!;
+    const t = JSON.parse(root.dataset.i18n!) as { intact: [string, string]; altered: string; next: string; last: string };
     const genesis = '0'.repeat(64);
     // Hashes as recorded in the chain, from the original data.
     const recorded: string[] = [];
@@ -87,12 +89,10 @@ const blocks = [
       const altered = first >= 0;
       root.classList.toggle('altered', altered);
       reset.hidden = !altered;
-      title.textContent = altered ? 'Alteración detectada' : 'Cadena íntegra';
+      title.textContent = altered ? t.altered : t.intact[0];
       desc.textContent = !altered
-        ? 'Cada bloque guarda la huella del anterior, y todas coinciden.'
-        : first < items.length - 1
-          ? `La huella del bloque ${first + 1} cambió y ya no coincide con la que guarda el bloque ${first + 2}. Cualquier nodo lo detecta.`
-          : `La huella del bloque ${first + 1} cambió y ya no coincide con la que confirmaron los validadores. Cualquier nodo lo detecta.`;
+        ? t.intact[1]
+        : (first < items.length - 1 ? t.next : t.last).replace('{n}', String(first + 1)).replace('{next}', String(first + 2));
     };
     inputs.forEach((inp) => inp.addEventListener('input', paint));
     reset.addEventListener('click', () => { inputs.forEach((inp) => (inp.value = inp.dataset.orig!)); paint(); });

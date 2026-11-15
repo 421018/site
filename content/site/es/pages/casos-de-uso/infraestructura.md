@@ -6,7 +6,7 @@ weight: 30
 ---
 
 :::figure[Imagen ilustrativa. Foto: Kim R-K, Unsplash.]{ratio="wide"}
-![Farola de doble brazo encendida al atardecer](../../images/casos/infraestructura.jpg)
+![Farola de doble brazo encendida al atardecer](../../../images/casos/infraestructura.jpg)
 :::
 
 ## El problema {#problema}

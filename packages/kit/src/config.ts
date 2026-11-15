@@ -8,28 +8,38 @@ import { fontProviders } from 'astro/config';
 import type { AstroUserConfig } from 'astro';
 import { satteri } from '@astrojs/markdown-satteri';
 import { contentBlocks } from '@42chain/blocks';
+import { relative, sep } from 'node:path';
 import { catalogPath } from './catalog';
 
 export interface SharedOptions {
   /** The app's folder in the content catalog: "site" or "docs". */
   catalog: string;
+  /** Default language: its folder is the fallback for diagrams missing in a translation. */
+  defaultLang: string;
   /** Names accepted by :::widget (from @42chain/widgets/names). */
   widgets?: readonly string[];
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
 }
 
-export function sharedConfig({ catalog, widgets = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
+export function sharedConfig({ catalog, defaultLang, widgets = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
+  const base = catalogPath(catalog);
+  // A page in <catalog>/<lang>/pages/… reads <lang>/diagrams/, then the default language's.
+  const diagramsDirs = (file: string | undefined) => {
+    const rel = file ? relative(base, file) : '';
+    const lang = rel && !rel.startsWith('..') ? rel.split(sep)[0] : defaultLang;
+    return [...new Set([lang, defaultLang])].map((l) => catalogPath(catalog, l, 'diagrams'));
+  };
   return {
     trailingSlash: 'never',
     build: { format: 'directory' },
-    // Markdown and MDX: {#id} anchors and {.class} attributes, plus the ::: blocks.
+    // Markdown: {#id} anchors and {.class} attributes, plus the ::: blocks.
     markdown: {
       // Prism only adds classes, so code blocks stay compatible with the CSP below.
       syntaxHighlight: 'prism',
       processor: satteri({
         features: { attributes: true, directive: true },
-        mdastPlugins: [contentBlocks({ diagramsDir: catalogPath(catalog, 'diagrams'), widgets })],
+        mdastPlugins: [contentBlocks({ diagramsDirs, widgets })],
       }),
     },
     // Fonts are downloaded at build time and served from the site itself: no

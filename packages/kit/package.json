@@ -13,12 +13,15 @@
     "./virtual": "./src/virtual.d.ts",
     "./layouts/*": "./src/layouts/*",
     "./components/*": "./src/components/*",
-    "./catalog": "./src/catalog.ts"
+    "./catalog": "./src/catalog.ts",
+    "./i18n": "./src/i18n.ts",
+    "./dictionary": "./src/dictionary.ts"
   },
   "dependencies": {
     "@42chain/blocks": "*",
     "@42chain/catalog": "*",
-    "@42chain/ui": "*"
+    "@42chain/ui": "*",
+    "yaml": "2.9.1"
   },
   "peerDependencies": {
     "astro": "^7.4.0",

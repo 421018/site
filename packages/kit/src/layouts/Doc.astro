@@ -3,26 +3,28 @@ import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SideNav from '../components/SideNav.astro';
-import { getSection, getSiteText, sideIndex, prevNext, hrefOf, sectionKey, lastCommitDate, type Page } from '../site';
+import { getAlternates, getSection, getSiteText, sideIndex, prevNext, hrefOf, pageLang, sectionKey, lastCommitDate, type Page } from '../site';
 import kit from 'virtual:42chain/kit';
 import { catalogRelative } from '../catalog';
 
 interface Props { page: Page }
 const { page } = Astro.props;
-const section = await getSection(sectionKey(page));
-const home = await getSection(section.home);
+const lang = pageLang(page);
+const section = await getSection(lang, sectionKey(page));
+const home = await getSection(lang, section.home);
+const alternates = await getAlternates(page);
 const nav = sideIndex(home);
 const showSide = nav.items.length + nav.refs.length > 1;
 const path = hrefOf(page);
 const { prev, next } = prevNext(section, page);
 const updated = page.data.updated ?? lastCommitDate(page.filePath);
-const fmt = updated && new Intl.DateTimeFormat(kit.lang, { dateStyle: 'long' }).format(updated);
-const { page: ui } = await getSiteText();
+const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(updated);
+const { page: ui } = await getSiteText(lang);
 ---
-<Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink}>
+<Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates}>
   <section class="band-top">
     <div class="band-deco" aria-hidden="true"><div class="gridbg"></div><div class="glow"></div></div>
-    <Header current={home.key} />
+    <Header current={home.key} alternates={alternates} />
   </section>
   <div class="rd">
     <div class="lay">

@@ -6,7 +6,7 @@ weight: 40
 ---
 
 :::figure[Imagen ilustrativa. Foto: Artan, Unsplash.]{ratio="wide"}
-![Terminal portuaria con contenedores y camiones](../../images/casos/autorizaciones.jpg)
+![Terminal portuaria con contenedores y camiones](../../../images/casos/autorizaciones.jpg)
 :::
 
 ## El problema {#problema}

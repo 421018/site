@@ -4,6 +4,12 @@
 // explorer entries of providers.yaml for that network. One button per network,
 // filtered by <NetworkSwitch />.
 import { getDirectory, firstOf } from '../directory';
+import { langOf } from '@42chain/kit/i18n';
+import { fill, ui } from '@42chain/kit/dictionary';
+const lang = langOf(Astro);
+const d = ui(lang);
+const t = d.network;
+const i18n = JSON.stringify({ noWallet: t.noWallet, added: t.added, cancelled: t.cancelled, failed: t.addFailed });
 const { networks, providers } = await getDirectory();
 const buttons = networks.map((n) => {
   const rpc = firstOf(providers, n.id, 'evm');
@@ -11,7 +17,7 @@ const buttons = networks.map((n) => {
   const explorer = firstOf(providers, n.id, 'explorer');
   return {
     id: n.id,
-    label: `Añadir ${n.name}`,
+    label: fill(t.add, { name: n.name }),
     rpcHost: rpc.url.replace(/^https?:\/\//, ''),
     params: {
       chainId: '0x' + n.evmChainId.toString(16),
@@ -24,8 +30,8 @@ const buttons = networks.map((n) => {
   };
 });
 ---
-<div class="widget an" data-addnet>
-  <div class="w-head"><span class="w-tag">Herramienta</span><span class="w-meta">Billeteras compatibles con la EVM (EIP-3085)</span></div>
+<div class="widget an" data-addnet data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.tool}</span><span class="w-meta">{t.addMeta}</span></div>
   <div class="btns">
     {buttons.map((b) => (
       <button type="button" class="add" data-for-net={b.id} data-params={JSON.stringify(b.params)}>
@@ -35,7 +41,7 @@ const buttons = networks.map((n) => {
     ))}
   </div>
   <p class="msg" role="status" data-msg></p>
-  <p class="w-note">La billetera muestra los datos y pide confirmación antes de añadir la red. El punto de conexión es el primero del directorio; puedes cambiarlo después en la billetera.</p>
+  <p class="w-note">{t.addNote}</p>
 </div>
 
 <style>
@@ -52,18 +58,19 @@ const buttons = networks.map((n) => {
   type Eip1193 = { request: (a: { method: string; params?: unknown[] }) => Promise<unknown> };
   document.querySelectorAll<HTMLElement>('[data-addnet]').forEach((root) => {
     const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const t = JSON.parse(root.dataset.i18n!) as Record<'noWallet' | 'added' | 'cancelled' | 'failed', string>;
     const say = (text: string, bad = false) => { msg.textContent = text; msg.classList.toggle('bad', bad); };
     root.querySelectorAll<HTMLButtonElement>('button[data-params]').forEach((btn) => {
       btn.addEventListener('click', async () => {
         const eth = (window as unknown as { ethereum?: Eip1193 }).ethereum;
-        if (!eth) { say('No se detectó una billetera compatible con la EVM en este navegador. Puedes añadir la red a mano con los datos de la tabla.', true); return; }
+        if (!eth) { say(t.noWallet, true); return; }
         const params = JSON.parse(btn.dataset.params!);
         try {
           await eth.request({ method: 'wallet_addEthereumChain', params: [params] });
-          say(`${params.chainName} está disponible en tu billetera.`);
+          say(t.added.replace('{name}', params.chainName));
         } catch (e) {
           const code = (e as { code?: number }).code;
-          say(code === 4001 ? 'Se canceló la solicitud en la billetera.' : 'La billetera no pudo añadir la red. Puedes añadirla a mano con los datos de la tabla.', true);
+          say(code === 4001 ? t.cancelled : t.failed, true);
         }
       });
     });

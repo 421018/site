@@ -11,6 +11,7 @@ Thanks for helping improve the site and the documentation. Most contributions ar
 | Fix a typo or improve a page | Use **Editar esta página ↗** at the top of the page, or edit the file on GitHub, and open a pull request |
 | Add a page or a section | Follow [Adding a page](README.md#adding-a-page) in the README and open a pull request |
 | List a provider | Add a line to `network/providers.yaml` and open a pull request |
+| Translate a page | Follow [Translating](README.md#translating) in the README and open a pull request |
 | Report an error or suggest content | [Open an issue](../../issues/new/choose) |
 | Suggest a design change or a new widget | [Open an issue](../../issues/new/choose); the design and code are maintained separately |
 | Report a security problem | **Don't open an issue.** See [SECURITY.md](SECURITY.md) |

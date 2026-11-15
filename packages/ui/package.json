@@ -11,5 +11,8 @@
   },
   "peerDependencies": {
     "astro": "^7.4.0"
+  },
+  "dependencies": {
+    "@42chain/kit": "*"
   }
 }

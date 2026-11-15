@@ -1,7 +1,7 @@
 /**
  * Exports the content contract to the public catalog (content/contract/):
- * JSON Schemas of the content files and the names of the ::: blocks and
- * widgets. The catalog's validator reads it, so contributors can check their
+ * JSON Schemas of the content files, the names of the ::: blocks and
+ * widgets, and the languages. The catalog's validator reads it, so contributors can check their
  * changes without the engine. Run after changing a schema or adding a block or
  * widget:  npm run export:contract
  */
@@ -11,6 +11,7 @@ import { pageSchema, siteTextSchema } from '../packages/kit/src/schemas.ts';
 import { networkSchema, providerSchema, serviceSchema } from '../packages/network/src/schemas.ts';
 import { widgetNames } from '../packages/widgets/src/names.ts';
 import { blockNames } from '../packages/blocks/src/content-blocks.ts';
+import { SITE } from '../apps/site/src/config.ts';
 
 const dir = new URL('../content/contract/', import.meta.url);
 mkdirSync(dir, { recursive: true });
@@ -23,4 +24,5 @@ write('network.schema.json', schema(networkSchema));
 write('service.schema.json', schema(serviceSchema));
 write('provider.schema.json', schema(providerSchema));
 write('blocks.json', { blocks: blockNames, widgets: widgetNames });
+write('languages.json', { default: SITE.defaultLang, languages: Object.keys(SITE.languages) });
 console.log('Contract written to content/contract/');

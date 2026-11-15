@@ -5,8 +5,13 @@
  */
 export const SITE = {
   url: 'https://docs.example.org', // [docs domain]
-  lang: 'es',
-  ogLocale: 'es_ES',
+  /** Language at the site root; the others are served under /<lang>/. */
+  defaultLang: 'es',
+  /** Languages, each with its folder in the catalog (<app>/<lang>/). */
+  languages: {
+    es: { ogLocale: 'es_ES' },
+    en: { ogLocale: 'en_US' },
+  },
 };
 
 export const LINKS = {

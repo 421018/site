@@ -7,16 +7,44 @@
       "pattern": "^[a-z0-9-]+$"
     },
     "anchor": {
-      "type": "string"
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "label": {
-      "type": "string"
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "description": {
-      "type": "string"
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
     },
     "emptyNote": {
-      "type": "string"
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z]{2}$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
     }
   },
   "required": [

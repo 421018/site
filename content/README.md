@@ -2,7 +2,7 @@
 
 The text and data of [42chain.org](https://42chain.org) and its documentation site. Everything here is plain Markdown and YAML: adding, editing, reordering or removing a page only means editing files in this repository. Menus, side indexes, previous/next links and footers are generated from them.
 
-The site is in Spanish; file names that become URLs are Spanish too. This guide, front matter keys and block names are in English.
+The sites are in Spanish (the source language) and English. Each language has its own folder and its own, translated, URLs. This guide, front matter keys and block names are in English.
 
 > **¿Prefieres leer en español?** [CONTRIBUTING.md](CONTRIBUTING.md) tiene una guía rápida para editar textos.
 
@@ -24,26 +24,28 @@ npm run validate
 
 | What | File |
 |---|---|
-| Interior pages | `site/pages/<section>/<page>.md` |
-| Home page text | `site/home.md` |
-| Site-wide text: footer, page labels, 404 | `site/site.md` |
-| Diagrams | `site/diagrams/<name>.html` (or `.svg`) |
-| Images | `site/images/` (author and license in `site/images/CREDITS.md`) |
-| Documentation site | `docs/`, with the same structure |
+| Interior pages | `site/<lang>/pages/<section>/<page>.md` |
+| Home page text | `site/<lang>/home.md` |
+| Site-wide text: footer, page labels, 404 | `site/<lang>/site.md` |
+| Diagrams | `site/<lang>/diagrams/<name>.html` (or `.svg`) |
+| Images (shared by every language) | `site/images/` (author and license in `site/images/CREDITS.md`) |
+| Documentation site | `docs/<lang>/`, with the same structure |
+| Widget and data view text | `ui/<lang>.yaml` |
 | Network parameters, service kinds, providers | `network/networks.yaml`, `network/services.yaml`, `network/providers.yaml` |
 | Rules the content must follow | `contract/` (generated; don't edit by hand) |
 
-The file path is the page URL:
+`<lang>` is `es` or `en` (see `contract/languages.json`). The file path is the page URL; Spanish is served at the root and English under `/en`:
 
 | File | URL |
 |---|---|
-| `site/pages/protocolo/index.md` | `/protocolo` |
-| `site/pages/protocolo/consenso.md` | `/protocolo/consenso` |
-| `docs/pages/construir/precompiles/index.md` | `docs.42chain.org/construir/precompiles` |
+| `site/es/pages/protocolo/index.md` | `/protocolo` |
+| `site/es/pages/protocolo/consenso.md` | `/protocolo/consenso` |
+| `site/en/pages/protocol/consensus.md` | `/en/protocol/consensus` |
+| `docs/es/pages/construir/precompiles/index.md` | `docs.42chain.org/construir/precompiles` |
 
 ## Adding a page
 
-Create the file in its section folder, e.g. `site/pages/protocolo/staking-liquido.md`:
+Create the file in its section folder, e.g. `site/es/pages/protocolo/staking-liquido.md`:
 
 ```md
 ---
@@ -67,10 +69,30 @@ The page shows up in the side index, in previous/next and in the footer.
 | `menuTitle` | no | Label in the side index and footer, when it should differ from the title |
 | `updated` | no | "Last reviewed" date. Defaults to the date of the file's last commit |
 | `draft` | no | `true` leaves the page out of the published site |
+| `translationOf` | in translations | Path of the Spanish page this one translates, e.g. `protocolo/consenso`. Links both versions in the language switcher and for search engines |
+
+## Translating
+
+Spanish is the source. A translation is a page in another language's folder, with its own URL in that language and `translationOf` pointing to the Spanish page:
+
+```md
+---
+title: "Consensus and staking"
+summary: "…"
+weight: 20
+translationOf: protocolo/consenso
+---
+```
+
+- Translate the section first: a page needs its section's `index.md` in the same language (with its own `section:` block).
+- Anchors are translated too: `## The active set {#active-set}`. Links inside a translation point to translated pages (`/en/protocol/consensus#why`); a page that is not translated yet can be linked in Spanish, marked "(in Spanish)".
+- A diagram with text needs a copy in `site/en/diagrams/` with the same name; until it exists, the Spanish one is shown.
+- Widgets and data views take their text from `ui/<lang>.yaml`, which must have exactly the keys of `ui/es.yaml`. In network data, visitor-facing fields have one value per language: `label: { es: Red principal, en: Mainnet }`.
+- Pages without a translation simply don't exist in that language: menus only list what is translated, and the language switcher leads to the other language's home page.
 
 ## Sections and groups
 
-Each folder in `pages/` is a section, described by a `section:` block in its `index.md`:
+Each folder in a language's `pages/` is a section, described by a `section:` block in its `index.md`:
 
 ```yaml
 section:
@@ -116,7 +138,7 @@ El motor funciona con improbabilidad. El gas dice cuánta pide cada maniobra.
 :::
 
 :::figure[Un municipio registra cada intervención en el alumbrado.]
-![Farolas de una calle al atardecer](../../images/casos/alumbrado.jpg)
+![Farolas de una calle al atardecer](../../../images/casos/alumbrado.jpg)
 :::
 
 :::aside
@@ -147,7 +169,7 @@ Pendiente de revisión legal.
 | `:::aside` | Small mono text: "read more" links, pending placeholders, clarifications |
 | `:::status[status]` | Status badge followed by a short sentence |
 | `:::lore[heading]` | Narrative aside from the protocol's sci-fi lore, set apart from technical text. At most one per page, always after the technical explanation, and only in Protocolo, Tarifas and "Por qué 42". Never the only place a technical fact is stated; no price, value or scarcity |
-| `:::diagram[caption]{name="…"}` | Inserts `diagrams/<name>.html` (preferred: responsive) or `<name>.svg`, with the caption. Every diagram must also be explained in the page text |
+| `:::diagram[caption]{name="…"}` | Inserts `<lang>/diagrams/<name>.html` (preferred: responsive) or `<name>.svg`, with the caption; falls back to the Spanish one. Every diagram must also be explained in the page text |
 | `:::widget{name="…"}` | An interactive widget or data view. Available names are listed in [`contract/blocks.json`](contract/blocks.json) |
 | `:::figure[caption]` | Wraps a local Markdown image with its caption. Record author and license in `images/CREDITS.md` |
 | `:::facts` | Key figures in columns |
@@ -173,7 +195,7 @@ Pendiente de revisión legal.
 | File | What it holds |
 |---|---|
 | `networks.yaml` | Each network's parameters (name, chain IDs, unit, prefix…). Must match `assets.infinitedrive.xyz/<network>/network-data.json` |
-| `services.yaml` | Kinds of public service (EVM RPC, CometBFT RPC, gRPC, explorers, faucets), with label, description and anchor |
+| `services.yaml` | Kinds of public service (EVM RPC, CometBFT RPC, gRPC, explorers, faucets), with label, description and anchor in each language |
 | `providers.yaml` | One line per public endpoint: provider, network, service, URL |
 
 To list a new provider, add a line to `providers.yaml`. Order matters: within a network and service, the first entry is the default one, and the "add to wallet" button uses the first EVM RPC and explorer. A provider that names an unknown network or service fails validation.

@@ -3,14 +3,18 @@
 // shown only for the selected network; without JavaScript everything is shown,
 // each block under its own label. Several switches on a page stay in sync, and
 // the choice is remembered in this browser when storage is available.
-import { getDirectory } from '../directory';
+import { getDirectory, pick } from '../directory';
+import { langOf } from '@42chain/kit/i18n';
+import { ui } from '@42chain/kit/dictionary';
+const lang = langOf(Astro);
+const t = ui(lang).network;
 const { networks } = await getDirectory();
 const css = networks
   .map((n) => `html[data-net]:not([data-net="${n.id}"]) [data-for-net="${n.id}"]{display:none}`)
   .join('') + 'html[data-net] .net-cap{display:none}';
 ---
-<div class="netsw" role="group" aria-label="Red" data-netsw data-default={networks[0].id} hidden>
-  {networks.map((n) => <button type="button" data-net-btn={n.id} aria-pressed="false">{n.label}</button>)}
+<div class="netsw" role="group" aria-label={t.switchLabel} data-netsw data-default={networks[0].id} hidden>
+  {networks.map((n) => <button type="button" data-net-btn={n.id} aria-pressed="false">{pick(n.label, lang)}</button>)}
 </div>
 <style is:global set:html={css}></style>
 <style>

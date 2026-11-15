@@ -2,6 +2,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
+    "language": {
+      "type": "string"
+    },
     "name": {
       "type": "string"
     },
@@ -21,6 +24,9 @@
           "type": "string"
         },
         "menuButton": {
+          "type": "string"
+        },
+        "languageNav": {
           "type": "string"
         },
         "links": {
@@ -44,13 +50,35 @@
           }
         },
         "search": {
-          "type": "string"
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "close": {
+              "type": "string"
+            },
+            "noResults": {
+              "type": "string"
+            },
+            "unavailable": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "close",
+            "noResults",
+            "unavailable"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
         "homeLink",
         "mainNav",
-        "menuButton"
+        "menuButton",
+        "languageNav"
       ],
       "additionalProperties": false
     },
@@ -128,6 +156,7 @@
     }
   },
   "required": [
+    "language",
     "name",
     "tagline",
     "description",

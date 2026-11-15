@@ -66,12 +66,13 @@ function listItems(ctx: MdastVisitorContext, node: ContainerDirective): [string,
 export const blockNames = ['note', 'faq', 'aside', 'status', 'lore', 'diagram', 'widget', 'figure', 'facts', 'timeline'] as const;
 
 /**
- * Options: diagramsDir is the folder :::diagram reads (the app's diagrams in the
- * catalog); widgets lists the names :::widget accepts.
+ * Options: diagramsDirs returns, for the page being rendered, the folders
+ * :::diagram looks in, in order (its language's diagrams, then the default
+ * language's); widgets lists the names :::widget accepts.
  */
-export interface BlockOptions { diagramsDir?: string; widgets?: readonly string[] }
+export interface BlockOptions { diagramsDirs?: (file: string | undefined) => string[]; widgets?: readonly string[] }
 
-export const contentBlocks = ({ diagramsDir, widgets = [] }: BlockOptions = {}) => defineMdastPlugin({
+export const contentBlocks = ({ diagramsDirs, widgets = [] }: BlockOptions = {}) => defineMdastPlugin({
   name: '42chain-content-blocks',
   containerDirective(node, ctx) {
     const children = node.children as Node[];
@@ -107,9 +108,9 @@ export const contentBlocks = ({ diagramsDir, widgets = [] }: BlockOptions = {}) 
         const caption = needLabel('the caption');
         const name = node.attributes?.name;
         if (!name || !/^[a-z0-9-]+$/.test(name)) fail(ctx, node, 'needs a name: :::diagram[Caption]{name="file-name"}.');
-        if (!diagramsDir) fail(ctx, node, 'diagrams are not enabled for this app (no diagramsDir).');
-        const dir = diagramsDir;
-        const file = ['html', 'svg'].map((ext) => join(dir, `${name}.${ext}`)).find((f) => existsSync(f));
+        if (!diagramsDirs) fail(ctx, node, 'diagrams are not enabled for this app (no diagramsDirs).');
+        const dirs = diagramsDirs(ctx.fileURL ? decodeURIComponent(ctx.fileURL.pathname) : undefined);
+        const file = dirs.flatMap((dir) => ['html', 'svg'].map((ext) => join(dir, `${name}.${ext}`))).find((f) => existsSync(f));
         if (!file) fail(ctx, node, `no file diagrams/${name}.html or .svg in the catalog.`);
         const body = readFileSync(file, 'utf8').replace(/<!--[\s\S]*?-->/g, '').trim();
         const text = esc(ctx.textContent(caption as never).trim());

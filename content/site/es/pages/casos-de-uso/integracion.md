@@ -6,7 +6,7 @@ weight: 50
 ---
 
 :::figure[Imagen ilustrativa. Foto: Trnava University, Unsplash.]{ratio="wide"}
-![Mesa de laboratorio con un microscopio y equipos de análisis](../../images/casos/integracion.jpg)
+![Mesa de laboratorio con un microscopio y equipos de análisis](../../../images/casos/integracion.jpg)
 :::
 
 ## El problema {#problema}

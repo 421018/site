@@ -22,19 +22,19 @@ uses:
   stories:
     - title: Un título que se verifica solo.
       text: Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.
-      image: ./images/casos/registros.jpg
+      image: ../images/casos/registros.jpg
       alt: Diploma enmarcado con un sello dorado
       credit: "Foto: Quilia, Unsplash"
       href: /casos-de-uso/registros-verificables
     - title: Un origen que varias partes comparten.
       text: Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.
-      image: ./images/casos/trazabilidad.jpg
+      image: ../images/casos/trazabilidad.jpg
       alt: Saco de yute lleno de granos de café
       credit: "Foto: Tatiana Fernández R, Unsplash"
       href: /casos-de-uso/trazabilidad
     - title: Un historial de mantenimiento que nadie reescribe.
       text: Un municipio y sus contratistas registran cada intervención en el alumbrado o en la red de agua. Todas las partes ven el mismo historial, firmado y fechado.
-      image: ./images/casos/infraestructura.jpg
+      image: ../images/casos/infraestructura.jpg
       alt: Farola de doble brazo encendida al atardecer
       credit: "Foto: Kim R-K, Unsplash"
       href: /casos-de-uso/infraestructura

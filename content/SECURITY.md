@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository contains the **content** of the 42 Chain website and documentation. Vulnerabilities in the protocol, the node software or the console are reported to the maintainers of that code, as described on the site's security page ([`/codigo-abierto/seguridad`](site/pages/codigo-abierto/seguridad.md)).
+This repository contains the **content** of the 42 Chain website and documentation. Vulnerabilities in the protocol, the node software or the console are reported to the maintainers of that code, as described on the site's security page ([`/codigo-abierto/seguridad`](site/es/pages/codigo-abierto/seguridad.md)).
 
 Relevant reports for this repository include, for example:
 

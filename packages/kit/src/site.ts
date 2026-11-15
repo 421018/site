@@ -6,11 +6,13 @@
 import { execFileSync } from 'node:child_process';
 import { basename, dirname, resolve } from 'node:path';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
+import { defaultLang, homeHref, langPrefix, languages } from './i18n';
 
 export type Page = CollectionEntry<'pages'>;
 export type Link = { href: string; label: string };
 export type Section = {
   key: string;
+  lang: string;
   label: string;
   weight: number;
   href: string;
@@ -26,82 +28,125 @@ export type Section = {
   attached: Section[];
 };
 
-const sectionOf = (p: Page) => p.id.split('/')[0];
-const isIndex = (p: Page) => !p.id.includes('/');
+/** Language of a page: the first segment of its id (es/protocolo/consenso → es). */
+export const pageLang = (p: Page) => p.id.split('/')[0];
+/** Path of a page inside its language: es/protocolo/consenso → protocolo/consenso. */
+export const pagePath = (p: Page) => p.id.split('/').slice(1).join('/');
+const sectionOf = (p: Page) => pagePath(p).split('/')[0];
+const isIndex = (p: Page) => !pagePath(p).includes('/');
 /** 0 for a section's index, 1 for a page or a group's index, 2 for a page inside a group. */
-const depthOf = (p: Page) => p.id.split('/').length - 1;
+const depthOf = (p: Page) => pagePath(p).split('/').length - 1;
 /** The page's slug at the section level, or its group's slug. */
-const topOf = (p: Page) => p.id.split('/')[1] ?? '';
-export const hrefOf = (p: Page) => '/' + p.id;
+const topOf = (p: Page) => pagePath(p).split('/')[1] ?? '';
+export const hrefOf = (p: Page) => `${langPrefix(pageLang(p))}/${pagePath(p)}`;
 export const menuLabel = (p: Page) => p.data.menuTitle ?? p.data.title;
 
-let cache: Promise<Map<string, Section>> | undefined;
+let cache: Promise<Map<string, Map<string, Section>>> | undefined;
 
-/** All sections, validated. Throws with a clear message on inconsistent content. */
-export function getSections(): Promise<Map<string, Section>> {
+/** Sections of every language, validated. Throws with a clear message on inconsistent content. */
+function allSections() {
   return (cache ??= build());
+}
+
+/** The sections of one language. */
+export async function getSections(lang: string): Promise<Map<string, Section>> {
+  return (await allSections()).get(lang) ?? new Map();
+}
+
+/** Every page of every language that is published (for getStaticPaths). */
+export async function getAllPages(): Promise<Page[]> {
+  return [...(await allSections()).values()].flatMap((m) => [...m.values()].flatMap((s) => s.pages));
 }
 
 async function build() {
   const pages = await getCollection('pages', (p) => import.meta.env.DEV || !p.data.draft);
   const errors: string[] = [];
-  const sections = new Map<string, Section>();
+  const byLang = new Map<string, Map<string, Section>>(languages.map((l) => [l, new Map()]));
 
   for (const p of pages) {
-    if (p.id === '') errors.push('pages/index.md: the home page is edited in the catalog\'s home.md, not in pages/.');
+    const lang = pageLang(p);
+    const sections = byLang.get(lang);
+    if (!sections) { errors.push(`${p.filePath}: "${lang}" is not a language of this app (${languages.join(', ')}).`); continue; }
+    if (pagePath(p) === '') errors.push(`${p.filePath}: the home page is edited in the language's home.md, not in pages/.`);
+    if (lang === defaultLang && p.data.translationOf) errors.push(`${p.filePath}: "translationOf" is only for languages other than ${defaultLang}.`);
     if (isIndex(p)) {
       const s = p.data.section;
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
-      sections.set(p.id, {
-        key: p.id, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
-        numbered: s.numbered, sequential: s.sequential, home: p.id, pages: [], links: s.links, attached: [],
+      sections.set(pagePath(p), {
+        key: pagePath(p), lang, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
+        numbered: s.numbered, sequential: s.sequential, home: pagePath(p), pages: [], links: s.links, attached: [],
       });
     } else if (p.data.section) {
       errors.push(`${p.filePath}: "section:" is only allowed in the folder's index.md.`);
     }
   }
+  const originals = new Set(pages.filter((p) => pageLang(p) === defaultLang).map(pagePath));
   for (const p of pages) {
+    const sections = byLang.get(pageLang(p));
+    if (!sections) continue;
+    const t = p.data.translationOf;
+    if (t && !originals.has(t)) errors.push(`${p.filePath}: translationOf "${t}" is not a page in ${defaultLang}.`);
     if (depthOf(p) > 2) errors.push(`${p.filePath}: pages can be nested one level deep at most (section/group/page).`);
     const s = sections.get(sectionOf(p));
     if (!s) { if (!isIndex(p)) errors.push(`${p.filePath}: folder "${sectionOf(p)}" has no index.md.`); continue; }
     s.pages.push(p);
   }
-  for (const s of sections.values()) {
-    // A group is a folder inside a section (section/group/page.md); its index.md
-    // (section/group) is the group's own page and sets its position.
-    const groupWeight = new Map<string, number>();
-    for (const p of s.pages) if (depthOf(p) === 1) groupWeight.set(topOf(p), p.data.weight);
-    for (const p of s.pages) if (depthOf(p) === 2 && !groupWeight.has(topOf(p))) errors.push(`${p.filePath}: group folder "${s.key}/${topOf(p)}" needs an index.md.`);
-    s.pages.sort((a, b) =>
-      Number(!isIndex(a)) - Number(!isIndex(b)) ||
-      (groupWeight.get(topOf(a)) ?? 0) - (groupWeight.get(topOf(b)) ?? 0) ||
-      topOf(a).localeCompare(topOf(b)) ||
-      depthOf(a) - depthOf(b) ||
-      a.data.weight - b.data.weight ||
-      a.id.localeCompare(b.id));
-    const parentKey = pages.find((p) => p.id === s.key)?.data.section?.attachTo;
-    if (!parentKey) continue;
-    const parent = sections.get(parentKey);
-    if (!parent) { errors.push(`pages/${s.key}/index.md: attachTo "${parentKey}" is not a section.`); continue; }
-    s.home = parent.key;
-    s.accent ??= parent.accent;
-    s.ink ??= parent.ink;
-    parent.attached.push(s);
+  for (const sections of byLang.values()) {
+    for (const s of sections.values()) {
+      // A group is a folder inside a section (section/group/page.md); its index.md
+      // (section/group) is the group's own page and sets its position.
+      const groupWeight = new Map<string, number>();
+      for (const p of s.pages) if (depthOf(p) === 1) groupWeight.set(topOf(p), p.data.weight);
+      for (const p of s.pages) if (depthOf(p) === 2 && !groupWeight.has(topOf(p))) errors.push(`${p.filePath}: group folder "${s.key}/${topOf(p)}" needs an index.md.`);
+      s.pages.sort((a, b) =>
+        Number(!isIndex(a)) - Number(!isIndex(b)) ||
+        (groupWeight.get(topOf(a)) ?? 0) - (groupWeight.get(topOf(b)) ?? 0) ||
+        topOf(a).localeCompare(topOf(b)) ||
+        depthOf(a) - depthOf(b) ||
+        a.data.weight - b.data.weight ||
+        a.id.localeCompare(b.id));
+      const parentKey = s.pages[0]?.data.section?.attachTo;
+      if (!parentKey) continue;
+      const parent = sections.get(parentKey);
+      if (!parent) { errors.push(`${s.lang}/pages/${s.key}/index.md: attachTo "${parentKey}" is not a section.`); continue; }
+      s.home = parent.key;
+      s.accent ??= parent.accent;
+      s.ink ??= parent.ink;
+      parent.attached.push(s);
+    }
+    for (const s of sections.values()) s.attached.sort((a, b) => a.weight - b.weight);
   }
-  for (const s of sections.values()) s.attached.sort((a, b) => a.weight - b.weight);
 
   if (errors.length) throw new Error('Invalid content:\n  ' + errors.join('\n  '));
-  return sections;
+  return byLang;
 }
+
+/**
+ * The versions of a page in every language that has one, as { lang: href }.
+ * Pages are matched through `translationOf` (the path in the default language).
+ */
+export async function getAlternates(page: Page): Promise<Record<string, string>> {
+  const all = await getAllPages();
+  const key = pageLang(page) === defaultLang ? pagePath(page) : page.data.translationOf;
+  const out: Record<string, string> = {};
+  if (!key) return { [pageLang(page)]: hrefOf(page) };
+  for (const p of all) {
+    if ((pageLang(p) === defaultLang && pagePath(p) === key) || (pageLang(p) !== defaultLang && p.data.translationOf === key)) out[pageLang(p)] = hrefOf(p);
+  }
+  return out;
+}
+
+/** Home pages of every language, as { lang: href } (alternates of the home and 404 pages). */
+export const homeAlternates = () => Object.fromEntries(languages.map((l) => [l, homeHref(l)]));
 
 /** Sections shown in the main menu and footer, in order. */
-export async function getMenu(): Promise<Section[]> {
-  return [...(await getSections()).values()].filter((s) => s.home === s.key).sort((a, b) => a.weight - b.weight);
+export async function getMenu(lang: string): Promise<Section[]> {
+  return [...(await getSections(lang)).values()].filter((s) => s.home === s.key).sort((a, b) => a.weight - b.weight);
 }
 
-export async function getSection(key: string): Promise<Section> {
-  const s = (await getSections()).get(key);
-  if (!s) throw new Error(`Unknown section: ${key}`);
+export async function getSection(lang: string, key: string): Promise<Section> {
+  const s = (await getSections(lang)).get(key);
+  if (!s) throw new Error(`Unknown section: ${lang}/${key}`);
   return s;
 }
 
@@ -131,8 +176,8 @@ export function prevNext(s: Section, page: Page) {
 }
 
 /** Footer columns: one per main-menu section with its pages, links and attached section index pages. */
-export async function getFooter() {
-  return (await getMenu()).map((s) => ({
+export async function getFooter(lang: string) {
+  return (await getMenu(lang)).map((s) => ({
     label: s.label,
     links: [
       ...s.pages.filter((p) => depthOf(p) < 2).map((p) => ({ href: hrefOf(p), label: menuLabel(p) })),
@@ -159,9 +204,9 @@ export function lastCommitDate(filePath: string | undefined): Date | undefined {
   }
 }
 
-/** Site-wide visitor-facing text (the app's site.md in the catalog). */
-export async function getSiteText() {
-  const entry = await getEntry('site', 'site');
-  if (!entry) throw new Error("Missing the app's site.md in the content catalog");
+/** Site-wide visitor-facing text of a language (the app's <lang>/site.md in the catalog). */
+export async function getSiteText(lang: string) {
+  const entry = await getEntry('site', lang);
+  if (!entry) throw new Error(`Missing the app's ${lang}/site.md in the content catalog`);
   return entry.data;
 }

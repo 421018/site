@@ -3,18 +3,19 @@
 // settings. The index is built after the site (`pagefind --site dist`) and
 // served from the site itself: no external service. The Pagefind script is
 // loaded only when the dialog opens. Open with the button, "/" or Ctrl/⌘+K.
-interface Props { label: string }
-const { label } = Astro.props;
+interface Props { text: { label: string; close: string; noResults: string; unavailable: string } }
+const { text } = Astro.props;
+const { label } = text;
 ---
 <button type="button" class="nl sbtn" data-search-open aria-haspopup="dialog">
   <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M11 11 L14.5 14.5" stroke="currentColor" stroke-width="1.6"></path></svg>
   <span>{label}</span>
 </button>
-<dialog class="search" aria-label={label} data-search>
+<dialog class="search" aria-label={label} data-search data-no-results={text.noResults} data-unavailable={text.unavailable}>
   <!-- Results are created by the script below, so their styles are :global() inside .sres. -->
   <div class="sbox">
     <input type="search" placeholder={label} autocomplete="off" spellcheck="false" data-search-input />
-    <button type="button" class="sclose" data-search-close aria-label="Cerrar">Esc</button>
+    <button type="button" class="sclose" data-search-close aria-label={text.close}>Esc</button>
   </div>
   <p class="smsg" role="status" data-search-msg></p>
   <ol class="sres" data-search-results></ol>
@@ -63,7 +64,7 @@ const { label } = Astro.props;
         const res = await (await load()).search(q);
         const data = await Promise.all(res.results.slice(0, 8).map((r) => r.data()));
         if (mine !== seq) return;
-        msg.textContent = data.length ? '' : 'Sin resultados.';
+        msg.textContent = data.length ? '' : dialog.dataset.noResults ?? '';
         list.replaceChildren(...data.map((d) => {
           const li = document.createElement('li');
           const a = document.createElement('a');
@@ -77,7 +78,7 @@ const { label } = Astro.props;
           return li;
         }));
       } catch {
-        if (mine === seq) msg.textContent = 'La búsqueda está disponible en la versión publicada del sitio.';
+        if (mine === seq) msg.textContent = dialog.dataset.unavailable ?? '';
       }
     };
     document.querySelectorAll('[data-search-open]').forEach((b) => b.addEventListener('click', open));

@@ -1,0 +1,236 @@
+---
+/**
+ * Home page layout. The texts come from the catalog's site/<lang>/home.md; this file only
+ * decides how they look.
+ */
+import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '@42chain/kit/layouts/Base.astro';
+import Header from '@42chain/kit/components/Header.astro';
+import Footer from '@42chain/kit/components/Footer.astro';
+import { langOf } from '@42chain/kit/i18n';
+import { homeAlternates } from '@42chain/kit/site';
+
+const lang = langOf(Astro);
+const entry = await getEntry('home', lang);
+if (!entry) throw new Error(`Missing site/${lang}/home.md in the content catalog`);
+const { title, description, hero, build, uses, people, start, name, closing } = entry.data;
+
+/** A line break in a YAML title becomes <br>. */
+const lines = (s: string) => s.trim().split('\n');
+/** Kickers are numbered in page order: 01 — …, 02 — … */
+const kicker = (n: number, text: string) => `${String(n).padStart(2, '0')} — ${text}`;
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+/** Minimal highlighting for the config snippet: top-level lines, values and comments. */
+const highlight = (code: string) =>
+  code.trimEnd().split('\n').map((l) => {
+    if (/^\s*\/\//.test(l)) return `<span class="c">${esc(l)}</span>`;
+    if (/^\S/.test(l)) return `<span class="p">${esc(l)}</span>`;
+    const m = l.match(/^(\s*[\w$]+:\s*)(.+?)(,?)$/);
+    return m && !/^[{[]$/.test(m[2]) ? `${esc(m[1])}<span class="s">${esc(m[2])}</span>${m[3]}` : esc(l);
+  }).join('\n');
+const arrow = '<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg>';
+---
+<Base title={title} description={description} alternates={homeAlternates()}>
+<section class="hero" data-hero>
+<canvas aria-hidden="true" data-net></canvas>
+<div class="shade" aria-hidden="true"></div>
+<Header alternates={homeAlternates()} />
+<div class="copy">
+<p class="lbl fade" style="margin: 0 0 28px; display: inline-flex; align-items: center; gap: 12px; color: #C9D0D6; animation-delay: .15s"><span class="live"></span>{hero.eyebrow}</p>
+<h1 class="fade" style="margin: 0; font-size: clamp(52px, 7.6vw, 116px); font-weight: 600; line-height: .95; letter-spacing: -0.05em; animation-delay: .25s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h1>
+<p class="fade" style="margin: 32px 0 0; max-width: 640px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: #C9D0D6; animation-delay: .4s">{hero.lead}</p>
+<div class="fade" style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 40px; animation-delay: .55s">
+<a class="btn btn-p" href={hero.primary.href}>{hero.primary.label} <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg></a>
+<a class="btn btn-g" href={hero.secondary.href}>{hero.secondary.label}</a>
+</div>
+{hero.specs && <ul class="specs fade" style="animation-delay: .7s">{hero.specs.map((s) => <li>{s}</li>)}</ul>}
+</div>
+{hero.chainLabel && <div class="chainstrip" aria-hidden="true"><span class="cs-l">{hero.chainLabel}</span><div class="cs-blocks" data-blocks></div></div>}
+</section>
+
+<section id="usos" class="paper">
+<div class="wrap">
+<p class="k">{kicker(1, uses.kicker)}</p>
+<h2 class="h2" style="max-width: 900px">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{uses.lead && <p class="lead">{uses.lead}</p>}
+<div class="stories">
+{uses.stories.map((s, i) => (
+  <div class="story rv">
+    {s.image && <figure class="sp"><Image src={s.image} alt={s.alt!} widths={[480, 800]} sizes="(max-width: 900px) 100vw, 33vw" /><figcaption>{s.credit}</figcaption></figure>}
+    <span class="n">{String(i + 1).padStart(2, '0')}</span>
+    <h3>{s.href ? <a href={s.href}>{s.title}</a> : s.title}</h3>
+    <p>{s.text}</p>
+  </div>
+))}
+</div>
+{uses.link && <a class="txl" href={uses.link.href} style="margin-top: 56px">{uses.link.label} <Fragment set:html={arrow} /></a>}
+</div>
+</section>
+
+<section id="compatibilidad">
+<div class="wrap">
+<div class="g2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center">
+<div>
+<p class="k">{kicker(2, build.kicker)}</p>
+<h2 class="h2">{lines(build.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{build.lead && <p class="lead">{build.lead}</p>}
+{build.link && <a class="txl" href={build.link.href}>{build.link.label} <Fragment set:html={arrow} /></a>}
+</div>
+<div class="code" role="img" aria-label={build.code.label}>
+<div class="bar"><i></i><i></i><i></i><span style="margin-left: 8px">{build.code.file}</span></div>
+<pre set:html={highlight(build.code.text)}></pre>
+</div>
+</div>
+<div class="facts">
+{build.facts.map((f) => <div><b>{f.value}</b><span>{f.label}</span></div>)}
+</div>
+</div>
+</section>
+
+<section id="quien">
+<div class="wrap">
+<p class="k">{kicker(3, people.kicker)}</p>
+<h2 class="h2" style="max-width: 900px">{lines(people.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{people.lead && <p class="lead">{people.lead}</p>}
+<div class="rows">
+{people.rows.map((r) => <div class="row"><b>{r.who}</b><span>{r.what}</span></div>)}
+</div>
+{people.link && <a class="txl" href={people.link.href}>{people.link.label} <Fragment set:html={arrow} /></a>}
+</div>
+</section>
+
+<section id="empezar">
+<div class="wrap" style="padding-top: 40px">
+<p class="k">{kicker(4, start.kicker)}</p>
+<h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{start.lead && <p class="lead">{start.lead}</p>}
+<div style="margin-top: 56px; border-bottom: 1px solid #1A1F26">
+{start.paths.map((p) => <a class="path" href={p.href}><b>{p.label}</b><span>{p.text}</span><Fragment set:html={arrow} /></a>)}
+</div>
+</div>
+</section>
+
+<section id="porque42">
+<div class="wrap" style="padding-bottom: 80px">
+<div class="g2" style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center">
+<div aria-hidden="true" class="big42">42</div>
+<div>
+<p class="k">{kicker(5, name.kicker)}</p>
+<h2 class="h2">{lines(name.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{name.lead && <p class="lead">{name.lead}</p>}
+{name.link && <a class="txl" href={name.link.href}>{name.link.label} <Fragment set:html={arrow} /></a>}
+</div>
+</div>
+</div>
+</section>
+
+<Footer>
+  <div class="fcta">
+    <h2>{closing.title}</h2>
+    <div class="acts">
+      <a class="btn btn-p" href={closing.primary.href}>{closing.primary.label}</a>
+      <a class="btn btn-g" href={closing.secondary.href}>{closing.secondary.label}</a>
+    </div>
+  </div>
+</Footer>
+</Base>
+
+<style is:global>
+
+.k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc,#5BF0C8);margin:0 0 20px}
+.h2{margin:0;font-size:clamp(36px,4.2vw,60px);font-weight:600;letter-spacing:-0.035em;line-height:1.04}
+.lead{margin:24px 0 0;max-width:600px;font-size:18px;line-height:1.6;color:#AEB7C0}
+.wrap{max-width:1320px;margin:0 auto;padding:140px clamp(16px,4vw,56px);box-sizing:border-box}
+.code{border:1px solid #1E252D;border-radius:14px;background:#080B0F;overflow:hidden}
+.code .bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #1A1F26;font-family:var(--mono);font-size:12.5px;color:#8E98A3}
+.code .bar i{width:9px;height:9px;border-radius:50%;background:#232A33;display:inline-block}
+.code pre{margin:0;padding:22px 22px 26px;font-family:var(--mono);font-size:14.5px;line-height:1.75;color:#C9D0D6;overflow-x:auto}
+.code .c{color:#5F6873}.code .s{color:var(--acc,#5BF0C8)}.code .p{color:#8E98A3}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:72px;border-top:1px solid #1A1F26}
+.facts div{padding:28px 24px 0 0;display:flex;flex-direction:column;gap:8px}
+.facts b{font-size:32px;font-weight:600;letter-spacing:-0.03em;color:#EEF1F3}
+.facts span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8E98A3}
+.paper{background:#ECEBE6;color:#0B0D10}
+.paper .k{color:#0A7A5E}
+.paper .lead{color:#3A3F45}
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;margin-top:72px}
+.story{border-top:1px solid #0B0D10;padding-top:24px}
+.story .n{font-family:var(--mono);font-size:12.5px;color:#545A61}
+.story h3{margin:14px 0 12px;font-size:23px;font-weight:600;letter-spacing:-0.02em;line-height:1.2}
+.story p{margin:0;font-size:16px;line-height:1.65;color:#3A3F45}
+.story .sp{margin:0 0 20px}
+.story .sp img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px}
+.story .sp figcaption{margin-top:8px;font-family:var(--mono);font-size:11px;color:#6A7077}
+.story h3 a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.story h3 a:hover{border-bottom-color:currentColor}
+.rows{margin-top:64px;border-bottom:1px solid #1A1F26}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:32px;padding:26px 0;border-top:1px solid #1A1F26}
+.row b{font-size:21px;font-weight:600;letter-spacing:-0.02em;color:#EEF1F3}
+.row span{font-size:16.5px;line-height:1.6;color:#AEB7C0}
+.path{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) 24px;gap:32px;align-items:center;padding:26px 4px;border-top:1px solid #1A1F26;text-decoration:none;color:#EEF1F3;transition:background .25s,padding .3s}
+.path:hover{background:#0B0F14;padding-left:14px;color:#ffffff}
+.path b{font-size:21px;font-weight:600;letter-spacing:-0.02em}
+.path span{font-size:16px;line-height:1.55;color:#8E98A3}
+.path svg{color:#5F6873;transition:color .25s,transform .3s}
+.path:hover svg{color:var(--acc,#5BF0C8);transform:translateX(4px)}
+.paper .txl:hover{color:#0A7A5E}
+@media (max-width:900px){
+.stories{grid-template-columns:1fr;gap:36px}
+.facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+.row,.path{grid-template-columns:1fr;gap:6px}
+.path svg{display:none}
+.wrap{padding:96px 16px}
+}
+
+.hero{position:relative;min-height:clamp(720px,100svh,960px);display:flex;flex-direction:column;padding:22px clamp(16px,4vw,56px) 32px;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,10,.55) 0%,rgba(5,7,10,0) 30%,rgba(5,7,10,0) 60%,#05070A 100%);pointer-events:none}
+.hero .copy{position:relative;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1080px;padding:90px 0 130px}
+.specs{list-style:none;margin:36px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 0;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:#8A939C}
+.specs li{margin:0}
+.specs li+li::before{content:"·";margin:0 10px;color:#4A535C}
+.chainstrip{position:absolute;left:0;right:0;bottom:28px;padding:0 clamp(16px,4vw,56px);display:flex;align-items:center;gap:18px;pointer-events:none}
+.cs-l{flex:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#6A737C}
+.cs-blocks{flex:1;display:flex;justify-content:flex-end;gap:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}
+.blk{flex:none;display:flex;align-items:center}
+.blk b{display:flex;flex-direction:column;gap:2px;min-width:92px;padding:7px 10px;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(5,7,10,.55);font-family:var(--mono);font-weight:400;font-size:10.5px;line-height:1.3;color:#8A939C}
+.blk b i{font-style:normal;color:#C9D0D6}
+.blk::before{content:"";width:22px;height:1px;background:rgba(255,255,255,.18)}
+.blk.new b{border-color:var(--acc);color:#C9D0D6;animation:blkin .7s cubic-bezier(.16,1,.3,1)}
+.blk.new b i{color:var(--acc)}
+@keyframes blkin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:640px){.cs-l{display:none}.hero .copy{padding-bottom:110px}}
+.big42{font-family:var(--font);font-weight:600;font-size:clamp(200px,28vw,420px);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,#C4A7FF 70%,transparent);user-select:none;transition:-webkit-text-stroke-color .6s}
+.big42:hover{-webkit-text-stroke-color:#C4A7FF}
+@media (max-width:900px){.g2{grid-template-columns:1fr !important}.hero{min-height:720px}}
+</style>
+
+<script>
+  import { startNetwork } from '../scripts/hero-network';
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-net]');
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const net = canvas && hero ? startNetwork(canvas, hero) : undefined;
+
+  // Illustrative strip of chained blocks: a new block about every two seconds,
+  // each showing the start of its own hash and of the previous one.
+  const strip = document.querySelector<HTMLElement>('[data-blocks]');
+  if (strip) {
+    const hex = (n: number) => Array.from(crypto.getRandomValues(new Uint8Array(n)), (b) => b.toString(16).padStart(2, '0')).join('');
+    let prev = hex(3);
+    const add = (animate: boolean) => {
+      const h = hex(3);
+      const el = document.createElement('span');
+      el.className = animate ? 'blk new' : 'blk';
+      el.innerHTML = `<b><i>${h}…</i>← ${prev}…</b>`;
+      prev = h;
+      strip.querySelectorAll('.blk.new').forEach((b) => b.classList.remove('new'));
+      strip.appendChild(el);
+      while (strip.children.length > 12) strip.firstElementChild!.remove();
+    };
+    for (let i = 0; i < 9; i++) add(false);
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(() => { add(true); net?.flash(); }, 2200);
+    }
+  }
+</script>

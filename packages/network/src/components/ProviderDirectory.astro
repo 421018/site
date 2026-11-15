@@ -2,20 +2,25 @@
 // Public provider directory (providers.yaml), grouped by service (services.yaml)
 // and filtered by the network chosen with <NetworkSwitch />. Endpoints get a copy
 // button; explorers and faucets, which are web pages, get a link.
-import { getDirectory } from '../directory';
+import { getDirectory, pick } from '../directory';
+import { langOf } from '@42chain/kit/i18n';
+import { fill, ui } from '@42chain/kit/dictionary';
+const lang = langOf(Astro);
+const t = ui(lang).network;
+const i18n = JSON.stringify({ copy: t.copy, copied: t.copied, manual: t.copyManual });
 const { networks, services, providers } = await getDirectory();
 const isPage = (service: string) => service === 'explorer' || service === 'faucet';
 const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 ---
 {services.map((s) => (
-  <section class="svc" aria-labelledby={s.anchor}>
-    <h3 id={s.anchor}>{s.label}</h3>
-    <p class="svc-d">{s.description}</p>
+  <section class="svc" aria-labelledby={pick(s.anchor, lang)} data-i18n={i18n}>
+    <h3 id={pick(s.anchor, lang)}>{pick(s.label, lang)}</h3>
+    <p class="svc-d">{pick(s.description, lang)}</p>
     {networks.map((n) => {
       const rows = providers.filter((p) => p.service === s.id && p.network === n.id);
       return (
         <div data-for-net={n.id}>
-          <p class="net-cap">{n.label}</p>
+          <p class="net-cap">{pick(n.label, lang)}</p>
           {rows.length ? (
             <ul class="rows">
               {rows.map((p) => (
@@ -23,12 +28,12 @@ const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '')
                   <span class="who">{p.provider}</span>
                   {isPage(s.id)
                     ? <a class="url" href={p.url}>{host(p.url)} ↗</a>
-                    : <><code class="url">{p.url}</code><button type="button" class="cp" data-copy={p.url} aria-label={`Copiar ${p.url}`}>Copiar</button></>}
+                    : <><code class="url">{p.url}</code><button type="button" class="cp" data-copy={p.url} aria-label={fill(t.copyLabel, { url: p.url })}>{t.copy}</button></>}
                 </li>
               ))}
             </ul>
           ) : (
-            <p class="none">{s.emptyNote ?? `Todavía no hay proveedores de este servicio en la ${n.label.toLowerCase()}.`}</p>
+            <p class="none">{s.emptyNote ? pick(s.emptyNote, lang) : fill(t.noProviders, { network: pick(n.label, lang).toLowerCase() })}</p>
           )}
         </div>
       );
@@ -59,14 +64,15 @@ const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('button[data-copy]').forEach((b) => {
+    const t = JSON.parse(b.closest<HTMLElement>('[data-i18n]')!.dataset.i18n!) as { copy: string; copied: string; manual: string };
     b.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(b.dataset.copy!);
-        b.textContent = 'Copiado';
+        b.textContent = t.copied;
         b.classList.add('ok');
-        setTimeout(() => { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1600);
+        setTimeout(() => { b.textContent = t.copy; b.classList.remove('ok'); }, 1600);
       } catch {
-        b.textContent = 'Selecciona y copia';
+        b.textContent = t.manual;
       }
     });
   });

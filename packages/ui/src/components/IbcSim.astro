@@ -2,24 +2,30 @@
 // Illustrative IBC transfer of 10 units from 42 to "red B", step by step, with an
 // alternative path where no relayer delivers the packet and the transfer times out.
 // Steps and wording follow protocolo/interoperabilidad.md.
+// Text: catalog ui/<lang>.yaml → ibc.
+import { langOf } from '@42chain/kit/i18n';
+import { ui } from '@42chain/kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.ibc;
+const i18n = JSON.stringify({ steps: t.steps, valid: t.validProof });
 ---
-<div class="widget ibc" data-ibc>
-  <div class="w-head"><span class="w-tag">Simulador interactivo</span><span class="w-meta">Transferencia de 10 unidades por IBC</span></div>
+<div class="widget ibc" data-ibc data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{t.meta}</span></div>
 
   <div class="stage" aria-hidden="true">
     <div class="net">
       <span class="nn">42</span>
-      <div class="acct"><span>Cuenta de origen</span><b data-src>100</b></div>
-      <div class="acct"><span>Reserva de la conexión</span><b data-esc>0</b></div>
+      <div class="acct"><span>{t.source}</span><b data-src>100</b></div>
+      <div class="acct"><span>{t.escrow}</span><b data-esc>0</b></div>
     </div>
     <div class="lane">
-      <span class="lane-l">Retransmisor</span>
+      <span class="lane-l">{t.relayer}</span>
       <span class="pkt" data-pkt></span>
     </div>
     <div class="net">
-      <span class="nn">Red B</span>
-      <div class="acct"><span>Cuenta de destino</span><b data-dst>0</b></div>
-      <div class="acct"><span>Cliente ligero de 42</span><b data-lc>—</b></div>
+      <span class="nn">{t.networkB}</span>
+      <div class="acct"><span>{t.destination}</span><b data-dst>0</b></div>
+      <div class="acct"><span>{t.lightClient}</span><b data-lc>—</b></div>
     </div>
   </div>
 
@@ -29,11 +35,11 @@
   </div>
 
   <div class="ctl">
-    <button type="button" data-prev>← Anterior</button>
-    <button type="button" data-next>Siguiente →</button>
-    <label class="tgl"><input type="checkbox" data-timeout /> <span>Simular que no se entrega</span></label>
+    <button type="button" data-prev>{t.previous}</button>
+    <button type="button" data-next>{t.next}</button>
+    <label class="tgl"><input type="checkbox" data-timeout /> <span>{t.timeoutToggle}</span></label>
   </div>
-  <p class="w-note">Ilustrativo. Un retransmisor puede entregar el mensaje o no entregarlo, pero no puede alterarlo.</p>
+  <p class="w-note">{t.note}</p>
 </div>
 
 <style>
@@ -63,23 +69,21 @@
 
 <script>
   type S = { t: string; d: string; src: number; esc: number; dst: number; lc: string; pkt: string };
-  const start: S = { t: 'Inicio', d: 'La cuenta de origen tiene 100 unidades en 42.', src: 100, esc: 0, dst: 0, lc: '—', pkt: '' };
-  const locked: S = { t: '1. Bloqueo', d: 'La cuenta envía la transferencia. El protocolo bloquea 10 unidades en la reserva de la conexión, dentro de 42.', src: 90, esc: 10, dst: 0, lc: '—', pkt: 'a' };
-  const ok: S[] = [
-    start,
-    locked,
-    { t: '2. Traslado', d: 'Un retransmisor lleva el mensaje a la red B, junto con la prueba de que las unidades quedaron bloqueadas.', src: 90, esc: 10, dst: 0, lc: '—', pkt: 'mid' },
-    { t: '3. Verificación', d: 'La red B comprueba la prueba con su cliente ligero de 42. Nadie tiene que confiar en el retransmisor.', src: 90, esc: 10, dst: 0, lc: 'Prueba válida', pkt: 'b' },
-    { t: '4. Representación', d: 'La red B crea 10 unidades que representan a las bloqueadas y las entrega en la cuenta de destino.', src: 90, esc: 10, dst: 10, lc: 'Prueba válida', pkt: 'b' },
-    { t: '5. Confirmación', d: 'Un retransmisor lleva la confirmación de vuelta a 42. La transferencia está completa.', src: 90, esc: 10, dst: 10, lc: 'Prueba válida', pkt: 'ack' },
-  ];
-  const timeout: S[] = [
-    start,
-    locked,
-    { t: '2. Sin entrega', d: 'Ningún retransmisor entrega el mensaje antes del plazo fijado en la transferencia.', src: 90, esc: 10, dst: 0, lc: '—', pkt: 'lost' },
-    { t: '3. Vencimiento', d: 'La transferencia vence y las 10 unidades vuelven a la cuenta de origen. En ningún momento pasaron a manos de un tercero.', src: 100, esc: 0, dst: 0, lc: '—', pkt: '' },
-  ];
+  type Step = { title: string; text: string };
   document.querySelectorAll<HTMLElement>('[data-ibc]').forEach((root) => {
+    const { steps: x, valid } = JSON.parse(root.dataset.i18n!) as { steps: Record<string, Step>; valid: string };
+    const step = ({ title: t, text: d }: Step, src: number, esc: number, dst: number, lc: string, pkt: string): S => ({ t, d, src, esc, dst, lc, pkt });
+    const start = step(x.start, 100, 0, 0, '—', '');
+    const locked = step(x.locked, 90, 10, 0, '—', 'a');
+    const ok: S[] = [
+      start,
+      locked,
+      step(x.relayed, 90, 10, 0, '—', 'mid'),
+      step(x.verified, 90, 10, 0, valid, 'b'),
+      step(x.minted, 90, 10, 10, valid, 'b'),
+      step(x.acknowledged, 90, 10, 10, valid, 'ack'),
+    ];
+    const timeout: S[] = [start, locked, step(x.lost, 90, 10, 0, '—', 'lost'), step(x.expired, 100, 0, 0, '—', '')];
     const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
     const prev = root.querySelector<HTMLButtonElement>('[data-prev]')!;
     const next = root.querySelector<HTMLButtonElement>('[data-next]')!;

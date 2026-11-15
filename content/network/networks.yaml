@@ -4,7 +4,7 @@
 # The first network is the one shown by default.
 
 - id: mainnet
-  label: Red principal
+  label: { es: Red principal, en: Mainnet }
   name: 42 Chain
   evmChainId: 421018
   chainId: infinite_421018-1
@@ -15,7 +15,7 @@
   data: https://assets.infinitedrive.xyz/mainnet/network-data.json
 
 - id: testnet
-  label: Red de pruebas
+  label: { es: Red de pruebas, en: Testnet }
   name: 42 Chain Testnet
   evmChainId: 421018001
   chainId: infinite_421018001-1

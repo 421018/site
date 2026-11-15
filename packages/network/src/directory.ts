@@ -7,6 +7,10 @@
 import { readFileSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { dataFile } from './schemas';
+import { defaultLang } from '@42chain/kit/i18n';
+
+/** A localized value in the page's language, or in the default language. */
+export const pick = (value: Record<string, string>, lang: string) => value[lang] ?? value[defaultLang];
 
 export type Network = CollectionEntry<'networks'>['data'];
 export type Service = CollectionEntry<'services'>['data'];

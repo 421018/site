@@ -1,7 +1,9 @@
 ---
 import { getFooter, getSiteText } from '../site';
-const columns = await getFooter();
-const text = await getSiteText();
+import { langOf } from '../i18n';
+const lang = langOf(Astro);
+const columns = await getFooter(lang);
+const text = await getSiteText(lang);
 ---
 <footer class="site-footer">
   <div class="inner">

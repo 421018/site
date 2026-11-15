@@ -3,8 +3,8 @@
  * content.config.ts under these collection names, which the kit's navigation
  * reads: `pages` (interior pages) and `site` (site-wide text).
  *
- *   pages: defineCollection({ loader: pagesLoader(catalogPath('site', 'pages')), schema: pageSchema }),
- *   site: defineCollection({ loader: glob({ pattern: 'site.md', base: catalogPath('site') }), schema: siteTextSchema }),
+ *   pages: defineCollection({ loader: pagesLoader(catalogPath('site')), schema: pageSchema }),
+ *   site: defineCollection({ loader: perLanguage(catalogPath('site'), 'site.md'), schema: siteTextSchema }),
  *
  * The schemas are strict: a misspelled or missing field stops the build with
  * the file and field name.
@@ -52,25 +52,38 @@ export const pageSchema = z
     updated: z.coerce.date().optional(),
     /** Drafts are visible with `npm run dev` and left out of the published site. */
     draft: z.boolean().default(false),
+    /**
+     * Only in languages other than the default: the path of the page this one
+     * translates, in the default language (e.g. "protocolo/consenso"). Links the
+     * two versions in the language switcher and in search engines.
+     */
+    translationOf: z.string().optional(),
     section: sectionSchema.optional(),
   })
   .strict();
 
 /**
- * Loader for an app's pages folder in the catalog. The file path is the URL:
- * protocolo/index.md → protocolo, protocolo/consenso.md → protocolo/consenso,
- * construir/precompiles/index.md → construir/precompiles (a group inside a section).
+ * Loader for an app's pages in the catalog, every language at once. The id is
+ * the language and the URL path: es/pages/protocolo/consenso.md →
+ * es/protocolo/consenso, en/pages/protocol/index.md → en/protocol,
+ * es/pages/construir/precompiles/index.md → es/construir/precompiles (a group).
  */
 export const pagesLoader = (base: string) =>
   glob({
     // Plain Markdown only: content never carries code (widgets are ::: blocks).
-    pattern: '**/*.md',
+    pattern: '*/pages/**/*.md',
     base,
-    generateId: ({ entry }) => entry.replace(/\.md$/, '').replace(/(^|\/)index$/, ''),
+    generateId: ({ entry }) => entry.replace(/\.md$/, '').replace(/(^|\/)index$/, '').replace(/^([^/]+)\/pages\//, '$1/'),
   });
+
+/** Loader for a per-language file of an app (site.md, home.md); the id is the language: "es", "en". */
+export const perLanguage = (base: string, file: string) =>
+  glob({ pattern: `*/${file}`, base, generateId: ({ entry }) => entry.split('/')[0] });
 
 export const siteTextSchema = z
   .object({
+    /** Name of this language in itself, shown in the language switcher: "Español", "English". */
+    language: z.string(),
     name: z.string(),
     tagline: z.string(),
     description: z.string(),
@@ -79,10 +92,22 @@ export const siteTextSchema = z
         homeLink: z.string(),
         mainNav: z.string(),
         menuButton: z.string(),
+        /** Accessible name of the language switcher. */
+        languageNav: z.string(),
         /** Optional links after the main menu, e.g. back to the main site from the docs. */
         links: z.array(link).default([]),
-        /** Placeholder of the search field (apps with search enabled). */
-        search: z.string().optional(),
+        /** Search texts (apps with search enabled). */
+        search: z
+          .object({
+            /** Button label and placeholder of the search field. */
+            label: z.string(),
+            close: z.string(),
+            noResults: z.string(),
+            /** Shown when the index is missing (local development without a build). */
+            unavailable: z.string(),
+          })
+          .strict()
+          .optional(),
       })
       .strict(),
     footer: z.object({ credit: z.string(), license: z.string(), note: z.string() }).strict(),

@@ -15,10 +15,13 @@ export const dataFile = (name: 'networks' | 'services' | 'providers') => catalog
 
 const id = z.string().regex(/^[a-z0-9-]+$/);
 
+/** Visitor-facing text in every language: { es: "Red principal", en: "Mainnet" }. Missing languages fall back to the default one. */
+const localized = z.record(z.string().regex(/^[a-z]{2}$/, 'use a two-letter language code'), z.string());
+
 export const networkSchema = z
   .object({
     id,
-    label: z.string(),
+    label: localized,
     name: z.string(),
     evmChainId: z.number().int().positive(),
     chainId: z.string(),
@@ -31,7 +34,7 @@ export const networkSchema = z
   .strict();
 
 export const serviceSchema = z
-  .object({ id, anchor: z.string(), label: z.string(), description: z.string(), emptyNote: z.string().optional() })
+  .object({ id, anchor: localized, label: localized, description: localized, emptyNote: localized.optional() })
   .strict();
 
 export const providerSchema = z

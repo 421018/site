@@ -1,14 +1,23 @@
 ---
 import kit from 'virtual:42chain/kit';
 import { getMenu, getSiteText } from '../site';
+import { homeHref, langOf, languages } from '../i18n';
 import Search from './Search.astro';
-interface Props { current?: string }
-const { current } = Astro.props;
-const menu = await getMenu();
-const text = await getSiteText();
+interface Props {
+  current?: string;
+  /** The current page in other languages ({ lang: href }); languages without it link to their home page. */
+  alternates?: Record<string, string>;
+}
+const { current, alternates = {} } = Astro.props;
+const lang = langOf(Astro);
+const menu = await getMenu(lang);
+const text = await getSiteText(lang);
+const switcher = await Promise.all(
+  languages.filter((l) => l !== lang).map(async (l) => ({ lang: l, href: alternates[l] ?? homeHref(l), label: (await getSiteText(l)).language })),
+);
 ---
 <header class="site-header">
-  <a class="brand" href="/" aria-label={text.header.homeLink}>
+  <a class="brand" href={homeHref(lang)} aria-label={text.header.homeLink}>
     <span class="mark">42</span><span class="name">{text.name}</span>
   </a>
   <nav class="menu" aria-label={text.header.mainNav}>
@@ -16,7 +25,8 @@ const text = await getSiteText();
       <a class:list={['nl', { on: current === s.key }]} href={s.href} data-label={s.label} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
     ))}
     {text.header.links.map((l) => <a class="nl" href={l.href} data-label={l.label}>{l.label}</a>)}
-    {kit.search && text.header.search && <Search label={text.header.search} />}
+    {kit.search && text.header.search && <Search text={text.header.search} />}
+    {switcher.map((l) => <a class="nl lang" href={l.href} hreflang={l.lang} lang={l.lang} data-label={l.label} aria-label={`${text.header.languageNav}: ${l.label}`}>{l.lang.toUpperCase()}</a>)}
   </nav>
   {/* Narrow screens: the same links behind a disclosure (no script, CSP-safe). */}
   <details class="menu-m">
@@ -26,7 +36,8 @@ const text = await getSiteText();
         <a class:list={['ml', { on: current === s.key }]} href={s.href} aria-current={current === s.key ? 'true' : undefined}>{s.label}</a>
       ))}
       {text.header.links.map((l) => <a class="ml" href={l.href}>{l.label}</a>)}
-      {kit.search && text.header.search && <button type="button" class="ml" data-search-open>{text.header.search}</button>}
+      {kit.search && text.header.search && <button type="button" class="ml" data-search-open>{text.header.search.label}</button>}
+      {switcher.map((l) => <a class="ml" href={l.href} hreflang={l.lang} lang={l.lang}>{l.label}</a>)}
     </nav>
   </details>
 </header>
