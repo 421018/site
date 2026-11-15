@@ -118,23 +118,23 @@ Values in `[brackets]` are placeholders. The main ones:
 
 - `apps/*/src/config.ts`: domain, docs and console URLs, content repository. The domain also sets the sitemap and `robots.txt` URLs.
 - Network data: Chain IDs (EVM and native) for mainnet and testnet, endpoints, decimals and block time (`content/network/networks.yaml`).
-- Project channels: site, docs, repository and security email (`codigo-abierto/verificar.md`, `codigo-abierto/seguridad.md`).
+- Project channels: site, docs, repository and security email (`content/site/es/pages/open-source/verify.md`, `…/open-source/security.md`).
 - Repository URLs (`[organization]`) in `apps/*/src/config.ts` and `content/.github/ISSUE_TEMPLATE/config.yml`.
 - Copyright holder of the engine ("The 42 Chain contributors", provisional) in `LICENSE`, `NOTICE` and the legal page: confirm with legal review.
 - Contact emails in `content/SECURITY.md` (`[security email]`) and `content/CODE_OF_CONDUCT.md` (`[conduct email]`).
 - Licenses of the documentation site and the console (`legal/index.md`).
 - Hosting provider named in the privacy section (`legal/index.md`).
-- Custom implementation providers (`implementar/implementaciones.md`) and RPC/explorer providers (`implementar/conectarse.md`).
+- Custom implementation providers (`content/site/es/pages/use-cases/custom-implementations.md`) and RPC/explorer providers (`content/network/providers.yaml`).
 - Social sharing image (`og:image`).
 
 To find them all: `grep -rn "\[" content apps/*/src/config.ts LICENSE NOTICE`.
 
 ## Languages
 
-Spanish is the default language, served at the root; English is served under `/en` with translated URLs. Languages are set per app in `src/config.ts` (`SITE.defaultLang`, `SITE.languages`) and passed to the kit and to Astro's i18n.
+Spanish is the default language, served at the root; English is served under `/en`. Paths and anchors are English and identical in every language (`/protocol/consensus`, `/en/protocol/consensus`); old Spanish URLs redirect. Languages are set per app in `src/config.ts` (`SITE.defaultLang`, `SITE.languages`) and passed to the kit and to Astro's i18n.
 
-- **Catalog:** each app has a folder per language (`content/site/es/`, `content/site/en/`) with `site.md`, `home.md`, `pages/` and `diagrams/`; images are shared. Widget text lives in `content/ui/<lang>.yaml`; network data has per-language fields (`{ es, en }`).
-- **Engine:** `@42chain/kit/i18n` (`langOf(Astro)`, `langPrefix`, `homeHref`) resolves the language of the page from `Astro.currentLocale`. Page ids are `<lang>/<path>`; `site.ts` builds sections per language and links translations through `translationOf` (`getAlternates()`), which feed the language switcher in the header and the `hreflang` links. `@42chain/kit/dictionary` (`ui(lang)`, `fill()`) reads the widget text; strings needed by client scripts travel in a `data-i18n` attribute.
+- **Catalog:** each app has a folder per language (`content/site/es/`, `content/site/en/`) with `site.md`, `home.md`, `pages/`, `posts/` (site) and `diagrams/`; images are shared. A translation is the file at the same path in another language's folder. Widget text lives in `content/ui/<lang>.yaml`; network data has per-language fields (`{ es, en }`).
+- **Engine:** `@42chain/kit/i18n` (`langOf(Astro)`, `langPrefix`, `homeHref`) resolves the language of the page from `Astro.currentLocale`. Page ids are `<lang>/<path>`; `site.ts` builds sections per language and pairs translations by path (`getAlternates()`), which feed the language switcher in the header and the `hreflang` links. `@42chain/kit/dictionary` (`ui(lang)`, `fill()`) reads the widget text; strings needed by client scripts travel in a `data-i18n` attribute.
 - **Routes:** `[...slug].astro` serves every page of every language; `index.astro` and `404.astro` exist once per language (`src/pages/en/`), rendering the shared `Home.astro` and the kit's `NotFound.astro`.
 - **Adding a language:** add it to `SITE.languages` in both apps, create the catalog folders and `ui/<lang>.yaml`, add `src/pages/<lang>/index.astro` and `404.astro`, and run `npm run export:contract`.
 

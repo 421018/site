@@ -2,7 +2,7 @@
 
 The text and data of [42chain.org](https://42chain.org) and its documentation site. Everything here is plain Markdown and YAML: adding, editing, reordering or removing a page only means editing files in this repository. Menus, side indexes, previous/next links and footers are generated from them.
 
-The sites are in Spanish (the source language) and English. Each language has its own folder and its own, translated, URLs. This guide, front matter keys and block names are in English.
+The sites are in Spanish (the source language) and English. Each language has its own folder; paths and anchors are in English and the same in every language (`/protocol/consensus#round` in Spanish, `/en/protocol/consensus#round` in English). This guide, front matter keys and block names are in English.
 
 > **¿Prefieres leer en español?** [CONTRIBUTING.md](CONTRIBUTING.md) tiene una guía rápida para editar textos.
 
@@ -25,7 +25,7 @@ npm run validate
 | What | File |
 |---|---|
 | Interior pages | `site/<lang>/pages/<section>/<page>.md` |
-| Blog posts (Bitácora) | `site/<lang>/bitacora/<slug>.md` |
+| Blog posts and use cases | `site/<lang>/posts/<slug>.md` |
 | Home page text | `site/<lang>/home.md` |
 | Site-wide text: footer, page labels, 404 | `site/<lang>/site.md` |
 | Diagrams | `site/<lang>/diagrams/<name>.html` (or `.svg`) |
@@ -35,18 +35,18 @@ npm run validate
 | Network parameters, service kinds, providers | `network/networks.yaml`, `network/services.yaml`, `network/providers.yaml` |
 | Rules the content must follow | `contract/` (generated; don't edit by hand) |
 
-`<lang>` is `es` or `en` (see `contract/languages.json`). The file path is the page URL; Spanish is served at the root and English under `/en`:
+`<lang>` is `es` or `en` (see `contract/languages.json`). The file path is the page URL. Folder and file names are English and identical in every language; Spanish is served at the root and English under `/en`:
 
 | File | URL |
 |---|---|
-| `site/es/pages/protocolo/index.md` | `/protocolo` |
-| `site/es/pages/protocolo/consenso.md` | `/protocolo/consenso` |
+| `site/es/pages/protocol/index.md` | `/protocol` |
+| `site/es/pages/protocol/consensus.md` | `/protocol/consensus` |
 | `site/en/pages/protocol/consensus.md` | `/en/protocol/consensus` |
-| `docs/es/pages/construir/precompiles/index.md` | `docs.42chain.org/construir/precompiles` |
+| `docs/es/pages/build/precompiles/index.md` | `docs.42chain.org/build/precompiles` |
 
 ## Adding a page
 
-Create the file in its section folder, e.g. `site/es/pages/protocolo/staking-liquido.md`:
+Create the file in its section folder, e.g. `site/es/pages/protocol/liquid-staking.md`:
 
 ```md
 ---
@@ -55,7 +55,7 @@ summary: "One sentence that sums up the page. Shown under the title and to searc
 weight: 25           # order within the section (lower comes first)
 ---
 
-## Primera sección {#primera}
+## Primera sección {#first}
 
 Text…
 ```
@@ -71,11 +71,10 @@ The page shows up in the side index, in previous/next and in the footer.
 | `updated` | no | "Last reviewed" date. Defaults to the date of the file's last commit |
 | `draft` | no | `true` leaves the page out of the published site |
 | `icon`, `menuText` | no | Icon and short line of the page in the main menu panel (sections with `dropdown: true`) |
-| `translationOf` | in translations | Path of the Spanish page this one translates, e.g. `protocolo/consenso`. Links both versions in the language switcher and for search engines |
 
 ## Writing a blog post (Bitácora)
 
-Create `site/es/bitacora/<slug>.md`. The file name is the end of the URL.
+Create `site/es/posts/<slug>.md`, with an English file name: it is the end of the URL.
 
 ```md
 ---
@@ -89,26 +88,17 @@ credit: "Foto: Quilia, Unsplash"
 featured: false              # optional; the newest featured post leads the index
 ---
 
-## El problema {#problema}
+## El problema {#problem}
 ```
 
-Use cases (`caso-de-uso`) are served under `/casos-de-uso/<slug>` and listed in that section's footer column; every other category under `/bitacora/<slug>`. Posts use the same Markdown and `:::` blocks as pages, and their `##` headings make the "En esta entrada" index. Avances must describe facts that can be verified: versions, approved proposals, parameter changes.
+Use cases (`caso-de-uso`) are served under `/use-cases/<slug>`, shown in that section's gallery and listed in its footer column; every other category under `/log/<slug>`. Posts use the same Markdown and `:::` blocks as pages, and their `##` headings make the "En esta entrada" index. Avances must describe facts that can be verified: versions, approved proposals, parameter changes.
 
 ## Translating
 
-Spanish is the source. A translation is a page in another language's folder, with its own URL in that language and `translationOf` pointing to the Spanish page:
-
-```md
----
-title: "Consensus and staking"
-summary: "…"
-weight: 20
-translationOf: protocolo/consenso
----
-```
+Spanish is the source. A translation is the file at the **same path** in another language's folder: `site/en/pages/protocol/consensus.md` translates `site/es/pages/protocol/consensus.md`. Nothing else links them; the language switcher and search engines pair them by path.
 
 - Translate the section first: a page needs its section's `index.md` in the same language (with its own `section:` block).
-- Anchors are translated too: `## The active set {#active-set}`. Links inside a translation point to translated pages (`/en/protocol/consensus#why`); a page that is not translated yet can be linked in Spanish, marked "(in Spanish)".
+- Keep the anchors as they are (`## The active set {#active-set}`): they are English and shared by every language. Links inside a translation point to `/en/…`; a page that is not translated yet can be linked without the prefix (the Spanish page), marked "(in Spanish)".
 - A diagram with text needs a copy in `site/en/diagrams/` with the same name; until it exists, the Spanish one is shown.
 - Widgets and data views take their text from `ui/<lang>.yaml`, which must have exactly the keys of `ui/es.yaml`. In network data, visitor-facing fields have one value per language: `label: { es: Red principal, en: Mainnet }`.
 - Pages without a translation simply don't exist in that language: menus only list what is translated, and the language switcher leads to the other language's home page.
@@ -134,8 +124,8 @@ A section can contain one level of groups: a folder with its own `index.md` (e.g
 
 ## Writing
 
-- Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#canales}` is linked as `/codigo-abierto/verificar#canales`. Before renaming an anchor, search for links to it.
-- Internal links use absolute paths: `/protocolo/gobernanza#ciclo`. `/docs` and `/consola` go to the documentation and the console.
+- Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#channels}` is linked as `/open-source/verify#channels`. Before renaming an anchor, search for links to it.
+- Internal links use absolute paths: `/protocol/governance#lifecycle`. Links to the documentation are written `docs:/get-started/connect`, and from the documentation to the site `site:/protocol`. `/docs` and `/consola` go to the documentation and the console.
 - Small inline badge: `_Independiente_{.badge}`.
 - No HTML, scripts or MDX: special elements are `:::` blocks. The validator rejects `<script>`, `<style>`, `<iframe>`, event handlers and `.mdx` files.
 
@@ -147,7 +137,7 @@ Ningún canal del proyecto te pedirá tus llaves.
 :::
 
 :::faq[¿Qué es 42 Chain?]
-Una red pública de infraestructura. [Visión general](/protocolo)
+Una red pública de infraestructura. [Visión general](/protocol)
 :::
 
 :::lore[Bitácora del motor]
@@ -161,11 +151,11 @@ El motor funciona con improbabilidad. El gas dice cuánta pide cada maniobra.
 :::
 
 :::figure[Un municipio registra cada intervención en el alumbrado.]
-![Farolas de una calle al atardecer](../../../images/casos/alumbrado.jpg)
+![Farolas de una calle al atardecer](../../../images/casos/infraestructura.jpg)
 :::
 
 :::aside
-[Operar un nodo →](/implementar/nodos)
+[Operar un nodo →](docs:/operate/nodes)
 :::
 
 :::status[Borrador]

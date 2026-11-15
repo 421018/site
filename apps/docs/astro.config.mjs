@@ -14,8 +14,19 @@ export default defineConfig({
   integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) }), kit({ defaultLang: SITE.defaultLang, languages: SITE.languages, editBase: EDIT_BASE, links: { site: LINKS.site, console: LINKS.console }, search: true })],
   // Pages renamed when "Implementar" moved here from the main site.
   redirects: {
-    '/empezar/redes': '/empezar/conectarse',
+    '/empezar/redes': '/get-started/connect',
     '/en/get-started/networks': '/en/get-started/connect',
+    // Spanish URLs before paths became neutral (English, the same in every language).
+    '/construir': '/build',
+    '/construir/aplicaciones': '/build/applications',
+    '/construir/precompiles': '/build/precompiles',
+    '/construir/precompiles/ics02': '/build/precompiles/ics02',
+    '/empezar': '/get-started',
+    '/empezar/conceptos': '/get-started/concepts',
+    '/empezar/conectarse': '/get-started/connect',
+    '/integrar': '/integrate',
+    '/operar': '/operate',
+    '/operar/nodos': '/operate/nodes',
   },
   i18n: {
     defaultLocale: SITE.defaultLang,

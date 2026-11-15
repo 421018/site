@@ -7,14 +7,8 @@
       "pattern": "^[a-z0-9-]+$"
     },
     "anchor": {
-      "type": "object",
-      "propertyNames": {
-        "type": "string",
-        "pattern": "^[a-z]{2}$"
-      },
-      "additionalProperties": {
-        "type": "string"
-      }
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
     },
     "label": {
       "type": "object",

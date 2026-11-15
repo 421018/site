@@ -4,14 +4,14 @@ summary: "En pocas palabras: este sitio es informativo, usar la red tiene riesgo
 section:
   label: Legal
   weight: 1
-  attachTo: codigo-abierto # listed in the Código abierto side index, using its colors
+  attachTo: open-source # listed in the Código abierto side index, using its colors
 ---
 
 :::status[Borrador]
 Pendiente de revisión legal.
 :::
 
-## Carácter de este sitio {#independencia}
+## Carácter de este sitio {#independence}
 
 Este sitio es informativo. La operación y las decisiones de la red corresponden a sus validadores mediante gobernanza en la cadena.
 
@@ -19,17 +19,17 @@ Este sitio y la documentación son mantenidos por contribuidores del Protocolo 4
 
 Este sitio no ofrece, no vende y no recomienda la unidad nativa de la red ni ningún otro activo, ni plataformas o intermediarios. Nada en este sitio constituye asesoría financiera, legal, fiscal ni de inversión.
 
-## Sin garantías {#garantias}
+## Sin garantías {#warranties}
 
 El protocolo, su software, la documentación, la Consola y este sitio se ofrecen **tal cual** y **según su disponibilidad**, sin garantías de ningún tipo, expresas ni implícitas, incluidas las de funcionamiento, de idoneidad para un propósito determinado y de ausencia de errores.
 
 En la medida en que lo permita la ley aplicable, los contribuidores no responden por daños o pérdidas derivados del uso o de la imposibilidad de usar el protocolo, la red, el software, las herramientas o este sitio, incluidas la pérdida de unidades o de acceso a una cuenta, las interrupciones de la red, los errores del software y las fallas de contratos o servicios de terceros.
 
 :::aside
-Esta exclusión es coherente con la licencia del software del protocolo. [Licencias](#licencia)
+Esta exclusión es coherente con la licencia del software del protocolo. [Licencias](#licenses)
 :::
 
-## Riesgos de uso {#riesgos}
+## Riesgos de uso {#risks}
 
 Usar la red tiene riesgos que conviene entender antes de participar:
 
@@ -41,10 +41,10 @@ Usar la red tiene riesgos que conviene entender antes de participar:
 - **Normativa.** Cada persona y organización es responsable de cumplir las leyes que le apliquen al usar la red y sus herramientas.
 
 :::aside
-[Cómo protegerte →](/protocolo/seguridad#protegerte)
+[Cómo protegerte →](/protocol/security#protect-yourself)
 :::
 
-## Privacidad {#privacidad}
+## Privacidad {#privacy}
 
 Este sitio está hecho para que pase por él la menor cantidad de datos posible:
 
@@ -56,9 +56,9 @@ Este sitio está hecho para que pase por él la menor cantidad de datos posible:
 
 La documentación y la Consola indican sus propias condiciones de privacidad.
 
-Todo lo que se registra en la red, como direcciones, transacciones o contratos, es público y permanente, y no puede borrarse. Por eso no conviene registrar datos personales en la cadena. [Qué va dentro y fuera de la cadena](/casos-de-uso#fuera)
+Todo lo que se registra en la red, como direcciones, transacciones o contratos, es público y permanente, y no puede borrarse. Por eso no conviene registrar datos personales en la cadena. [Qué va dentro y fuera de la cadena](/use-cases#off-chain)
 
-## Licencias {#licencia}
+## Licencias {#licenses}
 
 | Qué | Licencia |
 |---|---|
@@ -89,7 +89,7 @@ El software del protocolo se construye sobre software de código abierto del eco
 [Licencia completa (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.es) · [Archivos LICENSE y NOTICE en el repositorio]
 :::
 
-## Enlaces y servicios de terceros {#terceros}
+## Enlaces y servicios de terceros {#third-parties}
 
 Los validadores, los proveedores de RPC y de exploradores, los proveedores de implementación y las aplicaciones mencionados en este sitio son independientes y responden por sus propios servicios. Que aparezcan aquí no implica respaldo ni relación comercial.
 

@@ -38,7 +38,7 @@ export const sectionSchema = z
     links: z.array(link).default([]),
     /**
      * Show this section's pages inside another section's side index instead of
-     * in the main menu (e.g. `legal` lives under `codigo-abierto`). Colors and
+     * in the main menu (e.g. `legal` lives under `open-source`). Colors and
      * menu highlight are inherited from that section unless set here.
      */
     attachTo: z.string().optional(),
@@ -61,21 +61,16 @@ export const pageSchema = z
     updated: z.coerce.date().optional(),
     /** Drafts are visible with `npm run dev` and left out of the published site. */
     draft: z.boolean().default(false),
-    /**
-     * Only in languages other than the default: the path of the page this one
-     * translates, in the default language (e.g. "protocolo/consenso"). Links the
-     * two versions in the language switcher and in search engines.
-     */
-    translationOf: z.string().optional(),
     section: sectionSchema.optional(),
   })
   .strict();
 
 /**
  * Loader for an app's pages in the catalog, every language at once. The id is
- * the language and the URL path: es/pages/protocolo/consenso.md →
- * es/protocolo/consenso, en/pages/protocol/index.md → en/protocol,
- * es/pages/construir/precompiles/index.md → es/construir/precompiles (a group).
+ * the language and the URL path, which is the same in every language (English):
+ * es/pages/protocol/consensus.md → es/protocol/consensus (served at
+ * /protocol/consensus), en/pages/protocol/consensus.md → en/protocol/consensus
+ * (/en/protocol/consensus); es/pages/build/precompiles/index.md → a group.
  */
 export const pagesLoader = (base: string) =>
   glob({
@@ -86,12 +81,12 @@ export const pagesLoader = (base: string) =>
   });
 
 /**
- * Blog posts ("Bitácora"): one Markdown file per post in <lang>/bitacora/.
- * The id is the language and the file name: es/bitacora/trazabilidad.md →
- * es/trazabilidad. The URL depends on the category (site.md → blog).
+ * Blog posts ("Bitácora"): one Markdown file per post in <lang>/posts/.
+ * The id is the language and the file name: es/posts/traceability.md →
+ * es/traceability. The URL depends on the category (site.md → blog).
  */
 export const postsLoader = (base: string) =>
-  glob({ pattern: '*/bitacora/*.md', base, generateId: ({ entry }) => entry.replace(/\.md$/, '').replace(/\/bitacora\//, '/') });
+  glob({ pattern: '*/posts/*.md', base, generateId: ({ entry }) => entry.replace(/\.md$/, '').replace(/\/posts\//, '/') });
 
 /** Post front matter. `image` is a helper from the collection (image()); the contract export passes a string. */
 export const postSchema = (image: () => z.ZodTypeAny) =>
@@ -185,7 +180,7 @@ export const siteTextSchema = z
     /** The blog ("Bitácora"), for apps that have one: its URL, texts and categories. */
     blog: z
       .object({
-        /** URL segment of the blog in this language: "bitacora" → /bitacora. */
+        /** URL segment of the blog: "log" → /log (and /en/log). */
         path: z.string().regex(/^[a-z0-9-]+$/),
         kicker: z.string(),
         title: z.string(),
@@ -207,7 +202,7 @@ export const siteTextSchema = z
                 id: z.string().regex(/^[a-z0-9-]+$/),
                 label: z.string(),
                 plural: z.string(),
-                /** URL segment for this category's posts instead of the blog's, e.g. casos-de-uso. */
+                /** URL segment for this category's posts instead of the blog's, e.g. use-cases. */
                 path: z.string().regex(/^[a-z0-9-]+$/).optional(),
               })
               .strict(),

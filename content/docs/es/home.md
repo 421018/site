@@ -10,7 +10,7 @@ layers:
   title: Cómo está hecho el protocolo
   items:
     - { label: Interoperabilidad, text: "IBC, versiones 1 y 2", tag: Conexión }
-    - { label: Ejecución, text: "EVM y funciones propias de la red", tag: Contratos, href: /construir/precompiles }
+    - { label: Ejecución, text: "EVM y funciones propias de la red", tag: Contratos, href: /build/precompiles }
     - { label: Módulos de la red, text: "Cosmos SDK: staking, gobernanza, tarifas", tag: Lógica }
     - { label: Consenso, text: "CometBFT, finalidad en un bloque", tag: Acuerdo }
 quickData: Datos rápidos

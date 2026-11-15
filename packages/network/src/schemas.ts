@@ -34,7 +34,7 @@ export const networkSchema = z
   .strict();
 
 export const serviceSchema = z
-  .object({ id, anchor: localized, label: localized, description: localized, emptyNote: localized.optional() })
+  .object({ id, anchor: z.string().regex(/^[a-z0-9-]+$/), label: localized, description: localized, emptyNote: localized.optional() })
   .strict();
 
 export const providerSchema = z

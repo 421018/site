@@ -1,9 +1,9 @@
 /**
- * Languages. The default language is served at the root (/protocolo); every
- * other one under its code (/en/protocol). Each language has its own folder in
- * the catalog (site/es/, site/en/) with its own site.md, home.md and pages, and
- * its own, translated, URLs. A translated page names the page it translates
- * with `translationOf:` (its path in the default language).
+ * Languages. The default language is served at the root (/protocol); every
+ * other one under its code (/en/protocol). Paths and anchors are English and
+ * the same in every language. Each language has its own folder in the catalog
+ * (site/es/, site/en/) with its own site.md, home.md and pages; a translation
+ * is the file at the same path in another language's folder.
  */
 import kit from 'virtual:42chain/kit';
 

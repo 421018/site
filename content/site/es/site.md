@@ -17,7 +17,7 @@ header:
   submenu: ver páginas # accessible name of a section's menu arrow: "Protocolo: ver páginas"
   cta: { label: "Documentación ↗", href: "docs:/" } # highlighted button at the end of the header
   links:
-    - { label: Bitácora, href: /bitacora, weight: 4 } # weight places it among the sections
+    - { label: Bitácora, href: /log, weight: 4 } # weight places it among the sections
 
 footer:
   credit: Proyecto de código abierto
@@ -36,10 +36,10 @@ page:
   next: Siguiente →
   chapters: Capítulos # accessible name of the previous/next navigation
 
-# The blog. Posts live in bitacora/ next to this file; a category with "path"
-# serves its posts there instead of under the blog (use cases keep /casos-de-uso/…).
+# The blog. Posts live in posts/ next to this file; a category with "path"
+# serves its posts there instead of under the blog (use cases: /use-cases/…).
 blog:
-  path: bitacora
+  path: log
   kicker: Bitácora
   title: Casos, avances y explicaciones.
   lead: Lo que se construye sobre 42, cómo cambia el protocolo y por qué funciona como funciona.
@@ -52,7 +52,7 @@ blog:
   editPost: Editar esta entrada ↗
   illustrative: Imagen ilustrativa.
   categories:
-    - { id: caso-de-uso, label: Caso de uso, plural: Casos de uso, path: casos-de-uso }
+    - { id: caso-de-uso, label: Caso de uso, plural: Casos de uso, path: use-cases }
     - { id: avance, label: Avance, plural: Avances }
     - { id: explicacion, label: Explicación, plural: Explicaciones }
     - { id: historia, label: Historia, plural: Historias }

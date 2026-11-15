@@ -8,8 +8,9 @@
  *
  * Checks:
  * - Front matter of pages and site.md against the JSON Schemas.
- * - Translations: "translationOf" only outside the default language, pointing
- *   to an existing page; ui/<lang>.yaml has exactly the keys of the default one.
+ * - Translations: a page in another language has the page at the same path in
+ *   the default language (paths are English and shared); ui/<lang>.yaml has
+ *   exactly the keys of the default one.
  * - Sections: "section:" only in a section's index.md; folders need index.md;
  *   at most one level of groups (section/group/page.md).
  * - Markdown only: no .mdx files, no <script>, <style>, <iframe>, inline event
@@ -17,7 +18,7 @@
  * - ::: blocks and widget names are known; :::diagram files exist (in the
  *   page's language or the default one).
  * - Images and internal links (/section/page) point to existing files.
- * - Blog posts (<app>/<lang>/bitacora/*.md): front matter, a category from
+ * - Blog posts (<app>/<lang>/posts/*.md): front matter, a category from
  *   site.md → blog.categories, cover image, the same body checks as pages.
  * - Network data (network/*.yaml) against its schemas, with unique ids and
  *   providers that reference existing networks and services.
@@ -95,7 +96,7 @@ function routesOf(app) {
     const site = join(appDir, lang, 'site.md');
     let blog = null;
     try { blog = existsSync(site) ? parseYaml(readFileSync(site, 'utf8').match(/^---\n([\s\S]*?)\n---/)[1])?.blog : null; } catch { blog = null; }
-    const posts = walk(join(appDir, lang, 'bitacora')).filter((f) => f.endsWith('.md'));
+    const posts = walk(join(appDir, lang, 'posts')).filter((f) => f.endsWith('.md'));
     if (!blog || !posts.length) continue;
     let own = 0;
     for (const f of posts) {
@@ -134,7 +135,7 @@ for (const app of apps) {
     const m = readFileSync(f, 'utf8').match(/^---\n([\s\S]*?)\n---/);
     try { return (m && parseYaml(m[1])?.blog) || null; } catch { return null; }
   };
-  const postsOf = (lang) => walk(join(appDir, lang, 'bitacora')).filter((f) => f.endsWith('.md'));
+  const postsOf = (lang) => walk(join(appDir, lang, 'posts')).filter((f) => f.endsWith('.md'));
   const originals = new Set(pagesOf(defaultLang).filter((f) => f.endsWith('.md')).map((f) => idOf(defaultLang, f)));
   const diagramsIn = (lang) => new Set(walk(join(appDir, lang, 'diagrams')).map((f) => f.split(sep).pop().replace(/\.(html|svg)$/, '')));
   const defaultDiagrams = diagramsIn(defaultLang);
@@ -157,8 +158,7 @@ for (const app of apps) {
         schemaErrors(file, validators.page, data);
         if (depth === 0 && !data.section) report(file, 0, 'a section\'s index.md needs a "section:" block');
         if (depth > 0 && data.section) report(file, 0, '"section:" is only allowed in a section\'s index.md');
-        if (lang === defaultLang && data.translationOf) report(file, 0, `"translationOf" is only for languages other than ${defaultLang}`);
-        if (data.translationOf && !originals.has(data.translationOf)) report(file, 0, `translationOf "${data.translationOf}" is not a page in ${app}/${defaultLang}/pages/`);
+        if (lang !== defaultLang && !originals.has(id)) report(file, 0, `a translation needs the page at the same path in ${app}/${defaultLang}/pages/ (${id || 'index'})`);
       }
       if (depth > 2) report(file, 0, 'pages can be nested one level deep at most (section/group/page)');
       const section = id.split('/')[0];

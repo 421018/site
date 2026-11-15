@@ -1,7 +1,7 @@
 /**
- * The blog ("Bitácora"): posts from the catalog's <lang>/bitacora/, for apps
+ * The blog ("Bitácora"): posts from the catalog's <lang>/posts/, for apps
  * whose site.md has a `blog` block. A post's URL is /<lang prefix>/<path>/<slug>,
- * where <path> is its category's path (e.g. casos-de-uso) or the blog's.
+ * where <path> is its category's path (e.g. use-cases) or the blog's.
  */
 import { getCollection } from 'astro:content';
 import { langPrefix, languages } from './i18n';

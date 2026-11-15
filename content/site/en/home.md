@@ -42,7 +42,7 @@ engine:
         - "Solidity and Vyper, without code changes."
         - "Hardhat, Foundry, Viem and EVM wallets."
         - "The network's own functions available from contracts."
-      link: { label: Read the chapter (in Spanish), href: /protocolo/ejecucion }
+      link: { label: Read the chapter (in Spanish), href: /protocol/execution }
     - icon: fees
       label: Fees
       title: Measures and pays for the work.
@@ -51,7 +51,7 @@ engine:
         - "Public rules: the cost is known before sending."
         - "The organization can pay for whoever signs."
         - "Units in drops and cups."
-      link: { label: Read the chapter (in Spanish), href: /protocolo/tarifas }
+      link: { label: Read the chapter (in Spanish), href: /protocol/fees }
     - icon: interop
       label: Interoperability
       title: Connects to other networks.
@@ -60,7 +60,7 @@ engine:
         - "IBC, versions 1 and 2."
         - "No trusted intermediaries."
         - "Data and units across networks."
-      link: { label: Read the chapter (in Spanish), href: /protocolo/interoperabilidad }
+      link: { label: Read the chapter (in Spanish), href: /protocol/interoperability }
     - icon: governance
       label: Governance
       title: Decides the changes.
@@ -69,13 +69,13 @@ engine:
         - "Proposals recorded on the chain."
         - "Public quorum, threshold and veto."
         - "The network applies what is approved."
-      link: { label: Read the chapter (in Spanish), href: /protocolo/gobernanza }
+      link: { label: Read the chapter (in Spanish), href: /protocol/governance }
 
 uses:
   kicker: Use cases
   title: What it is for, in practice.
   lead: "When several parties need the same data and the same rules, a distributed ledger spares any one of them from having to hold it. Each party runs its own copy, any tampering is visible and anyone can check the result. Three examples:"
-  link: { label: See the use cases (in Spanish), href: /casos-de-uso }
+  link: { label: See the use cases (in Spanish), href: /use-cases }
   stories:
     - tag: Verifiable records
       title: A diploma that verifies itself.
@@ -83,21 +83,21 @@ uses:
       image: ../images/casos/registros.jpg
       alt: Framed diploma with a gold seal
       credit: "Photo: Quilia, Unsplash"
-      href: /casos-de-uso/registros-verificables
+      href: /use-cases/verifiable-records
     - tag: Traceability
       title: An origin that several parties share.
       text: Producers, carriers and buyers record every step of a batch. None of them depends on another keeping the data properly.
       image: ../images/casos/trazabilidad.jpg
       alt: Jute sack full of coffee beans
       credit: "Photo: Tatiana Fernández R, Unsplash"
-      href: /casos-de-uso/trazabilidad
+      href: /use-cases/traceability
     - tag: Infrastructure
       title: A maintenance history nobody rewrites.
       text: A city and its contractors record every repair to the street lighting or the water network. Every party sees the same history, signed and dated.
       image: ../images/casos/infraestructura.jpg
       alt: Double-armed street lamp lit at dusk
       credit: "Photo: Kim R-K, Unsplash"
-      href: /casos-de-uso/infraestructura
+      href: /use-cases/infrastructure
 
 build:
   kicker: For builders
@@ -124,7 +124,7 @@ people:
   kicker: How it is organized
   title: Each role, in different hands.
   lead: "The code, the operation of the network and the decisions about its rules are separate, and each part can be checked: the code in a public repository, operation and decisions on the chain itself."
-  link: { label: How it is organized (in Spanish), href: "/codigo-abierto#circulos" }
+  link: { label: How it is organized (in Spanish), href: "/open-source#circles" }
   rows:
     - { who: Code contributors, what: "Propose and review changes in a public repository." }
     - { who: Validators and node operators, what: "Verify every block and give access to the network." }
@@ -137,16 +137,16 @@ start:
   paths:
     - { icon: connect, label: Connect to the network, href: docs:/en/get-started/connect, text: "Network parameters, wallets and RPC providers." }
     - { icon: build, label: Build an application, href: docs:/en/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
-    - { icon: node, label: Run a node, href: docs:/operar/nodos, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
-    - { icon: integrate, label: Integrate systems, href: docs:/integrar, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
-    - { icon: governance, label: Understand governance, href: /protocolo/gobernanza, text: "How changes to the protocol are proposed, voted on and applied. (In Spanish.)" }
+    - { icon: node, label: Run a node, href: docs:/operate/nodes, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
+    - { icon: integrate, label: Integrate systems, href: docs:/integrate, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
+    - { icon: governance, label: Understand governance, href: /protocol/governance, text: "How changes to the protocol are proposed, voted on and applied. (In Spanish.)" }
     - { icon: docs, label: Read the documentation, href: /docs, text: "Guides and technical reference, from connecting a wallet to running a validator." }
 
 name:
   kicker: The name
   title: Why 42?
   lead: "In Douglas Adams's novel, 42 is the answer to the great question of life, the universe and everything. The answer is exact, but the meaning comes from those who ask. The protocol works the same way: it offers precise rules, and what is built with them is decided by those who use it."
-  link: { label: Why 42 (in Spanish), href: "/codigo-abierto#porque42" }
+  link: { label: Why 42 (in Spanish), href: "/open-source#why-42" }
 
 closing:
   title: Shared infrastructure, rules in plain sight.

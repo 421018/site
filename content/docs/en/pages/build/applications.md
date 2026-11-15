@@ -1,7 +1,6 @@
 ---
 title: "Build applications"
 summary: "If you already know how to build for the EVM, you already know how to build here. What changes is the kind of problem: several organizations, devices that sign and fees that someone else pays."
-translationOf: construir/aplicaciones
 weight: 5
 ---
 
@@ -21,7 +20,7 @@ Not everything has to live on the chain. What must be verifiable and shared goes
 For example, in a certificate register, the contract stores the fingerprint of each certificate and who issued it. The full document stays in the issuer's systems. Anyone can check, with the fingerprint, that a document is authentic.
 
 :::aside
-[Use cases (in Spanish) →](site:/casos-de-uso) · [How contracts run (in Spanish) →](site:/protocolo/ejecucion)
+[Use cases (in Spanish) →](site:/use-cases) · [How contracts run (in Spanish) →](site:/protocol/execution)
 :::
 
 ## The EVM, in practice {#evm}
@@ -64,7 +63,7 @@ Besides the usual EVM signatures, contracts can verify **P-256** signatures: the
 Contracts can use the protocol's own functions directly: query and move native units, work with staking and governance, send transfers to other networks and check, with a proof, data from another network. Each function has a fixed address and is called like any other contract.
 
 :::aside
-[The network's own functions and their addresses (in Spanish) →](/construir/precompiles)
+[The network's own functions and their addresses (in Spanish) →](/build/precompiles)
 :::
 
 ## Mainnet and testnet {#networks}
@@ -101,4 +100,4 @@ Taking an application into operation usually follows five steps:
 
 The parameters of each network and the provider directory are in [Connect to 42 Chain](/en/get-started/connect).
 
-To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/integrar). For an internal environment connected to 42 or an integration that requires custom work, see [Custom implementations (in Spanish)](site:/casos-de-uso/implementaciones).
+To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/integrate). For an internal environment connected to 42 or an integration that requires custom work, see [Custom implementations (in Spanish)](site:/use-cases/custom-implementations).

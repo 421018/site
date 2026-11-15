@@ -13,8 +13,8 @@ const isPage = (service: string) => service === 'explorer' || service === 'fauce
 const host = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 ---
 {services.map((s) => (
-  <section class="svc" aria-labelledby={pick(s.anchor, lang)} data-i18n={i18n}>
-    <h3 id={pick(s.anchor, lang)}>{pick(s.label, lang)}</h3>
+  <section class="svc" aria-labelledby={s.anchor} data-i18n={i18n}>
+    <h3 id={s.anchor}>{pick(s.label, lang)}</h3>
     <p class="svc-d">{pick(s.description, lang)}</p>
     {networks.map((n) => {
       const rows = providers.filter((p) => p.service === s.id && p.network === n.id);

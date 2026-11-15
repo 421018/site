@@ -30,9 +30,9 @@ export type Section = {
   attached: Section[];
 };
 
-/** Language of a page: the first segment of its id (es/protocolo/consenso → es). */
+/** Language of a page: the first segment of its id (es/protocol/consensus → es). */
 export const pageLang = (p: Page) => p.id.split('/')[0];
-/** Path of a page inside its language: es/protocolo/consenso → protocolo/consenso. */
+/** Path of a page inside its language: es/protocol/consensus → protocol/consensus. */
 export const pagePath = (p: Page) => p.id.split('/').slice(1).join('/');
 const sectionOf = (p: Page) => pagePath(p).split('/')[0];
 const isIndex = (p: Page) => !pagePath(p).includes('/');
@@ -70,7 +70,6 @@ async function build() {
     const sections = byLang.get(lang);
     if (!sections) { errors.push(`${p.filePath}: "${lang}" is not a language of this app (${languages.join(', ')}).`); continue; }
     if (pagePath(p) === '') errors.push(`${p.filePath}: the home page is edited in the language's home.md, not in pages/.`);
-    if (lang === defaultLang && p.data.translationOf) errors.push(`${p.filePath}: "translationOf" is only for languages other than ${defaultLang}.`);
     if (isIndex(p)) {
       const s = p.data.section;
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
@@ -86,8 +85,7 @@ async function build() {
   for (const p of pages) {
     const sections = byLang.get(pageLang(p));
     if (!sections) continue;
-    const t = p.data.translationOf;
-    if (t && !originals.has(t)) errors.push(`${p.filePath}: translationOf "${t}" is not a page in ${defaultLang}.`);
+    if (pageLang(p) !== defaultLang && !originals.has(pagePath(p))) errors.push(`${p.filePath}: a translation needs the page at the same path in ${defaultLang} (${pagePath(p)}).`);
     if (depthOf(p) > 2) errors.push(`${p.filePath}: pages can be nested one level deep at most (section/group/page).`);
     const s = sections.get(sectionOf(p));
     if (!s) { if (!isIndex(p)) errors.push(`${p.filePath}: folder "${sectionOf(p)}" has no index.md.`); continue; }
@@ -125,17 +123,11 @@ async function build() {
 
 /**
  * The versions of a page in every language that has one, as { lang: href }.
- * Pages are matched through `translationOf` (the path in the default language).
+ * A translation lives at the same path in its language's folder.
  */
 export async function getAlternates(page: Page): Promise<Record<string, string>> {
   const all = await getAllPages();
-  const key = pageLang(page) === defaultLang ? pagePath(page) : page.data.translationOf;
-  const out: Record<string, string> = {};
-  if (!key) return { [pageLang(page)]: hrefOf(page) };
-  for (const p of all) {
-    if ((pageLang(p) === defaultLang && pagePath(p) === key) || (pageLang(p) !== defaultLang && p.data.translationOf === key)) out[pageLang(p)] = hrefOf(p);
-  }
-  return out;
+  return Object.fromEntries(all.filter((p) => pagePath(p) === pagePath(page)).map((p) => [pageLang(p), hrefOf(p)]));
 }
 
 /** Home pages of every language, as { lang: href } (alternates of the home and 404 pages). */

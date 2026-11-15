@@ -2,7 +2,6 @@
 title: "Protocol 42"
 summary: "How thousands of computers keep the same ledger without any of them being in charge of the rest. This is the engine of 42, piece by piece."
 menuTitle: "Overview"
-translationOf: protocolo
 section:
   label: Protocol
   dropdown: true
@@ -106,14 +105,14 @@ Validators are compensated for this work. The protocol assigns them part of the 
 
 The simplest transaction is a transfer: moving units from one account to another. But the ledger can store more than balances. It can also store programs, and the network can run them. A program published on the chain is called a **smart contract**.
 
-A smart contract works like an agreement that enforces itself. Its rules are written in code, and anyone can read them. Once published, nobody can change the contract. For example, a contract can keep a register of certificates, store the maintenance history of an asset or apply a change only when several organizations approve it. [Use cases (in Spanish)](/casos-de-uso)
+A smart contract works like an agreement that enforces itself. Its rules are written in code, and anyone can read them. Once published, nobody can change the contract. For example, a contract can keep a register of certificates, store the maintenance history of an asset or apply a change only when several organizations approve it. [Use cases (in Spanish)](/use-cases)
 
 For a contract's result to be trustworthy, every node runs the contract and all of them must reach exactly the same result. For that, every node must run it in the same environment and with the same instructions. That environment is called a **virtual machine**.
 
 The protocol's virtual machine is the Ethereum Virtual Machine, known as the **EVM**: the most widespread standard for smart contracts. Since the EVM is a shared standard, the languages, tools and wallets that already exist for the EVM work with the protocol without changes. Anyone who already knows how to write contracts for the EVM can write them for the protocol from day one.
 
 :::aside
-[Execution (in Spanish) →](/protocolo/ejecucion)
+[Execution (in Spanish) →](/protocol/execution)
 :::
 
 ## The cost of each transaction {#unit}
@@ -127,7 +126,7 @@ Fees are paid in the protocol's own unit. That unit is called the **native unit*
 It is also the unit that validators, and those who delegate to them, put in staking. The same unit that pays for each transaction is the one that protects the network.
 
 :::aside
-[Fees and issuance (in Spanish) →](/protocolo/tarifas)
+[Fees and issuance (in Spanish) →](/protocol/fees)
 :::
 
 ## A network among networks {#ibc}
@@ -139,7 +138,7 @@ The simplest way would be to trust an intermediary that watches one network and 
 That is why the protocol uses **IBC** (Inter-Blockchain Communication). IBC is an open standard in which each network checks for itself, with cryptographic proofs, what happened on the other network. So data and units can move from one network to another without any intermediary having to be trusted.
 
 :::aside
-[Interoperability (in Spanish) →](/protocolo/interoperabilidad)
+[Interoperability (in Spanish) →](/protocol/interoperability)
 :::
 
 ## Who decides the rules {#rules}
@@ -151,7 +150,7 @@ The protocol solves this problem with the pieces already described. Any change i
 This system is called **on-chain governance**. With it, those who protect the network with their units in staking are also those who decide how it evolves.
 
 :::aside
-[Governance (in Spanish) →](/protocolo/gobernanza)
+[Governance (in Spanish) →](/protocol/governance)
 :::
 
 ## Security {#security}
@@ -165,10 +164,10 @@ The network's security does not depend on a single piece, but on several that re
 
 In addition, the protocol's code is open and undergoes **audits**. An audit is a thorough review of the code by independent specialists. [Audit status and link to the reports.]
 
-To avoid fake sites or profiles, use only the [project's channels (in Spanish)](/codigo-abierto/verificar#canales). If you find a vulnerability, [report it privately (in Spanish)](/codigo-abierto/seguridad#reportar).
+To avoid fake sites or profiles, use only the [project's channels (in Spanish)](/open-source/verify#channels). If you find a vulnerability, [report it privately (in Spanish)](/open-source/security#report).
 
 :::aside
-[Security (in Spanish) →](/protocolo/seguridad)
+[Security (in Spanish) →](/protocol/security)
 :::
 
 ## Design decisions {#decisions}
@@ -177,13 +176,13 @@ The protocol rests on seven design decisions. Each one is developed in its chapt
 
 - **Votes depend on staking, not on the number of nodes.** Creating nodes gives no power; putting units at stake does. [Consensus and staking](/en/protocol/consensus#why)
 - **Halt rather than risk.** Without the required majority, the network halts instead of confirming doubtful blocks. [Consensus and staking](/en/protocol/consensus#failures)
-- **EVM-compatible execution.** Builders use languages and tools that already exist. [Execution](/protocolo/ejecucion#porque)
-- **An own unit and constant issuance.** The network's security does not depend on anyone external or on how much the network is used. [Fees and issuance](/protocolo/tarifas#porque)
-- **Verification instead of intermediaries.** Connected networks check each other; nobody holds units in transit. [Interoperability](/protocolo/interoperabilidad#porque)
-- **The rules are decided on the chain.** Those who write the code propose; those who protect the network decide. [Governance](/protocolo/gobernanza#porque)
-- **Layered, visible security.** Several protections reinforce each other, and anyone can check them. [Security](/protocolo/seguridad#porque)
+- **EVM-compatible execution.** Builders use languages and tools that already exist. [Execution](/protocol/execution#why)
+- **An own unit and constant issuance.** The network's security does not depend on anyone external or on how much the network is used. [Fees and issuance](/protocol/fees#why)
+- **Verification instead of intermediaries.** Connected networks check each other; nobody holds units in transit. [Interoperability](/protocol/interoperability#why)
+- **The rules are decided on the chain.** Those who write the code propose; those who protect the network decide. [Governance](/protocol/governance#why)
+- **Layered, visible security.** Several protections reinforce each other, and anyone can check them. [Security](/protocol/security#why)
 
-Chapters not yet translated open in Spanish. Together, these decisions are what make applications on the network possible. [Use cases (in Spanish) →](/casos-de-uso)
+Chapters not yet translated open in Spanish. Together, these decisions are what make applications on the network possible. [Use cases (in Spanish) →](/use-cases)
 
 ## Technical summary {#summary}
 

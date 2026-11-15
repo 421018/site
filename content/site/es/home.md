@@ -9,8 +9,8 @@ hero:
     Infraestructura compartida
     que cualquiera puede verificar.
   lead: El Protocolo 42 permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, sin depender de los sistemas de una sola de ellas. 42 Chain es la red pública que lo ejecuta.
-  primary: { label: Cómo funciona, href: /protocolo }
-  secondary: { label: Conectarse a la red, href: docs:/empezar/conectarse }
+  primary: { label: Cómo funciona, href: /protocol }
+  secondary: { label: Conectarse a la red, href: docs:/get-started/connect }
 
 # Verifiable protocol figures, shown in a strip under the hero.
 figures:
@@ -35,7 +35,7 @@ engine:
         - "Finalidad en un bloque."
         - "Tolera fallas de menos de un tercio del poder de voto."
         - "Si no hay mayoría, la red se detiene antes que arriesgar."
-      link: { label: Leer el capítulo, href: /protocolo/consenso }
+      link: { label: Leer el capítulo, href: /protocol/consensus }
     - icon: execution
       label: Ejecución
       title: Ejecuta los contratos.
@@ -44,7 +44,7 @@ engine:
         - "Solidity y Vyper, sin cambios en el código."
         - "Hardhat, Foundry, Viem y las billeteras de la EVM."
         - "Funciones propias de la red disponibles desde los contratos."
-      link: { label: Leer el capítulo, href: /protocolo/ejecucion }
+      link: { label: Leer el capítulo, href: /protocol/execution }
     - icon: fees
       label: Tarifas
       title: Mide y paga el trabajo.
@@ -53,7 +53,7 @@ engine:
         - "Reglas públicas: el costo se conoce antes de enviar."
         - "La organización puede pagar por quien firma."
         - "Unidades en drops y cups."
-      link: { label: Leer el capítulo, href: /protocolo/tarifas }
+      link: { label: Leer el capítulo, href: /protocol/fees }
     - icon: interop
       label: Interoperabilidad
       title: Conecta con otras redes.
@@ -62,7 +62,7 @@ engine:
         - "IBC, versiones 1 y 2."
         - "Sin intermediarios de confianza."
         - "Datos y unidades entre redes."
-      link: { label: Leer el capítulo, href: /protocolo/interoperabilidad }
+      link: { label: Leer el capítulo, href: /protocol/interoperability }
     - icon: governance
       label: Gobernanza
       title: Decide los cambios.
@@ -71,13 +71,13 @@ engine:
         - "Propuestas registradas en la cadena."
         - "Quórum, umbral y veto públicos."
         - "La red aplica lo aprobado."
-      link: { label: Leer el capítulo, href: /protocolo/gobernanza }
+      link: { label: Leer el capítulo, href: /protocol/governance }
 
 uses:
   kicker: Casos de uso
   title: Para qué sirve, en la práctica.
   lead: "Cuando varias partes necesitan los mismos datos y las mismas reglas, un registro distribuido evita que una sola de ellas tenga que custodiarlos. Cada parte opera su copia, cualquier alteración queda a la vista y cualquiera puede comprobar el resultado. Tres ejemplos:"
-  link: { label: Ver los casos de uso, href: /casos-de-uso }
+  link: { label: Ver los casos de uso, href: /use-cases }
   stories:
     - tag: Registros verificables
       title: Un título que se verifica solo.
@@ -85,21 +85,21 @@ uses:
       image: ../images/casos/registros.jpg
       alt: Diploma enmarcado con un sello dorado
       credit: "Foto: Quilia, Unsplash"
-      href: /casos-de-uso/registros-verificables
+      href: /use-cases/verifiable-records
     - tag: Trazabilidad
       title: Un origen que varias partes comparten.
       text: Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.
       image: ../images/casos/trazabilidad.jpg
       alt: Saco de yute lleno de granos de café
       credit: "Foto: Tatiana Fernández R, Unsplash"
-      href: /casos-de-uso/trazabilidad
+      href: /use-cases/traceability
     - tag: Infraestructura
       title: Un historial de mantenimiento que nadie reescribe.
       text: Un municipio y sus contratistas registran cada intervención en el alumbrado o en la red de agua. Todas las partes ven el mismo historial, firmado y fechado.
       image: ../images/casos/infraestructura.jpg
       alt: Farola de doble brazo encendida al atardecer
       credit: "Foto: Kim R-K, Unsplash"
-      href: /casos-de-uso/infraestructura
+      href: /use-cases/infrastructure
 
 build:
   kicker: Para quien construye
@@ -107,7 +107,7 @@ build:
     Herramientas conocidas.
     Reglas verificables.
   lead: "Los contratos se escriben con lenguajes y herramientas estándar: Solidity, Hardhat, Foundry. Una aplicación que ya funciona en una red compatible con la EVM funciona aquí sin cambios en su código."
-  link: { label: Construir aplicaciones, href: docs:/construir/aplicaciones }
+  link: { label: Construir aplicaciones, href: docs:/build/applications }
   secondary: { label: "Abrir la Consola ↗", href: "console:/" }
   code:
     file: hardhat.config.js
@@ -126,7 +126,7 @@ people:
   kicker: Cómo se organiza
   title: Cada función, en manos distintas.
   lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados, y cada parte se puede comprobar: el código en un repositorio público, la operación y las decisiones en la propia cadena."
-  link: { label: Cómo se organiza, href: "/codigo-abierto#circulos" }
+  link: { label: Cómo se organiza, href: "/open-source#circles" }
   rows:
     - { who: Contribuidores del código, what: "Proponen y revisan cambios en un repositorio público." }
     - { who: Validadores y operadores de nodos, what: "Verifican cada bloque y dan acceso a la red." }
@@ -137,21 +137,21 @@ start:
   kicker: Por dónde empezar
   title: Elige por dónde entrar.
   paths:
-    - { icon: connect, label: Conectarse a la red, href: docs:/empezar/conectarse, text: "Parámetros de red, billeteras y proveedores de RPC." }
-    - { icon: build, label: Construir una aplicación, href: docs:/construir/aplicaciones, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
-    - { icon: node, label: Operar un nodo, href: docs:/operar/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
-    - { icon: integrate, label: Integrar sistemas, href: docs:/integrar, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
-    - { icon: governance, label: Entender la gobernanza, href: /protocolo/gobernanza, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
+    - { icon: connect, label: Conectarse a la red, href: docs:/get-started/connect, text: "Parámetros de red, billeteras y proveedores de RPC." }
+    - { icon: build, label: Construir una aplicación, href: docs:/build/applications, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
+    - { icon: node, label: Operar un nodo, href: docs:/operate/nodes, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
+    - { icon: integrate, label: Integrar sistemas, href: docs:/integrate, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
+    - { icon: governance, label: Entender la gobernanza, href: /protocol/governance, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
     - { icon: docs, label: Leer la documentación, href: /docs, text: "Guías y referencia técnica, desde conectar una billetera hasta operar un validador." }
 
 name:
   kicker: El nombre
   title: ¿Por qué 42?
   lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes lo usan."
-  link: { label: Por qué 42, href: "/codigo-abierto#porque42" }
+  link: { label: Por qué 42, href: "/open-source#why-42" }
 
 closing:
   title: Infraestructura compartida, reglas a la vista.
-  primary: { label: Empieza a construir, href: docs:/construir/aplicaciones }
+  primary: { label: Empieza a construir, href: docs:/build/applications }
   secondary: { label: Leer la documentación, href: "docs:/" }
 ---

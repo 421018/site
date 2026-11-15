@@ -24,7 +24,7 @@ const toc = headings.filter((h) => h.depth === 2);
 const related = await relatedPosts(post);
 const home = (await getSiteText(lang)).header.home;
 const index = blogHref(blog, lang);
-// A category with its own path (casos-de-uso) belongs to that section; the others to the blog.
+// A category with its own path (use-cases) belongs to that section; the others to the blog.
 const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.id}`;
 ---
 <Base title={post.data.title} description={post.data.summary}>

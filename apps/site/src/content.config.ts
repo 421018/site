@@ -4,7 +4,7 @@
  * - `pages`: one Markdown file per interior page under the catalog's site/<lang>/pages/.
  *   The folder is the section and the file path is the URL. The `index.md` of
  *   each folder also describes its section (`section:` block).
- * - `posts`: the blog ("Bitácora"), one Markdown file per post under site/<lang>/bitacora/.
+ * - `posts`: the blog ("Bitácora"), one Markdown file per post under site/<lang>/posts/.
  * - `home`: the text of the home page (site/<lang>/home.md, frontmatter only).
  * - `site`: site-wide text: brand, footer, interface labels, 404 (site/<lang>/site.md).
  * - `networks`, `services`, `providers`: network parameters and the public

@@ -5,7 +5,6 @@ icon: connect
 menuText: "Parameters, wallets and providers"
 menuTitle: "Connect to the network"
 weight: 20
-translationOf: empezar/conectarse
 ---
 
 ## Two networks, the same software {#network}
@@ -49,7 +48,7 @@ Access points to 42 are offered by independent operators, each with its own infr
 :::widget{name="provider-directory"}
 :::
 
-[Run your own node (in Spanish) →](/operar/nodos)
+[Run your own node (in Spanish) →](/operate/nodes)
 
 :::aside
 Anyone who runs a public service for 42 can propose adding it to the directory from the public repository: it only takes adding an entry to the providers file.

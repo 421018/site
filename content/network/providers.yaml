@@ -1,5 +1,5 @@
 # Public endpoints offered by independent providers, shown in the directory on
-# implementar/conectarse. To add one: append an entry; the page updates itself.
+# the docs page get-started/connect. To add one: append an entry; the page updates itself.
 #
 #   id:       unique, lowercase (provider-service-network)
 #   provider: name shown in the directory

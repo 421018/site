@@ -4,7 +4,6 @@ summary: "Thousands of computers that do not know each other agree on the same b
 icon: consensus
 menuText: "How each block is agreed"
 weight: 10
-translationOf: protocolo/consenso
 ---
 
 ## The problem of agreement {#agreement}

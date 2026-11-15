@@ -43,9 +43,6 @@
       "default": false,
       "type": "boolean"
     },
-    "translationOf": {
-      "type": "string"
-    },
     "section": {
       "type": "object",
       "properties": {

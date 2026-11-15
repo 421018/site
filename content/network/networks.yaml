@@ -1,4 +1,4 @@
-# The networks that run the protocol, as shown in implementar/conectarse and
+# The networks that run the protocol, as shown in the docs page get-started/connect and
 # used by the "add to wallet" buttons. Values must match the published network
 # data: https://assets.infinitedrive.xyz/<id>/network-data.json
 # The first network is the one shown by default.

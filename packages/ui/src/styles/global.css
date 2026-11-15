@@ -256,7 +256,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 @media (max-width: 640px) { .prose .dg-compare { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .prose .dg-lane { grid-template-columns: 1fr; gap: 8px; } }
 
-/* Diagram: the engine (protocolo/index) */
+/* Diagram: the engine (the README example) */
 .prose .dg-motor { display: grid; gap: 14px; }
 .prose .dg-core { padding: 18px 22px; border: 1px solid var(--link); border-radius: 14px; background: color-mix(in srgb, var(--link) 7%, var(--bg)); display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
 .prose .dg-core strong { font-size: 20px; color: var(--head); letter-spacing: -.01em; }

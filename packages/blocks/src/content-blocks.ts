@@ -74,7 +74,7 @@ export interface BlockOptions {
   diagramsDirs?: (file: string | undefined) => string[];
   widgets?: readonly string[];
   /**
-   * Links between products: [text](docs:/empezar/conectarse) becomes the docs
+   * Links between products: [text](docs:/get-started/connect) becomes the docs
    * URL; also site: and console:. Content never hardcodes another product's domain.
    */
   linkBases?: Record<string, string>;
