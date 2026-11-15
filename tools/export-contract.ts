@@ -7,7 +7,7 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { z } from 'astro/zod';
-import { pageSchema, siteTextSchema } from '../packages/kit/src/schemas.ts';
+import { pageSchema, postSchema, siteTextSchema } from '../packages/kit/src/schemas.ts';
 import { networkSchema, providerSchema, serviceSchema } from '../packages/network/src/schemas.ts';
 import { widgetNames } from '../packages/widgets/src/names.ts';
 import { blockNames } from '../packages/blocks/src/content-blocks.ts';
@@ -19,6 +19,7 @@ const write = (name: string, data: unknown) => writeFileSync(new URL(name, dir),
 const schema = (s: z.ZodType) => z.toJSONSchema(s, { io: 'input', unrepresentable: 'any' });
 
 write('page.schema.json', schema(pageSchema));
+write('post.schema.json', schema(postSchema(() => z.string())));
 write('site.schema.json', schema(siteTextSchema));
 write('network.schema.json', schema(networkSchema));
 write('service.schema.json', schema(serviceSchema));

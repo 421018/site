@@ -175,6 +175,93 @@
         "action"
       ],
       "additionalProperties": false
+    },
+    "blog": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "kicker": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "lead": {
+          "type": "string"
+        },
+        "all": {
+          "type": "string"
+        },
+        "filterLabel": {
+          "type": "string"
+        },
+        "byline": {
+          "type": "string"
+        },
+        "readingTime": {
+          "type": "string"
+        },
+        "onThisPost": {
+          "type": "string"
+        },
+        "keepReading": {
+          "type": "string"
+        },
+        "editPost": {
+          "type": "string"
+        },
+        "illustrative": {
+          "type": "string"
+        },
+        "categories": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "label": {
+                "type": "string"
+              },
+              "plural": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "plural"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "path",
+        "kicker",
+        "title",
+        "lead",
+        "all",
+        "filterLabel",
+        "byline",
+        "readingTime",
+        "onThisPost",
+        "keepReading",
+        "editPost",
+        "illustrative",
+        "categories"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

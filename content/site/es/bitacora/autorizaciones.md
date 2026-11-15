@@ -1,13 +1,11 @@
 ---
 title: "Autorizaciones compartidas"
 summary: "Algunos cambios no deberían depender de una sola organización. Así se exige que varias los aprueben, con reglas que todas pueden leer."
-menuTitle: "Autorizaciones compartidas"
-weight: 40
+category: caso-de-uso
+image: ../../images/casos/autorizaciones.jpg
+alt: "Terminal portuaria con contenedores y camiones"
+credit: "Foto: Artan, Unsplash"
 ---
-
-:::figure[Imagen ilustrativa. Foto: Artan, Unsplash.]{ratio="wide"}
-![Terminal portuaria con contenedores y camiones](../../../images/casos/autorizaciones.jpg)
-:::
 
 ## El problema {#problema}
 

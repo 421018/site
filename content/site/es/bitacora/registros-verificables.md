@@ -1,13 +1,11 @@
 ---
 title: "Registros y documentos verificables"
 summary: "Un título, un certificado o un acta valen poco si comprobarlos exige llamar a quien los emitió. Así se vuelven verificables por cualquiera, en segundos y años después."
-menuTitle: "Registros verificables"
-weight: 10
+category: caso-de-uso
+image: ../../images/casos/registros.jpg
+alt: "Diploma enmarcado con un sello dorado"
+credit: "Foto: Quilia, Unsplash"
 ---
-
-:::figure[Imagen ilustrativa. Foto: Quilia, Unsplash.]{ratio="wide"}
-![Diploma enmarcado con un sello dorado](../../../images/casos/registros.jpg)
-:::
 
 ## El problema {#problema}
 

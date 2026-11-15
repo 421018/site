@@ -15,8 +15,10 @@ interface Props {
   current?: string;
   /** The current page in other languages ({ lang: href }); languages without it link to their home page. */
   alternates?: Record<string, string>;
+  /** Marks a header link as current (e.g. the blog). */
+  currentHref?: string;
 }
-const { current, alternates = {} } = Astro.props;
+const { current, alternates = {}, currentHref } = Astro.props;
 const lang = langOf(Astro);
 const menu = await getMenu(lang);
 const text = await getSiteText(lang);
@@ -30,7 +32,7 @@ const items: Item[] = [
   ...menu.map((s) => ({ kind: 'section' as const, weight: s.weight, key: s.key, label: s.label, href: s.href, panel: s.dropdown ? menuPanel(s) : undefined })),
   ...text.header.links.map((l) => ({ kind: 'link' as const, weight: l.weight ?? Infinity, label: l.label, href: l.href })),
 ].sort((a, b) => a.weight - b.weight);
-const isOn = (i: Item) => i.kind === 'section' && i.key === current;
+const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind === 'link' && !!currentHref && i.href === currentHref);
 ---
 <header class="site-header">
   <a class="brand" href={homeHref(lang)} aria-label={text.header.homeLink}>

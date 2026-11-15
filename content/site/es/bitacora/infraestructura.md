@@ -1,13 +1,11 @@
 ---
 title: "Operación y mantenimiento de infraestructura"
 summary: "Cuando el dueño de una infraestructura, sus contratistas y sus inspectores llevan registros distintos, saber qué se hizo exige una auditoría. Así comparten uno solo, firmado y fechado."
-menuTitle: "Infraestructura"
-weight: 30
+category: caso-de-uso
+image: ../../images/casos/infraestructura.jpg
+alt: "Farola de doble brazo encendida al atardecer"
+credit: "Foto: Kim R-K, Unsplash"
 ---
-
-:::figure[Imagen ilustrativa. Foto: Kim R-K, Unsplash.]{ratio="wide"}
-![Farola de doble brazo encendida al atardecer](../../../images/casos/infraestructura.jpg)
-:::
 
 ## El problema {#problema}
 

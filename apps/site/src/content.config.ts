@@ -4,6 +4,7 @@
  * - `pages`: one Markdown file per interior page under the catalog's site/<lang>/pages/.
  *   The folder is the section and the file path is the URL. The `index.md` of
  *   each folder also describes its section (`section:` block).
+ * - `posts`: the blog ("Bitácora"), one Markdown file per post under site/<lang>/bitacora/.
  * - `home`: the text of the home page (site/<lang>/home.md, frontmatter only).
  * - `site`: site-wide text: brand, footer, interface labels, 404 (site/<lang>/site.md).
  * - `networks`, `services`, `providers`: network parameters and the public
@@ -16,11 +17,12 @@ import { defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from '@42chain/network/schemas';
-import { pageSchema, pagesLoader, perLanguage, siteTextSchema } from '@42chain/kit/schemas';
+import { pageSchema, pagesLoader, perLanguage, postSchema, postsLoader, siteTextSchema } from '@42chain/kit/schemas';
 import { catalogPath } from '@42chain/kit/catalog';
 import { iconNames } from '@42chain/ui/art/icons.ts';
 
 const pages = defineCollection({ loader: pagesLoader(catalogPath('site')), schema: pageSchema });
+const posts = defineCollection({ loader: postsLoader(catalogPath('site')), schema: ({ image }) => postSchema(image) });
 
 const cta = z.object({ label: z.string(), href: z.string() }).strict();
 const icon = z.enum(iconNames);
@@ -101,4 +103,4 @@ const networks = defineCollection({ loader: file(dataFile('networks')), schema: 
 const services = defineCollection({ loader: file(dataFile('services')), schema: serviceSchema });
 const providers = defineCollection({ loader: file(dataFile('providers')), schema: providerSchema });
 
-export const collections = { pages, home, site, networks, services, providers };
+export const collections = { pages, posts, home, site, networks, services, providers };

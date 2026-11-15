@@ -15,7 +15,8 @@
     "./components/*": "./src/components/*",
     "./catalog": "./src/catalog.ts",
     "./i18n": "./src/i18n.ts",
-    "./dictionary": "./src/dictionary.ts"
+    "./dictionary": "./src/dictionary.ts",
+    "./blog": "./src/blog.ts"
   },
   "dependencies": {
     "@42chain/blocks": "*",

@@ -1,13 +1,11 @@
 ---
 title: "Trazabilidad entre organizaciones"
 summary: "Un lote pasa por muchas manos, y cada una guarda su parte del historial. Así se convierte en un solo historial compartido, que nadie tiene que reconstruir."
-menuTitle: "Trazabilidad"
-weight: 20
+category: caso-de-uso
+image: ../../images/casos/trazabilidad.jpg
+alt: "Saco de yute lleno de granos de café"
+credit: "Foto: Tatiana Fernández R, Unsplash"
 ---
-
-:::figure[Imagen ilustrativa. Foto: Tatiana Fernández R, Unsplash.]{ratio="wide"}
-![Saco de yute lleno de granos de café](../../../images/casos/trazabilidad.jpg)
-:::
 
 ## El problema {#problema}
 

@@ -1,13 +1,11 @@
 ---
 title: "Integración entre redes"
 summary: "Un dato reservado puede quedarse en casa y, aun así, ser verificable por cualquiera. Así se comprueban entre sí 42 y otras redes, incluidos los entornos internos de una organización."
-menuTitle: "Integración entre redes"
-weight: 50
+category: caso-de-uso
+image: ../../images/casos/integracion.jpg
+alt: "Mesa de laboratorio con un microscopio y equipos de análisis"
+credit: "Foto: Trnava University, Unsplash"
 ---
-
-:::figure[Imagen ilustrativa. Foto: Trnava University, Unsplash.]{ratio="wide"}
-![Mesa de laboratorio con un microscopio y equipos de análisis](../../../images/casos/integracion.jpg)
-:::
 
 ## El problema {#problema}
 

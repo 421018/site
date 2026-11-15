@@ -25,6 +25,7 @@ npm run validate
 | What | File |
 |---|---|
 | Interior pages | `site/<lang>/pages/<section>/<page>.md` |
+| Blog posts (Bitácora) | `site/<lang>/bitacora/<slug>.md` |
 | Home page text | `site/<lang>/home.md` |
 | Site-wide text: footer, page labels, 404 | `site/<lang>/site.md` |
 | Diagrams | `site/<lang>/diagrams/<name>.html` (or `.svg`) |
@@ -69,7 +70,29 @@ The page shows up in the side index, in previous/next and in the footer.
 | `menuTitle` | no | Label in the side index and footer, when it should differ from the title |
 | `updated` | no | "Last reviewed" date. Defaults to the date of the file's last commit |
 | `draft` | no | `true` leaves the page out of the published site |
+| `icon`, `menuText` | no | Icon and short line of the page in the main menu panel (sections with `dropdown: true`) |
 | `translationOf` | in translations | Path of the Spanish page this one translates, e.g. `protocolo/consenso`. Links both versions in the language switcher and for search engines |
+
+## Writing a blog post (Bitácora)
+
+Create `site/es/bitacora/<slug>.md`. The file name is the end of the URL.
+
+```md
+---
+title: "Registros y documentos verificables"
+summary: "One or two sentences shown on the card and under the title."
+category: caso-de-uso        # caso-de-uso, avance, explicacion, historia (site.md → blog.categories)
+date: 2026-11-14             # optional; without it, the date of the file's last commit
+image: ../../images/casos/registros.jpg   # optional cover photo
+alt: "Diploma enmarcado con un sello dorado"
+credit: "Foto: Quilia, Unsplash"
+featured: false              # optional; the newest featured post leads the index
+---
+
+## El problema {#problema}
+```
+
+Use cases (`caso-de-uso`) are served under `/casos-de-uso/<slug>` and listed in that section's footer column; every other category under `/bitacora/<slug>`. Posts use the same Markdown and `:::` blocks as pages, and their `##` headings make the "En esta entrada" index. Avances must describe facts that can be verified: versions, approved proposals, parameter changes.
 
 ## Translating
 

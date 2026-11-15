@@ -192,6 +192,7 @@ export function menuPanel(s: Section) {
 /** Footer columns: one per main-menu section with its pages, links and attached section index pages. */
 export async function getFooter(lang: string) {
   return (await getMenu(lang)).map((s) => ({
+    key: s.key,
     label: s.label,
     links: [
       ...s.pages.filter((p) => depthOf(p) < 2).map((p) => ({ href: hrefOf(p), label: menuLabel(p) })),

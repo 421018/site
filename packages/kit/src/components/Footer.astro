@@ -1,8 +1,17 @@
 ---
 import { getFooter, getSiteText } from '../site';
+import { getBlog, getPosts, postHref, categoryOf } from '../blog';
 import { langOf } from '../i18n';
 const lang = langOf(Astro);
 const columns = await getFooter(lang);
+// Posts whose category has a path (e.g. casos-de-uso) are listed in that section's column.
+const blog = await getBlog(lang);
+if (blog) {
+  for (const p of await getPosts(lang)) {
+    const col = columns.find((c) => c.key === categoryOf(blog, p).path);
+    col?.links.push({ href: postHref(blog, p), label: p.data.title });
+  }
+}
 const text = await getSiteText(lang);
 ---
 <footer class="site-footer">

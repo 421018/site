@@ -17,6 +17,8 @@
  * - ::: blocks and widget names are known; :::diagram files exist (in the
  *   page's language or the default one).
  * - Images and internal links (/section/page) point to existing files.
+ * - Blog posts (<app>/<lang>/bitacora/*.md): front matter, a category from
+ *   site.md → blog.categories, cover image, the same body checks as pages.
  * - Network data (network/*.yaml) against its schemas, with unique ids and
  *   providers that reference existing networks and services.
  *
@@ -38,7 +40,7 @@ const prefix = (lang) => (lang === defaultLang ? '' : `/${lang}`);
 const ajv = new Ajv2020({ allErrors: true, strict: false });
 ajv.addFormat('uri', (s) => /^https?:\/\/\S+$/.test(s));
 const validators = Object.fromEntries(
-  ['page', 'site', 'network', 'service', 'provider'].map((n) => [n, ajv.compile(contract(`${n}.schema.json`))]),
+  ['page', 'post', 'site', 'network', 'service', 'provider'].map((n) => [n, ajv.compile(contract(`${n}.schema.json`))]),
 );
 
 const errors = [];
@@ -92,6 +94,25 @@ for (const app of apps) {
   const pagesOf = (lang) => walk(join(appDir, lang, 'pages'));
   const idOf = (lang, f) => rel(f).slice(`${app}/${lang}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, '');
   for (const lang of languages) for (const f of pagesOf(lang)) if (f.endsWith('.md')) routes.add(`${prefix(lang)}/${idOf(lang, f)}`);
+  // Blog posts: their URL depends on the category (site.md → blog).
+  const blogOf = (lang) => {
+    const f = join(appDir, lang, 'site.md');
+    if (!existsSync(f)) return null;
+    const m = readFileSync(f, 'utf8').match(/^---\n([\s\S]*?)\n---/);
+    try { return (m && parseYaml(m[1])?.blog) || null; } catch { return null; }
+  };
+  const postsOf = (lang) => walk(join(appDir, lang, 'bitacora')).filter((f) => f.endsWith('.md'));
+  for (const lang of languages) {
+    const blog = blogOf(lang);
+    const posts = postsOf(lang);
+    if (!blog || !posts.length) continue;
+    routes.add(`${prefix(lang)}/${blog.path}`);
+    for (const f of posts) {
+      const cat = (readFileSync(f, 'utf8').match(/^category:\s*(\S+)/m) || [])[1];
+      const path = blog.categories?.find((c) => c.id === cat)?.path ?? blog.path;
+      routes.add(`${prefix(lang)}/${path}/${f.split(sep).pop().replace(/\.md$/, '')}`);
+    }
+  }
   const originals = new Set(pagesOf(defaultLang).filter((f) => f.endsWith('.md')).map((f) => idOf(defaultLang, f)));
   const diagramsIn = (lang) => new Set(walk(join(appDir, lang, 'diagrams')).map((f) => f.split(sep).pop().replace(/\.(html|svg)$/, '')));
   const defaultDiagrams = diagramsIn(defaultLang);
@@ -139,6 +160,35 @@ for (const app of apps) {
         for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\((\/[^)\s#]*)/g)) {
           const path = href.replace(/\/$/, '') || '/';
           if (/^\/(docs|consola)(\/|$)/.test(path)) continue; // redirects to external sites
+          if (!routes.has(path)) report(file, n, `link to a page that does not exist: ${href}`);
+        }
+      });
+    }
+
+    const blog = blogOf(lang);
+    for (const file of postsOf(lang)) {
+      if (!blog) { report(file, 0, `${app}/${lang}/site.md has no "blog" block`); continue; }
+      const { data, body, offset } = frontMatter(file, readFileSync(file, 'utf8'));
+      if (data) {
+        schemaErrors(file, validators.post, data);
+        if (!blog.categories?.some((c) => c.id === data.category)) report(file, 0, `unknown category "${data.category}". Available: ${(blog.categories || []).map((c) => c.id).join(', ')}`);
+        if (data.image && !existsSync(join(dirname(file), data.image))) report(file, 0, `image not found: ${data.image}`);
+        if (data.image && (!data.alt || !data.credit)) report(file, 0, 'a post with an image needs "alt" and "credit"');
+      }
+      body.split('\n').forEach((line, i) => {
+        const n = i + 1 + offset;
+        if (/^\s*(import|export)\s/.test(line)) report(file, n, 'import/export statements are not allowed (no MDX)');
+        for (const [re, msg] of unsafe) if (re.test(line)) report(file, n, msg);
+        const block = line.match(/^:::([a-z]+)/);
+        if (block) {
+          if (!blocks.includes(block[1])) report(file, n, `unknown block ":::${block[1]}". Available: ${blocks.join(', ')}`);
+          const name = line.match(/name="([^"]*)"/)?.[1];
+          if (block[1] === 'widget' && !widgets.includes(name)) report(file, n, `unknown widget "${name ?? ''}"`);
+          if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/${lang}/diagrams/ or ${app}/${defaultLang}/diagrams/`);
+        }
+        for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\((\/[^)\s#]*)/g)) {
+          const path = href.replace(/\/$/, '') || '/';
+          if (/^\/(docs|consola)(\/|$)/.test(path)) continue;
           if (!routes.has(path)) report(file, n, `link to a page that does not exist: ${href}`);
         }
       });
