@@ -42,10 +42,10 @@ El software del nodo funciona en servidores Linux estándar. No requiere hardwar
 
 Los recursos que necesita dependen del tipo de nodo. El almacenamiento es el que más crece, porque el registro aumenta con cada bloque. Un validador, además, necesita una conexión estable y alta disponibilidad, porque cada momento fuera de línea cuenta.
 
-Los requisitos de procesador, memoria, almacenamiento y conexión de cada tipo de nodo están en la guía de nodos.
+Los requisitos de procesador, memoria, almacenamiento y conexión de cada tipo de nodo están pendientes de publicar en esta sección.
 
-:::aside
-[Guía de nodos ↗](/)
+:::status[Pendiente]
+Requisitos por tipo de nodo, instalación y configuración.
 :::
 
 ## Sincronizar un nodo {#sincronizar}

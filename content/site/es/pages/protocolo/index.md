@@ -63,39 +63,11 @@ Las llaves son secuencias largas de números, difíciles de manejar a mano. Por 
 
 Quien pierde su llave privada pierde el acceso a su cuenta. No existe ninguna persona ni servicio que pueda restablecer esa llave.
 
-## Programas que viven en la red {#contratos}
-
-La transacción más simple es una transferencia: mover unidades de una cuenta a otra. Pero el registro puede guardar algo más que saldos. También puede guardar programas, y la red puede ejecutarlos. A un programa publicado en la cadena se le llama **contrato inteligente**.
-
-Un contrato inteligente funciona como un acuerdo que se cumple solo. Sus reglas están escritas en código, y cualquiera puede leerlas. Una vez publicado, nadie puede cambiar el contrato. Por ejemplo, un contrato puede llevar un registro de certificados, guardar el historial de intervenciones de un activo o aplicar un cambio solo cuando lo aprueban varias organizaciones. [Casos de uso](/casos-de-uso)
-
-Para que el resultado de un contrato sea confiable, todos los nodos ejecutan el contrato y todos tienen que llegar exactamente al mismo resultado. Para eso, todos los nodos deben ejecutarlo en el mismo entorno y con las mismas instrucciones. A ese entorno se le llama **máquina virtual**.
-
-La máquina virtual del protocolo es la máquina virtual de Ethereum, conocida como **EVM**: el estándar más extendido para contratos inteligentes. Como la EVM es un estándar compartido, los lenguajes, las herramientas y las billeteras que ya existen para la EVM funcionan con el protocolo sin cambios. Quien ya sabe escribir contratos para la EVM puede escribirlos para el protocolo desde el primer día.
-
-:::aside
-[Ejecución →](/protocolo/ejecucion)
-:::
-
-## El costo de cada transacción {#unidad}
-
-Cada transacción, sea una transferencia o la ejecución de un contrato, la procesan todos los nodos. Procesarla consume trabajo real: cálculo, almacenamiento y conexión. Si las transacciones fueran gratuitas, nada impediría que alguien saturara la red enviando millones de transacciones.
-
-Por eso cada transacción paga una **tarifa**. La tarifa es proporcional al trabajo que exige la transacción.
-
-Las tarifas se pagan en la unidad propia del protocolo. A esa unidad se le llama **unidad nativa**. La unidad nativa del protocolo se llama Improbability, y su símbolo es 42. Las reglas para calcular las tarifas son públicas, así que el costo de una transacción se conoce antes de enviarla.
-
-La unidad nativa tiene además un segundo papel, quizá el más importante: protege la red. Para entender cómo, hay que ver primero quién decide qué bloques entran en la cadena.
-
-:::aside
-[Tarifas y emisión →](/protocolo/tarifas)
-:::
-
 ## Quién añade los bloques {#validacion}
 
 Cada bloque nuevo tiene que proponerlo alguien, y el resto de la red tiene que aceptarlo. El reto es impedir que alguien proponga bloques falsos; por ejemplo, un bloque que gaste dos veces el mismo saldo.
 
-Una primera idea sería votar: que cada nodo tenga un voto y que gane la mayoría. Pero en una red abierta crear nodos es fácil. Alguien que quisiera hacer trampa podría crear miles de nodos falsos y ganar cualquier votación. Por eso el peso de un voto no puede depender del número de nodos. Tiene que depender de algo que cueste conseguir: la cantidad de unidades que cada participante pone en juego.
+Una primera idea sería votar: que cada nodo tenga un voto y que gane la mayoría. Pero en una red abierta crear nodos es fácil. Alguien que quisiera hacer trampa podría crear miles de nodos falsos y ganar cualquier votación. Por eso el peso de un voto no puede depender del número de nodos. Tiene que depender de algo que cueste conseguir: la cantidad de unidades de la red que cada participante pone en juego.
 
 ### Validadores y staking
 
@@ -127,6 +99,34 @@ Los validadores reciben una compensación por este trabajo. El protocolo les asi
 
 :::aside
 [Consenso y staking →](/protocolo/consenso)
+:::
+
+## Programas que viven en la red {#contratos}
+
+La transacción más simple es una transferencia: mover unidades de una cuenta a otra. Pero el registro puede guardar algo más que saldos. También puede guardar programas, y la red puede ejecutarlos. A un programa publicado en la cadena se le llama **contrato inteligente**.
+
+Un contrato inteligente funciona como un acuerdo que se cumple solo. Sus reglas están escritas en código, y cualquiera puede leerlas. Una vez publicado, nadie puede cambiar el contrato. Por ejemplo, un contrato puede llevar un registro de certificados, guardar el historial de intervenciones de un activo o aplicar un cambio solo cuando lo aprueban varias organizaciones. [Casos de uso](/casos-de-uso)
+
+Para que el resultado de un contrato sea confiable, todos los nodos ejecutan el contrato y todos tienen que llegar exactamente al mismo resultado. Para eso, todos los nodos deben ejecutarlo en el mismo entorno y con las mismas instrucciones. A ese entorno se le llama **máquina virtual**.
+
+La máquina virtual del protocolo es la máquina virtual de Ethereum, conocida como **EVM**: el estándar más extendido para contratos inteligentes. Como la EVM es un estándar compartido, los lenguajes, las herramientas y las billeteras que ya existen para la EVM funcionan con el protocolo sin cambios. Quien ya sabe escribir contratos para la EVM puede escribirlos para el protocolo desde el primer día.
+
+:::aside
+[Ejecución →](/protocolo/ejecucion)
+:::
+
+## El costo de cada transacción {#unidad}
+
+Cada transacción, sea una transferencia o la ejecución de un contrato, la procesan todos los nodos. Procesarla consume trabajo real: cálculo, almacenamiento y conexión. Si las transacciones fueran gratuitas, nada impediría que alguien saturara la red enviando millones de transacciones.
+
+Por eso cada transacción paga una **tarifa**. La tarifa es proporcional al trabajo que exige la transacción.
+
+Las tarifas se pagan en la unidad propia del protocolo. A esa unidad se le llama **unidad nativa**. La unidad nativa del protocolo se llama Improbability, y su símbolo es 42. Las reglas para calcular las tarifas son públicas, así que el costo de una transacción se conoce antes de enviarla.
+
+Es también la unidad que los validadores, y quienes les delegan, ponen en staking. La misma unidad que paga cada transacción es la que protege la red.
+
+:::aside
+[Tarifas y emisión →](/protocolo/tarifas)
 :::
 
 ## Una red entre otras redes {#ibc}
@@ -174,9 +174,9 @@ Para no caer en sitios o perfiles falsos, usa solo los [canales del proyecto](/c
 
 El protocolo se apoya en siete decisiones de diseño. Cada una se desarrolla en su capítulo:
 
-- **Ejecución compatible con la EVM.** Quien construye usa lenguajes y herramientas que ya existen. [Ejecución](/protocolo/ejecucion#porque)
 - **El voto depende del staking, no del número de nodos.** Crear nodos no da poder; poner unidades en juego, sí. [Consenso y staking](/protocolo/consenso#porque)
 - **Detenerse antes que arriesgar.** Sin la mayoría necesaria, la red se detiene en lugar de confirmar bloques dudosos. [Consenso y staking](/protocolo/consenso#fallas)
+- **Ejecución compatible con la EVM.** Quien construye usa lenguajes y herramientas que ya existen. [Ejecución](/protocolo/ejecucion#porque)
 - **Una unidad propia y una emisión constante.** La seguridad de la red no depende de nadie externo ni de cuánto se use la red. [Tarifas y emisión](/protocolo/tarifas#porque)
 - **Verificación en lugar de intermediarios.** Las redes conectadas se comprueban entre sí; nadie custodia unidades en el traslado. [Interoperabilidad](/protocolo/interoperabilidad#porque)
 - **Las reglas se deciden en la cadena.** Quien escribe el código propone; quienes protegen la red deciden. [Gobernanza](/protocolo/gobernanza#porque)

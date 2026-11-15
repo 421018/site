@@ -25,15 +25,6 @@ engine:
   title: Five parts. One ledger.
   lead: The Infinite Improbability Drive is the network's entire engine. Choose a part to see what it does.
   pieces:
-    - icon: execution
-      label: Execution
-      title: Runs the contracts.
-      text: Contracts run on the Ethereum Virtual Machine (EVM). Every node reaches exactly the same result.
-      points:
-        - "Solidity and Vyper, without code changes."
-        - "Hardhat, Foundry, Viem and EVM wallets."
-        - "The network's own functions available from contracts."
-      link: { label: Read the chapter (in Spanish), href: /protocolo/ejecucion }
     - icon: consensus
       label: Consensus
       title: Agrees on each block.
@@ -43,6 +34,15 @@ engine:
         - "Tolerates faults of less than a third of the voting power."
         - "Without a majority, the network halts rather than take risks."
       link: { label: Read the chapter, href: /en/protocol/consensus }
+    - icon: execution
+      label: Execution
+      title: Runs the contracts.
+      text: Contracts run on the Ethereum Virtual Machine (EVM). Every node reaches exactly the same result.
+      points:
+        - "Solidity and Vyper, without code changes."
+        - "Hardhat, Foundry, Viem and EVM wallets."
+        - "The network's own functions available from contracts."
+      link: { label: Read the chapter (in Spanish), href: /protocolo/ejecucion }
     - icon: fees
       label: Fees
       title: Measures and pays for the work.

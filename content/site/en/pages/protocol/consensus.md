@@ -3,7 +3,7 @@ title: "Consensus and staking"
 summary: "Thousands of computers that do not know each other agree on the same block every two seconds. This is how they do it, and what happens when some fail or try to cheat."
 icon: consensus
 menuText: "How each block is agreed"
-weight: 20
+weight: 10
 translationOf: protocolo/consenso
 ---
 
@@ -26,6 +26,22 @@ In the protocol, that something is the units each participant puts at stake. The
 If a validator breaks the rules, it loses part of its bond. So cheating costs more than it could gain.
 
 This mechanism is called **delegated proof of stake**. "Proof of stake", because the vote depends on what each validator puts at stake. "Delegated", because other people can add their units to a validator's bond.
+
+## Delegation {#delegation}
+
+A validator's voting power does not depend only on its own units. Other accounts can **delegate** units to it, which are added to its staking and increase its voting power. So the network's bond is not limited to those who run servers.
+
+The protocol sets three rules for delegation:
+
+- **The units still belong to the delegator.** The validator cannot use or transfer them.
+- **Penalties are shared.** If the validator misbehaves, the units delegated to it also lose a part.
+- **Withdrawing them takes a waiting period.** A withdrawn delegation stays locked for a fixed period before it can be transferred. [Length of the waiting period.]
+
+Each validator sets a **commission**: the share of the compensation for delegated units that it keeps for running its infrastructure.
+
+:::aside
+[Staking and delegation parameters ↗](/docs)
+:::
 
 ## The active set {#active-set}
 
@@ -67,22 +83,6 @@ If the offline validators add up to more than a third of the voting power, no bl
 This halt is a design decision. A confirmed block cannot be undone, so the protocol prefers to stop rather than confirm a block without the required majority. When the validators reconnect and the majority is restored, the network continues from the last confirmed block.
 
 :::widget{name="consensus-sim"}
-:::
-
-## Delegation {#delegation}
-
-A validator's voting power does not depend only on its own units. Other accounts can **delegate** units to it, which are added to its staking and increase its voting power. So the network's bond is not limited to those who run servers.
-
-The protocol sets three rules for delegation:
-
-- **The units still belong to the delegator.** The validator cannot use or transfer them.
-- **Penalties are shared.** If the validator misbehaves, the units delegated to it also lose a part.
-- **Withdrawing them takes a waiting period.** A withdrawn delegation stays locked for a fixed period before it can be transferred. [Length of the waiting period.]
-
-Each validator sets a **commission**: the share of the compensation for delegated units that it keeps for running its infrastructure.
-
-:::aside
-[Staking and delegation parameters ↗](/docs)
 :::
 
 ## Penalties {#penalties}

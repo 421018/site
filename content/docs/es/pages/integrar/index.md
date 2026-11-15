@@ -46,18 +46,14 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 | Unidad y denominación base | Improbability, símbolo 42, 18 decimales · denominación base `drop` (`tdrop` en la red de pruebas) · [Drops y cups](site:/protocolo/tarifas#medidas) |
 | Formatos de dirección | Formato 0x, compatible con la EVM, y formato propio de la red; los dos corresponden a la misma cuenta |
 | Finalidad | Un registro es definitivo en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |
-| Funciones propias de la red | Direcciones fijas para usarlas desde contratos · [en la documentación] |
-
-:::aside
-[Guías de integración ↗](/)
-:::
+| Funciones propias de la red | Direcciones fijas para usarlas desde contratos · [Funciones propias de la red](/construir/precompiles) |
 
 ## Cómo es el proceso {#proceso}
 
 Una integración suele seguir cinco pasos:
 
-- **1. Revisar la documentación.** La sección de integración de la documentación explica cada tipo de integración paso a paso.
+- **1. Elegir el tipo de integración.** Cada tipo necesita datos distintos; la tabla de arriba indica dónde está cada uno.
 - **2. Probar en la red de pruebas.** La integración se prueba primero en la red de pruebas, con unidades de prueba.
 - **3. Resolver dudas.** Si algo no está claro, pregunta en el espacio de discusiones del repositorio público.
 - **4. Pasar a la red principal.** Con la integración probada, se conecta a la red principal. Solo cambian los parámetros de conexión.
-- **5. Seguir las actualizaciones.** Cuando se aprueba por gobernanza una versión nueva del protocolo, quienes operan nodos los actualizan antes de la altura de actualización. Las notas de cada versión se publican en la documentación.
+- **5. Seguir las actualizaciones.** Cuando se aprueba por gobernanza una versión nueva del protocolo, quienes operan nodos los actualizan antes de la altura de actualización. Las notas de cada versión se publican en [Cambios].

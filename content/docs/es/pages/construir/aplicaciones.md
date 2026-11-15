@@ -63,7 +63,7 @@ Además de las firmas habituales de la EVM, los contratos pueden verificar firma
 Los contratos pueden usar directamente las funciones propias del protocolo: consultar y mover unidades nativas, operar con el staking y la gobernanza, enviar transferencias a otras redes y comprobar, con una prueba, datos de otra red. Cada función tiene una dirección fija, y se llama como cualquier otro contrato.
 
 :::aside
-[Funciones propias de la red →](site:/protocolo/ejecucion#nativas) · [Funciones propias de la red y sus direcciones ↗](/)
+[Funciones propias de la red y sus direcciones →](/construir/precompiles)
 :::
 
 ## Red principal y red de pruebas {#redes}
@@ -96,8 +96,8 @@ Llevar una aplicación a operación suele seguir cinco pasos:
 | Firma | Billeteras compatibles con la EVM, Ledger, passkeys (P-256) |
 | Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio · [Directorio](/empezar/conectarse#proveedores) |
 
-## Documentación {#soporte}
+## Siguientes pasos {#soporte}
 
-Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/empezar/conectarse). Las guías y la referencia técnica completa están en la [documentación](/).
+Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/empezar/conectarse).
 
 Para conectar sistemas existentes, dispositivos u otras redes, consulta [Integrar sistemas](/integrar). Para un entorno interno conectado a 42 o una integración que requiere trabajo a medida, consulta [Implementaciones a medida](site:/casos-de-uso/implementaciones).

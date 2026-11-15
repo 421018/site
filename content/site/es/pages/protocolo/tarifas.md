@@ -6,9 +6,19 @@ menuText: "Gas, drops y cups"
 weight: 30
 ---
 
+## Para qué existen las tarifas {#para-que}
+
+Cada transacción que se envía a la red la procesan todos los nodos. Procesarla consume trabajo real: cálculo, almacenamiento y conexión. La tarifa existe por tres razones:
+
+- **Cubrir el trabajo.** La tarifa compensa a quienes operan la red por el trabajo de procesar cada transacción.
+- **Evitar abusos.** Si las transacciones fueran gratuitas, alguien podría saturar la red enviando millones de transacciones inútiles. La tarifa vuelve ese abuso costoso.
+- **Ordenar el uso.** Cada transacción paga según el trabajo que exige. Una transacción sencilla paga poco; una transacción compleja paga más.
+
+La tarifa la paga la cuenta que envía la transacción, en la unidad nativa. En una aplicación de infraestructura, la tarifa puede quedar a cargo de la organización y no de quien firma cada registro. [Tarifas a cargo de la organización](docs:/construir/aplicaciones#tarifas)
+
 ## La unidad nativa {#unidad}
 
-Cada operación en la red pone a trabajar a miles de nodos, y ese trabajo se paga en la unidad propia del protocolo: la **unidad nativa**, que se llama **Improbability** y tiene el símbolo **42**.
+Las tarifas se pagan en la unidad propia del protocolo: la **unidad nativa**, que se llama **Improbability** y tiene el símbolo **42**.
 
 Es el recurso técnico con el que funciona el motor, y cumple tres funciones:
 
@@ -35,27 +45,9 @@ Los contratos trabajan siempre en drops, como en cualquier red compatible con la
 :::widget{name="unit-converter"}
 :::
 
-:::lore[Bitácora del motor]
-El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que miles de computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
-
-En la novela de Douglas Adams, el motor de improbabilidad infinita se pone en marcha con una buena taza de té caliente. De ahí viene el nombre de la unidad completa: una cup es la taza que mueve el motor. Cada cup se divide en drops, la cantidad más pequeña que existe, como un átomo.
-
-El gas no es el combustible. Es el medidor que dice cuántos drops pide cada maniobra.
-:::
-
 :::aside
 [Consenso y staking →](/protocolo/consenso)
 :::
-
-## Para qué existen las tarifas {#para-que}
-
-Cada transacción que se envía a la red la procesan todos los nodos. Procesarla consume trabajo real: cálculo, almacenamiento y conexión. La tarifa existe por tres razones:
-
-- **Cubrir el trabajo.** La tarifa compensa a quienes operan la red por el trabajo de procesar cada transacción.
-- **Evitar abusos.** Si las transacciones fueran gratuitas, alguien podría saturar la red enviando millones de transacciones inútiles. La tarifa vuelve ese abuso costoso.
-- **Ordenar el uso.** Cada transacción paga según el trabajo que exige. Una transacción sencilla paga poco; una transacción compleja paga más.
-
-La tarifa la paga la cuenta que envía la transacción, en la unidad nativa. En una aplicación de infraestructura, la tarifa puede quedar a cargo de la organización y no de quien firma cada registro. [Tarifas a cargo de la organización](docs:/construir/aplicaciones#tarifas)
 
 ## Cómo se calcula una tarifa {#tarifas}
 
@@ -87,6 +79,14 @@ Antes de firmar, la billetera estima el gas que la transacción va a consumir, p
 
 :::aside
 Las cifras del ejemplo son ilustrativas.
+:::
+
+:::lore[Bitácora del motor]
+El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que miles de computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
+
+En la novela de Douglas Adams, el motor de improbabilidad infinita se pone en marcha con una buena taza de té caliente. De ahí viene el nombre de la unidad completa: una cup es la taza que mueve el motor. Cada cup se divide en drops, la cantidad más pequeña que existe, como un átomo.
+
+El gas no es el combustible. Es el medidor que dice cuántos drops pide cada maniobra.
 :::
 
 ## Emisión {#emision}

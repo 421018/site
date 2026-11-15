@@ -3,7 +3,7 @@ title: "Consenso y staking"
 summary: "Miles de computadoras que no se conocen acuerdan el mismo bloque cada dos segundos. Así lo consiguen, y esto es lo que pasa cuando alguna falla o intenta hacer trampa."
 icon: consensus
 menuText: "Cómo se acuerda cada bloque"
-weight: 20
+weight: 10
 ---
 
 ## El problema del acuerdo {#acuerdo}
@@ -25,6 +25,22 @@ En el protocolo, ese algo son las unidades que cada participante pone en juego. 
 Si un validador rompe las reglas, pierde una parte de su respaldo. Así, hacer trampa cuesta más de lo que se podría ganar con ella.
 
 Este mecanismo se llama **prueba de participación delegada**. "Prueba de participación", porque el voto depende de lo que cada validador pone en juego. "Delegada", porque otras personas pueden sumar sus unidades al respaldo de un validador.
+
+## Delegación {#delegacion}
+
+El poder de voto de un validador no depende solo de sus propias unidades. Otras cuentas pueden **delegarle** unidades, que se suman a su staking y aumentan su poder de voto. Así, el respaldo de la red no se limita a quienes operan servidores.
+
+El protocolo fija tres reglas para la delegación:
+
+- **Las unidades siguen siendo de quien las delega.** El validador no puede usarlas ni transferirlas.
+- **Comparten las penalizaciones.** Si el validador comete una falta, las unidades delegadas en él también pierden una parte.
+- **Retirarlas lleva un período de espera.** Una delegación retirada queda bloqueada durante un período fijo antes de poder transferirse. [Duración del período de espera.]
+
+Cada validador fija una **comisión**: la parte de la compensación correspondiente a las unidades delegadas que retiene por operar su infraestructura.
+
+:::aside
+[Parámetros de staking y delegación ↗](/docs)
+:::
 
 ## El conjunto activo {#conjunto}
 
@@ -66,22 +82,6 @@ Si los validadores desconectados suman más de un tercio del poder de voto, ning
 Esta pausa es una decisión de diseño. Un bloque confirmado ya no puede deshacerse, así que el protocolo prefiere detenerse antes que confirmar un bloque sin la mayoría necesaria. Cuando los validadores se reconectan y se recupera la mayoría, la red continúa desde el último bloque confirmado.
 
 :::widget{name="consensus-sim"}
-:::
-
-## Delegación {#delegacion}
-
-El poder de voto de un validador no depende solo de sus propias unidades. Otras cuentas pueden **delegarle** unidades, que se suman a su staking y aumentan su poder de voto. Así, el respaldo de la red no se limita a quienes operan servidores.
-
-El protocolo fija tres reglas para la delegación:
-
-- **Las unidades siguen siendo de quien las delega.** El validador no puede usarlas ni transferirlas.
-- **Comparten las penalizaciones.** Si el validador comete una falta, las unidades delegadas en él también pierden una parte.
-- **Retirarlas lleva un período de espera.** Una delegación retirada queda bloqueada durante un período fijo antes de poder transferirse. [Duración del período de espera.]
-
-Cada validador fija una **comisión**: la parte de la compensación correspondiente a las unidades delegadas que retiene por operar su infraestructura.
-
-:::aside
-[Parámetros de staking y delegación ↗](/docs)
 :::
 
 ## Penalizaciones {#penalizaciones}

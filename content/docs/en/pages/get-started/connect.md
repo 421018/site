@@ -26,8 +26,6 @@ To connect to either one you need its details and an access point to a node. Cho
 
 The network's technical identifier is `infinite`, after the protocol's formal name, the Infinite Improbability Drive. That is why the native chain ID starts with `infinite_`, native addresses start with `infinite1` and the network's short name in chain registries is `infinite`. It is the same network as 42 Chain: the name is for people, and the identifier for machines.
 
-Current parameters and their history are in the [technical reference](/).
-
 ## Add the network to a wallet {#wallet}
 
 The quickest way is this button. Your wallet shows the details and asks for confirmation before adding the network:

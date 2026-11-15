@@ -64,7 +64,7 @@ Besides the usual EVM signatures, contracts can verify **P-256** signatures: the
 Contracts can use the protocol's own functions directly: query and move native units, work with staking and governance, send transfers to other networks and check, with a proof, data from another network. Each function has a fixed address and is called like any other contract.
 
 :::aside
-[Native network functions (in Spanish) →](site:/protocolo/ejecucion#nativas) · [Native network functions and their addresses ↗](/)
+[The network's own functions and their addresses (in Spanish) →](/construir/precompiles)
 :::
 
 ## Mainnet and testnet {#networks}
@@ -97,8 +97,8 @@ Taking an application into operation usually follows five steps:
 | Signing | EVM-compatible wallets, Ledger, passkeys (P-256) |
 | Infrastructure | RPC nodes, indexers and oracles are offered by independent providers, each with its own domain · [Directory](/en/get-started/connect#providers) |
 
-## Documentation {#support}
+## Next steps {#support}
 
-The parameters of each network and the provider directory are in [Connect to 42 Chain](/en/get-started/connect). Guides and the full technical reference are in the [documentation](/).
+The parameters of each network and the provider directory are in [Connect to 42 Chain](/en/get-started/connect).
 
 To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/integrar). For an internal environment connected to 42 or an integration that requires custom work, see [Custom implementations (in Spanish)](site:/casos-de-uso/implementaciones).

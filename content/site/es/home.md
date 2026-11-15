@@ -27,15 +27,6 @@ engine:
   title: Cinco piezas. Un solo registro.
   lead: El Infinite Improbability Drive es el motor completo de la red. Elige una pieza para ver qué hace.
   pieces:
-    - icon: execution
-      label: Ejecución
-      title: Ejecuta los contratos.
-      text: Los contratos se ejecutan en la máquina virtual de Ethereum (EVM). Todos los nodos llegan exactamente al mismo resultado.
-      points:
-        - "Solidity y Vyper, sin cambios en el código."
-        - "Hardhat, Foundry, Viem y las billeteras de la EVM."
-        - "Funciones propias de la red disponibles desde los contratos."
-      link: { label: Leer el capítulo, href: /protocolo/ejecucion }
     - icon: consensus
       label: Consenso
       title: Acuerda cada bloque.
@@ -45,6 +36,15 @@ engine:
         - "Tolera fallas de menos de un tercio del poder de voto."
         - "Si no hay mayoría, la red se detiene antes que arriesgar."
       link: { label: Leer el capítulo, href: /protocolo/consenso }
+    - icon: execution
+      label: Ejecución
+      title: Ejecuta los contratos.
+      text: Los contratos se ejecutan en la máquina virtual de Ethereum (EVM). Todos los nodos llegan exactamente al mismo resultado.
+      points:
+        - "Solidity y Vyper, sin cambios en el código."
+        - "Hardhat, Foundry, Viem y las billeteras de la EVM."
+        - "Funciones propias de la red disponibles desde los contratos."
+      link: { label: Leer el capítulo, href: /protocolo/ejecucion }
     - icon: fees
       label: Tarifas
       title: Mide y paga el trabajo.

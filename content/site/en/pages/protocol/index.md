@@ -64,39 +64,11 @@ Keys are long sequences of numbers, hard to handle by hand. That is why people u
 
 Whoever loses their private key loses access to their account. There is no person or service that can restore that key.
 
-## Programs that live on the network {#contracts}
-
-The simplest transaction is a transfer: moving units from one account to another. But the ledger can store more than balances. It can also store programs, and the network can run them. A program published on the chain is called a **smart contract**.
-
-A smart contract works like an agreement that enforces itself. Its rules are written in code, and anyone can read them. Once published, nobody can change the contract. For example, a contract can keep a register of certificates, store the maintenance history of an asset or apply a change only when several organizations approve it. [Use cases (in Spanish)](/casos-de-uso)
-
-For a contract's result to be trustworthy, every node runs the contract and all of them must reach exactly the same result. For that, every node must run it in the same environment and with the same instructions. That environment is called a **virtual machine**.
-
-The protocol's virtual machine is the Ethereum Virtual Machine, known as the **EVM**: the most widespread standard for smart contracts. Since the EVM is a shared standard, the languages, tools and wallets that already exist for the EVM work with the protocol without changes. Anyone who already knows how to write contracts for the EVM can write them for the protocol from day one.
-
-:::aside
-[Execution (in Spanish) →](/protocolo/ejecucion)
-:::
-
-## The cost of each transaction {#unit}
-
-Every transaction, whether a transfer or a contract execution, is processed by every node. Processing it takes real work: computation, storage and connectivity. If transactions were free, nothing would stop someone from flooding the network with millions of transactions.
-
-That is why every transaction pays a **fee**. The fee is proportional to the work the transaction requires.
-
-Fees are paid in the protocol's own unit. That unit is called the **native unit**. The protocol's native unit is called Improbability, and its symbol is 42. The rules for calculating fees are public, so the cost of a transaction is known before sending it.
-
-The native unit also has a second role, perhaps the most important one: it protects the network. To understand how, we first need to see who decides which blocks enter the chain.
-
-:::aside
-[Fees and issuance (in Spanish) →](/protocolo/tarifas)
-:::
-
 ## Who adds the blocks {#validation}
 
 Each new block has to be proposed by someone, and the rest of the network has to accept it. The challenge is to stop anyone from proposing false blocks; for example, a block that spends the same balance twice.
 
-A first idea would be to vote: give each node one vote and let the majority win. But in an open network, creating nodes is easy. Someone who wanted to cheat could create thousands of fake nodes and win any vote. So the weight of a vote cannot depend on the number of nodes. It has to depend on something that is costly to obtain: the amount of units each participant puts at stake.
+A first idea would be to vote: give each node one vote and let the majority win. But in an open network, creating nodes is easy. Someone who wanted to cheat could create thousands of fake nodes and win any vote. So the weight of a vote cannot depend on the number of nodes. It has to depend on something that is costly to obtain: the amount of the network's units each participant puts at stake.
 
 ### Validators and staking
 
@@ -128,6 +100,34 @@ Validators are compensated for this work. The protocol assigns them part of the 
 
 :::aside
 [Consensus and staking →](/en/protocol/consensus)
+:::
+
+## Programs that live on the network {#contracts}
+
+The simplest transaction is a transfer: moving units from one account to another. But the ledger can store more than balances. It can also store programs, and the network can run them. A program published on the chain is called a **smart contract**.
+
+A smart contract works like an agreement that enforces itself. Its rules are written in code, and anyone can read them. Once published, nobody can change the contract. For example, a contract can keep a register of certificates, store the maintenance history of an asset or apply a change only when several organizations approve it. [Use cases (in Spanish)](/casos-de-uso)
+
+For a contract's result to be trustworthy, every node runs the contract and all of them must reach exactly the same result. For that, every node must run it in the same environment and with the same instructions. That environment is called a **virtual machine**.
+
+The protocol's virtual machine is the Ethereum Virtual Machine, known as the **EVM**: the most widespread standard for smart contracts. Since the EVM is a shared standard, the languages, tools and wallets that already exist for the EVM work with the protocol without changes. Anyone who already knows how to write contracts for the EVM can write them for the protocol from day one.
+
+:::aside
+[Execution (in Spanish) →](/protocolo/ejecucion)
+:::
+
+## The cost of each transaction {#unit}
+
+Every transaction, whether a transfer or a contract execution, is processed by every node. Processing it takes real work: computation, storage and connectivity. If transactions were free, nothing would stop someone from flooding the network with millions of transactions.
+
+That is why every transaction pays a **fee**. The fee is proportional to the work the transaction requires.
+
+Fees are paid in the protocol's own unit. That unit is called the **native unit**. The protocol's native unit is called Improbability, and its symbol is 42. The rules for calculating fees are public, so the cost of a transaction is known before sending it.
+
+It is also the unit that validators, and those who delegate to them, put in staking. The same unit that pays for each transaction is the one that protects the network.
+
+:::aside
+[Fees and issuance (in Spanish) →](/protocolo/tarifas)
 :::
 
 ## A network among networks {#ibc}
@@ -175,9 +175,9 @@ To avoid fake sites or profiles, use only the [project's channels (in Spanish)](
 
 The protocol rests on seven design decisions. Each one is developed in its chapter:
 
-- **EVM-compatible execution.** Builders use languages and tools that already exist. [Execution](/protocolo/ejecucion#porque)
 - **Votes depend on staking, not on the number of nodes.** Creating nodes gives no power; putting units at stake does. [Consensus and staking](/en/protocol/consensus#why)
 - **Halt rather than risk.** Without the required majority, the network halts instead of confirming doubtful blocks. [Consensus and staking](/en/protocol/consensus#failures)
+- **EVM-compatible execution.** Builders use languages and tools that already exist. [Execution](/protocolo/ejecucion#porque)
 - **An own unit and constant issuance.** The network's security does not depend on anyone external or on how much the network is used. [Fees and issuance](/protocolo/tarifas#porque)
 - **Verification instead of intermediaries.** Connected networks check each other; nobody holds units in transit. [Interoperability](/protocolo/interoperabilidad#porque)
 - **The rules are decided on the chain.** Those who write the code propose; those who protect the network decide. [Governance](/protocolo/gobernanza#porque)

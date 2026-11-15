@@ -69,11 +69,3 @@ La solución habitual es separar el dato de su prueba. El dato se queda fuera de
 Algunas organizaciones necesitan, además, mantener parte de sus datos separados de la red pública: resultados internos, información de clientes o datos de operación. Para esos casos, la misma tecnología permite un **entorno interno** encapsulado, conectado a 42 mediante IBC. Los datos reservados se quedan en el entorno interno, y sus pruebas se comprueban en 42, donde cualquiera puede verificarlas.
 
 Un entorno interno requiere una implementación a medida. [Implementaciones a medida](/casos-de-uso/implementaciones)
-
-## Por qué el protocolo lo hace posible {#porque}
-
-- **Finalidad en un bloque.** Un registro confirmado es definitivo en segundos. No hace falta esperar confirmaciones adicionales. [Consenso](/protocolo/consenso#ronda)
-- **Contratos compatibles con la EVM.** Las reglas de cada caso se escriben con lenguajes y herramientas estándar. [Ejecución](/protocolo/ejecucion#contratos)
-- **Firmas en cada transacción.** Cada registro queda asociado a la cuenta que lo firmó. [Cuentas, llaves y firmas](/protocolo#cuentas)
-- **Reglas que solo cambian en público.** Las reglas de la red cambian solo mediante propuestas y votos registrados en la cadena. [Gobernanza](/protocolo/gobernanza)
-- **IBC.** Redes distintas comprueban por sí mismas lo que ocurrió en la otra. [Interoperabilidad](/protocolo/interoperabilidad)

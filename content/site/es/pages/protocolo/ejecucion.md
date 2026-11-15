@@ -3,7 +3,7 @@ title: "Ejecución"
 summary: "Lo que pasa entre el momento en que alguien firma una operación y el momento en que el registro cambia, igual en todos los nodos."
 icon: execution
 menuText: "Contratos en la EVM"
-weight: 10
+weight: 20
 ---
 
 ## Del bloque al registro {#estado}
