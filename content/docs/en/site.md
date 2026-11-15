@@ -12,6 +12,8 @@ header:
   mainNav: Main
   menuButton: Menu
   languageNav: Language
+  themeDark: Switch to dark theme
+  themeLight: Switch to light theme
   search:
     label: Search
     close: Close
@@ -31,6 +33,9 @@ page:
   previous: ← Previous
   next: Next →
   chapters: Chapters
+  onThisPage: On this page
+  copyPage: Copy page # copies the page as Markdown, e.g. to paste into an AI assistant
+  copied: Copied
 
 notFound:
   title: Page not found

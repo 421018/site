@@ -9,20 +9,22 @@ interface Props {
   description?: string;
   /** The same page in every language that has it, as { lang: href }: hreflang links. */
   alternates?: Record<string, string>;
+  /** Product whose design applies (html data-product), e.g. "docs". */
+  product?: string;
   /** Section colors (frontmatter `section.accent` / `section.ink`); the defaults live in global.css. */
   accent?: string;
   ink?: string;
 }
 const lang = langOf(Astro);
 const text = await getSiteText(lang);
-const { title, description = text.description, accent, ink, alternates = {} } = Astro.props;
+const { title, description = text.description, accent, ink, alternates = {}, product } = Astro.props;
 const others = Object.entries(alternates);
 const colors = [accent && `--acc: ${accent}`, ink && `--link: ${ink}`].filter(Boolean).join('; ') || undefined;
 const fullTitle = title ? `${title} — ${text.name}` : `${text.name} — ${text.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
-<html lang={lang} style={colors}>
+<html lang={lang} style={colors} data-product={product}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

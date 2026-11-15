@@ -13,7 +13,24 @@ import { dataFile, networkSchema, providerSchema, serviceSchema } from '@42chain
 const pages = defineCollection({ loader: pagesLoader(catalogPath('docs')), schema: pageSchema });
 const home = defineCollection({
   loader: perLanguage(catalogPath('docs'), 'home.md'),
-  schema: z.object({ eyebrow: z.string(), title: z.string(), lead: z.string(), searchPrompt: z.string() }).strict(),
+  schema: z
+    .object({
+      eyebrow: z.string(),
+      title: z.string(),
+      lead: z.string(),
+      searchPrompt: z.string(),
+      /** "How the protocol is built": its layers, top to bottom. */
+      layers: z
+        .object({
+          title: z.string(),
+          items: z.array(z.object({ label: z.string(), text: z.string(), tag: z.string(), href: z.string().optional() }).strict()),
+        })
+        .strict()
+        .optional(),
+      /** Title of the quick network data panel (from the catalog's network data). */
+      quickData: z.string().optional(),
+    })
+    .strict(),
 });
 const site = defineCollection({ loader: perLanguage(catalogPath('docs'), 'site.md'), schema: siteTextSchema });
 const networks = defineCollection({ loader: file(dataFile('networks')), schema: networkSchema });

@@ -71,6 +71,12 @@
           ],
           "additionalProperties": false
         },
+        "themeDark": {
+          "type": "string"
+        },
+        "themeLight": {
+          "type": "string"
+        },
         "search": {
           "type": "object",
           "properties": {
@@ -140,6 +146,15 @@
           "type": "string"
         },
         "chapters": {
+          "type": "string"
+        },
+        "onThisPage": {
+          "type": "string"
+        },
+        "copyPage": {
+          "type": "string"
+        },
+        "copied": {
           "type": "string"
         }
       },

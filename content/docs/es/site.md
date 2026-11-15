@@ -12,6 +12,8 @@ header:
   mainNav: Principal
   menuButton: Menú
   languageNav: Idioma
+  themeDark: Cambiar a tema oscuro
+  themeLight: Cambiar a tema claro
   search:
     label: Buscar
     close: Cerrar
@@ -31,6 +33,9 @@ page:
   previous: ← Anterior
   next: Siguiente →
   chapters: Capítulos
+  onThisPage: En esta página
+  copyPage: Copiar página # copies the page as Markdown, e.g. to paste into an AI assistant
+  copied: Copiado
 
 notFound:
   title: Página no encontrada

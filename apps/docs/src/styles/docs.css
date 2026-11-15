@@ -1,0 +1,60 @@
+/* Documentation: a product of its own. Light by default, with a dark theme;
+   dense, three columns. Shares the type and the brand mark with the site.
+   All rights reserved (see LICENSE). */
+:root[data-product="docs"] {
+  --bg: #FBFBF9; --ink: #2A313A; --head: #0E1319; --muted: #5A636E; --rule: #E6E4DE; --rule2: #CFCBC1; --panel: #F1EFEA;
+  --surface: #FFFFFF; --soft: #F6F5F1;
+  color-scheme: light;
+}
+:root[data-product="docs"][data-theme="dark"] {
+  --bg: #0B0F14; --ink: #C9D0D6; --head: #F1F3F5; --muted: #8E98A3; --rule: #222932; --rule2: #313A45; --panel: #151B23;
+  --surface: #11161D; --soft: #151B23; --link: #5BF0C8;
+  color-scheme: dark;
+}
+[data-product="docs"] body { background: var(--bg); color: var(--ink); }
+/* header */
+.dh { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--rule); }
+.dh-top { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.dh-brand { display: flex; align-items: center; gap: 10px; color: var(--head); text-decoration: none; font-weight: 500; }
+.dh-mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: var(--head); color: var(--bg); font-family: var(--mono); font-size: 12px; font-weight: 600; }
+.dh-search { flex: 1 1 280px; max-width: 460px; }
+.dh-search .sbtn { width: 100%; justify-content: flex-start; min-height: 40px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 10px; background: var(--soft); color: var(--muted); }
+.dh-search .sbtn:hover { color: var(--head); background: var(--soft); border-color: var(--rule2); }
+.dh-tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.dh-net .netsw { margin: 0; }
+.dh-theme { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--head); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.dh-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
+.dh-link:hover { color: var(--head); }
+.dh-link.mono { font-family: var(--mono); font-size: 12px; }
+.dh-tabs { max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.dh-tabs a { flex: none; padding: 12px 14px; color: var(--muted); text-decoration: none; font-size: 14px; border-bottom: 2px solid transparent; }
+.dh-tabs a:hover { color: var(--head); }
+.dh-tabs a[aria-current="true"] { color: var(--head); font-weight: 500; border-bottom-color: var(--head); }
+/* three columns */
+.dl { max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px) 96px; display: flex; gap: 48px; font-size: 16px; line-height: 1.7; color: var(--ink); }
+.dl .sidewrap { flex: 0 0 240px; margin-right: 0; }
+.dl .side { padding-top: 32px; position: sticky; top: 112px; max-height: calc(100vh - 130px); overflow-y: auto; }
+.dl main { flex: 1 1 640px; min-width: 0; max-width: 780px; padding-top: 32px; }
+.dl-crumb { margin: 0; font-size: 13px; color: var(--muted); }
+.dl-title { margin-top: 10px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.dl-title h1 { margin: 0; font-size: clamp(30px, 3.4vw, 40px); line-height: 1.1; letter-spacing: -0.03em; font-weight: 500; color: var(--head); }
+.dl-copy { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--head); font: inherit; font-size: 13.5px; cursor: pointer; }
+.dl-copy:hover { border-color: var(--rule2); }
+.dl-sum { margin: 14px 0 0; font-size: 17px; line-height: 1.65; color: var(--muted); }
+.dl-meta { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
+.dl-meta a { color: var(--link); }
+.dl .prose > h2:first-child { margin-top: 32px; }
+.dl-toc { flex: 0 0 200px; padding-top: 40px; font-size: 13.5px; }
+.dl-toc p { margin: 0 0 10px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.dl-toc nav { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 8px; }
+.dl-toc a { color: var(--muted); text-decoration: none; line-height: 1.35; }
+.dl-toc a.sub { padding-left: 12px; }
+.dl-toc a:hover { color: var(--link); }
+[data-product="docs"] .prose pre { background: #0B0F14; color: #C9D0D6; border: 1px solid #1E242B; border-radius: 12px; padding: 16px 18px; overflow-x: auto; font-family: var(--mono); font-size: 13.5px; line-height: 1.7; }
+[data-product="docs"] .prose pre code { background: transparent; padding: 0; color: inherit; }
+[data-product="docs"] .side a.on, [data-product="docs"] .side-m a.on { color: var(--link); box-shadow: inset 2px 0 0 var(--link); }
+@media (max-width: 1180px) { .dl-toc { display: none; } }
+@media (max-width: 1000px) { .dl { flex-direction: column; gap: 0; } .dl .side { position: static; max-height: none; } }
+@media (max-width: 720px) { .dh-net { display: none; } }
+/* the footer keeps the brand's dark space in both themes */
+[data-product="docs"] .site-footer { background: var(--night); color: var(--fg); }

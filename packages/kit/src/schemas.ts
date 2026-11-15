@@ -138,6 +138,9 @@ export const siteTextSchema = z
         links: z.array(headerLink).default([]),
         /** Optional highlighted button at the end of the header, e.g. the documentation. */
         cta: link.optional(),
+        /** Documentation: accessible names of the theme button. */
+        themeDark: z.string().optional(),
+        themeLight: z.string().optional(),
         /** Search texts (apps with search enabled). */
         search: z
           .object({
@@ -153,7 +156,19 @@ export const siteTextSchema = z
       })
       .strict(),
     footer: z.object({ credit: z.string(), license: z.string(), note: z.string() }).strict(),
-    page: z.object({ lastReviewed: z.string(), editPage: z.string(), previous: z.string(), next: z.string(), chapters: z.string() }).strict(),
+    page: z
+      .object({
+        lastReviewed: z.string(),
+        editPage: z.string(),
+        previous: z.string(),
+        next: z.string(),
+        chapters: z.string(),
+        /** Documentation: index of the page's headings, and the button that copies the page as Markdown. */
+        onThisPage: z.string().optional(),
+        copyPage: z.string().optional(),
+        copied: z.string().optional(),
+      })
+      .strict(),
     notFound: z.object({ title: z.string(), label: z.string(), heading: z.string(), action: z.string() }).strict(),
     /** The blog ("Bitácora"), for apps that have one: its URL, texts and categories. */
     blog: z
