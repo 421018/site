@@ -110,7 +110,6 @@
       },
       "required": [
         "homeLink",
-        "brand",
         "mainNav",
         "menuButton",
         "languageNav"
