@@ -1,0 +1,26 @@
+---
+/**
+ * The engine, one row per piece (Protocol overview). Reads the same pieces as
+ * the home page (home.md → engine.pieces), so they are edited in one place.
+ */
+import { getEntry } from 'astro:content';
+import { langOf } from '@42chain/kit/i18n';
+import EnginePanel from '@42chain/ui/art/EnginePanel.astro';
+const lang = langOf(Astro);
+const home = (await getEntry('home', lang)) as unknown as { data: { engine?: { pieces: { icon: never; label: string; title: string; text: string; link: { label: string; href: string } }[] } } } | undefined;
+const pieces = home?.data.engine?.pieces ?? [];
+if (!pieces.length) throw new Error(`:::widget{name="engine-rows"} needs engine.pieces in the catalog's ${lang}/home.md.`);
+---
+<div class="engine-rows">
+  {pieces.map((p, i) => (
+    <div class="er-row">
+      <EnginePanel name={p.icon} />
+      <div class="er-text">
+        <p class="er-tag">{String(i + 1).padStart(2, '0')} · {p.label}</p>
+        <h3>{p.title}</h3>
+        <p>{p.text}</p>
+        <a href={p.link.href}>{p.link.label} →</a>
+      </div>
+    </div>
+  ))}
+</div>

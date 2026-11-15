@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import BandOrbit from '@42chain/ui/art/BandOrbit.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SideNav from '../components/SideNav.astro';
@@ -22,20 +23,21 @@ const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).form
 const { page: ui } = await getSiteText(lang);
 ---
 <Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates}>
-  <section class="band-top">
-    <div class="band-deco" aria-hidden="true"><div class="gridbg"></div><div class="glow"></div></div>
+  <section class="band-top stars">
+    <div class="band-deco" aria-hidden="true"><BandOrbit /></div>
+    <div class="band-field" aria-hidden="true"></div>
     <Header current={home.key} alternates={alternates} />
+    <div class="dochead">
+      <p class="dk">{section.label}</p>
+      <h1 data-pagefind-meta="title">{page.data.title}</h1>
+      <p class="ds">{page.data.summary}</p>
+      <p class="dm">{fmt && <>{ui.lastReviewed}: {fmt} · </>}<a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a></p>
+    </div>
   </section>
   <div class="rd">
     <div class="lay">
       {showSide && <SideNav nav={nav} path={path} />}
       <main data-pagefind-body={kit.search ? true : undefined}>
-        <div class="dochead">
-          <p class="dk">{section.label}</p>
-          <h1>{page.data.title}</h1>
-          <p class="ds">{page.data.summary}</p>
-          <p class="dm">{fmt && <>{ui.lastReviewed}: {fmt} · </>}<a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a></p>
-        </div>
         <div class="prose">
           <slot />
         </div>

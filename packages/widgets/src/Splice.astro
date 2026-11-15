@@ -15,6 +15,7 @@ import NetworkSwitch from '@42chain/network/components/NetworkSwitch.astro';
 import NetworkParams from '@42chain/network/components/NetworkParams.astro';
 import ProviderDirectory from '@42chain/network/components/ProviderDirectory.astro';
 import AddNetwork from '@42chain/network/components/AddNetwork.astro';
+import EngineRows from './EngineRows.astro';
 import type { WidgetName } from './names';
 
 const components: Record<WidgetName, (props: Record<string, never>) => unknown> = {
@@ -28,6 +29,7 @@ const components: Record<WidgetName, (props: Record<string, never>) => unknown> 
   'network-params': NetworkParams,
   'provider-directory': ProviderDirectory,
   'add-network': AddNetwork,
+  'engine-rows': EngineRows,
 };
 
 const html = await Astro.slots.render('default');

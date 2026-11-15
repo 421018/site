@@ -8,8 +8,7 @@ const lang = langOf(Astro);
 const { notFound } = await getSiteText(lang);
 ---
 <Base title={notFound.title}>
-  <section class="band-top" style="min-height: 80vh; display: flex; flex-direction: column">
-    <div class="gridbg" aria-hidden="true"></div>
+  <section class="band-top stars" style="min-height: 80vh; display: flex; flex-direction: column">
     <Header />
     <div style="position: relative; margin: auto 0; padding: 80px 0">
       <p class="lbl" style="color: var(--fg-4); margin: 0 0 18px">{notFound.label}</p>

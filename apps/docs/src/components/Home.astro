@@ -7,6 +7,7 @@ import { getEntry, getCollection } from 'astro:content';
 import Base from '@42chain/kit/layouts/Base.astro';
 import Header from '@42chain/kit/components/Header.astro';
 import Footer from '@42chain/kit/components/Footer.astro';
+import BandOrbit from '@42chain/ui/art/BandOrbit.astro';
 import { getMenu, homeAlternates } from '@42chain/kit/site';
 import { langOf } from '@42chain/kit/i18n';
 
@@ -19,8 +20,9 @@ const pages = await getCollection('pages');
 const summaryOf = (key: string) => pages.find((p) => p.id === `${lang}/${key}`)?.data.summary ?? '';
 ---
 <Base alternates={homeAlternates()}>
-  <section class="band-top">
-    <div class="band-deco" aria-hidden="true"><div class="gridbg"></div><div class="glow"></div></div>
+  <section class="band-top stars">
+    <div class="band-deco" aria-hidden="true"><BandOrbit /></div>
+    <div class="band-field" aria-hidden="true"></div>
     <Header alternates={homeAlternates()} />
     <div class="dhero">
       <p class="lbl">{eyebrow}</p>

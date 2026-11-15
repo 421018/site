@@ -14,6 +14,7 @@ export const widgetNames = [
   'network-params',
   'provider-directory',
   'add-network',
+  'engine-rows',
 ] as const;
 
 export type WidgetName = (typeof widgetNames)[number];
