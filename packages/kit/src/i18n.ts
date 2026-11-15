@@ -33,6 +33,12 @@ export const withLang = (path: string, lang: string) => {
   return path === '/' ? prefix : path.startsWith('/#') ? prefix + path.slice(1) : prefix + path;
 };
 
+/** False for a link to a product that is not available yet (e.g. console:/ while the console has no URL). */
+export const isLinkAvailable = (href: string) => {
+  const m = href.match(/^(site|docs|console):/);
+  return !m || !!kit.links?.[m[1]];
+};
+
 /**
  * Resolves a content link for a page in `lang`: /path gets the language prefix;
  * site:/… and docs:/… become the other product's URL (same language layout),

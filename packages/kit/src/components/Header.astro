@@ -10,7 +10,7 @@ import kit from 'virtual:42chain/kit';
 import Icon from '@42chain/ui/art/Icon.astro';
 import { getMenu, getSiteText, menuPanel } from '../site';
 import { blogHref, getBlog, hasBlogIndex } from '../blog';
-import { homeHref, langOf, languages, resolveHref } from '../i18n';
+import { homeHref, isLinkAvailable, langOf, languages, resolveHref } from '../i18n';
 import Search from './Search.astro';
 interface Props {
   current?: string;
@@ -31,7 +31,7 @@ type Item =
   | { kind: 'link'; weight: number; label: string; href: string };
 const items: Item[] = [
   ...menu.map((s) => ({ kind: 'section' as const, weight: s.weight, key: s.key, label: s.label, href: s.href, panel: s.dropdown ? menuPanel(s) : undefined })),
-  ...text.header.links.map((l) => ({ kind: 'link' as const, weight: l.weight ?? Infinity, label: l.label, href: resolveHref(l.href, lang) })),
+  ...text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) => ({ kind: 'link' as const, weight: l.weight ?? Infinity, label: l.label, href: resolveHref(l.href, lang) })),
 ].sort((a, b) => a.weight - b.weight);
 // The blog link only appears once the blog index has posts of its own.
 const blog = await getBlog(lang);

@@ -1,7 +1,7 @@
 /**
  * Technical settings. Visitor-facing text lives in the catalog's site/<lang>/site.md.
  * Every value in [brackets] is a placeholder to replace before going live.
- * Content links to /docs and /consola; those redirect to the URLs below
+ * Content links to /docs (and /consola, once the console launches); they redirect to the URLs below
  * (see astro.config.mjs).
  */
 export const SITE = {
@@ -19,10 +19,13 @@ export const SITE = {
 
 export const LINKS = {
   docs: 'https://example.org/docs', // [docs domain]
-  console: 'https://example.org/consola', // [console domain]
+  /** The console is not launched yet: without a URL, every link to it is left out. */
+  console: undefined as string | undefined, // [console domain] when it launches
   repo: 'https://github.com/[organization]/42chain-site', // [site repository]
   content: 'https://github.com/[organization]/42chain-content', // [public content repository]
 };
 
 /** The "edit this page" link points to the content repository; the file's path in the catalog is appended. */
-export const EDIT_BASE = `${LINKS.content}/edit/main/`;
+// Content is not open for editing yet: without an edit base, no "edit this page" links are shown.
+// When the content repository is public: `${LINKS.content}/edit/main/`.
+export const EDIT_BASE: string | undefined = undefined;

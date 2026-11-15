@@ -93,9 +93,11 @@ El gas no es el combustible. Es el medidor que dice cuántos drops pide cada man
 
 Además de cobrar tarifas, el protocolo crea unidades nuevas con cada bloque. A la creación de unidades nuevas se le llama **emisión**.
 
-La emisión sostiene la operación de la red. Las tarifas dependen de cuánto se use la red, y ese uso cambia con el tiempo. La emisión, en cambio, es estable. Con ella, la operación de los validadores se sostiene de forma continua, aunque el uso de la red varíe.
+La emisión sostiene la operación de la red. Las tarifas dependen de cuánto se use la red, y ese uso cambia con el tiempo. La emisión, en cambio, no depende del uso. Con ella, la operación de los validadores se sostiene de forma continua, aunque el uso de la red varíe.
 
-La emisión es **constante**: el protocolo crea unidades nuevas a un ritmo fijo, definido en sus parámetros. Ese ritmo solo cambia si se aprueba una propuesta de gobernanza. Como la emisión no se detiene, el número total de unidades crece con el tiempo. [Tasa de emisión.]
+La emisión se mueve **dentro de un rango** fijado en los parámetros del protocolo. La tasa anual se ajusta poco a poco según la proporción de unidades que está en staking: sube cuando hay pocas unidades respaldando la red y baja cuando hay muchas, buscando una proporción objetivo. Así, la emisión anima a respaldar la red cuando más falta hace.
+
+El rango y la proporción objetivo solo cambian si se aprueba una propuesta de gobernanza. Como la emisión no se detiene, el número total de unidades crece con el tiempo. En la red principal, la tasa anual va del 0,1 % al 0,5 %, con un objetivo del 67 % de las unidades en staking.
 
 ## Distribución {#distribution}
 
@@ -105,7 +107,7 @@ Las unidades nuevas y las tarifas de cada bloque se reparten de forma automátic
 - **Validadores.** El resto se reparte entre los validadores, según las unidades que cada uno tiene en staking, propias y delegadas.
 - **Delegaciones.** La parte de cada validador que corresponde a unidades delegadas se asigna a las cuentas que las delegaron, después de la comisión del validador.
 
-La proporción que va al fondo comunitario es un parámetro de la red. [Proporción.]
+La proporción que va al fondo comunitario es un parámetro de la red. En la red principal, es el 2 %.
 
 :::diagram[De dónde salen las unidades de cada bloque y a dónde van.]{name="distribucion"}
 :::
@@ -134,7 +136,7 @@ El suministro inicial no forma parte de la emisión ni de la distribución que s
 
 - **Una unidad propia.** El respaldo del staking tiene que poder retirarse automáticamente cuando alguien rompe las reglas. Eso solo es posible con una unidad que vive dentro del protocolo.
 - **Tarifas medidas en gas.** Cada transacción paga según el trabajo que exige, y el costo se conoce antes de enviarla.
-- **Emisión constante.** La operación de la red no depende de cuánto se use en cada momento.
+- **Emisión dentro de un rango.** La operación de la red no depende de cuánto se use en cada momento, y la tasa favorece que haya suficientes unidades respaldando la red.
 - **Tarifa base ajustable.** El costo sigue la demanda real de la red y se conoce antes de firmar.
 - **Un fondo que se asigna por gobernanza.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
 

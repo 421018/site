@@ -21,7 +21,7 @@ export interface SharedOptions {
   /** Names accepted by :::widget (from @42chain/widgets/names). */
   widgets?: readonly string[];
   /** Base URLs of the other products for site:, docs: and console: links in content. */
-  linkBases?: Record<string, string>;
+  linkBases?: Record<string, string | undefined>;
   /** The app's languages (folders in the catalog). */
   languages?: string[];
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */

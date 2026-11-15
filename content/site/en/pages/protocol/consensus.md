@@ -34,7 +34,7 @@ The protocol sets three rules for delegation:
 
 - **The units still belong to the delegator.** The validator cannot use or transfer them.
 - **Penalties are shared.** If the validator misbehaves, the units delegated to it also lose a part.
-- **Withdrawing them takes a waiting period.** A withdrawn delegation stays locked for a fixed period before it can be transferred. [Length of the waiting period.]
+- **Withdrawing them takes a waiting period.** A withdrawn delegation stays locked for a fixed period before it can be transferred. On the mainnet, that period is 21 days.
 
 Each validator sets a **commission**: the share of the compensation for delegated units that it keeps for running its infrastructure.
 
@@ -46,7 +46,7 @@ Each validator sets a **commission**: the share of the compensation for delegate
 
 Not every registered validator confirms blocks. The protocol ranks validators by voting power. Only the validators with the most voting power form the **active set**: the group that proposes and confirms blocks.
 
-The number of seats in the active set is a protocol parameter, and it can be changed through a governance proposal. [Number of seats.]
+The number of seats in the active set is a protocol parameter, and it can be changed through a governance proposal. On the mainnet, the active set has 100 seats.
 
 A validator that falls outside the active set is still registered. But it neither proposes nor confirms blocks, and receives no compensation while it is out.
 
@@ -93,7 +93,7 @@ The protocol automatically penalizes two kinds of misbehavior:
 
 When a validator commits one of these offenses, the protocol takes away part of the units it has in staking, including delegated units. It also removes it from the active set.
 
-The share taken and the time the validator stays out depend on the offense.
+The share taken and the time the validator stays out depend on the offense. On the mainnet, double signing takes 5% of the validator's staking. Downtime takes 0.01% and keeps the validator out of the active set for at least 10 minutes; a validator counts as down when it signs less than 5% of the last 10,000 blocks.
 
 :::aside
 [Penalty rules and parameters ↗](/docs)

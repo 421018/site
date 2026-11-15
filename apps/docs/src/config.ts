@@ -18,9 +18,12 @@ export const SITE = {
 
 export const LINKS = {
   site: 'https://example.org', // [official domain]
-  console: 'https://example.org/consola', // [console domain]
+  /** The console is not launched yet: without a URL, every link to it is left out. */
+  console: undefined as string | undefined, // [console domain] when it launches
   content: 'https://github.com/[organization]/42chain-content', // [public content repository]
 };
 
 /** The "edit this page" link points to the content repository; the file's path in the catalog is appended. */
-export const EDIT_BASE = `${LINKS.content}/edit/main/`;
+// Content is not open for editing yet: without an edit base, no "edit this page" links are shown.
+// When the content repository is public: `${LINKS.content}/edit/main/`.
+export const EDIT_BASE: string | undefined = undefined;

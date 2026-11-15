@@ -19,7 +19,7 @@ export default defineConfig({
   // Internal shortcuts used in content. Change the targets in src/config.ts.
   redirects: {
     '/docs': LINKS.docs,
-    '/consola': LINKS.console,
+    ...(LINKS.console ? { '/consola': LINKS.console } : {}),
     // "Implementar" moved to the documentation (Spanish), its custom-work page to Casos de uso.
     '/implementar': `${LINKS.docs}/es/build/applications`,
     '/implementar/conectarse': `${LINKS.docs}/es/get-started/connect`,

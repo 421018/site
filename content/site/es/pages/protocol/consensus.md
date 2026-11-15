@@ -34,7 +34,7 @@ El protocolo fija tres reglas para la delegación:
 
 - **Las unidades siguen siendo de quien las delega.** El validador no puede usarlas ni transferirlas.
 - **Comparten las penalizaciones.** Si el validador comete una falta, las unidades delegadas en él también pierden una parte.
-- **Retirarlas lleva un período de espera.** Una delegación retirada queda bloqueada durante un período fijo antes de poder transferirse. [Duración del período de espera.]
+- **Retirarlas lleva un período de espera.** Una delegación retirada queda bloqueada durante un período fijo antes de poder transferirse. En la red principal, ese período es de 21 días.
 
 Cada validador fija una **comisión**: la parte de la compensación correspondiente a las unidades delegadas que retiene por operar su infraestructura.
 
@@ -46,7 +46,7 @@ Cada validador fija una **comisión**: la parte de la compensación correspondie
 
 No todos los validadores registrados confirman bloques. El protocolo ordena a los validadores según su poder de voto. Solo los validadores con más poder de voto forman el **conjunto activo**: el grupo que propone y confirma los bloques.
 
-El número de lugares en el conjunto activo es un parámetro del protocolo, y puede cambiarse mediante una propuesta de gobernanza. [Número de lugares.]
+El número de lugares en el conjunto activo es un parámetro del protocolo, y puede cambiarse mediante una propuesta de gobernanza. En la red principal, el conjunto activo tiene 100 lugares.
 
 Un validador que queda fuera del conjunto activo sigue registrado. Pero no propone ni confirma bloques, y no recibe compensación mientras está fuera.
 
@@ -93,7 +93,7 @@ El protocolo penaliza automáticamente dos faltas:
 
 Cuando un validador comete una de estas faltas, el protocolo le retira una parte de las unidades que tiene en staking, incluidas las unidades delegadas. Además, lo saca del conjunto activo.
 
-La proporción que se retira y el tiempo que el validador queda fuera dependen de la falta.
+La proporción que se retira y el tiempo que el validador queda fuera dependen de la falta. En la red principal, la doble firma retira el 5 % del staking del validador. La inactividad retira el 0,01 % y deja al validador fuera del conjunto activo al menos 10 minutos; se considera inactivo un validador que firma menos del 5 % de los últimos 10 000 bloques.
 
 :::aside
 [Reglas y parámetros de penalización ↗](/docs)

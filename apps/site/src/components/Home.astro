@@ -8,7 +8,7 @@ import { Image } from 'astro:assets';
 import Base from '@42chain/kit/layouts/Base.astro';
 import Header from '@42chain/kit/components/Header.astro';
 import Footer from '@42chain/kit/components/Footer.astro';
-import { langOf, resolveHref } from '@42chain/kit/i18n';
+import { isLinkAvailable, langOf, resolveHref } from '@42chain/kit/i18n';
 import { homeAlternates } from '@42chain/kit/site';
 import OrbitHero from '@42chain/ui/art/OrbitHero.astro';
 import RingedPlanet from '@42chain/ui/art/RingedPlanet.astro';
@@ -120,7 +120,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <p class="k">{kicker(3, build.kicker)}</p>
 <h2 class="h2">{lines(build.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {build.lead && <p class="lead">{build.lead}</p>}
-<div class="links2">{build.link && <a class="more" href={resolveHref(build.link.href, lang)}>{build.link.label} →</a>}{build.secondary && <a class="more" href={resolveHref(build.secondary.href, lang)}>{build.secondary.label}</a>}</div>
+<div class="links2">{build.link && <a class="more" href={resolveHref(build.link.href, lang)}>{build.link.label} →</a>}{build.secondary && isLinkAvailable(build.secondary.href) && <a class="more" href={resolveHref(build.secondary.href, lang)}>{build.secondary.label}</a>}</div>
 </div>
 <div class="code" role="img" aria-label={build.code.label}>
 <div class="bar"><i></i><i></i><i></i><span>{build.code.file}</span></div>

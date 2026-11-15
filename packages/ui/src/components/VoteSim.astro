@@ -1,13 +1,14 @@
 ---
 // Illustrative vote count. Same rules and starting values as the worked
-// example in gobernanza.md (quorum 40 %, threshold 50 %, veto 33 %;
-// 45 % turnout with 25 Yes, 12 No, 3 Veto and 5 Abstain), not network parameters.
+// example in protocol/governance.md: the mainnet rules (quorum 33.4 %, threshold 50 %, veto 33.4 %;
+// 45 % turnout with 25 Yes, 12 No, 3 Veto and 5 Abstain: the votes are illustrative).
 // Text: catalog ui/<lang>.yaml → vote.
 import { langOf } from '@42chain/kit/i18n';
 import { fill, ui } from '@42chain/kit/dictionary';
 const d = ui(langOf(Astro));
 const t = d.vote;
-const Q = 40, T = 50, V = 33;
+const Q = 33.4, T = 50, V = 33.4;
+const num = (n: number) => String(n).replace('.', d.common.decimal);
 const sliders = [
   ['turn', t.turnout, 45],
   ['yes', t.yes, 56],
@@ -20,7 +21,7 @@ const i18n = JSON.stringify({
 });
 ---
 <div class="widget sim" data-vote data-q={Q} data-t={T} data-v={V} data-i18n={i18n}>
-  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{fill(t.meta, { q: Q, t: T, v: V })}</span></div>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{fill(t.meta, { q: num(Q), t: num(T), v: num(V) })}</span></div>
   <div class="grid">
     {sliders.map(([k, label, val]) => (
       <div>

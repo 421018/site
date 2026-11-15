@@ -25,7 +25,7 @@ Cada función tiene su propio lugar, y cada una se puede comprobar en una fuente
 - **El acceso a la red.** Los nodos RPC y los exploradores los ofrecen proveedores independientes, cada uno con su propio dominio. Cualquiera puede ofrecer el suyo. [Proveedores](docs:/get-started/connect#providers)
 - **Las decisiones sobre la red.** Se toman mediante gobernanza en la cadena: votan los validadores y quienes les delegan unidades. [Gobernanza](/protocol/governance)
 - **Las aplicaciones.** Las construyen organizaciones y equipos independientes, y cada uno responde por la suya.
-- **La documentación y este sitio.** Los escriben y los revisan contribuidores, igual que el software, en un repositorio público.
+- **La documentación y este sitio.** Los escriben y los revisan contribuidores.
 
 :::aside
 [Dónde comprobar cada parte →](/open-source/verify)

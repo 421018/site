@@ -38,8 +38,6 @@ Algunas fuentes las mantienen los contribuidores del protocolo; otras, como los 
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Las auditorías del código y sus informes | [Informes de auditoría] |
-| Los avisos de seguridad publicados | [Avisos de seguridad](/docs) |
 | Cómo está diseñada la seguridad del protocolo y cuáles son sus límites | [Seguridad](/protocol/security) |
 
 ## Canales del proyecto {#channels}

@@ -52,7 +52,6 @@ Este sitio está hecho para que pase por él la menor cantidad de datos posible:
 - **Sin cookies ni analítica.** El sitio no usa cookies, no guarda datos en el navegador y no usa herramientas de analítica ni de publicidad.
 - **Sin recursos de terceros.** Las fuentes y los demás recursos se sirven desde el propio sitio. El navegador solo se conecta a otro sitio cuando sigues un enlace externo.
 - **Alojamiento.** Como cualquier sitio web, el proveedor de alojamiento ([proveedor de alojamiento]) procesa datos técnicos de cada visita, como la dirección IP, para entregar las páginas y protegerlas de abusos, según su propia política de privacidad.
-- **Edición de páginas.** El enlace «Editar esta página» lleva al repositorio público, donde se aplican las condiciones de la plataforma que lo aloja.
 
 La documentación y la Consola indican sus propias condiciones de privacidad.
 

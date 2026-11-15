@@ -53,8 +53,8 @@ Mediante propuestas se decide sobre tres tipos de asuntos:
 Toda propuesta recorre cuatro etapas:
 
 - **1. Discusión.** Antes de llegar a la cadena, quien propone suele presentar la idea en público para ajustarla y medir el apoyo que tiene. Esta etapa no forma parte del protocolo.
-- **2. Propuesta.** Alguien presenta la propuesta en la cadena y deja una cantidad de unidades como **depósito**. El depósito evita que se presenten propuestas sin sentido. Si la propuesta recibe un veto, el depósito se pierde. [Monto mínimo del depósito.]
-- **3. Votación.** Durante un período fijo, los participantes votan. Cada participante elige una de cuatro opciones: Sí, No, Abstención o No con veto.
+- **2. Propuesta.** Alguien presenta la propuesta en la cadena y deja una cantidad de unidades como **depósito**. El depósito evita que se presenten propuestas sin sentido. Si la propuesta recibe un veto, el depósito se pierde. En la red principal, el depósito mínimo es de una cup (1 unidad completa).
+- **3. Votación.** Durante un período fijo, de dos días en la red principal, los participantes votan. Cada participante elige una de cuatro opciones: Sí, No, Abstención o No con veto.
 - **4. Ejecución.** Si la propuesta se aprueba, la red aplica el cambio por sí misma.
 
 :::diagram[El recorrido de una propuesta y sus tres resultados posibles.]{name="propuesta"}
@@ -86,18 +86,18 @@ Para aprobarse, una propuesta tiene que cumplir tres condiciones al mismo tiempo
 
 ### Un ejemplo
 
-Supongamos que el poder de voto total de la red es 100, y que las reglas exigen un quórum del 40 %, un umbral del 50 % y un límite de veto del 33 %.
+Supongamos que el poder de voto total de la red es 100. Las reglas son las de la red principal: un quórum del 33,4 %, un umbral del 50 % y un límite de veto del 33,4 %.
 
 Votan participantes que suman 45 de poder de voto: 25 por el Sí, 12 por el No, 3 por el No con veto y 5 por la Abstención.
 
-- **Quórum.** Votó el 45 % del poder de voto total. Supera el 40 %: se cumple.
+- **Quórum.** Votó el 45 % del poder de voto total. Supera el 33,4 %: se cumple.
 - **Umbral.** Sin las abstenciones quedan 40 votos. El Sí tiene 25 de 40, es decir, el 62,5 %. Supera el 50 %: se cumple.
-- **Veto.** El No con veto tiene 3 de 45 votos, menos del 7 %. No llega al 33 %: no hay veto.
+- **Veto.** El No con veto tiene 3 de 45 votos, menos del 7 %. No llega al 33,4 %: no hay veto.
 
-La propuesta se aprueba. Los porcentajes reales de cada regla son parámetros del protocolo. [Quórum, umbral y límite de veto.]
+La propuesta se aprueba. Los tres porcentajes son parámetros del protocolo y pueden cambiarse mediante gobernanza.
 
 :::aside
-Las cifras del ejemplo son ilustrativas.
+Los votos del ejemplo son ilustrativos; las reglas son las de la red principal.
 :::
 
 :::widget{name="vote-sim"}

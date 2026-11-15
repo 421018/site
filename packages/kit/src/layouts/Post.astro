@@ -37,7 +37,7 @@ const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.i
       <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{date && <span>{date}</span>}</p>
       <h1>{post.data.title}</h1>
       <p class="post-sum">{post.data.summary}</p>
-      <p class="post-by">{blog.byline} · <a href={kit.editBase + catalogRelative(post.filePath!)}>{blog.editPost}</a></p>
+      <p class="post-by">{blog.byline}{kit.editBase && <> · <a href={kit.editBase + catalogRelative(post.filePath!)}>{blog.editPost}</a></>}</p>
     </div>
   </section>
   <div class="rd">

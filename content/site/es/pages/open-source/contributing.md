@@ -25,7 +25,6 @@ Cualquiera puede contribuir, sin pedir permiso. Hay cinco formas habituales de h
 - **Reportar un problema.** Quien encuentra un error lo describe en el repositorio público.
 - **Proponer un cambio.** Quien sabe cómo corregir o mejorar algo envía su propuesta de código al repositorio.
 - **Revisar cambios.** Cualquiera puede revisar y comentar las propuestas de otras personas.
-- **Mejorar la documentación y este sitio.** Corregir, aclarar o traducir también es contribuir. Cada página del sitio tiene un enlace para editarla.
 - **Responder preguntas técnicas.** Ayudar a otras personas en el espacio de discusiones del repositorio.
 
 Las vulnerabilidades no se reportan en público, sino en privado. [Reportar una vulnerabilidad](/open-source/security#report)

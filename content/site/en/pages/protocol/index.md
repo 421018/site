@@ -162,7 +162,7 @@ The network's security does not depend on a single piece, but on several that re
 - **Staking** makes breaking the rules cost more than could be gained.
 - **The consensus mechanism** keeps working as long as less than a third of the voting power fails or misbehaves.
 
-In addition, the protocol's code is open and undergoes **audits**. An audit is a thorough review of the code by independent specialists. [Audit status and link to the reports.]
+In addition, the protocol's code is open: anyone can review it thoroughly and report what they find through the security channel.
 
 To avoid fake sites or profiles, use only the [project's channels (in Spanish)](/open-source/verify#channels). If you find a vulnerability, [report it privately (in Spanish)](/open-source/security#report).
 
@@ -177,7 +177,7 @@ The protocol rests on seven design decisions. Each one is developed in its chapt
 - **Votes depend on staking, not on the number of nodes.** Creating nodes gives no power; putting units at stake does. [Consensus and staking](/protocol/consensus#why)
 - **Halt rather than risk.** Without the required majority, the network halts instead of confirming doubtful blocks. [Consensus and staking](/protocol/consensus#failures)
 - **EVM-compatible execution.** Builders use languages and tools that already exist. [Execution](/protocol/execution#why)
-- **An own unit and constant issuance.** The network's security does not depend on anyone external or on how much the network is used. [Fees and issuance](/protocol/fees#why)
+- **An own unit and bounded issuance.** The network's security does not depend on anyone external or on how much the network is used. [Fees and issuance](/protocol/fees#why)
 - **Verification instead of intermediaries.** Connected networks check each other; nobody holds units in transit. [Interoperability](/protocol/interoperability#why)
 - **The rules are decided on the chain.** Those who write the code propose; those who protect the network decide. [Governance](/protocol/governance#why)
 - **Layered, visible security.** Several protections reinforce each other, and anyone can check them. [Security](/protocol/security#why)

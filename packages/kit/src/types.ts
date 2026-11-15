@@ -15,10 +15,10 @@ export interface KitConfig {
   sourceLang: string;
   /** Every language of the app, in menu order, each with its own folder in the catalog. */
   languages: Record<string, LanguageConfig>;
-  /** Prefix of the "edit this page" link: content repository + branch; the file's path in the catalog is appended. */
-  editBase: string;
+  /** Prefix of the "edit this page" link: content repository + branch; the file's path in the catalog is appended. Without it, no edit links are shown. */
+  editBase?: string;
   /** Base URLs of the other products, for site:, docs: and console: links in front matter. */
-  links?: Record<string, string>;
+  links?: Record<string, string | undefined>;
   /** Full-text search with Pagefind. The app must run `pagefind --site dist` after the build. */
   search?: boolean;
 }

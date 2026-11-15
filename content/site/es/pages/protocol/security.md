@@ -65,7 +65,7 @@ Cada cambio en el software pasa por varias etapas antes de llegar a la red princ
 - **Código abierto.** El código es público. Cualquiera puede leerlo, revisarlo y señalar un problema.
 - **Revisión de cada cambio.** Ningún cambio entra al código sin que otra persona lo revise.
 - **Red de pruebas.** Cada versión nueva funciona primero en la red de pruebas, en condiciones reales, antes de proponerse para la red principal.
-- **Auditorías.** Especialistas independientes pueden revisar el código a fondo. [Estado de las auditorías y enlace a los informes.]
+- **Revisión independiente.** Como el código es abierto, cualquier especialista puede revisarlo a fondo, sin pedir permiso, y reportar lo que encuentre por el canal de seguridad.
 - **Actualizaciones coordinadas.** Una versión nueva solo llega a la red principal si se aprueba por gobernanza, y todos los nodos cambian de versión en el mismo bloque.
 
 Estas prácticas reducen el riesgo de errores. No lo eliminan.

@@ -51,5 +51,5 @@ Access points to 42 are offered by independent operators, each with its own infr
 [Run your own node (in Spanish) →](/operate/nodes)
 
 :::aside
-Anyone who runs a public service for 42 can propose adding it to the directory from the public repository: it only takes adding an entry to the providers file.
+Anyone who runs a public service for 42, such as an RPC access point, an explorer or a faucet, can ask to be added to the directory by writing to [contact email].
 :::

@@ -162,7 +162,7 @@ La seguridad de la red no depende de una sola pieza, sino de varias que se refue
 - **El staking** hace que romper las reglas cueste más de lo que se podría ganar.
 - **El mecanismo de consenso** sigue funcionando mientras menos de un tercio del poder de voto falle o actúe mal.
 
-Además, el código del protocolo es abierto y se somete a **auditorías**. Una auditoría es una revisión a fondo del código, hecha por especialistas independientes. [Estado de las auditorías y enlace a los informes.]
+Además, el código del protocolo es abierto: cualquiera puede revisarlo a fondo y reportar lo que encuentre por el canal de seguridad.
 
 Para no caer en sitios o perfiles falsos, usa solo los [canales del proyecto](/open-source/verify#channels). Si encuentras una vulnerabilidad, [repórtala en privado](/open-source/security#report).
 
@@ -177,7 +177,7 @@ El protocolo se apoya en siete decisiones de diseño. Cada una se desarrolla en 
 - **El voto depende del staking, no del número de nodos.** Crear nodos no da poder; poner unidades en juego, sí. [Consenso y staking](/protocol/consensus#why)
 - **Detenerse antes que arriesgar.** Sin la mayoría necesaria, la red se detiene en lugar de confirmar bloques dudosos. [Consenso y staking](/protocol/consensus#failures)
 - **Ejecución compatible con la EVM.** Quien construye usa lenguajes y herramientas que ya existen. [Ejecución](/protocol/execution#why)
-- **Una unidad propia y una emisión constante.** La seguridad de la red no depende de nadie externo ni de cuánto se use la red. [Tarifas y emisión](/protocol/fees#why)
+- **Una unidad propia y una emisión acotada.** La seguridad de la red no depende de nadie externo ni de cuánto se use la red. [Tarifas y emisión](/protocol/fees#why)
 - **Verificación en lugar de intermediarios.** Las redes conectadas se comprueban entre sí; nadie custodia unidades en el traslado. [Interoperabilidad](/protocol/interoperability#why)
 - **Las reglas se deciden en la cadena.** Quien escribe el código propone; quienes protegen la red deciden. [Gobernanza](/protocol/governance#why)
 - **Seguridad en capas y a la vista.** Varias protecciones se refuerzan entre sí, y cualquiera puede comprobarlas. [Seguridad](/protocol/security#why)
