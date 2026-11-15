@@ -45,7 +45,7 @@ Los recursos que necesita dependen del tipo de nodo. El almacenamiento es el que
 Los requisitos de procesador, memoria, almacenamiento y conexión de cada tipo de nodo están en la guía de nodos.
 
 :::aside
-[Guía de nodos ↗](/docs)
+[Guía de nodos ↗](/)
 :::
 
 ## Sincronizar un nodo {#sincronizar}
@@ -82,7 +82,7 @@ Un nodo se convierte en validador en tres pasos:
 - **3. Entrar al conjunto activo.** Solo los validadores con más poder de voto forman el conjunto activo. Un validador recién registrado puede necesitar más unidades delegadas antes de entrar.
 
 :::aside
-[Qué es el conjunto activo →](/protocolo/consenso#conjunto)
+[Qué es el conjunto activo →](site:/protocolo/consenso#conjunto)
 :::
 
 ## Responsabilidades de un validador {#responsabilidades}
@@ -96,7 +96,7 @@ Un validador del conjunto activo tiene tres responsabilidades:
 Las penalizaciones también afectan a las unidades delegadas en el validador.
 
 :::aside
-[Penalizaciones →](/protocolo/consenso#penalizaciones)
+[Penalizaciones →](site:/protocolo/consenso#penalizaciones)
 :::
 
 ## Cómo se aplican las actualizaciones {#actualizaciones}
@@ -108,5 +108,5 @@ Para quien opera un nodo, el proceso tiene tres momentos. Antes de la altura, in
 Un nodo que no se actualiza a tiempo deja de seguir a la red: no puede verificar los bloques que se producen con las reglas nuevas.
 
 :::aside
-[Cómo se aprueba una actualización →](/protocolo/gobernanza#ciclo)
+[Cómo se aprueba una actualización →](site:/protocolo/gobernanza#ciclo)
 :::

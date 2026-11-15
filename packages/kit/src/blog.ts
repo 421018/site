@@ -64,11 +64,20 @@ export async function getPosts(lang: string): Promise<Post[]> {
   return (await allPosts()).filter((p) => postLang(p) === lang);
 }
 
+/** Posts of the blog index: categories with their own path (a site section) are listed there instead. */
+export async function getBlogPosts(lang: string): Promise<Post[]> {
+  const blog = await getBlog(lang);
+  return blog ? (await getPosts(lang)).filter((p) => !categoryOf(blog, p).path) : [];
+}
+
 /** Up to n other posts of the same language, same category first. */
 export async function relatedPosts(p: Post, n = 3): Promise<Post[]> {
   const others = (await getPosts(postLang(p))).filter((o) => o.id !== p.id);
   return [...others.filter((o) => o.data.category === p.data.category), ...others.filter((o) => o.data.category !== p.data.category)].slice(0, n);
 }
+
+/** Whether the blog index of a language exists (it has posts of its own). */
+export const hasBlogIndex = async (lang: string) => (await getBlogPosts(lang)).length > 0;
 
 /** Routes of every blog index and post (for getStaticPaths). */
 export async function getBlogRoutes() {
@@ -76,10 +85,8 @@ export async function getBlogRoutes() {
   for (const lang of languages) {
     const blog = await getBlog(lang);
     if (!blog) continue;
-    const posts = await getPosts(lang);
-    if (!posts.length) continue;
-    routes.push({ href: blogHref(blog, lang), props: { kind: 'blog', lang } });
-    for (const post of posts) routes.push({ href: postHref(blog, post), props: { kind: 'post', post } });
+    if ((await getBlogPosts(lang)).length) routes.push({ href: blogHref(blog, lang), props: { kind: 'blog', lang } });
+    for (const post of await getPosts(lang)) routes.push({ href: postHref(blog, post), props: { kind: 'post', post } });
   }
   return routes;
 }

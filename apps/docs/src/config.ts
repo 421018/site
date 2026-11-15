@@ -16,6 +16,7 @@ export const SITE = {
 
 export const LINKS = {
   site: 'https://example.org', // [official domain]
+  console: 'https://example.org/consola', // [console domain]
   content: 'https://github.com/[organization]/42chain-content', // [public content repository]
 };
 

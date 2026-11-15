@@ -18,11 +18,13 @@ export interface SharedOptions {
   defaultLang: string;
   /** Names accepted by :::widget (from @42chain/widgets/names). */
   widgets?: readonly string[];
+  /** Base URLs of the other products for site:, docs: and console: links in content. */
+  linkBases?: Record<string, string>;
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
 }
 
-export function sharedConfig({ catalog, defaultLang, widgets = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
+export function sharedConfig({ catalog, defaultLang, widgets = [], linkBases = {}, scriptSources = [] }: SharedOptions): AstroUserConfig {
   const base = catalogPath(catalog);
   // A page in <catalog>/<lang>/pages/… reads <lang>/diagrams/, then the default language's.
   const diagramsDirs = (file: string | undefined) => {
@@ -39,7 +41,7 @@ export function sharedConfig({ catalog, defaultLang, widgets = [], scriptSources
       syntaxHighlight: 'prism',
       processor: satteri({
         features: { attributes: true, directive: true },
-        mdastPlugins: [contentBlocks({ diagramsDirs, widgets })],
+        mdastPlugins: [contentBlocks({ diagramsDirs, widgets, linkBases })],
       }),
     },
     // Fonts are downloaded at build time and served from the site itself: no

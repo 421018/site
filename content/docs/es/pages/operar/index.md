@@ -3,7 +3,7 @@ title: "Operar"
 summary: "Lo necesario para unir un nodo a la red: chain ID, archivo génesis y pares iniciales."
 section:
   label: Operar
-  weight: 3
+  weight: 4
   accent: "#C4A7FF"
   ink: "#6B4BC8"
 ---

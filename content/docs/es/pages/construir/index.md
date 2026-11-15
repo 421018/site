@@ -15,4 +15,5 @@ Los contratos de 42 se ejecutan en la máquina virtual de Ethereum (EVM). Si ya 
 
 Lo que añade 42 son las **funciones propias de la red**: staking, gobernanza, transferencias entre redes y verificación de pruebas, disponibles para cualquier contrato en direcciones fijas.
 
+- **[Construir aplicaciones](/construir/aplicaciones).** Las partes de una aplicación, los patrones para infraestructura y el camino de la red de pruebas a la red principal.
 - **[Funciones propias de la red](/construir/precompiles).** Qué son y en qué dirección está cada una.

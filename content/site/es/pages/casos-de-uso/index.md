@@ -43,16 +43,9 @@ Si una sola organización genera, guarda y consulta los datos, y nadie más nece
 
 ## Casos {#casos}
 
-Cada caso explica el problema, cómo se resuelve con el protocolo, un ejemplo completo y qué información va en la cadena:
+Cada caso explica el problema, cómo se resuelve con el protocolo, un ejemplo completo y qué información va en la cadena. Los ejemplos son ilustrativos.
 
-- **[Registros y documentos verificables](/casos-de-uso/registros-verificables).** Títulos, certificados, constancias y actos públicos que cualquiera puede comprobar.
-- **[Trazabilidad entre organizaciones](/casos-de-uso/trazabilidad).** El recorrido de un producto o de un lote, registrado por cada parte que interviene.
-- **[Operación y mantenimiento de infraestructura](/casos-de-uso/infraestructura).** Inventarios de activos, intervenciones e inspecciones que comparten quien es dueño de la infraestructura y quien la mantiene.
-- **[Autorizaciones compartidas](/casos-de-uso/autorizaciones).** Cambios que solo se aplican cuando los aprueban varias organizaciones.
-- **[Integración entre redes](/casos-de-uso/integracion).** Sistemas que se comprueban entre sí lo que ocurrió en la otra parte.
-
-:::aside
-Los ejemplos son ilustrativos.
+:::widget{name="case-gallery"}
 :::
 
 ## Qué va dentro y fuera de la cadena {#fuera}
@@ -66,7 +59,7 @@ Todo lo que se registra en una red pública es visible para cualquiera y permane
 La solución habitual es separar el dato de su prueba. El dato se queda fuera de la cadena, en los sistemas de quien corresponda. En la cadena se registra su **huella**: un resumen de pocos caracteres que cambia por completo si el dato cambia, y del que no se puede reconstruir el dato. Así, cualquiera que tenga el dato puede comprobar que es auténtico, sin que el dato se haga público.
 
 :::aside
-[Qué va dentro y fuera de la cadena en una aplicación →](/implementar#aplicacion)
+[Qué va dentro y fuera de la cadena en una aplicación →](docs:/construir/aplicaciones#aplicacion)
 :::
 
 ## Entornos internos conectados a 42 Chain {#entornos-internos}
@@ -75,7 +68,7 @@ La solución habitual es separar el dato de su prueba. El dato se queda fuera de
 
 Algunas organizaciones necesitan, además, mantener parte de sus datos separados de la red pública: resultados internos, información de clientes o datos de operación. Para esos casos, la misma tecnología permite un **entorno interno** encapsulado, conectado a 42 mediante IBC. Los datos reservados se quedan en el entorno interno, y sus pruebas se comprueban en 42, donde cualquiera puede verificarlas.
 
-Un entorno interno requiere una implementación a medida. [Implementaciones a medida](/implementar/implementaciones)
+Un entorno interno requiere una implementación a medida. [Implementaciones a medida](/casos-de-uso/implementaciones)
 
 ## Por qué el protocolo lo hace posible {#porque}
 

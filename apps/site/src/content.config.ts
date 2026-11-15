@@ -62,6 +62,8 @@ const home = defineCollection({
         .object({
           ...block,
           code: z.object({ file: z.string(), label: z.string(), text: z.string() }).strict(),
+          /** Second link next to the first, e.g. the console. */
+          secondary: cta.optional(),
         })
         .strict(),
       uses: z

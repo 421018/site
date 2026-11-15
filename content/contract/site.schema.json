@@ -121,6 +121,38 @@
         },
         "note": {
           "type": "string"
+        },
+        "extra": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "links": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "href": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "href"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "label",
+            "links"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

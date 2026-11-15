@@ -4,7 +4,7 @@ summary: "Todo lo que necesitas para conectar una billetera, una aplicación o u
 icon: connect
 menuText: "Parámetros, billeteras y proveedores"
 menuTitle: "Conectarse a la red"
-weight: 5
+weight: 20
 ---
 
 ## Dos redes, el mismo software {#red}
@@ -25,7 +25,7 @@ Para conectarte a cualquiera de las dos necesitas sus datos y un punto de acceso
 
 El identificador técnico de la red es `infinite`, por el nombre formal del protocolo, el Infinite Improbability Drive. Por eso el chain ID nativo empieza por `infinite_`, las direcciones nativas empiezan por `infinite1` y el nombre corto de la red en los registros de cadenas es `infinite`. Es la misma red que 42 Chain: el nombre es para las personas, y el identificador, para las máquinas.
 
-Los parámetros vigentes y su historial están en la [referencia técnica](/docs).
+Los parámetros vigentes y su historial están en la [referencia técnica](/).
 
 ## Añadir la red a una billetera {#billetera}
 
@@ -50,7 +50,7 @@ Los puntos de acceso a 42 los ofrecen operadores independientes, cada uno con su
 :::widget{name="provider-directory"}
 :::
 
-[Operar tu propio nodo →](/implementar/nodos)
+[Operar tu propio nodo →](/operar/nodos)
 
 :::aside
 Quien opere un servicio público para 42 puede proponer su inclusión en el directorio desde el repositorio público: basta con añadir una entrada al archivo de proveedores.

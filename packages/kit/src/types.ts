@@ -12,6 +12,8 @@ export interface KitConfig {
   languages: Record<string, LanguageConfig>;
   /** Prefix of the "edit this page" link: content repository + branch; the file's path in the catalog is appended. */
   editBase: string;
+  /** Base URLs of the other products, for site:, docs: and console: links in front matter. */
+  links?: Record<string, string>;
   /** Full-text search with Pagefind. The app must run `pagefind --site dist` after the build. */
   search?: boolean;
 }

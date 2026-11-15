@@ -1,15 +1,7 @@
 ---
 title: "Construir aplicaciones"
 summary: "Si ya sabes construir para la EVM, ya sabes construir aquí. Lo que cambia es el tipo de problema: varias organizaciones, dispositivos que firman y tarifas que paga alguien más."
-section:
-  label: Implementar
-  dropdown: true
-  weight: 2
-  accent: "#7C9CFF"
-  ink: "#3552C8"
-  links:
-    - { label: "Documentación ↗", href: /docs }
-    - { label: "Consola ↗", href: /consola }
+weight: 5
 ---
 
 ## Qué es una aplicación sobre la red {#aplicacion}
@@ -28,7 +20,7 @@ No todo tiene que vivir en la cadena. Lo que debe ser verificable y compartido v
 Por ejemplo, en un registro de certificados, el contrato guarda la huella de cada certificado y quién lo emitió. El documento completo se queda en los sistemas del emisor. Cualquiera puede comprobar, con la huella, que un documento es auténtico.
 
 :::aside
-[Casos de uso →](/casos-de-uso) · [Cómo se ejecutan los contratos →](/protocolo/ejecucion)
+[Casos de uso →](site:/casos-de-uso) · [Cómo se ejecutan los contratos →](site:/protocolo/ejecucion)
 :::
 
 ## La EVM, en la práctica {#evm}
@@ -71,18 +63,18 @@ Además de las firmas habituales de la EVM, los contratos pueden verificar firma
 Los contratos pueden usar directamente las funciones propias del protocolo: consultar y mover unidades nativas, operar con el staking y la gobernanza, enviar transferencias a otras redes y comprobar, con una prueba, datos de otra red. Cada función tiene una dirección fija, y se llama como cualquier otro contrato.
 
 :::aside
-[Funciones propias de la red →](/protocolo/ejecucion#nativas) · [Funciones propias de la red y sus direcciones ↗](/docs)
+[Funciones propias de la red →](site:/protocolo/ejecucion#nativas) · [Funciones propias de la red y sus direcciones ↗](/)
 :::
 
 ## Red principal y red de pruebas {#redes}
 
 Hay dos redes que ejecutan el mismo protocolo.
 
-La **red de pruebas** sirve para desarrollar y probar. Es pública y usa unidades de prueba, que no tienen uso fuera de ella. Las unidades de prueba se obtienen gratis en un [faucet del directorio](/implementar/conectarse#proveedores).
+La **red de pruebas** sirve para desarrollar y probar. Es pública y usa unidades de prueba, que no tienen uso fuera de ella. Las unidades de prueba se obtienen gratis en un [faucet del directorio](/empezar/conectarse#proveedores).
 
 La **red principal** es la red donde los registros tienen efecto real.
 
-Como las dos redes ejecutan el mismo protocolo, una aplicación pasa de la red de pruebas a la red principal sin cambiar su código. Solo cambian los parámetros de conexión, que están en [Conectarse a 42 Chain](/implementar/conectarse#parametros).
+Como las dos redes ejecutan el mismo protocolo, una aplicación pasa de la red de pruebas a la red principal sin cambiar su código. Solo cambian los parámetros de conexión, que están en [Conectarse a 42 Chain](/empezar/conectarse#parametros).
 
 ## De la prueba a la operación {#produccion}
 
@@ -102,10 +94,10 @@ Llevar una aplicación a operación suele seguir cinco pasos:
 | Desarrollo | Hardhat, Foundry, Remix |
 | Librerías | Viem, Ethers.js, Web3.js |
 | Firma | Billeteras compatibles con la EVM, Ledger, passkeys (P-256) |
-| Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio · [Directorio](/implementar/conectarse#proveedores) |
+| Infraestructura | Nodos RPC, indexadores y oráculos los ofrecen proveedores independientes, cada uno con su propio dominio · [Directorio](/empezar/conectarse#proveedores) |
 
 ## Documentación {#soporte}
 
-Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/implementar/conectarse). Las guías y la referencia técnica completa están en la [documentación](/docs).
+Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/empezar/conectarse). Las guías y la referencia técnica completa están en la [documentación](/).
 
-Para conectar sistemas existentes, dispositivos u otras redes, consulta [Integrar sistemas](/implementar/integrar). Para un entorno interno conectado a 42 o una integración que requiere trabajo a medida, consulta [Implementaciones a medida](/implementar/implementaciones).
+Para conectar sistemas existentes, dispositivos u otras redes, consulta [Integrar sistemas](/integrar). Para un entorno interno conectado a 42 o una integración que requiere trabajo a medida, consulta [Implementaciones a medida](site:/casos-de-uso/implementaciones).

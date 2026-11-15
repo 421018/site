@@ -21,3 +21,10 @@ export const langOf = (astro: { currentLocale?: string }) =>
   astro.currentLocale && languages.includes(astro.currentLocale) ? astro.currentLocale : defaultLang;
 
 export const ogLocale = (lang: string) => kit.languages[lang]?.ogLocale ?? lang;
+
+/** Resolves site:/…, docs:/… and console:/… links to the other products' URLs; others pass through. */
+export const resolveHref = (href: string) => {
+  const m = href.match(/^(site|docs|console):(\/.*)$/);
+  const base = m && kit.links?.[m[1]];
+  return m && base ? base.replace(/\/$/, '') + m[2] : href;
+};

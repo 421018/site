@@ -11,7 +11,7 @@ hero:
     anyone can verify.
   lead: Protocol 42 lets several organizations keep the same ledger and apply the same rules, without depending on the systems of any one of them. 42 Chain is the public network that runs it.
   primary: { label: How it works, href: /en/protocol }
-  secondary: { label: Connect to the network, href: /en/implement/connect }
+  secondary: { label: Connect to the network, href: docs:/en/get-started/connect }
 
 figures:
   - { value: ~2 s, label: per block }
@@ -105,7 +105,8 @@ build:
     Familiar tools.
     Verifiable rules.
   lead: "Contracts are written with standard languages and tools: Solidity, Hardhat, Foundry. An application that already works on an EVM-compatible network works here without changing its code."
-  link: { label: Build applications, href: /en/implement }
+  link: { label: Build applications, href: docs:/en/build/applications }
+  secondary: { label: "Open the Console ↗", href: "console:/" }
   code:
     file: hardhat.config.js
     label: Example Hardhat configuration to connect to 42 Chain
@@ -134,10 +135,10 @@ start:
   kicker: Where to start
   title: Choose your way in.
   paths:
-    - { icon: connect, label: Connect to the network, href: /en/implement/connect, text: "Network parameters, wallets and RPC providers." }
-    - { icon: build, label: Build an application, href: /en/implement, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
-    - { icon: node, label: Run a node, href: /implementar/nodos, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
-    - { icon: integrate, label: Integrate systems, href: /implementar/integrar, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
+    - { icon: connect, label: Connect to the network, href: docs:/en/get-started/connect, text: "Network parameters, wallets and RPC providers." }
+    - { icon: build, label: Build an application, href: docs:/en/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
+    - { icon: node, label: Run a node, href: docs:/operar/nodos, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
+    - { icon: integrate, label: Integrate systems, href: docs:/integrar, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
     - { icon: governance, label: Understand governance, href: /protocolo/gobernanza, text: "How changes to the protocol are proposed, voted on and applied. (In Spanish.)" }
     - { icon: docs, label: Read the documentation, href: /docs, text: "Guides and technical reference, from connecting a wallet to running a validator." }
 
@@ -149,6 +150,6 @@ name:
 
 closing:
   title: Shared infrastructure, rules in plain sight.
-  primary: { label: Start building, href: /en/implement }
-  secondary: { label: Read the documentation, href: /docs }
+  primary: { label: Start building, href: docs:/en/build/applications }
+  secondary: { label: Read the documentation, href: "docs:/" }
 ---

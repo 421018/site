@@ -23,9 +23,6 @@ The **Infinite Improbability Drive**, known as **Protocol 42**, is a protocol of
 
 The formal name describes the whole: the Infinite Improbability Drive is the network's entire engine. The consensus that agrees on each block, the virtual machine that runs contracts, the fees that measure the work, the governance that decides changes and the connection to other networks are its parts, and each chapter of this section describes one of them. In running text it is simply called Protocol 42.
 
-:::widget{name="engine-rows"}
-:::
-
 The protocol is built with open technology from the Cosmos ecosystem: Cosmos SDK as its base, CometBFT for consensus and IBC for communication between networks. Contracts run on the Ethereum Virtual Machine (EVM), compatible with its languages and tools.
 
 :::lore[Engine log]

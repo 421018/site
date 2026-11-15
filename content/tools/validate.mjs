@@ -84,17 +84,50 @@ const unsafe = [
   [/javascript:/i, 'javascript: links are not allowed'],
 ];
 
+// Every page, blog index and post of an app, as URL paths (for link checks).
+function routesOf(app) {
+  const appDir = join(root, app);
+  const routes = new Set(languages.map((l) => prefix(l) || '/'));
+  for (const lang of languages) {
+    for (const f of walk(join(appDir, lang, 'pages'))) {
+      if (f.endsWith('.md')) routes.add(`${prefix(lang)}/${rel(f).slice(`${app}/${lang}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, '')}`.replace(/\/$/, '') || '/');
+    }
+    const site = join(appDir, lang, 'site.md');
+    let blog = null;
+    try { blog = existsSync(site) ? parseYaml(readFileSync(site, 'utf8').match(/^---\n([\s\S]*?)\n---/)[1])?.blog : null; } catch { blog = null; }
+    const posts = walk(join(appDir, lang, 'bitacora')).filter((f) => f.endsWith('.md'));
+    if (!blog || !posts.length) continue;
+    let own = 0;
+    for (const f of posts) {
+      const cat = (readFileSync(f, 'utf8').match(/^category:\s*(\S+)/m) || [])[1];
+      const path = blog.categories?.find((c) => c.id === cat)?.path;
+      if (!path) own++;
+      routes.add(`${prefix(lang)}/${path ?? blog.path}/${f.split(sep).pop().replace(/\.md$/, '')}`);
+    }
+    if (own) routes.add(`${prefix(lang)}/${blog.path}`);
+  }
+  return routes;
+}
+const routesByApp = Object.fromEntries(apps.map((a) => [a, routesOf(a)]));
+/** Checks one Markdown link target: /path (this app), site:/path or docs:/path (the other app). */
+function checkLink(app, file, n, href) {
+  const m = href.match(/^(?:(site|docs|console):)?(\/[^\s#]*)/);
+  if (!m) return;
+  const target = m[1] ?? app;
+  if (target === 'console') return;
+  const path = m[2].replace(/\/$/, '') || '/';
+  if (!m[1] && /^\/(docs|consola)(\/|$)/.test(path)) return; // redirects to external sites
+  if (!routesByApp[target]) { report(file, n, `unknown link prefix "${m[1]}:"`); return; }
+  if (!routesByApp[target].has(path)) report(file, n, `link to a page that does not exist${m[1] ? ` in ${target}` : ''}: ${href}`);
+}
+
 for (const app of apps) {
   const appDir = join(root, app);
   for (const d of existsSync(appDir) ? readdirSync(appDir) : []) {
     if (statSync(join(appDir, d)).isDirectory() && d !== 'images' && !languages.includes(d)) report(join(appDir, d), 0, `"${d}" is not a language (${languages.join(', ')}) nor images/`);
   }
-  // Every page of every language, as URL paths, for link checks.
-  const routes = new Set(languages.map((l) => prefix(l) || '/'));
   const pagesOf = (lang) => walk(join(appDir, lang, 'pages'));
   const idOf = (lang, f) => rel(f).slice(`${app}/${lang}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, '');
-  for (const lang of languages) for (const f of pagesOf(lang)) if (f.endsWith('.md')) routes.add(`${prefix(lang)}/${idOf(lang, f)}`);
-  // Blog posts: their URL depends on the category (site.md → blog).
   const blogOf = (lang) => {
     const f = join(appDir, lang, 'site.md');
     if (!existsSync(f)) return null;
@@ -102,17 +135,6 @@ for (const app of apps) {
     try { return (m && parseYaml(m[1])?.blog) || null; } catch { return null; }
   };
   const postsOf = (lang) => walk(join(appDir, lang, 'bitacora')).filter((f) => f.endsWith('.md'));
-  for (const lang of languages) {
-    const blog = blogOf(lang);
-    const posts = postsOf(lang);
-    if (!blog || !posts.length) continue;
-    routes.add(`${prefix(lang)}/${blog.path}`);
-    for (const f of posts) {
-      const cat = (readFileSync(f, 'utf8').match(/^category:\s*(\S+)/m) || [])[1];
-      const path = blog.categories?.find((c) => c.id === cat)?.path ?? blog.path;
-      routes.add(`${prefix(lang)}/${path}/${f.split(sep).pop().replace(/\.md$/, '')}`);
-    }
-  }
   const originals = new Set(pagesOf(defaultLang).filter((f) => f.endsWith('.md')).map((f) => idOf(defaultLang, f)));
   const diagramsIn = (lang) => new Set(walk(join(appDir, lang, 'diagrams')).map((f) => f.split(sep).pop().replace(/\.(html|svg)$/, '')));
   const defaultDiagrams = diagramsIn(defaultLang);
@@ -157,11 +179,7 @@ for (const app of apps) {
         for (const [, target] of line.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)) {
           if (!/^https?:/.test(target) && !existsSync(join(dirname(file), target))) report(file, n, `image not found: ${target}`);
         }
-        for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\((\/[^)\s#]*)/g)) {
-          const path = href.replace(/\/$/, '') || '/';
-          if (/^\/(docs|consola)(\/|$)/.test(path)) continue; // redirects to external sites
-          if (!routes.has(path)) report(file, n, `link to a page that does not exist: ${href}`);
-        }
+        for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\(((?:site:|docs:|console:)?\/[^)\s]*)/g)) checkLink(app, file, n, href);
       });
     }
 
@@ -186,11 +204,7 @@ for (const app of apps) {
           if (block[1] === 'widget' && !widgets.includes(name)) report(file, n, `unknown widget "${name ?? ''}"`);
           if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/${lang}/diagrams/ or ${app}/${defaultLang}/diagrams/`);
         }
-        for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\((\/[^)\s#]*)/g)) {
-          const path = href.replace(/\/$/, '') || '/';
-          if (/^\/(docs|consola)(\/|$)/.test(path)) continue;
-          if (!routes.has(path)) report(file, n, `link to a page that does not exist: ${href}`);
-        }
+        for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\(((?:site:|docs:|console:)?\/[^)\s]*)/g)) checkLink(app, file, n, href);
       });
     }
 

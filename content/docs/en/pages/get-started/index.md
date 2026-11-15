@@ -19,7 +19,7 @@ This documentation accompanies the 42 Chain website, which explains what the pro
 If this is your first time, follow this order:
 
 - **[Key concepts (in Spanish)](/empezar/conceptos).** Accounts, addresses, units and finality: the minimum to understand the rest.
-- **[Networks and parameters](/en/get-started/networks).** The details of the mainnet and the testnet, and where to find an access point.
+- **[Networks and parameters](/en/get-started/connect).** The details of the mainnet and the testnet, and where to find an access point.
 
 :::note[Testnet first]
 Test everything you build or integrate on the testnet first. Its units are free and have no use outside it.

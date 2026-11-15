@@ -1,7 +1,7 @@
 ---
 import { getFooter, getSiteText } from '../site';
 import { getBlog, getPosts, postHref, categoryOf } from '../blog';
-import { langOf } from '../i18n';
+import { langOf, resolveHref } from '../i18n';
 const lang = langOf(Astro);
 const columns = await getFooter(lang);
 // Posts whose category has a path (e.g. casos-de-uso) are listed in that section's column.
@@ -13,6 +13,7 @@ if (blog) {
   }
 }
 const text = await getSiteText(lang);
+if (text.footer.extra) columns.push({ key: '', label: text.footer.extra.label, links: text.footer.extra.links.map((l) => ({ ...l, href: resolveHref(l.href) })) });
 ---
 <footer class="site-footer">
   <div class="inner">

@@ -22,7 +22,7 @@ Cada función tiene su propio lugar, y cada una se puede comprobar en una fuente
 
 - **El software del protocolo.** Lo escriben y lo revisan contribuidores, en un repositorio público. Cualquiera puede proponer cambios. [Contribuir](/codigo-abierto/contribuir)
 - **La operación de la red.** La hacen los validadores y los nodos, que operan personas y organizaciones distintas. El protocolo compensa el trabajo de los validadores.
-- **El acceso a la red.** Los nodos RPC y los exploradores los ofrecen proveedores independientes, cada uno con su propio dominio. Cualquiera puede ofrecer el suyo. [Proveedores](/implementar/conectarse#proveedores)
+- **El acceso a la red.** Los nodos RPC y los exploradores los ofrecen proveedores independientes, cada uno con su propio dominio. Cualquiera puede ofrecer el suyo. [Proveedores](docs:/empezar/conectarse#proveedores)
 - **Las decisiones sobre la red.** Se toman mediante gobernanza en la cadena: votan los validadores y quienes les delegan unidades. [Gobernanza](/protocolo/gobernanza)
 - **Las aplicaciones.** Las construyen organizaciones y equipos independientes, y cada uno responde por la suya.
 - **La documentación y este sitio.** Los escriben y los revisan contribuidores, igual que el software, en un repositorio público.

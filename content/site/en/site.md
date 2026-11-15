@@ -14,12 +14,17 @@ header:
   menuButton: Menu # label of the collapsed main menu on narrow screens
   languageNav: Language # accessible name of the language switcher
   submenu: show pages # accessible name of a section's menu arrow: "Protocol: show pages"
-  cta: { label: "Documentation ↗", href: /docs } # highlighted button at the end of the header
+  cta: { label: "Documentation ↗", href: "docs:/" } # highlighted button at the end of the header
 
 footer:
   credit: Open-source project
   license: Text CC BY 4.0
   note: © 2026 The 42 Chain contributors
+  extra: # extra column: the other products
+    label: Tools
+    links:
+      - { label: "Documentation ↗", href: "docs:/" }
+      - { label: "Console ↗", href: "console:/" }
 
 page:
   lastReviewed: Last reviewed

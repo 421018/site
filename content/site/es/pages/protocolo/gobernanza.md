@@ -67,7 +67,7 @@ Un cambio de parámetro se aplica en cuanto termina la votación: desde ese bloq
 Una actualización del software necesita un paso más. La propuesta fija un bloque futuro, llamado **altura de actualización**. Al llegar a ese bloque, la red se detiene un momento, los validadores cambian a la versión nueva y la red continúa con las reglas nuevas. Así, todos los nodos cambian de versión en el mismo punto de la cadena.
 
 :::aside
-[Qué hace un validador en cada actualización →](/implementar/nodos#responsabilidades)
+[Qué hace un validador en cada actualización →](docs:/operar/nodos#responsabilidades)
 :::
 
 ### El voto de quien delega

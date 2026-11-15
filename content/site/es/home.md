@@ -10,7 +10,7 @@ hero:
     que cualquiera puede verificar.
   lead: El Protocolo 42 permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, sin depender de los sistemas de una sola de ellas. 42 Chain es la red pública que lo ejecuta.
   primary: { label: Cómo funciona, href: /protocolo }
-  secondary: { label: Conectarse a la red, href: /implementar/conectarse }
+  secondary: { label: Conectarse a la red, href: docs:/empezar/conectarse }
 
 # Verifiable protocol figures, shown in a strip under the hero.
 figures:
@@ -107,7 +107,8 @@ build:
     Herramientas conocidas.
     Reglas verificables.
   lead: "Los contratos se escriben con lenguajes y herramientas estándar: Solidity, Hardhat, Foundry. Una aplicación que ya funciona en una red compatible con la EVM funciona aquí sin cambios en su código."
-  link: { label: Construir aplicaciones, href: /implementar }
+  link: { label: Construir aplicaciones, href: docs:/construir/aplicaciones }
+  secondary: { label: "Abrir la Consola ↗", href: "console:/" }
   code:
     file: hardhat.config.js
     label: Ejemplo de configuración de Hardhat para conectarse a 42 Chain
@@ -136,10 +137,10 @@ start:
   kicker: Por dónde empezar
   title: Elige por dónde entrar.
   paths:
-    - { icon: connect, label: Conectarse a la red, href: /implementar/conectarse, text: "Parámetros de red, billeteras y proveedores de RPC." }
-    - { icon: build, label: Construir una aplicación, href: /implementar, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
-    - { icon: node, label: Operar un nodo, href: /implementar/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
-    - { icon: integrate, label: Integrar sistemas, href: /implementar/integrar, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
+    - { icon: connect, label: Conectarse a la red, href: docs:/empezar/conectarse, text: "Parámetros de red, billeteras y proveedores de RPC." }
+    - { icon: build, label: Construir una aplicación, href: docs:/construir/aplicaciones, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
+    - { icon: node, label: Operar un nodo, href: docs:/operar/nodos, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
+    - { icon: integrate, label: Integrar sistemas, href: docs:/integrar, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
     - { icon: governance, label: Entender la gobernanza, href: /protocolo/gobernanza, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
     - { icon: docs, label: Leer la documentación, href: /docs, text: "Guías y referencia técnica, desde conectar una billetera hasta operar un validador." }
 
@@ -151,6 +152,6 @@ name:
 
 closing:
   title: Infraestructura compartida, reglas a la vista.
-  primary: { label: Empieza a construir, href: /implementar }
-  secondary: { label: Leer la documentación, href: /docs }
+  primary: { label: Empieza a construir, href: docs:/construir/aplicaciones }
+  secondary: { label: Leer la documentación, href: "docs:/" }
 ---

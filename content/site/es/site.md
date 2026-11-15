@@ -14,7 +14,7 @@ header:
   menuButton: Menú # label of the collapsed main menu on narrow screens
   languageNav: Idioma # accessible name of the language switcher
   submenu: ver páginas # accessible name of a section's menu arrow: "Protocolo: ver páginas"
-  cta: { label: "Documentación ↗", href: /docs } # highlighted button at the end of the header
+  cta: { label: "Documentación ↗", href: "docs:/" } # highlighted button at the end of the header
   links:
     - { label: Bitácora, href: /bitacora, weight: 4 } # weight places it among the sections
 
@@ -22,6 +22,11 @@ footer:
   credit: Proyecto de código abierto
   license: Textos CC BY 4.0
   note: © 2026 Los contribuidores de 42 Chain
+  extra: # extra column: the other products
+    label: Herramientas
+    links:
+      - { label: "Documentación ↗", href: "docs:/" }
+      - { label: "Consola ↗", href: "console:/" }
 
 page:
   lastReviewed: Última revisión

@@ -10,11 +10,11 @@ import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
-import { blogHref, categoryOf, categoryTint, getBlog, getPosts, postHref, postDate, readingMinutes } from '../blog';
+import { blogHref, categoryOf, categoryTint, getBlog, getBlogPosts, postHref, postDate, readingMinutes } from '../blog';
 interface Props { lang: string }
 const { lang } = Astro.props;
 const blog = (await getBlog(lang))!;
-const posts = await getPosts(lang);
+const posts = await getBlogPosts(lang);
 const featured = posts.find((p) => p.data.featured) ?? posts[0];
 const rest = posts.filter((p) => p !== featured);
 const fcat = categoryOf(blog, featured);

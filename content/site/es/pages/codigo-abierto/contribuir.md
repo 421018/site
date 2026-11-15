@@ -52,7 +52,7 @@ Una propuesta de código no cambia la red por sí sola. El recorrido es este:
 
 Las preguntas técnicas sobre el protocolo, la red, una integración o este sitio se hacen en el espacio de discusiones del repositorio público. Está abierto a cualquiera y no tiene costo.
 
-El espacio es solo para temas técnicos. Ahí no se ofrecen ni se contratan servicios. Para proyectos que requieren una implementación a medida, existe un [directorio de proveedores independientes](/implementar/implementaciones).
+El espacio es solo para temas técnicos. Ahí no se ofrecen ni se contratan servicios. Para proyectos que requieren una implementación a medida, existe un [directorio de proveedores independientes](/casos-de-uso/implementaciones).
 
 Antes de preguntar, conviene revisar las [preguntas frecuentes](/codigo-abierto/preguntas-frecuentes) y la [documentación](/docs).
 

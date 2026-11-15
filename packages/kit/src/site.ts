@@ -6,7 +6,7 @@
 import { execFileSync } from 'node:child_process';
 import { basename, dirname, resolve } from 'node:path';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
-import { defaultLang, homeHref, langPrefix, languages } from './i18n';
+import { defaultLang, homeHref, langPrefix, languages, resolveHref } from './i18n';
 
 export type Page = CollectionEntry<'pages'>;
 export type Link = { href: string; label: string };
@@ -76,7 +76,7 @@ async function build() {
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
       sections.set(pagePath(p), {
         key: pagePath(p), lang, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
-        numbered: s.numbered, sequential: s.sequential, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links, attached: [],
+        numbered: s.numbered, sequential: s.sequential, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links.map((l) => ({ ...l, href: resolveHref(l.href) })), attached: [],
       });
     } else if (p.data.section) {
       errors.push(`${p.filePath}: "section:" is only allowed in the folder's index.md.`);

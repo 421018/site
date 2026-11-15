@@ -4,8 +4,8 @@ summary: "Everything you need to connect a wallet, an application or a node to 4
 icon: connect
 menuText: "Parameters, wallets and providers"
 menuTitle: "Connect to the network"
-weight: 5
-translationOf: implementar/conectarse
+weight: 20
+translationOf: empezar/conectarse
 ---
 
 ## Two networks, the same software {#network}
@@ -26,7 +26,7 @@ To connect to either one you need its details and an access point to a node. Cho
 
 The network's technical identifier is `infinite`, after the protocol's formal name, the Infinite Improbability Drive. That is why the native chain ID starts with `infinite_`, native addresses start with `infinite1` and the network's short name in chain registries is `infinite`. It is the same network as 42 Chain: the name is for people, and the identifier for machines.
 
-Current parameters and their history are in the [technical reference](/docs).
+Current parameters and their history are in the [technical reference](/).
 
 ## Add the network to a wallet {#wallet}
 
@@ -51,7 +51,7 @@ Access points to 42 are offered by independent operators, each with its own infr
 :::widget{name="provider-directory"}
 :::
 
-[Run your own node (in Spanish) →](/implementar/nodos)
+[Run your own node (in Spanish) →](/operar/nodos)
 
 :::aside
 Anyone who runs a public service for 42 can propose adding it to the directory from the public repository: it only takes adding an entry to the providers file.

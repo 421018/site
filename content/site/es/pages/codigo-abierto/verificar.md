@@ -22,16 +22,16 @@ Algunas fuentes las mantienen los contribuidores del protocolo; otras, como los 
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Los bloques y las transacciones | [Explorador](/implementar/conectarse#exploradores) |
-| El conjunto activo de validadores y su poder de voto | [Explorador](/implementar/conectarse#exploradores) |
-| Los parámetros de la red | [Parámetros de red](/implementar/conectarse#parametros) · [Archivo de datos de la red ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) |
+| Los bloques y las transacciones | [Explorador](docs:/empezar/conectarse#exploradores) |
+| El conjunto activo de validadores y su poder de voto | [Explorador](docs:/empezar/conectarse#exploradores) |
+| Los parámetros de la red | [Parámetros de red](docs:/empezar/conectarse#parametros) · [Archivo de datos de la red ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) |
 | El estado inicial de la red | [Archivo génesis ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) |
 
 ## Gobernanza {#gobernanza}
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Las propuestas, sus votos y sus resultados | [Explorador](/implementar/conectarse#exploradores) |
+| Las propuestas, sus votos y sus resultados | [Explorador](docs:/empezar/conectarse#exploradores) |
 | Cómo funciona la gobernanza | [Gobernanza](/protocolo/gobernanza) |
 
 ## Seguridad {#seguridad}
@@ -53,7 +53,7 @@ Estos son los únicos canales oficiales del proyecto. Si un canal no aparece aqu
 | Repositorio | Código fuente, preguntas técnicas, reportes de errores y contribuciones | [repositorio] |
 | Correo de seguridad | Reportes privados de vulnerabilidades del código | [correo de seguridad] |
 
-Los proveedores de RPC, los exploradores y los proveedores de implementación son independientes y tienen sus propios dominios. Sus direcciones están en el [directorio de proveedores](/implementar/conectarse#proveedores) y en [Implementaciones a medida](/implementar/implementaciones).
+Los proveedores de RPC, los exploradores y los proveedores de implementación son independientes y tienen sus propios dominios. Sus direcciones están en el [directorio de proveedores](docs:/empezar/conectarse#proveedores) y en [Implementaciones a medida](/casos-de-uso/implementaciones).
 
 :::note[Antes de confiar en un mensaje]
 Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio o enlace en esta lista.

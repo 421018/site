@@ -57,13 +57,13 @@ En la red principal, las transacciones tienen efecto real. La red de pruebas sir
 :::
 
 :::faq[¿Cómo obtengo unidades de prueba?]
-Desde un faucet de la red de pruebas: un servicio que entrega unidades de prueba gratis. [Directorio de proveedores](/implementar/conectarse#proveedores)
+Desde un faucet de la red de pruebas: un servicio que entrega unidades de prueba gratis. [Directorio de proveedores](docs:/empezar/conectarse#proveedores)
 :::
 
 ## Nodos, validadores y delegación {#nodos}
 
 :::faq[¿Qué necesito para operar un nodo?]
-Un servidor Linux estándar. Los requisitos de cada tipo de nodo están en la guía de nodos de la documentación. [Operar un nodo](/implementar/nodos)
+Un servidor Linux estándar. Los requisitos de cada tipo de nodo están en la guía de nodos de la documentación. [Operar un nodo](docs:/operar/nodos)
 :::
 
 :::faq[¿Cómo se convierte un nodo en validador?]
@@ -113,7 +113,7 @@ En el espacio de discusiones del repositorio público. Está abierto a cualquier
 :::
 
 :::faq[¿Hay servicios de implementación a medida?]
-Sí, de proveedores independientes, que se contratan directamente con ellos. Ofrecen implementación y asesoría técnica, nunca la venta ni la custodia de activos. [Implementaciones a medida](/implementar/implementaciones)
+Sí, de proveedores independientes, que se contratan directamente con ellos. Ofrecen implementación y asesoría técnica, nunca la venta ni la custodia de activos. [Implementaciones a medida](/casos-de-uso/implementaciones)
 :::
 
 ## Legal y uso del sitio {#legal}

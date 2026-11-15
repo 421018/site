@@ -70,10 +70,28 @@ export const blockNames = ['note', 'faq', 'aside', 'status', 'lore', 'diagram', 
  * :::diagram looks in, in order (its language's diagrams, then the default
  * language's); widgets lists the names :::widget accepts.
  */
-export interface BlockOptions { diagramsDirs?: (file: string | undefined) => string[]; widgets?: readonly string[] }
+export interface BlockOptions {
+  diagramsDirs?: (file: string | undefined) => string[];
+  widgets?: readonly string[];
+  /**
+   * Links between products: [text](docs:/empezar/conectarse) becomes the docs
+   * URL; also site: and console:. Content never hardcodes another product's domain.
+   */
+  linkBases?: Record<string, string>;
+}
 
-export const contentBlocks = ({ diagramsDirs, widgets = [] }: BlockOptions = {}) => defineMdastPlugin({
+export const contentBlocks = ({ diagramsDirs, widgets = [], linkBases = {} }: BlockOptions = {}) => defineMdastPlugin({
   name: '42chain-content-blocks',
+  link(node, ctx) {
+    const m = node.url.match(/^(site|docs|console):(\/.*)$/);
+    if (!m) return;
+    const base = linkBases[m[1]];
+    if (!base) {
+      const file = ctx.fileURL ? decodeURIComponent(ctx.fileURL.pathname) : 'content';
+      throw new Error(`${file}:${node.position?.start.line ?? '?'}: "${m[1]}:" links are not available in this app.`);
+    }
+    ctx.setField(node, 'url', base.replace(/\/$/, '') + m[2]);
+  },
   containerDirective(node, ctx) {
     const children = node.children as Node[];
     const label = children[0]?.data?.directiveLabel ? children[0] : undefined;

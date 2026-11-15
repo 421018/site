@@ -155,7 +155,15 @@ export const siteTextSchema = z
           .optional(),
       })
       .strict(),
-    footer: z.object({ credit: z.string(), license: z.string(), note: z.string() }).strict(),
+    footer: z
+      .object({
+        credit: z.string(),
+        license: z.string(),
+        note: z.string(),
+        /** Optional extra column, e.g. the tools: documentation and console. */
+        extra: z.object({ label: z.string(), links: z.array(link) }).strict().optional(),
+      })
+      .strict(),
     page: z
       .object({
         lastReviewed: z.string(),

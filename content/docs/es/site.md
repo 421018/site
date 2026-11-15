@@ -20,6 +20,7 @@ header:
     noResults: Sin resultados.
     unavailable: La búsqueda está disponible en la versión publicada del sitio.
   links:
+    - { label: "Consola ↗", href: "console:/" }
     - { label: "42chain.org ↗", href: "https://example.org" } # [official domain]
 
 footer:

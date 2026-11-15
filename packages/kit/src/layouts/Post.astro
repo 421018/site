@@ -22,14 +22,14 @@ const date = published && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).f
 const toc = headings.filter((h) => h.depth === 2);
 const related = await relatedPosts(post);
 const index = blogHref(blog, lang);
-// A category with its own path (casos-de-uso) has a section page; the others are a filter of the index.
+// A category with its own path (casos-de-uso) belongs to that section; the others to the blog.
 const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.id}`;
 ---
 <Base title={post.data.title} description={post.data.summary}>
   <section class="band-top post-band stars">
-    <Header currentHref={index} />
+    <Header current={cat.path} currentHref={cat.path ? undefined : index} />
     <div class="post-head">
-      <nav class="crumbs" aria-label={blog.kicker}><a href={index}>{blog.kicker}</a> <span aria-hidden="true">/</span> <a href={catHref}>{cat.plural}</a></nav>
+      <nav class="crumbs" aria-label={cat.path ? cat.plural : blog.kicker}>{cat.path ? <a href={catHref}>{cat.plural}</a> : <><a href={index}>{blog.kicker}</a> <span aria-hidden="true">/</span> <a href={catHref}>{cat.plural}</a></>}</nav>
       <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{date && <span>{date}</span>}</p>
       <h1>{post.data.title}</h1>
       <p class="post-sum">{post.data.summary}</p>

@@ -1,16 +1,8 @@
 ---
 title: "Build applications"
 summary: "If you already know how to build for the EVM, you already know how to build here. What changes is the kind of problem: several organizations, devices that sign and fees that someone else pays."
-translationOf: implementar
-section:
-  label: Implement
-  dropdown: true
-  weight: 2
-  accent: "#7C9CFF"
-  ink: "#3552C8"
-  links:
-    - { label: "Documentation ↗", href: /docs }
-    - { label: "Console ↗", href: /consola }
+translationOf: construir/aplicaciones
+weight: 5
 ---
 
 ## What an application on the network is {#application}
@@ -29,7 +21,7 @@ Not everything has to live on the chain. What must be verifiable and shared goes
 For example, in a certificate register, the contract stores the fingerprint of each certificate and who issued it. The full document stays in the issuer's systems. Anyone can check, with the fingerprint, that a document is authentic.
 
 :::aside
-[Use cases (in Spanish) →](/casos-de-uso) · [How contracts run (in Spanish) →](/protocolo/ejecucion)
+[Use cases (in Spanish) →](site:/casos-de-uso) · [How contracts run (in Spanish) →](site:/protocolo/ejecucion)
 :::
 
 ## The EVM, in practice {#evm}
@@ -72,18 +64,18 @@ Besides the usual EVM signatures, contracts can verify **P-256** signatures: the
 Contracts can use the protocol's own functions directly: query and move native units, work with staking and governance, send transfers to other networks and check, with a proof, data from another network. Each function has a fixed address and is called like any other contract.
 
 :::aside
-[Native network functions (in Spanish) →](/protocolo/ejecucion#nativas) · [Native network functions and their addresses ↗](/docs)
+[Native network functions (in Spanish) →](site:/protocolo/ejecucion#nativas) · [Native network functions and their addresses ↗](/)
 :::
 
 ## Mainnet and testnet {#networks}
 
 Two networks run the same protocol.
 
-The **testnet** is for developing and testing. It is public and uses test units, which have no use outside it. Test units are free from a [faucet in the directory](/en/implement/connect#providers).
+The **testnet** is for developing and testing. It is public and uses test units, which have no use outside it. Test units are free from a [faucet in the directory](/en/get-started/connect#providers).
 
 The **mainnet** is the network where records have real effect.
 
-Since both networks run the same protocol, an application moves from the testnet to the mainnet without changing its code. Only the connection parameters change, and they are in [Connect to 42 Chain](/en/implement/connect#parameters).
+Since both networks run the same protocol, an application moves from the testnet to the mainnet without changing its code. Only the connection parameters change, and they are in [Connect to 42 Chain](/en/get-started/connect#parameters).
 
 ## From testing to operation {#production}
 
@@ -103,10 +95,10 @@ Taking an application into operation usually follows five steps:
 | Development | Hardhat, Foundry, Remix |
 | Libraries | Viem, Ethers.js, Web3.js |
 | Signing | EVM-compatible wallets, Ledger, passkeys (P-256) |
-| Infrastructure | RPC nodes, indexers and oracles are offered by independent providers, each with its own domain · [Directory](/en/implement/connect#providers) |
+| Infrastructure | RPC nodes, indexers and oracles are offered by independent providers, each with its own domain · [Directory](/en/get-started/connect#providers) |
 
 ## Documentation {#support}
 
-The parameters of each network and the provider directory are in [Connect to 42 Chain](/en/implement/connect). Guides and the full technical reference are in the [documentation](/docs).
+The parameters of each network and the provider directory are in [Connect to 42 Chain](/en/get-started/connect). Guides and the full technical reference are in the [documentation](/).
 
-To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/implementar/integrar). For an internal environment connected to 42 or an integration that requires custom work, see [Custom implementations (in Spanish)](/implementar/implementaciones).
+To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/integrar). For an internal environment connected to 42 or an integration that requires custom work, see [Custom implementations (in Spanish)](site:/casos-de-uso/implementaciones).

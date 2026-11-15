@@ -18,7 +18,7 @@ Esta documentación acompaña al sitio de 42 Chain, que explica qué es el proto
 Si es la primera vez, sigue este orden:
 
 - **[Conceptos clave](/empezar/conceptos).** Cuentas, direcciones, unidades y finalidad: lo mínimo para entender el resto.
-- **[Redes y parámetros](/empezar/redes).** Los datos de la red principal y de la red de pruebas, y dónde encontrar un punto de acceso.
+- **[Redes y parámetros](/empezar/conectarse).** Los datos de la red principal y de la red de pruebas, y dónde encontrar un punto de acceso.
 
 :::note[Red de pruebas primero]
 Todo lo que construyas o integres, pruébalo antes en la red de pruebas. Sus unidades se obtienen gratis y no tienen uso fuera de ella.

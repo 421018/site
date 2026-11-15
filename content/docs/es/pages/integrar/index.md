@@ -4,6 +4,12 @@ summary: "Tus sistemas no tienen que cambiar para trabajar con la red. Qué nece
 icon: integrate
 menuText: "Sistemas, dispositivos y otras redes"
 weight: 20
+section:
+  label: Integrar
+  weight: 3
+  accent: "#FFB547"
+  ink: "#9A5B00"
+  sequential: true
 ---
 
 ## Qué es integrar {#que-es}
@@ -16,14 +22,14 @@ Integrar no requiere permiso ni aprobación. Toda la información necesaria es p
 
 Cada tipo de integración necesita cosas distintas:
 
-- **Sistemas de gestión.** ERP, sistemas de mantenimiento, registros documentales. Escriben en los contratos y consultan su estado. Necesitan un nodo, propio o de un proveedor, y una cuenta con la que firmar. Si las tarifas deben ir a cargo de la organización, se usan [tarifas a cargo de la organización](/implementar#tarifas).
-- **Dispositivos.** Sensores, medidores y equipos de campo que firman sus propios registros. Pueden firmar con llaves guardadas en su chip seguro, con [firmas P-256](/implementar#firmas).
+- **Sistemas de gestión.** ERP, sistemas de mantenimiento, registros documentales. Escriben en los contratos y consultan su estado. Necesitan un nodo, propio o de un proveedor, y una cuenta con la que firmar. Si las tarifas deben ir a cargo de la organización, se usan [tarifas a cargo de la organización](/construir/aplicaciones#tarifas).
+- **Dispositivos.** Sensores, medidores y equipos de campo que firman sus propios registros. Pueden firmar con llaves guardadas en su chip seguro, con [firmas P-256](/construir/aplicaciones#firmas).
 - **Herramientas de firma.** Billeteras y dispositivos de firma compatibles con la EVM, y billeteras nativas del ecosistema Cosmos como Keplr o Leap. Las primeras usan el chain ID EVM; las nativas, el chain ID nativo (`infinite_421018-1`) y el prefijo de dirección `infinite`.
 - **Exploradores e indexadores.** Leen todos los bloques y los organizan para consultarlos. Suelen necesitar un nodo de archivo.
-- **Otras redes.** Redes compatibles con IBC, incluidos entornos internos conectados a 42 Chain, que intercambian transferencias o comprueban datos entre sí. [Integración entre redes](/casos-de-uso/integracion)
+- **Otras redes.** Redes compatibles con IBC, incluidos entornos internos conectados a 42 Chain, que intercambian transferencias o comprueban datos entre sí. [Integración entre redes](site:/casos-de-uso/integracion)
 
 :::aside
-[Operar un nodo →](/implementar/nodos)
+[Operar un nodo →](/operar/nodos)
 :::
 
 ## Qué información necesitas {#datos}
@@ -32,18 +38,18 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 
 | Dato | Detalle |
 |---|---|
-| Identificadores de red | Uno para la red principal y otro para la red de pruebas · [Parámetros de red](/implementar/conectarse#parametros) |
-| Puntos de conexión | Los ofrecen proveedores independientes, o un nodo propio · [Directorio de proveedores](/implementar/conectarse#proveedores) |
-| Interfaces del nodo | JSON-RPC compatible con la EVM, RPC de CometBFT y gRPC · [Directorio por tipo de servicio](/implementar/conectarse#proveedores) |
+| Identificadores de red | Uno para la red principal y otro para la red de pruebas · [Parámetros de red](/empezar/conectarse#parametros) |
+| Puntos de conexión | Los ofrecen proveedores independientes, o un nodo propio · [Directorio de proveedores](/empezar/conectarse#proveedores) |
+| Interfaces del nodo | JSON-RPC compatible con la EVM, RPC de CometBFT y gRPC · [Directorio por tipo de servicio](/empezar/conectarse#proveedores) |
 | Datos de red legibles por máquina | Todos los parámetros, puntos de conexión y exploradores en un archivo JSON · [red principal ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) · [red de pruebas ↗](https://assets.infinitedrive.xyz/testnet/network-data.json) |
 | API de explorador | API de Blockscout para consultar bloques, transacciones y contratos · [red principal ↗](https://scan.infinitedrive.xyz/api-docs) · [red de pruebas ↗](https://testnet-scan.infinitedrive.xyz/api-docs) |
-| Unidad y denominación base | Improbability, símbolo 42, 18 decimales · denominación base `drop` (`tdrop` en la red de pruebas) · [Drops y cups](/protocolo/tarifas#medidas) |
+| Unidad y denominación base | Improbability, símbolo 42, 18 decimales · denominación base `drop` (`tdrop` en la red de pruebas) · [Drops y cups](site:/protocolo/tarifas#medidas) |
 | Formatos de dirección | Formato 0x, compatible con la EVM, y formato propio de la red; los dos corresponden a la misma cuenta |
 | Finalidad | Un registro es definitivo en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |
 | Funciones propias de la red | Direcciones fijas para usarlas desde contratos · [en la documentación] |
 
 :::aside
-[Guías de integración ↗](/docs)
+[Guías de integración ↗](/)
 :::
 
 ## Cómo es el proceso {#proceso}
