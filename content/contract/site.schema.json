@@ -20,6 +20,9 @@
         "homeLink": {
           "type": "string"
         },
+        "brand": {
+          "type": "string"
+        },
         "home": {
           "type": "string"
         },
@@ -107,6 +110,7 @@
       },
       "required": [
         "homeLink",
+        "brand",
         "mainNav",
         "menuButton",
         "languageNav"

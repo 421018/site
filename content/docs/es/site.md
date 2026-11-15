@@ -9,6 +9,7 @@ description: Documentación técnica de 42 Chain y del Protocolo 42. Conectarse,
 
 header:
   homeLink: Documentación de 42 Chain, inicio
+  brand: Docs # word next to the 42 mark in the header
   home: Inicio # first item of the main menu and of the breadcrumbs
   mainNav: Principal
   menuButton: Menú

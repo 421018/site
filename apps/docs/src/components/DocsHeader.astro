@@ -19,7 +19,7 @@ const switcher = await Promise.all(
 ---
 <header class="dh">
   <div class="dh-top">
-    <a class="dh-brand" href={homeHref(lang)} aria-label={text.header.homeLink}><span class="dh-mark">42</span><span>Docs</span></a>
+    <a class="dh-brand" href={homeHref(lang)} aria-label={text.header.homeLink}><span class="dh-mark">42</span><span>{text.header.brand}</span></a>
     {text.header.search && <div class="dh-search"><Search text={text.header.search} /></div>}
     <div class="dh-tools">
       <div class="dh-net"><NetworkSwitch /></div>

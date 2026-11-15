@@ -44,7 +44,7 @@ const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind
 ---
 <header class="site-header">
   <a class="brand" href={homeHref(lang)} aria-label={text.header.homeLink}>
-    <span class="mark">42</span><span class="name">{text.name}</span>
+    <span class="mark">42</span><span class="name">{text.header.brand}</span>
   </a>
   <nav class="menu" aria-label={text.header.mainNav}>
     {text.header.home && <a class:list={['nl', { on: atHome }]} href={homeHref(lang)} data-label={text.header.home} aria-current={atHome ? 'page' : undefined}>{text.header.home}</a>}

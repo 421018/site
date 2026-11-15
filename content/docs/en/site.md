@@ -9,6 +9,7 @@ description: Technical documentation of 42 Chain and Protocol 42. Connect, build
 
 header:
   homeLink: 42 Chain documentation, home
+  brand: Docs # word next to the 42 mark in the header
   home: Home # first item of the main menu and of the breadcrumbs
   mainNav: Main
   menuButton: Menu

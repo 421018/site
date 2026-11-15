@@ -128,6 +128,8 @@ export const siteTextSchema = z
     header: z
       .object({
         homeLink: z.string(),
+        /** Word next to the 42 mark: "Chain" on the site, "Docs" in the documentation. */
+        brand: z.string(),
         /** Label of the "home" item at the start of the main menu and of the breadcrumbs. */
         home: z.string().optional(),
         mainNav: z.string(),
