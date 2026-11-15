@@ -1,6 +1,8 @@
 ---
 title: "Seguridad"
 summary: "Qué protege el diseño del protocolo, bajo qué condición lo hace y qué queda en manos de cada persona."
+icon: security
+menuText: "Protecciones en capas"
 weight: 60
 ---
 

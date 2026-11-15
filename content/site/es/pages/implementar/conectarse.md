@@ -1,6 +1,8 @@
 ---
 title: "Conectarse a 42 Chain"
 summary: "Todo lo que necesitas para conectar una billetera, una aplicación o un nodo a 42 Chain: los datos de cada red y dónde encontrar un punto de acceso."
+icon: connect
+menuText: "Parámetros, billeteras y proveedores"
 menuTitle: "Conectarse a la red"
 weight: 5
 ---

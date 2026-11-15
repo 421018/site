@@ -1,6 +1,8 @@
 ---
 title: "Implementaciones a medida"
 summary: "A la mayoría de los proyectos les bastan la documentación y las herramientas abiertas. Para los que necesitan algo a medida, hay proveedores que lo ofrecen."
+icon: cases
+menuText: "Proveedores independientes"
 weight: 40
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "Gobernanza"
 summary: "Las reglas de la red tienen que poder cambiar. Quién decide esos cambios, cómo se votan y cómo llegan a todos los nodos a la vez."
+icon: governance
+menuText: "Propuestas y votos"
 weight: 50
 ---
 

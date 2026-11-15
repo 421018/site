@@ -11,9 +11,12 @@
  */
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { iconNames } from '@42chain/ui/art/icons.ts';
 
 const color = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'use a 6-digit hex color, e.g. "#5BF0C8"');
 const link = z.object({ label: z.string(), href: z.string() }).strict();
+/** A header link; `weight` places it among the sections of the main menu (none: after them). */
+const headerLink = z.object({ label: z.string(), href: z.string(), weight: z.number().optional() }).strict();
 
 /** Section settings, only valid in a folder's index.md. */
 export const sectionSchema = z
@@ -27,6 +30,8 @@ export const sectionSchema = z
     ink: color.optional(),
     /** Number the pages in the side index (1, 2, 3…). */
     numbered: z.boolean().default(false),
+    /** In the main menu, open a panel with the section's pages (their icon and menuText). */
+    dropdown: z.boolean().default(false),
     /** Show "previous / next" at the end of each page. */
     sequential: z.boolean().default(false),
     /** Extra links below a separator in the side index (and in the footer). */
@@ -46,6 +51,10 @@ export const pageSchema = z
     summary: z.string(),
     /** Label in the side index and footer, when it differs from the title. */
     menuTitle: z.string().optional(),
+    /** Short line under the label in the main menu panel (sections with dropdown: true). */
+    menuText: z.string().optional(),
+    /** Brand icon next to the page in the main menu panel. */
+    icon: z.enum(iconNames).optional(),
     /** Order inside the section or group (lower goes first). The index page always goes first. */
     weight: z.number().int().default(100),
     /** Optional. Without it, the "last reviewed" date is the file's last commit date. */
@@ -94,8 +103,12 @@ export const siteTextSchema = z
         menuButton: z.string(),
         /** Accessible name of the language switcher. */
         languageNav: z.string(),
-        /** Optional links after the main menu, e.g. back to the main site from the docs. */
-        links: z.array(link).default([]),
+        /** Accessible name of the button that opens a section's panel: "<section>: <submenu>". */
+        submenu: z.string().optional(),
+        /** Optional links in the main menu, e.g. the blog, or back to the main site from the docs. */
+        links: z.array(headerLink).default([]),
+        /** Optional highlighted button at the end of the header, e.g. the documentation. */
+        cta: link.optional(),
         /** Search texts (apps with search enabled). */
         search: z
           .object({

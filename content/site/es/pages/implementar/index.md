@@ -3,7 +3,8 @@ title: "Construir aplicaciones"
 summary: "Si ya sabes construir para la EVM, ya sabes construir aquí. Lo que cambia es el tipo de problema: varias organizaciones, dispositivos que firman y tarifas que paga alguien más."
 section:
   label: Implementar
-  weight: 3
+  dropdown: true
+  weight: 2
   accent: "#7C9CFF"
   ink: "#3552C8"
   links:

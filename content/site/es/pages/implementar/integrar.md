@@ -1,6 +1,8 @@
 ---
 title: "Integrar sistemas"
 summary: "Tus sistemas no tienen que cambiar para trabajar con la red. Qué necesita cada tipo de integración y dónde están los datos para hacerla."
+icon: integrate
+menuText: "Sistemas, dispositivos y otras redes"
 weight: 20
 ---
 

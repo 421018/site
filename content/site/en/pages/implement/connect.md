@@ -1,6 +1,8 @@
 ---
 title: "Connect to 42 Chain"
 summary: "Everything you need to connect a wallet, an application or a node to 42 Chain: the details of each network and where to find an access point."
+icon: connect
+menuText: "Parameters, wallets and providers"
 menuTitle: "Connect to the network"
 weight: 5
 translationOf: implementar/conectarse

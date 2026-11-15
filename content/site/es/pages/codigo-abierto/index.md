@@ -3,7 +3,7 @@ title: "Sobre 42 Chain"
 summary: "42 Chain es una red pública, su protocolo es código abierto y su nombre viene de una novela. Cómo encaja todo eso y qué principios lo guían."
 section:
   label: Código abierto
-  weight: 4
+  weight: 5
   accent: "#C4A7FF"
   ink: "#6B4BC8"
 ---

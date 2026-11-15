@@ -29,6 +29,9 @@
         "languageNav": {
           "type": "string"
         },
+        "submenu": {
+          "type": "string"
+        },
         "links": {
           "default": [],
           "type": "array",
@@ -40,6 +43,9 @@
               },
               "href": {
                 "type": "string"
+              },
+              "weight": {
+                "type": "number"
               }
             },
             "required": [
@@ -48,6 +54,22 @@
             ],
             "additionalProperties": false
           }
+        },
+        "cta": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "href"
+          ],
+          "additionalProperties": false
         },
         "search": {
           "type": "object",

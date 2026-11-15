@@ -4,7 +4,7 @@ summary: "Un registro compartido sirve cuando varias organizaciones necesitan lo
 menuTitle: "Cuándo usar el protocolo"
 section:
   label: Casos de uso
-  weight: 2
+  weight: 3
   accent: "#FFB547"
   ink: "#9A5B00"
   sequential: true

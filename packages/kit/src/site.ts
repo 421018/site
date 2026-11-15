@@ -20,6 +20,8 @@ export type Section = {
   ink?: string;
   numbered: boolean;
   sequential: boolean;
+  /** Opens a panel with its pages in the main menu. */
+  dropdown: boolean;
   /** Section whose main-menu entry and side index this one appears under. */
   home: string;
   pages: Page[];
@@ -74,7 +76,7 @@ async function build() {
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
       sections.set(pagePath(p), {
         key: pagePath(p), lang, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
-        numbered: s.numbered, sequential: s.sequential, home: pagePath(p), pages: [], links: s.links, attached: [],
+        numbered: s.numbered, sequential: s.sequential, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links, attached: [],
       });
     } else if (p.data.section) {
       errors.push(`${p.filePath}: "section:" is only allowed in the folder's index.md.`);
@@ -173,6 +175,18 @@ export function prevNext(s: Section, page: Page) {
   const i = s.pages.findIndex((p) => p.id === page.id);
   const at = (j: number) => (s.pages[j] ? { href: hrefOf(s.pages[j]), label: menuLabel(s.pages[j]) } : null);
   return { prev: at(i - 1), next: at(i + 1) };
+}
+
+/**
+ * Main menu panel of a section (dropdown: true): its index page as the
+ * featured entry, then its pages (not those inside groups) with icon and line.
+ */
+export function menuPanel(s: Section) {
+  const [index, ...rest] = s.pages;
+  return {
+    featured: { href: hrefOf(index), label: menuLabel(index), text: index.data.summary },
+    items: rest.filter((p) => depthOf(p) < 2).map((p) => ({ href: hrefOf(p), label: menuLabel(p), text: p.data.menuText, icon: p.data.icon })),
+  };
 }
 
 /** Footer columns: one per main-menu section with its pages, links and attached section index pages. */

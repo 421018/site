@@ -1,6 +1,8 @@
 ---
 title: "Tarifas y emisión"
 summary: "Cada operación en la red tiene un costo pequeño y predecible. De dónde sale, cómo se calcula y en qué se convierte."
+icon: fees
+menuText: "Gas, drops y cups"
 weight: 30
 ---
 

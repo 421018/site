@@ -1,6 +1,8 @@
 ---
 title: "Operar un nodo"
 summary: "Tener tu propio nodo es la forma de leer la red sin depender de nadie. Lo que necesitas para ponerlo en marcha y, si quieres, para validar bloques."
+icon: node
+menuText: "Nodo completo, RPC y validador"
 weight: 10
 ---
 

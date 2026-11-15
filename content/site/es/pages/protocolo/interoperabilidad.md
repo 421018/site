@@ -1,6 +1,8 @@
 ---
 title: "Interoperabilidad"
 summary: "Ninguna red vive aislada. Cómo comprueba 42 lo que ocurrió en otra red sin tener que creerle a un intermediario."
+icon: interop
+menuText: "IBC, versiones 1 y 2"
 weight: 40
 ---
 

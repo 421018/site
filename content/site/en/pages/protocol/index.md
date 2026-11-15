@@ -5,6 +5,7 @@ menuTitle: "Overview"
 translationOf: protocolo
 section:
   label: Protocol
+  dropdown: true
   weight: 1
   accent: "#5BF0C8"
   ink: "#0A7A5E"

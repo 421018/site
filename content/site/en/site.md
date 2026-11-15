@@ -13,6 +13,8 @@ header:
   mainNav: Main # accessible name of the main menu
   menuButton: Menu # label of the collapsed main menu on narrow screens
   languageNav: Language # accessible name of the language switcher
+  submenu: show pages # accessible name of a section's menu arrow: "Protocol: show pages"
+  cta: { label: "Documentation ↗", href: /docs } # highlighted button at the end of the header
 
 footer:
   credit: Open-source project

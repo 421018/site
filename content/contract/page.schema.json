@@ -11,6 +11,27 @@
     "menuTitle": {
       "type": "string"
     },
+    "menuText": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string",
+      "enum": [
+        "execution",
+        "consensus",
+        "fees",
+        "interop",
+        "governance",
+        "security",
+        "connect",
+        "build",
+        "node",
+        "integrate",
+        "docs",
+        "cases",
+        "opensource"
+      ]
+    },
     "weight": {
       "default": 100,
       "type": "integer",
@@ -45,6 +66,10 @@
           "pattern": "^#[0-9a-fA-F]{6}$"
         },
         "numbered": {
+          "default": false,
+          "type": "boolean"
+        },
+        "dropdown": {
           "default": false,
           "type": "boolean"
         },

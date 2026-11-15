@@ -52,16 +52,42 @@ img, svg { display: block; }
 .nl::after { content: attr(data-label); height: 0; overflow: hidden; visibility: hidden; font-weight: 600; pointer-events: none; user-select: none; }
 .nl:hover { color: #fff; background: rgba(17,22,28,.85); }
 .nl.on { color: #fff; font-weight: 600; box-shadow: inset 0 -2px 0 var(--acc); border-radius: 0; }
+/* section panels (dropdown: true) */
+.dd { display: inline-flex; align-items: center; }
+.dd .nl { padding-right: 4px; }
+.dd-t { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 44px; border: 0; background: transparent; color: var(--fg-4); cursor: pointer; border-radius: 8px; }
+.dd-t:hover, .dd.open .dd-t { color: var(--acc); }
+.dd.open .dd-t svg, .dd:hover .dd-t svg { transform: rotate(180deg); }
+.dd-t svg { transition: transform .2s; }
+.dd-panel { position: absolute; left: 0; right: 0; top: 100%; z-index: 40; display: none; margin-top: 8px; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: var(--hull); box-shadow: 0 30px 80px rgba(0,0,0,.5); overflow: hidden; }
+.dd-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; }
+.dd:hover .dd-panel, .dd:focus-within .dd-panel, .dd.open .dd-panel { display: flex; }
+.dd-grid { flex: 1 1 auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 20px; padding: 22px; align-content: start; }
+.dd-item { display: flex; gap: 14px; align-items: flex-start; padding: 12px; border-radius: 12px; color: var(--fg); text-decoration: none; }
+.dd-item:hover, .dd-item:focus-visible { background: rgba(255,255,255,.05); }
+.dd-item .dd-ic { flex: none; color: var(--acc); margin-top: 2px; }
+.dd-item b { display: block; font-weight: 500; font-size: 15px; }
+.dd-item span span { display: block; margin-top: 2px; font-size: 13.5px; color: var(--fg-3); }
+.dd-feat { flex: 0 0 300px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 26px; background-color: var(--night-2); border-left: 1px solid rgba(255,255,255,.08); color: var(--fg); text-decoration: none; }
+.dd-feat b { font-size: 19px; font-weight: 500; }
+.dd-feat span { font-size: 14px; line-height: 1.5; color: var(--fg-3); }
+.dd-feat:hover b { color: var(--acc); }
+/* highlighted header button (e.g. the documentation) */
+.hcta { display: inline-flex; align-items: center; min-height: 40px; margin-left: 10px; padding: 0 16px; border-radius: 999px; background: var(--fg); color: var(--night); text-decoration: none; font-size: 14px; font-weight: 500; }
+.hcta:hover { background: #fff; }
+.nl.lang { font-family: var(--mono); font-size: 12px; }
+.ml.sub { min-height: 38px; padding-left: 26px; font-size: 14px; }
+.ml.cta { color: var(--fg); font-weight: 500; }
 /* collapsed main menu for narrow screens */
 .menu-m { display: none; position: relative; }
 .menu-m summary { list-style: none; cursor: pointer; border: 1px solid #2A313A; color: var(--fg); }
 .menu-m summary::-webkit-details-marker { display: none; }
-.menu-m nav { position: absolute; right: 0; top: calc(100% + 8px); min-width: 220px; display: flex; flex-direction: column; padding: 6px; border: 1px solid #2A313A; border-radius: 10px; background: rgba(5,7,10,.96); backdrop-filter: blur(8px); }
+.menu-m nav { position: absolute; right: 0; top: calc(100% + 8px); min-width: 260px; max-height: 75vh; overflow-y: auto; display: flex; flex-direction: column; padding: 6px; border: 1px solid #2A313A; border-radius: 10px; background: rgba(5,7,10,.96); backdrop-filter: blur(8px); }
 .ml { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; color: var(--fg-3); text-decoration: none; font-size: 15px; }
 .ml:hover { color: #fff; background: rgba(17,22,28,.85); }
 button.ml { width: 100%; border: 0; background: transparent; font: inherit; text-align: left; cursor: pointer; }
 .ml.on { color: #fff; font-weight: 600; box-shadow: inset 2px 0 0 var(--acc); }
-@media (max-width: 640px) {
+@media (max-width: 960px) {
   .site-header { flex-wrap: nowrap; }
   .menu { display: none; }
   .menu-m { display: block; }

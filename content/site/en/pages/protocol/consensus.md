@@ -1,6 +1,8 @@
 ---
 title: "Consensus and staking"
 summary: "Thousands of computers that do not know each other agree on the same block every two seconds. This is how they do it, and what happens when some fail or try to cheat."
+icon: consensus
+menuText: "How each block is agreed"
 weight: 20
 translationOf: protocolo/consenso
 ---

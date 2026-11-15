@@ -4,7 +4,8 @@ summary: "If you already know how to build for the EVM, you already know how to 
 translationOf: implementar
 section:
   label: Implement
-  weight: 3
+  dropdown: true
+  weight: 2
   accent: "#7C9CFF"
   ink: "#3552C8"
   links:

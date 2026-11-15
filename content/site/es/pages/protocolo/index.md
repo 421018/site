@@ -4,6 +4,7 @@ summary: "Cómo consiguen miles de computadoras llevar un mismo registro sin que
 menuTitle: "Visión general"
 section:
   label: Protocolo
+  dropdown: true
   weight: 1
   accent: "#5BF0C8"
   ink: "#0A7A5E"
