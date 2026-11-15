@@ -131,11 +131,11 @@ To find them all: `grep -rn "\[" content apps/*/src/config.ts LICENSE NOTICE`.
 
 ## Languages
 
-Spanish is the default language, served at the root; English is served under `/en`. Paths and anchors are English and identical in every language (`/protocol/consensus`, `/en/protocol/consensus`); old Spanish URLs redirect. Languages are set per app in `src/config.ts` (`SITE.defaultLang`, `SITE.languages`) and passed to the kit and to Astro's i18n.
+English is served at the root and Spanish under `/es`. Paths and anchors are English and identical in every language (`/protocol/consensus`, `/es/protocol/consensus`). Spanish is the **source** language (`SITE.sourceLang`): content is written in Spanish first and is complete there; a page not yet translated into English is shown at its English URL in Spanish, with a notice and a canonical link to the Spanish page. Content links are written without a language prefix and the engine adds the page's. Old URLs redirect. Languages are set per app in `src/config.ts` (`SITE.defaultLang` at the root, `SITE.sourceLang`, `SITE.languages`) and passed to the kit and to Astro's i18n.
 
 - **Catalog:** each app has a folder per language (`content/site/es/`, `content/site/en/`) with `site.md`, `home.md`, `pages/`, `posts/` (site) and `diagrams/`; images are shared. A translation is the file at the same path in another language's folder. Widget text lives in `content/ui/<lang>.yaml`; network data has per-language fields (`{ es, en }`).
 - **Engine:** `@42chain/kit/i18n` (`langOf(Astro)`, `langPrefix`, `homeHref`) resolves the language of the page from `Astro.currentLocale`. Page ids are `<lang>/<path>`; `site.ts` builds sections per language and pairs translations by path (`getAlternates()`), which feed the language switcher in the header and the `hreflang` links. `@42chain/kit/dictionary` (`ui(lang)`, `fill()`) reads the widget text; strings needed by client scripts travel in a `data-i18n` attribute.
-- **Routes:** `[...slug].astro` serves every page of every language; `index.astro` and `404.astro` exist once per language (`src/pages/en/`), rendering the shared `Home.astro` and the kit's `NotFound.astro`.
+- **Routes:** `[...slug].astro` serves every page of every language; `index.astro` and `404.astro` exist once per language (`src/pages/es/` for Spanish), rendering the shared `Home.astro` and the kit's `NotFound.astro`.
 - **Adding a language:** add it to `SITE.languages` in both apps, create the catalog folders and `ui/<lang>.yaml`, add `src/pages/<lang>/index.astro` and `404.astro`, and run `npm run export:contract`.
 
 ## License

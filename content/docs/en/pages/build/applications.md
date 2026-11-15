@@ -70,11 +70,11 @@ Contracts can use the protocol's own functions directly: query and move native u
 
 Two networks run the same protocol.
 
-The **testnet** is for developing and testing. It is public and uses test units, which have no use outside it. Test units are free from a [faucet in the directory](/en/get-started/connect#providers).
+The **testnet** is for developing and testing. It is public and uses test units, which have no use outside it. Test units are free from a [faucet in the directory](/get-started/connect#providers).
 
 The **mainnet** is the network where records have real effect.
 
-Since both networks run the same protocol, an application moves from the testnet to the mainnet without changing its code. Only the connection parameters change, and they are in [Connect to 42 Chain](/en/get-started/connect#parameters).
+Since both networks run the same protocol, an application moves from the testnet to the mainnet without changing its code. Only the connection parameters change, and they are in [Connect to 42 Chain](/get-started/connect#parameters).
 
 ## From testing to operation {#production}
 
@@ -94,10 +94,10 @@ Taking an application into operation usually follows five steps:
 | Development | Hardhat, Foundry, Remix |
 | Libraries | Viem, Ethers.js, Web3.js |
 | Signing | EVM-compatible wallets, Ledger, passkeys (P-256) |
-| Infrastructure | RPC nodes, indexers and oracles are offered by independent providers, each with its own domain · [Directory](/en/get-started/connect#providers) |
+| Infrastructure | RPC nodes, indexers and oracles are offered by independent providers, each with its own domain · [Directory](/get-started/connect#providers) |
 
 ## Next steps {#support}
 
-The parameters of each network and the provider directory are in [Connect to 42 Chain](/en/get-started/connect).
+The parameters of each network and the provider directory are in [Connect to 42 Chain](/get-started/connect).
 
 To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/integrate). For an internal environment connected to 42 or an integration that requires custom work, see [Custom implementations (in Spanish)](site:/use-cases/custom-implementations).

@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   return [...pages, ...blog];
 }
 const props = Astro.props;
-const rendered = props.kind === 'page' ? await render(props.page) : props.kind === 'post' ? await render(props.post as never) : undefined;
+const rendered = props.kind === 'page' ? await render(props.page.fallbackOf ?? props.page) : props.kind === 'post' ? await render((props.post.fallbackOf ?? props.post) as never) : undefined;
 const Content = rendered?.Content;
 const blog = props.kind === 'post' ? (await getBlog(postLang(props.post)))! : undefined;
 ---

@@ -4,7 +4,7 @@
  * (label and summary of its index.md; the first one leads), the layers of the
  * protocol and quick data of the default network, from the catalog's network data.
  */
-import { getEntry, getCollection } from 'astro:content';
+import { getEntry } from 'astro:content';
 import Base from '@42chain/kit/layouts/Base.astro';
 import Footer from '@42chain/kit/components/Footer.astro';
 import { getMenu, homeAlternates } from '@42chain/kit/site';
@@ -19,8 +19,6 @@ const entry = await getEntry('home', lang);
 if (!entry) throw new Error(`Missing docs/${lang}/home.md in the content catalog`);
 const { eyebrow, title, lead, searchPrompt, layers, quickData } = entry.data;
 const menu = await getMenu(lang);
-const pages = await getCollection('pages');
-const summaryOf = (key: string) => pages.find((p) => p.id === `${lang}/${key}`)?.data.summary ?? '';
 const { networks, services, providers } = await getDirectory();
 const net = networks[0];
 const evm = firstOf(providers, net.id, 'evm');
@@ -46,7 +44,7 @@ const tones = ['mint', 'blue', 'amber', 'stone'];
         <a class:list={['dcard', { lead: i === 0 }, { stars: i === 0 }]} href={s.href}>
           {i === 0 && <svg class="dcard-art" aria-hidden="true" viewBox="0 0 140 90"><ellipse cx="80" cy="50" rx="60" ry="16" fill="none" stroke="rgba(255,255,255,.12)" transform="rotate(-10 80 50)" /><circle cx="80" cy="50" r="22" fill="#0E1C24" stroke="rgba(91,240,200,.45)" /><g transform="translate(132 18) rotate(-20)"><path d="M0 0 L-12 -4 L-9 0 L-12 4 Z" fill="#ECEFF4" /></g></svg>}
           <b>{s.label}</b>
-          <span>{summaryOf(s.key)}</span>
+          <span>{s.pages[0]?.data.summary}</span>
           <span class="dcard-go" aria-hidden="true">→</span>
         </a>
       ))}

@@ -9,7 +9,7 @@ export async function getStaticPaths() {
   return (await getAllPages()).map((page) => ({ params: { slug: hrefOf(page).slice(1) }, props: { page } }));
 }
 const { page } = Astro.props;
-const { Content, headings } = await render(page);
+const { Content, headings } = await render(page.fallbackOf ?? page);
 ---
 <DocsPage page={page} headings={headings}>
   <Splice><Content /></Splice>

@@ -6,8 +6,13 @@ export interface LanguageConfig {
 
 /** Settings each app passes to the kit integration (astro.config.mjs). */
 export interface KitConfig {
-  /** Language served at the site root, e.g. "es". The others live under /<lang>/. */
+  /** Language served at the site root, e.g. "en". The others live under /<lang>/. */
   defaultLang: string;
+  /**
+   * Language the content is written in first, complete (e.g. "es"). A page
+   * missing in another language is shown in this one there, with a notice.
+   */
+  sourceLang: string;
   /** Every language of the app, in menu order, each with its own folder in the catalog. */
   languages: Record<string, LanguageConfig>;
   /** Prefix of the "edit this page" link: content repository + branch; the file's path in the catalog is appended. */

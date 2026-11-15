@@ -14,23 +14,45 @@ import { catalogPath } from './catalog';
 export interface SharedOptions {
   /** The app's folder in the content catalog: "site" or "docs". */
   catalog: string;
-  /** Default language: its folder is the fallback for diagrams missing in a translation. */
+  /** Language served at the root (no prefix in URLs). */
   defaultLang: string;
+  /** Source language: its folder is the fallback for diagrams missing in a translation. */
+  sourceLang: string;
   /** Names accepted by :::widget (from @42chain/widgets/names). */
   widgets?: readonly string[];
   /** Base URLs of the other products for site:, docs: and console: links in content. */
   linkBases?: Record<string, string>;
+  /** The app's languages (folders in the catalog). */
+  languages?: string[];
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
 }
 
-export function sharedConfig({ catalog, defaultLang, widgets = [], linkBases = {}, scriptSources = [] }: SharedOptions): AstroUserConfig {
+export function sharedConfig({ catalog, defaultLang, sourceLang, widgets = [], linkBases = {}, languages = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
   const base = catalogPath(catalog);
-  // A page in <catalog>/<lang>/pages/… reads <lang>/diagrams/, then the default language's.
-  const diagramsDirs = (file: string | undefined) => {
+  const langOfFile = (file: string | undefined) => {
     const rel = file ? relative(base, file) : '';
-    const lang = rel && !rel.startsWith('..') ? rel.split(sep)[0] : defaultLang;
-    return [...new Set([lang, defaultLang])].map((l) => catalogPath(catalog, l, 'diagrams'));
+    const lang = rel && !rel.startsWith('..') ? rel.split(sep)[0] : '';
+    return languages.includes(lang) ? lang : sourceLang;
+  };
+  // A page in <catalog>/<lang>/pages/… reads <lang>/diagrams/, then the source language's.
+  const diagramsDirs = (file: string | undefined) =>
+    [...new Set([langOfFile(file), sourceLang])].map((l) => catalogPath(catalog, l, 'diagrams'));
+  // Content links are written without a language prefix; each gets its file's.
+  const withLang = (path: string, lang: string) => {
+    const prefix = lang === defaultLang ? '' : `/${lang}`;
+    if (!prefix || path === prefix || path.startsWith(prefix + '/') || path.startsWith(prefix + '#')) return path;
+    return path === '/' ? prefix : path.startsWith('/#') ? prefix + path.slice(1) : prefix + path;
+  };
+  const resolveLink = (url: string, file: string | undefined) => {
+    const m = url.match(/^(site|docs|console):(\/.*)$/);
+    if (m) {
+      const linkBase = linkBases[m[1]];
+      if (!linkBase) throw new Error(`"${m[1]}:" links are not available in this app.`);
+      return linkBase.replace(/\/$/, '') + (m[1] === 'console' ? m[2] : withLang(m[2], langOfFile(file)));
+    }
+    if (!url.startsWith('/') || url.startsWith('//') || /^\/(docs|consola)(\/|$|#)/.test(url)) return undefined;
+    return withLang(url, langOfFile(file));
   };
   return {
     trailingSlash: 'never',
@@ -41,7 +63,7 @@ export function sharedConfig({ catalog, defaultLang, widgets = [], linkBases = {
       syntaxHighlight: 'prism',
       processor: satteri({
         features: { attributes: true, directive: true },
-        mdastPlugins: [contentBlocks({ diagramsDirs, widgets, linkBases })],
+        mdastPlugins: [contentBlocks({ diagramsDirs, widgets, resolveLink })],
       }),
     },
     // Fonts are downloaded at build time and served from the site itself: no

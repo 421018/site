@@ -35,8 +35,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const apps = ['site', 'docs'];
 const contract = (name) => JSON.parse(readFileSync(join(root, 'contract', name), 'utf8'));
 const { blocks, widgets } = contract('blocks.json');
-const { default: defaultLang, languages } = contract('languages.json');
-const prefix = (lang) => (lang === defaultLang ? '' : `/${lang}`);
+// default: the language at the root of the URLs; source: the language content is written in first.
+const { source: sourceLang, languages } = contract('languages.json');
 
 const ajv = new Ajv2020({ allErrors: true, strict: false });
 ajv.addFormat('uri', (s) => /^https?:\/\/\S+$/.test(s));
@@ -88,10 +88,10 @@ const unsafe = [
 // Every page, blog index and post of an app, as URL paths (for link checks).
 function routesOf(app) {
   const appDir = join(root, app);
-  const routes = new Set(languages.map((l) => prefix(l) || '/'));
+  const routes = new Set(['/']);
   for (const lang of languages) {
     for (const f of walk(join(appDir, lang, 'pages'))) {
-      if (f.endsWith('.md')) routes.add(`${prefix(lang)}/${rel(f).slice(`${app}/${lang}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, '')}`.replace(/\/$/, '') || '/');
+      if (f.endsWith('.md')) routes.add(`/${rel(f).slice(`${app}/${lang}/pages/`.length).replace(/\.md$/, '').replace(/(^|\/)index$/, '')}`.replace(/\/$/, '') || '/');
     }
     const site = join(appDir, lang, 'site.md');
     let blog = null;
@@ -103,20 +103,24 @@ function routesOf(app) {
       const cat = (readFileSync(f, 'utf8').match(/^category:\s*(\S+)/m) || [])[1];
       const path = blog.categories?.find((c) => c.id === cat)?.path;
       if (!path) own++;
-      routes.add(`${prefix(lang)}/${path ?? blog.path}/${f.split(sep).pop().replace(/\.md$/, '')}`);
+      routes.add(`/${path ?? blog.path}/${f.split(sep).pop().replace(/\.md$/, '')}`);
     }
-    if (own) routes.add(`${prefix(lang)}/${blog.path}`);
+    if (own) routes.add(`/${blog.path}`);
   }
   return routes;
 }
 const routesByApp = Object.fromEntries(apps.map((a) => [a, routesOf(a)]));
-/** Checks one Markdown link target: /path (this app), site:/path or docs:/path (the other app). */
+/**
+ * Checks one Markdown link target: /path (this app), site:/path or docs:/path
+ * (the other app). Links carry no language prefix: the engine adds the page's.
+ */
 function checkLink(app, file, n, href) {
   const m = href.match(/^(?:(site|docs|console):)?(\/[^\s#]*)/);
   if (!m) return;
   const target = m[1] ?? app;
   if (target === 'console') return;
   const path = m[2].replace(/\/$/, '') || '/';
+  if (languages.some((l) => path === `/${l}` || path.startsWith(`/${l}/`))) { report(file, n, `write links without the language prefix (the engine adds it): ${href}`); return; }
   if (!m[1] && /^\/(docs|consola)(\/|$)/.test(path)) return; // redirects to external sites
   if (!routesByApp[target]) { report(file, n, `unknown link prefix "${m[1]}:"`); return; }
   if (!routesByApp[target].has(path)) report(file, n, `link to a page that does not exist${m[1] ? ` in ${target}` : ''}: ${href}`);
@@ -136,16 +140,16 @@ for (const app of apps) {
     try { return (m && parseYaml(m[1])?.blog) || null; } catch { return null; }
   };
   const postsOf = (lang) => walk(join(appDir, lang, 'posts')).filter((f) => f.endsWith('.md'));
-  const originals = new Set(pagesOf(defaultLang).filter((f) => f.endsWith('.md')).map((f) => idOf(defaultLang, f)));
+  const originals = new Set(pagesOf(sourceLang).filter((f) => f.endsWith('.md')).map((f) => idOf(sourceLang, f)));
   const diagramsIn = (lang) => new Set(walk(join(appDir, lang, 'diagrams')).map((f) => f.split(sep).pop().replace(/\.(html|svg)$/, '')));
-  const defaultDiagrams = diagramsIn(defaultLang);
+  const sourceDiagrams = diagramsIn(sourceLang);
 
   for (const lang of languages) {
     const base = join(appDir, lang);
-    if (!existsSync(base)) { if (lang === defaultLang) report(base, 0, 'missing: the default language is required'); continue; }
+    if (!existsSync(base)) { if (lang === sourceLang) report(base, 0, 'missing: the source language is required'); continue; }
     const pagesDir = join(base, 'pages');
     const files = pagesOf(lang);
-    const diagrams = new Set([...diagramsIn(lang), ...defaultDiagrams]);
+    const diagrams = new Set([...diagramsIn(lang), ...sourceDiagrams]);
 
     for (const f of files.filter((f) => f.endsWith('.mdx'))) report(f, 0, 'MDX is not allowed: use .md and ::: blocks (widgets: :::widget{name="…"})');
 
@@ -158,7 +162,7 @@ for (const app of apps) {
         schemaErrors(file, validators.page, data);
         if (depth === 0 && !data.section) report(file, 0, 'a section\'s index.md needs a "section:" block');
         if (depth > 0 && data.section) report(file, 0, '"section:" is only allowed in a section\'s index.md');
-        if (lang !== defaultLang && !originals.has(id)) report(file, 0, `a translation needs the page at the same path in ${app}/${defaultLang}/pages/ (${id || 'index'})`);
+        if (lang !== sourceLang && !originals.has(id)) report(file, 0, `a translation needs the page at the same path in ${app}/${sourceLang}/pages/ (${id || 'index'})`);
       }
       if (depth > 2) report(file, 0, 'pages can be nested one level deep at most (section/group/page)');
       const section = id.split('/')[0];
@@ -174,7 +178,7 @@ for (const app of apps) {
           if (!blocks.includes(block[1])) report(file, n, `unknown block ":::${block[1]}". Available: ${blocks.join(', ')}`);
           const name = line.match(/name="([^"]*)"/)?.[1];
           if (block[1] === 'widget' && !widgets.includes(name)) report(file, n, `unknown widget "${name ?? ''}". Available: ${widgets.join(', ')}`);
-          if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/${lang}/diagrams/ or ${app}/${defaultLang}/diagrams/`);
+          if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/${lang}/diagrams/ or ${app}/${sourceLang}/diagrams/`);
         }
         for (const [, target] of line.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g)) {
           if (!/^https?:/.test(target) && !existsSync(join(dirname(file), target))) report(file, n, `image not found: ${target}`);
@@ -202,7 +206,7 @@ for (const app of apps) {
           if (!blocks.includes(block[1])) report(file, n, `unknown block ":::${block[1]}". Available: ${blocks.join(', ')}`);
           const name = line.match(/name="([^"]*)"/)?.[1];
           if (block[1] === 'widget' && !widgets.includes(name)) report(file, n, `unknown widget "${name ?? ''}"`);
-          if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/${lang}/diagrams/ or ${app}/${defaultLang}/diagrams/`);
+          if (block[1] === 'diagram' && !diagrams.has(name)) report(file, n, `no diagram "${name ?? ''}" in ${app}/${lang}/diagrams/ or ${app}/${sourceLang}/diagrams/`);
         }
         for (const [, href] of line.matchAll(/(?<!!)\[[^\]]*\]\(((?:site:|docs:|console:)?\/[^)\s]*)/g)) checkLink(app, file, n, href);
       });
@@ -228,12 +232,12 @@ const dict = (lang) => {
   try { return { file, keys: new Set(keysOf(parseYaml(readFileSync(file, 'utf8')))) }; }
   catch (e) { report(file, 0, `not valid YAML: ${e.message.split('\n')[0]}`); return null; }
 };
-const reference = dict(defaultLang);
-for (const lang of languages.filter((l) => l !== defaultLang)) {
+const reference = dict(sourceLang);
+for (const lang of languages.filter((l) => l !== sourceLang)) {
   const d = dict(lang);
   if (!reference || !d) continue;
-  for (const k of reference.keys) if (!d.keys.has(k)) report(d.file, 0, `missing or different from ${defaultLang}.yaml: ${k}`);
-  for (const k of d.keys) if (!reference.keys.has(k)) report(d.file, 0, `not in ${defaultLang}.yaml: ${k}`);
+  for (const k of reference.keys) if (!d.keys.has(k)) report(d.file, 0, `missing or different from ${sourceLang}.yaml: ${k}`);
+  for (const k of d.keys) if (!reference.keys.has(k)) report(d.file, 0, `not in ${sourceLang}.yaml: ${k}`);
 }
 
 // Network data
@@ -249,7 +253,7 @@ for (const [name, kind] of [['networks', 'network'], ['services', 'service'], ['
   items.forEach((item, i) => {
     schemaErrors(file, validators[kind], item, `/${i}`);
     for (const [k, v] of Object.entries(item)) {
-      if (v && typeof v === 'object' && !Array.isArray(v) && k !== 'unit' && !(defaultLang in v)) report(file, 0, `${item.id}.${k}: needs a "${defaultLang}" value`);
+      if (v && typeof v === 'object' && !Array.isArray(v) && k !== 'unit' && !(sourceLang in v)) report(file, 0, `${item.id}.${k}: needs a "${sourceLang}" value`);
     }
     if (ids[name].has(item.id)) report(file, 0, `duplicate id "${item.id}"`);
     ids[name].add(item.id);

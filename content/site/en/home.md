@@ -10,8 +10,8 @@ hero:
     Shared infrastructure
     anyone can verify.
   lead: Protocol 42 lets several organizations keep the same ledger and apply the same rules, without depending on the systems of any one of them. 42 Chain is the public network that runs it.
-  primary: { label: How it works, href: /en/protocol }
-  secondary: { label: Connect to the network, href: docs:/en/get-started/connect }
+  primary: { label: How it works, href: /protocol }
+  secondary: { label: Connect to the network, href: docs:/get-started/connect }
 
 figures:
   - { value: ~2 s, label: per block }
@@ -33,7 +33,7 @@ engine:
         - "Finality in one block."
         - "Tolerates faults of less than a third of the voting power."
         - "Without a majority, the network halts rather than take risks."
-      link: { label: Read the chapter, href: /en/protocol/consensus }
+      link: { label: Read the chapter, href: /protocol/consensus }
     - icon: execution
       label: Execution
       title: Runs the contracts.
@@ -105,7 +105,7 @@ build:
     Familiar tools.
     Verifiable rules.
   lead: "Contracts are written with standard languages and tools: Solidity, Hardhat, Foundry. An application that already works on an EVM-compatible network works here without changing its code."
-  link: { label: Build applications, href: docs:/en/build/applications }
+  link: { label: Build applications, href: docs:/build/applications }
   secondary: { label: "Open the Console ↗", href: "console:/" }
   code:
     file: hardhat.config.js
@@ -135,8 +135,8 @@ start:
   kicker: Where to start
   title: Choose your way in.
   paths:
-    - { icon: connect, label: Connect to the network, href: docs:/en/get-started/connect, text: "Network parameters, wallets and RPC providers." }
-    - { icon: build, label: Build an application, href: docs:/en/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
+    - { icon: connect, label: Connect to the network, href: docs:/get-started/connect, text: "Network parameters, wallets and RPC providers." }
+    - { icon: build, label: Build an application, href: docs:/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
     - { icon: node, label: Run a node, href: docs:/operate/nodes, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
     - { icon: integrate, label: Integrate systems, href: docs:/integrate, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
     - { icon: governance, label: Understand governance, href: /protocol/governance, text: "How changes to the protocol are proposed, voted on and applied. (In Spanish.)" }
@@ -150,6 +150,6 @@ name:
 
 closing:
   title: Shared infrastructure, rules in plain sight.
-  primary: { label: Start building, href: docs:/en/build/applications }
+  primary: { label: Start building, href: docs:/build/applications }
   secondary: { label: Read the documentation, href: "docs:/" }
 ---

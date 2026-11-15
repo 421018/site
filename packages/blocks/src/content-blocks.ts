@@ -74,23 +74,21 @@ export interface BlockOptions {
   diagramsDirs?: (file: string | undefined) => string[];
   widgets?: readonly string[];
   /**
-   * Links between products: [text](docs:/get-started/connect) becomes the docs
-   * URL; also site: and console:. Content never hardcodes another product's domain.
+   * Resolves a link written in content, for the file it is in: language prefix
+   * for /paths, the other product's URL for docs:/, site:/ and console:/.
+   * Returns undefined to leave the link as it is; throws on an unknown scheme.
    */
-  linkBases?: Record<string, string>;
+  resolveLink?: (url: string, file: string | undefined) => string | undefined;
 }
 
-export const contentBlocks = ({ diagramsDirs, widgets = [], linkBases = {} }: BlockOptions = {}) => defineMdastPlugin({
+export const contentBlocks = ({ diagramsDirs, widgets = [], resolveLink }: BlockOptions = {}) => defineMdastPlugin({
   name: '42chain-content-blocks',
   link(node, ctx) {
-    const m = node.url.match(/^(site|docs|console):(\/.*)$/);
-    if (!m) return;
-    const base = linkBases[m[1]];
-    if (!base) {
-      const file = ctx.fileURL ? decodeURIComponent(ctx.fileURL.pathname) : 'content';
-      throw new Error(`${file}:${node.position?.start.line ?? '?'}: "${m[1]}:" links are not available in this app.`);
-    }
-    ctx.setField(node, 'url', base.replace(/\/$/, '') + m[2]);
+    if (!resolveLink) return;
+    const file = ctx.fileURL ? decodeURIComponent(ctx.fileURL.pathname) : undefined;
+    let url: string | undefined;
+    try { url = resolveLink(node.url, file); } catch (e) { throw new Error(`${file ?? 'content'}:${node.position?.start.line ?? '?'}: ${(e as Error).message}`); }
+    if (url && url !== node.url) ctx.setField(node, 'url', url);
   },
   containerDirective(node, ctx) {
     const children = node.children as Node[];

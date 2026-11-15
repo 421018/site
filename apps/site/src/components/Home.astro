@@ -49,8 +49,8 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <h1 class="fade" style="animation-delay: .2s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h1>
 <p class="hero-lead fade" style="animation-delay: .35s">{hero.lead}</p>
 <div class="acts fade" style="animation-delay: .5s">
-<a class="btn btn-p" href={resolveHref(hero.primary.href)}>{hero.primary.label} <Fragment set:html={arrow} /></a>
-<a class="btn btn-g" href={resolveHref(hero.secondary.href)}>{hero.secondary.label}</a>
+<a class="btn btn-p" href={resolveHref(hero.primary.href, lang)}>{hero.primary.label} <Fragment set:html={arrow} /></a>
+<a class="btn btn-g" href={resolveHref(hero.secondary.href, lang)}>{hero.secondary.label}</a>
 </div>
 </div>
 </div>
@@ -78,7 +78,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <h3>{p.title}</h3>
 <p class="eng-d">{p.text}</p>
 {p.points.length > 0 && <ul>{p.points.map((pt) => <li>{pt}</li>)}</ul>}
-<a class="eng-l" href={resolveHref(p.link.href)}>{p.link.label} →</a>
+<a class="eng-l" href={resolveHref(p.link.href, lang)}>{p.link.label} →</a>
 </div>
 <EnginePanel name={p.icon} />
 </div>
@@ -94,7 +94,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <p class="k">{kicker(2, uses.kicker)}</p>
 <h2 class="h2">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 </div>
-{uses.link && <a class="more" href={resolveHref(uses.link.href)}>{uses.link.label} →</a>}
+{uses.link && <a class="more" href={resolveHref(uses.link.href, lang)}>{uses.link.label} →</a>}
 </div>
 {uses.lead && <p class="lead">{uses.lead}</p>}
 <div class="cards3">
@@ -103,7 +103,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
     {s.image && <figure class="duo uimg" style={`--tint: ${tints[i % tints.length]}`}><Image src={s.image} alt={s.alt!} widths={[480, 800]} sizes="(max-width: 900px) 100vw, 33vw" /></figure>}
     <div class="ubody">
       {s.tag && <p class="pill">{s.tag}</p>}
-      <h3>{s.href ? <a href={resolveHref(s.href)}>{s.title}</a> : s.title}</h3>
+      <h3>{s.href ? <a href={resolveHref(s.href, lang)}>{s.title}</a> : s.title}</h3>
       <p>{s.text}</p>
       {s.credit && <p class="credit">{s.credit}</p>}
     </div>
@@ -120,7 +120,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <p class="k">{kicker(3, build.kicker)}</p>
 <h2 class="h2">{lines(build.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {build.lead && <p class="lead">{build.lead}</p>}
-<div class="links2">{build.link && <a class="more" href={resolveHref(build.link.href)}>{build.link.label} →</a>}{build.secondary && <a class="more" href={resolveHref(build.secondary.href)}>{build.secondary.label}</a>}</div>
+<div class="links2">{build.link && <a class="more" href={resolveHref(build.link.href, lang)}>{build.link.label} →</a>}{build.secondary && <a class="more" href={resolveHref(build.secondary.href, lang)}>{build.secondary.label}</a>}</div>
 </div>
 <div class="code" role="img" aria-label={build.code.label}>
 <div class="bar"><i></i><i></i><i></i><span>{build.code.file}</span></div>
@@ -138,7 +138,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <div class="roles">
 {people.rows.map((r) => <div class="role"><b>{r.who}</b><span>{r.what}</span></div>)}
 </div>
-{people.link && <a class="more" href={resolveHref(people.link.href)}>{people.link.label} →</a>}
+{people.link && <a class="more" href={resolveHref(people.link.href, lang)}>{people.link.label} →</a>}
 </div>
 </section>
 
@@ -149,7 +149,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <p class="k star">{kicker(5, name.kicker)}</p>
 <h2 class="h2">{lines(name.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {name.lead && <p class="lead">{name.lead}</p>}
-{name.link && <a class="more star" href={resolveHref(name.link.href)}>{name.link.label} →</a>}
+{name.link && <a class="more star" href={resolveHref(name.link.href, lang)}>{name.link.label} →</a>}
 </div>
 <div class="lore-art" aria-hidden="true"><RingedPlanet /></div>
 </div>
@@ -162,7 +162,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 {start.lead && <p class="lead">{start.lead}</p>}
 <div class="paths">
-{start.paths.map((p) => <a class="path" href={resolveHref(p.href)}><Icon name={p.icon} size={28} class="pi" /><b>{p.label}</b><span>{p.text}</span></a>)}
+{start.paths.map((p) => <a class="path" href={resolveHref(p.href, lang)}><Icon name={p.icon} size={28} class="pi" /><b>{p.label}</b><span>{p.text}</span></a>)}
 </div>
 </div>
 </section>
@@ -173,8 +173,8 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <svg class="horizon" aria-hidden="true" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0 160 Q600 20 1200 160 Z" fill="#0E1620"></path><path d="M0 160 Q600 20 1200 160" fill="none" stroke="rgba(91,240,200,.35)" stroke-width="1.5"></path></svg>
 <h2 class="h2">{closing.title}</h2>
 <div class="acts">
-<a class="btn btn-p" href={resolveHref(closing.primary.href)}>{closing.primary.label} <Fragment set:html={arrow} /></a>
-<a class="btn btn-g" href={resolveHref(closing.secondary.href)}>{closing.secondary.label}</a>
+<a class="btn btn-p" href={resolveHref(closing.primary.href, lang)}>{closing.primary.label} <Fragment set:html={arrow} /></a>
+<a class="btn btn-g" href={resolveHref(closing.secondary.href, lang)}>{closing.secondary.label}</a>
 </div>
 </div>
 </div>

@@ -11,9 +11,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 import { catalogRelative } from '../catalog';
-import { homeHref, langPrefix } from '../i18n';
+import { homeHref, langPrefix, sourceLang, withLang } from '../i18n';
 import { getSiteText } from '../site';
-import { blogHref, categoryOf, categoryTint, postDate, postLang, readingMinutes, relatedPosts, type Blog, type Post } from '../blog';
+import { blogHref, categoryOf, categoryTint, postDate, postHref, postLang, readingMinutes, relatedPosts, type Blog, type Post } from '../blog';
 interface Props { post: Post; blog: Blog; headings: { depth: number; slug: string; text: string }[] }
 const { post, blog, headings } = Astro.props;
 const lang = postLang(post);
@@ -22,12 +22,14 @@ const published = postDate(post);
 const date = published && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(published);
 const toc = headings.filter((h) => h.depth === 2);
 const related = await relatedPosts(post);
-const home = (await getSiteText(lang)).header.home;
+const { header: { home }, page: ui } = await getSiteText(lang);
+const original = post.fallbackOf;
+const canonicalHref = original ? withLang(postHref(blog, post).replace(langPrefix(lang), '') || '/', sourceLang) : undefined;
 const index = blogHref(blog, lang);
 // A category with its own path (use-cases) belongs to that section; the others to the blog.
 const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.id}`;
 ---
-<Base title={post.data.title} description={post.data.summary}>
+<Base title={post.data.title} description={post.data.summary} canonicalHref={canonicalHref}>
   <section class="band-top post-band stars">
     <Header current={cat.path} currentHref={cat.path ? undefined : index} />
     <div class="post-head">
@@ -52,7 +54,8 @@ const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.i
           <nav aria-label={blog.onThisPost}>{toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}</nav>
         </aside>
       )}
-      <main data-pagefind-body={kit.search ? true : undefined}>
+      <main data-pagefind-body={kit.search && !original ? true : undefined} lang={original ? sourceLang : undefined}>
+        {original && ui.untranslated && <p class="untranslated" lang={lang}>{ui.untranslated}</p>}
         <div class="prose"><slot /></div>
       </main>
     </div>

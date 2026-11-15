@@ -11,17 +11,19 @@ interface Props {
   alternates?: Record<string, string>;
   /** Product whose design applies (html data-product), e.g. "docs". */
   product?: string;
+  /** Canonical URL when it is another page (a page shown untranslated points to its original). */
+  canonicalHref?: string;
   /** Section colors (frontmatter `section.accent` / `section.ink`); the defaults live in global.css. */
   accent?: string;
   ink?: string;
 }
 const lang = langOf(Astro);
 const text = await getSiteText(lang);
-const { title, description = text.description, accent, ink, alternates = {}, product } = Astro.props;
+const { title, description = text.description, accent, ink, alternates = {}, product, canonicalHref } = Astro.props;
 const others = Object.entries(alternates);
 const colors = [accent && `--acc: ${accent}`, ink && `--link: ${ink}`].filter(Boolean).join('; ') || undefined;
 const fullTitle = title ? `${title} — ${text.name}` : `${text.name} — ${text.tagline}`;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(canonicalHref ?? Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
 <html lang={lang} style={colors} data-product={product}>

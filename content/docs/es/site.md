@@ -23,7 +23,7 @@ header:
     unavailable: La búsqueda está disponible en la versión publicada del sitio.
   links:
     - { label: "Consola ↗", href: "console:/" }
-    - { label: "42chain.org ↗", href: "https://example.org" } # [official domain]
+    - { label: "42chain.org ↗", href: "site:/" } # the main site, in this language
 
 footer:
   credit: Documentación de código abierto
@@ -33,7 +33,7 @@ footer:
     label: Herramientas
     links:
       - { label: "Consola ↗", href: "console:/" }
-      - { label: "42chain.org ↗", href: "https://example.org" } # [official domain]
+      - { label: "42chain.org ↗", href: "site:/" } # the main site, in this language
 
 page:
   lastReviewed: Última revisión

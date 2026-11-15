@@ -31,7 +31,7 @@ type Item =
   | { kind: 'link'; weight: number; label: string; href: string };
 const items: Item[] = [
   ...menu.map((s) => ({ kind: 'section' as const, weight: s.weight, key: s.key, label: s.label, href: s.href, panel: s.dropdown ? menuPanel(s) : undefined })),
-  ...text.header.links.map((l) => ({ kind: 'link' as const, weight: l.weight ?? Infinity, label: l.label, href: resolveHref(l.href) })),
+  ...text.header.links.map((l) => ({ kind: 'link' as const, weight: l.weight ?? Infinity, label: l.label, href: resolveHref(l.href, lang) })),
 ].sort((a, b) => a.weight - b.weight);
 // The blog link only appears once the blog index has posts of its own.
 const blog = await getBlog(lang);
@@ -74,7 +74,7 @@ const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind
     ))}
     {kit.search && text.header.search && <Search text={text.header.search} />}
     {switcher.map((l) => <a class="nl lang" href={l.href} hreflang={l.lang} lang={l.lang} data-label={l.label} aria-label={`${text.header.languageNav}: ${l.label}`}>{l.lang.toUpperCase()}</a>)}
-    {text.header.cta && <a class="hcta" href={resolveHref(text.header.cta.href)}>{text.header.cta.label}</a>}
+    {text.header.cta && <a class="hcta" href={resolveHref(text.header.cta.href, lang)}>{text.header.cta.label}</a>}
   </nav>
   {/* Narrow screens: the same links behind a disclosure (no script, CSP-safe). */}
   <details class="menu-m">
@@ -89,7 +89,7 @@ const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind
       ))}
       {kit.search && text.header.search && <button type="button" class="ml" data-search-open>{text.header.search.label}</button>}
       {switcher.map((l) => <a class="ml" href={l.href} hreflang={l.lang} lang={l.lang}>{l.label}</a>)}
-      {text.header.cta && <a class="ml cta" href={resolveHref(text.header.cta.href)}>{text.header.cta.label}</a>}
+      {text.header.cta && <a class="ml cta" href={resolveHref(text.header.cta.href, lang)}>{text.header.cta.label}</a>}
     </nav>
   </details>
 </header>

@@ -186,6 +186,9 @@
         "chapters": {
           "type": "string"
         },
+        "untranslated": {
+          "type": "string"
+        },
         "onThisPage": {
           "type": "string"
         },

@@ -25,5 +25,5 @@ write('network.schema.json', schema(networkSchema));
 write('service.schema.json', schema(serviceSchema));
 write('provider.schema.json', schema(providerSchema));
 write('blocks.json', { blocks: blockNames, widgets: widgetNames });
-write('languages.json', { default: SITE.defaultLang, languages: Object.keys(SITE.languages) });
+write('languages.json', { default: SITE.defaultLang, source: SITE.sourceLang, languages: Object.keys(SITE.languages) });
 console.log('Contract written to content/contract/');

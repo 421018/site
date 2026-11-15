@@ -1,7 +1,8 @@
 {
-  "default": "es",
+  "default": "en",
+  "source": "es",
   "languages": [
-    "es",
-    "en"
+    "en",
+    "es"
   ]
 }

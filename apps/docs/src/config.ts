@@ -6,11 +6,13 @@
 export const SITE = {
   url: 'https://docs.example.org', // [docs domain]
   /** Language at the site root; the others are served under /<lang>/. */
-  defaultLang: 'es',
+  defaultLang: 'en',
+  /** Language the content is written in first; pages not yet translated show it, with a notice. */
+  sourceLang: 'es',
   /** Languages, each with its folder in the catalog (<app>/<lang>/). */
   languages: {
-    es: { ogLocale: 'es_ES' },
     en: { ogLocale: 'en_US' },
+    es: { ogLocale: 'es_ES' },
   },
 };
 

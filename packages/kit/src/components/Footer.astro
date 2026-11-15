@@ -13,7 +13,7 @@ if (blog) {
   }
 }
 const text = await getSiteText(lang);
-if (text.footer.extra) columns.push({ key: '', label: text.footer.extra.label, links: text.footer.extra.links.map((l) => ({ ...l, href: resolveHref(l.href) })) });
+if (text.footer.extra) columns.push({ key: '', label: text.footer.extra.label, links: text.footer.extra.links.map((l) => ({ ...l, href: resolveHref(l.href, lang) })) });
 ---
 <footer class="site-footer">
   <div class="inner">

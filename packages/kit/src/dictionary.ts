@@ -7,9 +7,9 @@
 import { readFileSync } from 'node:fs';
 import { parse } from 'yaml';
 import { catalogPath } from './catalog';
-import { defaultLang } from './i18n';
+import { sourceLang } from './i18n';
 
-// The default language's file is the reference: every language has the same keys.
+// The source language's file is the reference: every language has the same keys.
 type Dictionary = Record<string, Record<string, any>>;
 const cache = new Map<string, Dictionary>();
 
@@ -19,8 +19,8 @@ export function ui(lang: string): Dictionary {
     try {
       d = parse(readFileSync(catalogPath('ui', `${lang}.yaml`), 'utf8')) as Dictionary;
     } catch (e) {
-      if (lang === defaultLang) throw new Error(`Missing or invalid catalog ui/${lang}.yaml: ${(e as Error).message}`);
-      d = ui(defaultLang);
+      if (lang === sourceLang) throw new Error(`Missing or invalid catalog ui/${lang}.yaml: ${(e as Error).message}`);
+      d = ui(sourceLang);
     }
     cache.set(lang, d);
   }

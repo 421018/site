@@ -170,6 +170,8 @@ export const siteTextSchema = z
         previous: z.string(),
         next: z.string(),
         chapters: z.string(),
+        /** Notice on a page shown in the source language because it is not translated yet. */
+        untranslated: z.string().optional(),
         /** Documentation: index of the page's headings, and the button that copies the page as Markdown. */
         onThisPage: z.string().optional(),
         copyPage: z.string().optional(),

@@ -6,9 +6,14 @@
 import { execFileSync } from 'node:child_process';
 import { basename, dirname, resolve } from 'node:path';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
-import { defaultLang, homeHref, langPrefix, languages, resolveHref } from './i18n';
+import { homeHref, langPrefix, languages, resolveHref, sourceLang } from './i18n';
 
-export type Page = CollectionEntry<'pages'>;
+/**
+ * A page of a language. When the language has no translation yet, it is the
+ * source-language page served at this language's URL: `fallbackOf` is that
+ * page (render it, link its file) and the page shows a notice.
+ */
+export type Page = CollectionEntry<'pages'> & { fallbackOf?: CollectionEntry<'pages'> };
 export type Link = { href: string; label: string };
 export type Section = {
   key: string;
@@ -61,7 +66,13 @@ export async function getAllPages(): Promise<Page[]> {
 }
 
 async function build() {
-  const pages = await getCollection('pages', (p) => import.meta.env.DEV || !p.data.draft);
+  const own: Page[] = await getCollection('pages', (p) => import.meta.env.DEV || !p.data.draft);
+  // Every language has every page: pages not translated yet are the source-language page.
+  const ownIds = new Set(own.map((p) => p.id));
+  const fallbacks: Page[] = languages
+    .filter((l) => l !== sourceLang)
+    .flatMap((l) => own.filter((p) => pageLang(p) === sourceLang && !ownIds.has(`${l}/${pagePath(p)}`)).map((p) => ({ ...p, id: `${l}/${pagePath(p)}`, fallbackOf: p })));
+  const pages: Page[] = [...own, ...fallbacks];
   const errors: string[] = [];
   const byLang = new Map<string, Map<string, Section>>(languages.map((l) => [l, new Map()]));
 
@@ -75,17 +86,17 @@ async function build() {
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
       sections.set(pagePath(p), {
         key: pagePath(p), lang, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
-        numbered: s.numbered, sequential: s.sequential, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links.map((l) => ({ ...l, href: resolveHref(l.href) })), attached: [],
+        numbered: s.numbered, sequential: s.sequential, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links.map((l) => ({ ...l, href: resolveHref(l.href, lang) })), attached: [],
       });
     } else if (p.data.section) {
       errors.push(`${p.filePath}: "section:" is only allowed in the folder's index.md.`);
     }
   }
-  const originals = new Set(pages.filter((p) => pageLang(p) === defaultLang).map(pagePath));
+  const originals = new Set(own.filter((p) => pageLang(p) === sourceLang).map(pagePath));
   for (const p of pages) {
     const sections = byLang.get(pageLang(p));
     if (!sections) continue;
-    if (pageLang(p) !== defaultLang && !originals.has(pagePath(p))) errors.push(`${p.filePath}: a translation needs the page at the same path in ${defaultLang} (${pagePath(p)}).`);
+    if (pageLang(p) !== sourceLang && !originals.has(pagePath(p))) errors.push(`${p.filePath}: a translation needs the page at the same path in ${sourceLang} (${pagePath(p)}).`);
     if (depthOf(p) > 2) errors.push(`${p.filePath}: pages can be nested one level deep at most (section/group/page).`);
     const s = sections.get(sectionOf(p));
     if (!s) { if (!isIndex(p)) errors.push(`${p.filePath}: folder "${sectionOf(p)}" has no index.md.`); continue; }
@@ -127,7 +138,8 @@ async function build() {
  */
 export async function getAlternates(page: Page): Promise<Record<string, string>> {
   const all = await getAllPages();
-  return Object.fromEntries(all.filter((p) => pagePath(p) === pagePath(page)).map((p) => [pageLang(p), hrefOf(p)]));
+  // Only real translations: a page shown in the source language is not a version of its own.
+  return Object.fromEntries(all.filter((p) => pagePath(p) === pagePath(page) && !p.fallbackOf).map((p) => [pageLang(p), hrefOf(p)]));
 }
 
 /** Home pages of every language, as { lang: href } (alternates of the home and 404 pages). */

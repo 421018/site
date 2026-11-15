@@ -4,11 +4,13 @@
  * where <path> is its category's path (e.g. use-cases) or the blog's.
  */
 import { getCollection } from 'astro:content';
-import { langPrefix, languages } from './i18n';
+import { langPrefix, languages, sourceLang } from './i18n';
 import { getAllPages, getSiteText, hrefOf, lastCommitDate } from './site';
 
 export type Post = {
   id: string;
+  /** Set when the post is shown in the source language because it is not translated yet. */
+  fallbackOf?: Post;
   body?: string;
   filePath?: string;
   data: {
@@ -53,6 +55,14 @@ async function allPosts(): Promise<Post[]> {
       seen.add(href);
     }
     if (errors.length) throw new Error('Invalid blog content:\n  ' + errors.join('\n  '));
+    // Every language with a blog has every post: posts not translated yet are the source-language post.
+    const ids = new Set(posts.map((p) => p.id));
+    for (const lang of languages) {
+      if (lang === sourceLang || !(await getBlog(lang))) continue;
+      for (const p of posts.filter((p) => postLang(p) === sourceLang && !ids.has(`${lang}/${postSlug(p)}`))) {
+        posts.push({ ...p, id: `${lang}/${postSlug(p)}`, fallbackOf: p });
+      }
+    }
     return posts
       .filter((p) => import.meta.env.DEV || !p.data.draft)
       .sort((a, b) => (postDate(b)?.getTime() ?? 0) - (postDate(a)?.getTime() ?? 0));

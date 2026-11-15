@@ -98,7 +98,7 @@ A confirmed block cannot be reverted or replaced by another one. This property i
 Validators are compensated for this work. The protocol assigns them part of the fees and of the new units it creates with each block. Each validator shares that part with the people who delegated units to it.
 
 :::aside
-[Consensus and staking →](/en/protocol/consensus)
+[Consensus and staking →](/protocol/consensus)
 :::
 
 ## Programs that live on the network {#contracts}
@@ -174,8 +174,8 @@ To avoid fake sites or profiles, use only the [project's channels (in Spanish)](
 
 The protocol rests on seven design decisions. Each one is developed in its chapter:
 
-- **Votes depend on staking, not on the number of nodes.** Creating nodes gives no power; putting units at stake does. [Consensus and staking](/en/protocol/consensus#why)
-- **Halt rather than risk.** Without the required majority, the network halts instead of confirming doubtful blocks. [Consensus and staking](/en/protocol/consensus#failures)
+- **Votes depend on staking, not on the number of nodes.** Creating nodes gives no power; putting units at stake does. [Consensus and staking](/protocol/consensus#why)
+- **Halt rather than risk.** Without the required majority, the network halts instead of confirming doubtful blocks. [Consensus and staking](/protocol/consensus#failures)
 - **EVM-compatible execution.** Builders use languages and tools that already exist. [Execution](/protocol/execution#why)
 - **An own unit and constant issuance.** The network's security does not depend on anyone external or on how much the network is used. [Fees and issuance](/protocol/fees#why)
 - **Verification instead of intermediaries.** Connected networks check each other; nobody holds units in transit. [Interoperability](/protocol/interoperability#why)

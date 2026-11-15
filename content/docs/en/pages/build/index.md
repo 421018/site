@@ -15,5 +15,5 @@ section:
 
 What 42 adds are the **network's own functions**: staking, governance, transfers between networks and proof verification, available to any contract at fixed addresses.
 
-- **[Build applications](/en/build/applications).** The parts of an application, the patterns for infrastructure and the path from testnet to mainnet.
+- **[Build applications](/build/applications).** The parts of an application, the patterns for infrastructure and the path from testnet to mainnet.
 - **[The network's own functions (in Spanish)](/build/precompiles).** What they are and the address of each one.

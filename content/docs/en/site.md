@@ -23,7 +23,7 @@ header:
     unavailable: Search is available on the published version of the site.
   links:
     - { label: "Console ↗", href: "console:/" }
-    - { label: "42chain.org ↗", href: "https://example.org/en" } # [official domain]
+    - { label: "42chain.org ↗", href: "site:/" } # the main site, in this language
 
 footer:
   credit: Open-source documentation
@@ -33,7 +33,7 @@ footer:
     label: Tools
     links:
       - { label: "Console ↗", href: "console:/" }
-      - { label: "42chain.org ↗", href: "https://example.org/en" } # [official domain]
+      - { label: "42chain.org ↗", href: "site:/" } # the main site, in this language
 
 page:
   lastReviewed: Last reviewed
@@ -41,6 +41,7 @@ page:
   previous: ← Previous
   next: Next →
   chapters: Chapters
+  untranslated: "This page has not been translated into English yet, so it is shown in Spanish."
   onThisPage: On this page
   copyPage: Copy page # copies the page as Markdown, e.g. to paste into an AI assistant
   copied: Copied
