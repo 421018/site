@@ -172,6 +172,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <div class="closing stars">
 <svg class="horizon" aria-hidden="true" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0 160 Q600 20 1200 160 Z" fill="#0E1620"></path><path d="M0 160 Q600 20 1200 160" fill="none" stroke="rgba(91,240,200,.35)" stroke-width="1.5"></path></svg>
 <h2 class="h2">{closing.title}</h2>
+{closing.lead && <p class="lead">{closing.lead}</p>}
 <div class="acts">
 <a class="btn btn-p" href={resolveHref(closing.primary.href, lang)}>{closing.primary.label} <Fragment set:html={arrow} /></a>
 <a class="btn btn-g" href={resolveHref(closing.secondary.href, lang)}>{closing.secondary.label}</a>
@@ -284,6 +285,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .closing{position:relative;overflow:hidden;border-radius:28px;background-color:var(--night-2);border:1px solid rgba(255,255,255,.08);padding:88px 24px 120px;text-align:center}
 .closing .horizon{position:absolute;left:0;right:0;bottom:0;width:100%;height:140px}
 .closing .h2{position:relative;max-width:760px;margin:0 auto}
+.closing .lead{position:relative;max-width:640px;margin:20px auto 0;color:var(--fg-2)}
 .closing .acts{position:relative;justify-content:center}
 
 @media (max-width:900px){

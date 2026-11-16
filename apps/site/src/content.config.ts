@@ -91,7 +91,7 @@ const home = defineCollection({
       people: z.object({ ...block, rows: z.array(z.object({ who: z.string(), what: z.string() }).strict()) }).strict(),
       start: z.object({ ...block, paths: z.array(z.object({ icon, label: z.string(), text: z.string(), href: z.string() }).strict()) }).strict(),
       name: z.object({ ...block }).strict(),
-      closing: z.object({ title: z.string(), primary: cta, secondary: cta }).strict(),
+      closing: z.object({ title: z.string(), lead: z.string().optional(), primary: cta, secondary: cta }).strict(),
     })
     .strict(),
 });
