@@ -1,0 +1,36 @@
+---
+import type { sideIndex } from '../site';
+interface Props { nav: ReturnType<typeof sideIndex>; path: string }
+const { nav, path } = Astro.props;
+const cur = nav.items.find((i) => i.href === path);
+const currentLabel = cur ? (cur.n ? `${cur.n} · ${cur.label}` : cur.label) : nav.refs.find((r) => r.href === path)?.label ?? '';
+const isOn = (href: string) => href === path;
+---
+<div class="sidewrap">
+  <nav class="side" aria-label={nav.label}>
+    <p class="sk">{nav.label}</p>
+    {nav.items.map((l) => (
+      <a class:list={[{ on: isOn(l.href), sub: l.depth === 1 }]} href={l.href} aria-current={isOn(l.href) ? 'page' : undefined}>
+        {l.n && <span class="n">{l.n}</span>}<span>{l.label}</span>
+      </a>
+    ))}
+    {nav.refs.length > 0 && <div class="sep" role="presentation" />}
+    {nav.refs.map((l) => (
+      <a class:list={[{ on: isOn(l.href) }]} href={l.href} aria-current={isOn(l.href) ? 'page' : undefined}><span>{l.label}</span></a>
+    ))}
+  </nav>
+  <details class="side-m">
+    <summary><span>{nav.label} · <b>{currentLabel}</b></span><i aria-hidden="true">▾</i></summary>
+    <nav aria-label={nav.label}>
+      {nav.items.map((l) => (
+        <a class:list={[{ on: isOn(l.href), sub: l.depth === 1 }]} href={l.href} aria-current={isOn(l.href) ? 'page' : undefined}>
+          {l.n && <span class="n">{l.n}</span>}<span>{l.label}</span>
+        </a>
+      ))}
+      {nav.refs.length > 0 && <div class="sep" role="presentation" />}
+      {nav.refs.map((l) => (
+        <a class:list={[{ on: isOn(l.href) }]} href={l.href}><span>{l.label}</span></a>
+      ))}
+    </nav>
+  </details>
+</div>

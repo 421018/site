@@ -1,0 +1,13 @@
+42 Chain website and documentation engine
+Copyright (c) 2026 The 42 Chain contributors. All rights reserved (see LICENSE).
+
+Content catalog (content/): Copyright 2026 The 42 Chain contributors,
+licensed under CC BY 4.0 (see content/LICENSE).
+
+This product uses third-party open-source software, each under its own
+license, including:
+- Astro (MIT License)
+- Pagefind (MIT License)
+- Geist and Geist Mono fonts (SIL Open Font License 1.1)
+Their license texts are distributed with the packages in node_modules/ and
+with the built site's assets where required.

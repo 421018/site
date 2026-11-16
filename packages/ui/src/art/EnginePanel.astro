@@ -1,0 +1,17 @@
+---
+/** Dark panel with orbits around one engine icon (home tabs, Protocol rows). Decorative. */
+import Icon from './Icon.astro';
+import type { IconName } from './icons';
+interface Props { name: IconName }
+const { name } = Astro.props;
+---
+<div class="engine-panel stars" aria-hidden="true">
+  <svg viewBox="0 0 360 360" class="ep-orbits">
+    <circle cx="180" cy="180" r="150" fill="none" stroke="rgba(255,255,255,.08)" />
+    <circle cx="180" cy="180" r="110" fill="none" stroke="rgba(91,240,200,.16)" stroke-dasharray="2 6" />
+    <circle cx="180" cy="180" r="64" fill="#0E1620" stroke="rgba(91,240,200,.35)" />
+    <circle cx="330" cy="180" r="4" fill="#F2C879" />
+    <circle cx="102" cy="104" r="3" fill="rgba(255,255,255,.6)" />
+  </svg>
+  <Icon name={name} size={72} class="ep-icon" />
+</div>

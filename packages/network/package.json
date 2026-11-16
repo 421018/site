@@ -1,0 +1,20 @@
+{
+  "name": "@42chain/network",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Network parameters and public provider directory of 42 Chain: schemas, helpers and components. The data lives in the content catalog.",
+  "license": "UNLICENSED",
+  "exports": {
+    "./directory": "./src/directory.ts",
+    "./schemas": "./src/schemas.ts",
+    "./components/*": "./src/components/*",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "astro": "^7.4.0"
+  },
+  "dependencies": {
+    "@42chain/kit": "*"
+  }
+}

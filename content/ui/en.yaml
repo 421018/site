@@ -1,0 +1,144 @@
+# Interface text of the widgets and data views (:::widget blocks), in English.
+# Same keys as es.yaml; the validator checks it. {name} marks a value the
+# widget fills in.
+
+common:
+  simulator: Interactive simulator
+  calculator: Interactive calculator
+  tool: Tool
+  decimal: "." # decimal separator in numbers shown by widgets
+  thousands: "," # thousands separator
+
+hashChain:
+  meta: Fingerprint chain · SHA-256
+  blocks:
+    - Diploma 2031-0457 issued by the university
+    - Batch 88 delivered to the export warehouse
+    - Street light L-120 repaired by the contractor
+    - Inspection of street light L-120 approved
+  block: Block {n}
+  data: Data
+  prevHash: Previous block's fingerprint
+  hash: This block's fingerprint
+  intactTitle: Chain intact
+  intactText: Each block stores the fingerprint of the previous one, and they all match.
+  alteredTitle: Tampering detected
+  alteredNext: The fingerprint of block {n} changed and no longer matches the one stored in block {next}. Any node detects it.
+  alteredLast: The fingerprint of block {n} changed and no longer matches the one the validators confirmed. Any node detects it.
+  reset: Restore the data
+  note: "Change a letter in any block's data. Illustrative: the network computes fingerprints over the full content of each block."
+
+consensus:
+  meta: "Consensus round · block #"
+  phases: [Proposal, Pre-vote, Pre-commit, Committed]
+  offline: Voting power offline
+  runningTitle: Producing blocks
+  runningText: The online validators add up to more than two thirds of the voting power. Blocks keep being confirmed.
+  haltedTitle: Halted
+  haltedText: Without more than two thirds online, no block is confirmed. The network halts and resumes when the majority is restored.
+  note: Move the slider to disconnect validators. Illustrative simulation with 30 validators of equal voting power.
+
+vote:
+  meta: "Same rules as the example: quorum {q}% · threshold {t}% · veto {v}%"
+  turnout: Turnout
+  yes: "Yes"
+  no: "No"
+  veto: No with veto
+  abstain: "Abstain: {n}% of votes cast"
+  quorum: Quorum reached
+  threshold: Yes exceeds the threshold
+  vetoBelow: Veto below its threshold
+  pass: "Yes"
+  fail: "No"
+  approved: Passed
+  approvedNote: All three conditions are met.
+  noQuorum: No quorum
+  noQuorumNote: Rejected for lack of participation.
+  vetoed: Rejected by veto
+  vetoedNote: The veto exceeds its threshold; the deposit is lost.
+  rejected: Rejected
+  rejectedNote: The votes in favor do not exceed the threshold.
+
+ibc:
+  meta: Transfer of 10 units over IBC
+  source: Source account
+  escrow: Connection escrow
+  relayer: Relayer
+  networkB: Network B
+  destination: Destination account
+  lightClient: Light client of 42
+  validProof: Valid proof
+  previous: ← Previous
+  next: Next →
+  timeoutToggle: Simulate no delivery
+  note: Illustrative. A relayer can deliver the message or fail to deliver it, but cannot alter it.
+  steps:
+    start:
+      title: "Start"
+      text: "The source account holds 100 units on 42."
+    locked:
+      title: "1. Lock"
+      text: "The account sends the transfer. The protocol locks 10 units in the connection's escrow, inside 42."
+    relayed:
+      title: "2. Relay"
+      text: "A relayer carries the message to network B, together with the proof that the units were locked."
+    verified:
+      title: "3. Verification"
+      text: "Network B checks the proof with its light client of 42. Nobody has to trust the relayer."
+    minted:
+      title: "4. Representation"
+      text: "Network B creates 10 units that represent the locked ones and delivers them to the destination account."
+    acknowledged:
+      title: "5. Acknowledgement"
+      text: "A relayer carries the acknowledgement back to 42. The transfer is complete."
+    lost:
+      title: "2. No delivery"
+      text: "No relayer delivers the message before the deadline set in the transfer."
+    expired:
+      title: "3. Timeout"
+      text: "The transfer times out and the 10 units return to the source account. At no point did they pass into a third party's hands."
+
+fees:
+  meta: fee = gas × (base fee + tip)
+  operation: Operation
+  presets: [Simple transfer, Record in a contract, Complex contract]
+  gasUnits: "{n} gas"
+  baseFee: Base fee per unit of gas
+  tip: Tip
+  noTip: No tip
+  fee: Fee
+  note: Illustrative values. The real base fee changes with every block, and the wallet shows it before signing.
+
+units:
+  cups: Cups (Improbability)
+  drops: Drops
+  badCups: Enter a number with up to 18 decimals.
+  badDrops: Drops are a whole number.
+  note: "Contracts and the network's own interfaces work in drops: it is the amount written in a transaction."
+
+network:
+  switchLabel: Network
+  name: Network name
+  evmChainId: Chain ID (EVM)
+  nativeChainId: Chain ID (native)
+  identifier: Technical identifier
+  unit: Native unit
+  unitValue: "{name} · symbol {symbol}"
+  decimals: Decimals
+  base: Base denomination
+  prefix: Native address prefix
+  prefixValue: addresses {example}
+  blockTime: Block time
+  data: Network data
+  copy: Copy
+  copyLabel: Copy {url}
+  copied: Copied
+  copyManual: Select and copy
+  noProviders: There are no providers of this service on the {network} yet.
+  addMeta: EVM-compatible wallets (EIP-3085)
+  add: Add {name}
+  addNote: The wallet shows the details and asks for confirmation before adding the network. The access point is the first one in the directory; you can change it later in the wallet.
+  noWallet: No EVM-compatible wallet was detected in this browser. You can add the network by hand with the details in the table.
+  added: "{name} is available in your wallet."
+  cancelled: The request was cancelled in the wallet.
+  addFailed: The wallet could not add the network. You can add it by hand with the details in the table.

@@ -1,0 +1,19 @@
+<!-- Diagram: central server vs shared registry. Used in use-cases/index.md. -->
+<div class="dg-compare" role="group" aria-label="Un registro central frente a un registro compartido">
+  <div class="dg-col">
+    <span class="dg-k">Lo habitual</span>
+    <b>Un registro central</b>
+    <div class="dg-node hub"><b>Sistemas de la organización A</b><span>Guarda el único registro</span></div>
+    <div class="dg-arrow" aria-hidden="true">↑ ↑ ↑</div>
+    <div class="dg-orgs"><span>Organización B</span><span>Organización C</span><span>Organización D</span></div>
+    <p class="dg-cap">Las demás consultan a A y dependen de que guarde bien los datos y siga disponible.</p>
+  </div>
+  <div class="dg-col on">
+    <span class="dg-k">Con el Protocolo 42</span>
+    <b>Un registro compartido</b>
+    <div class="dg-orgs nodes"><span>A · nodo</span><span>B · nodo</span><span>C · nodo</span><span>D · nodo</span></div>
+    <div class="dg-arrow" aria-hidden="true">↓ ↓ ↓ ↓</div>
+    <div class="dg-node hub"><b>El mismo registro, las mismas reglas</b><span>Cada copia coincide; cualquier alteración se nota</span></div>
+    <p class="dg-cap">Cada organización opera su copia, y un tercero puede comprobar los datos sin pedírselos a nadie.</p>
+  </div>
+</div>

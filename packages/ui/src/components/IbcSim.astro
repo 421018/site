@@ -1,0 +1,114 @@
+---
+// Illustrative IBC transfer of 10 units from 42 to "red B", step by step, with an
+// alternative path where no relayer delivers the packet and the transfer times out.
+// Steps and wording follow protocol/interoperability.md.
+// Text: catalog ui/<lang>.yaml → ibc.
+import { langOf } from '@42chain/kit/i18n';
+import { ui } from '@42chain/kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.ibc;
+const i18n = JSON.stringify({ steps: t.steps, valid: t.validProof });
+---
+<div class="widget ibc" data-ibc data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{t.meta}</span></div>
+
+  <div class="stage" aria-hidden="true">
+    <div class="net">
+      <span class="nn">42</span>
+      <div class="acct"><span>{t.source}</span><b data-src>100</b></div>
+      <div class="acct"><span>{t.escrow}</span><b data-esc>0</b></div>
+    </div>
+    <div class="lane">
+      <span class="lane-l">{t.relayer}</span>
+      <span class="pkt" data-pkt></span>
+    </div>
+    <div class="net">
+      <span class="nn">{t.networkB}</span>
+      <div class="acct"><span>{t.destination}</span><b data-dst>0</b></div>
+      <div class="acct"><span>{t.lightClient}</span><b data-lc>—</b></div>
+    </div>
+  </div>
+
+  <div class="step" role="status">
+    <span class="mono" data-title></span>
+    <span data-desc></span>
+  </div>
+
+  <div class="ctl">
+    <button type="button" data-prev>{t.previous}</button>
+    <button type="button" data-next>{t.next}</button>
+    <label class="tgl"><input type="checkbox" data-timeout /> <span>{t.timeoutToggle}</span></label>
+  </div>
+  <p class="w-note">{t.note}</p>
+</div>
+
+<style>
+  .stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(90px, .8fr) minmax(0, 1fr); gap: 12px; align-items: stretch; margin-bottom: 16px; }
+  .net { padding: 14px; border: 1px solid var(--w-rule); border-radius: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .nn { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+  .acct { display: flex; justify-content: space-between; gap: 8px; font-size: 13.5px; color: var(--w-dim); }
+  .acct b { font-family: var(--mono); color: #fff; font-weight: 500; transition: color .3s; }
+  .acct b.chg { color: var(--acc); }
+  .lane { position: relative; display: flex; align-items: center; justify-content: center; border-top: 1px dashed var(--w-rule); border-bottom: 1px dashed var(--w-rule); }
+  .lane-l { position: absolute; top: 6px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); }
+  .pkt { position: absolute; top: 50%; width: 14px; height: 14px; border-radius: 4px; background: var(--acc); transform: translate(-50%, -50%); transition: left .6s cubic-bezier(.16,1,.3,1), opacity .3s, background .3s; left: 0%; opacity: 0; }
+  .pkt.a { left: 4%; opacity: 1; } .pkt.mid { left: 50%; opacity: 1; } .pkt.b { left: 96%; opacity: 1; }
+  .pkt.ack { left: 4%; opacity: 1; background: #fff; }
+  .pkt.lost { left: 50%; opacity: .5; background: #F07A62; }
+  .step { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--acc); min-height: 52px; }
+  .step .mono { font-size: 12.5px; white-space: nowrap; color: #fff; }
+  .ibc.timeout .step { border-color: #F2A93B; }
+  .ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 12px; }
+  .ctl button { min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--w-rule); background: transparent; color: #fff; font: inherit; font-size: 14.5px; cursor: pointer; }
+  .ctl button:hover:not(:disabled) { border-color: var(--acc); }
+  .ctl button:disabled { opacity: .35; cursor: default; }
+  .tgl { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; color: var(--w-fg); cursor: pointer; }
+  .tgl input { accent-color: var(--acc); width: 18px; height: 18px; }
+  @media (max-width: 640px) { .stage { grid-template-columns: 1fr; } .lane { min-height: 56px; } }
+</style>
+
+<script>
+  type S = { t: string; d: string; src: number; esc: number; dst: number; lc: string; pkt: string };
+  type Step = { title: string; text: string };
+  document.querySelectorAll<HTMLElement>('[data-ibc]').forEach((root) => {
+    const { steps: x, valid } = JSON.parse(root.dataset.i18n!) as { steps: Record<string, Step>; valid: string };
+    const step = ({ title: t, text: d }: Step, src: number, esc: number, dst: number, lc: string, pkt: string): S => ({ t, d, src, esc, dst, lc, pkt });
+    const start = step(x.start, 100, 0, 0, '—', '');
+    const locked = step(x.locked, 90, 10, 0, '—', 'a');
+    const ok: S[] = [
+      start,
+      locked,
+      step(x.relayed, 90, 10, 0, '—', 'mid'),
+      step(x.verified, 90, 10, 0, valid, 'b'),
+      step(x.minted, 90, 10, 10, valid, 'b'),
+      step(x.acknowledged, 90, 10, 10, valid, 'ack'),
+    ];
+    const timeout: S[] = [start, locked, step(x.lost, 90, 10, 0, '—', 'lost'), step(x.expired, 100, 0, 0, '—', '')];
+    const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]')!;
+    const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
+    const tgl = root.querySelector<HTMLInputElement>('[data-timeout]')!;
+    let i = 0, last: S = start;
+    const paint = () => {
+      const path = tgl.checked ? timeout : ok;
+      i = Math.min(i, path.length - 1);
+      const s = path[i];
+      (['src', 'esc', 'dst', 'lc'] as const).forEach((k) => {
+        const el = $(`[data-${k}]`);
+        el.textContent = String(s[k]);
+        el.classList.toggle('chg', s[k] !== last[k]);
+      });
+      $('[data-pkt]').className = 'pkt ' + s.pkt;
+      $('[data-title]').textContent = s.t;
+      $('[data-desc]').textContent = s.d;
+      root.classList.toggle('timeout', tgl.checked && i >= 2);
+      prev.disabled = i === 0;
+      next.disabled = i === path.length - 1;
+      last = s;
+    };
+    prev.addEventListener('click', () => { i--; paint(); });
+    next.addEventListener('click', () => { i++; paint(); });
+    tgl.addEventListener('change', () => { i = 0; last = start; paint(); });
+    paint();
+  });
+</script>

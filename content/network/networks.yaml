@@ -1,0 +1,26 @@
+# The networks that run the protocol, as shown in the docs page get-started/connect and
+# used by the "add to wallet" buttons. Values must match the published network
+# data: https://assets.infinitedrive.xyz/<id>/network-data.json
+# The first network is the one shown by default.
+
+- id: mainnet
+  label: { es: Red principal, en: Mainnet }
+  name: 42 Chain
+  evmChainId: 421018
+  chainId: infinite_421018-1
+  identifier: infinite
+  bech32Prefix: infinite
+  unit: { name: Improbability, symbol: "42", decimals: 18, base: drop }
+  blockTime: "~2 s"
+  data: https://assets.infinitedrive.xyz/mainnet/network-data.json
+
+- id: testnet
+  label: { es: Red de pruebas, en: Testnet }
+  name: 42 Chain Testnet
+  evmChainId: 421018001
+  chainId: infinite_421018001-1
+  identifier: infinite
+  bech32Prefix: infinite
+  unit: { name: TestImprobability, symbol: TEST42, decimals: 18, base: tdrop }
+  blockTime: "~2 s"
+  data: https://assets.infinitedrive.xyz/testnet/network-data.json
