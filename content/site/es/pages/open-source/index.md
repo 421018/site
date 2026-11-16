@@ -33,21 +33,11 @@ Cada función tiene su propio lugar, y cada una se puede comprobar en una fuente
 
 ## Por qué 42 {#why-42}
 
-El nombre del proyecto y el de su protocolo vienen de *The Hitchhiker’s Guide to the Galaxy* (*Guía del viajero intergaláctico*), la novela de Douglas Adams publicada en 1979.
+El nombre viene de *The Hitchhiker’s Guide to the Galaxy*, la novela de Douglas Adams. En la historia, una supercomputadora calcula durante millones de años la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es 42. Exacta, y sin que nadie sepa del todo qué significaba la pregunta.
 
-### La respuesta es 42
+El protocolo se piensa de la misma forma. Ofrece reglas precisas y resultados que cualquiera puede comprobar. No decide qué se construye sobre él. Eso lo ponen quienes lo usan.
 
-En la novela, una civilización construye una supercomputadora para responder la gran pregunta sobre la vida, el universo y todo lo demás. Después de siete millones y medio de años de cálculo, la supercomputadora da su respuesta: 42.
-
-La respuesta es exacta, pero nadie sabe qué significa, porque nadie había entendido bien cuál era la pregunta. La novela lo cuenta como una broma, pero deja una idea seria: una herramienta puede dar respuestas precisas, pero el sentido lo ponen las preguntas de quienes la usan.
-
-El protocolo se piensa de la misma forma. Ofrece reglas precisas y resultados verificables, pero no decide qué se construye sobre él. Eso lo deciden quienes lo usan.
-
-### El motor de improbabilidad infinita
-
-En la misma historia, una nave viaja con un motor de improbabilidad infinita, el *Infinite Improbability Drive*. El motor no sigue las rutas normales: hace posible, por un instante, lo que parecía imposible.
-
-De ese motor vienen dos nombres. El nombre formal del protocolo, **Infinite Improbability Drive**, y el de su unidad nativa, **Improbability**, cuyo símbolo es 42: la improbabilidad es el combustible del motor. Su fracción más pequeña se llama **drop**, y una unidad completa, de manera coloquial, **cup**: la taza de té con la que, en la novela, se pone en marcha el motor. [Drops y cups](docs:/protocol/fees#drops-and-cups) Una infraestructura compartida entre personas que no dependen unas de otras parece improbable. El nombre recuerda que el protocolo existe para hacerla posible.
+En la misma novela aparece el motor de improbabilidad infinita: un motor que, por un instante, hace posible lo que parecía imposible. De ahí vienen el nombre formal del protocolo (*Infinite Improbability Drive*) y el de su unidad nativa, Improbability, cuyo símbolo es 42. Una infraestructura compartida entre personas que no dependen unas de otras parece improbable. El nombre recuerda que el protocolo existe para hacerla posible.
 
 ## Principios {#principles}
 

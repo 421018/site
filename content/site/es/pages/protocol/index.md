@@ -70,17 +70,4 @@ Todo eso se construye encima del protocolo. El protocolo no decide qué se const
 [Casos de uso →](/use-cases) · [El mecanismo de cada pieza →](docs:/protocol)
 :::
 
-## Ficha {#summary}
-
-|  |  |
-|---|---|
-| Protocolo | Protocolo 42 (*Infinite Improbability Drive*) · código abierto · Apache 2.0 |
-| Base tecnológica | Cosmos SDK · CometBFT · IBC |
-| Red | Pública. Cualquiera puede leerla y operar un nodo |
-| Consenso | Prueba de participación delegada |
-| Finalidad | Inmediata, en un bloque |
-| Tolerancia a fallas | Menos de un tercio del poder de voto |
-| Ejecución | Máquina virtual de Ethereum (EVM) |
-| Interoperabilidad | IBC (versiones 1 y 2) |
-| Unidad nativa | Improbability (42) |
-| Gobernanza | En la cadena, con voto ponderado por staking |
+Una infraestructura compartida entre personas que no dependen unas de otras parece improbable. El protocolo existe para hacerla posible.

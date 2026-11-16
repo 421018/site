@@ -8,7 +8,7 @@ hero:
   title: |
     Infraestructura compartida
     que cualquiera puede verificar.
-  lead: El Protocolo 42 permite que varias personas mantengan un mismo registro y apliquen las mismas reglas, sin dejarlo en el sistema de una sola. 42 Chain es la red pública, y libre, que lo hace posible.
+  lead: El Protocolo 42 permite que varias personas mantengan un mismo registro y apliquen las mismas reglas, sin dejarlo en el sistema de una sola. 42 Chain es la red pública que lo hace posible. Compartir un registro así parece improbable. El protocolo existe para hacerlo real.
   primary: { label: Cómo funciona, href: /protocol }
   secondary: { label: Conectarse a la red, href: docs:/get-started/connect }
 
@@ -147,11 +147,12 @@ start:
 name:
   kicker: El nombre
   title: ¿Por qué 42?
-  lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes lo usan."
+  lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta; el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas y verificables. Lo que se construye con ellas lo deciden quienes lo usan."
   link: { label: Por qué 42, href: "/open-source#why-42" }
 
 closing:
   title: Infraestructura compartida, reglas a la vista.
+  lead: Un registro que no pertenece a nadie. Reglas que valen igual para todos. Lo improbable, hecho posible.
   primary: { label: Empieza a construir, href: docs:/build/applications }
   secondary: { label: Leer la documentación, href: "docs:/" }
 ---
