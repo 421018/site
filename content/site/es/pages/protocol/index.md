@@ -57,6 +57,13 @@ Imagina que Ana termina un trabajo y Bruno necesita saber que es cierto, sin ten
 1. Ana decide qué quiere dejar escrito y ve el costo de hacerlo antes de firmar.
 2. Firma con una llave que solo ella tiene. La red no guarda una copia de esa llave.
 3. Otras personas que respaldan la red reúnen lo que está esperando y proponen la siguiente página. Si más de dos tercios están de acuerdo, la página se cierra. Si no hay acuerdo, se espera.
+
+> Al principio se creó el universo.  
+> Esto puso muy furiosa a mucha gente y fue ampliamente considerado una mala idea.  
+> — Douglas Adams, *The Hitchhiker’s Guide to the Galaxy*
+
+Proponer la siguiente página parece, al principio, una mala idea. Hasta que hay acuerdo suficiente. Entonces queda fija, unida a la anterior, y se puede comprobar.
+
 4. Bruno puede leer el resultado en su propia copia. Ya no se deshace.
 
 El mismo camino sirve para un certificado, una reparación, un acuerdo o cualquier otro hecho que varias personas necesiten conocer. El detalle de cada paso —cómo se calcula el costo, cómo se llega al acuerdo, cómo se ejecutan las reglas— está en la documentación.
