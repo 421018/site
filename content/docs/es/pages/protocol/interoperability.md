@@ -10,7 +10,7 @@ weight: 40
 
 Cada red lleva su propio registro, con sus propias cuentas y sus propias reglas. Una red, por sí sola, no puede ver lo que ocurre en otra.
 
-Sin embargo, a menudo hace falta que las redes se comuniquen. Una organización puede necesitar que un dato registrado en un entorno interno sea verificable en 42 Chain. Una aplicación puede necesitar reaccionar a algo que ocurrió en otra red, o recibir unidades desde ella. A la capacidad de las redes para comunicarse entre sí se le llama **interoperabilidad**.
+Sin embargo, a menudo hace falta que las redes se comuniquen. Una aplicación puede necesitar reaccionar a algo que ocurrió en otra red, o recibir unidades desde ella. A la capacidad de las redes para comunicarse entre sí se le llama **interoperabilidad**.
 
 ## El problema del intermediario {#intermediary}
 
@@ -90,11 +90,11 @@ IBC elimina la dependencia de intermediarios, pero no elimina todos los riesgos.
 - **Las representaciones no son las originales.** Una unidad que llegó de otra red depende de la seguridad de su red de origen. Su ruta indica de dónde viene.
 
 :::aside
-[Transferencias entre redes · Guía y referencia ↗](/docs)
+[Integrar otras redes →](/integrate) · [Comprobar datos desde un contrato →](/build/precompiles/ics02)
 :::
 
 ## Por qué el protocolo lo hace así {#why}
 
 - **Verificación en lugar de confianza.** Cada red comprueba por sí misma lo que ocurrió en la otra. Ningún intermediario custodia unidades durante el traslado.
-- **Un estándar abierto en lugar de uno propio.** IBC lo usan muchas redes. Conectarse a ellas no requiere acuerdos especiales ni desarrollos a medida.
+- **Un estándar abierto en lugar de uno propio.** IBC lo usan muchas redes. Conectarse a ellas no exige un acuerdo distinto para cada una.
 - **Retransmisores sin permiso.** Cualquiera puede transportar mensajes, y ninguno puede alterarlos. Así, la comunicación entre redes no depende de un operador en particular.

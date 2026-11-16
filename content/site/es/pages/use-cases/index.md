@@ -1,6 +1,6 @@
 ---
 title: "Casos de uso"
-summary: "Un registro compartido sirve cuando varias organizaciones necesitan los mismos datos y ninguna debería custodiarlos sola. Cuándo conviene, cuándo no, y cinco casos concretos."
+summary: "Un registro compartido sirve cuando varias organizaciones necesitan los mismos datos y ninguna debería custodiarlos sola. Cuándo conviene, cuándo no, y cuatro casos concretos."
 menuTitle: "Cuándo usar el protocolo"
 section:
   label: Casos de uso
@@ -61,9 +61,3 @@ La solución habitual es separar el dato de su prueba. El dato se queda fuera de
 :::aside
 [Qué va dentro y fuera de la cadena en una aplicación →](docs:/build/applications#application)
 :::
-
-## Entornos internos conectados a 42 Chain {#internal-environments}
-
-42 Chain es una red pública: cualquiera puede leer su registro y verificar lo que contiene. Por eso es donde un dato se vuelve verificable por terceros.
-
-Algunas organizaciones necesitan, además, mantener parte de sus datos separados de la red pública: resultados internos, información de clientes o datos de operación. Para esos casos, la misma tecnología permite un **entorno interno** encapsulado, conectado a 42 mediante IBC. Los datos reservados se quedan en el entorno interno, y sus pruebas se comprueban en 42, donde cualquiera puede verificarlas.

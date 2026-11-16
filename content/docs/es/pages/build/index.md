@@ -3,7 +3,7 @@ title: "Construir"
 summary: "Contratos, aplicaciones y funciones propias de la red, con las herramientas estándar de la EVM."
 section:
   label: Construir
-  weight: 2
+  weight: 3
   accent: "#7C9CFF"
   ink: "#3552C8"
   sequential: true

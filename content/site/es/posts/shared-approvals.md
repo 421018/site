@@ -44,11 +44,11 @@ Cinco empresas de transporte comparten un registro de vehículos habilitados par
 
 ## Mecanismos que intervienen {#mechanisms}
 
-- **Cuentas que son contratos.** Una cuenta puede exigir varias firmas antes de actuar. [Cuentas](/protocol/execution#accounts)
-- **Contratos.** La regla de aprobación es pública y se aplica igual para todas las partes. [Contratos inteligentes](/protocol/execution#contracts)
+- **Cuentas que son contratos.** Una cuenta puede exigir varias firmas antes de actuar. [Cuentas](docs:/protocol/execution#accounts)
+- **Contratos.** La regla de aprobación es pública y se aplica igual para todas las partes. [Contratos inteligentes](docs:/protocol/execution#contracts)
 - **Firmas.** Cada aprobación queda asociada a la cuenta de quien la dio. [Cuentas, llaves y firmas](/protocol#accounts)
 
-La red aplica el mismo principio a sus propias reglas: los cambios al protocolo se proponen y se votan en la cadena. [Gobernanza](/protocol/governance)
+La red aplica el mismo principio a sus propias reglas: los cambios al protocolo se proponen y se votan en la cadena. [Gobernanza](docs:/protocol/governance)
 
 :::aside
 Los ejemplos son ilustrativos.

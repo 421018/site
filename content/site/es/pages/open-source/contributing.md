@@ -44,7 +44,7 @@ Una propuesta de código no cambia la red por sí sola. El recorrido es este:
 - **5. Actualización.** Si se aprueba, todos los nodos cambian de versión en la misma altura de actualización.
 
 :::aside
-[Cómo se aplica un cambio →](/protocol/governance#lifecycle)
+[Cómo se aplica un cambio →](docs:/protocol/governance#lifecycle)
 :::
 
 ## Preguntas técnicas {#questions}

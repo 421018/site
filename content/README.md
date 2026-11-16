@@ -2,7 +2,7 @@
 
 The text and data of [42chain.org](https://42chain.org) and its documentation site. Everything here is plain Markdown and YAML: adding, editing, reordering or removing a page only means editing files in this repository. Menus, side indexes, previous/next links and footers are generated from them.
 
-The sites are in English (at the root) and Spanish (under `/es`). Content is written in Spanish first, the source language; until a page is translated, its English URL shows the Spanish text with a notice. Each language has its own folder; paths and anchors are in English and the same in every language (`/protocol/consensus#round` in English, `/es/protocol/consensus#round` in Spanish). This guide, front matter keys and block names are in English.
+The sites are in English (at the root) and Spanish (under `/es`). Content is written in Spanish first, the source language; until a page is translated, its English URL shows the Spanish text with a notice. Each language has its own folder; paths and anchors are in English and the same in every language (`/protocol#validation` in English, `/es/protocol#validation` in Spanish). This guide, front matter keys and block names are in English.
 
 > **¿Prefieres leer en español?** [CONTRIBUTING.md](CONTRIBUTING.md) tiene una guía rápida para editar textos.
 
@@ -40,8 +40,8 @@ npm run validate
 | File | URL |
 |---|---|
 | `site/es/pages/protocol/index.md` | `/es/protocol` |
-| `site/es/pages/protocol/consensus.md` | `/es/protocol/consensus` |
-| `site/en/pages/protocol/consensus.md` | `/protocol/consensus` |
+| `site/es/pages/protocol/index.md` | `/es/protocol` |
+| `docs/es/pages/protocol/consensus.md` | `docs.42chain.org/es/protocol/consensus` |
 | `docs/es/pages/build/precompiles/index.md` | `docs.42chain.org/build/precompiles` |
 
 ## Adding a page
@@ -95,7 +95,7 @@ Use cases (`caso-de-uso`) are served under `/use-cases/<slug>`, shown in that se
 
 ## Translating
 
-Spanish is the source. A translation is the file at the **same path** in another language's folder: `site/en/pages/protocol/consensus.md` translates `site/es/pages/protocol/consensus.md`. Nothing else links them; the language switcher and search engines pair them by path.
+Spanish is the source. A translation is the file at the **same path** in another language's folder: `site/en/pages/protocol/index.md` translates `site/es/pages/protocol/index.md`. Nothing else links them; the language switcher and search engines pair them by path.
 
 - Translate the section first: a page needs its section's `index.md` in the same language (with its own `section:` block).
 - Keep the anchors as they are (`## The active set {#active-set}`): they are English and shared by every language. Links are written without a language prefix, the same as in Spanish; a link to a page not translated yet leads to its English URL, which shows the Spanish text with a notice.
@@ -125,7 +125,7 @@ A section can contain one level of groups: a folder with its own `index.md` (e.g
 ## Writing
 
 - Each `##` starts a numbered section. The text in braces is the anchor: `## Canales oficiales {#channels}` is linked as `/open-source/verify#channels`. Before renaming an anchor, search for links to it.
-- Internal links use absolute paths without a language prefix: `/protocol/governance#lifecycle`. The engine adds the page's (`/es/…` on Spanish pages). Links to the documentation are written `docs:/get-started/connect`, and from the documentation to the site `site:/protocol`. `/docs` and `/consola` go to the documentation and the console.
+- Internal links use absolute paths without a language prefix: `/protocol#rules`. The engine adds the page's (`/es/…` on Spanish pages). Links to the documentation are written `docs:/get-started/connect`, and from the documentation to the site `site:/protocol`. `/docs` and `/consola` go to the documentation and the console.
 - Small inline badge: `_Independiente_{.badge}`.
 - No HTML, scripts or MDX: special elements are `:::` blocks. The validator rejects `<script>`, `<style>`, `<iframe>`, event handlers and `.mdx` files.
 

@@ -41,7 +41,7 @@ Usar la red tiene riesgos que conviene entender antes de participar:
 - **Normativa.** Cada persona y organización es responsable de cumplir las leyes que le apliquen al usar la red y sus herramientas.
 
 :::aside
-[Cómo protegerte →](/protocol/security#protect-yourself)
+[Cómo protegerte →](docs:/protocol/security#protect-yourself)
 :::
 
 ## Privacidad {#privacy}

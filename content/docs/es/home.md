@@ -4,7 +4,7 @@
 
 eyebrow: Documentación
 title: Todo lo que necesitas para construir y operar sobre 42.
-lead: Guías y referencia técnica de 42 Chain y del Protocolo 42, desde conectar una billetera hasta operar un validador.
+lead: Cómo funciona el Protocolo 42, y cómo conectarse, construir, integrar sistemas y operar un nodo.
 searchPrompt: Buscar en la documentación
 layers:
   title: Cómo está hecho el protocolo

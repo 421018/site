@@ -43,11 +43,9 @@ Si una etapa no se registra, el hueco queda a la vista. Si un registro es incorr
 | Pesos, fechas y estados acordados | Documentos completos: certificados, guías y facturas |
 | Las huellas de los documentos | |
 
-Si algunos datos solo deben verlos las partes del consorcio, pueden quedarse en un entorno interno conectado a 42 Chain, y en la red pública registrarse solo sus pruebas. [Entornos internos](/use-cases#internal-environments)
-
 ## Mecanismos que intervienen {#mechanisms}
 
-- **Contratos.** Las reglas del recorrido se aplican igual para todas las partes. [Contratos inteligentes](/protocol/execution#contracts)
+- **Contratos.** Las reglas del recorrido se aplican igual para todas las partes. [Contratos inteligentes](docs:/protocol/execution#contracts)
 - **Firmas.** Cada etapa queda asociada a la cuenta de quien la registró. [Cuentas, llaves y firmas](/protocol#accounts)
 - **Un solo registro.** Todos los nodos llevan la misma copia, así que no hay versiones que conciliar. [Un registro que comparten muchos](/protocol#ledger)
 

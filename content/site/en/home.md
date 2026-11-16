@@ -33,7 +33,7 @@ engine:
         - "Finality in one block."
         - "Tolerates faults of less than a third of the voting power."
         - "Without a majority, the network halts rather than take risks."
-      link: { label: Read the chapter, href: /protocol/consensus }
+      link: { label: Study this piece, href: docs:/protocol/consensus }
     - icon: execution
       label: Execution
       title: Runs the contracts.
@@ -42,7 +42,7 @@ engine:
         - "Solidity and Vyper, without code changes."
         - "Hardhat, Foundry, Viem and EVM wallets."
         - "The network's own functions available from contracts."
-      link: { label: Read the chapter (in Spanish), href: /protocol/execution }
+      link: { label: Study this piece, href: docs:/protocol/execution }
     - icon: fees
       label: Fees
       title: Measures and pays for the work.
@@ -51,7 +51,7 @@ engine:
         - "Public rules: the cost is known before sending."
         - "The organization can pay for whoever signs."
         - "Units in drops and cups."
-      link: { label: Read the chapter (in Spanish), href: /protocol/fees }
+      link: { label: Study this piece, href: docs:/protocol/fees }
     - icon: interop
       label: Interoperability
       title: Connects to other networks.
@@ -60,7 +60,7 @@ engine:
         - "IBC, versions 1 and 2."
         - "No trusted intermediaries."
         - "Data and units across networks."
-      link: { label: Read the chapter (in Spanish), href: /protocol/interoperability }
+      link: { label: Study this piece, href: docs:/protocol/interoperability }
     - icon: governance
       label: Governance
       title: Decides the changes.
@@ -69,7 +69,7 @@ engine:
         - "Proposals recorded on the chain."
         - "Public quorum, threshold and veto."
         - "The network applies what is approved."
-      link: { label: Read the chapter (in Spanish), href: /protocol/governance }
+      link: { label: Study this piece, href: docs:/protocol/governance }
 
 uses:
   kicker: Use cases
@@ -139,7 +139,7 @@ start:
     - { icon: build, label: Build an application, href: docs:/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
     - { icon: node, label: Run a node, href: docs:/operate/nodes, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
     - { icon: integrate, label: Integrate systems, href: docs:/integrate, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
-    - { icon: governance, label: Understand governance, href: /protocol/governance, text: "How changes to the protocol are proposed, voted on and applied. (In Spanish.)" }
+    - { icon: governance, label: Understand governance, href: docs:/protocol/governance, text: "How changes to the protocol are proposed, voted on and applied." }
     - { icon: docs, label: Read the documentation, href: /docs, text: "Guides and technical reference, from connecting a wallet to running a validator." }
 
 name:

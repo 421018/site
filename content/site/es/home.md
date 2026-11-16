@@ -35,7 +35,7 @@ engine:
         - "Finalidad en un bloque."
         - "Tolera fallas de menos de un tercio del poder de voto."
         - "Si no hay mayoría, la red se detiene antes que arriesgar."
-      link: { label: Leer el capítulo, href: /protocol/consensus }
+      link: { label: Estudiar la pieza, href: docs:/protocol/consensus }
     - icon: execution
       label: Ejecución
       title: Ejecuta los contratos.
@@ -44,7 +44,7 @@ engine:
         - "Solidity y Vyper, sin cambios en el código."
         - "Hardhat, Foundry, Viem y las billeteras de la EVM."
         - "Funciones propias de la red disponibles desde los contratos."
-      link: { label: Leer el capítulo, href: /protocol/execution }
+      link: { label: Estudiar la pieza, href: docs:/protocol/execution }
     - icon: fees
       label: Tarifas
       title: Mide y paga el trabajo.
@@ -53,7 +53,7 @@ engine:
         - "Reglas públicas: el costo se conoce antes de enviar."
         - "La organización puede pagar por quien firma."
         - "Unidades en drops y cups."
-      link: { label: Leer el capítulo, href: /protocol/fees }
+      link: { label: Estudiar la pieza, href: docs:/protocol/fees }
     - icon: interop
       label: Interoperabilidad
       title: Conecta con otras redes.
@@ -62,7 +62,7 @@ engine:
         - "IBC, versiones 1 y 2."
         - "Sin intermediarios de confianza."
         - "Datos y unidades entre redes."
-      link: { label: Leer el capítulo, href: /protocol/interoperability }
+      link: { label: Estudiar la pieza, href: docs:/protocol/interoperability }
     - icon: governance
       label: Gobernanza
       title: Decide los cambios.
@@ -71,7 +71,7 @@ engine:
         - "Propuestas registradas en la cadena."
         - "Quórum, umbral y veto públicos."
         - "La red aplica lo aprobado."
-      link: { label: Leer el capítulo, href: /protocol/governance }
+      link: { label: Estudiar la pieza, href: docs:/protocol/governance }
 
 uses:
   kicker: Casos de uso
@@ -141,7 +141,7 @@ start:
     - { icon: build, label: Construir una aplicación, href: docs:/build/applications, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
     - { icon: node, label: Operar un nodo, href: docs:/operate/nodes, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
     - { icon: integrate, label: Integrar sistemas, href: docs:/integrate, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
-    - { icon: governance, label: Entender la gobernanza, href: /protocol/governance, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
+    - { icon: governance, label: Entender la gobernanza, href: docs:/protocol/governance, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
     - { icon: docs, label: Leer la documentación, href: /docs, text: "Guías y referencia técnica, desde conectar una billetera hasta operar un validador." }
 
 name:

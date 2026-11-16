@@ -14,7 +14,7 @@ Cada transacción que se envía a la red la procesan todos los nodos. Procesarla
 - **Evitar abusos.** Si las transacciones fueran gratuitas, alguien podría saturar la red enviando millones de transacciones inútiles. La tarifa vuelve ese abuso costoso.
 - **Ordenar el uso.** Cada transacción paga según el trabajo que exige. Una transacción sencilla paga poco; una transacción compleja paga más.
 
-La tarifa la paga la cuenta que envía la transacción, en la unidad nativa. En una aplicación de infraestructura, la tarifa puede quedar a cargo de la organización y no de quien firma cada registro. [Tarifas a cargo de la organización](docs:/build/applications#fees)
+La tarifa la paga la cuenta que envía la transacción, en la unidad nativa. En una aplicación de infraestructura, la tarifa puede quedar a cargo de la organización y no de quien firma cada registro. [Tarifas a cargo de la organización](/build/applications#fees)
 
 ## La unidad nativa {#unit}
 
@@ -141,5 +141,5 @@ El suministro inicial no forma parte de la emisión ni de la distribución que s
 - **Un fondo que se asigna por gobernanza.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
 
 :::aside
-[Parámetros de tarifas y emisión ↗](/docs) · [Avisos legales](/legal#risks)
+[Tarifas a cargo de la organización →](/build/applications#fees) · [Avisos legales ↗](site:/legal#risks)
 :::

@@ -23,7 +23,7 @@ Cada función tiene su propio lugar, y cada una se puede comprobar en una fuente
 - **El software del protocolo.** Lo escriben y lo revisan contribuidores, en un repositorio público. Cualquiera puede proponer cambios. [Contribuir](/open-source/contributing)
 - **La operación de la red.** La hacen los validadores y los nodos, que operan personas y organizaciones distintas. El protocolo compensa el trabajo de los validadores.
 - **El acceso a la red.** Los nodos RPC y los exploradores los ofrecen proveedores independientes, cada uno con su propio dominio. Cualquiera puede ofrecer el suyo. [Proveedores](docs:/get-started/connect#providers)
-- **Las decisiones sobre la red.** Se toman mediante gobernanza en la cadena: votan los validadores y quienes les delegan unidades. [Gobernanza](/protocol/governance)
+- **Las decisiones sobre la red.** Se toman mediante gobernanza en la cadena: votan los validadores y quienes les delegan unidades. [Gobernanza](docs:/protocol/governance)
 - **Las aplicaciones.** Las construyen organizaciones y equipos independientes, y cada uno responde por la suya.
 - **La documentación y este sitio.** Los escriben y los revisan contribuidores.
 
@@ -47,7 +47,7 @@ El protocolo se piensa de la misma forma. Ofrece reglas precisas y resultados ve
 
 En la misma historia, una nave viaja con un motor de improbabilidad infinita, el *Infinite Improbability Drive*. El motor no sigue las rutas normales: hace posible, por un instante, lo que parecía imposible.
 
-De ese motor vienen dos nombres. El nombre formal del protocolo, **Infinite Improbability Drive**, y el de su unidad nativa, **Improbability**, cuyo símbolo es 42: la improbabilidad es el combustible del motor. Su fracción más pequeña se llama **drop**, y una unidad completa, de manera coloquial, **cup**: la taza de té con la que, en la novela, se pone en marcha el motor. [Drops y cups](/protocol/fees#drops-and-cups) Una infraestructura compartida entre organizaciones que no dependen unas de otras parece improbable. El nombre recuerda que el protocolo existe para hacerla posible.
+De ese motor vienen dos nombres. El nombre formal del protocolo, **Infinite Improbability Drive**, y el de su unidad nativa, **Improbability**, cuyo símbolo es 42: la improbabilidad es el combustible del motor. Su fracción más pequeña se llama **drop**, y una unidad completa, de manera coloquial, **cup**: la taza de té con la que, en la novela, se pone en marcha el motor. [Drops y cups](docs:/protocol/fees#drops-and-cups) Una infraestructura compartida entre organizaciones que no dependen unas de otras parece improbable. El nombre recuerda que el protocolo existe para hacerla posible.
 
 ## Principios {#principles}
 

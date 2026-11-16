@@ -54,8 +54,8 @@ Como en la cadena solo hay huellas, el registro no revela el contenido de ningú
 
 - **Huellas encadenadas.** Cualquier alteración del registro queda a la vista. [Un registro que comparten muchos](/protocol#ledger)
 - **Firmas.** Cada registro queda asociado a la cuenta que lo firmó. [Cuentas, llaves y firmas](/protocol#accounts)
-- **Contratos.** Las reglas de registro y revocación son públicas y se aplican igual para todos. [Contratos inteligentes](/protocol/execution#contracts)
-- **Finalidad en un bloque.** Un documento registrado es verificable en segundos. [Una ronda de consenso](/protocol/consensus#round)
+- **Contratos.** Las reglas de registro y revocación son públicas y se aplican igual para todos. [Contratos inteligentes](docs:/protocol/execution#contracts)
+- **Finalidad en un bloque.** Un documento registrado es verificable en segundos. [Una ronda de consenso](docs:/protocol/consensus#round)
 
 :::aside
 Los ejemplos son ilustrativos.

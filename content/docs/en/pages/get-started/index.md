@@ -13,10 +13,11 @@ section:
 
 ## Where to start {#start}
 
-This documentation accompanies the 42 Chain website, which explains what the protocol is and what it is for. Here is the practical side: how to connect, how to build, how to integrate systems and how to run a node.
+Here is how the protocol works, and what you need to use it: connect, build, integrate a system and run a node.
 
 If this is your first time, follow this order:
 
+- **[The protocol (in Spanish)](/protocol).** How a block is agreed, how contracts run and how the rules change.
 - **[Key concepts (in Spanish)](/get-started/concepts).** Accounts, addresses, units and finality: the minimum to understand the rest.
 - **[Networks and parameters](/get-started/connect).** The details of the mainnet and the testnet, and where to find an access point.
 

@@ -11,11 +11,11 @@ Una red pública de infraestructura que ejecuta el Protocolo 42. Permite que var
 :::
 
 :::faq[¿Para qué sirve 42 Chain?]
-Para que varias organizaciones compartan un registro sin que ninguna tenga que custodiarlo sola: registros y documentos verificables, trazabilidad entre organizaciones, operación y mantenimiento de infraestructura, autorizaciones compartidas e integración entre redes. Si una sola organización genera y consulta los datos, una base de datos tradicional es más sencilla. [Casos de uso](/use-cases)
+Para que varias organizaciones compartan un registro sin que ninguna tenga que custodiarlo sola: registros y documentos verificables, trazabilidad entre organizaciones, operación y mantenimiento de infraestructura y autorizaciones compartidas. Si una sola organización genera y consulta los datos, una base de datos tradicional es más sencilla. [Casos de uso](/use-cases)
 :::
 
 :::faq[¿Puedo mantener datos reservados?]
-Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra solo su huella. Si una organización necesita, además, un entorno separado de la red pública, puede tener un entorno interno conectado a 42 Chain. [Qué va dentro y fuera de la cadena](/use-cases#off-chain) · [Entornos internos](/use-cases#internal-environments)
+Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra solo su huella. [Qué va dentro y fuera de la cadena](/use-cases#off-chain)
 :::
 
 :::faq[¿Qué es el Protocolo 42?]
@@ -27,11 +27,11 @@ No. Cualquiera puede usar la red, publicar aplicaciones u operar un nodo sin reg
 :::
 
 :::faq[¿Qué es Improbability?]
-Es la unidad nativa del protocolo, y su símbolo es 42. Es un recurso técnico: con ella se pagan las tarifas de las transacciones, y los validadores la usan como respaldo en el staking. [Tarifas y emisión](/protocol/fees)
+Es la unidad nativa del protocolo, y su símbolo es 42. Es un recurso técnico: con ella se pagan las tarifas de las transacciones, y los validadores la usan como respaldo en el staking. [Tarifas y emisión](docs:/protocol/fees)
 :::
 
 :::faq[¿Qué son un drop y una cup?]
-Dos nombres de medida de Improbability. Un **drop** es la fracción más pequeña y la denominación base de la red (`drop`, y `tdrop` en la red de pruebas): la unidad tiene 18 decimales, así que una unidad completa son 10¹⁸ drops. **Cup** es el nombre coloquial de una unidad completa, que se usa para hablar de cantidades sin repetir «Improbability». En billeteras y exploradores, la unidad aparece siempre con su símbolo, 42. [Drops y cups](/protocol/fees#drops-and-cups)
+Dos nombres de medida de Improbability. Un **drop** es la fracción más pequeña y la denominación base de la red (`drop`, y `tdrop` en la red de pruebas): la unidad tiene 18 decimales, así que una unidad completa son 10¹⁸ drops. **Cup** es el nombre coloquial de una unidad completa, que se usa para hablar de cantidades sin repetir «Improbability». En billeteras y exploradores, la unidad aparece siempre con su símbolo, 42. [Drops y cups](docs:/protocol/fees#drops-and-cups)
 :::
 
 :::faq[¿Cuánto tarda en confirmarse una transacción?]
@@ -39,7 +39,7 @@ Segundos. Una vez confirmada, la transacción es definitiva: no puede revertirse
 :::
 
 :::faq[¿Con qué otras redes se conecta?]
-Con las redes compatibles con IBC con las que se establece una conexión. Cada red comprueba por sí misma lo que ocurre en la otra, sin intermediarios. [Interoperabilidad](/protocol/interoperability)
+Con las redes compatibles con IBC con las que se establece una conexión. Cada red comprueba por sí misma lo que ocurre en la otra, sin intermediarios. [Interoperabilidad](docs:/protocol/interoperability)
 :::
 
 ## Construir {#build}
@@ -71,13 +71,13 @@ El nodo se registra como validador con una transacción que incluye unidades en 
 :::
 
 :::faq[¿Qué es la delegación?]
-Una cuenta elige un validador y le delega unidades. Esas unidades aumentan el poder de voto del validador, siguen siendo de quien las delega y comparten las penalizaciones del validador. [Delegación](/protocol/consensus#delegation)
+Una cuenta elige un validador y le delega unidades. Esas unidades aumentan el poder de voto del validador, siguen siendo de quien las delega y comparten las penalizaciones del validador. [Delegación](docs:/protocol/consensus#delegation)
 :::
 
 ## Gobernanza {#governance}
 
 :::faq[¿Cómo se toman las decisiones?]
-Cualquiera puede presentar una propuesta, dejando un depósito. Los validadores y las personas que les delegan unidades la votan durante un período fijo. Si la propuesta se aprueba, la red aplica el cambio. [Gobernanza](/protocol/governance)
+Cualquiera puede presentar una propuesta, dejando un depósito. Los validadores y las personas que les delegan unidades la votan durante un período fijo. Si la propuesta se aprueba, la red aplica el cambio. [Gobernanza](docs:/protocol/governance)
 :::
 
 :::faq[¿Quién decide los cambios al protocolo?]

@@ -49,10 +49,10 @@ Para infraestructura crítica, la ubicación exacta de algunos activos puede ser
 
 ## Mecanismos que intervienen {#mechanisms}
 
-- **Contratos.** Definen quién puede registrar qué, y se aplican igual para todas las partes. [Contratos inteligentes](/protocol/execution#contracts)
+- **Contratos.** Definen quién puede registrar qué, y se aplican igual para todas las partes. [Contratos inteligentes](docs:/protocol/execution#contracts)
 - **Firmas.** Cada intervención queda asociada a la cuenta de quien la registró. [Cuentas, llaves y firmas](/protocol#accounts)
 - **Huellas encadenadas.** Un registro confirmado no puede modificarse sin que se note. [Un registro que comparten muchos](/protocol#ledger)
-- **Funcionamiento continuo.** El registro sigue disponible mientras la red funcione, aunque una de las partes deje de operar sus sistemas. [Seguridad](/protocol/security#design)
+- **Funcionamiento continuo.** El registro sigue disponible mientras la red funcione, aunque una de las partes deje de operar sus sistemas. [Seguridad](docs:/protocol/security#design)
 
 :::aside
 Los ejemplos son ilustrativos.
