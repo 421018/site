@@ -153,8 +153,16 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .fcols .lbl { margin: 0 0 14px; color: var(--fg-4); }
 .flink { color: var(--fg-3); text-decoration: none; font-size: 15px; padding: 8px 0; display: inline-block; }
 .flink:hover { color: var(--acc); }
-.megatype { font-size: clamp(90px, 17vw, 260px); font-weight: 600; letter-spacing: -0.06em; line-height: .85; color: transparent; -webkit-text-stroke: 1px #2A323C; transition: -webkit-text-stroke-color .6s; user-select: none; }
-.megatype:hover { -webkit-text-stroke-color: var(--acc); }
+.megatype { container-type: inline-size; user-select: none; }
+.megatype-note { display: block; margin: 0 0 10px; font-size: clamp(15px, 1.35vw, 20px); font-weight: 400; letter-spacing: 0; line-height: 1.3; color: #2A323C; }
+/* Sized from the phrase width so the outline fills the footer column. On a narrow column the two words stack and grow to that same edge. */
+.megatype-word { display: block; white-space: nowrap; font-size: 17.8cqi; font-weight: 600; letter-spacing: -0.06em; line-height: .85; color: transparent; -webkit-text-stroke: 1px #2A323C; transition: -webkit-text-stroke-color .6s; }
+.megatype:hover .megatype-word { -webkit-text-stroke-color: var(--acc); }
+@container (max-width: 540px) {
+  .megatype-word { font-size: 36.5cqi; line-height: .92; }
+  .megatype-word > span { display: block; }
+  .megatype-word > .megatype-sp { display: none; }
+}
 .fbase { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--fg-4); }
 .fcta { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; align-items: end; }
 .fcta h2 { margin: 0; font-size: clamp(40px, 5vw, 76px); font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
