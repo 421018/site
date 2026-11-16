@@ -1,6 +1,6 @@
 ---
-title: "Protocolo 42"
-summary: "Qué problema resuelve el protocolo, por qué importa y qué se vuelve posible cuando varias personas pueden compartir el mismo registro sin depender de una sola."
+title: "Infinite Improbability Drive"
+summary: "El Protocolo 42 es un motor improbabilístico de registro distribuido. Qué problema resuelve y qué se vuelve posible."
 menuTitle: "Cómo funciona"
 section:
   label: Protocolo
@@ -9,7 +9,16 @@ section:
   ink: "#0A7A5E"
 ---
 
-## Un registro que no pertenece a nadie {#protocol}
+## Infinite Improbability Drive {#protocol}
+
+El Protocolo 42 es un motor improbabilístico de registro distribuido.
+
+Permite que varias personas mantengan el mismo registro, apliquen las mismas reglas y comprueben el resultado sin depender de una sola.
+
+> En *The Hitchhiker’s Guide to the Galaxy*, el motor de improbabilidad infinita hace posible, por un instante, lo que parecía imposible. Se pone en marcha con una taza de té bien preparada: combustible preciso y listo.  
+> — Douglas Adams
+
+Un registro distribuido improbabilístico funciona con la misma lógica: muchas partes independientes, un orden preciso, y el resultado encaja aunque parezca improbable.
 
 Hay hechos que varias personas necesitan conocer a la vez, y reglas que tienen que valer igual para todas. Si un certificado es válido. Si un trabajo se terminó. Si una reparación se hizo. Si un acuerdo se cumplió.
 
@@ -20,7 +29,7 @@ El Protocolo 42 cambia eso. Permite que esas personas —o muchas más— manten
 :::diagram[El mismo problema, de dos formas: un registro en manos de una sola persona y un registro que cualquiera puede comprobar.]{name="patron-comun"}
 :::
 
-No es una aplicación. Es la infraestructura sobre la que otras personas pueden construir aplicaciones, registros y servicios que no dependan de un único dueño.
+No es una aplicación. Es la infraestructura de cadena de bloques sobre la que otras personas pueden construir aplicaciones, registros y servicios que no dependan de un único dueño.
 
 ## Tres fortalezas que importan {#strengths}
 
@@ -70,4 +79,4 @@ Todo eso se construye encima del protocolo. El protocolo no decide qué se const
 [Casos de uso →](/use-cases) · [El mecanismo de cada pieza →](docs:/protocol)
 :::
 
-Una infraestructura compartida entre personas que no dependen unas de otras parece improbable. El protocolo existe para hacerla posible.
+Una infraestructura de registro distribuido improbabilístico parece imposible. El protocolo existe para hacerla posible.
