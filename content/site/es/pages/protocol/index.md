@@ -15,8 +15,9 @@ El Protocolo 42 es un motor improbabilístico de registro distribuido.
 
 Permite que varias personas mantengan el mismo registro, apliquen las mismas reglas y comprueben el resultado sin depender de una sola.
 
-> En *The Hitchhiker’s Guide to the Galaxy*, el motor de improbabilidad infinita hace posible, por un instante, lo que parecía imposible. Se pone en marcha con una taza de té bien preparada: combustible preciso y listo.  
-> — Douglas Adams
+:::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
+En la novela, el motor de improbabilidad infinita hace posible, por un instante, lo que parecía imposible. Se pone en marcha con una taza de té bien preparada: combustible preciso y listo.
+:::
 
 Un registro distribuido improbabilístico funciona con la misma lógica: muchas partes independientes, un orden preciso, y el resultado encaja aunque parezca improbable.
 
@@ -58,9 +59,10 @@ Imagina que Ana termina un trabajo y Bruno necesita saber que es cierto, sin ten
 2. Firma con una llave que solo ella tiene. La red no guarda una copia de esa llave.
 3. Otras personas que respaldan la red reúnen lo que está esperando y proponen la siguiente página. Si más de dos tercios están de acuerdo, la página se cierra. Si no hay acuerdo, se espera.
 
-> Al principio se creó el universo.  
-> Esto puso muy furiosa a mucha gente y fue ampliamente considerado una mala idea.  
-> — Douglas Adams, *The Hitchhiker’s Guide to the Galaxy*
+:::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
+Al principio se creó el universo.
+Esto puso muy furiosa a mucha gente y fue ampliamente considerado una mala idea.
+:::
 
 Proponer la siguiente página parece, al principio, una mala idea. Hasta que hay acuerdo suficiente. Entonces queda fija, unida a la anterior, y se puede comprobar.
 

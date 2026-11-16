@@ -36,10 +36,11 @@ engine:
 
     42 Chain es infraestructura de cadena de bloques: un registro distribuido que cualquiera puede verificar.
 
-    > En el restaurante del fin del universo las cuentas nunca cuadran de la forma en que uno espera.  
-    > Los números se comportan de manera improbable.  
-    > Y sin embargo, al final, todo encaja con una precisión que parece imposible.  
-    > — Douglas Adams, *The Hitchhiker’s Guide to the Galaxy*
+    :::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
+    En el restaurante del fin del universo las cuentas nunca cuadran de la forma en que uno espera.
+    Los números se comportan de manera improbable.
+    Y sin embargo, al final, todo encaja con una precisión que parece imposible.
+    :::
 
     Un registro distribuido improbabilístico funciona igual: muchas copias independientes llegan al mismo resultado, y cualquiera puede comprobar que las cuentas cierran.
   pieces:
