@@ -4,9 +4,10 @@
 # Blocks are numbered automatically (01, 02…) in the order they appear on the page.
 
 hero:
-  eyebrow: Protocolo abierto de infraestructura
+  eyebrow: Protocolo abierto
   title: |
-    Don’t Panic.
+    Don’t Panic
+    es solo infraestructura.
   lead: |
     42 Chain es infraestructura de cadena de bloques.
     Un registro distribuido improbabilístico.

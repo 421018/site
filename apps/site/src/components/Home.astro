@@ -69,7 +69,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <Header alternates={homeAlternates()} />
 <div class="copy">
 <p class="lbl eyebrow fade" style="animation-delay: .1s"><span class="dot"></span>{hero.eyebrow}</p>
-<h1 class="fade" style="animation-delay: .2s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h1>
+<h1 class="fade" style="animation-delay: .2s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{i === 0 ? <span class="panic">{l}</span> : l}</>)}</h1>
 <p class="hero-lead fade" style="animation-delay: .35s">{hero.lead}</p>
 <div class="acts fade" style="animation-delay: .5s">
 <a class="btn btn-p" href={resolveHref(hero.primary.href, lang)}>{hero.primary.label} <Fragment set:html={arrow} /></a>
@@ -243,6 +243,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .hero .copy{flex:1;display:flex;flex-direction:column;justify-content:center;padding:72px 0 24px}
 .eyebrow{margin:0 0 28px;display:inline-flex;align-items:center;gap:12px;color:var(--fg-3);letter-spacing:.14em}
 .hero h1{margin:0;max-width:760px;font-size:clamp(34px,9.6vw,88px);hyphens:manual;font-weight:500;line-height:.98;letter-spacing:-0.045em}
+.hero h1 .panic{color:var(--acc)}
 .hero-lead{margin:30px 0 0;max-width:580px;font-size:clamp(17px,1.4vw,19px);line-height:1.6;color:var(--fg-2)}
 .acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
 @media (max-width:900px){
