@@ -10,7 +10,7 @@ section:
 
 ## Qué es 42 Chain {#what-is}
 
-42 Chain es la red pública que ejecuta el Protocolo 42. El protocolo permite que varias personas mantengan el mismo registro y apliquen las mismas reglas, y que cualquiera pueda comprobar el resultado sin pedirle permiso a nadie.
+42 Chain es la red pública que ejecuta el Protocolo 42. Es infraestructura de cadena de bloques: permite que varias personas mantengan el mismo registro y apliquen las mismas reglas, y que cualquiera pueda comprobar el resultado.
 
 El software es de código abierto. Cualquiera puede leerlo, proponer cambios o contribuir. Este sitio y la documentación los mantienen contribuidores del protocolo.
 
@@ -19,10 +19,10 @@ El software es de código abierto. Cualquiera puede leerlo, proponer cambios o c
 Nadie controla todo. Cada parte tiene su lugar y se puede comprobar por separado:
 
 - **El software.** Lo escriben y lo revisan contribuidores en un repositorio público. Cualquiera puede proponer cambios. [Contribuir](/open-source/contributing)
-- **La operación de la red.** La hacen validadores y operadores de nodos, personas distintas. El protocolo compensa su trabajo.
+- **La operación de la red.** La hacen validadores y operadores de nodos. El protocolo compensa su trabajo.
 - **El acceso.** Los nodos RPC y los exploradores los ofrecen proveedores independientes. Cualquiera puede ofrecer el suyo. [Proveedores](docs:/get-started/connect#providers)
-- **Las decisiones.** Se toman por gobernanza en la propia red: votan quienes respaldan la red. [Gobernanza](docs:/protocol/governance)
-- **Las aplicaciones.** Las construyen equipos independientes. Cada uno responde por la suya.
+- **Las decisiones.** Se toman por gobernanza en la propia cadena: votan quienes respaldan la red. [Gobernanza](docs:/protocol/governance)
+- **Las aplicaciones.** Las construyen equipos independientes.
 - **Este sitio y la documentación.** Los escriben y los revisan contribuidores.
 
 :::aside

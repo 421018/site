@@ -14,20 +14,20 @@ section:
 
 Hay situaciones en las que varias personas necesitan saber lo mismo al mismo tiempo. Quien termina un curso y quien va a confiar en su certificado. Quien cosecha el café y quien abre el saco. Quien repara una farola y quien vive en esa calle.
 
-Lo habitual es que una de ellas guarde el registro y las demás tengan que confiar en ella. Si cada quien lleva su propio cuaderno, los cuadernos dejan de coincidir y hay que ponerse de acuerdo otra vez.
+Lo habitual es que una de ellas guarde la información y las demás tengan que confiar en ella. Si cada quien lleva su propio cuaderno, los cuadernos dejan de coincidir.
 
-El Protocolo 42 ofrece otra salida. Cualquiera puede guardar una copia completa del mismo registro. Las reglas para añadir algo están escritas y se aplican igual en todas las copias. Así:
+El Protocolo 42 ofrece otra salida. Cualquiera puede guardar una copia completa de la misma cadena. Las reglas para añadir algo están escritas y se aplican igual en todas las copias. Así:
 
-- Todas las copias dicen lo mismo. No hay versiones que reconciliar.
+- Todas las copias dicen lo mismo.
 - Si alguien cambia lo que ya estaba cerrado, se nota.
-- Las reglas se pueden leer. Nadie las interpreta en secreto.
+- Las reglas se pueden leer.
 - Otra persona puede comprobar un dato sin tener que pedírselo a quien lo escribió.
 
 :::diagram[El mismo problema, de dos formas: un registro en manos de una sola persona y un registro que cualquiera puede comprobar.]{name="patron-comun"}
 :::
 
 :::aside
-[Cómo entra un dato en ese registro →](/protocol)
+[Cómo entra un dato en la cadena →](/protocol)
 :::
 
 ## Cuándo conviene y cuándo no {#when}
@@ -39,18 +39,18 @@ El protocolo aporta más cuando se cumplen varias de estas condiciones:
 - Alguien más tendrá que verificarlos, a veces años después.
 - Las reglas tienen que aplicarse igual para todos y quedar a la vista.
 
-Si una sola persona genera, guarda y consulta los datos, y nadie más necesita comprobarlos, una base de datos tradicional suele ser más sencilla y más barata. El protocolo no sustituye esos casos.
+Si una sola persona genera, guarda y consulta los datos, y nadie más necesita comprobarlos, una base de datos tradicional suele ser más sencilla. El protocolo no sustituye esos casos.
 
 ## Casos {#cases}
 
-Cada caso muestra el problema, cómo se resuelve con el protocolo y qué información va en el registro. Los ejemplos son ilustrativos.
+Cada caso muestra el problema, cómo se resuelve con el protocolo y qué información va en la cadena. Los ejemplos son ilustrativos.
 
 :::widget{name="case-gallery"}
 :::
 
 ## Qué va dentro y fuera de la cadena {#off-chain}
 
-Todo lo que se escribe en una red pública lo puede leer cualquiera y no se borra. Por eso hay cosas que no deben ir en el registro:
+Todo lo que se escribe en una cadena pública lo puede leer cualquiera y no se borra. Por eso hay cosas que no deben ir en ella:
 
 - Datos personales (nombres, direcciones, datos de salud).
 - Información que solo deben ver algunas partes (precios, contratos, planos).

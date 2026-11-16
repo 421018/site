@@ -33,15 +33,15 @@ Las vulnerabilidades no se reportan en público. [Reportar una vulnerabilidad](/
 Enlaces a los repositorios públicos.
 :::
 
-## Cómo llega un cambio a la red {#changes}
+## Cómo llega un cambio a la cadena {#changes}
 
-Una propuesta de código no cambia la red por sí sola. El recorrido es este:
+Una propuesta de código no cambia la cadena por sí sola. El recorrido es este:
 
 1. Otras personas revisan la propuesta en el repositorio.
 2. Si se acepta, entra en una versión nueva del software.
 3. La versión se prueba en la red de pruebas.
 4. Se presenta como propuesta de gobernanza en la red principal.
-5. Si se aprueba, los nodos cambian de versión en la misma altura.
+5. Si se aprueba, los nodos cambian de versión juntos.
 
 :::aside
 [Cómo se aplica un cambio →](docs:/protocol/governance#lifecycle)
