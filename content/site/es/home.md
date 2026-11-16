@@ -24,59 +24,59 @@ figures:
 # fees, interop, governance, security.
 engine:
   kicker: El motor
-  title: Cinco piezas. Un solo registro.
-  lead: Cada una sostiene una parte del acuerdo entre quienes usan el registro.
+  title: Lo que sostiene el acuerdo.
+  lead: El registro compartido no se sostiene solo. Estas son las piezas que lo hacen posible. El detalle de cada una está en la documentación.
   pieces:
     - icon: consensus
       label: Consenso
-      title: Acuerda cada bloque.
-      text: Los validadores proponen y firman bloques. Con más de dos tercios del poder de voto, el bloque queda confirmado y es definitivo.
+      title: Acuerda cada página.
+      text: Unas personas respaldan la red y proponen la siguiente página del registro. Si hay acuerdo suficiente, se cierra. Si no, se espera.
       points:
-        - "Finalidad en un bloque."
-        - "Tolera fallas de menos de un tercio del poder de voto."
-        - "Si no hay mayoría, la red se detiene antes que arriesgar."
-      link: { label: Cómo se acuerda un bloque, href: docs:/protocol/consensus }
+        - "Se cierra con acuerdo, no con el paso del tiempo."
+        - "Quien propone responde con algo propio."
+        - "Sin mayoría, la red espera."
+      link: { label: Cómo se acuerda una página, href: docs:/protocol/consensus }
     - icon: execution
       label: Ejecución
-      title: Ejecuta los contratos.
-      text: Los contratos se ejecutan en la máquina virtual de Ethereum (EVM). Todos los nodos llegan exactamente al mismo resultado.
+      title: Las mismas reglas en todas partes.
+      text: Las reglas están escritas en el propio registro. Todos los que guardan una copia las aplican igual. Nadie las interpreta a su modo.
       points:
-        - "Solidity y Vyper, sin cambios en el código."
-        - "Hardhat, Foundry, Viem y las billeteras de la EVM."
-        - "Funciones propias de la red disponibles desde los contratos."
-      link: { label: Cómo se ejecutan las reglas, href: docs:/protocol/execution }
+        - "Contratos en la máquina virtual de Ethereum."
+        - "Herramientas que ya conoces."
+        - "El mismo resultado en todas las copias."
+      link: { label: Cómo se aplican las reglas, href: docs:/protocol/execution }
     - icon: fees
       label: Tarifas
-      title: Mide y paga el trabajo.
-      text: "Cada transacción paga una tarifa proporcional al trabajo que exige, en la unidad nativa: Improbability."
+      title: El costo se ve antes.
+      text: Escribir en el registro tiene un costo proporcional al trabajo que pide. Se paga en Improbability y se conoce antes de firmar.
       points:
-        - "Reglas públicas: el costo se conoce antes de enviar."
-        - "Otra persona puede pagar la tarifa de quien firma."
-        - "Unidades en drops y cups."
+        - "El número aparece antes de confirmar."
+        - "Otra persona puede pagar por ti."
+        - "La unidad se llama Improbability (42)."
       link: { label: Cómo se paga el trabajo, href: docs:/protocol/fees }
     - icon: interop
       label: Interoperabilidad
-      title: Conecta con otras redes.
-      text: Con IBC, cada red comprueba por sí misma, con pruebas criptográficas, lo que ocurrió en la otra. Nadie custodia las unidades en el traslado.
+      title: Otras redes lo comprueban solas.
+      text: Cuando algo tiene que salir de esta red, la otra red revisa la prueba por su cuenta. Nadie custodia lo que cruza.
       points:
-        - "IBC, versiones 1 y 2."
+        - "Conexión directa entre redes."
         - "Sin intermediarios de confianza."
-        - "Datos y unidades entre redes."
+        - "Datos y unidades pueden moverse."
       link: { label: Cómo se conectan las redes, href: docs:/protocol/interoperability }
     - icon: governance
       label: Gobernanza
-      title: Decide los cambios.
-      text: Los cambios se proponen y se votan en la cadena. Cada voto pesa según las unidades en staking.
+      title: Los cambios se deciden a la vista.
+      text: Las reglas también cambian. Se proponen y se votan en el propio registro. Queda escrito quién votó y qué se aprobó.
       points:
-        - "Propuestas registradas en la cadena."
-        - "Quórum, umbral y veto públicos."
+        - "Propuestas públicas."
+        - "El voto pesa según lo que se respalda."
         - "La red aplica lo aprobado."
       link: { label: Cómo se deciden los cambios, href: docs:/protocol/governance }
 
 uses:
   kicker: Casos de uso
   title: Para qué sirve, en la práctica.
-  lead: "Cuando varias personas necesitan los mismos datos y las mismas reglas, el registro no tiene que quedar en manos de una sola. Cada quien puede guardar una copia, cualquier alteración queda a la vista y cualquiera puede comprobar el resultado. Tres ejemplos:"
+  lead: "Cuando varias personas necesitan saber lo mismo y no quieren dejar el registro en manos de una sola, el protocolo les permite compartirlo. Cualquiera puede guardar una copia y cualquiera puede comprobar el resultado. Tres ejemplos:"
   link: { label: Ver los casos de uso, href: /use-cases }
   stories:
     - tag: Registros verificables

@@ -7,7 +7,7 @@ weight: 40
 ## La red y el protocolo {#network}
 
 :::faq[¿Qué es 42 Chain?]
-Una red pública de infraestructura que ejecuta el Protocolo 42. Permite que varias personas mantengan un mismo registro y apliquen las mismas reglas, con contratos en la EVM y conexión con otras redes mediante IBC. [Qué es el protocolo](/protocol)
+La red pública que ejecuta el Protocolo 42. Permite que varias personas mantengan el mismo registro y apliquen las mismas reglas, y que cualquiera pueda comprobar el resultado. [Qué es el protocolo](/protocol)
 :::
 
 :::faq[¿Para qué sirve 42 Chain?]
@@ -19,7 +19,7 @@ Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra 
 :::
 
 :::faq[¿Qué es el Protocolo 42?]
-Es el protocolo de la red, y su nombre formal es *Infinite Improbability Drive*. Define las reglas que siguen todos los nodos para llevar un registro compartido, ejecutar contratos, ponerse de acuerdo sobre cada bloque y decidir cambios. Está construido con tecnología abierta del ecosistema Cosmos (Cosmos SDK, CometBFT e IBC) y ejecuta los contratos en la máquina virtual de Ethereum (EVM).
+Es el protocolo de la red. Su nombre formal es *Infinite Improbability Drive*. Define las reglas que siguen todos los nodos para llevar un registro compartido, aplicar las mismas reglas y decidir cambios a la vista. [Protocolo](/protocol)
 :::
 
 :::faq[¿Necesito permiso para usar la red?]
@@ -27,7 +27,7 @@ No. Cualquiera puede usar la red, publicar aplicaciones u operar un nodo sin reg
 :::
 
 :::faq[¿Qué es Improbability?]
-Es la unidad nativa del protocolo, y su símbolo es 42. Es un recurso técnico: con ella se pagan las tarifas de las transacciones, y los validadores la usan como respaldo en el staking. [Tarifas y emisión](docs:/protocol/fees)
+Es la unidad con la que se mueve y se respalda el registro. Su símbolo es 42. Con ella se paga el trabajo de escribir en el registro y se respalda a quienes lo mantienen. La fracción más pequeña se llama drop; una unidad completa, de forma coloquial, cup. [Por qué 42](/open-source#why-42)
 :::
 
 :::faq[¿Qué son un drop y una cup?]
