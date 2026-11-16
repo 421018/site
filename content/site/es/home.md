@@ -9,12 +9,8 @@ hero:
     Infraestructura compartida
     que cualquiera puede verificar.
   lead: |
-    El Protocolo 42 permite que varias personas mantengan el mismo registro y apliquen las mismas reglas.
-
-    42 Chain es la red pública que lo hace posible.
-
-    Compartir un registro así parece improbable.
-    El protocolo existe para hacerlo real.
+    42 Chain es infraestructura de cadena de bloques.
+    Un registro distribuido improbabilístico.
   primary: { label: Cómo funciona, href: /protocol }
   secondary: { label: Conectarse a la red, href: docs:/get-started/connect }
 
