@@ -1,6 +1,6 @@
 ---
-title: "Operación y mantenimiento de infraestructura"
-summary: "Cuando el dueño de una infraestructura, sus contratistas y sus inspectores llevan registros distintos, saber qué se hizo exige una auditoría. Así comparten uno solo, firmado y fechado."
+title: "El historial de una reparación"
+summary: "La farola de una calle se funde, y cada persona anota lo que hizo en su propia lista. Así el historial es uno solo, firmado y fechado, y nadie lo reescribe."
 category: caso-de-uso
 image: ../../images/casos/infraestructura.jpg
 alt: "Farola de doble brazo encendida al atardecer"
@@ -9,30 +9,30 @@ credit: "Foto: Kim R-K, Unsplash"
 
 ## El problema {#problem}
 
-Una red de agua, el alumbrado público, una red eléctrica o una red de telecomunicaciones tienen miles de activos repartidos en el territorio. Su operación involucra a varias partes: quien es dueño de la infraestructura, los contratistas que la mantienen, los inspectores que la revisan y, a veces, un regulador.
+Una farola, una toma de agua o un poste se reparan muchas veces, y en cada reparación intervienen personas distintas: quien cuida esa calle, quien sube a arreglarla y quien revisa el trabajo. A veces, quien vive ahí solo quiere saber qué se hizo.
 
-Cada parte lleva su propio registro de lo que hizo. Cuando hay una falla, un reclamo o una auditoría, reconstruir qué se hizo, quién lo hizo y cuándo exige comparar registros que no coinciden. Y quien guarda el registro principal puede corregirlo después, sin que las demás partes lo noten.
+Cada persona lleva su propia lista. Cuando la farola vuelve a fallar, reconstruir qué se hizo, quién lo hizo y cuándo exige comparar listas que no coinciden. Y quien guarda la lista principal puede corregirla después, sin que las demás lo noten.
 
 ## Cómo se resuelve con el protocolo {#solution}
 
-Las partes comparten dos registros en la red:
+Esas personas comparten dos registros en la red:
 
-- **Un inventario de activos.** Cada activo tiene un identificador, su ubicación y su estado. Solo la cuenta del dueño de la infraestructura puede dar de alta o de baja un activo.
-- **Un historial de intervenciones.** Cada mantenimiento, reparación o inspección se registra sobre un activo, firmado por quien la hizo. Un contrato define quién puede registrar cada tipo de intervención.
+- **Un inventario.** Cada farola tiene un identificador, su lugar y su estado. Solo la cuenta de quien cuida la calle puede dar de alta o de baja una.
+- **Un historial de lo que se hizo.** Cada reparación o revisión se anota sobre esa farola, firmada por quien la hizo. Un contrato define quién puede anotar cada tipo de trabajo.
 
-El historial solo crece. Una intervención registrada no puede borrarse ni modificarse. Si hay que corregirla, la corrección es un registro nuevo, y las dos quedan a la vista.
+El historial solo crece. Una nota no se borra ni se modifica. Si hay que corregirla, la corrección es una nota nueva, y las dos quedan a la vista.
 
 ## Un ejemplo {#example}
 
-Un municipio contrata a dos empresas para mantener su alumbrado público, y una tercera inspecciona el servicio.
+Lucía vive en esa calle. La farola de la esquina se funde. Quien cuida el alumbrado, quien lo repara y quien revisa el trabajo dejan de llevar cada uno su lista.
 
-- **1. El municipio registra el inventario.** Da de alta cada luminaria con su identificador y su ubicación, y autoriza en el contrato las cuentas de las dos empresas y de la inspección.
-- **2. Las empresas registran su trabajo.** Cada reparación se registra sobre la luminaria, con la fecha, el tipo de trabajo y la huella del reporte con fotos.
-- **3. La inspección registra sus revisiones.** Registra el resultado de cada revisión sobre la misma luminaria.
-- **4. Se paga por lo comprobado.** El municipio consulta el historial para conciliar las facturas de cada empresa con las intervenciones registradas.
-- **5. Cualquiera revisa el historial.** Ante un reclamo o una auditoría, el historial de cada luminaria muestra qué se hizo, quién lo hizo y cuándo, sin depender del archivo de ninguna de las partes.
+- **1. Quien cuida la calle registra el inventario.** Da de alta cada farola con su identificador y su lugar, y autoriza en el contrato las cuentas de quien repara y de quien revisa.
+- **2. Quien repara anota su trabajo.** Cada reparación queda sobre esa farola, con la fecha, el tipo de trabajo y la huella del reporte con fotos.
+- **3. Quien revisa anota lo que vio.** Deja el resultado de cada revisión sobre la misma farola.
+- **4. Se reconoce el trabajo hecho.** Quien cuida la calle consulta el historial y ve qué reparaciones quedaron anotadas, sin depender de una lista ajena.
+- **5. Lucía puede mirarlo.** Si la farola vuelve a fallar, el historial muestra qué se hizo, quién lo hizo y cuándo. No hace falta llamar a una oficina.
 
-El mismo esquema sirve para otras infraestructuras: redes de agua y de energía, puentes y carreteras, o los recursos que comparten varios operadores de una red.
+El mismo esquema sirve para una toma de agua, un poste o cualquier cosa que varias personas reparan y otras necesitan poder comprobar.
 
 :::diagram[Quién registra qué en el mantenimiento, y qué queda registrado en 42.]{name="carriles-infraestructura"}
 :::
@@ -41,19 +41,19 @@ El mismo esquema sirve para otras infraestructuras: redes de agua y de energía,
 
 | En la cadena | Fuera de la cadena |
 |---|---|
-| El identificador y el estado de cada activo | Planos detallados y datos sensibles de seguridad |
-| Cada intervención: tipo, fecha y cuenta que la registró | Reportes completos, fotos y mediciones |
-| Las huellas de los reportes | Contratos, precios y facturas |
+| El identificador y el estado de cada farola | Planos detallados y datos que no deben publicarse |
+| Cada trabajo: tipo, fecha y cuenta que lo anotó | Reportes completos, fotos y mediciones |
+| Las huellas de los reportes | Precios y facturas |
 
-Para infraestructura crítica, la ubicación exacta de algunos activos puede ser información reservada. En ese caso, en la cadena se registra solo el identificador, y la ubicación se queda en los sistemas del dueño. [Qué va dentro y fuera de la cadena](/use-cases#off-chain)
+Si el lugar exacto no debe publicarse, en la cadena se registra solo el identificador, y el lugar se queda con quien cuida la calle. [Qué va dentro y fuera de la cadena](/use-cases#off-chain)
 
 ## Mecanismos que intervienen {#mechanisms}
 
-- **Contratos.** Definen quién puede registrar qué, y se aplican igual para todas las partes. [Contratos inteligentes](docs:/protocol/execution#contracts)
-- **Firmas.** Cada intervención queda asociada a la cuenta de quien la registró. [Cuentas, llaves y firmas](/protocol#accounts)
-- **Huellas encadenadas.** Un registro confirmado no puede modificarse sin que se note. [Un registro que comparten muchos](/protocol#ledger)
-- **Funcionamiento continuo.** El registro sigue disponible mientras la red funcione, aunque una de las partes deje de operar sus sistemas. [Seguridad](docs:/protocol/security#design)
+- **Contratos.** Definen quién puede anotar qué, y se aplican igual para todas las personas. [Contratos inteligentes](docs:/protocol/execution#contracts)
+- **Firmas.** Cada intervención queda asociada a la cuenta de quien la registró. [La llave queda fuera de la red](/protocol#accounts)
+- **Huellas encadenadas.** Un registro confirmado no puede modificarse sin que se note. [Un cambio en el pasado se nota](/protocol#ledger)
+- **Funcionamiento continuo.** El registro sigue disponible mientras la red funcione, aunque una de esas personas deje de operar su sistema. [Seguridad](docs:/protocol/security#design)
 
 :::aside
-Los ejemplos son ilustrativos.
+El ejemplo es ilustrativo.
 :::

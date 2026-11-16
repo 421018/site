@@ -8,7 +8,7 @@ hero:
   title: |
     Infraestructura compartida
     que cualquiera puede verificar.
-  lead: El Protocolo 42 permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, sin depender de los sistemas de una sola de ellas. 42 Chain es la red pública que lo ejecuta.
+  lead: El Protocolo 42 permite que varias personas mantengan un mismo registro y apliquen las mismas reglas, sin dejarlo en el sistema de una sola. 42 Chain es la red pública, y libre, que lo hace posible.
   primary: { label: Cómo funciona, href: /protocol }
   secondary: { label: Conectarse a la red, href: docs:/get-started/connect }
 
@@ -25,7 +25,7 @@ figures:
 engine:
   kicker: El motor
   title: Cinco piezas. Un solo registro.
-  lead: El Infinite Improbability Drive es el motor completo de la red. Elige una pieza para ver qué hace.
+  lead: Cada una sostiene una parte del acuerdo entre quienes usan el registro.
   pieces:
     - icon: consensus
       label: Consenso
@@ -35,7 +35,7 @@ engine:
         - "Finalidad en un bloque."
         - "Tolera fallas de menos de un tercio del poder de voto."
         - "Si no hay mayoría, la red se detiene antes que arriesgar."
-      link: { label: Estudiar la pieza, href: docs:/protocol/consensus }
+      link: { label: Cómo se acuerda un bloque, href: docs:/protocol/consensus }
     - icon: execution
       label: Ejecución
       title: Ejecuta los contratos.
@@ -44,16 +44,16 @@ engine:
         - "Solidity y Vyper, sin cambios en el código."
         - "Hardhat, Foundry, Viem y las billeteras de la EVM."
         - "Funciones propias de la red disponibles desde los contratos."
-      link: { label: Estudiar la pieza, href: docs:/protocol/execution }
+      link: { label: Cómo se ejecutan las reglas, href: docs:/protocol/execution }
     - icon: fees
       label: Tarifas
       title: Mide y paga el trabajo.
       text: "Cada transacción paga una tarifa proporcional al trabajo que exige, en la unidad nativa: Improbability."
       points:
         - "Reglas públicas: el costo se conoce antes de enviar."
-        - "La organización puede pagar por quien firma."
+        - "Otra persona puede pagar la tarifa de quien firma."
         - "Unidades en drops y cups."
-      link: { label: Estudiar la pieza, href: docs:/protocol/fees }
+      link: { label: Cómo se paga el trabajo, href: docs:/protocol/fees }
     - icon: interop
       label: Interoperabilidad
       title: Conecta con otras redes.
@@ -62,7 +62,7 @@ engine:
         - "IBC, versiones 1 y 2."
         - "Sin intermediarios de confianza."
         - "Datos y unidades entre redes."
-      link: { label: Estudiar la pieza, href: docs:/protocol/interoperability }
+      link: { label: Cómo se conectan las redes, href: docs:/protocol/interoperability }
     - icon: governance
       label: Gobernanza
       title: Decide los cambios.
@@ -71,31 +71,31 @@ engine:
         - "Propuestas registradas en la cadena."
         - "Quórum, umbral y veto públicos."
         - "La red aplica lo aprobado."
-      link: { label: Estudiar la pieza, href: docs:/protocol/governance }
+      link: { label: Cómo se deciden los cambios, href: docs:/protocol/governance }
 
 uses:
   kicker: Casos de uso
   title: Para qué sirve, en la práctica.
-  lead: "Cuando varias partes necesitan los mismos datos y las mismas reglas, un registro distribuido evita que una sola de ellas tenga que custodiarlos. Cada parte opera su copia, cualquier alteración queda a la vista y cualquiera puede comprobar el resultado. Tres ejemplos:"
+  lead: "Cuando varias personas necesitan los mismos datos y las mismas reglas, el registro no tiene que quedar en manos de una sola. Cada quien puede guardar una copia, cualquier alteración queda a la vista y cualquiera puede comprobar el resultado. Tres ejemplos:"
   link: { label: Ver los casos de uso, href: /use-cases }
   stories:
     - tag: Registros verificables
-      title: Un título que se verifica solo.
-      text: Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.
+      title: Un certificado que cualquiera comprueba.
+      text: Ana termina un curso. El certificado sigue en sus manos. Quien la contrata comprueba la huella en segundos, sin llamar a nadie.
       image: ../images/casos/registros.jpg
       alt: Diploma enmarcado con un sello dorado
       credit: "Foto: Quilia, Unsplash"
       href: /use-cases/verifiable-records
     - tag: Trazabilidad
-      title: Un origen que varias partes comparten.
-      text: Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.
+      title: El recorrido de un saco de café.
+      text: Quien cosecha, quien tuesta y quien abre el saco dejan el mismo recorrido. Bruno ve cada paso, sin reconstruir el camino.
       image: ../images/casos/trazabilidad.jpg
       alt: Saco de yute lleno de granos de café
       credit: "Foto: Tatiana Fernández R, Unsplash"
       href: /use-cases/traceability
     - tag: Infraestructura
-      title: Un historial de mantenimiento que nadie reescribe.
-      text: Un municipio y sus contratistas registran cada intervención en el alumbrado o en la red de agua. Todas las partes ven el mismo historial, firmado y fechado.
+      title: La historia de una farola.
+      text: La luminaria de la esquina se funde. Quien la repara y quien vive ahí ven el mismo historial, firmado y fechado, y nadie lo reescribe.
       image: ../images/casos/infraestructura.jpg
       alt: Farola de doble brazo encendida al atardecer
       credit: "Foto: Kim R-K, Unsplash"

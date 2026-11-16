@@ -9,7 +9,7 @@ hero:
   title: |
     Shared infrastructure
     anyone can verify.
-  lead: Protocol 42 lets several organizations keep the same ledger and apply the same rules, without depending on the systems of any one of them. 42 Chain is the public network that runs it.
+  lead: Protocol 42 lets people keep the same ledger and apply the same rules, without leaving it on any one person's system. 42 Chain is the public, free network that makes that possible.
   primary: { label: How it works, href: /protocol }
   secondary: { label: Connect to the network, href: docs:/get-started/connect }
 
@@ -23,7 +23,7 @@ figures:
 engine:
   kicker: The engine
   title: Five parts. One ledger.
-  lead: The Infinite Improbability Drive is the network's entire engine. Choose a part to see what it does.
+  lead: Each one carries part of the agreement among the people who use the ledger.
   pieces:
     - icon: consensus
       label: Consensus
@@ -33,7 +33,7 @@ engine:
         - "Finality in one block."
         - "Tolerates faults of less than a third of the voting power."
         - "Without a majority, the network halts rather than take risks."
-      link: { label: Study this piece, href: docs:/protocol/consensus }
+      link: { label: How a block is agreed, href: docs:/protocol/consensus }
     - icon: execution
       label: Execution
       title: Runs the contracts.
@@ -42,16 +42,16 @@ engine:
         - "Solidity and Vyper, without code changes."
         - "Hardhat, Foundry, Viem and EVM wallets."
         - "The network's own functions available from contracts."
-      link: { label: Study this piece, href: docs:/protocol/execution }
+      link: { label: How the rules run, href: docs:/protocol/execution }
     - icon: fees
       label: Fees
       title: Measures and pays for the work.
       text: "Every transaction pays a fee proportional to the work it requires, in the native unit: Improbability."
       points:
         - "Public rules: the cost is known before sending."
-        - "The organization can pay for whoever signs."
+        - "Someone else can pay the fee for whoever signs."
         - "Units in drops and cups."
-      link: { label: Study this piece, href: docs:/protocol/fees }
+      link: { label: How the work is paid, href: docs:/protocol/fees }
     - icon: interop
       label: Interoperability
       title: Connects to other networks.
@@ -60,7 +60,7 @@ engine:
         - "IBC, versions 1 and 2."
         - "No trusted intermediaries."
         - "Data and units across networks."
-      link: { label: Study this piece, href: docs:/protocol/interoperability }
+      link: { label: How networks connect, href: docs:/protocol/interoperability }
     - icon: governance
       label: Governance
       title: Decides the changes.
@@ -69,31 +69,31 @@ engine:
         - "Proposals recorded on the chain."
         - "Public quorum, threshold and veto."
         - "The network applies what is approved."
-      link: { label: Study this piece, href: docs:/protocol/governance }
+      link: { label: How changes are decided, href: docs:/protocol/governance }
 
 uses:
   kicker: Use cases
   title: What it is for, in practice.
-  lead: "When several parties need the same data and the same rules, a distributed ledger spares any one of them from having to hold it. Each party runs its own copy, any tampering is visible and anyone can check the result. Three examples:"
+  lead: "When several people need the same data and the same rules, the ledger does not have to sit with any one of them. Each person can keep a copy, any tampering is visible and anyone can check the result. Three examples:"
   link: { label: See the use cases (in Spanish), href: /use-cases }
   stories:
     - tag: Verifiable records
-      title: A diploma that verifies itself.
-      text: A university records the fingerprint of every diploma it issues. Any employer can check in seconds that it is authentic, without calling anyone.
+      title: A certificate anyone can check.
+      text: Ana finishes a course. The certificate stays in her hands. Whoever hires her checks the fingerprint in seconds, without calling anyone.
       image: ../images/casos/registros.jpg
       alt: Framed diploma with a gold seal
       credit: "Photo: Quilia, Unsplash"
       href: /use-cases/verifiable-records
     - tag: Traceability
-      title: An origin that several parties share.
-      text: Producers, carriers and buyers record every step of a batch. None of them depends on another keeping the data properly.
+      title: The path of a sack of coffee.
+      text: Whoever grows it, whoever roasts it and whoever opens the sack leave the same path. Bruno sees every step, without piecing the trail back together.
       image: ../images/casos/trazabilidad.jpg
       alt: Jute sack full of coffee beans
       credit: "Photo: Tatiana Fernández R, Unsplash"
       href: /use-cases/traceability
     - tag: Infrastructure
-      title: A maintenance history nobody rewrites.
-      text: A city and its contractors record every repair to the street lighting or the water network. Every party sees the same history, signed and dated.
+      title: The story of a street lamp.
+      text: The lamp on the corner goes out. Whoever repairs it and whoever lives there see the same history, signed and dated, and nobody rewrites it.
       image: ../images/casos/infraestructura.jpg
       alt: Double-armed street lamp lit at dusk
       credit: "Photo: Kim R-K, Unsplash"

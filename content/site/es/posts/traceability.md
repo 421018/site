@@ -1,6 +1,6 @@
 ---
-title: "Trazabilidad entre organizaciones"
-summary: "Un lote pasa por muchas manos, y cada una guarda su parte del historial. Así se convierte en un solo historial compartido, que nadie tiene que reconstruir."
+title: "El recorrido de un producto"
+summary: "Un saco de café pasa por muchas manos, y cada persona guarda su parte. Así el recorrido queda en un solo historial, que nadie tiene que reconstruir."
 category: caso-de-uso
 image: ../../images/casos/trazabilidad.jpg
 alt: "Saco de yute lleno de granos de café"
@@ -9,27 +9,27 @@ credit: "Foto: Tatiana Fernández R, Unsplash"
 
 ## El problema {#problem}
 
-Un producto pasa por muchas manos antes de llegar a su destino: quien lo produce, quien lo procesa, quien lo transporta, quien lo almacena y quien lo compra. Cada una de esas partes sabe lo que ocurrió mientras el producto estuvo a su cargo, y cada una lo registra en sus propios sistemas.
+Un saco de café pasa por muchas manos antes de llegar a quien lo abre: quien lo cosecha, quien lo beneficia, quien lo transporta y quien lo compra. Cada persona sabe lo que ocurrió mientras el saco estuvo a su cargo, y cada una lo anota en su propio cuaderno.
 
-Reconstruir el recorrido completo exige reunir los registros de todos. Esos registros usan formatos distintos, no siempre coinciden y ninguna parte puede comprobar los de las demás. Si una sola parte centraliza los datos, las demás dependen de ella y de que los guarde sin cambios.
+Reconstruir el recorrido exige reunir esos cuadernos. No siempre coinciden, y nadie puede comprobar los de los demás. Si una sola persona centraliza los datos, las demás dependen de ella y de que no los cambie.
 
 ## Cómo se resuelve con el protocolo {#solution}
 
-Las partes acuerdan un contrato que define qué se registra en cada etapa: quién puede registrar, qué datos lleva cada registro y en qué orden pueden ocurrir las etapas. Cada parte registra lo que le toca, firmado con su propia cuenta.
+Las personas que intervienen acuerdan un contrato: quién puede anotar cada etapa, qué datos lleva y en qué orden pueden ocurrir. Cada quien anota lo que le toca, firmado con su propia cuenta.
 
-El resultado es un solo historial por lote, compartido por todas las partes. Cada registro muestra quién lo hizo y cuándo. Ninguna parte puede modificar lo que registró otra, y nadie tiene que conciliar registros, porque solo hay uno.
+El resultado es un solo historial por lote. Cada nota muestra quién la hizo y cuándo. Nadie puede modificar lo que anotó otra persona, y no hay cuadernos que reconciliar, porque solo hay uno.
 
 ## Un ejemplo {#example}
 
-Una cooperativa de café exporta lotes que pasan por un beneficio, un transportista y un almacén de exportación.
+Ana cosecha café. El saco pasa por quien lo beneficia, por quien lo transporta y llega a Bruno, que lo compra.
 
-- **1. Se acuerdan las reglas.** Las partes publican un contrato con las etapas del recorrido y las cuentas autorizadas para registrar cada una.
-- **2. La cooperativa registra la cosecha.** Crea el lote con su origen, la fecha y el peso, y la huella de los certificados de origen.
-- **3. El beneficio registra el proceso.** Añade el tipo de proceso y el peso resultante. El contrato solo acepta este registro si el lote ya existe.
-- **4. El transportista registra la entrega.** Registra la recepción y la entrega, con la huella del documento de transporte.
-- **5. El comprador consulta el historial.** El importador consulta el lote y ve cada etapa, quién la registró y cuándo. Puede comprobar los documentos que le entreguen contra sus huellas.
+- **1. Se acuerdan las reglas.** Publican un contrato con las etapas del recorrido y las cuentas que pueden anotar cada una.
+- **2. Ana registra la cosecha.** Crea el lote con su origen, la fecha y el peso, y la huella del certificado de origen.
+- **3. Quien beneficia el grano anota el proceso.** Añade el tipo de proceso y el peso resultante. El contrato solo acepta esta nota si el lote ya existe.
+- **4. Quien transporta anota la entrega.** Deja la recepción y la entrega, con la huella del documento de transporte.
+- **5. Bruno consulta el historial.** Abre el lote y ve cada etapa, quién la anotó y cuándo. Puede comprobar los papeles que le entreguen contra sus huellas.
 
-Si una etapa no se registra, el hueco queda a la vista. Si un registro es incorrecto, la corrección se añade como un registro nuevo, y el historial muestra los dos.
+Si una etapa no se anota, el hueco queda a la vista. Si una nota es incorrecta, la corrección se añade como una nota nueva, y el historial muestra las dos.
 
 :::diagram[Quién registra cada etapa del lote, y qué queda registrado en 42.]{name="carriles-trazabilidad"}
 :::
@@ -45,10 +45,10 @@ Si una etapa no se registra, el hueco queda a la vista. Si un registro es incorr
 
 ## Mecanismos que intervienen {#mechanisms}
 
-- **Contratos.** Las reglas del recorrido se aplican igual para todas las partes. [Contratos inteligentes](docs:/protocol/execution#contracts)
-- **Firmas.** Cada etapa queda asociada a la cuenta de quien la registró. [Cuentas, llaves y firmas](/protocol#accounts)
-- **Un solo registro.** Todos los nodos llevan la misma copia, así que no hay versiones que conciliar. [Un registro que comparten muchos](/protocol#ledger)
+- **Contratos.** Las reglas del recorrido se aplican igual para todas las personas. [Contratos inteligentes](docs:/protocol/execution#contracts)
+- **Firmas.** Cada etapa queda asociada a la cuenta de quien la registró. [La llave queda fuera de la red](/protocol#accounts)
+- **Un solo registro.** Todos los nodos llevan la misma copia, así que no hay versiones que conciliar. [Las copias llegan al mismo resultado](/protocol#contracts)
 
 :::aside
-Los ejemplos son ilustrativos.
+El ejemplo es ilustrativo.
 :::

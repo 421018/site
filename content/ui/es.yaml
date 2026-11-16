@@ -12,10 +12,10 @@ common:
 hashChain:
   meta: Cadena de huellas · SHA-256
   blocks:
-    - Título 2031-0457 emitido por la universidad
-    - Lote 88 entregado en el almacén de exportación
-    - Luminaria L-120 reparada por el contratista
-    - Inspección de la luminaria L-120 aprobada
+    - Ana preparó la masa de las 6
+    - Ana horneó la tanda
+    - El pan salió hacia Bruno
+    - Bruno recibió la tanda
   block: Bloque {n}
   data: Datos
   prevHash: Huella del bloque anterior

@@ -1,6 +1,6 @@
 ---
 title: "Registros y documentos verificables"
-summary: "Un título, un certificado o un acta valen poco si comprobarlos exige llamar a quien los emitió. Así se vuelven verificables por cualquiera, en segundos y años después."
+summary: "Un certificado vale poco si comprobarlo exige llamar a quien lo dio. Así Ana se lo lleva, y quien la contrata lo comprueba en segundos, años después."
 category: caso-de-uso
 image: ../../images/casos/registros.jpg
 alt: "Diploma enmarcado con un sello dorado"
@@ -9,29 +9,27 @@ credit: "Foto: Quilia, Unsplash"
 
 ## El problema {#problem}
 
-Muchos documentos valen solo si se puede comprobar que son auténticos: un título universitario, un certificado de calibración, una constancia de un curso, el acta de una sesión de un concejo municipal.
-
-Hoy, comprobarlo suele exigir consultar a quien emitió el documento. Eso tiene tres límites. La consulta tarda, porque alguien tiene que responderla. Depende de que el emisor siga existiendo y conserve sus archivos. Y quien consulta tiene que confiar en lo que el emisor le diga, porque no puede comprobarlo por su cuenta.
+Un certificado, un título o una constancia valen si otra persona puede fiarse de ellos. Hoy, fiarse suele exigir llamar a quien los dio. La llamada tarda, porque alguien tiene que contestar. Depende de que esa persona siga ahí y conserve sus archivos. Y quien pregunta tiene que creer lo que le digan, porque no puede comprobarlo por su cuenta.
 
 ## Cómo se resuelve con el protocolo {#solution}
 
-El emisor registra en la red la **huella** de cada documento, firmada con la cuenta del emisor. El documento sigue en manos de quien lo recibió.
+Quien da el certificado registra en la red su **huella**, firmada con su cuenta. El certificado sigue en manos de quien lo recibió.
 
-Para verificarlo, cualquiera calcula la huella del documento que tiene delante y la busca en el registro. Si la huella está registrada y la firmó la cuenta del emisor, el documento es auténtico y no cambió desde que se emitió. Si alguien altera una sola letra, la huella deja de coincidir.
+Para comprobarlo, cualquiera calcula la huella del documento que tiene delante y la busca en el registro. Si la huella está y la firmó esa cuenta, el documento es auténtico y no cambió. Si alguien altera una sola letra, la huella deja de coincidir.
 
-La verificación no necesita al emisor. Funciona aunque el emisor no responda, cambie de sistemas o deje de existir.
+La comprobación no necesita a quien lo dio. Funciona aunque esa persona no conteste, cambie de sistema o ya no esté.
 
 ## Un ejemplo {#example}
 
-Una universidad emite títulos y quiere que cualquier empleador pueda comprobarlos.
+Ana termina un curso de panadería. Quien da el curso quiere que, el día que alguien la contrate, esa persona pueda fiarse del certificado sin hacer una llamada.
 
-- **1. Publica su cuenta.** La universidad publica, en su propio sitio, la dirección de la cuenta con la que firma los títulos. Así, cualquiera sabe qué cuenta corresponde a la universidad.
-- **2. Registra cada título.** Al emitir un título, su sistema calcula la huella del documento y la registra en un contrato, firmada con esa cuenta. El contrato guarda la huella y la fecha.
-- **3. Entrega el título.** La persona recibe su título como siempre, en papel o en un archivo.
-- **4. El empleador verifica.** El empleador carga el archivo en una herramienta de verificación, que calcula la huella y la consulta en el contrato. En segundos sabe si el título es auténtico y quién lo emitió.
-- **5. Revocar, si hace falta.** Si un título se anula, la universidad registra la revocación en el mismo contrato. La verificación muestra que el título existió y que fue revocado, y cuándo.
+- **1. Publica su cuenta.** Quien da el curso publica, en su propio sitio, la dirección de la cuenta con la que firma. Así, cualquiera sabe qué cuenta le corresponde.
+- **2. Registra el certificado.** Al entregarlo, calcula la huella del documento y la registra en un contrato, firmada con esa cuenta. El contrato guarda la huella y la fecha.
+- **3. Ana se lo lleva.** Recibe su certificado como siempre, en papel o en un archivo.
+- **4. Quien la contrata comprueba.** Carga el archivo en una herramienta, que calcula la huella y la consulta en el contrato. En segundos sabe si es auténtico y quién lo firmó.
+- **5. Anular, si hace falta.** Si el certificado se anula, quien lo dio registra la anulación en el mismo contrato. La comprobación muestra que existió, que fue anulado y cuándo.
 
-El mismo esquema sirve para certificados técnicos, constancias de formación o actas públicas: cambia quién emite y quién verifica, no el mecanismo.
+El mismo esquema sirve para un título, una constancia o cualquier documento que otra persona tenga que creer: cambia quién lo da y quién lo comprueba, no el mecanismo.
 
 :::diagram[Quién hace qué en el ejemplo, y qué queda registrado en 42.]{name="carriles-registros"}
 :::
@@ -52,11 +50,11 @@ Como en la cadena solo hay huellas, el registro no revela el contenido de ningú
 
 ## Mecanismos que intervienen {#mechanisms}
 
-- **Huellas encadenadas.** Cualquier alteración del registro queda a la vista. [Un registro que comparten muchos](/protocol#ledger)
-- **Firmas.** Cada registro queda asociado a la cuenta que lo firmó. [Cuentas, llaves y firmas](/protocol#accounts)
+- **Huellas encadenadas.** Cualquier alteración del registro queda a la vista. [Un cambio en el pasado se nota](/protocol#ledger)
+- **Firmas.** Cada registro queda asociado a la cuenta que lo firmó. [La llave queda fuera de la red](/protocol#accounts)
 - **Contratos.** Las reglas de registro y revocación son públicas y se aplican igual para todos. [Contratos inteligentes](docs:/protocol/execution#contracts)
 - **Finalidad en un bloque.** Un documento registrado es verificable en segundos. [Una ronda de consenso](docs:/protocol/consensus#round)
 
 :::aside
-Los ejemplos son ilustrativos.
+El ejemplo es ilustrativo.
 :::

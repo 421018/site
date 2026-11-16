@@ -1,6 +1,6 @@
 ---
 title: "Casos de uso"
-summary: "Un registro compartido sirve cuando varias organizaciones necesitan los mismos datos y ninguna debería custodiarlos sola. Cuándo conviene, cuándo no, y cuatro casos concretos."
+summary: "Un registro compartido sirve cuando varias personas necesitan los mismos datos y ninguna debería custodiarlos sola. Cuándo conviene, cuándo no, y cuatro casos concretos."
 menuTitle: "Cuándo usar el protocolo"
 section:
   label: Casos de uso
@@ -12,38 +12,38 @@ section:
 
 ## El patrón común {#pattern}
 
-Muchos sistemas de información los comparten varias organizaciones: una universidad y los empleadores que verifican sus títulos, los eslabones de una cadena de suministro, un municipio y los contratistas que mantienen su infraestructura.
+Hay datos que varias personas necesitan a la vez: quien termina un curso y quien va a confiar en su certificado, quien cosecha un café y quien abre el saco, quien repara una farola y quien vive en esa calle.
 
-Lo habitual es que una de esas organizaciones guarde el registro en sus servidores y las demás dependan de ella. Tienen que confiar en que lo guarde bien, en que no lo cambie sin avisar y en que siga disponible. Si cada organización lleva su propio registro, el problema es otro: los registros dejan de coincidir y hay que conciliarlos.
+Lo habitual es que una de esas personas guarde el registro y las demás dependan de ella. Tienen que confiar en que lo conserve, en que no lo cambie y en que siga disponible. Si cada quien lleva su propio registro, el problema es otro: dejan de coincidir y hay que reconciliarlos.
 
-El Protocolo 42 resuelve ese problema de otra forma. Cada organización puede operar un nodo con una copia completa del mismo registro. Las reglas para añadir información están escritas en contratos que todos los nodos ejecutan igual. Así, el registro tiene cuatro propiedades:
+El Protocolo 42 resuelve eso de otra forma. Cada quien puede poner en marcha un nodo con una copia completa del mismo registro. Las reglas para añadir información están escritas en contratos que todos los nodos ejecutan igual. Así, el registro tiene cuatro propiedades:
 
 - **Una sola versión.** Todas las copias coinciden. No hay registros que conciliar.
 - **Alteraciones a la vista.** Un nodo no puede cambiar su copia sin que los demás lo noten.
-- **Reglas públicas.** Cualquier participante puede leer las reglas y comprobar que se aplicaron.
-- **Verificación directa.** Un tercero comprueba un dato en el registro, sin tener que pedírselo a quien lo registró.
+- **Reglas públicas.** Cualquiera puede leer las reglas y comprobar que se aplicaron.
+- **Verificación directa.** Otra persona comprueba un dato en el registro, sin tener que pedírselo a quien lo escribió.
 
-:::diagram[El mismo problema resuelto de dos formas: un registro central y un registro compartido.]{name="patron-comun"}
+:::diagram[El mismo problema, de dos formas: un registro en manos de una sola persona y un registro que cualquiera puede comprobar.]{name="patron-comun"}
 :::
 
 :::aside
-[Un registro que comparten muchos →](/protocol#ledger)
+[Cómo entra un dato en ese registro →](/protocol)
 :::
 
 ## Cuándo conviene y cuándo no {#when}
 
 El protocolo aporta más cuando se cumplen varias de estas condiciones:
 
-- **Varias partes independientes** necesitan los mismos datos.
-- **Ninguna debería custodiarlos sola**, porque las demás no pueden o no quieren depender de sus sistemas.
-- **Terceros tienen que verificar** los datos, a veces años después.
+- **Varias personas**, que no dependen unas de otras, necesitan los mismos datos.
+- **Ninguna debería custodiarlos sola**, porque las demás no quieren dejar el registro en su sistema.
+- **Alguien más tiene que verificar** los datos, a veces años después.
 - **Las reglas tienen que aplicarse igual para todos** y quedar a la vista.
 
-Si una sola organización genera, guarda y consulta los datos, y nadie más necesita comprobarlos, una base de datos tradicional es más sencilla y más barata de operar. El protocolo no la sustituye en esos casos.
+Si una sola persona genera, guarda y consulta los datos, y nadie más necesita comprobarlos, una base de datos tradicional es más sencilla y más barata de operar. El protocolo no la sustituye en esos casos.
 
 ## Casos {#cases}
 
-Cada caso explica el problema, cómo se resuelve con el protocolo, un ejemplo completo y qué información va en la cadena. Los ejemplos son ilustrativos.
+Cada caso explica el problema, cómo se resuelve con el protocolo, un ejemplo cercano y qué información va en la cadena. Sirven para ver qué se puede construir, y con qué se puede contar. Los ejemplos son ilustrativos.
 
 :::widget{name="case-gallery"}
 :::

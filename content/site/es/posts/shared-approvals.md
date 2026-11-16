@@ -1,6 +1,6 @@
 ---
-title: "Autorizaciones compartidas"
-summary: "Algunos cambios no deberían depender de una sola organización. Así se exige que varias los aprueben, con reglas que todas pueden leer."
+title: "Un acuerdo que no decide una sola persona"
+summary: "Dar de alta un camión no debería depender de una sola persona. Así se exige que varias estén de acuerdo, con reglas que todas pueden leer."
 category: caso-de-uso
 image: ../../images/casos/autorizaciones.jpg
 alt: "Terminal portuaria con contenedores y camiones"
@@ -9,27 +9,27 @@ credit: "Foto: Artan, Unsplash"
 
 ## El problema {#problem}
 
-Cuando varias organizaciones comparten un registro, algunos cambios no deberían depender de una sola de ellas: dar de alta a un participante nuevo, cambiar una regla del registro o retirar una autorización.
+Cuando varias personas comparten un registro, algunos cambios no deberían depender de una sola: dar de alta a alguien nuevo, cambiar una regla o retirar un permiso.
 
-Lo habitual es que esos cambios se acuerden en una reunión o por correo, y que después alguien con acceso al sistema los aplique. Las demás partes tienen que confiar en que el cambio aplicado es el que se acordó, y en que nadie aplica cambios sin acuerdo.
+Lo habitual es que eso se acuerde en una reunión o por mensaje, y que después alguien con la llave del sistema lo aplique. Las demás tienen que confiar en que lo aplicado es lo que se acordó, y en que nadie cambia nada sin ese acuerdo.
 
 ## Cómo se resuelve con el protocolo {#solution}
 
-La regla de aprobación se escribe en un contrato. Por ejemplo: un cambio se aplica solo si lo firman tres de las cinco organizaciones del consorcio.
+La regla se escribe en un contrato. Por ejemplo: un cambio se aplica solo si lo firman tres de las cinco personas.
 
-El cambio se propone en el contrato. Cada organización lo revisa y, si está de acuerdo, lo aprueba con su propia cuenta. Cuando se reúnen las aprobaciones necesarias, el contrato aplica el cambio. Ninguna organización puede aplicarlo sola, y el cambio aplicado es exactamente el que se aprobó.
+El cambio se propone en el contrato. Cada persona lo revisa y, si está de acuerdo, lo aprueba con su propia cuenta. Cuando se reúnen las firmas necesarias, el contrato aplica el cambio. Nadie puede aplicarlo solo, y lo aplicado es exactamente lo que se aprobó.
 
-Cada propuesta, cada aprobación y cada cambio aplicado quedan registrados. Cualquier parte puede revisar después qué se aprobó, quién lo aprobó y cuándo.
+Cada propuesta, cada aprobación y cada cambio quedan escritos. Cualquiera de esas personas puede revisar después qué se aprobó, quién lo aprobó y cuándo.
 
 ## Un ejemplo {#example}
 
-Cinco empresas de transporte comparten un registro de vehículos habilitados para una terminal de carga.
+Ana, Bruno y tres personas más llevan camiones a la misma terminal. Comparten la lista de los que pueden entrar. Dar de alta un camión no lo decide una sola.
 
-- **1. Se fija la regla.** El contrato del registro establece que dar de alta o de baja un vehículo exige la aprobación de tres de las cinco empresas.
-- **2. Una empresa propone un alta.** Registra la propuesta con el identificador del vehículo y la huella de su documentación.
-- **3. Las demás revisan.** Cada empresa comprueba la documentación y, si está en orden, aprueba con su cuenta.
-- **4. El contrato aplica el cambio.** Con la tercera aprobación, el vehículo queda habilitado en el registro. El sistema de acceso de la terminal consulta el registro y deja pasar al vehículo.
-- **5. El historial queda a la vista.** Cualquiera de las empresas puede ver quién propuso y quién aprobó cada alta o baja.
+- **1. Se fija la regla.** El contrato dice que dar de alta o de baja un camión exige la aprobación de tres de las cinco personas.
+- **2. Ana propone un alta.** Deja la propuesta con el identificador del camión y la huella de sus papeles.
+- **3. Las demás revisan.** Cada persona comprueba los papeles y, si están en orden, aprueba con su cuenta.
+- **4. El contrato aplica el cambio.** Con la tercera aprobación, el camión queda habilitado. Quien cuida la entrada consulta el registro y lo deja pasar.
+- **5. El historial queda a la vista.** Cualquiera de las cinco puede ver quién propuso y quién aprobó cada alta o baja.
 
 :::diagram[Quién propone, aprueba y aplica el cambio, y qué queda registrado en 42.]{name="carriles-autorizaciones"}
 :::
@@ -45,11 +45,11 @@ Cinco empresas de transporte comparten un registro de vehículos habilitados par
 ## Mecanismos que intervienen {#mechanisms}
 
 - **Cuentas que son contratos.** Una cuenta puede exigir varias firmas antes de actuar. [Cuentas](docs:/protocol/execution#accounts)
-- **Contratos.** La regla de aprobación es pública y se aplica igual para todas las partes. [Contratos inteligentes](docs:/protocol/execution#contracts)
-- **Firmas.** Cada aprobación queda asociada a la cuenta de quien la dio. [Cuentas, llaves y firmas](/protocol#accounts)
+- **Contratos.** La regla de aprobación es pública y se aplica igual para todas las personas. [Contratos inteligentes](docs:/protocol/execution#contracts)
+- **Firmas.** Cada aprobación queda asociada a la cuenta de quien la dio. [La llave queda fuera de la red](/protocol#accounts)
 
 La red aplica el mismo principio a sus propias reglas: los cambios al protocolo se proponen y se votan en la cadena. [Gobernanza](docs:/protocol/governance)
 
 :::aside
-Los ejemplos son ilustrativos.
+El ejemplo es ilustrativo.
 :::

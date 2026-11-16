@@ -137,7 +137,7 @@ Ningún canal del proyecto te pedirá tus llaves.
 :::
 
 :::faq[¿Qué es 42 Chain?]
-Una red pública de infraestructura. [Visión general](/protocol)
+Una red pública de infraestructura. [Qué es el protocolo](/protocol)
 :::
 
 :::lore[Bitácora del motor]

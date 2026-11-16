@@ -7,11 +7,11 @@ weight: 40
 ## La red y el protocolo {#network}
 
 :::faq[¿Qué es 42 Chain?]
-Una red pública de infraestructura que ejecuta el Protocolo 42. Permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, con contratos en la EVM y conexión con otras redes mediante IBC. [Visión general](/protocol)
+Una red pública de infraestructura que ejecuta el Protocolo 42. Permite que varias personas mantengan un mismo registro y apliquen las mismas reglas, con contratos en la EVM y conexión con otras redes mediante IBC. [Qué es el protocolo](/protocol)
 :::
 
 :::faq[¿Para qué sirve 42 Chain?]
-Para que varias organizaciones compartan un registro sin que ninguna tenga que custodiarlo sola: registros y documentos verificables, trazabilidad entre organizaciones, operación y mantenimiento de infraestructura y autorizaciones compartidas. Si una sola organización genera y consulta los datos, una base de datos tradicional es más sencilla. [Casos de uso](/use-cases)
+Para que varias personas compartan un registro sin que ninguna tenga que custodiarlo sola: un certificado que se comprueba solo, el recorrido de un producto, el historial de una reparación y un acuerdo que no decide una sola persona. Si una sola persona genera y consulta los datos, una base de datos tradicional es más sencilla. [Casos de uso](/use-cases)
 :::
 
 :::faq[¿Puedo mantener datos reservados?]
