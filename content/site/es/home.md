@@ -8,7 +8,13 @@ hero:
   title: |
     Infraestructura compartida
     que cualquiera puede verificar.
-  lead: El Protocolo 42 permite que varias personas mantengan un mismo registro y apliquen las mismas reglas, sin dejarlo en el sistema de una sola. 42 Chain es la red pública que lo hace posible. Compartir un registro así parece improbable. El protocolo existe para hacerlo real.
+  lead: |
+    El Protocolo 42 permite que varias personas mantengan el mismo registro y apliquen las mismas reglas.
+
+    42 Chain es la red pública que lo hace posible.
+
+    Compartir un registro así parece improbable.
+    El protocolo existe para hacerlo real.
   primary: { label: Cómo funciona, href: /protocol }
   secondary: { label: Conectarse a la red, href: docs:/get-started/connect }
 
@@ -25,21 +31,24 @@ figures:
 engine:
   kicker: El motor
   title: Lo que sostiene el acuerdo.
-  lead: El registro compartido no se sostiene solo. Estas son las piezas que lo hacen posible. El detalle de cada una está en la documentación.
+  lead: |
+    El registro compartido no se sostiene solo. Estas son las piezas que lo hacen posible.
+
+    42 Chain es infraestructura de cadena de bloques: un registro distribuido que cualquiera puede verificar.
   pieces:
     - icon: consensus
       label: Consenso
       title: Acuerda cada página.
-      text: Unas personas respaldan la red y proponen la siguiente página del registro. Si hay acuerdo suficiente, se cierra. Si no, se espera.
+      text: Los participantes respaldan la red y proponen la siguiente página. Cuando hay acuerdo suficiente, esa página se cierra y queda fija. La siguiente se construye encima de ella.
       points:
-        - "Se cierra con acuerdo, no con el paso del tiempo."
-        - "Quien propone responde con algo propio."
-        - "Sin mayoría, la red espera."
+        - "Se cierra cuando hay acuerdo suficiente."
+        - "Cada página queda unida a la anterior."
+        - "El acuerdo queda registrado y se puede comprobar."
       link: { label: Cómo se acuerda una página, href: docs:/protocol/consensus }
     - icon: execution
       label: Ejecución
       title: Las mismas reglas en todas partes.
-      text: Las reglas están escritas en el propio registro. Todos los que guardan una copia las aplican igual. Nadie las interpreta a su modo.
+      text: Las reglas están escritas en el propio registro. Todos los que guardan una copia las aplican igual.
       points:
         - "Contratos en la máquina virtual de Ethereum."
         - "Herramientas que ya conoces."
@@ -57,10 +66,10 @@ engine:
     - icon: interop
       label: Interoperabilidad
       title: Otras redes lo comprueban solas.
-      text: Cuando algo tiene que salir de esta red, la otra red revisa la prueba por su cuenta. Nadie custodia lo que cruza.
+      text: Cuando algo tiene que pasar a otra red, esa red revisa la prueba por su cuenta. No hace falta un intermediario que guarde los fondos o los datos en el camino.
       points:
         - "Conexión directa entre redes."
-        - "Sin intermediarios de confianza."
+        - "Sin intermediarios que custodien."
         - "Datos y unidades pueden moverse."
       link: { label: Cómo se conectan las redes, href: docs:/protocol/interoperability }
     - icon: governance
@@ -76,7 +85,11 @@ engine:
 uses:
   kicker: Casos de uso
   title: Para qué sirve, en la práctica.
-  lead: "Cuando varias personas necesitan saber lo mismo y no quieren dejar el registro en manos de una sola, el protocolo les permite compartirlo. Cualquiera puede guardar una copia y cualquiera puede comprobar el resultado. Tres ejemplos:"
+  lead: |
+    Cuando varias personas necesitan saber lo mismo y no quieren dejar el registro en manos de una sola, el protocolo les permite compartirlo.
+
+    Cualquiera puede guardar una copia.
+    Cualquiera puede comprobar el resultado.
   link: { label: Ver los casos de uso, href: /use-cases }
   stories:
     - tag: Registros verificables
@@ -125,13 +138,13 @@ build:
 people:
   kicker: Cómo se organiza
   title: Cada función, en manos distintas.
-  lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados, y cada parte se puede comprobar: el código en un repositorio público, la operación y las decisiones en la propia cadena."
+  lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados. Cada parte se puede comprobar."
   link: { label: Cómo se organiza, href: "/open-source#circles" }
   rows:
     - { who: Contribuidores del código, what: "Proponen y revisan cambios en un repositorio público." }
-    - { who: Validadores y operadores de nodos, what: "Verifican cada bloque y dan acceso a la red." }
-    - { who: Gobernanza en la cadena, what: "Los validadores y quienes les delegan votan qué cambia y cuándo." }
-    - { who: Quienes construyen, what: "Ofrecen aplicaciones y servicios sobre la red, y cada uno responde por lo suyo." }
+    - { who: Validadores y operadores de nodos, what: "Verifican cada página y dan acceso a la red." }
+    - { who: Gobernanza en la cadena, what: "Quienes respaldan la red votan qué cambia y cuándo." }
+    - { who: Quienes construyen, what: "Ofrecen aplicaciones y servicios sobre la red." }
 
 start:
   kicker: Por dónde empezar
@@ -153,6 +166,6 @@ name:
 closing:
   title: Infraestructura compartida, reglas a la vista.
   lead: Un registro que no pertenece a nadie. Reglas que valen igual para todos. Lo improbable, hecho posible.
-  primary: { label: Empieza a construir, href: docs:/build/applications }
+  primary: { label: Cómo funciona el protocolo, href: /protocol }
   secondary: { label: Leer la documentación, href: "docs:/" }
 ---
