@@ -6,8 +6,7 @@
 hero:
   eyebrow: Protocolo abierto de infraestructura
   title: |
-    Infraestructura compartida
-    que cualquiera puede verificar.
+    Don’t Panic.
   lead: |
     42 Chain es infraestructura de cadena de bloques.
     Un registro distribuido improbabilístico.
