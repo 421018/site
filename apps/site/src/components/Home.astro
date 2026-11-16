@@ -22,6 +22,29 @@ const { title, description, hero, figures, engine, build, uses, people, start, n
 
 /** A line break in a YAML title becomes <br>. */
 const lines = (s: string) => s.trim().split('\n');
+/** Blank lines separate paragraphs. A single line break stays inside the paragraph. */
+const paragraphs = (text: string) =>
+  text.split(/\n\s*\n/).map((p) => p.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
+type LeadPart = { kind: 'text'; paragraphs: string[] } | { kind: 'lore'; label: string; paragraphs: string[] };
+/**
+ * Home text is YAML, not Markdown, so a :::lore block inside a lead would
+ * otherwise show as plain text. Pull those asides out and leave the rest as paragraphs.
+ */
+const leadParts = (source: string): LeadPart[] => {
+  const parts: LeadPart[] = [];
+  const re = /:::lore\[([^\]]+)\]\s*\n([\s\S]*?)\n[ \t]*:::/g;
+  let last = 0;
+  for (const match of source.matchAll(re)) {
+    const before = paragraphs(source.slice(last, match.index));
+    if (before.length) parts.push({ kind: 'text', paragraphs: before });
+    const quote = paragraphs(match[2]);
+    parts.push({ kind: 'lore', label: match[1].trim(), paragraphs: quote.length ? quote : [match[2].trim()] });
+    last = (match.index ?? 0) + match[0].length;
+  }
+  const rest = paragraphs(source.slice(last));
+  if (rest.length) parts.push({ kind: 'text', paragraphs: rest });
+  return parts;
+};
 /** Kickers are numbered in page order: 01 — …, 02 — … */
 const kicker = (n: number, text: string) => `${String(n).padStart(2, '0')} — ${text}`;
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -66,7 +89,20 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <div class="wrap">
 <p class="k">{kicker(1, engine.kicker)}</p>
 <h2 class="h2">{lines(engine.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
-{engine.lead && <p class="lead">{engine.lead}</p>}
+{engine.lead && (
+  <div class="lead-flow">
+    {leadParts(engine.lead).map((part) =>
+      part.kind === 'lore' ? (
+        <aside class="lore">
+          <span class="ll">{part.label}</span>
+          {part.paragraphs.map((p) => <p>{p}</p>)}
+        </aside>
+      ) : (
+        part.paragraphs.map((p) => <p class="lead">{p}</p>)
+      ),
+    )}
+  </div>
+)}
 <div class="eng" data-eng>
 <div class="eng-tabs" role="tablist" aria-label={engine.kicker}>
 {engine.pieces.map((p, i) => <button type="button" role="tab" id={`eng-t${i}`} aria-controls={`eng-p${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{p.label}</button>)}
@@ -189,6 +225,12 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .k.star,.more.star{color:var(--star)}
 .h2{margin:0;font-size:clamp(30px,7.4vw,54px);font-weight:500;letter-spacing:-0.035em;line-height:1.04}
 .lead{margin:20px 0 0;max-width:640px;font-size:17.5px;line-height:1.65;color:var(--fg-3)}
+.lead-flow{max-width:720px}
+.lead-flow .lead{max-width:none}
+.lead-flow .lore{margin:22px 0 6px;padding:22px 24px;border-radius:12px;border-left:3px solid var(--acc);background:color-mix(in srgb, var(--acc) 8%, var(--hull));color:var(--fg-2)}
+.lead-flow .lore .ll{display:block;margin-bottom:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+.lead-flow .lore p{margin:0;font-size:16.5px;line-height:1.65;color:inherit}
+.lead-flow .lore p + p{margin-top:10px}
 .wrap{max-width:1280px;margin:0 auto;padding:120px clamp(16px,4vw,40px) 0;box-sizing:border-box}
 .more{display:inline-flex;align-items:center;min-height:44px;margin-top:24px;color:var(--acc);text-decoration:none;font-size:15px}
 .more:hover{text-decoration:underline;text-underline-offset:4px}
