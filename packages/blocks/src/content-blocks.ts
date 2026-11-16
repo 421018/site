@@ -8,9 +8,9 @@
  *   :::aside                   Side remark in small mono type: "read more" links,
  *                              pending placeholders, footnotes.
  *   :::status[Draft]           Status line (badge + short text).
- *   :::lore[Heading]           Narrative aside (the protocol's sci-fi lore), visually
- *                              distinct from technical content. Never the only place
- *                              where a technical fact is stated.
+ *   :::lore[Attribution]       A quotation. The words come first; the bracket text
+ *                              is the attribution, shown after them, smaller. Never
+ *                              the only place where a technical fact is stated.
  *   :::diagram[Caption]{name="motor"}
  *                              Inserts the app's diagrams/<name>.html from the catalog (responsive,
  *                              preferred) or <name>.svg, with the caption below.
@@ -115,9 +115,11 @@ export const contentBlocks = ({ diagramsDirs, widgets = [], resolveLink }: Block
         return;
       }
       case 'lore': {
-        const heading = needLabel('the heading');
+        const heading = needLabel('the attribution');
         setTag(ctx, node as never, 'aside', 'lore');
         setTag(ctx, heading, 'span', 'll');
+        const body = children.filter((c) => c !== heading);
+        ctx.setField(node as never, 'children', [...body, heading]);
         return;
       }
       case 'diagram': {

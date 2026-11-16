@@ -215,11 +215,17 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .prose .note { margin: 8px 0 28px; padding: 20px 22px; border: 1px solid var(--rule2); border-radius: 12px; background: var(--panel); }
 .prose .note .nl { display: block; margin-bottom: 8px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--link); }
 .prose .note p { margin: 0; font-size: 15.5px; line-height: 1.6; }
-/* lore: narrative asides, set apart from the technical text */
-.prose .lore { margin: 8px 0 28px; padding: 22px 24px; border-radius: 12px; border-left: 3px solid var(--acc); background: var(--night); color: #C9D0D6; }
-.prose .lore .ll { display: block; margin-bottom: 10px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--acc); }
-.prose .lore p { margin: 0; font-size: 15.5px; line-height: 1.65; color: inherit; }
-.prose .lore p + p { margin-top: 10px; }
+/* lore: a quotation. The words lead; the attribution follows, smaller and quiet.
+   The opening mark keeps its own column, so every line of the quote shares that inset. */
+.lore { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 10px; align-items: start; padding: 22px 26px 18px; border-radius: 12px; border-left: 3px solid var(--acc); }
+.lore::before { content: "“"; grid-column: 1; grid-row: 1; align-self: start; font-family: Georgia, "Iowan Old Style", Palatino, serif; font-size: 86px; line-height: 0.72; font-weight: 500; color: color-mix(in srgb, currentColor 92%, transparent); }
+.lore p { grid-column: 2; margin: 0; font-size: 19.5px; line-height: 1.55; color: inherit; }
+.lore p:first-of-type { grid-row: 1; }
+.lore p + p { margin-top: 12px; }
+.lore p:last-of-type::after { content: "”"; margin-left: 0.12em; font-family: Georgia, "Iowan Old Style", Palatino, serif; font-size: 1.35em; line-height: 0; color: color-mix(in srgb, currentColor 42%, transparent); }
+.lore .ll { grid-column: 1 / -1; margin: 16px 0 0; font-size: 13px; font-weight: 400; letter-spacing: 0.01em; line-height: 1.45; color: color-mix(in srgb, currentColor 50%, transparent); }
+.lore .ll::before { content: "— "; }
+.prose .lore { margin: 8px 0 28px; background: var(--night); color: #D5DCE3; }
 .prose .lore strong { color: #fff; }
 
 /* ---------- visual aids ---------- */
