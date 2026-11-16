@@ -37,7 +37,11 @@ El nombre viene de *The Hitchhiker’s Guide to the Galaxy*, la novela de Dougla
 
 El protocolo se piensa de la misma forma. Ofrece reglas precisas y resultados que cualquiera puede comprobar. No decide qué se construye sobre él. Eso lo ponen quienes lo usan.
 
-En la misma novela aparece el motor de improbabilidad infinita: un motor que, por un instante, hace posible lo que parecía imposible. De ahí vienen el nombre formal del protocolo (*Infinite Improbability Drive*) y el de su unidad nativa, Improbability, cuyo símbolo es 42. Una infraestructura compartida entre personas que no dependen unas de otras parece improbable. El nombre recuerda que el protocolo existe para hacerla posible.
+En la misma novela aparece el motor de improbabilidad infinita. No sigue las rutas normales: por un instante hace posible lo que parecía imposible. De ese motor toman nombre el protocolo (*Infinite Improbability Drive*) y su unidad nativa, Improbability, cuyo símbolo es 42.
+
+En la historia, el motor se pone en marcha con una taza de té bien preparada. No es un detalle decorativo. El té es el combustible preciso, medido y listo. Sin él, el motor no arranca. Aquí ocurre algo parecido. Improbability es la unidad con la que se mueve y se respalda el registro compartido. Quien escribe en él y quien lo mantiene lo hacen con la misma unidad. La fracción más pequeña se llama drop —una gota—. Una unidad completa, de forma coloquial, se llama cup —una taza—.
+
+Una infraestructura que no pertenece a nadie y que varias personas pueden comprobar parece improbable. El nombre y la unidad recuerdan que el protocolo existe para hacerla posible, y que hace falta un combustible concreto para que el mecanismo funcione.
 
 ## Principios {#principles}
 
