@@ -15,7 +15,7 @@ Para que varias organizaciones compartan un registro sin que ninguna tenga que c
 :::
 
 :::faq[¿Puedo mantener datos reservados?]
-Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra solo su huella. Si una organización necesita, además, un entorno separado de la red pública, puede tener un entorno interno conectado a 42 Chain, que requiere una implementación a medida. [Qué va dentro y fuera de la cadena](/use-cases#off-chain) · [Entornos internos](/use-cases#internal-environments)
+Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra solo su huella. Si una organización necesita, además, un entorno separado de la red pública, puede tener un entorno interno conectado a 42 Chain. [Qué va dentro y fuera de la cadena](/use-cases#off-chain) · [Entornos internos](/use-cases#internal-environments)
 :::
 
 :::faq[¿Qué es el Protocolo 42?]
@@ -112,10 +112,6 @@ No con fecha de término. El protocolo se mantiene y se mejora de forma continua
 En el espacio de discusiones del repositorio público. Está abierto a cualquiera y no tiene costo. [Preguntas técnicas](/open-source/contributing#questions)
 :::
 
-:::faq[¿Hay servicios de implementación a medida?]
-Sí, de proveedores independientes, que se contratan directamente con ellos. Ofrecen implementación y asesoría técnica, nunca la venta ni la custodia de activos. [Implementaciones a medida](/use-cases/custom-implementations)
-:::
-
 ## Legal y uso del sitio {#legal}
 
 :::faq[¿Este sitio vende o recomienda la unidad nativa?]
@@ -127,7 +123,7 @@ Este sitio y la documentación son mantenidos por contribuidores del Protocolo 4
 :::
 
 :::faq[¿Los servicios de terceros que aparecen en el sitio están respaldados por 42 Chain?]
-No. Los proveedores de RPC, de exploradores y de implementaciones que se listan en el sitio son independientes, y cada uno responde por su servicio. Que aparezcan en el sitio no implica respaldo.
+No. Los proveedores de RPC y de exploradores que se listan en el sitio son independientes, y cada uno responde por su servicio. Que aparezcan en el sitio no implica respaldo.
 :::
 
 :::faq[¿Qué datos recopila este sitio?]

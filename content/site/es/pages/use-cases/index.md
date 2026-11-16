@@ -67,5 +67,3 @@ La solución habitual es separar el dato de su prueba. El dato se queda fuera de
 42 Chain es una red pública: cualquiera puede leer su registro y verificar lo que contiene. Por eso es donde un dato se vuelve verificable por terceros.
 
 Algunas organizaciones necesitan, además, mantener parte de sus datos separados de la red pública: resultados internos, información de clientes o datos de operación. Para esos casos, la misma tecnología permite un **entorno interno** encapsulado, conectado a 42 mediante IBC. Los datos reservados se quedan en el entorno interno, y sus pruebas se comprueban en 42, donde cualquiera puede verificarlas.
-
-Un entorno interno requiere una implementación a medida. [Implementaciones a medida](/use-cases/custom-implementations)

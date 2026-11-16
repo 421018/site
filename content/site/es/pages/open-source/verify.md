@@ -51,7 +51,7 @@ Estos son los únicos canales oficiales del proyecto. Si un canal no aparece aqu
 | Repositorio | Código fuente, preguntas técnicas, reportes de errores y contribuciones | [repositorio] |
 | Correo de seguridad | Reportes privados de vulnerabilidades del código | [correo de seguridad] |
 
-Los proveedores de RPC, los exploradores y los proveedores de implementación son independientes y tienen sus propios dominios. Sus direcciones están en el [directorio de proveedores](docs:/get-started/connect#providers) y en [Implementaciones a medida](/use-cases/custom-implementations).
+Los proveedores de RPC y los exploradores son independientes y tienen sus propios dominios. Sus direcciones están en el [directorio de proveedores](docs:/get-started/connect#providers).
 
 :::note[Antes de confiar en un mensaje]
 Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio o enlace en esta lista.

@@ -90,6 +90,6 @@ El software del protocolo se construye sobre software de código abierto del eco
 
 ## Enlaces y servicios de terceros {#third-parties}
 
-Los validadores, los proveedores de RPC y de exploradores, los proveedores de implementación y las aplicaciones mencionados en este sitio son independientes y responden por sus propios servicios. Que aparezcan aquí no implica respaldo ni relación comercial.
+Los validadores, los proveedores de RPC y de exploradores, y las aplicaciones mencionados en este sitio son independientes y responden por sus propios servicios. Que aparezcan aquí no implica respaldo ni relación comercial.
 
 Los enlaces a sitios externos se ofrecen solo como referencia. Cada sitio externo tiene sus propias condiciones.

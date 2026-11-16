@@ -100,4 +100,4 @@ Taking an application into operation usually follows five steps:
 
 The parameters of each network and the provider directory are in [Connect to 42 Chain](/get-started/connect).
 
-To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/integrate). For an internal environment connected to 42 or an integration that requires custom work, see [Custom implementations (in Spanish)](site:/use-cases/custom-implementations).
+To connect existing systems, devices or other networks, see [Integrate systems (in Spanish)](/integrate).

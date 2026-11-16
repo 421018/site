@@ -100,4 +100,4 @@ Llevar una aplicación a operación suele seguir cinco pasos:
 
 Los parámetros de cada red y el directorio de proveedores están en [Conectarse a 42 Chain](/get-started/connect).
 
-Para conectar sistemas existentes, dispositivos u otras redes, consulta [Integrar sistemas](/integrate). Para un entorno interno conectado a 42 o una integración que requiere trabajo a medida, consulta [Implementaciones a medida](site:/use-cases/custom-implementations).
+Para conectar sistemas existentes, dispositivos u otras redes, consulta [Integrar sistemas](/integrate).

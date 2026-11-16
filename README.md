@@ -124,7 +124,7 @@ Values in `[brackets]` are placeholders. The main ones:
 - Contact emails in `content/SECURITY.md` (`[security email]`) and `content/CODE_OF_CONDUCT.md` (`[conduct email]`).
 - Licenses of the documentation site and the console (`legal/index.md`).
 - Hosting provider named in the privacy section (`legal/index.md`).
-- Custom implementation providers (`content/site/es/pages/use-cases/custom-implementations.md`) and RPC/explorer providers (`content/network/providers.yaml`).
+- RPC and explorer providers (`content/network/providers.yaml`).
 - Social sharing image (`og:image`).
 
 To find them all: `grep -rn "\[" content apps/*/src/config.ts LICENSE NOTICE`.

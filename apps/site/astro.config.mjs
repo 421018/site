@@ -20,18 +20,16 @@ export default defineConfig({
   redirects: {
     '/docs': LINKS.docs,
     ...(LINKS.console ? { '/consola': LINKS.console } : {}),
-    // "Implementar" moved to the documentation (Spanish), its custom-work page to Casos de uso.
+    // "Implementar" moved to the documentation (Spanish).
     '/implementar': `${LINKS.docs}/es/build/applications`,
     '/implementar/conectarse': `${LINKS.docs}/es/get-started/connect`,
     '/implementar/nodos': `${LINKS.docs}/es/operate/nodes`,
     '/implementar/integrar': `${LINKS.docs}/es/integrate`,
-    '/implementar/implementaciones': '/es/use-cases/custom-implementations',
     '/en/implement': `${LINKS.docs}/build/applications`,
     '/en/implement/connect': `${LINKS.docs}/get-started/connect`,
     // Spanish URLs before paths became English; Spanish now lives under /es.
     '/casos-de-uso': '/es/use-cases',
     '/casos-de-uso/autorizaciones': '/es/use-cases/shared-approvals',
-    '/casos-de-uso/implementaciones': '/es/use-cases/custom-implementations',
     '/casos-de-uso/infraestructura': '/es/use-cases/infrastructure',
     '/casos-de-uso/integracion': '/es/use-cases/network-integration',
     '/casos-de-uso/registros-verificables': '/es/use-cases/verifiable-records',

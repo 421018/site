@@ -61,9 +61,7 @@ Everyone taking part in this project is expected to follow the [Code of Conduct]
 
 ## Discussions are for technical topics
 
-The repository's Discussions are open to anyone for technical questions about the protocol, the network, integrations and the site. Paid services are not offered, quoted or arranged there, by maintainers or anyone else. When someone asks for a custom implementation or consulting, reply with a link to the site's [Implementaciones a medida](https://example.org/implementar/implementaciones) page and continue only with the technical part of the question.
-
-Providers listed on that page are independent. Proposing a provider for the list is done with a pull request, like any other content change.
+The repository's Discussions are open to anyone for technical questions about the protocol, the network, integrations and the site. Paid services are not offered, quoted or arranged there, by maintainers or anyone else.
 
 ---
 
@@ -91,6 +89,6 @@ Esta guía es para quienes quieren corregir o agregar **textos** del sitio. No h
 - No cambies un ancla `{#…}` sin corregir los enlaces que la usan.
 - No uses HTML ni código: los elementos especiales se escriben con bloques `:::`.
 - Tus textos se publican bajo la licencia [CC BY 4.0](LICENSE).
-- En el espacio de discusiones del repositorio solo se tratan temas técnicos. Ahí no se ofrecen ni se contratan servicios; para implementaciones a medida, enlaza a la página [Implementaciones a medida](https://example.org/implementar/implementaciones).
+- En el espacio de discusiones del repositorio solo se tratan temas técnicos. Ahí no se ofrecen ni se contratan servicios.
 
 ¿Dudas? [Abre un issue](../../issues/new/choose) y pregunta.
