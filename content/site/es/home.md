@@ -28,10 +28,6 @@ engine:
   kicker: El motor
   title: Lo que sostiene el acuerdo.
   lead: |
-    El registro compartido no se sostiene solo. Estas son las piezas que lo hacen posible.
-
-    42 Chain es infraestructura de cadena de bloques: un registro distribuido que cualquiera puede verificar.
-
     :::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
     En el restaurante del fin del universo las cuentas nunca cuadran de la forma en que uno espera.
 
