@@ -7,7 +7,7 @@ hero:
   eyebrow: Protocolo abierto
   title: |
     Don’t Panic
-    es solo infraestructura.
+    Esto es infraestructura.
   lead: |
     42 Chain es infraestructura de cadena de bloques.
     Un registro distribuido improbabilístico.

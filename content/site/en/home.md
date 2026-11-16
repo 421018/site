@@ -5,11 +5,13 @@
 # Links to pages not yet translated point to the Spanish version.
 
 hero:
-  eyebrow: Open infrastructure protocol
+  eyebrow: Open protocol
   title: |
-    Shared infrastructure
-    anyone can verify.
-  lead: Protocol 42 lets people keep the same ledger and apply the same rules, without leaving it on any one person's system. 42 Chain is the public, free network that makes that possible.
+    Don’t Panic
+    This is infrastructure.
+  lead: |
+    42 Chain is blockchain infrastructure.
+    An improbabilistic distributed ledger.
   primary: { label: How it works, href: /protocol }
   secondary: { label: Connect to the network, href: docs:/get-started/connect }
 
