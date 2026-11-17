@@ -20,7 +20,7 @@ export const LINKS = {
   site: 'https://42chain.org',
   /** The console is not launched yet: without a URL, every link to it is left out. */
   console: undefined as string | undefined,
-  content: 'https://github.com/421018/42chain-site',
+  content: 'https://github.com/deep-thought-labs/infinite-app',
 };
 
 /** The "edit this page" link points to the content repository; the file's path in the catalog is appended. */
