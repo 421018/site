@@ -94,27 +94,27 @@ uses:
     Cualquiera puede comprobar el resultado.
   link: { label: Ver los casos de uso, href: /use-cases }
   stories:
-    - tag: Registros verificables
-      title: Un certificado que cualquiera comprueba.
-      text: Ana termina un curso. El certificado sigue en sus manos. Quien la contrata comprueba la huella en segundos, sin llamar a nadie.
+    - tag: Acuerdos
+      title: Acuerdos entre desconocidos.
+      text: Dos partes que no se conocen dejan constancia de un intercambio. Ninguna plataforma tiene que custodiar ni decidir.
       image: ../images/casos/registros.jpg
-      alt: Diploma enmarcado con un sello dorado
-      credit: "Foto: Quilia, Unsplash"
-      href: /use-cases/verifiable-records
-    - tag: Trazabilidad
-      title: El recorrido de un saco de café.
-      text: Quien cosecha, quien tuesta y quien abre el saco dejan el mismo recorrido. Bruno ve cada paso, sin reconstruir el camino.
-      image: ../images/casos/trazabilidad.jpg
-      alt: Saco de yute lleno de granos de café
-      credit: "Foto: Tatiana Fernández R, Unsplash"
-      href: /use-cases/traceability
-    - tag: Infraestructura
-      title: La historia de una farola.
-      text: La luminaria de la esquina se funde. Quien la repara y quien vive ahí ven el mismo historial, firmado y fechado, y nadie lo reescribe.
+      alt: Acuerdo entre partes
+      credit: "Imagen ilustrativa"
+      href: /use-cases/agreements-unknown
+    - tag: Memoria
+      title: Memoria colectiva.
+      text: Varias personas aportan el mismo hecho. Cualquiera puede auditar el conjunto y ver si algo cambió.
       image: ../images/casos/infraestructura.jpg
-      alt: Farola de doble brazo encendida al atardecer
-      credit: "Foto: Kim R-K, Unsplash"
-      href: /use-cases/infrastructure
+      alt: Memoria compartida
+      credit: "Imagen ilustrativa"
+      href: /use-cases/collective-memory
+    - tag: Soberanía
+      title: Identidad y reputación soberanas.
+      text: Una persona lleva sus pruebas consigo. Quien las recibe las comprueba sin preguntar a plataformas anteriores.
+      image: ../images/casos/trazabilidad.jpg
+      alt: Pruebas portables
+      credit: "Imagen ilustrativa"
+      href: /use-cases/sovereign-identity
 
 build:
   kicker: Para quien construye
