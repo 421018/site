@@ -79,27 +79,27 @@ uses:
   lead: "When several people need the same data and the same rules, the ledger does not have to sit with any one of them. Each person can keep a copy, any tampering is visible and anyone can check the result. Three examples:"
   link: { label: See the use cases (in Spanish), href: /use-cases }
   stories:
-    - tag: Verifiable records
-      title: A certificate anyone can check.
-      text: Ana finishes a course. The certificate stays in her hands. Whoever hires her checks the fingerprint in seconds, without calling anyone.
-      image: ../images/casos/registros.jpg
-      alt: Framed diploma with a gold seal
-      credit: "Photo: Quilia, Unsplash"
-      href: /use-cases/verifiable-records
-    - tag: Traceability
-      title: The path of a sack of coffee.
-      text: Whoever grows it, whoever roasts it and whoever opens the sack leave the same path. Bruno sees every step, without piecing the trail back together.
-      image: ../images/casos/trazabilidad.jpg
-      alt: Jute sack full of coffee beans
-      credit: "Photo: Tatiana Fernández R, Unsplash"
-      href: /use-cases/traceability
-    - tag: Infrastructure
-      title: The story of a street lamp.
-      text: The lamp on the corner goes out. Whoever repairs it and whoever lives there see the same history, signed and dated, and nobody rewrites it.
-      image: ../images/casos/infraestructura.jpg
-      alt: Double-armed street lamp lit at dusk
-      credit: "Photo: Kim R-K, Unsplash"
-      href: /use-cases/infrastructure
+    - tag: Agreements
+      title: Agreements between strangers.
+      text: Two parties who do not know each other leave a record of an exchange. No platform has to custody or decide.
+      image: ../images/casos/acuerdos.jpg
+      alt: Two people exchanging an object
+      credit: "Generated image"
+      href: /use-cases/agreements-unknown
+    - tag: Memory
+      title: Collective memory.
+      text: Several people contribute the same fact. Anyone can audit the set and see if something changed.
+      image: ../images/casos/memoria.jpg
+      alt: Small group sharing a device
+      credit: "Generated image"
+      href: /use-cases/collective-memory
+    - tag: Sovereignty
+      title: Sovereign identity and reputation.
+      text: A person carries their proofs with them. Whoever receives them checks without asking previous platforms.
+      image: ../images/casos/identidad.jpg
+      alt: Person with portable proofs
+      credit: "Generated image"
+      href: /use-cases/sovereign-identity
 
 build:
   kicker: For builders

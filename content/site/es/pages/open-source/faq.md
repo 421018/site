@@ -15,7 +15,7 @@ Para que varias personas compartan un registro sin que ninguna tenga que custodi
 :::
 
 :::faq[¿Puedo mantener datos reservados?]
-Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra solo su huella. [Qué va dentro y fuera de la cadena](/use-cases#off-chain)
+Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra solo su huella. [Qué va dentro y fuera de la cadena](docs:/build/applications#application)
 :::
 
 :::faq[¿Qué es el Protocolo 42?]
