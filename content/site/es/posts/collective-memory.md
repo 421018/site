@@ -2,9 +2,9 @@
 title: "Memoria colectiva"
 summary: "Varias personas o dispositivos aportan el mismo hecho. El registro permite que cualquiera audite el conjunto y detecte si algo fue alterado después."
 category: caso-de-uso
-image: ../../images/casos/infraestructura.jpg
-alt: "Grupo pequeño compartiendo información"
-credit: "Imagen ilustrativa"
+image: ../../images/casos/memoria.jpg
+alt: "Grupo pequeño compartiendo un dispositivo al atardecer"
+credit: "Imagen generada"
 ---
 
 ## El problema {#problem}

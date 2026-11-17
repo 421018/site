@@ -2,9 +2,9 @@
 title: "Acuerdos entre desconocidos"
 summary: "Dos partes que no se conocen pueden dejar constancia de un intercambio o un compromiso. Ninguna plataforma intermedia tiene que custodiar el valor ni decidir quién cumplió."
 category: caso-de-uso
-image: ../../images/casos/registros.jpg
-alt: "Dos personas intercambiando un objeto"
-credit: "Imagen ilustrativa"
+image: ../../images/casos/acuerdos.jpg
+alt: "Dos personas intercambiando un objeto en una mesa de madera"
+credit: "Imagen generada"
 ---
 
 ## El problema {#problem}

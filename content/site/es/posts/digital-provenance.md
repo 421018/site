@@ -2,9 +2,9 @@
 title: "Procedencia de lo digital"
 summary: "Un archivo, un modelo o un dato pasa por varias manos. Cada paso queda firmado. Al final se puede demostrar quién lo tocó y cuándo."
 category: caso-de-uso
-image: ../../images/casos/trazabilidad.jpg
-alt: "Cadena de manos sobre un objeto digital"
-credit: "Imagen ilustrativa"
+image: ../../images/casos/procedencia.jpg
+alt: "Manos pasando un sobre sellado sobre una mesa de madera"
+credit: "Imagen generada"
 ---
 
 ## El problema {#problem}

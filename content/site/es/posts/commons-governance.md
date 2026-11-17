@@ -2,9 +2,9 @@
 title: "Gobernanza de lo común"
 summary: "Un grupo decide el uso de un recurso o una regla. Las propuestas y los votos quedan escritos; el resultado no se puede cambiar en silencio."
 category: caso-de-uso
-image: ../../images/casos/infraestructura.jpg
-alt: "Grupo decidiendo juntos"
-credit: "Imagen ilustrativa"
+image: ../../images/casos/gobernanza.jpg
+alt: "Grupo sentado al aire libre decidiendo juntos"
+credit: "Imagen generada"
 ---
 
 ## El problema {#problem}

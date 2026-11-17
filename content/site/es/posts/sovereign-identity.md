@@ -2,9 +2,9 @@
 title: "Identidad y reputación soberanas"
 summary: "Una persona acumula pruebas de lo que ha hecho o de quién es. Puede presentarlas en cualquier lugar y quien las recibe las comprueba sin preguntar a plataformas anteriores."
 category: caso-de-uso
-image: ../../images/casos/registros.jpg
-alt: "Persona con pruebas portables"
-credit: "Imagen ilustrativa"
+image: ../../images/casos/identidad.jpg
+alt: "Persona con pruebas portables en un entorno natural"
+credit: "Imagen generada"
 ---
 
 ## El problema {#problem}
