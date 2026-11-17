@@ -43,7 +43,11 @@ Si una sola persona genera, guarda y consulta los datos, y nadie más necesita c
 
 ## Casos {#cases}
 
-Cada caso muestra el problema, cómo se resuelve con el protocolo y qué información va en la cadena. Los ejemplos son ilustrativos.
+Estas son solo algunas de las piezas.
+
+Con registros compartidos como estos, personas y comunidades pueden empezar a construir su propia infraestructura: acuerdos, memoria, gobernanza y soberanía que no dependen de una sola plataforma.
+
+La invitación está abierta.
 
 :::widget{name="case-gallery"}
 :::
