@@ -134,10 +134,10 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .engine-panel { position: relative; display: flex; align-items: center; justify-content: center; min-height: 360px; background-color: var(--night-2); }
 .engine-panel .ep-orbits { width: min(360px, 90%); height: auto; }
 .engine-panel .ep-icon { position: absolute; color: var(--acc); }
-/* Photos: monochrome, tinted with the colour of what they illustrate. */
+/* Photos: full color, no monochrome tint. */
 .duo { position: relative; overflow: hidden; background: var(--night-2); }
-.duo img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.15) brightness(.92); }
-.duo::after { content: ""; position: absolute; inset: 0; background: var(--tint, var(--acc)); mix-blend-mode: color; opacity: .55; pointer-events: none; }
+.duo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.duo::after { display: none; }
 .pill { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; border: 1px solid currentColor; border-radius: 999px; padding: 5px 10px; }
 @supports (animation-timeline: view()) {
   .rv { animation: rv linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; }
