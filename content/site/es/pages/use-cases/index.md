@@ -33,8 +33,7 @@ Una flota que se coordina sola.
 Un acceso que no tiene portero.  
 Una prueba de trabajo que viaja con quien la hizo.
 
-Lo improbable es que nadie tenga que pedir permiso para empezar.  
-El protocolo existe para que eso sea posible.
+Nadie tiene que esperar permiso para probar otra.
 
 :::aside
 [Cómo funciona el protocolo →](/protocol)
