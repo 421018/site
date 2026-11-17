@@ -4,7 +4,7 @@
  * before going live.
  */
 export const SITE = {
-  url: 'https://docs.example.org', // [docs domain]
+  url: 'https://docs.42chain.org',
   /** Language at the site root; the others are served under /<lang>/. */
   defaultLang: 'en',
   /** Language the content is written in first; pages not yet translated show it, with a notice. */
@@ -17,10 +17,10 @@ export const SITE = {
 };
 
 export const LINKS = {
-  site: 'https://example.org', // [official domain]
+  site: 'https://42chain.org',
   /** The console is not launched yet: without a URL, every link to it is left out. */
-  console: undefined as string | undefined, // [console domain] when it launches
-  content: 'https://github.com/[organization]/42chain-content', // [public content repository]
+  console: undefined as string | undefined,
+  content: 'https://github.com/421018/42chain-site',
 };
 
 /** The "edit this page" link points to the content repository; the file's path in the catalog is appended. */
