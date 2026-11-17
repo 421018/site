@@ -82,7 +82,7 @@ Un nodo se convierte en validador en tres pasos:
 - **3. Entrar al conjunto activo.** Solo los validadores con más poder de voto forman el conjunto activo. Un validador recién registrado puede necesitar más unidades delegadas antes de entrar.
 
 :::aside
-[Qué es el conjunto activo →](site:/protocol/consensus#active-set)
+[Qué es el conjunto activo →](/protocol/consensus#active-set)
 :::
 
 ## Responsabilidades de un validador {#responsibilities}
@@ -96,7 +96,7 @@ Un validador del conjunto activo tiene tres responsabilidades:
 Las penalizaciones también afectan a las unidades delegadas en el validador.
 
 :::aside
-[Penalizaciones →](site:/protocol/consensus#penalties)
+[Penalizaciones →](/protocol/consensus#penalties)
 :::
 
 ## Cómo se aplican las actualizaciones {#upgrades}
@@ -108,5 +108,5 @@ Para quien opera un nodo, el proceso tiene tres momentos. Antes de la altura, in
 Un nodo que no se actualiza a tiempo deja de seguir a la red: no puede verificar los bloques que se producen con las reglas nuevas.
 
 :::aside
-[Cómo se aprueba una actualización →](site:/protocol/governance#lifecycle)
+[Cómo se aprueba una actualización →](/protocol/governance#lifecycle)
 :::

@@ -20,7 +20,7 @@ Not everything has to live on the chain. What must be verifiable and shared goes
 For example, in a certificate register, the contract stores the fingerprint of each certificate and who issued it. The full document stays in the issuer's systems. Anyone can check, with the fingerprint, that a document is authentic.
 
 :::aside
-[Use cases (in Spanish) →](site:/use-cases) · [How contracts run (in Spanish) →](site:/protocol/execution)
+[Use cases (in Spanish) →](site:/use-cases) · [How contracts run →](/protocol/execution)
 :::
 
 ## The EVM, in practice {#evm}

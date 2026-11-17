@@ -3,7 +3,7 @@ title: "Build"
 summary: "Contracts, applications and the network's own functions, with the standard EVM tools."
 section:
   label: Build
-  weight: 2
+  weight: 3
   accent: "#7C9CFF"
   ink: "#3552C8"
   sequential: true

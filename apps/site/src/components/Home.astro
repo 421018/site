@@ -22,6 +22,29 @@ const { title, description, hero, figures, engine, build, uses, people, start, n
 
 /** A line break in a YAML title becomes <br>. */
 const lines = (s: string) => s.trim().split('\n');
+/** Blank lines separate paragraphs. A single line break stays inside the paragraph. */
+const paragraphs = (text: string) =>
+  text.split(/\n\s*\n/).map((p) => p.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
+type LeadPart = { kind: 'text'; paragraphs: string[] } | { kind: 'lore'; label: string; paragraphs: string[] };
+/**
+ * Home text is YAML, not Markdown, so a :::lore block inside a lead would
+ * otherwise show as plain text. Pull those asides out and leave the rest as paragraphs.
+ */
+const leadParts = (source: string): LeadPart[] => {
+  const parts: LeadPart[] = [];
+  const re = /:::lore\[([^\]]+)\]\s*\n([\s\S]*?)\n[ \t]*:::/g;
+  let last = 0;
+  for (const match of source.matchAll(re)) {
+    const before = paragraphs(source.slice(last, match.index));
+    if (before.length) parts.push({ kind: 'text', paragraphs: before });
+    const quote = paragraphs(match[2]);
+    parts.push({ kind: 'lore', label: match[1].trim(), paragraphs: quote.length ? quote : [match[2].trim()] });
+    last = (match.index ?? 0) + match[0].length;
+  }
+  const rest = paragraphs(source.slice(last));
+  if (rest.length) parts.push({ kind: 'text', paragraphs: rest });
+  return parts;
+};
 /** Kickers are numbered in page order: 01 — …, 02 — … */
 const kicker = (n: number, text: string) => `${String(n).padStart(2, '0')} — ${text}`;
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -46,7 +69,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <Header alternates={homeAlternates()} />
 <div class="copy">
 <p class="lbl eyebrow fade" style="animation-delay: .1s"><span class="dot"></span>{hero.eyebrow}</p>
-<h1 class="fade" style="animation-delay: .2s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h1>
+<h1 class="fade" style="animation-delay: .2s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{i === 0 ? <span class="panic">{l}</span> : l}</>)}</h1>
 <p class="hero-lead fade" style="animation-delay: .35s">{hero.lead}</p>
 <div class="acts fade" style="animation-delay: .5s">
 <a class="btn btn-p" href={resolveHref(hero.primary.href, lang)}>{hero.primary.label} <Fragment set:html={arrow} /></a>
@@ -66,7 +89,20 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <div class="wrap">
 <p class="k">{kicker(1, engine.kicker)}</p>
 <h2 class="h2">{lines(engine.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
-{engine.lead && <p class="lead">{engine.lead}</p>}
+{engine.lead && (
+  <div class="lead-flow">
+    {leadParts(engine.lead).map((part) =>
+      part.kind === 'lore' ? (
+        <aside class="lore">
+          {part.paragraphs.map((p) => <p>{p}</p>)}
+          <span class="ll">{part.label}</span>
+        </aside>
+      ) : (
+        part.paragraphs.map((p) => <p class="lead">{p}</p>)
+      ),
+    )}
+  </div>
+)}
 <div class="eng" data-eng>
 <div class="eng-tabs" role="tablist" aria-label={engine.kicker}>
 {engine.pieces.map((p, i) => <button type="button" role="tab" id={`eng-t${i}`} aria-controls={`eng-p${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{p.label}</button>)}
@@ -172,6 +208,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 <div class="closing stars">
 <svg class="horizon" aria-hidden="true" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0 160 Q600 20 1200 160 Z" fill="#0E1620"></path><path d="M0 160 Q600 20 1200 160" fill="none" stroke="rgba(91,240,200,.35)" stroke-width="1.5"></path></svg>
 <h2 class="h2">{closing.title}</h2>
+{closing.lead && <p class="lead">{closing.lead}</p>}
 <div class="acts">
 <a class="btn btn-p" href={resolveHref(closing.primary.href, lang)}>{closing.primary.label} <Fragment set:html={arrow} /></a>
 <a class="btn btn-g" href={resolveHref(closing.secondary.href, lang)}>{closing.secondary.label}</a>
@@ -188,6 +225,9 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .k.star,.more.star{color:var(--star)}
 .h2{margin:0;font-size:clamp(30px,7.4vw,54px);font-weight:500;letter-spacing:-0.035em;line-height:1.04}
 .lead{margin:20px 0 0;max-width:640px;font-size:17.5px;line-height:1.65;color:var(--fg-3)}
+.lead-flow{max-width:720px}
+.lead-flow .lead{max-width:none}
+.lead-flow .lore{margin:22px 0 6px;background:color-mix(in srgb, var(--acc) 8%, var(--hull));color:var(--fg)}
 .wrap{max-width:1280px;margin:0 auto;padding:120px clamp(16px,4vw,40px) 0;box-sizing:border-box}
 .more{display:inline-flex;align-items:center;min-height:44px;margin-top:24px;color:var(--acc);text-decoration:none;font-size:15px}
 .more:hover{text-decoration:underline;text-underline-offset:4px}
@@ -203,6 +243,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .hero .copy{flex:1;display:flex;flex-direction:column;justify-content:center;padding:72px 0 24px}
 .eyebrow{margin:0 0 28px;display:inline-flex;align-items:center;gap:12px;color:var(--fg-3);letter-spacing:.14em}
 .hero h1{margin:0;max-width:760px;font-size:clamp(34px,9.6vw,88px);hyphens:manual;font-weight:500;line-height:.98;letter-spacing:-0.045em}
+.hero h1 .panic{color:var(--acc)}
 .hero-lead{margin:30px 0 0;max-width:580px;font-size:clamp(17px,1.4vw,19px);line-height:1.6;color:var(--fg-2)}
 .acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
 @media (max-width:900px){
@@ -284,6 +325,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .closing{position:relative;overflow:hidden;border-radius:28px;background-color:var(--night-2);border:1px solid rgba(255,255,255,.08);padding:88px 24px 120px;text-align:center}
 .closing .horizon{position:absolute;left:0;right:0;bottom:0;width:100%;height:140px}
 .closing .h2{position:relative;max-width:760px;margin:0 auto}
+.closing .lead{position:relative;max-width:640px;margin:20px auto 0;color:var(--fg-2)}
 .closing .acts{position:relative;justify-content:center}
 
 @media (max-width:900px){

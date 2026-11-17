@@ -32,13 +32,13 @@ Algunas fuentes las mantienen los contribuidores del protocolo; otras, como los 
 | Qué se comprueba | Dónde |
 |---|---|
 | Las propuestas, sus votos y sus resultados | [Explorador](docs:/get-started/connect#explorers) |
-| Cómo funciona la gobernanza | [Gobernanza](/protocol/governance) |
+| Cómo funciona la gobernanza | [Gobernanza](docs:/protocol/governance) |
 
 ## Seguridad {#security}
 
 | Qué se comprueba | Dónde |
 |---|---|
-| Cómo está diseñada la seguridad del protocolo y cuáles son sus límites | [Seguridad](/protocol/security) |
+| Cómo está diseñada la seguridad del protocolo y cuáles son sus límites | [Seguridad](docs:/protocol/security) |
 
 ## Canales del proyecto {#channels}
 

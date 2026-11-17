@@ -39,7 +39,7 @@ El protocolo fija tres reglas para la delegación:
 Cada validador fija una **comisión**: la parte de la compensación correspondiente a las unidades delegadas que retiene por operar su infraestructura.
 
 :::aside
-[Parámetros de staking y delegación ↗](/docs)
+[Operar un nodo →](/operate/nodes)
 :::
 
 ## El conjunto activo {#active-set}
@@ -96,7 +96,7 @@ Cuando un validador comete una de estas faltas, el protocolo le retira una parte
 La proporción que se retira y el tiempo que el validador queda fuera dependen de la falta. En la red principal, la doble firma retira el 5 % del staking del validador. La inactividad retira el 0,01 % y deja al validador fuera del conjunto activo al menos 10 minutos; se considera inactivo un validador que firma menos del 5 % de los últimos 10 000 bloques.
 
 :::aside
-[Reglas y parámetros de penalización ↗](/docs)
+[Responsabilidades de un validador →](/operate/nodes#responsibilities)
 :::
 
 ## Por qué el protocolo lo hace así {#why}

@@ -1,18 +1,18 @@
 ---
 title: "Contribuir"
-summary: "El protocolo se construye en abierto, y cualquiera puede sumarse: con código, revisando cambios, mejorando la documentación o respondiendo preguntas."
+summary: "El protocolo se construye en abierto. Puedes sumarte con código, revisando cambios, mejorando la documentación o respondiendo preguntas."
 weight: 10
 ---
 
 ## Cómo se desarrolla el protocolo {#development}
 
-El software del protocolo, la documentación, las herramientas de la Consola y este sitio son de código abierto. Su desarrollo sigue cinco prácticas:
+El software, la documentación, las herramientas y este sitio son de código abierto. El desarrollo sigue unas prácticas sencillas:
 
-- **En abierto.** Las propuestas de código, las revisiones y las discusiones técnicas ocurren en repositorios públicos.
-- **Con revisión.** Ningún cambio entra al código sin que otra persona lo revise.
-- **Con pruebas.** Cada versión nueva funciona primero en la red de pruebas, en condiciones reales, antes de proponerse para la red principal.
-- **Al día con su base tecnológica.** El protocolo incorpora las versiones nuevas de la tecnología del ecosistema Cosmos sobre la que está construido.
-- **Documentado.** Cada versión publica sus notas de cambios.
+- Las propuestas y las discusiones ocurren en repositorios públicos.
+- Ningún cambio entra sin que otra persona lo revise.
+- Cada versión nueva se prueba primero en la red de pruebas.
+- El protocolo se mantiene al día con la tecnología sobre la que está construido.
+- Cada versión publica sus notas de cambios.
 
 :::aside
 [Dónde comprobarlo →](/open-source/verify)
@@ -20,44 +20,44 @@ El software del protocolo, la documentación, las herramientas de la Consola y e
 
 ## Formas de contribuir {#ways}
 
-Cualquiera puede contribuir, sin pedir permiso. Hay cinco formas habituales de hacerlo:
+Puedes sumarte sin pedir permiso. Estas son las formas habituales:
 
-- **Reportar un problema.** Quien encuentra un error lo describe en el repositorio público.
-- **Proponer un cambio.** Quien sabe cómo corregir o mejorar algo envía su propuesta de código al repositorio.
-- **Revisar cambios.** Cualquiera puede revisar y comentar las propuestas de otras personas.
-- **Responder preguntas técnicas.** Ayudar a otras personas en el espacio de discusiones del repositorio.
+- **Reportar un problema.** Si encuentras un error, descríbelo en el repositorio público.
+- **Proponer un cambio.** Si sabes cómo corregir o mejorar algo, envía tu propuesta.
+- **Revisar cambios.** Puedes leer y comentar las propuestas de otras personas.
+- **Responder preguntas.** Ayuda a otros en el espacio de discusiones del repositorio.
 
-Las vulnerabilidades no se reportan en público, sino en privado. [Reportar una vulnerabilidad](/open-source/security#report)
+Las vulnerabilidades no se reportan en público. [Reportar una vulnerabilidad](/open-source/security#report)
 
 :::status[Pendiente]
 Enlaces a los repositorios públicos.
 :::
 
-## Cómo llega un cambio a la red {#changes}
+## Cómo llega un cambio a la cadena {#changes}
 
-Una propuesta de código no cambia la red por sí sola. El recorrido es este:
+Una propuesta de código no cambia la cadena por sí sola. El recorrido es este:
 
-- **1. Revisión.** Otras personas revisan la propuesta en el repositorio.
-- **2. Versión nueva.** Si se acepta, entra en una versión nueva del software.
-- **3. Red de pruebas.** La versión se prueba en la red de pruebas.
-- **4. Gobernanza.** La versión se presenta como propuesta de gobernanza en la red principal.
-- **5. Actualización.** Si se aprueba, todos los nodos cambian de versión en la misma altura de actualización.
+1. Otras personas revisan la propuesta en el repositorio.
+2. Si se acepta, entra en una versión nueva del software.
+3. La versión se prueba en la red de pruebas.
+4. Se presenta como propuesta de gobernanza en la red principal.
+5. Si se aprueba, los nodos cambian de versión juntos.
 
 :::aside
-[Cómo se aplica un cambio →](/protocol/governance#lifecycle)
+[Cómo se aplica un cambio →](docs:/protocol/governance#lifecycle)
 :::
 
 ## Preguntas técnicas {#questions}
 
-Las preguntas técnicas sobre el protocolo, la red, una integración o este sitio se hacen en el espacio de discusiones del repositorio público. Está abierto a cualquiera y no tiene costo.
+Las preguntas sobre el protocolo, la red, una integración o este sitio se hacen en el espacio de discusiones del repositorio público. Está abierto a cualquiera.
 
-El espacio es solo para temas técnicos. Ahí no se ofrecen ni se contratan servicios.
+El espacio es solo para temas técnicos. No se ofrecen ni se contratan servicios ahí.
 
-Antes de preguntar, conviene revisar las [preguntas frecuentes](/open-source/faq) y la [documentación](/docs).
+Antes de preguntar, revisa las [preguntas frecuentes](/open-source/faq) y la [documentación](/docs).
 
 ## Licencias de las contribuciones {#licenses}
 
-Las contribuciones de código al protocolo se publican bajo la licencia Apache 2.0, y las de textos y datos de este sitio, bajo CC BY 4.0. Quien contribuye solo debe aportar trabajo propio o que tenga derecho a publicar bajo esas licencias.
+Las contribuciones de código se publican bajo Apache 2.0. Los textos y datos de este sitio, bajo CC BY 4.0. Solo aporta trabajo propio o que tengas derecho a publicar bajo esas licencias.
 
 :::aside
 [Licencias →](/legal#licenses)

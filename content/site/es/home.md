@@ -4,11 +4,13 @@
 # Blocks are numbered automatically (01, 02…) in the order they appear on the page.
 
 hero:
-  eyebrow: Protocolo abierto de infraestructura
+  eyebrow: Protocolo abierto
   title: |
-    Infraestructura compartida
-    que cualquiera puede verificar.
-  lead: El Protocolo 42 permite que varias organizaciones mantengan un mismo registro y apliquen las mismas reglas, sin depender de los sistemas de una sola de ellas. 42 Chain es la red pública que lo ejecuta.
+    Don’t Panic
+    Esto es infraestructura.
+  lead: |
+    42 Chain es infraestructura de cadena de bloques.
+    Un registro distribuido improbabilístico.
   primary: { label: Cómo funciona, href: /protocol }
   secondary: { label: Conectarse a la red, href: docs:/get-started/connect }
 
@@ -24,82 +26,95 @@ figures:
 # fees, interop, governance, security.
 engine:
   kicker: El motor
-  title: Cinco piezas. Un solo registro.
-  lead: El Infinite Improbability Drive es el motor completo de la red. Elige una pieza para ver qué hace.
+  title: Lo que sostiene el acuerdo.
+  lead: |
+    :::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
+    En el restaurante del fin del universo las cuentas nunca cuadran de la forma en que uno espera.
+
+    Los números se comportan de manera improbable.
+
+    Y sin embargo, al final, todo encaja con una precisión que parece imposible.
+    :::
+
+    Un registro distribuido improbabilístico funciona igual: muchas copias independientes llegan al mismo resultado, y cualquiera puede comprobar que las cuentas cierran.
   pieces:
     - icon: consensus
       label: Consenso
-      title: Acuerda cada bloque.
-      text: Los validadores proponen y firman bloques. Con más de dos tercios del poder de voto, el bloque queda confirmado y es definitivo.
+      title: Acuerda cada página.
+      text: Los participantes respaldan la red y proponen la siguiente página. Cuando hay acuerdo suficiente, esa página se cierra y queda fija. La siguiente se construye encima de ella.
       points:
-        - "Finalidad en un bloque."
-        - "Tolera fallas de menos de un tercio del poder de voto."
-        - "Si no hay mayoría, la red se detiene antes que arriesgar."
-      link: { label: Leer el capítulo, href: /protocol/consensus }
+        - "Se cierra cuando hay acuerdo suficiente."
+        - "Cada página queda unida a la anterior."
+        - "El acuerdo queda registrado y se puede comprobar."
+      link: { label: Cómo se acuerda una página, href: docs:/protocol/consensus }
     - icon: execution
       label: Ejecución
-      title: Ejecuta los contratos.
-      text: Los contratos se ejecutan en la máquina virtual de Ethereum (EVM). Todos los nodos llegan exactamente al mismo resultado.
+      title: Las mismas reglas en todas partes.
+      text: Las reglas están escritas en el propio registro. Todos los que guardan una copia las aplican igual.
       points:
-        - "Solidity y Vyper, sin cambios en el código."
-        - "Hardhat, Foundry, Viem y las billeteras de la EVM."
-        - "Funciones propias de la red disponibles desde los contratos."
-      link: { label: Leer el capítulo, href: /protocol/execution }
+        - "Contratos en la máquina virtual de Ethereum."
+        - "Herramientas que ya conoces."
+        - "El mismo resultado en todas las copias."
+      link: { label: Cómo se aplican las reglas, href: docs:/protocol/execution }
     - icon: fees
       label: Tarifas
-      title: Mide y paga el trabajo.
-      text: "Cada transacción paga una tarifa proporcional al trabajo que exige, en la unidad nativa: Improbability."
+      title: El costo se ve antes.
+      text: Escribir en el registro tiene un costo proporcional al trabajo que pide. Se paga en Improbability y se conoce antes de firmar.
       points:
-        - "Reglas públicas: el costo se conoce antes de enviar."
-        - "La organización puede pagar por quien firma."
-        - "Unidades en drops y cups."
-      link: { label: Leer el capítulo, href: /protocol/fees }
+        - "El número aparece antes de confirmar."
+        - "Otra persona puede pagar por ti."
+        - "La unidad se llama Improbability (42)."
+      link: { label: Cómo se paga el trabajo, href: docs:/protocol/fees }
     - icon: interop
       label: Interoperabilidad
-      title: Conecta con otras redes.
-      text: Con IBC, cada red comprueba por sí misma, con pruebas criptográficas, lo que ocurrió en la otra. Nadie custodia las unidades en el traslado.
+      title: Otras redes lo comprueban solas.
+      text: Cuando algo tiene que pasar a otra red, esa red revisa la prueba por su cuenta. No hace falta un intermediario que guarde los fondos o los datos en el camino.
       points:
-        - "IBC, versiones 1 y 2."
-        - "Sin intermediarios de confianza."
-        - "Datos y unidades entre redes."
-      link: { label: Leer el capítulo, href: /protocol/interoperability }
+        - "Conexión directa entre redes."
+        - "Sin intermediarios que custodien."
+        - "Datos y unidades pueden moverse."
+      link: { label: Cómo se conectan las redes, href: docs:/protocol/interoperability }
     - icon: governance
       label: Gobernanza
-      title: Decide los cambios.
-      text: Los cambios se proponen y se votan en la cadena. Cada voto pesa según las unidades en staking.
+      title: Los cambios se deciden a la vista.
+      text: Las reglas también cambian. Se proponen y se votan en el propio registro. Queda escrito quién votó y qué se aprobó.
       points:
-        - "Propuestas registradas en la cadena."
-        - "Quórum, umbral y veto públicos."
+        - "Propuestas públicas."
+        - "El voto pesa según lo que se respalda."
         - "La red aplica lo aprobado."
-      link: { label: Leer el capítulo, href: /protocol/governance }
+      link: { label: Cómo se deciden los cambios, href: docs:/protocol/governance }
 
 uses:
   kicker: Casos de uso
   title: Para qué sirve, en la práctica.
-  lead: "Cuando varias partes necesitan los mismos datos y las mismas reglas, un registro distribuido evita que una sola de ellas tenga que custodiarlos. Cada parte opera su copia, cualquier alteración queda a la vista y cualquiera puede comprobar el resultado. Tres ejemplos:"
+  lead: |
+    Cuando varias personas necesitan saber lo mismo y no quieren dejar el registro en manos de una sola, el protocolo les permite compartirlo.
+
+    Cualquiera puede guardar una copia.
+    Cualquiera puede comprobar el resultado.
   link: { label: Ver los casos de uso, href: /use-cases }
   stories:
-    - tag: Registros verificables
-      title: Un título que se verifica solo.
-      text: Una universidad registra la huella de cada título que emite. Cualquier empleador comprueba en segundos que es auténtico, sin llamar a nadie.
+    - tag: Acuerdos
+      title: Acuerdos entre desconocidos.
+      text: Dos partes que no se conocen dejan constancia de un intercambio. Ninguna plataforma tiene que custodiar ni decidir.
       image: ../images/casos/registros.jpg
-      alt: Diploma enmarcado con un sello dorado
-      credit: "Foto: Quilia, Unsplash"
-      href: /use-cases/verifiable-records
-    - tag: Trazabilidad
-      title: Un origen que varias partes comparten.
-      text: Productores, transportistas y compradores registran cada paso de un lote. Ninguno depende de que otro guarde bien los datos.
-      image: ../images/casos/trazabilidad.jpg
-      alt: Saco de yute lleno de granos de café
-      credit: "Foto: Tatiana Fernández R, Unsplash"
-      href: /use-cases/traceability
-    - tag: Infraestructura
-      title: Un historial de mantenimiento que nadie reescribe.
-      text: Un municipio y sus contratistas registran cada intervención en el alumbrado o en la red de agua. Todas las partes ven el mismo historial, firmado y fechado.
+      alt: Acuerdo entre partes
+      credit: "Imagen ilustrativa"
+      href: /use-cases/agreements-unknown
+    - tag: Memoria
+      title: Memoria colectiva.
+      text: Varias personas aportan el mismo hecho. Cualquiera puede auditar el conjunto y ver si algo cambió.
       image: ../images/casos/infraestructura.jpg
-      alt: Farola de doble brazo encendida al atardecer
-      credit: "Foto: Kim R-K, Unsplash"
-      href: /use-cases/infrastructure
+      alt: Memoria compartida
+      credit: "Imagen ilustrativa"
+      href: /use-cases/collective-memory
+    - tag: Soberanía
+      title: Identidad y reputación soberanas.
+      text: Una persona lleva sus pruebas consigo. Quien las recibe las comprueba sin preguntar a plataformas anteriores.
+      image: ../images/casos/trazabilidad.jpg
+      alt: Pruebas portables
+      credit: "Imagen ilustrativa"
+      href: /use-cases/sovereign-identity
 
 build:
   kicker: Para quien construye
@@ -125,13 +140,13 @@ build:
 people:
   kicker: Cómo se organiza
   title: Cada función, en manos distintas.
-  lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados, y cada parte se puede comprobar: el código en un repositorio público, la operación y las decisiones en la propia cadena."
+  lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados. Cada parte se puede comprobar."
   link: { label: Cómo se organiza, href: "/open-source#circles" }
   rows:
     - { who: Contribuidores del código, what: "Proponen y revisan cambios en un repositorio público." }
-    - { who: Validadores y operadores de nodos, what: "Verifican cada bloque y dan acceso a la red." }
-    - { who: Gobernanza en la cadena, what: "Los validadores y quienes les delegan votan qué cambia y cuándo." }
-    - { who: Quienes construyen, what: "Ofrecen aplicaciones y servicios sobre la red, y cada uno responde por lo suyo." }
+    - { who: Validadores y operadores de nodos, what: "Verifican cada página y dan acceso a la red." }
+    - { who: Gobernanza en la cadena, what: "Quienes respaldan la red votan qué cambia y cuándo." }
+    - { who: Quienes construyen, what: "Ofrecen aplicaciones y servicios sobre la red." }
 
 start:
   kicker: Por dónde empezar
@@ -141,17 +156,18 @@ start:
     - { icon: build, label: Construir una aplicación, href: docs:/build/applications, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
     - { icon: node, label: Operar un nodo, href: docs:/operate/nodes, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
     - { icon: integrate, label: Integrar sistemas, href: docs:/integrate, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
-    - { icon: governance, label: Entender la gobernanza, href: /protocol/governance, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
+    - { icon: governance, label: Entender la gobernanza, href: docs:/protocol/governance, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
     - { icon: docs, label: Leer la documentación, href: /docs, text: "Guías y referencia técnica, desde conectar una billetera hasta operar un validador." }
 
 name:
   kicker: El nombre
   title: ¿Por qué 42?
-  lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta, pero el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas, y lo que se construye con ellas lo deciden quienes lo usan."
+  lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta; el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas y verificables. Lo que se construye con ellas lo deciden quienes lo usan."
   link: { label: Por qué 42, href: "/open-source#why-42" }
 
 closing:
   title: Infraestructura compartida, reglas a la vista.
-  primary: { label: Empieza a construir, href: docs:/build/applications }
+  lead: Un registro que no pertenece a nadie. Reglas que valen igual para todos. Lo improbable, hecho posible.
+  primary: { label: Cómo funciona el protocolo, href: /protocol }
   secondary: { label: Leer la documentación, href: "docs:/" }
 ---

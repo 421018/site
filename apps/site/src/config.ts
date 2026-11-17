@@ -5,7 +5,7 @@
  * (see astro.config.mjs).
  */
 export const SITE = {
-  url: 'https://example.org', // [official domain]
+  url: 'https://42chain.org',
   /** Language at the site root; the others are served under /<lang>/. */
   defaultLang: 'en',
   /** Language the content is written in first; pages not yet translated show it, with a notice. */
@@ -18,11 +18,11 @@ export const SITE = {
 };
 
 export const LINKS = {
-  docs: 'https://example.org/docs', // [docs domain]
+  docs: 'https://docs.42chain.org',
   /** The console is not launched yet: without a URL, every link to it is left out. */
-  console: undefined as string | undefined, // [console domain] when it launches
-  repo: 'https://github.com/[organization]/42chain-site', // [site repository]
-  content: 'https://github.com/[organization]/42chain-content', // [public content repository]
+  console: undefined as string | undefined,
+  repo: 'https://github.com/deep-thought-labs/infinite-app',
+  content: 'https://github.com/deep-thought-labs/infinite-app',
 };
 
 /** The "edit this page" link points to the content repository; the file's path in the catalog is appended. */

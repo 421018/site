@@ -31,7 +31,7 @@ En una red abierta, cualquiera puede crear tantas cuentas como quiera. Si cada c
 Por eso, en la gobernanza, el voto pesa según las unidades que el participante tiene en staking. Es la misma lógica que protege el consenso: el peso depende de algo que cuesta conseguir y que se pone en juego. Además, quienes protegen la red con sus unidades son quienes viven las consecuencias de cada cambio.
 
 :::aside
-[Qué es el staking →](/protocol#validation)
+[Qué es el staking →](/protocol/consensus#weight)
 :::
 
 ## Quién vota {#voters}
@@ -67,7 +67,7 @@ Un cambio de parámetro se aplica en cuanto termina la votación: desde ese bloq
 Una actualización del software necesita un paso más. La propuesta fija un bloque futuro, llamado **altura de actualización**. Al llegar a ese bloque, la red se detiene un momento, los validadores cambian a la versión nueva y la red continúa con las reglas nuevas. Así, todos los nodos cambian de versión en el mismo punto de la cadena.
 
 :::aside
-[Qué hace un validador en cada actualización →](docs:/operate/nodes#responsibilities)
+[Qué hace un validador en cada actualización →](/operate/nodes#responsibilities)
 :::
 
 ### El voto de quien delega
@@ -104,7 +104,7 @@ Los votos del ejemplo son ilustrativos; las reglas son las de la red principal.
 :::
 
 :::aside
-[Parámetros de gobernanza y cómo votar ↗](/docs)
+[Unir un nodo que tendrá que votar →](/operate/nodes)
 :::
 
 ## Por qué el protocolo lo hace así {#why}

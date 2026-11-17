@@ -6,7 +6,7 @@
 language: Español # name of this language in itself, shown in the language switcher
 name: 42 Chain
 tagline: Protocolo abierto de infraestructura # tab title of the home page: "<name> — <tagline>"
-description: "42 Chain ejecuta el Protocolo 42, un protocolo de código abierto para operar infraestructura sobre registros distribuidos: datos compartidos, reglas verificables y servicios entre organizaciones." # default meta description
+description: "42 Chain ejecuta el Protocolo 42, un protocolo de código abierto para construir infraestructura sobre un registro compartido: datos que varias personas pueden comprobar y reglas que valen igual para todas." # default meta description
 
 header:
   homeLink: 42 Chain, inicio # accessible name of the logo link

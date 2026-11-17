@@ -12,10 +12,10 @@ common:
 hashChain:
   meta: Fingerprint chain · SHA-256
   blocks:
-    - Diploma 2031-0457 issued by the university
-    - Batch 88 delivered to the export warehouse
-    - Street light L-120 repaired by the contractor
-    - Inspection of street light L-120 approved
+    - Ana mixed the 6 a.m. dough
+    - Ana baked the batch
+    - The bread left for Bruno
+    - Bruno received the batch
   block: Block {n}
   data: Data
   prevHash: Previous block's fingerprint

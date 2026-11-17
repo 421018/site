@@ -41,7 +41,7 @@ Usar la red tiene riesgos que conviene entender antes de participar:
 - **Normativa.** Cada persona y organización es responsable de cumplir las leyes que le apliquen al usar la red y sus herramientas.
 
 :::aside
-[Cómo protegerte →](/protocol/security#protect-yourself)
+[Cómo protegerte →](docs:/protocol/security#protect-yourself)
 :::
 
 ## Privacidad {#privacy}
@@ -55,7 +55,7 @@ Este sitio está hecho para que pase por él la menor cantidad de datos posible:
 
 La documentación y la Consola indican sus propias condiciones de privacidad.
 
-Todo lo que se registra en la red, como direcciones, transacciones o contratos, es público y permanente, y no puede borrarse. Por eso no conviene registrar datos personales en la cadena. [Qué va dentro y fuera de la cadena](/use-cases#off-chain)
+Todo lo que se registra en la red, como direcciones, transacciones o contratos, es público y permanente, y no puede borrarse. Por eso no conviene registrar datos personales en la cadena. [Qué va dentro y fuera de la cadena](docs:/build/applications#application)
 
 ## Licencias {#licenses}
 

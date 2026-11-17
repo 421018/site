@@ -13,10 +13,11 @@ section:
 
 ## Por dónde empezar {#start}
 
-Esta documentación acompaña al sitio de 42 Chain, que explica qué es el protocolo y para qué sirve. Aquí está lo práctico: cómo conectarse, cómo construir, cómo integrar sistemas y cómo operar un nodo.
+Aquí está cómo funciona el protocolo y lo necesario para usarlo: conectarse, construir, integrar un sistema y operar un nodo.
 
 Si es la primera vez, sigue este orden:
 
+- **[El protocolo](/protocol).** Cómo se acuerda cada bloque, cómo se ejecutan los contratos y cómo cambian las reglas.
 - **[Conceptos clave](/get-started/concepts).** Cuentas, direcciones, unidades y finalidad: lo mínimo para entender el resto.
 - **[Redes y parámetros](/get-started/connect).** Los datos de la red principal y de la red de pruebas, y dónde encontrar un punto de acceso.
 

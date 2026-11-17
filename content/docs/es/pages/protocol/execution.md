@@ -32,7 +32,7 @@ Cada cuenta se identifica con una **dirección**. En el protocolo, una misma cue
 Los dos formatos corresponden a la misma cuenta y al mismo saldo. Una billetera puede mostrar cualquiera de los dos.
 
 :::aside
-[Cuentas y direcciones ↗](/docs)
+[Cuentas y direcciones →](/get-started/concepts#addresses)
 :::
 
 ## El recorrido de una transacción {#transactions}
@@ -95,7 +95,7 @@ Además de la EVM, el protocolo tiene funciones propias: el staking, la gobernan
 Los contratos pueden usar estas funciones directamente, como si llamaran a otro contrato. Cada función propia tiene una dirección fija y conocida. Por ejemplo, un contrato puede delegar unidades en un validador, votar una propuesta o enviar unidades a otra red, sin depender de un servicio externo.
 
 :::aside
-[Funciones propias de la red y sus direcciones ↗](/docs)
+[Funciones propias de la red y sus direcciones →](/build/precompiles)
 :::
 
 ## Por qué el protocolo lo hace así {#why}
