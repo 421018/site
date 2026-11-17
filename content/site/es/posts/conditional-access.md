@@ -2,9 +2,9 @@
 title: "Acceso condicional compartido"
 summary: "Varias partes definen las condiciones de acceso a algo. La verificación se hace directamente contra el registro, sin un portero central."
 category: caso-de-uso
-image: ../../images/casos/gobernanza.jpg
-alt: "Grupo definiendo condiciones de acceso"
-credit: "Imagen ilustrativa"
+image: ../../images/casos/acceso.jpg
+alt: "Acceso con lector y tarjeta en un entorno industrial ligero"
+credit: "Imagen generada"
 ---
 
 ## El problema {#problem}
