@@ -12,14 +12,12 @@ section:
 
 ## Qué se puede construir {#cases}
 
-Hay momentos en los que varias personas necesitan dejar constancia de algo y no quieren que esa constancia dependa de un solo intermediario. Cuando eso se vuelve posible, se abren formas de trabajar, de recordar y de decidir que antes exigían confianza ciega o un dueño central.
 
-Los casos que siguen son algunas de esas formas. No son moldes. Son pruebas de que el terreno ya está abierto para lo que cada quien necesite construir.
+Hay una confianza muy extendida, sobre todo entre quienes no han tenido que demostrar nada a alguien que está a años de distancia, en que los hechos importantes están a salvo porque alguien los guarda. Ese alguien suele tener un edificio, un horario y una forma educada de decir que el asunto se está revisando. Funciona razonablemente bien hasta el día en que el edificio cierra, el horario cambia de manos o la revisión, contra todo pronóstico, concluye que el hecho nunca existió.
+
+El Protocolo 42 se hizo para ese día. No es una oficina ni una aplicación a la que haya que pedirle permiso. Permite que muchas partes guarden el mismo registro, que solo se le añada algo cuando las reglas lo admiten, y que cualquiera compruebe después, sin pedir audiencia, que nadie reescribió la página. Lo que estaba escrito se puede mirar. Lo que se corrige queda en el orden en que ocurrió, no en el orden en que a alguien le convenía recordarlo.
+
+Las historias de esta página cuentan qué hace la gente cuando deja de pedirle el cuaderno a esa oficina.
 
 :::widget{name="case-gallery"}
-:::
-
-:::cta
-**Ahora te toca a ti**  
-[Empezar a construir →](docs:/build/applications)
 :::
