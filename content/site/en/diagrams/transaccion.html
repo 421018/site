@@ -1,0 +1,8 @@
+<!-- Diagram: lifecycle of a transaction. Used in protocol/execution.md. -->
+<ol class="dg-flow" aria-label="The five stages of a transaction">
+  <li><span class="dg-k">01</span><b>Signature</b><span>The wallet signs it with the private key.</span></li>
+  <li><span class="dg-k">02</span><b>Sending</b><span>A node checks the signature and shares it.</span></li>
+  <li><span class="dg-k">03</span><b>Waiting</b><span>It stays in the list of pending transactions.</span></li>
+  <li><span class="dg-k">04</span><b>Inclusion</b><span>A validator includes it in a block, and it is confirmed.</span></li>
+  <li class="on"><span class="dg-k">05</span><b>Result</b><span>Success or failure. From here it is final.</span></li>
+</ol>

@@ -1,0 +1,14 @@
+<!-- Diagram: proposal cycle and outcomes. Used in protocol/governance.md. -->
+<div role="group" aria-label="The path of a proposal and its possible results">
+  <ol class="dg-flow">
+    <li><span class="dg-k">01 · Outside the protocol</span><b>Discussion</b><span>The idea is presented in public and adjusted.</span></li>
+    <li><span class="dg-k">02</span><b>Proposal</b><span>It is submitted on the chain with a deposit.</span></li>
+    <li><span class="dg-k">03</span><b>Voting</b><span>Yes, No, Abstain or No with veto, for a fixed period.</span></li>
+    <li class="on"><span class="dg-k">04</span><b>Tally</b><span>Quorum, threshold and veto, when voting closes.</span></li>
+  </ol>
+  <ul class="dg-out">
+    <li class="ok"><b>Approved</b>The network applies the change: a parameter at once, a new version at its upgrade height.</li>
+    <li><b>Rejected</b>Nothing changes. Also if quorum is not reached.</li>
+    <li><b>Rejected by veto</b>Nothing changes, and whoever submitted it loses the deposit.</li>
+  </ul>
+</div>

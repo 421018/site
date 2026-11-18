@@ -17,8 +17,8 @@ Here is how the protocol works, and what you need to use it: connect, build, int
 
 If this is your first time, follow this order:
 
-- **[The protocol (in Spanish)](/protocol).** How a block is agreed, how contracts run and how the rules change.
-- **[Key concepts (in Spanish)](/get-started/concepts).** Accounts, addresses, units and finality: the minimum to understand the rest.
+- **[The protocol](/protocol).** How a block is agreed, how contracts run and how the rules change.
+- **[Key concepts](/get-started/concepts).** Accounts, addresses, units and finality: the minimum to understand the rest.
 - **[Networks and parameters](/get-started/connect).** The details of the mainnet and the testnet, and where to find an access point.
 
 :::note[Testnet first]
