@@ -1,6 +1,6 @@
 ---
 title: "Hoy no hay sopa"
-summary: "El letrero de un restaurante remoto anunciaba una sopa que nadie preparaba, y quien lo cuidaba no podía cambiarlo. Un piloto con demasiados viajes encima propuso el Protocolo 42."
+summary: "En un rincón de la galaxia, el letrero de un restaurante anunciaba sopa. Hasta que un jueves llegó un piloto con hambre y demasiados viajes encima."
 category: caso-de-uso
 weight: 5
 image: ../../images/casos/letrero.jpg
