@@ -1,6 +1,6 @@
 ---
 title: "Casos de uso"
-summary: "Piezas con las que personas y comunidades pueden empezar a construir su propia infraestructura."
+summary: "¿Qué construirías si ya no hiciera falta un intermediario?"
 menuTitle: "Casos de uso"
 section:
   label: Casos de uso
@@ -10,14 +10,18 @@ section:
   sequential: true
 ---
 
-Cada caso muestra una forma en la que varias personas pueden compartir un registro, un acuerdo, una memoria o una regla sin dejarlo en manos de una sola.
+Hay momentos en los que varias personas necesitan dejar constancia de algo y no quieren que esa constancia dependa de un solo intermediario. Cuando eso se vuelve posible, se abren formas de trabajar, de recordar y de decidir que antes exigían confianza ciega o un dueño central.
 
-Con piezas como estas se puede empezar a construir infraestructura propia.
+Los casos que siguen son algunas de esas formas. No son moldes. Son pruebas de que el terreno ya está abierto para lo que cada quien necesite construir.
 
 :::widget{name="case-gallery"}
 :::
 
-Los casos de arriba son solo algunos. El mismo registro sirve para otras formas.
+Estas son solo algunas ideas.  
+El terreno está abierto para quien quiera construir.
+
+Don’t Panic.  
+Construye.
 
 :::aside
 [Cómo funciona el protocolo →](/protocol)
