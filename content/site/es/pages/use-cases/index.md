@@ -10,6 +10,8 @@ section:
   sequential: true
 ---
 
+## Qué se puede construir {#cases}
+
 Hay momentos en los que varias personas necesitan dejar constancia de algo y no quieren que esa constancia dependa de un solo intermediario. Cuando eso se vuelve posible, se abren formas de trabajar, de recordar y de decidir que antes exigían confianza ciega o un dueño central.
 
 Los casos que siguen son algunas de esas formas. No son moldes. Son pruebas de que el terreno ya está abierto para lo que cada quien necesite construir.
@@ -17,12 +19,7 @@ Los casos que siguen son algunas de esas formas. No son moldes. Son pruebas de q
 :::widget{name="case-gallery"}
 :::
 
-Estas son solo algunas ideas.  
-El terreno está abierto para quien quiera construir.
-
-Don’t Panic.  
-Construye.
-
-:::aside
-[Cómo funciona el protocolo →](/protocol)
+:::cta
+**Ahora te toca a ti**  
+[Empezar a construir →](docs:/build/applications)
 :::
