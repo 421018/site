@@ -2,6 +2,7 @@
 title: "Proofs of work and contribution"
 summary: "A person or a group records verifiable contributions. Later they can show what they contributed without depending on the platform where they did it."
 category: caso-de-uso
+weight: 10
 image: ../../images/casos/contribucion.jpg
 alt: "A device showing a proof of contribution on a workbench"
 credit: "Generated image"

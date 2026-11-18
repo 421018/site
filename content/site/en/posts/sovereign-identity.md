@@ -2,6 +2,7 @@
 title: "Sovereign identity and reputation"
 summary: "A person accumulates proofs of what they have done or of who they are. They can present them anywhere, and whoever receives them checks without asking earlier platforms."
 category: caso-de-uso
+weight: 50
 image: ../../images/casos/identidad.jpg
 alt: "A person with portable proofs in a natural setting"
 credit: "Generated image"

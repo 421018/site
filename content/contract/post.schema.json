@@ -25,6 +25,12 @@
       "default": false,
       "type": "boolean"
     },
+    "weight": {
+      "default": 100,
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
     "draft": {
       "default": false,
       "type": "boolean"

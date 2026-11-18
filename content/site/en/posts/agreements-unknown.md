@@ -2,6 +2,7 @@
 title: "Agreements between strangers"
 summary: "Two parties who do not know each other can leave a record of an exchange or a commitment. No intermediary platform has to hold the value or decide who kept their word."
 category: caso-de-uso
+weight: 20
 image: ../../images/casos/acuerdos.jpg
 alt: "Two people exchanging an object on a wooden table"
 credit: "Generated image"

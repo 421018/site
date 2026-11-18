@@ -94,26 +94,26 @@ uses:
     Anyone can check the result.
   link: { label: See the use cases, href: /use-cases }
   stories:
-    - tag: Agreements
-      title: Agreements between strangers.
-      text: Two parties who do not know each other leave a record of an exchange. No platform has to hold anything or decide.
-      image: ../images/casos/registros.jpg
-      alt: An agreement between parties
-      credit: "Illustrative image"
-      href: /use-cases/agreements-unknown
-    - tag: Memory
-      title: Collective memory.
-      text: Several people contribute the same fact. Anyone can audit the set and see whether something changed.
-      image: ../images/casos/infraestructura.jpg
-      alt: Shared memory
-      credit: "Illustrative image"
-      href: /use-cases/collective-memory
+    - tag: Contribution
+      title: Proofs of work and contribution.
+      text: A person or group leaves a verifiable record of what they contributed. Whoever needs it can check without depending on the platform where it happened.
+      image: ../images/casos/contribucion.jpg
+      alt: A device showing a proof of contribution on a workbench
+      credit: "Generated image"
+      href: /use-cases/contribution-proofs
+    - tag: Coordination
+      title: Real-time resource coordination.
+      text: Several parties update the state of a shared resource. Anyone can see the current state and the history without a control center.
+      image: ../images/casos/coordinacion.jpg
+      alt: A workshop yard with vehicles and a shared status panel
+      credit: "Generated image"
+      href: /use-cases/resource-coordination
     - tag: Sovereignty
       title: Sovereign identity and reputation.
       text: A person carries their proofs with them. Whoever receives them checks without asking earlier platforms.
-      image: ../images/casos/trazabilidad.jpg
-      alt: Portable proofs
-      credit: "Illustrative image"
+      image: ../images/casos/identidad.jpg
+      alt: A person with portable proofs in a natural setting
+      credit: "Generated image"
       href: /use-cases/sovereign-identity
 
 build:

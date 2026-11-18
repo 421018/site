@@ -104,6 +104,11 @@ export const postSchema = (image: () => z.ZodTypeAny) =>
       credit: z.string().optional(),
       /** Shown large at the top of the blog index (the newest featured post). */
       featured: z.boolean().default(false),
+      /**
+       * Order in a section gallery and footer (categories with `path`, e.g. use cases).
+       * Lower comes first. Blog categories ignore this and sort by date.
+       */
+      weight: z.number().int().default(100),
       draft: z.boolean().default(false),
     })
     .strict()

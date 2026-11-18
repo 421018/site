@@ -34,7 +34,7 @@ const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.i
     <Header current={cat.path} currentHref={cat.path ? undefined : index} />
     <div class="post-head">
       <nav class="crumbs" aria-label={cat.path ? cat.plural : blog.kicker}>{home && <><a href={homeHref(lang)}>{home}</a> <span aria-hidden="true">/</span> </>}{cat.path ? <a href={catHref}>{cat.plural}</a> : <><a href={index}>{blog.kicker}</a> <span aria-hidden="true">/</span> <a href={catHref}>{cat.plural}</a></>}</nav>
-      <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{date && <span>{date}</span>}</p>
+      <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{!cat.path && date && <span>{date}</span>}</p>
       <h1>{post.data.title}</h1>
       <p class="post-sum">{post.data.summary}</p>
       <p class="post-by">{blog.byline}{kit.editBase && <> · <a href={kit.editBase + catalogRelative(post.filePath!)}>{blog.editPost}</a></>}</p>

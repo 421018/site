@@ -2,6 +2,7 @@
 title: "Pruebas de trabajo y contribución"
 summary: "Una persona o un grupo registra aportes verificables. Más adelante pueden demostrar qué aportaron sin depender de la plataforma donde lo hicieron."
 category: caso-de-uso
+weight: 10
 image: ../../images/casos/contribucion.jpg
 alt: "Dispositivo mostrando una prueba de contribución en un banco de trabajo"
 credit: "Imagen generada"
