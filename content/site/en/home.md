@@ -2,7 +2,6 @@
 # Home page text (English). The layout lives in the engine.
 # A line break in a title (written with "|") is shown as a line break on the page.
 # Blocks are numbered automatically (01, 02…) in the order they appear on the page.
-# Links to pages not yet translated point to the Spanish version.
 
 hero:
   eyebrow: Open protocol
@@ -15,6 +14,7 @@ hero:
   primary: { label: How it works, href: /protocol }
   secondary: { label: Connect to the network, href: docs:/get-started/connect }
 
+# Verifiable protocol figures, shown in a strip under the hero.
 figures:
   - { value: ~2 s, label: per block }
   - { value: 1 block, label: to be final }
@@ -22,82 +22,97 @@ figures:
   - { value: EVM, label: standard tools }
   - { value: Apache 2.0, label: open source }
 
+# The engine, piece by piece: one tab per piece. icon: execution, consensus,
+# fees, interop, governance, security.
 engine:
   kicker: The engine
-  title: Five parts. One ledger.
-  lead: Each one carries part of the agreement among the people who use the ledger.
+  title: What holds the agreement.
+  lead: |
+    :::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
+    At the Restaurant at the End of the Universe, the accounts never add up the way one expects.
+
+    The numbers behave improbably.
+
+    And yet, in the end, everything fits with a precision that seems impossible.
+    :::
+
+    An improbabilistic distributed ledger works the same way: many independent copies reach the same result, and anyone can check that the accounts close.
   pieces:
     - icon: consensus
       label: Consensus
-      title: Agrees on each block.
-      text: Validators propose and sign blocks. With more than two thirds of the voting power, the block is confirmed and final.
+      title: Agrees on each page.
+      text: The participants back the network and propose the next page. When there is enough agreement, that page closes and stays fixed. The next one is built on top of it.
       points:
-        - "Finality in one block."
-        - "Tolerates faults of less than a third of the voting power."
-        - "Without a majority, the network halts rather than take risks."
-      link: { label: How a block is agreed, href: docs:/protocol/consensus }
+        - "It closes when there is enough agreement."
+        - "Each page is bound to the one before it."
+        - "The agreement is recorded and can be checked."
+      link: { label: How a page is agreed, href: docs:/protocol/consensus }
     - icon: execution
       label: Execution
-      title: Runs the contracts.
-      text: Contracts run on the Ethereum Virtual Machine (EVM). Every node reaches exactly the same result.
+      title: The same rules everywhere.
+      text: The rules are written in the ledger itself. Everyone who keeps a copy applies them the same way.
       points:
-        - "Solidity and Vyper, without code changes."
-        - "Hardhat, Foundry, Viem and EVM wallets."
-        - "The network's own functions available from contracts."
-      link: { label: How the rules run, href: docs:/protocol/execution }
+        - "Contracts on the Ethereum virtual machine."
+        - "Tools you already know."
+        - "The same result on every copy."
+      link: { label: How the rules are applied, href: docs:/protocol/execution }
     - icon: fees
       label: Fees
-      title: Measures and pays for the work.
-      text: "Every transaction pays a fee proportional to the work it requires, in the native unit: Improbability."
+      title: The cost is visible first.
+      text: Writing to the ledger has a cost proportional to the work it asks for. It is paid in Improbability and known before signing.
       points:
-        - "Public rules: the cost is known before sending."
-        - "Someone else can pay the fee for whoever signs."
-        - "Units in drops and cups."
-      link: { label: How the work is paid, href: docs:/protocol/fees }
+        - "The number appears before you confirm."
+        - "Someone else can pay for you."
+        - "The unit is called Improbability (42)."
+      link: { label: How the work is paid for, href: docs:/protocol/fees }
     - icon: interop
       label: Interoperability
-      title: Connects to other networks.
-      text: With IBC, each network checks for itself, with cryptographic proofs, what happened on the other. Nobody holds the units in transit.
+      title: Other networks check it themselves.
+      text: When something has to move to another network, that network reviews the proof on its own. No intermediary has to hold the funds or the data along the way.
       points:
-        - "IBC, versions 1 and 2."
-        - "No trusted intermediaries."
-        - "Data and units across networks."
+        - "A direct connection between networks."
+        - "No intermediaries holding anything."
+        - "Data and units can move."
       link: { label: How networks connect, href: docs:/protocol/interoperability }
     - icon: governance
       label: Governance
-      title: Decides the changes.
-      text: Changes are proposed and voted on the chain. Each vote weighs according to the units in staking.
+      title: Changes are decided in the open.
+      text: The rules change too. They are proposed and voted on in the ledger itself. It is written down who voted and what was approved.
       points:
-        - "Proposals recorded on the chain."
-        - "Public quorum, threshold and veto."
+        - "Public proposals."
+        - "A vote weighs according to what is staked."
         - "The network applies what is approved."
       link: { label: How changes are decided, href: docs:/protocol/governance }
 
 uses:
   kicker: Use cases
   title: What it is for, in practice.
-  lead: "When several people need the same data and the same rules, the ledger does not have to sit with any one of them. Each person can keep a copy, any tampering is visible and anyone can check the result. Three examples:"
-  link: { label: See the use cases (in Spanish), href: /use-cases }
+  lead: |
+    When several people need to know the same thing and do not want to leave the ledger in any one person's hands, the protocol lets them share it.
+
+    Anyone can keep a copy.
+    Anyone can check the result.
+  link: { label: See the use cases, href: /use-cases }
   stories:
-    - tag: Agreements
-      title: Agreements between strangers.
-      text: Two parties who do not know each other leave a record of an exchange. No platform has to custody or decide.
-      image: ../images/casos/acuerdos.jpg
-      alt: Two people exchanging an object
+    - tag: Contribution
+      title: Proofs of work and contribution.
+      text: A person or group leaves a verifiable record of what they contributed. Whoever needs it can check without depending on the platform where it happened.
+      image: ../images/casos/contribucion.jpg
+      alt: A device showing a proof of contribution on a workbench
       credit: "Generated image"
-      href: /use-cases/agreements-unknown
-    - tag: Memory
-      title: Collective memory.
-      text: Several people contribute the same fact. Anyone can audit the set and see if something changed.
-      image: ../images/casos/memoria.jpg
-      alt: Small group sharing a device
+      href: /use-cases/contribution-proofs
+    - tag: Coordination
+      title: Real-time resource coordination.
+      text: Several parties update the state of a shared resource. Anyone can see the current state and the history without a control center.
+      image: ../images/casos/coordinacion.jpg
+      alt: A workshop yard with vehicles and a shared status panel
       credit: "Generated image"
-      href: /use-cases/collective-memory
+      href: /use-cases/resource-coordination
     - tag: Sovereignty
       title: Sovereign identity and reputation.
-      text: A person carries their proofs with them. Whoever receives them checks without asking previous platforms.
+      text: A person carries their proofs with them. Whoever receives them checks without asking earlier platforms.
       image: ../images/casos/identidad.jpg
-      alt: Person with portable proofs
+      alt: A person with portable proofs in a natural setting
       credit: "Generated image"
       href: /use-cases/sovereign-identity
 
@@ -106,7 +121,7 @@ build:
   title: |
     Familiar tools.
     Verifiable rules.
-  lead: "Contracts are written with standard languages and tools: Solidity, Hardhat, Foundry. An application that already works on an EVM-compatible network works here without changing its code."
+  lead: "Contracts are written with standard languages and tools: Solidity, Hardhat, Foundry. An application that already works on an EVM-compatible network works here without changes to its code."
   link: { label: Build applications, href: docs:/build/applications }
   secondary: { label: "Open the Console ↗", href: "console:/" }
   code:
@@ -125,13 +140,13 @@ build:
 people:
   kicker: How it is organized
   title: Each role, in different hands.
-  lead: "The code, the operation of the network and the decisions about its rules are separate, and each part can be checked: the code in a public repository, operation and decisions on the chain itself."
-  link: { label: How it is organized (in Spanish), href: "/open-source#circles" }
+  lead: "The code, the operation of the network and the decisions about its rules are separate. Each part can be checked."
+  link: { label: How it is organized, href: "/open-source#circles" }
   rows:
     - { who: Code contributors, what: "Propose and review changes in a public repository." }
-    - { who: Validators and node operators, what: "Verify every block and give access to the network." }
-    - { who: On-chain governance, what: "Validators and those who delegate to them vote on what changes and when." }
-    - { who: Builders, what: "Offer applications and services on the network, and each is responsible for their own." }
+    - { who: Validators and node operators, what: "Verify each page and give access to the network." }
+    - { who: On-chain governance, what: "Those who back the network vote on what changes and when." }
+    - { who: Builders, what: "Offer applications and services on the network." }
 
 start:
   kicker: Where to start
@@ -139,19 +154,20 @@ start:
   paths:
     - { icon: connect, label: Connect to the network, href: docs:/get-started/connect, text: "Network parameters, wallets and RPC providers." }
     - { icon: build, label: Build an application, href: docs:/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
-    - { icon: node, label: Run a node, href: docs:/operate/nodes, text: "Verify the network yourself, serve applications or validate blocks. (In Spanish.)" }
-    - { icon: integrate, label: Integrate systems, href: docs:/integrate, text: "Connect management systems, devices, signing tools or other networks. (In Spanish.)" }
+    - { icon: node, label: Run a node, href: docs:/operate/nodes, text: "Verify the network yourself, serve applications or validate blocks." }
+    - { icon: integrate, label: Integrate systems, href: docs:/integrate, text: "Connect management systems, devices, signing tools or other networks." }
     - { icon: governance, label: Understand governance, href: docs:/protocol/governance, text: "How changes to the protocol are proposed, voted on and applied." }
     - { icon: docs, label: Read the documentation, href: /docs, text: "Guides and technical reference, from connecting a wallet to running a validator." }
 
 name:
   kicker: The name
   title: Why 42?
-  lead: "In Douglas Adams's novel, 42 is the answer to the great question of life, the universe and everything. The answer is exact, but the meaning comes from those who ask. The protocol works the same way: it offers precise rules, and what is built with them is decided by those who use it."
-  link: { label: Why 42 (in Spanish), href: "/open-source#why-42" }
+  lead: "In Douglas Adams's novel, 42 is the answer to the great question of life, the universe and everything. The answer is exact; the meaning is supplied by those who ask. The protocol works the same way: it offers precise, verifiable rules. What is built with them is decided by those who use it."
+  link: { label: Why 42, href: "/open-source#why-42" }
 
 closing:
   title: Shared infrastructure, rules in plain sight.
-  primary: { label: Start building, href: docs:/build/applications }
+  lead: A ledger that belongs to no one. Rules that apply the same way to everyone. The improbable, made possible.
+  primary: { label: How the protocol works, href: /protocol }
   secondary: { label: Read the documentation, href: "docs:/" }
 ---

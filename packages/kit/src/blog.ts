@@ -16,7 +16,7 @@ export type Post = {
   data: {
     title: string; summary: string; category: string; date?: Date;
     image?: { src: string; width: number; height: number; format: string };
-    alt?: string; credit?: string; featured: boolean; draft: boolean;
+    alt?: string; credit?: string; featured: boolean; weight: number; draft: boolean;
   };
 };
 export type Blog = NonNullable<Awaited<ReturnType<typeof getSiteText>>['blog']>;
@@ -32,6 +32,19 @@ export const postHref = (blog: Blog, p: Post) => `${langPrefix(postLang(p))}/${c
 export const blogHref = (blog: Blog, lang: string) => `${langPrefix(lang)}/${blog.path}`;
 /** Photo tint of a category, by its position in site.md. */
 export const categoryTint = (blog: Blog, id: string) => ['var(--star)', 'var(--acc)', 'var(--nebula)', 'var(--fg-3)'][Math.max(0, blog.categories.findIndex((c) => c.id === id)) % 4];
+
+/** Posts in a site section (category `path`) sort by weight, then title; blog posts by date, newest first. */
+export function comparePosts(a: Post, b: Post, blog?: Blog): number {
+  if (!blog) return (postDate(b)?.getTime() ?? 0) - (postDate(a)?.getTime() ?? 0);
+  const pathA = categoryOf(blog, a).path;
+  const pathB = categoryOf(blog, b).path;
+  if (pathA && pathB) {
+    const byWeight = a.data.weight - b.data.weight;
+    if (byWeight) return byWeight;
+    return a.data.title.localeCompare(b.data.title, postLang(a));
+  }
+  return (postDate(b)?.getTime() ?? 0) - (postDate(a)?.getTime() ?? 0);
+}
 
 /** The blog config of a language, if the app has a blog. */
 export async function getBlog(lang: string): Promise<Blog | undefined> {
@@ -63,9 +76,18 @@ async function allPosts(): Promise<Post[]> {
         posts.push({ ...p, id: `${lang}/${postSlug(p)}`, fallbackOf: p });
       }
     }
+    const blogs = new Map<string, Blog>();
+    for (const lang of languages) {
+      const blog = await getBlog(lang);
+      if (blog) blogs.set(lang, blog);
+    }
     return posts
       .filter((p) => import.meta.env.DEV || !p.data.draft)
-      .sort((a, b) => (postDate(b)?.getTime() ?? 0) - (postDate(a)?.getTime() ?? 0));
+      .sort((a, b) => {
+        const lang = postLang(a);
+        if (postLang(b) !== lang) return postLang(a).localeCompare(postLang(b));
+        return comparePosts(a, b, blogs.get(lang));
+      });
   })());
 }
 

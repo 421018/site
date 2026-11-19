@@ -81,17 +81,18 @@ Create `site/es/posts/<slug>.md`, with an English file name: it is the end of th
 title: "Registros y documentos verificables"
 summary: "One or two sentences shown on the card and under the title."
 category: caso-de-uso        # caso-de-uso, avance, explicacion, historia (site.md → blog.categories)
-date: 2026-11-14             # optional; without it, the date of the file's last commit
-image: ../../images/casos/registros.jpg   # optional cover photo
-alt: "Diploma enmarcado con un sello dorado"
-credit: "Foto: Quilia, Unsplash"
+weight: 20                   # optional; use cases (path use-cases): lower = earlier in the gallery; blog categories sort by date
+date: 2026-11-14             # optional; for the bitácora only — use cases omit it and sort by weight
+image: ../../images/casos/acuerdos.jpg   # optional cover photo
+alt: "Dos personas intercambiando un objeto en una mesa de madera"
+credit: "Imagen generada"
 featured: false              # optional; the newest featured post leads the index
 ---
 
 ## El problema {#problem}
 ```
 
-Use cases (`caso-de-uso`) are served under `/use-cases/<slug>`, shown in that section's gallery and listed in its footer column; every other category under `/log/<slug>`. Posts use the same Markdown and `:::` blocks as pages, and their `##` headings make the "En esta entrada" index. Avances must describe facts that can be verified: versions, approved proposals, parameter changes.
+Use cases (`caso-de-uso`) are served under `/use-cases/<slug>`, shown in that section's gallery and listed in its footer column; every other category under `/log/<slug>`. They are evergreen: order them with `weight`, not `date`. Posts use the same Markdown and `:::` blocks as pages, and their `##` headings make the "En esta entrada" index. Avances must describe facts that can be verified: versions, approved proposals, parameter changes.
 
 ## Translating
 
@@ -151,7 +152,7 @@ El motor funciona con improbabilidad. El gas dice cuánta pide cada maniobra.
 :::
 
 :::figure[Un municipio registra cada intervención en el alumbrado.]
-![Farolas de una calle al atardecer](../../../images/casos/infraestructura.jpg)
+![Dos personas intercambiando un objeto](../../../images/casos/acuerdos.jpg)
 :::
 
 :::aside

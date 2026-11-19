@@ -94,26 +94,26 @@ uses:
     Cualquiera puede comprobar el resultado.
   link: { label: Ver los casos de uso, href: /use-cases }
   stories:
-    - tag: Acuerdos
-      title: Acuerdos entre desconocidos.
-      text: Dos partes que no se conocen dejan constancia de un intercambio. Ninguna plataforma tiene que custodiar ni decidir.
-      image: ../images/casos/registros.jpg
-      alt: Acuerdo entre partes
-      credit: "Imagen ilustrativa"
-      href: /use-cases/agreements-unknown
-    - tag: Memoria
-      title: Memoria colectiva.
-      text: Varias personas aportan el mismo hecho. Cualquiera puede auditar el conjunto y ver si algo cambió.
-      image: ../images/casos/infraestructura.jpg
-      alt: Memoria compartida
-      credit: "Imagen ilustrativa"
-      href: /use-cases/collective-memory
+    - tag: Contribución
+      title: Pruebas de trabajo y contribución.
+      text: Una persona o un grupo deja constancia verificable de lo que aportó. Quien lo necesite puede comprobarlo sin depender de la plataforma donde ocurrió.
+      image: ../images/casos/contribucion.jpg
+      alt: Dispositivo mostrando una prueba de contribución en un banco de trabajo
+      credit: "Imagen generada"
+      href: /use-cases/contribution-proofs
+    - tag: Coordinación
+      title: Coordinación de recursos en tiempo real.
+      text: Varias partes actualizan el estado de un recurso compartido. Cualquiera ve el estado actual y el historial sin un centro de control.
+      image: ../images/casos/coordinacion.jpg
+      alt: Patio de taller con vehículos y panel de estado compartido
+      credit: "Imagen generada"
+      href: /use-cases/resource-coordination
     - tag: Soberanía
       title: Identidad y reputación soberanas.
       text: Una persona lleva sus pruebas consigo. Quien las recibe las comprueba sin preguntar a plataformas anteriores.
-      image: ../images/casos/trazabilidad.jpg
-      alt: Pruebas portables
-      credit: "Imagen ilustrativa"
+      image: ../images/casos/identidad.jpg
+      alt: Persona con pruebas portables en un entorno natural
+      credit: "Imagen generada"
       href: /use-cases/sovereign-identity
 
 build:
