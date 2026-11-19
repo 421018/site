@@ -13,11 +13,11 @@ section:
 ## Qué se puede construir {#cases}
 
 
-Hay una confianza muy extendida, sobre todo entre quienes no han tenido que demostrar nada a alguien que está a años de distancia, en que los hechos importantes están a salvo porque alguien los guarda. Ese alguien suele tener un edificio, un horario y una forma educada de decir que el asunto se está revisando. Funciona razonablemente bien hasta el día en que el edificio cierra, el horario cambia de manos o la revisión, contra todo pronóstico, concluye que el hecho nunca existió.
+Casi todo el universo funciona porque alguien, en algún lugar, guarda los datos importantes: quién es dueño de qué, qué se acordó, qué dice el letrero. Ese alguien suele tener un edificio, un horario y una forma muy educada de decir que el asunto está en revisión. Funciona bastante bien hasta el día en que el edificio cierra, el encargado se va de vacaciones o la revisión concluye, contra todo pronóstico, que el dato nunca existió.
 
-El Protocolo 42 se hizo para ese día. No es una oficina ni una aplicación a la que haya que pedirle permiso. Permite que muchas partes guarden el mismo registro, que solo se le añada algo cuando las reglas lo admiten, y que cualquiera compruebe después, sin pedir audiencia, que nadie reescribió la página. Lo que estaba escrito se puede mirar. Lo que se corrige queda en el orden en que ocurrió, no en el orden en que a alguien le convenía recordarlo.
+El Protocolo 42 se hizo para ese día. No es una oficina ni una aplicación a la que haya que pedirle permiso. Es un registro que muchas partes guardan a la vez. Solo se le añade algo cuando se cumplen las reglas, y cualquiera puede comprobar después, sin pedírselo a nadie, que nadie reescribió lo que ya estaba escrito. Si algo se corrige, la corrección queda después del error, en el orden en que pasó, y no en el que a alguien le convenía recordarlo.
 
-Las historias de esta página cuentan qué hace la gente cuando deja de pedirle el cuaderno a esa oficina.
+Las historias de esta página cuentan qué hace la gente cuando ya no tiene que esperar a que alguien, en otro edificio, le dé permiso.
 
 :::widget{name="case-gallery"}
 :::
