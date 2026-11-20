@@ -116,7 +116,7 @@ name:
   kicker: El nombre
   title: ¿Por qué 42?
   lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta; el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas y verificables. Lo que se construye con ellas lo deciden quienes lo usan."
-  link: { label: Sobre 42, href: "/about#why-42" }
+  link: { label: El proyecto, href: "/about#why-42" }
 
 closing:
   title: Infraestructura compartida, reglas a la vista.

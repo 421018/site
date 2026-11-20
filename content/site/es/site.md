@@ -31,7 +31,7 @@ footer:
     - label: Chain
       links:
         - { label: Bitácora, href: "/log" }
-        - { label: Sobre 42, href: "/about" }
+        - { label: Proyecto, href: "/about" }
         - { label: Preguntas, href: "/faq" }
     - label: Protocol
       links:

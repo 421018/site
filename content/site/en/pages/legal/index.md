@@ -4,7 +4,7 @@ summary: "In short: this site is informational, using the network has risks wort
 section:
   label: Legal
   weight: 1
-  attachTo: about
+  menu: false # only in the footer
 ---
 
 :::status[Draft]

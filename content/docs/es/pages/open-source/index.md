@@ -19,7 +19,7 @@ El software, la documentación, las herramientas y este sitio son de código abi
 - Cada versión publica sus notas de cambios.
 
 :::aside
-[Dónde comprobarlo →](site:/about/verify)
+[Dónde comprobarlo →](/get-started/sources)
 :::
 
 ## Formas de contribuir {#ways}

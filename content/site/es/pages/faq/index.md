@@ -11,7 +11,7 @@ section:
 ## La red y el protocolo {#network}
 
 :::faq[¿Qué es 42 Chain?]
-La red pública que ejecuta el Protocolo 42. Permite que varias personas mantengan el mismo registro y apliquen las mismas reglas, y que cualquiera pueda comprobar el resultado. [Qué es el protocolo](/about/how-it-works)
+La red pública que ejecuta el Protocolo 42. Permite que varias personas mantengan el mismo registro y apliquen las mismas reglas, y que cualquiera pueda comprobar el resultado. [Qué es 42](/about#what-is)
 :::
 
 :::faq[¿Para qué sirve 42 Chain?]
@@ -23,7 +23,7 @@ Sí. Los datos reservados se quedan fuera de la cadena, y en la red se registra 
 :::
 
 :::faq[¿Qué es el Protocolo 42?]
-Es el protocolo de la red. Su nombre formal es *Infinite Improbability Drive*. Define las reglas que siguen todos los nodos para llevar un registro compartido, aplicar las mismas reglas y decidir cambios a la vista. [Protocolo](/about/how-it-works)
+Es el protocolo de la red. Su nombre formal es *Infinite Improbability Drive*. Define las reglas que siguen todos los nodos para llevar un registro compartido, aplicar las mismas reglas y decidir cambios a la vista. [Protocolo](docs:/protocol)
 :::
 
 :::faq[¿Necesito permiso para usar la red?]
@@ -95,7 +95,7 @@ Pierdes el acceso a tu cuenta. El protocolo no tiene ningún mecanismo para rest
 :::
 
 :::faq[¿Alguien del proyecto me pedirá mis llaves?]
-No. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales del proyecto](/about/verify#channels).
+No. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales del proyecto](/about#channels).
 :::
 
 :::faq[¿Cómo reporto una vulnerabilidad?]

@@ -30,6 +30,8 @@ export const sectionSchema = z
     ink: color.optional(),
     /** Number the pages in the side index (1, 2, 3…). */
     numbered: z.boolean().default(false),
+    /** Show the section in the main menu; false keeps it out (e.g. legal, linked from the footer only). */
+    menu: z.boolean().default(true),
     /** In the main menu, open a panel with the section's pages (their icon and menuText). */
     dropdown: z.boolean().default(false),
     /** Show "previous / next" at the end of each page. */

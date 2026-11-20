@@ -66,6 +66,10 @@
           "default": false,
           "type": "boolean"
         },
+        "menu": {
+          "default": true,
+          "type": "boolean"
+        },
         "dropdown": {
           "default": false,
           "type": "boolean"

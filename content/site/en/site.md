@@ -31,7 +31,7 @@ footer:
     - label: Chain
       links:
         - { label: Logbook, href: "/log" }
-        - { label: About 42, href: "/about" }
+        - { label: Project, href: "/about" }
         - { label: Questions, href: "/faq" }
     - label: Protocol
       links:

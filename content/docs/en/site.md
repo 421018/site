@@ -40,7 +40,7 @@ footer:
     - label: Chain
       links:
         - { label: Logbook, href: "site:/log" }
-        - { label: About 42, href: "site:/about" }
+        - { label: Project, href: "site:/about" }
         - { label: Questions, href: "site:/faq" }
     - label: Protocol
       links:

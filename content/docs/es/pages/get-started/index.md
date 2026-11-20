@@ -8,7 +8,7 @@ section:
   ink: "#0A7A5E"
   sequential: true
   links:
-    - { label: "Qué es 42 Chain", href: "site:/about/how-it-works" }
+    - { label: "Qué es 42", href: "site:/about#what-is" }
 ---
 
 ## Por dónde empezar {#start}

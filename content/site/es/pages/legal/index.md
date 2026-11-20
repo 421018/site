@@ -4,7 +4,7 @@ summary: "En pocas palabras: este sitio es informativo, usar la red tiene riesgo
 section:
   label: Legal
   weight: 1
-  attachTo: about
+  menu: false # only in the footer
 ---
 
 :::status[Borrador]

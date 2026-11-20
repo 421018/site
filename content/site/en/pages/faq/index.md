@@ -11,7 +11,7 @@ section:
 ## The network and the protocol {#network}
 
 :::faq[What is 42 Chain?]
-The public network that runs Protocol 42. It lets several people keep the same ledger and apply the same rules, and lets anyone check the result. [What the protocol is](/about/how-it-works)
+The public network that runs Protocol 42. It lets several people keep the same ledger and apply the same rules, and lets anyone check the result. [What 42 is](/about#what-is)
 :::
 
 :::faq[What is 42 Chain for?]
@@ -23,7 +23,7 @@ Yes. Private data stays off the chain, and only its fingerprint is recorded on t
 :::
 
 :::faq[What is Protocol 42?]
-It is the network's protocol. Its formal name is *Infinite Improbability Drive*. It defines the rules every node follows to keep a shared ledger, apply the same rules and decide changes in the open. [Protocol](/about/how-it-works)
+It is the network's protocol. Its formal name is *Infinite Improbability Drive*. It defines the rules every node follows to keep a shared ledger, apply the same rules and decide changes in the open. [Protocol](docs:/protocol)
 :::
 
 :::faq[Do I need permission to use the network?]
@@ -95,7 +95,7 @@ You lose access to your account. The protocol has no mechanism for restoring a p
 :::
 
 :::faq[Will someone from the project ask me for my keys?]
-No. No channel of the project will ask you for your recovery phrase or your private keys. Verify any announcement against the [project's channels](/about/verify#channels).
+No. No channel of the project will ask you for your recovery phrase or your private keys. Verify any announcement against the [project's channels](/about#channels).
 :::
 
 :::faq[How do I report a vulnerability?]

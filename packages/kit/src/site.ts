@@ -25,6 +25,8 @@ export type Section = {
   ink?: string;
   numbered: boolean;
   sequential: boolean;
+  /** Listed in the main menu. */
+  menu: boolean;
   /** Opens a panel with its pages in the main menu. */
   dropdown: boolean;
   /** Section whose main-menu entry and side index this one appears under. */
@@ -86,7 +88,7 @@ async function build() {
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
       sections.set(pagePath(p), {
         key: pagePath(p), lang, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
-        numbered: s.numbered, sequential: s.sequential, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links.map((l) => ({ ...l, href: resolveHref(l.href, lang) })), attached: [],
+        numbered: s.numbered, sequential: s.sequential, menu: s.menu, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links.map((l) => ({ ...l, href: resolveHref(l.href, lang) })), attached: [],
       });
     } else if (p.data.section) {
       errors.push(`${p.filePath}: "section:" is only allowed in the folder's index.md.`);
@@ -147,7 +149,7 @@ export const homeAlternates = () => Object.fromEntries(languages.map((l) => [l, 
 
 /** Sections shown in the main menu and footer, in order. */
 export async function getMenu(lang: string): Promise<Section[]> {
-  return [...(await getSections(lang)).values()].filter((s) => s.home === s.key).sort((a, b) => a.weight - b.weight);
+  return [...(await getSections(lang)).values()].filter((s) => s.home === s.key && s.menu !== false).sort((a, b) => a.weight - b.weight);
 }
 
 export async function getSection(lang: string, key: string): Promise<Section> {

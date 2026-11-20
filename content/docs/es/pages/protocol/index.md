@@ -8,8 +8,6 @@ section:
   ink: "#0A7A5E"
   numbered: true
   sequential: true
-  links:
-    - { label: "Qué es y por qué es útil", href: "site:/about/how-it-works" }
 ---
 
 ## Cómo funciona {#how}
@@ -24,3 +22,17 @@ El Protocolo 42 es el conjunto de reglas con el que muchas computadoras llevan u
 - **[Seguridad](/protocol/security).** Qué protege el diseño, bajo qué condición, y qué queda en manos de cada persona.
 
 Quien va a publicar un contrato sigue en [Construir](/build). Quien va a conectar un sistema que ya existe, en [Integrar](/integrate). Quien va a unir un nodo, en [Operar](/operate).
+
+## Cómo entra algo en el registro {#entry}
+
+Imagina que Ana termina un trabajo y Bruno necesita saber que es cierto, sin tener que confiar solo en la palabra de Ana ni en una plataforma intermedia.
+
+1. Ana decide qué quiere dejar escrito y ve el costo de hacerlo antes de firmar.
+2. Firma con una llave que solo ella tiene. La red no guarda una copia de esa llave.
+3. Otras personas que respaldan la red reúnen lo que está esperando y proponen la siguiente página. Si más de dos tercios están de acuerdo, la página se cierra. Si no hay acuerdo, se espera.
+4. Bruno puede leer el resultado en su propia copia. Ya no se deshace.
+
+El mismo camino sirve para un certificado, una reparación, un acuerdo o cualquier otro hecho que varias personas necesiten conocer. El detalle de cada paso —cómo se calcula el costo, cómo se llega al acuerdo, cómo se ejecutan las reglas— está en las páginas de esta sección.
+
+:::diagram[El camino desde que alguien decide escribir algo hasta que otra persona lo ve en su copia.]{name="entrada"}
+:::

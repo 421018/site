@@ -19,7 +19,7 @@ The software, the documentation, the tools and this site are open source. Develo
 - Each version publishes its change notes.
 
 :::aside
-[Where to check it →](site:/about/verify)
+[Where to check it →](/get-started/sources)
 :::
 
 ## Ways to contribute {#ways}
