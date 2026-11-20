@@ -1,9 +1,9 @@
 ---
-title: "About 42 Chain"
+title: "About 42"
 summary: "42 Chain is a public network, its protocol is open source and its name comes from a novel. How all of that fits together, and the principles that guide it."
 section:
-  label: Open source
-  weight: 5
+  label: About 42
+  weight: 2
   accent: "#C4A7FF"
   ink: "#6B4BC8"
 ---
@@ -18,7 +18,7 @@ The software is open source. Anyone can read it, propose changes or contribute. 
 
 Nobody controls everything. Each part has its place and can be checked separately:
 
-- **The software.** Contributors write and review it in a public repository. Anyone can propose changes. [Contribute](/open-source/contributing)
+- **The software.** Contributors write and review it in a public repository. Anyone can propose changes. [Contribute](docs:/open-source)
 - **Operation of the network.** Validators and node operators do it. The protocol compensates their work.
 - **Access.** Independent providers offer the RPC nodes and the explorers. Anyone can offer their own. [Providers](docs:/get-started/connect#providers)
 - **Decisions.** They are made by on-chain governance: those who back the network vote. [Governance](docs:/protocol/governance)
@@ -26,7 +26,7 @@ Nobody controls everything. Each part has its place and can be checked separatel
 - **This site and the documentation.** Contributors write and review them.
 
 :::aside
-[Where to check each part →](/open-source/verify)
+[Where to check each part →](/about/verify)
 :::
 
 ## Why 42 {#why-42}
@@ -43,7 +43,7 @@ An infrastructure that belongs to no one, and that several people can check, see
 
 ## Principles {#principles}
 
-These are the criteria that guide development. How the ledger works is in [the protocol](/protocol).
+These are the criteria that guide development. How the ledger works is in [the protocol](/about/how-it-works).
 
 - **Openness.** Anyone can use the network, build on it, run a node and review the code.
 - **Neutrality.** The network treats every transaction the same way. No application and no participant have privileges.
@@ -58,5 +58,5 @@ The protocol does not have a roadmap with an end date. It is maintained and impr
 Every change follows the same path. It is proposed in the public repository, tested on the testnet, and reaches the mainnet only if governance approves it. That is why dates are not published: what changes, and when, is decided on the network itself.
 
 :::aside
-[Version history and updates · Technical reference ↗](/docs)
+[Version history and updates · Technical reference](docs:/)
 :::

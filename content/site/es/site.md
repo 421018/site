@@ -9,25 +9,41 @@ tagline: Protocolo abierto de infraestructura # tab title of the home page: "<na
 description: "42 Chain ejecuta el Protocolo 42, un protocolo de código abierto para construir infraestructura sobre un registro compartido: datos que varias personas pueden comprobar y reglas que valen igual para todas." # default meta description
 
 header:
-  homeLink: 42 Chain, inicio # accessible name of the logo link
-  home: Inicio # first item of the main menu and of the breadcrumbs
+  homeLink: 42, inicio # accessible name of the logo link
   mainNav: Principal # accessible name of the main menu
   menuButton: Menú # label of the collapsed main menu on narrow screens
   languageNav: Idioma # accessible name of the language switcher
   submenu: ver páginas # accessible name of a section's menu arrow: "Protocolo: ver páginas"
-  cta: { label: "Documentación ↗", href: "docs:/" } # highlighted button at the end of the header
   links:
-    - { label: Bitácora, href: /log, weight: 4 } # weight places it among the sections
+    - { label: Bitácora, href: /log, weight: 1 } # weight places it among the sections
+  areas: # the areas of 42, at the far right of the header
+    label: Áreas de 42
+    items:
+      - { label: Chain, href: "/", current: true }
+      - { label: Protocol, href: "docs:/", current: false }
 
 footer:
   credit: Proyecto de código abierto
   license: Textos CC BY 4.0
   note: © 2026 Los contribuidores de 42 Chain
-  extra: # extra column: the other products
-    label: Herramientas
-    links:
-      - { label: "Documentación ↗", href: "docs:/" }
-      - { label: "Consola ↗", href: "console:/" }
+  # Shared by every area of 42 (Chain and Protocol): only the main ways in.
+  columns:
+    - label: Chain
+      links:
+        - { label: Bitácora, href: "/log" }
+        - { label: Sobre 42, href: "/about" }
+        - { label: Preguntas, href: "/faq" }
+    - label: Protocol
+      links:
+        - { label: Documentación, href: "docs:/" }
+        - { label: Consola, href: "console:/" }
+    - label: Código abierto
+      links:
+        - { label: Contribuir, href: "docs:/open-source" }
+        - { label: Seguridad y reportes, href: "docs:/open-source/security" }
+  links: # bottom line
+    - { label: Legal, href: "/legal" }
+    - { label: "@42protocol en X", href: "https://x.com/42protocol" }
 
 page:
   lastReviewed: Última revisión
@@ -37,25 +53,23 @@ page:
   chapters: Capítulos # accessible name of the previous/next navigation
 
 # The blog. Posts live in posts/ next to this file; a category with "path"
-# serves its posts there instead of under the blog (use cases: /use-cases/…).
+# serves its posts there instead of under the blog.
 blog:
   path: log
   kicker: Bitácora
-  title: Casos, avances y explicaciones.
-  lead: Lo que se construye sobre 42, cómo cambia el protocolo y por qué funciona como funciona.
+  title: Historias improbables y artículos.
+  lead: Relatos de lo que pasa cuando un registro lo guardan muchos a la vez, y textos con punto de vista sobre la infraestructura compartida.
   all: Todas
   filterLabel: Filtrar por categoría
-  byline: Por los contribuidores de 42 Chain
+  byline: Por los contribuidores de 42
   readingTime: "{n} min de lectura"
   onThisPost: En esta entrada
   keepReading: Sigue leyendo
   editPost: Editar esta entrada ↗
   illustrative: Imagen ilustrativa.
   categories:
-    - { id: caso-de-uso, label: Caso de uso, plural: Casos de uso, path: use-cases }
-    - { id: avance, label: Avance, plural: Avances }
-    - { id: explicacion, label: Explicación, plural: Explicaciones }
     - { id: historia, label: Historia, plural: Historias }
+    - { id: articulo, label: Artículo, plural: Artículos }
 
 notFound:
   title: Página no encontrada

@@ -1,7 +1,7 @@
 ---
 title: "Shared conditional access"
 summary: "Several parties define the conditions for access to something. Verification is done directly against the ledger, without a central gatekeeper."
-category: caso-de-uso
+category: historia
 weight: 80
 image: ../../images/casos/acceso.jpg
 alt: "Access with a reader and a card in a light industrial setting"

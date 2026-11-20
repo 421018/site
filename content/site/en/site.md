@@ -9,25 +9,41 @@ tagline: Open infrastructure protocol # tab title of the home page: "<name> — 
 description: "42 Chain runs Protocol 42, an open-source protocol for building infrastructure on a shared ledger: data several people can check, and rules that apply the same way to all of them." # default meta description
 
 header:
-  homeLink: 42 Chain, home # accessible name of the logo link
-  home: Home # first item of the main menu and of the breadcrumbs
+  homeLink: 42, home # accessible name of the logo link
   mainNav: Main # accessible name of the main menu
   menuButton: Menu # label of the collapsed main menu on narrow screens
   languageNav: Language # accessible name of the language switcher
   submenu: show pages # accessible name of a section's menu arrow: "Protocol: show pages"
-  cta: { label: "Documentation ↗", href: "docs:/" } # highlighted button at the end of the header
   links:
-    - { label: Logbook, href: /log, weight: 4 } # weight places it among the sections
+    - { label: Logbook, href: /log, weight: 1 } # weight places it among the sections
+  areas: # the areas of 42, at the far right of the header
+    label: Areas of 42
+    items:
+      - { label: Chain, href: "/", current: true }
+      - { label: Protocol, href: "docs:/", current: false }
 
 footer:
   credit: Open-source project
   license: Text CC BY 4.0
   note: © 2026 The 42 Chain contributors
-  extra: # extra column: the other products
-    label: Tools
-    links:
-      - { label: "Documentation ↗", href: "docs:/" }
-      - { label: "Console ↗", href: "console:/" }
+  # Shared by every area of 42 (Chain and Protocol): only the main ways in.
+  columns:
+    - label: Chain
+      links:
+        - { label: Logbook, href: "/log" }
+        - { label: About 42, href: "/about" }
+        - { label: Questions, href: "/faq" }
+    - label: Protocol
+      links:
+        - { label: Documentation, href: "docs:/" }
+        - { label: Console, href: "console:/" }
+    - label: Open source
+      links:
+        - { label: Contribute, href: "docs:/open-source" }
+        - { label: Security and reports, href: "docs:/open-source/security" }
+  links: # bottom line
+    - { label: Legal, href: "/legal" }
+    - { label: "@42protocol on X", href: "https://x.com/42protocol" }
 
 page:
   lastReviewed: Last reviewed
@@ -42,21 +58,19 @@ page:
 blog:
   path: log
   kicker: Logbook
-  title: Cases, progress and explanations.
-  lead: What is built on 42, how the protocol changes and why it works the way it does.
+  title: Improbable stories and articles.
+  lead: Tales of what happens when many keep the same ledger at once, and pieces with a point of view on shared infrastructure.
   all: All
   filterLabel: Filter by category
-  byline: By the 42 Chain contributors
+  byline: By the 42 contributors
   readingTime: "{n} min read"
   onThisPost: In this post
   keepReading: Keep reading
   editPost: Edit this post ↗
   illustrative: Illustrative image.
   categories:
-    - { id: caso-de-uso, label: Use case, plural: Use cases, path: use-cases }
-    - { id: avance, label: Progress, plural: Progress }
-    - { id: explicacion, label: Explanation, plural: Explanations }
     - { id: historia, label: Story, plural: Stories }
+    - { id: articulo, label: Article, plural: Articles }
 
 notFound:
   title: Page not found

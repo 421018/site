@@ -1,7 +1,7 @@
 ---
 title: "Collective memory"
 summary: "Several people or devices contribute the same fact. The ledger lets anyone audit the set and detect whether something was altered afterwards."
-category: caso-de-uso
+category: historia
 weight: 40
 image: ../../images/casos/memoria.jpg
 alt: "A small group sharing a device at dusk"

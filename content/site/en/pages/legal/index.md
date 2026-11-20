@@ -4,7 +4,7 @@ summary: "In short: this site is informational, using the network has risks wort
 section:
   label: Legal
   weight: 1
-  attachTo: open-source # listed in the Open source side index, using its colors
+  attachTo: about
 ---
 
 :::status[Draft]

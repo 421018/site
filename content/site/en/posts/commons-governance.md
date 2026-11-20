@@ -1,7 +1,7 @@
 ---
 title: "Governance of the commons"
 summary: "A group decides the use of a resource or a rule. The proposals and the votes stay written down; the result cannot be changed in silence."
-category: caso-de-uso
+category: historia
 weight: 70
 image: ../../images/casos/gobernanza.jpg
 alt: "A group sitting outdoors deciding together"

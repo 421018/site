@@ -2,11 +2,7 @@
 title: "Infinite Improbability Drive"
 summary: "Protocol 42 is an improbabilistic distributed-ledger engine. What problem it solves and what becomes possible."
 menuTitle: "How it works"
-section:
-  label: Protocol
-  weight: 1
-  accent: "#5BF0C8"
-  ink: "#0A7A5E"
+weight: 10
 ---
 
 ## Infinite Improbability Drive {#protocol}
@@ -87,7 +83,7 @@ When the ledger does not depend on a single party, things can be built that used
 All of that is built on top of the protocol. The protocol does not decide what gets built; it only offers the shared ledger and the verifiable rules. Those who use it decide the meaning.
 
 :::aside
-[Use cases →](/use-cases) · [The mechanism of each part →](docs:/protocol)
+[Logbook →](/log) · [The mechanism of each part →](docs:/protocol)
 :::
 
 An improbabilistic distributed-ledger infrastructure seems impossible. The protocol exists to make it possible.

@@ -43,7 +43,7 @@ Algunas cosas quedan fuera del alcance del protocolo. Conocerlas es parte de usa
 - **Funcionamiento continuo.** Si más de un tercio del poder de voto queda fuera de línea, la red se detiene hasta que se recupera la mayoría. Es una decisión de diseño: el protocolo prefiere detenerse antes que confirmar algo sin la mayoría necesaria.
 
 :::aside
-[Riesgos de uso ↗](site:/legal#risks)
+[Riesgos de uso](site:/legal#risks)
 :::
 
 ## Cómo responde ante fallas {#failures}
@@ -79,7 +79,7 @@ La forma correcta se llama divulgación responsable. La persona reporta la vulne
 Publicar una vulnerabilidad antes de corregirla permitiría que otros la aprovecharan. Por eso el reporte se hace en privado.
 
 :::aside
-[Reportar una vulnerabilidad ↗](site:/open-source/security#report)
+[Reportar una vulnerabilidad](/open-source/security#report)
 :::
 
 ## Cómo protegerte {#protect-yourself}
@@ -89,7 +89,7 @@ Muchos riesgos para una persona no vienen del protocolo, sino de su propio entor
 - **Guarda tu frase de recuperación fuera de línea.** La frase de recuperación permite reconstruir tu llave privada. Quien la tiene controla tu cuenta.
 - **Nadie del proyecto te pedirá tus llaves.** Nadie que participe en el protocolo o en la red necesita tu llave privada ni tu frase de recuperación. Quien te la pide intenta engañarte.
 - **Revisa lo que firmas.** Antes de firmar, lee en tu billetera qué hace la transacción y a qué contrato llama.
-- **Usa los canales del proyecto.** Verifica cualquier anuncio, enlace o aplicación en los [canales del proyecto](site:/open-source/verify#channels).
+- **Usa los canales del proyecto.** Verifica cualquier anuncio, enlace o aplicación en los [canales del proyecto](site:/about/verify#channels).
 
 ## Por qué el protocolo lo hace así {#why}
 

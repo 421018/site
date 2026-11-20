@@ -1,7 +1,7 @@
 ---
 title: "Provenance of the digital"
 summary: "A file, a model or a piece of data passes through several hands. Each step stays signed. In the end it can be shown who touched it and when."
-category: caso-de-uso
+category: historia
 weight: 60
 image: ../../images/casos/procedencia.jpg
 alt: "Hands passing a sealed envelope across a wooden table"

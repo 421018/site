@@ -1,7 +1,11 @@
 ---
 title: "Contribuir"
 summary: "El protocolo se construye en abierto. Puedes sumarte con código, revisando cambios, mejorando la documentación o respondiendo preguntas."
-weight: 10
+section:
+  label: Código abierto
+  weight: 6
+  accent: "#C4A7FF"
+  ink: "#6B4BC8"
 ---
 
 ## Cómo se desarrolla el protocolo {#development}
@@ -15,7 +19,7 @@ El software, la documentación, las herramientas y este sitio son de código abi
 - Cada versión publica sus notas de cambios.
 
 :::aside
-[Dónde comprobarlo →](/open-source/verify)
+[Dónde comprobarlo →](site:/about/verify)
 :::
 
 ## Formas de contribuir {#ways}
@@ -44,7 +48,7 @@ Una propuesta de código no cambia la cadena por sí sola. El recorrido es este:
 5. Si se aprueba, los nodos cambian de versión juntos.
 
 :::aside
-[Cómo se aplica un cambio →](docs:/protocol/governance#lifecycle)
+[Cómo se aplica un cambio →](/protocol/governance#lifecycle)
 :::
 
 ## Preguntas técnicas {#questions}
@@ -53,12 +57,12 @@ Las preguntas sobre el protocolo, la red, una integración o este sitio se hacen
 
 El espacio es solo para temas técnicos. No se ofrecen ni se contratan servicios ahí.
 
-Antes de preguntar, revisa las [preguntas frecuentes](/open-source/faq) y la [documentación](/docs).
+Antes de preguntar, revisa las [preguntas frecuentes](site:/faq) y la [documentación](/).
 
 ## Licencias de las contribuciones {#licenses}
 
 Las contribuciones de código se publican bajo Apache 2.0. Los textos y datos de este sitio, bajo CC BY 4.0. Solo aporta trabajo propio o que tengas derecho a publicar bajo esas licencias.
 
 :::aside
-[Licencias →](/legal#licenses)
+[Licencias →](site:/legal#licenses)
 :::

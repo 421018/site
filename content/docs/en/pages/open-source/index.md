@@ -1,7 +1,11 @@
 ---
 title: "Contribute"
 summary: "The protocol is built in the open. You can join with code, by reviewing changes, by improving the documentation or by answering questions."
-weight: 10
+section:
+  label: Open source
+  weight: 6
+  accent: "#C4A7FF"
+  ink: "#6B4BC8"
 ---
 
 ## How the protocol is developed {#development}
@@ -15,7 +19,7 @@ The software, the documentation, the tools and this site are open source. Develo
 - Each version publishes its change notes.
 
 :::aside
-[Where to check it →](/open-source/verify)
+[Where to check it →](site:/about/verify)
 :::
 
 ## Ways to contribute {#ways}
@@ -44,7 +48,7 @@ A code proposal does not change the chain by itself. The path is this:
 5. If it is approved, the nodes change version together.
 
 :::aside
-[How a change is applied →](docs:/protocol/governance#lifecycle)
+[How a change is applied →](/protocol/governance#lifecycle)
 :::
 
 ## Technical questions {#questions}
@@ -53,12 +57,12 @@ Questions about the protocol, the network, an integration or this site are asked
 
 The space is only for technical topics. Services are neither offered nor hired there.
 
-Before asking, look at the [frequently asked questions](/open-source/faq) and the [documentation](/docs).
+Before asking, look at the [frequently asked questions](site:/faq) and the [documentation](/).
 
 ## Licenses for contributions {#licenses}
 
 Code contributions are published under Apache 2.0. The text and data of this site, under CC BY 4.0. Contribute only your own work, or work you have the right to publish under those licenses.
 
 :::aside
-[Licenses →](/legal#licenses)
+[Licenses →](site:/legal#licenses)
 :::

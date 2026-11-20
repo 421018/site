@@ -43,7 +43,7 @@ Some things fall outside the protocol's reach. Knowing them is part of using the
 - **Continuous operation.** If more than one third of the voting power goes offline, the network stops until the majority is recovered. It is a design decision: the protocol prefers to stop rather than confirm something without the necessary majority.
 
 :::aside
-[Risks of use ↗](site:/legal#risks)
+[Risks of use](site:/legal#risks)
 :::
 
 ## How it responds to faults {#failures}
@@ -79,7 +79,7 @@ The right way is called responsible disclosure. The person reports the vulnerabi
 Publishing a vulnerability before it is fixed would let others exploit it. That is why the report is made in private.
 
 :::aside
-[Report a vulnerability ↗](site:/open-source/security#report)
+[Report a vulnerability](/open-source/security#report)
 :::
 
 ## How to protect yourself {#protect-yourself}
@@ -89,7 +89,7 @@ Many risks for a person do not come from the protocol, but from their own enviro
 - **Keep your recovery phrase offline.** The recovery phrase lets you reconstruct your private key. Whoever has it controls your account.
 - **Nobody from the project will ask you for your keys.** Nobody who takes part in the protocol or the network needs your private key or your recovery phrase. Whoever asks you for it is trying to deceive you.
 - **Review what you sign.** Before signing, read in your wallet what the transaction does and which contract it calls.
-- **Use the project's channels.** Verify any announcement, link or application against the [project's channels](site:/open-source/verify#channels).
+- **Use the project's channels.** Verify any announcement, link or application against the [project's channels](site:/about/verify#channels).
 
 ## Why the protocol does it this way {#why}
 

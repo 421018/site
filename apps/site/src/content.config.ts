@@ -30,7 +30,7 @@ const block = { kicker: z.string(), title: z.string(), lead: z.string().optional
 
 const home = defineCollection({
   loader: perLanguage(catalogPath('site'), 'home.md'),
-  schema: ({ image }) => z
+  schema: z
     .object({
       title: z.string().optional(),
       description: z.string().optional(),
@@ -66,29 +66,8 @@ const home = defineCollection({
           secondary: cta.optional(),
         })
         .strict(),
-      uses: z
-        .object({
-          ...block,
-          stories: z.array(
-            z
-              .object({
-                /** Short label on the card, e.g. "Registros verificables". */
-                tag: z.string().optional(),
-                title: z.string(),
-                text: z.string(),
-                /** Optional photo (path relative to home.md) with its required description and credit. */
-                image: image().optional(),
-                alt: z.string().optional(),
-                credit: z.string().optional(),
-                /** Optional link to the use case page. */
-                href: z.string().optional(),
-              })
-              .strict()
-              .refine((s) => !s.image || (s.alt && s.credit), 'a story with an image needs "alt" and "credit"'),
-          ),
-        })
-        .strict(),
-      people: z.object({ ...block, rows: z.array(z.object({ who: z.string(), what: z.string() }).strict()) }).strict(),
+      /** Latest entries from the Bitácora (the blog); the posts come from the blog itself. */
+      log: z.object({ ...block, link: cta }).strict(),
       start: z.object({ ...block, paths: z.array(z.object({ icon, label: z.string(), text: z.string(), href: z.string() }).strict()) }).strict(),
       name: z.object({ ...block }).strict(),
       closing: z.object({ title: z.string(), lead: z.string().optional(), primary: cta, secondary: cta }).strict(),

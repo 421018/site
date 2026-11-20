@@ -26,6 +26,9 @@
 .dh-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
 .dh-link:hover { color: var(--head); }
 .dh-link.mono { font-family: var(--mono); font-size: 12px; }
+/* Areas of 42 (Chain · Protocol), at the far right; colors follow the theme. */
+.dh-sep { width: 1px; height: 24px; margin: 0 6px; background: var(--rule); }
+.dh { --areas-line: var(--rule); --areas-bg: var(--soft); --areas-ink: var(--muted); --areas-on: var(--surface); --areas-on-ink: var(--head); }
 .dh-tabs { max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
 .dh-tabs a { flex: none; padding: 12px 14px; color: var(--muted); text-decoration: none; font-size: 14px; border-bottom: 2px solid transparent; }
 .dh-tabs a:hover { color: var(--head); }

@@ -4,7 +4,7 @@ summary: "En pocas palabras: este sitio es informativo, usar la red tiene riesgo
 section:
   label: Legal
   weight: 1
-  attachTo: open-source # listed in the Código abierto side index, using its colors
+  attachTo: about
 ---
 
 :::status[Borrador]

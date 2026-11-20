@@ -2,11 +2,7 @@
 title: "Infinite Improbability Drive"
 summary: "El Protocolo 42 es un motor improbabilístico de registro distribuido. Qué problema resuelve y qué se vuelve posible."
 menuTitle: "Cómo funciona"
-section:
-  label: Protocolo
-  weight: 1
-  accent: "#5BF0C8"
-  ink: "#0A7A5E"
+weight: 10
 ---
 
 ## Infinite Improbability Drive {#protocol}
@@ -87,7 +83,7 @@ Cuando el registro no depende de una sola parte, se pueden construir cosas que a
 Todo eso se construye encima del protocolo. El protocolo no decide qué se construye; solo ofrece el registro compartido y las reglas verificables. Quienes lo usan deciden el sentido.
 
 :::aside
-[Casos de uso →](/use-cases) · [El mecanismo de cada pieza →](docs:/protocol)
+[Bitácora →](/log) · [El mecanismo de cada pieza →](docs:/protocol)
 :::
 
 Una infraestructura de registro distribuido improbabilístico parece imposible. El protocolo existe para hacerla posible.

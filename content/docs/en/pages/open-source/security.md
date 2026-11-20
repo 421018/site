@@ -31,17 +31,17 @@ Someone who investigates the protocol's security in good faith reports what they
 Once it is fixed, what happened is published in the security notices, and the contribution of the person who reported it is acknowledged, if they wish.
 
 :::aside
-[How the protocol's security is designed →](docs:/protocol/security)
+[How the protocol's security is designed →](/protocol/security)
 :::
 
 ## What this channel is not for {#scope}
 
 This channel is only for vulnerabilities in the code. It does not handle:
 
-- **Network support.** For technical questions, use the [repository's discussion space](/open-source/contributing#questions).
+- **Network support.** For technical questions, use the [repository's discussion space](site:/about#questions).
 - **Accounts or units.** Nobody can restore a private key or reverse a confirmed transaction, and this channel does not manage anyone's accounts, units or funds.
 - **Third-party services.** Wallets, RPC providers, explorers and applications are responsible for their own services.
 
 :::note[Nobody will ask you for your keys]
-No channel of the project will ask you for your recovery phrase, your private keys, or for you to send units to "verify" an account. Whoever asks is trying to deceive you. [How to protect yourself](docs:/protocol/security#protect-yourself)
+No channel of the project will ask you for your recovery phrase, your private keys, or for you to send units to "verify" an account. Whoever asks is trying to deceive you. [How to protect yourself](/protocol/security#protect-yourself)
 :::

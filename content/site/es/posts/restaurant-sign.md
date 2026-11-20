@@ -1,7 +1,8 @@
 ---
 title: "Hoy no hay sopa"
 summary: "En un rincón de la galaxia, el letrero de un restaurante anunciaba sopa. Hasta que un jueves llegó un piloto con hambre y demasiados viajes encima."
-category: caso-de-uso
+category: historia
+featured: true
 weight: 5
 image: ../../images/casos/letrero.jpg
 alt: "Un restaurante remoto en una estación espacial, con un letrero que anuncia sopa y una nave aparcada al lado"

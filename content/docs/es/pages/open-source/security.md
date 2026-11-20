@@ -31,17 +31,17 @@ Quien investiga la seguridad del protocolo de buena fe reporta lo que encuentra 
 Una vez corregida, lo ocurrido se publica en los avisos de seguridad, y se reconoce el aporte de quien la reportó, si así lo desea.
 
 :::aside
-[Cómo está diseñada la seguridad del protocolo →](docs:/protocol/security)
+[Cómo está diseñada la seguridad del protocolo →](/protocol/security)
 :::
 
 ## Para qué no sirve este canal {#scope}
 
 Este canal es solo para vulnerabilidades del código. No atiende:
 
-- **Soporte de la red.** Para preguntas técnicas, usa el [espacio de discusiones del repositorio](/open-source/contributing#questions).
+- **Soporte de la red.** Para preguntas técnicas, usa el [espacio de discusiones del repositorio](site:/about#questions).
 - **Cuentas o unidades.** Nadie puede restablecer una llave privada ni revertir una transacción confirmada, y este canal no gestiona cuentas, unidades ni fondos de nadie.
 - **Servicios de terceros.** Las billeteras, los proveedores de RPC, los exploradores y las aplicaciones responden por sus propios servicios.
 
 :::note[Nadie te pedirá tus llaves]
-Ningún canal del proyecto te pedirá tu frase de recuperación, tus llaves privadas ni que envíes unidades para «verificar» una cuenta. Quien lo pide intenta engañarte. [Cómo protegerte](docs:/protocol/security#protect-yourself)
+Ningún canal del proyecto te pedirá tu frase de recuperación, tus llaves privadas ni que envíes unidades para «verificar» una cuenta. Quien lo pide intenta engañarte. [Cómo protegerte](/protocol/security#protect-yourself)
 :::

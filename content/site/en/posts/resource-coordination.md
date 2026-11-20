@@ -1,7 +1,7 @@
 ---
 title: "Real-time coordination of resources"
 summary: "Several parties update the state of a shared resource. Anyone can see the current state and the history without a control center."
-category: caso-de-uso
+category: historia
 weight: 30
 image: ../../images/casos/coordinacion.jpg
 alt: "A workshop yard with vehicles and a shared status panel"

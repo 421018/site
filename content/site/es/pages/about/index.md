@@ -1,9 +1,9 @@
 ---
-title: "Sobre 42 Chain"
+title: "Sobre 42"
 summary: "42 Chain es una red pública, su protocolo es código abierto y su nombre viene de una novela. Cómo encaja todo eso y qué principios lo guían."
 section:
-  label: Código abierto
-  weight: 5
+  label: Sobre 42
+  weight: 2
   accent: "#C4A7FF"
   ink: "#6B4BC8"
 ---
@@ -18,7 +18,7 @@ El software es de código abierto. Cualquiera puede leerlo, proponer cambios o c
 
 Nadie controla todo. Cada parte tiene su lugar y se puede comprobar por separado:
 
-- **El software.** Lo escriben y lo revisan contribuidores en un repositorio público. Cualquiera puede proponer cambios. [Contribuir](/open-source/contributing)
+- **El software.** Lo escriben y lo revisan contribuidores en un repositorio público. Cualquiera puede proponer cambios. [Contribuir](docs:/open-source)
 - **La operación de la red.** La hacen validadores y operadores de nodos. El protocolo compensa su trabajo.
 - **El acceso.** Los nodos RPC y los exploradores los ofrecen proveedores independientes. Cualquiera puede ofrecer el suyo. [Proveedores](docs:/get-started/connect#providers)
 - **Las decisiones.** Se toman por gobernanza en la propia cadena: votan quienes respaldan la red. [Gobernanza](docs:/protocol/governance)
@@ -26,7 +26,7 @@ Nadie controla todo. Cada parte tiene su lugar y se puede comprobar por separado
 - **Este sitio y la documentación.** Los escriben y los revisan contribuidores.
 
 :::aside
-[Dónde comprobar cada parte →](/open-source/verify)
+[Dónde comprobar cada parte →](/about/verify)
 :::
 
 ## Por qué 42 {#why-42}
@@ -43,7 +43,7 @@ Una infraestructura que no pertenece a nadie y que varias personas pueden compro
 
 ## Principios {#principles}
 
-Estos son los criterios que guían el desarrollo. El funcionamiento del registro está en [el protocolo](/protocol).
+Estos son los criterios que guían el desarrollo. El funcionamiento del registro está en [el protocolo](/about/how-it-works).
 
 - **Apertura.** Cualquiera puede usar la red, construir sobre ella, operar un nodo y revisar el código.
 - **Neutralidad.** La red trata todas las transacciones por igual. Ninguna aplicación ni ningún participante tienen privilegios.
@@ -58,5 +58,5 @@ El protocolo no tiene una hoja de ruta con fecha de término. Se mantiene y se m
 Cada cambio sigue el mismo camino. Se propone en el repositorio público, se prueba en la red de pruebas y solo llega a la red principal si se aprueba por gobernanza. Por eso no se publican fechas: qué cambia y cuándo se decide en la propia red.
 
 :::aside
-[Historial de versiones y actualizaciones · Referencia técnica ↗](/docs)
+[Historial de versiones y actualizaciones · Referencia técnica](docs:/)
 :::

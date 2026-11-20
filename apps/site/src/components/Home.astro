@@ -10,6 +10,7 @@ import Header from '@42chain/kit/components/Header.astro';
 import Footer from '@42chain/kit/components/Footer.astro';
 import { isLinkAvailable, langOf, resolveHref } from '@42chain/kit/i18n';
 import { homeAlternates } from '@42chain/kit/site';
+import { categoryOf, getBlog, getBlogPosts, postHref, readingMinutes } from '@42chain/kit/blog';
 import OrbitHero from '@42chain/ui/art/OrbitHero.astro';
 import RingedPlanet from '@42chain/ui/art/RingedPlanet.astro';
 import EnginePanel from '@42chain/ui/art/EnginePanel.astro';
@@ -18,7 +19,12 @@ import Icon from '@42chain/ui/art/Icon.astro';
 const lang = langOf(Astro);
 const entry = await getEntry('home', lang);
 if (!entry) throw new Error(`Missing site/${lang}/home.md in the content catalog`);
-const { title, description, hero, figures, engine, build, uses, people, start, name, closing } = entry.data;
+const { title, description, hero, figures, engine, build, log, start, name, closing } = entry.data;
+// Latest entries of the Bitácora: the featured one (else the newest) large, three more beside it.
+const blog = await getBlog(lang);
+const posts = blog ? await getBlogPosts(lang) : [];
+const lead = posts.find((p) => p.data.featured) ?? posts[0];
+const more = posts.filter((p) => p !== lead).slice(0, 3);
 
 /** A line break in a YAML title becomes <br>. */
 const lines = (s: string) => s.trim().split('\n');
@@ -57,8 +63,6 @@ const highlight = (code: string) =>
     return m && !/^[{[]$/.test(m[2]) ? `${esc(m[1])}<span class="s">${esc(m[2])}</span>${m[3]}` : esc(l);
   }).join('\n');
 const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg>';
-/** Photo tints cycle through the brand colours. */
-const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 ---
 <Base title={title} description={description} alternates={homeAlternates()}>
 <section class="hero">
@@ -123,29 +127,33 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 </div>
 </section>
 
-<section id="use-cases">
+<section id="log">
 <div class="wrap">
 <div class="headrow">
 <div>
-<p class="k">{kicker(2, uses.kicker)}</p>
-<h2 class="h2">{lines(uses.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+<p class="k">{kicker(2, log.kicker)}</p>
+<h2 class="h2">{lines(log.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
 </div>
-{uses.link && <a class="more" href={resolveHref(uses.link.href, lang)}>{uses.link.label} →</a>}
+<a class="more" href={resolveHref(log.link.href, lang)}>{log.link.label} →</a>
 </div>
-{uses.lead && <p class="lead">{uses.lead}</p>}
-<div class="cards3">
-{uses.stories.map((s, i) => (
-  <article class="ucard">
-    {s.image && <figure class="duo uimg" style={`--tint: ${tints[i % tints.length]}`}><Image src={s.image} alt={s.alt!} widths={[480, 800]} sizes="(max-width: 900px) 100vw, 33vw" /></figure>}
-    <div class="ubody">
-      {s.tag && <p class="pill">{s.tag}</p>}
-      <h3>{s.href ? <a href={resolveHref(s.href, lang)}>{s.title}</a> : s.title}</h3>
-      <p>{s.text}</p>
-      {s.credit && <p class="credit">{s.credit}</p>}
-    </div>
-  </article>
-))}
+{log.lead && <p class="lead">{log.lead}</p>}
+{blog && lead && (
+<div class="logs">
+<a class="lfeat" href={postHref(blog, lead)}>
+{lead.data.image && <figure class="duo limg" style="--tint: var(--star)"><Image src={lead.data.image as never} alt={lead.data.alt!} widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 55vw" /></figure>}
+<span class="lmeta">{categoryOf(blog, lead).label} · {blog.readingTime.replace('{n}', String(readingMinutes(lead)))}</span>
+<b>{lead.data.title}</b>
+<span class="lsum">{lead.data.summary}</span>
+</a>
+{more.length > 0 && <div class="llist">{more.map((p) => (
+<a class="litem" href={postHref(blog, p)}>
+<span class="lmeta">{categoryOf(blog, p).label} · {blog.readingTime.replace('{n}', String(readingMinutes(p)))}</span>
+<b>{p.data.title}</b>
+<span class="lsum">{p.data.summary}</span>
+</a>
+))}</div>}
 </div>
+)}
 </div>
 </section>
 
@@ -166,15 +174,14 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 </div>
 </section>
 
-<section id="organization">
+<section id="start">
 <div class="wrap">
-<p class="k">{kicker(4, people.kicker)}</p>
-<h2 class="h2">{lines(people.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
-{people.lead && <p class="lead">{people.lead}</p>}
-<div class="roles">
-{people.rows.map((r) => <div class="role"><b>{r.who}</b><span>{r.what}</span></div>)}
+<p class="k">{kicker(4, start.kicker)}</p>
+<h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{start.lead && <p class="lead">{start.lead}</p>}
+<div class="paths">
+{start.paths.map((p) => <a class="path" href={resolveHref(p.href, lang)}><Icon name={p.icon} size={28} class="pi" /><b>{p.label}</b><span>{p.text}</span></a>)}
 </div>
-{people.link && <a class="more" href={resolveHref(people.link.href, lang)}>{people.link.label} →</a>}
 </div>
 </section>
 
@@ -188,17 +195,6 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 {name.link && <a class="more star" href={resolveHref(name.link.href, lang)}>{name.link.label} →</a>}
 </div>
 <div class="lore-art" aria-hidden="true"><RingedPlanet /></div>
-</div>
-</div>
-</section>
-
-<section id="start">
-<div class="wrap">
-<p class="k">{kicker(6, start.kicker)}</p>
-<h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
-{start.lead && <p class="lead">{start.lead}</p>}
-<div class="paths">
-{start.paths.map((p) => <a class="path" href={resolveHref(p.href, lang)}><Icon name={p.icon} size={28} class="pi" /><b>{p.label}</b><span>{p.text}</span></a>)}
 </div>
 </div>
 </section>
@@ -277,19 +273,22 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .eng-card .engine-panel{border-left:1px solid rgba(255,255,255,.06)}
 @media (max-width:900px){.eng-card{grid-template-columns:1fr}.eng-card .engine-panel{border-left:0;border-top:1px solid rgba(255,255,255,.06);min-height:260px}}
 
-/* use cases */
+/* bitácora */
 .headrow{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
 .headrow .more{margin-top:0}
-.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:48px}
-.ucard{display:flex;flex-direction:column;padding:12px;border-radius:20px;background:var(--hull);border:1px solid rgba(255,255,255,.08)}
-.uimg{margin:0;height:220px;border-radius:14px}
-.ubody{padding:20px 12px 12px}
-.ubody .pill{margin:0;color:var(--fg-3);border-color:rgba(255,255,255,.16)}
-.ucard h3{margin:16px 0 0;font-size:22px;line-height:1.25;letter-spacing:-0.02em;font-weight:500}
-.ucard h3 a{color:inherit;text-decoration:none}
-.ucard h3 a:hover{text-decoration:underline;text-underline-offset:4px}
-.ucard p{margin:10px 0 0;font-size:15px;line-height:1.6;color:var(--fg-3)}
-.ucard .credit{font-family:var(--mono);font-size:11px;color:var(--fg-4)}
+.logs{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px 48px;margin-top:48px}
+.logs a{color:var(--fg);text-decoration:none;display:flex;flex-direction:column;gap:10px}
+.logs a:hover b{text-decoration:underline;text-underline-offset:4px}
+.lfeat{padding:12px 12px 24px;border-radius:20px;background:var(--hull);border:1px solid rgba(255,255,255,.08)}
+.lfeat .limg{margin:0 0 10px;height:300px;border-radius:14px}
+.lfeat .lmeta,.lfeat b,.lfeat .lsum{padding:0 12px}
+.lfeat b{font-size:clamp(26px,3vw,34px);line-height:1.15;letter-spacing:-0.025em;font-weight:500}
+.llist{display:flex;flex-direction:column}
+.litem{padding:22px 0;border-bottom:1px solid var(--line-d)}
+.litem:first-child{padding-top:4px}
+.litem b{font-size:21px;line-height:1.25;letter-spacing:-0.015em;font-weight:500}
+.lmeta{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--star)}
+.lsum{font-size:15px;line-height:1.6;color:var(--fg-3)}
 
 /* build */
 .g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
@@ -300,12 +299,6 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .code pre{margin:0;padding:22px 22px 26px;font-family:var(--mono);font-size:14.5px;line-height:1.75;color:var(--fg-2);overflow-x:auto}
 .code .c{color:#6A7480}.code .s{color:var(--acc)}.code .p{color:var(--fg-4)}
 
-/* roles */
-.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:48px}
-.role{padding:24px;border-radius:18px;background:var(--hull);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:10px}
-.role b{font-size:18px;font-weight:500;letter-spacing:-0.01em}
-.role span{font-size:15px;line-height:1.55;color:var(--fg-3)}
-
 /* lore band */
 .lore-band{display:flex;flex-wrap:wrap;align-items:center;border-radius:28px;border:1px solid rgba(255,255,255,.08);background-color:var(--night-2);overflow:hidden}
 .lore-text{flex:1 1 480px;min-width:0;padding:clamp(32px,5vw,64px)}
@@ -313,7 +306,7 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 .lore-art svg{width:100%;max-width:520px;height:auto}
 
 /* ways in */
-.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
+.paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:48px}
 .path{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:18px;background:var(--hull);border:1px solid rgba(255,255,255,.08);color:var(--fg);text-decoration:none;transition:border-color .2s}
 .path:hover{border-color:color-mix(in srgb,var(--acc) 50%,transparent)}
 .path .pi{color:var(--acc)}
@@ -331,11 +324,9 @@ const tints = ['var(--acc)', 'var(--star)', 'var(--nebula)'];
 @media (max-width:900px){
 .wrap{padding-top:88px}
 .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
-.cards3,.paths,.g2{grid-template-columns:1fr}
-.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
+.logs,.paths,.g2{grid-template-columns:1fr}
 .g2{gap:40px}
 }
-@media (max-width:560px){.roles{grid-template-columns:1fr}}
 </style>
 
 <script>

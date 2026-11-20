@@ -15,7 +15,7 @@ Some sources are maintained by the protocol's contributors; others, such as the 
 | What is checked | Where |
 |---|---|
 | The protocol's code | [Public repository] |
-| What changed in each version | [Release notes](/docs) |
+| What changed in each version | [Release notes](docs:/) |
 | The code's license | [License](/legal#licenses) |
 
 ## The network {#network}

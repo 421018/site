@@ -9,7 +9,7 @@ section:
   numbered: true
   sequential: true
   links:
-    - { label: "What it is and why it is useful ↗", href: "site:/protocol" }
+    - { label: "What it is and why it is useful", href: "site:/about/how-it-works" }
 ---
 
 ## How it works {#how}

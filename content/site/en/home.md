@@ -11,7 +11,7 @@ hero:
   lead: |
     42 Chain is blockchain infrastructure.
     An improbabilistic distributed ledger.
-  primary: { label: How it works, href: /protocol }
+  primary: { label: How it works, href: "docs:/protocol" }
   secondary: { label: Connect to the network, href: docs:/get-started/connect }
 
 # Verifiable protocol figures, shown in a strip under the hero.
@@ -28,14 +28,6 @@ engine:
   kicker: The engine
   title: What holds the agreement.
   lead: |
-    :::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
-    At the Restaurant at the End of the Universe, the accounts never add up the way one expects.
-
-    The numbers behave improbably.
-
-    And yet, in the end, everything fits with a precision that seems impossible.
-    :::
-
     An improbabilistic distributed ledger works the same way: many independent copies reach the same result, and anyone can check that the accounts close.
   pieces:
     - icon: consensus
@@ -84,37 +76,11 @@ engine:
         - "The network applies what is approved."
       link: { label: How changes are decided, href: docs:/protocol/governance }
 
-uses:
-  kicker: Use cases
-  title: What it is for, in practice.
-  lead: |
-    When several people need to know the same thing and do not want to leave the ledger in any one person's hands, the protocol lets them share it.
-
-    Anyone can keep a copy.
-    Anyone can check the result.
-  link: { label: See the use cases, href: /use-cases }
-  stories:
-    - tag: Contribution
-      title: Proofs of work and contribution.
-      text: A person or group leaves a verifiable record of what they contributed. Whoever needs it can check without depending on the platform where it happened.
-      image: ../images/casos/contribucion.jpg
-      alt: A device showing a proof of contribution on a workbench
-      credit: "Generated image"
-      href: /use-cases/contribution-proofs
-    - tag: Coordination
-      title: Real-time resource coordination.
-      text: Several parties update the state of a shared resource. Anyone can see the current state and the history without a control center.
-      image: ../images/casos/coordinacion.jpg
-      alt: A workshop yard with vehicles and a shared status panel
-      credit: "Generated image"
-      href: /use-cases/resource-coordination
-    - tag: Sovereignty
-      title: Sovereign identity and reputation.
-      text: A person carries their proofs with them. Whoever receives them checks without asking earlier platforms.
-      image: ../images/casos/identidad.jpg
-      alt: A person with portable proofs in a natural setting
-      credit: "Generated image"
-      href: /use-cases/sovereign-identity
+# Latest entries of the Bitácora. The entries themselves come from posts/.
+log:
+  kicker: From the Logbook
+  title: Tales from on board.
+  link: { label: Go to the Logbook, href: /log }
 
 build:
   kicker: For builders
@@ -123,7 +89,7 @@ build:
     Verifiable rules.
   lead: "Contracts are written with standard languages and tools: Solidity, Hardhat, Foundry. An application that already works on an EVM-compatible network works here without changes to its code."
   link: { label: Build applications, href: docs:/build/applications }
-  secondary: { label: "Open the Console ↗", href: "console:/" }
+  secondary: { label: "Open the Console", href: "console:/" }
   code:
     file: hardhat.config.js
     label: Example Hardhat configuration to connect to 42 Chain
@@ -137,17 +103,6 @@ build:
 
       // That's it. Deploy as usual.
 
-people:
-  kicker: How it is organized
-  title: Each role, in different hands.
-  lead: "The code, the operation of the network and the decisions about its rules are separate. Each part can be checked."
-  link: { label: How it is organized, href: "/open-source#circles" }
-  rows:
-    - { who: Code contributors, what: "Propose and review changes in a public repository." }
-    - { who: Validators and node operators, what: "Verify each page and give access to the network." }
-    - { who: On-chain governance, what: "Those who back the network vote on what changes and when." }
-    - { who: Builders, what: "Offer applications and services on the network." }
-
 start:
   kicker: Where to start
   title: Choose your way in.
@@ -156,18 +111,16 @@ start:
     - { icon: build, label: Build an application, href: docs:/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
     - { icon: node, label: Run a node, href: docs:/operate/nodes, text: "Verify the network yourself, serve applications or validate blocks." }
     - { icon: integrate, label: Integrate systems, href: docs:/integrate, text: "Connect management systems, devices, signing tools or other networks." }
-    - { icon: governance, label: Understand governance, href: docs:/protocol/governance, text: "How changes to the protocol are proposed, voted on and applied." }
-    - { icon: docs, label: Read the documentation, href: /docs, text: "Guides and technical reference, from connecting a wallet to running a validator." }
 
 name:
   kicker: The name
   title: Why 42?
   lead: "In Douglas Adams's novel, 42 is the answer to the great question of life, the universe and everything. The answer is exact; the meaning is supplied by those who ask. The protocol works the same way: it offers precise, verifiable rules. What is built with them is decided by those who use it."
-  link: { label: Why 42, href: "/open-source#why-42" }
+  link: { label: About 42, href: "/about#why-42" }
 
 closing:
   title: Shared infrastructure, rules in plain sight.
-  lead: A ledger that belongs to no one. Rules that apply the same way to everyone. The improbable, made possible.
-  primary: { label: How the protocol works, href: /protocol }
-  secondary: { label: Read the documentation, href: "docs:/" }
+  lead: A ledger that many keep at once. Rules that apply the same way to everyone. The improbable, made possible.
+  primary: { label: How it works, href: "docs:/protocol" }
+  secondary: { label: Read the Logbook, href: /log }
 ---

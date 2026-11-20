@@ -11,7 +11,7 @@ hero:
   lead: |
     42 Chain es infraestructura de cadena de bloques.
     Un registro distribuido improbabilístico.
-  primary: { label: Cómo funciona, href: /protocol }
+  primary: { label: Cómo funciona, href: "docs:/protocol" }
   secondary: { label: Conectarse a la red, href: docs:/get-started/connect }
 
 # Verifiable protocol figures, shown in a strip under the hero.
@@ -28,14 +28,6 @@ engine:
   kicker: El motor
   title: Lo que sostiene el acuerdo.
   lead: |
-    :::lore[Douglas Adams · The Hitchhiker’s Guide to the Galaxy]
-    En el restaurante del fin del universo las cuentas nunca cuadran de la forma en que uno espera.
-
-    Los números se comportan de manera improbable.
-
-    Y sin embargo, al final, todo encaja con una precisión que parece imposible.
-    :::
-
     Un registro distribuido improbabilístico funciona igual: muchas copias independientes llegan al mismo resultado, y cualquiera puede comprobar que las cuentas cierran.
   pieces:
     - icon: consensus
@@ -84,37 +76,11 @@ engine:
         - "La red aplica lo aprobado."
       link: { label: Cómo se deciden los cambios, href: docs:/protocol/governance }
 
-uses:
-  kicker: Casos de uso
-  title: Para qué sirve, en la práctica.
-  lead: |
-    Cuando varias personas necesitan saber lo mismo y no quieren dejar el registro en manos de una sola, el protocolo les permite compartirlo.
-
-    Cualquiera puede guardar una copia.
-    Cualquiera puede comprobar el resultado.
-  link: { label: Ver los casos de uso, href: /use-cases }
-  stories:
-    - tag: Contribución
-      title: Pruebas de trabajo y contribución.
-      text: Una persona o un grupo deja constancia verificable de lo que aportó. Quien lo necesite puede comprobarlo sin depender de la plataforma donde ocurrió.
-      image: ../images/casos/contribucion.jpg
-      alt: Dispositivo mostrando una prueba de contribución en un banco de trabajo
-      credit: "Imagen generada"
-      href: /use-cases/contribution-proofs
-    - tag: Coordinación
-      title: Coordinación de recursos en tiempo real.
-      text: Varias partes actualizan el estado de un recurso compartido. Cualquiera ve el estado actual y el historial sin un centro de control.
-      image: ../images/casos/coordinacion.jpg
-      alt: Patio de taller con vehículos y panel de estado compartido
-      credit: "Imagen generada"
-      href: /use-cases/resource-coordination
-    - tag: Soberanía
-      title: Identidad y reputación soberanas.
-      text: Una persona lleva sus pruebas consigo. Quien las recibe las comprueba sin preguntar a plataformas anteriores.
-      image: ../images/casos/identidad.jpg
-      alt: Persona con pruebas portables en un entorno natural
-      credit: "Imagen generada"
-      href: /use-cases/sovereign-identity
+# Latest entries of the Bitácora. The entries themselves come from posts/.
+log:
+  kicker: Desde la Bitácora
+  title: Lo que se cuenta a bordo.
+  link: { label: Ir a la Bitácora, href: /log }
 
 build:
   kicker: Para quien construye
@@ -123,7 +89,7 @@ build:
     Reglas verificables.
   lead: "Los contratos se escriben con lenguajes y herramientas estándar: Solidity, Hardhat, Foundry. Una aplicación que ya funciona en una red compatible con la EVM funciona aquí sin cambios en su código."
   link: { label: Construir aplicaciones, href: docs:/build/applications }
-  secondary: { label: "Abrir la Consola ↗", href: "console:/" }
+  secondary: { label: "Abrir la Consola", href: "console:/" }
   code:
     file: hardhat.config.js
     label: Ejemplo de configuración de Hardhat para conectarse a 42 Chain
@@ -137,17 +103,6 @@ build:
 
       // Ya está. Despliega como siempre.
 
-people:
-  kicker: Cómo se organiza
-  title: Cada función, en manos distintas.
-  lead: "El código, la operación de la red y las decisiones sobre sus reglas están separados. Cada parte se puede comprobar."
-  link: { label: Cómo se organiza, href: "/open-source#circles" }
-  rows:
-    - { who: Contribuidores del código, what: "Proponen y revisan cambios en un repositorio público." }
-    - { who: Validadores y operadores de nodos, what: "Verifican cada página y dan acceso a la red." }
-    - { who: Gobernanza en la cadena, what: "Quienes respaldan la red votan qué cambia y cuándo." }
-    - { who: Quienes construyen, what: "Ofrecen aplicaciones y servicios sobre la red." }
-
 start:
   kicker: Por dónde empezar
   title: Elige por dónde entrar.
@@ -156,18 +111,16 @@ start:
     - { icon: build, label: Construir una aplicación, href: docs:/build/applications, text: "Contratos compatibles con los estándares de la industria, de la red de pruebas a la red principal." }
     - { icon: node, label: Operar un nodo, href: docs:/operate/nodes, text: "Verificar la red por tu cuenta, dar servicio a aplicaciones o validar bloques." }
     - { icon: integrate, label: Integrar sistemas, href: docs:/integrate, text: "Conectar sistemas de gestión, dispositivos, herramientas de firma u otras redes." }
-    - { icon: governance, label: Entender la gobernanza, href: docs:/protocol/governance, text: "Cómo se proponen, se votan y se aplican los cambios al protocolo." }
-    - { icon: docs, label: Leer la documentación, href: /docs, text: "Guías y referencia técnica, desde conectar una billetera hasta operar un validador." }
 
 name:
   kicker: El nombre
   title: ¿Por qué 42?
   lead: "En la novela de Douglas Adams, 42 es la respuesta a la gran pregunta sobre la vida, el universo y todo lo demás. La respuesta es exacta; el sentido lo ponen quienes preguntan. El protocolo funciona igual: ofrece reglas precisas y verificables. Lo que se construye con ellas lo deciden quienes lo usan."
-  link: { label: Por qué 42, href: "/open-source#why-42" }
+  link: { label: Sobre 42, href: "/about#why-42" }
 
 closing:
   title: Infraestructura compartida, reglas a la vista.
-  lead: Un registro que no pertenece a nadie. Reglas que valen igual para todos. Lo improbable, hecho posible.
-  primary: { label: Cómo funciona el protocolo, href: /protocol }
-  secondary: { label: Leer la documentación, href: "docs:/" }
+  lead: Un registro que muchos guardan a la vez. Reglas que valen igual para todos. Lo improbable, hecho posible.
+  primary: { label: Cómo funciona, href: "docs:/protocol" }
+  secondary: { label: Leer la Bitácora, href: /log }
 ---

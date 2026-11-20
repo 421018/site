@@ -1,7 +1,7 @@
 ---
 title: "Coordinación de recursos en tiempo real"
 summary: "Varias partes actualizan el estado de un recurso compartido. Cualquiera puede ver el estado actual y el historial sin un centro de control."
-category: caso-de-uso
+category: historia
 weight: 30
 image: ../../images/casos/coordinacion.jpg
 alt: "Patio de taller con vehículos y panel de estado compartido"

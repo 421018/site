@@ -77,6 +77,43 @@
           ],
           "additionalProperties": false
         },
+        "areas": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "items": {
+              "minItems": 2,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "href": {
+                    "type": "string"
+                  },
+                  "current": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "label",
+                  "href"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "label",
+            "items"
+          ],
+          "additionalProperties": false
+        },
         "notice": {
           "type": "object",
           "properties": {
@@ -175,6 +212,61 @@
             "links"
           ],
           "additionalProperties": false
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "href"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "label",
+              "links"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "links": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "href": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "href"
+            ],
+            "additionalProperties": false
+          }
         }
       },
       "required": [

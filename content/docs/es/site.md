@@ -9,7 +9,6 @@ description: Documentación técnica de 42 Chain y del Protocolo 42. Conectarse,
 
 header:
   homeLink: Documentación de 42 Chain, inicio
-  brand: Docs # word next to the 42 mark in the header
   home: Inicio # first item of the main menu and of the breadcrumbs
   mainNav: Principal
   menuButton: Menú
@@ -25,18 +24,35 @@ header:
     noResults: Sin resultados.
     unavailable: La búsqueda está disponible en la versión publicada del sitio.
   links:
-    - { label: "Consola ↗", href: "console:/" }
-    - { label: "42chain.org ↗", href: "site:/" } # the main site, in this language
+    - { label: Consola, href: "console:/" }
+  areas: # the areas of 42, at the far right of the header
+    label: Áreas de 42
+    items:
+      - { label: Chain, href: "site:/", current: false }
+      - { label: Protocol, href: "/", current: true }
 
 footer:
   credit: Documentación de código abierto
   license: Textos CC BY 4.0
   note: © 2026 Los contribuidores de 42 Chain
-  extra: # extra column: the other products
-    label: Herramientas
-    links:
-      - { label: "Consola ↗", href: "console:/" }
-      - { label: "42chain.org ↗", href: "site:/" } # the main site, in this language
+  # Shared by every area of 42 (Chain and Protocol): only the main ways in.
+  columns:
+    - label: Chain
+      links:
+        - { label: Bitácora, href: "site:/log" }
+        - { label: Sobre 42, href: "site:/about" }
+        - { label: Preguntas, href: "site:/faq" }
+    - label: Protocol
+      links:
+        - { label: Documentación, href: "/" }
+        - { label: Consola, href: "console:/" }
+    - label: Código abierto
+      links:
+        - { label: Contribuir, href: "/open-source" }
+        - { label: Seguridad y reportes, href: "/open-source/security" }
+  links: # bottom line
+    - { label: Legal, href: "site:/legal" }
+    - { label: "@42protocol en X", href: "https://x.com/42protocol" }
 
 page:
   lastReviewed: Última revisión
