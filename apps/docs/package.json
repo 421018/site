@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Documentation of 42 Chain and the Protocolo 42 (docs.42chain.org).",
+  "description": "Documentation of 42 Chain and the Protocolo 42 (42protocol.dev).",
   "license": "UNLICENSED",
   "scripts": {
     "dev": "astro dev",

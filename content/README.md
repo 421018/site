@@ -41,8 +41,8 @@ npm run validate
 |---|---|
 | `site/es/pages/protocol/index.md` | `/es/protocol` |
 | `site/es/pages/protocol/index.md` | `/es/protocol` |
-| `docs/es/pages/protocol/consensus.md` | `docs.42chain.org/es/protocol/consensus` |
-| `docs/es/pages/build/precompiles/index.md` | `docs.42chain.org/build/precompiles` |
+| `docs/es/pages/protocol/consensus.md` | `42protocol.dev/es/protocol/consensus` |
+| `docs/es/pages/build/precompiles/index.md` | `42protocol.dev/build/precompiles` |
 
 ## Adding a page
 

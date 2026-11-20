@@ -4,7 +4,7 @@
  * before going live.
  */
 export const SITE = {
-  url: 'https://docs.42chain.org',
+  url: 'https://42protocol.dev',
   /** Language at the site root; the others are served under /<lang>/. */
   defaultLang: 'en',
   /** Language the content is written in first; pages not yet translated show it, with a notice. */
