@@ -1,0 +1,24 @@
+---
+/**
+ * Places widgets in a rendered page. The content blocks turn
+ * :::widget{name="x"} into an empty <div data-widget="x"></div>; this component
+ * renders the page (its default slot), cuts it at those markers and puts the
+ * real component in each place. Content stays plain Markdown, with no code.
+ */
+import HashChain from '../ui/components/HashChain.astro';
+import type { WidgetName } from './names';
+
+const components: Record<WidgetName, (props: Record<string, never>) => unknown> = {
+  'hash-chain': HashChain,
+};
+
+const html = await Astro.slots.render('default');
+// split() with a capture group alternates: html, name, html, name, html…
+const parts = html.split(/<div data-widget="([a-z0-9-]+)"><\/div>/);
+---
+{parts.map((part, i) => {
+  if (i % 2 === 0) return <Fragment set:html={part} />;
+  const Widget = components[part as WidgetName];
+  if (!Widget) throw new Error(`Unknown widget "${part}" in the page.`);
+  return <Widget />;
+})}

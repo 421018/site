@@ -1,0 +1,244 @@
+---
+/**
+ * Home page layout. The texts come from the catalog's site/<lang>/home.md; this file only
+ * decides how they look.
+ */
+import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../kit/layouts/Base.astro';
+import Header from '../kit/components/Header.astro';
+import Footer from '../kit/components/Footer.astro';
+import { langOf, resolveHref } from '../kit/i18n';
+import { homeAlternates } from '../kit/site';
+import { categoryOf, getBlog, getBlogPosts, postHref, readingMinutes } from '../kit/blog';
+import OrbitHero from '../ui/art/OrbitHero.astro';
+import RingedPlanet from '../ui/art/RingedPlanet.astro';
+import Icon from '../ui/art/Icon.astro';
+
+const lang = langOf(Astro);
+const entry = await getEntry('home', lang);
+if (!entry) throw new Error(`Missing site/${lang}/home.md in the content catalog`);
+const { title, description, hero, engine, log, start, name, closing } = entry.data;
+// Latest entries of the Bitácora: the featured one (else the newest) large, three more beside it.
+const blog = await getBlog(lang);
+const posts = blog ? await getBlogPosts(lang) : [];
+const lead = posts.find((p) => p.data.featured) ?? posts[0];
+const more = posts.filter((p) => p !== lead).slice(0, 3);
+
+/** A line break in a YAML title becomes <br>. */
+const lines = (s: string) => s.trim().split('\n');
+/** Blank lines separate paragraphs. A single line break stays inside the paragraph. */
+const paragraphs = (text: string) =>
+  text.split(/\n\s*\n/).map((p) => p.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
+type LeadPart = { kind: 'text'; paragraphs: string[] } | { kind: 'lore'; label: string; paragraphs: string[] };
+/**
+ * Home text is YAML, not Markdown, so a :::lore block inside a lead would
+ * otherwise show as plain text. Pull those asides out and leave the rest as paragraphs.
+ */
+const leadParts = (source: string): LeadPart[] => {
+  const parts: LeadPart[] = [];
+  const re = /:::lore\[([^\]]+)\]\s*\n([\s\S]*?)\n[ \t]*:::/g;
+  let last = 0;
+  for (const match of source.matchAll(re)) {
+    const before = paragraphs(source.slice(last, match.index));
+    if (before.length) parts.push({ kind: 'text', paragraphs: before });
+    const quote = paragraphs(match[2]);
+    parts.push({ kind: 'lore', label: match[1].trim(), paragraphs: quote.length ? quote : [match[2].trim()] });
+    last = (match.index ?? 0) + match[0].length;
+  }
+  const rest = paragraphs(source.slice(last));
+  if (rest.length) parts.push({ kind: 'text', paragraphs: rest });
+  return parts;
+};
+/** Kickers are numbered in page order: 01 — …, 02 — … */
+const kicker = (n: number, text: string) => `${String(n).padStart(2, '0')} — ${text}`;
+const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6"></path></svg>';
+---
+<Base title={title} description={description} alternates={homeAlternates()}>
+<section class="hero">
+<div class="hero-sky stars" aria-hidden="true"></div>
+<div class="hero-art" aria-hidden="true"><OrbitHero /></div>
+<div class="hero-field" aria-hidden="true"></div>
+<div class="hero-in">
+<Header alternates={homeAlternates()} />
+<div class="copy">
+<p class="lbl eyebrow fade" style="animation-delay: .1s"><span class="dot"></span>{hero.eyebrow}</p>
+<h1 class="fade" style="animation-delay: .2s">{lines(hero.title).map((l, i) => <>{i > 0 && <br />}{i === 0 ? <span class="panic">{l}</span> : l}</>)}</h1>
+<p class="hero-lead fade" style="animation-delay: .35s">{hero.lead}</p>
+<div class="acts fade" style="animation-delay: .5s">
+<a class="btn btn-p" href={resolveHref(hero.primary.href, lang)}>{hero.primary.label} <Fragment set:html={arrow} /></a>
+<a class="btn btn-g" href={resolveHref(hero.secondary.href, lang)}>{hero.secondary.label}</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="log">
+<div class="wrap">
+<div class="headrow">
+<div>
+<p class="k">{kicker(1, log.kicker)}</p>
+<h2 class="h2">{lines(log.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+</div>
+<a class="more" href={resolveHref(log.link.href, lang)}>{log.link.label} →</a>
+</div>
+{log.lead && <p class="lead">{log.lead}</p>}
+{blog && lead && (
+<div class="logs">
+<a class="lfeat" href={postHref(blog, lead)}>
+{lead.data.image && <figure class="duo limg" style="--tint: var(--star)"><Image src={lead.data.image as never} alt={lead.data.alt!} widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 55vw" /></figure>}
+<span class="lmeta">{categoryOf(blog, lead).label} · {blog.readingTime.replace('{n}', String(readingMinutes(lead)))}</span>
+<b>{lead.data.title}</b>
+<span class="lsum">{lead.data.summary}</span>
+</a>
+{more.length > 0 && <div class="llist">{more.map((p) => (
+<a class="litem" href={postHref(blog, p)}>
+<span class="lmeta">{categoryOf(blog, p).label} · {blog.readingTime.replace('{n}', String(readingMinutes(p)))}</span>
+<b>{p.data.title}</b>
+<span class="lsum">{p.data.summary}</span>
+</a>
+))}</div>}
+</div>
+)}
+</div>
+</section>
+
+<section id="engine">
+<div class="wrap">
+<p class="k">{kicker(2, engine.kicker)}</p>
+<h2 class="h2">{lines(engine.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{engine.lead && (
+  <div class="lead-flow">
+    {leadParts(engine.lead).map((part) =>
+      part.kind === 'lore' ? (
+        <aside class="lore">
+          {part.paragraphs.map((p) => <p>{p}</p>)}
+          <span class="ll">{part.label}</span>
+        </aside>
+      ) : (
+        part.paragraphs.map((p) => <p class="lead">{p}</p>)
+      ),
+    )}
+  </div>
+)}
+<a class="more" href={resolveHref(engine.link.href, lang)}>{engine.link.label} →</a>
+</div>
+</section>
+
+<section id="start">
+<div class="wrap">
+<p class="k">{kicker(3, start.kicker)}</p>
+<h2 class="h2">{lines(start.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{start.lead && <p class="lead">{start.lead}</p>}
+<div class="paths">
+{start.paths.map((p) => <a class="path" href={resolveHref(p.href, lang)}><Icon name={p.icon} size={28} class="pi" /><b>{p.label}</b><span>{p.text}</span></a>)}
+</div>
+</div>
+</section>
+
+<section id="why-42">
+<div class="wrap">
+<div class="lore-band stars">
+<div class="lore-text">
+<p class="k star">{kicker(4, name.kicker)}</p>
+<h2 class="h2">{lines(name.title).map((l, i) => <>{i > 0 && <br />}{l}</>)}</h2>
+{name.lead && <p class="lead">{name.lead}</p>}
+{name.link && <a class="more star" href={resolveHref(name.link.href, lang)}>{name.link.label} →</a>}
+</div>
+<div class="lore-art" aria-hidden="true"><RingedPlanet /></div>
+</div>
+</div>
+</section>
+
+<section id="closing">
+<div class="wrap">
+<div class="closing stars">
+<svg class="horizon" aria-hidden="true" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0 160 Q600 20 1200 160 Z" fill="#0E1620"></path><path d="M0 160 Q600 20 1200 160" fill="none" stroke="rgba(91,240,200,.35)" stroke-width="1.5"></path></svg>
+<h2 class="h2">{closing.title}</h2>
+{closing.lead && <p class="lead">{closing.lead}</p>}
+<div class="acts">
+<a class="btn btn-p" href={resolveHref(closing.primary.href, lang)}>{closing.primary.label} <Fragment set:html={arrow} /></a>
+<a class="btn btn-g" href={resolveHref(closing.secondary.href, lang)}>{closing.secondary.label}</a>
+</div>
+</div>
+</div>
+</section>
+
+<Footer />
+</Base>
+
+<style is:global>
+.k{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin:0 0 16px}
+.k.star,.more.star{color:var(--star)}
+.h2{margin:0;font-size:clamp(30px,7.4vw,54px);font-weight:500;letter-spacing:-0.035em;line-height:1.04}
+.lead{margin:20px 0 0;max-width:640px;font-size:17.5px;line-height:1.65;color:var(--fg-3)}
+.lead-flow{max-width:720px}
+.lead-flow .lead{max-width:none}
+.lead-flow .lore{margin:22px 0 6px;background:color-mix(in srgb, var(--acc) 8%, var(--hull));color:var(--fg)}
+.wrap{max-width:1280px;margin:0 auto;padding:120px clamp(16px,4vw,40px) 0;box-sizing:border-box}
+.more{display:inline-flex;align-items:center;min-height:44px;margin-top:24px;color:var(--acc);text-decoration:none;font-size:15px}
+.more:hover{text-decoration:underline;text-underline-offset:4px}
+.links2{display:flex;gap:4px 28px;flex-wrap:wrap}
+
+/* hero */
+.hero{position:relative;overflow:hidden;min-height:clamp(680px,92svh,860px);display:flex}
+.hero-sky{position:absolute;inset:0;opacity:.9}
+.hero-art{position:absolute;right:-60px;top:20px;width:min(900px,70vw);aspect-ratio:900/760}
+.hero-art svg{width:100%;height:100%}
+.hero-field{position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,var(--night) 38%,rgba(4,6,11,.85) 52%,rgba(4,6,11,0) 72%)}
+.hero-in{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;max-width:1280px;margin:0 auto;padding:22px clamp(16px,4vw,40px) 72px;box-sizing:border-box}
+.hero .copy{flex:1;display:flex;flex-direction:column;justify-content:center;padding:72px 0 24px}
+.eyebrow{margin:0 0 28px;display:inline-flex;align-items:center;gap:12px;color:var(--fg-3);letter-spacing:.14em}
+.hero h1{margin:0;max-width:760px;font-size:clamp(34px,9.6vw,88px);hyphens:manual;font-weight:500;line-height:.98;letter-spacing:-0.045em}
+.hero h1 .panic{color:var(--acc)}
+.hero-lead{margin:30px 0 0;max-width:580px;font-size:clamp(17px,1.4vw,19px);line-height:1.6;color:var(--fg-2)}
+.acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
+@media (max-width:900px){
+.hero-art{right:-35%;top:auto;bottom:-10%;width:130vw;opacity:.45}
+.hero-field{background:linear-gradient(180deg,var(--night) 0%,var(--night) 55%,rgba(4,6,11,.6) 100%)}
+}
+
+/* bitácora */
+.headrow{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.headrow .more{margin-top:0}
+.logs{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px 48px;margin-top:48px}
+.logs a{color:var(--fg);text-decoration:none;display:flex;flex-direction:column;gap:10px}
+.logs a:hover b{text-decoration:underline;text-underline-offset:4px}
+.lfeat{padding:12px 12px 24px;border-radius:20px;background:var(--hull);border:1px solid rgba(255,255,255,.08)}
+.lfeat .limg{margin:0 0 10px;height:300px;border-radius:14px}
+.lfeat .lmeta,.lfeat b,.lfeat .lsum{padding:0 12px}
+.lfeat b{font-size:clamp(26px,3vw,34px);line-height:1.15;letter-spacing:-0.025em;font-weight:500}
+.llist{display:flex;flex-direction:column}
+.litem{padding:22px 0;border-bottom:1px solid var(--line-d)}
+.litem:first-child{padding-top:4px}
+.litem b{font-size:21px;line-height:1.25;letter-spacing:-0.015em;font-weight:500}
+.lmeta{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--star)}
+.lsum{font-size:15px;line-height:1.6;color:var(--fg-3)}
+
+/* lore band */
+.lore-band{display:flex;flex-wrap:wrap;align-items:center;border-radius:28px;border:1px solid rgba(255,255,255,.08);background-color:var(--night-2);overflow:hidden}
+.lore-text{flex:1 1 480px;min-width:0;padding:clamp(32px,5vw,64px)}
+.lore-art{flex:1 1 380px;min-width:0;display:flex;justify-content:center;padding:0 24px}
+.lore-art svg{width:100%;max-width:520px;height:auto}
+
+/* ways in */
+.paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:48px}
+.path{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:18px;background:var(--hull);border:1px solid rgba(255,255,255,.08);color:var(--fg);text-decoration:none;transition:border-color .2s}
+.path:hover{border-color:color-mix(in srgb,var(--acc) 50%,transparent)}
+.path .pi{color:var(--acc)}
+.path b{font-size:19px;font-weight:500}
+.path span{font-size:14.5px;line-height:1.55;color:var(--fg-3)}
+
+/* closing */
+#closing .wrap{padding-bottom:120px}
+.closing{position:relative;overflow:hidden;border-radius:28px;background-color:var(--night-2);border:1px solid rgba(255,255,255,.08);padding:88px 24px 120px;text-align:center}
+.closing .horizon{position:absolute;left:0;right:0;bottom:0;width:100%;height:140px}
+.closing .h2{position:relative;max-width:760px;margin:0 auto}
+.closing .lead{position:relative;max-width:640px;margin:20px auto 0;color:var(--fg-2)}
+.closing .acts{position:relative;justify-content:center}
+
+@media (max-width:900px){
+.wrap{padding-top:88px}
+.logs,.paths{grid-template-columns:1fr}
+}
+</style>

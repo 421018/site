@@ -1,0 +1,24 @@
+---
+import { render } from 'astro:content';
+import Doc from '../kit/layouts/Doc.astro';
+import Post from '../kit/layouts/Post.astro';
+import BlogIndex from '../kit/layouts/BlogIndex.astro';
+import Splice from '../widgets/Splice.astro';
+import { getAllPages, hrefOf } from '../kit/site';
+import { getBlog, getBlogRoutes, postLang } from '../kit/blog';
+
+// Every interior page, blog index and post of every language:
+// /protocol/consensus, /en/protocol/consensus, /log, /use-cases/traceability…
+export async function getStaticPaths() {
+  const pages = (await getAllPages()).map((page) => ({ params: { slug: hrefOf(page).slice(1) }, props: { kind: 'page' as const, page } }));
+  const blog = (await getBlogRoutes()).map((r) => ({ params: { slug: r.href.slice(1) }, props: r.props }));
+  return [...pages, ...blog];
+}
+const props = Astro.props;
+const rendered = props.kind === 'page' ? await render(props.page.fallbackOf ?? props.page) : props.kind === 'post' ? await render((props.post.fallbackOf ?? props.post) as never) : undefined;
+const Content = rendered?.Content;
+const blog = props.kind === 'post' ? (await getBlog(postLang(props.post)))! : undefined;
+---
+{props.kind === 'page' && Content && <Doc page={props.page}><Splice><Content /></Splice></Doc>}
+{props.kind === 'post' && Content && blog && <Post post={props.post} blog={blog} headings={rendered!.headings}><Splice><Content /></Splice></Post>}
+{props.kind === 'blog' && <BlogIndex lang={props.lang} />}
