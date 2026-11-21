@@ -4,6 +4,9 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const DIST = 'dist';
+// The app's base path (Astro `base`), e.g. `--base /docs`. Links outside it belong to another app on the same domain.
+const bi = process.argv.indexOf('--base');
+const BASE = bi > 0 ? process.argv[bi + 1].replace(/\/$/, '') : '';
 if (!existsSync(DIST)) { console.error('✗ dist/ does not exist: run `npm run build` first.'); process.exit(1); }
 
 const files = [];
@@ -22,7 +25,11 @@ let bad = 0;
 for (const [from, doc] of pages) {
   for (const [, href] of doc.matchAll(/href="([^"]+)"/g)) {
     if (/^(https?:|mailto:|tel:)/.test(href)) continue;
-    const [path, hash] = href.split('#');
+    let [path, hash] = href.split('#');
+    if (BASE && path !== '') {
+      if (path !== BASE && !path.startsWith(BASE + '/')) continue; // another app on the same domain
+      path = path.slice(BASE.length) || '/';
+    }
     if (assets.has(path)) continue;
     const target = path === '' ? from : (path.replace(/\/$/, '') || '/');
     const page = pages.get(target);

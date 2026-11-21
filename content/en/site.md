@@ -8,8 +8,8 @@ tagline: Technical documentation # tab title of the home page: "<name> — <tagl
 description: Technical documentation of 42 Chain and Protocol 42. Connect, build applications, integrate systems and run nodes.
 
 header:
-  brand: Protocol # word next to the 42 mark
-  homeLink: 42 Protocol, home
+  brand: Docs # word next to the 42 mark
+  homeLink: 42 Chain documentation, home
   home: Home # first item of the main menu and of the breadcrumbs
   mainNav: Main
   menuButton: Menu
@@ -26,22 +26,23 @@ header:
     unavailable: Search is available on the published version of the site.
   links:
     - { label: Console, href: "console:/" }
+    - { label: 42 Chain, href: "site:/" }
 
 footer:
   credit: Open-source documentation
   license: Text CC BY 4.0
   note: © 2026 The 42 contributors
   columns:
-    - label: 42 Protocol
+    - label: Documentation
       links:
         - { label: Documentation, href: "/" }
         - { label: Console, href: "console:/" }
         - { label: Contribute, href: "/open-source" }
         - { label: Security, href: "/open-source/security" }
         - { label: Legal, href: "/legal" }
-    - label: From the same family
+    - label: Home
       links:
-        - { label: 42 Chain, href: "site:/", text: "the project" }
+        - { label: 42 Chain, href: "site:/", text: "the project's magazine" }
   links: # bottom line
     - { label: "@42protocol on X", href: "https://x.com/42protocol" }
 

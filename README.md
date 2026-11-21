@@ -1,8 +1,15 @@
-# 42 Protocol
+# 42 Chain documentation
 
-The 42 Protocol site (42protocol.dev): documentation, technical reference and
-tools. The project site, with the Bitácora, is 42 Chain (42chain.org), a
-separate repository.
+The documentation of Infinite Drive, the 42 protocol: technical reference and
+tools. It is served under the main site, at **42chain.org/docs** (Astro `base`
+`/docs`; languages inside it, `/docs/es/…`). The magazine at the root of
+42chain.org lives in its own repository.
+
+## Deploying
+
+Each repository deploys on its own. On Cloudflare, a route sends
+`42chain.org/docs*` to this project and everything else to the main site.
+Links to the main site are written `site:/…` and resolve to root paths.
 
 ## Structure
 
@@ -25,6 +32,6 @@ Node 22.23.4 or newer (`.nvmrc`).
 | Command | What it does |
 |---|---|
 | `npm install` | Install dependencies |
-| `npm run dev` | Local server |
+| `npm run dev` | Local server at http://localhost:4322/docs (open it through the main site's dev server, which proxies /docs) |
 | `npm run build` | Build into `dist/` and index the search (Pagefind) |
 | `npm run verify` | Types, build and internal links (what CI runs) |

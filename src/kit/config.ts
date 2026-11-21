@@ -24,11 +24,13 @@ export interface SharedOptions {
   linkBases?: Record<string, string | undefined>;
   /** The app's languages (folders in the catalog). */
   languages?: string[];
+  /** Path where the app is served (Astro `base`), e.g. '/docs'; '' at the domain root. */
+  urlBase?: string;
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
 }
 
-export function sharedConfig({ catalog, defaultLang, sourceLang, widgets = [], linkBases = {}, languages = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
+export function sharedConfig({ catalog, defaultLang, sourceLang, widgets = [], linkBases = {}, languages = [], scriptSources = [], urlBase = '' }: SharedOptions): AstroUserConfig {
   const base = catalogPath(catalog);
   const langOfFile = (file: string | undefined) => {
     const rel = file ? relative(base, file) : '';
@@ -49,10 +51,12 @@ export function sharedConfig({ catalog, defaultLang, sourceLang, widgets = [], l
     if (m) {
       const linkBase = linkBases[m[1]];
       if (!linkBase) throw new Error(`"${m[1]}:" links are not available in this app.`);
-      return linkBase.replace(/\/$/, '') + (m[1] === 'console' ? m[2] : withLang(m[2], langOfFile(file)));
+      return linkBase.replace(/\/$/, '') + (m[1] === 'console' ? m[2] : withLang(m[2], langOfFile(file))) || '/';
     }
     if (!url.startsWith('/') || url.startsWith('//') || /^\/(docs|consola)(\/|$|#)/.test(url)) return undefined;
-    return withLang(url, langOfFile(file));
+    // Inside this app: its base path first ('/docs'), then the language.
+    const local = withLang(url, langOfFile(file));
+    return urlBase ? (local === '/' ? urlBase : urlBase + local) : local;
   };
   return {
     trailingSlash: 'never',

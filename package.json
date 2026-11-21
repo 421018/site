@@ -9,8 +9,8 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",
-    "check:links": "node scripts/check-links.mjs",
-    "verify": "astro check && npm run build && node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs --base /docs",
+    "verify": "astro check && npm run build && node scripts/check-links.mjs --base /docs"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.10",

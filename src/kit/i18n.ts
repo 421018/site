@@ -14,8 +14,24 @@ export const defaultLang = kit.defaultLang;
 export const sourceLang = kit.sourceLang;
 export const languages = Object.keys(kit.languages);
 
-/** URL prefix of a language: "" for the default one, "/es" for Spanish. */
-export const langPrefix = (lang: string) => (lang === defaultLang ? '' : `/${lang}`);
+/** Path where this app is served ('' at the domain root, '/docs' for the documentation). */
+export const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+
+/** Language segment of a path: "" for the default language, "/es" for Spanish. */
+export const langSegment = (lang: string) => (lang === defaultLang ? '' : `/${lang}`);
+
+/** URL prefix of a language inside this app: the base path, then the language ("/docs/es"). */
+export const langPrefix = (lang: string) => base + langSegment(lang);
+
+/** A root-relative path in a language, without any base path: ("/log", "es") → "/es/log". */
+const inLang = (path: string, lang: string) => {
+  const seg = langSegment(lang);
+  if (!seg) return path;
+  return path === '/' ? seg : path.startsWith('/#') ? seg + path.slice(1) : seg + path;
+};
+
+/** A path inside this app without its base path (for route params): "/docs/es/x" → "/es/x". */
+export const withoutBase = (href: string) => (base && href.startsWith(base) ? href.slice(base.length) || '/' : href);
 
 /** Home page of a language. */
 export const homeHref = (lang: string) => langPrefix(lang) || '/';
@@ -47,9 +63,10 @@ export const isLinkAvailable = (href: string) => {
 export const resolveHref = (href: string, lang: string = defaultLang) => {
   const m = href.match(/^(site|docs|console):(\/.*)$/);
   if (m) {
-    const base = kit.links?.[m[1]];
-    if (!base) return href;
-    return base.replace(/\/$/, '') + (m[1] === 'console' ? m[2] : withLang(m[2], lang));
+    const to = kit.links?.[m[1]];
+    if (!to) return href;
+    // Another product: its own language segment, without this app's base path.
+    return to.replace(/\/$/, '') + (m[1] === 'console' ? m[2] : inLang(m[2], lang)) || '/';
   }
   if (!href.startsWith('/') || href.startsWith('//') || /^\/(docs|consola)(\/|$|#)/.test(href)) return href;
   return withLang(href, lang);
