@@ -64,5 +64,5 @@ Before asking, look at the [frequently asked questions](site:/faq) and the [docu
 Code contributions are published under Apache 2.0. The text and data of this site, under CC BY 4.0. Contribute only your own work, or work you have the right to publish under those licenses.
 
 :::aside
-[Licenses →](site:/legal#licenses)
+[Licenses →](/legal#licenses)
 :::

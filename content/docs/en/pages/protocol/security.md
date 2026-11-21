@@ -43,7 +43,7 @@ Some things fall outside the protocol's reach. Knowing them is part of using the
 - **Continuous operation.** If more than one third of the voting power goes offline, the network stops until the majority is recovered. It is a design decision: the protocol prefers to stop rather than confirm something without the necessary majority.
 
 :::aside
-[Risks of use](site:/legal#risks)
+[Risks of use](/legal#risks)
 :::
 
 ## How it responds to faults {#failures}
@@ -99,5 +99,5 @@ Many risks for a person do not come from the protocol, but from their own enviro
 - **Shared responsibility.** The protocol protects what its rules can protect. The rest, such as the private key, stays in each person's hands.
 
 :::aside
-This page describes how the protocol is designed. It is not a promise of results: the software is offered as is, without warranties. [Legal and notices](site:/legal#warranties)
+This page describes how the protocol is designed. It is not a promise of results: the software is offered as is, without warranties. [Legal and notices](/legal#warranties)
 :::

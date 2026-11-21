@@ -141,5 +141,5 @@ El suministro inicial no forma parte de la emisión ni de la distribución que s
 - **Un fondo que se asigna por gobernanza.** Lo que la red necesita se financia con reglas públicas, sin depender de ninguna parte en particular.
 
 :::aside
-[Tarifas a cargo de la organización →](/build/applications#fees) · [Avisos legales](site:/legal#risks)
+[Tarifas a cargo de la organización →](/build/applications#fees) · [Avisos legales](/legal#risks)
 :::

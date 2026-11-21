@@ -16,7 +16,7 @@ Algunas fuentes las mantienen los contribuidores del protocolo; otras, como los 
 |---|---|
 | El código del protocolo | [Repositorio público] |
 | Qué cambió en cada versión | [Notas de versión](/) |
-| La licencia del código | [Licencia](site:/legal#licenses) |
+| La licencia del código | [Licencia](/legal#licenses) |
 
 ## La red {#network}
 

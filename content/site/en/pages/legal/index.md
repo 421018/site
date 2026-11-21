@@ -15,7 +15,7 @@ Pending legal review.
 
 This site is informational. Operation of the network and decisions about it belong to its validators through on-chain governance.
 
-This site and the documentation are maintained by contributors to Protocol 42. The code is open: anyone can review it, propose changes or contribute. In these notices, "the contributors" are the people who write, review or publish the protocol software, the documentation, the Console or this site.
+This site is maintained by contributors to 42. The documentation and the Console have their own [legal notices](docs:/legal). The code is open: anyone can review it, propose changes or contribute. In these notices, "the contributors" are the people who write, review or publish the protocol software, the documentation, the Console or this site.
 
 This site does not offer, sell or recommend the network's native unit or any other asset, nor platforms or intermediaries. Nothing on this site is financial, legal, tax or investment advice.
 
@@ -31,18 +31,7 @@ This exclusion is consistent with the license of the protocol software. [License
 
 ## Risks of use {#risks}
 
-Using the network has risks worth understanding before taking part:
-
-- **Loss of access.** If an account's recovery phrase or private keys are lost, there is no way to recover access.
-- **Final transactions.** A confirmed transaction cannot be reversed.
-- **Third-party contracts.** Contracts published by third parties can contain errors or be made to deceive. The protocol runs them exactly as written.
-- **Errors in the software.** The protocol software is reviewed, but it can contain errors that have not been found yet.
-- **Upgrades.** Upgrades approved by governance may require those who run nodes or integrated services to update their software in time.
-- **Regulation.** Each person and organization is responsible for complying with the laws that apply to them when using the network and its tools.
-
-:::aside
-[How to protect yourself →](docs:/protocol/security#protect-yourself)
-:::
+Using the network has risks worth understanding before taking part: losing access to an account, final transactions, third-party contracts, software errors and upgrades. They are described in the [documentation's legal notices](docs:/legal#risks).
 
 ## Privacy {#privacy}
 
@@ -75,14 +64,6 @@ The Apache 2.0 license lets anyone use, study, modify and distribute the softwar
 The text of this site and the network data it publishes, such as parameters and provider lists, may be copied, translated, adapted and published in any medium, including for commercial purposes, provided the source is credited: the project name and a link to the site or to the original page. The license does not authorize suggesting a relationship or an endorsement that does not exist.
 
 The text license does not include the design, the interface, the code or the brand elements, such as the logo and the visual identity, of the site, the documentation and the Console. Those elements may not be copied or reused without permission.
-
-### Why the Console's logic is public
-
-The Console connects to the wallet of the person using it. So that anyone can check what they are asked to sign, the logic that converts addresses and units and that builds each operation is published as a separate library, under the Apache 2.0 license. The library does not include the Console's interface or design.
-
-### Third-party software
-
-The protocol software is built on open-source software from the Cosmos ecosystem, such as Cosmos SDK, CometBFT and ibc-go, developed by third parties and also published under the Apache 2.0 license. Their copyright and attribution notices are kept intact in the LICENSE and NOTICE files of the public repository, as that license requires.
 
 :::aside
 [Full license (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Full license (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.en) · [LICENSE and NOTICE files in the repository]

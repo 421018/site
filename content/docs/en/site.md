@@ -51,7 +51,7 @@ footer:
         - { label: Contribute, href: "/open-source" }
         - { label: Security and reports, href: "/open-source/security" }
   links: # bottom line
-    - { label: Legal, href: "site:/legal" }
+    - { label: Legal, href: "/legal" }
     - { label: "@42protocol on X", href: "https://x.com/42protocol" }
 
 page:

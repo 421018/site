@@ -141,5 +141,5 @@ The initial supply is not part of the issuance or the distribution described abo
 - **A pool assigned by governance.** What the network needs is funded with public rules, without depending on any particular party.
 
 :::aside
-[Organization-paid fees →](/build/applications#fees) · [Legal notices](site:/legal#risks)
+[Organization-paid fees →](/build/applications#fees) · [Legal notices](/legal#risks)
 :::

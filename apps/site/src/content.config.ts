@@ -43,29 +43,8 @@ const home = defineCollection({
           secondary: cta,
         })
         .strict(),
-      /** Strip of verifiable protocol figures under the hero. */
-      figures: z.array(z.object({ value: z.string(), label: z.string() }).strict()).min(3).max(6),
-      /** The engine, piece by piece: one tab per piece. */
-      engine: z
-        .object({
-          ...block,
-          pieces: z
-            .array(
-              z
-                .object({ icon, label: z.string(), title: z.string(), text: z.string(), points: z.array(z.string()).default([]), link: cta })
-                .strict(),
-            )
-            .min(2),
-        })
-        .strict(),
-      build: z
-        .object({
-          ...block,
-          code: z.object({ file: z.string(), label: z.string(), text: z.string() }).strict(),
-          /** Second link next to the first, e.g. the console. */
-          secondary: cta.optional(),
-        })
-        .strict(),
+      /** How it works, told in a few paragraphs; the link leads to the technical side. */
+      engine: z.object({ ...block, link: cta }).strict(),
       /** Latest entries from the Bitácora (the blog); the posts come from the blog itself. */
       log: z.object({ ...block, link: cta }).strict(),
       start: z.object({ ...block, paths: z.array(z.object({ icon, label: z.string(), text: z.string(), href: z.string() }).strict()) }).strict(),

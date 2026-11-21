@@ -64,5 +64,5 @@ Antes de preguntar, revisa las [preguntas frecuentes](site:/faq) y la [documenta
 Las contribuciones de código se publican bajo Apache 2.0. Los textos y datos de este sitio, bajo CC BY 4.0. Solo aporta trabajo propio o que tengas derecho a publicar bajo esas licencias.
 
 :::aside
-[Licencias →](site:/legal#licenses)
+[Licencias →](/legal#licenses)
 :::

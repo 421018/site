@@ -43,7 +43,7 @@ Algunas cosas quedan fuera del alcance del protocolo. Conocerlas es parte de usa
 - **Funcionamiento continuo.** Si más de un tercio del poder de voto queda fuera de línea, la red se detiene hasta que se recupera la mayoría. Es una decisión de diseño: el protocolo prefiere detenerse antes que confirmar algo sin la mayoría necesaria.
 
 :::aside
-[Riesgos de uso](site:/legal#risks)
+[Riesgos de uso](/legal#risks)
 :::
 
 ## Cómo responde ante fallas {#failures}
@@ -99,5 +99,5 @@ Muchos riesgos para una persona no vienen del protocolo, sino de su propio entor
 - **Responsabilidad compartida.** El protocolo protege lo que sus reglas pueden proteger. Lo demás, como la llave privada, queda en manos de cada persona.
 
 :::aside
-Esta página describe cómo está diseñado el protocolo. No es una promesa de resultados: el software se ofrece tal cual, sin garantías. [Legal y avisos](site:/legal#warranties)
+Esta página describe cómo está diseñado el protocolo. No es una promesa de resultados: el software se ofrece tal cual, sin garantías. [Legal y avisos](/legal#warranties)
 :::
