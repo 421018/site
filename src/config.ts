@@ -19,8 +19,12 @@ export const SITE = {
 };
 
 export const LINKS = {
-  /** The magazine, on the same domain: links to it are internal. */
-  site: '/',
+  /**
+   * The magazine, on the same domain: links to it are internal. In development
+   * each repo runs its own server, so `npm run dev` points SITE_URL at the
+   * magazine's (http://localhost:4321).
+   */
+  site: process.env.SITE_URL ?? '/',
   /** The console is not launched yet: without a URL, every link to it is left out. */
   console: undefined as string | undefined,
   content: 'https://github.com/deep-thought-labs/infinite-app',

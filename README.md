@@ -32,6 +32,6 @@ Node 22.23.4 or newer (`.nvmrc`).
 | Command | What it does |
 |---|---|
 | `npm install` | Install dependencies |
-| `npm run dev` | Local server at http://localhost:4322/docs (open it through the main site's dev server, which proxies /docs) |
+| `npm run dev` | Local server at http://localhost:4322/docs; links to the main site go to its dev server (port 4321), which should run too |
 | `npm run build` | Build into `dist/` and index the search (Pagefind) |
 | `npm run verify` | Types, build and internal links (what CI runs) |

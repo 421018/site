@@ -5,7 +5,7 @@
   "type": "module",
   "description": "42 Protocol: documentation, technical reference and tools (42protocol.dev).",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "SITE_URL=http://localhost:4321 astro dev --port 4322",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",

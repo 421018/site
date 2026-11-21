@@ -73,4 +73,5 @@ export const resolveHref = (href: string, lang: string = defaultLang) => {
 };
 
 /** True for a resolved link that leaves this site (another product or any external URL). */
-export const isExternal = (href: string) => /^https?:\/\//.test(href);
+export const isExternal = (href: string) =>
+  /^https?:\/\//.test(href) && !Object.values(kit.links ?? {}).some((b) => !!b && /^https?:\/\//.test(b) && href.startsWith(b));

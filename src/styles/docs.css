@@ -73,7 +73,7 @@
 .pf .pf-fam b { color: var(--head); font-weight: 500; }
 .pf-base { max-width: 1280px; margin: 0 auto; padding: 16px 24px 24px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 12px; }
 /* Links that leave the site (42 Chain or any external URL): an arrow after the label. */
-.ext::after, [data-product="docs"] .prose a[href^="http"]::after { content: "\00a0\2197" / ""; }
+.ext::after, [data-product="docs"] .prose a[href^="http"]:not([href^="http://localhost"])::after { content: "\00a0\2197" / ""; }
 /* notice under the header (e.g. under construction): visible on every page */
 .dh-notice { background: #FBEFD3; border-top: 1px solid #EBD29A; border-bottom: 1px solid #EBD29A; color: #5C4410; }
 [data-theme="dark"] .dh-notice { background: #2A2210; border-color: #4A3B17; color: #F2D58E; }
