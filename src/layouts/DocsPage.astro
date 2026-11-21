@@ -1,0 +1,77 @@
+---
+/**
+ * A documentation page: section index on the left, the page in the middle
+ * (with "Copiar página": the page as Markdown), "En esta página" on the right.
+ */
+import kit from 'virtual:42chain/kit';
+import Base from '../kit/layouts/Base.astro';
+import Footer from '../kit/components/Footer.astro';
+import SideNav from '../kit/components/SideNav.astro';
+import { catalogRelative } from '../kit/catalog';
+import { getAlternates, getSection, getSiteText, hrefOf, lastCommitDate, pageLang, pagePath, prevNext, sectionKey, sideIndex, type Page } from '../kit/site';
+import { homeHref, sourceLang, withLang } from '../kit/i18n';
+import DocsHeader from '../components/DocsHeader.astro';
+import '../styles/docs.css';
+interface Props { page: Page; headings: { depth: number; slug: string; text: string }[] }
+const { page, headings } = Astro.props;
+const lang = pageLang(page);
+const section = await getSection(lang, sectionKey(page));
+const home = await getSection(lang, section.home);
+const nav = sideIndex(home);
+const alternates = await getAlternates(page);
+const { prev, next } = prevNext(section, page);
+const updated = page.data.updated ?? lastCommitDate(page.filePath);
+const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(updated);
+const { page: ui, header } = await getSiteText(lang);
+const isIndex = page.id.split('/').length === 2;
+const original = page.fallbackOf;
+const canonicalHref = original ? withLang('/' + pagePath(page), sourceLang) : undefined;
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const markdown = `# ${page.data.title}\n\n${page.data.summary}\n\n${page.body ?? ''}`;
+---
+<Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates} product="docs" canonicalHref={canonicalHref}>
+  <DocsHeader current={home.key} alternates={alternates} />
+  <div class="dl">
+    <SideNav nav={nav} path={hrefOf(page)} />
+    <main data-pagefind-body={kit.search && !original ? true : undefined} lang={original ? sourceLang : undefined}>
+      <nav class="dl-crumb" aria-label={header.mainNav}>{header.home && <><a href={homeHref(lang)}>{header.home}</a> / </>}{isIndex ? section.label : <a href={section.href}>{section.label}</a>}</nav>
+      <div class="dl-title">
+        <h1 data-pagefind-meta="title">{page.data.title}</h1>
+        {ui.copyPage && <button type="button" class="dl-copy" data-copy-page data-copied={ui.copied} data-pagefind-ignore><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" /><path d="M11 5 V3 A1 1 0 0 0 10 2 H3 A1 1 0 0 0 2 3 V10 A1 1 0 0 0 3 11 H5" /></svg><span>{ui.copyPage}</span></button>}
+      </div>
+      {original && ui.untranslated && <p class="untranslated" lang={lang}>{ui.untranslated}</p>}
+      <p class="dl-sum">{page.data.summary}</p>
+      <p class="dl-meta">{fmt && <>{ui.lastReviewed}: {fmt}</>}{fmt && kit.editBase && <> · </>}{kit.editBase && <a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a>}</p>
+      <template data-page-md>{markdown}</template>
+      <div class="prose"><slot /></div>
+      {(prev || next) && (
+        <nav class="pn" aria-label={ui.chapters}>
+          {prev && <a class="pv" href={prev.href}><span>{ui.previous}</span>{prev.label}</a>}
+          {next && <a class="nx" href={next.href}><span>{ui.next}</span>{next.label}</a>}
+        </nav>
+      )}
+    </main>
+    {ui.onThisPage && toc.length > 1 && (
+      <aside class="dl-toc">
+        <p>{ui.onThisPage}</p>
+        <nav aria-label={ui.onThisPage}>{toc.map((h) => <a class:list={{ sub: h.depth === 3 }} href={`#${h.slug}`}>{h.text}</a>)}</nav>
+      </aside>
+    )}
+  </div>
+  <Footer />
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-page]').forEach((b) => {
+    const label = b.querySelector('span')!;
+    const original = label.textContent;
+    b.addEventListener('click', async () => {
+      const md = document.querySelector<HTMLTemplateElement>('[data-page-md]')?.content.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(md.trim() + '\n');
+        label.textContent = b.dataset.copied ?? original;
+        setTimeout(() => { label.textContent = original; }, 1600);
+      } catch { /* clipboard unavailable */ }
+    });
+  });
+</script>
