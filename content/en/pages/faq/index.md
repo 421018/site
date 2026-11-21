@@ -23,7 +23,7 @@ No. Anyone can use the network, publish applications or run a node without regis
 :::
 
 :::faq[What is Improbability?]
-It is the unit with which the ledger is moved and backed. Its symbol is 42. It pays for the work of writing to the ledger and backs those who maintain it. The smallest fraction is called a drop; a whole unit, colloquially, a cup. [Why 42](/about#why-42)
+It is the unit with which the ledger is moved and backed. Its symbol is 42. It pays for the work of writing to the ledger and backs those who maintain it. The smallest fraction is called a drop; a whole unit, colloquially, a cup. [Why 42](/name)
 :::
 
 ## The project {#project}
@@ -33,7 +33,7 @@ Contributors who work in the open, in public repositories. Anyone can join. [Con
 :::
 
 :::faq[Is there a roadmap?]
-Not one with an end date. The protocol is maintained and improved continuously, and each change is decided by on-chain governance. [Ongoing development](/about#ongoing)
+Not one with an end date. The protocol is maintained and improved continuously, and each change is decided by on-chain governance. [Ongoing development](/about#work)
 :::
 
 :::faq[Where do I ask a technical question?]
@@ -41,7 +41,7 @@ In the public repository's discussion space. It is open to anyone and has no cos
 :::
 
 :::faq[Will someone from the project ask me for my keys?]
-No. No channel of the project will ask you for your recovery phrase or your private keys. Verify any announcement against the [project's channels](/about#channels).
+No. No channel of the project will ask you for your recovery phrase or your private keys. Verify any announcement against the [project's channels](/channels).
 :::
 
 ## Legal and use of the site {#legal}

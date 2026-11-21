@@ -23,7 +23,7 @@ No. Cualquiera puede usar la red, publicar aplicaciones u operar un nodo sin reg
 :::
 
 :::faq[¿Qué es Improbability?]
-Es la unidad con la que se mueve y se respalda el registro. Su símbolo es 42. Con ella se paga el trabajo de escribir en el registro y se respalda a quienes lo mantienen. La fracción más pequeña se llama drop; una unidad completa, de forma coloquial, cup. [Por qué 42](/about#why-42)
+Es la unidad con la que se mueve y se respalda el registro. Su símbolo es 42. Con ella se paga el trabajo de escribir en el registro y se respalda a quienes lo mantienen. La fracción más pequeña se llama drop; una unidad completa, de forma coloquial, cup. [Por qué 42](/name)
 :::
 
 ## El proyecto {#project}
@@ -33,7 +33,7 @@ Contribuidores que trabajan en abierto, en repositorios públicos. Cualquiera pu
 :::
 
 :::faq[¿Hay una hoja de ruta?]
-No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y cada cambio se decide por gobernanza en la cadena. [Desarrollo continuo](/about#ongoing)
+No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y cada cambio se decide por gobernanza en la cadena. [Desarrollo continuo](/about#work)
 :::
 
 :::faq[¿Dónde hago una pregunta técnica?]
@@ -41,7 +41,7 @@ En el espacio de discusiones del repositorio público. Está abierto a cualquier
 :::
 
 :::faq[¿Alguien del proyecto me pedirá mis llaves?]
-No. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales del proyecto](/about#channels).
+No. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales del proyecto](/channels).
 :::
 
 ## Legal y uso del sitio {#legal}

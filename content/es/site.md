@@ -17,13 +17,14 @@ header:
   submenu: ver páginas # accessible name of a section's menu arrow: "Protocolo: ver páginas"
   links:
     - { label: Bitácora, href: /log, weight: 1 } # weight places it among the sections
+    - { label: Proyecto, href: /about, weight: 2 }
     - { label: Documentación, href: "docs:/", weight: 10 }
 
 footer:
   credit: Proyecto de código abierto
   license: Textos CC BY 4.0
   note: © 2026 Los contribuidores de 42
-  tagline: Un registro que muchos guardan a la vez, contado a bordo.
+  tagline: Funciona sobre Infinite Drive.
   columns:
     - label: Explorar
       links:

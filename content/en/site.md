@@ -17,13 +17,14 @@ header:
   submenu: show pages # accessible name of a section's menu arrow: "Protocol: show pages"
   links:
     - { label: Logbook, href: /log, weight: 1 } # weight places it among the sections
+    - { label: Project, href: /about, weight: 2 }
     - { label: Documentation, href: "docs:/", weight: 10 }
 
 footer:
   credit: Open-source project
   license: Text CC BY 4.0
   note: © 2026 The 42 contributors
-  tagline: A ledger that many keep at once, told from on board.
+  tagline: Runs on Infinite Drive.
   columns:
     - label: Explore
       links:

@@ -1,7 +1,8 @@
 ---
-# Home page text (English). The layout lives in the engine.
+# Home page text (English). The layout lives in src/components/Home.astro.
 # A line break in a title (written with "|") is shown as a line break on the page.
-# Blocks are numbered automatically (01, 02…) in the order they appear on the page.
+# Paragraphs are separated by a blank line. The central idea is said once, in
+# the editorial; the rest of the page lets it be felt without repeating it.
 
 hero:
   eyebrow: Open protocol
@@ -11,42 +12,86 @@ hero:
   lead: |
     42 Chain is blockchain infrastructure.
     An improbabilistic distributed ledger.
-  primary: { label: How it works, href: "docs:/protocol" }
-  secondary: { label: The project, href: /about }
+  primary: { label: Start reading, href: "/#editorial" }
+  secondary: { label: Read the Logbook, href: /log }
+
+editorial:
+  kicker: Editorial
+  title: Every age builds its invisible infrastructure.
+  body: |
+    Roads, electricity and the internet all began as improbable ideas, the kind people discuss sceptically in long meetings. They ended up as things nobody thinks about. They are simply there, like the floor, or Monday's coffee.
+
+    Today everything is connected and almost nothing can be checked. People, organizations, machines and programs exchange data, value and decisions, and each keeps its own version of what happened. Getting them to agree is an expensive, slow sport with a great many referees.
+  statement: "Infinite Drive is ours: common infrastructure that anyone can build on, and where anyone can check what happens without having to trust anyone else."
+  aside: "We keep it running together, so it does not depend on any single party. It does not ask for faith: at most, for a little curiosity."
 
 engine:
   kicker: The engine
-  title: What holds the agreement.
-  lead: |
-    Many independent copies of the same ledger reach the same result, page after page. Each page closes when there is enough agreement, is bound to the one before, and can no longer be rewritten without it showing.
+  title: At the centre there is an engine, not an office.
+  lead: "Infinite Drive holds the network up and keeps it connected. Every node that joins, on a desk, in a classroom or in a data centre, makes it a little stronger, and they all check the same thing."
+  art:
+    name: Infinite Drive
+    kicker: The engine
+    aria: Infinite Drive at the centre, like an engine, connecting many nodes that form a single network
+    labels:
+      - a person
+      - a community
+      - a student with an old laptop
+      - an institution
+      - a program
+      - a cooperative
+  caption: Every dot is a node. Together they make 42 Chain.
+  link: { label: How the engine works, href: "docs:/protocol" }
 
-    The rules are written in the ledger itself and apply the same way in every copy. How each page is agreed, how the work is paid for and how it connects to other networks is told in detail in the documentation.
-  link: { label: How the protocol works, href: "docs:/protocol" }
+beliefs:
+  kicker: What we believe
+  title: Two texts from the nineties said almost everything. Writing the code fell to us.
+  lead: "A Declaration of the Independence of Cyberspace and A Cypherpunk's Manifesto imagined a space you enter without asking permission, where privacy is built rather than begged for. Thirty years later we still think the same, with rather more coffee and far fewer modems."
+  items:
+    - title: Come in without asking.
+      text: Using the network, building on it or running your own node needs no invitation. Not even ours.
+    - title: Privacy is not secrecy.
+      text: It is deciding what you tell, and to whom. The rest is your business.
+    - title: Freedom is written in code.
+      text: Open, so anyone can read it, use it and improve it. Good intentions compile badly.
+  link: { label: "Everything we believe, in the project", href: "/about#beliefs" }
 
-# Latest entries of the Bitácora. The entries themselves come from posts/.
+story:
+  kicker: A story from the Logbook
+  link: Read the story
+
+vision:
+  kicker: Where we are going
+  title: If everything switches off tomorrow, may your node stay on.
+  body: |
+    We imagine an ordinary day when the big services everything depends on all decide, at once, to take the afternoon off. On many desks, in classrooms and in cupboards, small nodes carry on as if nothing had happened. Nobody panics. Somebody puts the kettle on.
+
+    That is the horizon: standard infrastructure, for big things and small, trusted not because of who develops it but because we all keep it running. Where anyone, technical, student or simply curious, can run their own node and look after their part of the mesh.
+  link: { label: How to run your own node, href: "docs:/operate/nodes" }
+
+work:
+  kicker: Meanwhile, in the engine room
+  title: Unglamorous work, very necessary.
+  body: |
+    We polish, improve and align the node's code with the base it is built on, so that Infinite Drive stays stable and meets the highest standards of the industry. It is the kind of work you only notice when it is missing.
+
+    What gets built on top is not ours to decide: builders and users make use of it freely, for their own purposes.
+  link: { label: "The latest, in the Logbook", href: /log }
+
 log:
-  kicker: From the Logbook
-  title: Tales from on board.
-  link: { label: Go to the Logbook, href: /log }
-
-start:
-  kicker: Where to start
-  title: Choose your way in.
-  paths:
-    - { icon: connect, label: Connect to the network, href: docs:/get-started/connect, text: "Network parameters, wallets and RPC providers." }
-    - { icon: build, label: Build an application, href: docs:/build/applications, text: "Contracts compatible with industry standards, from the testnet to the mainnet." }
-    - { icon: node, label: Run a node, href: docs:/operate/nodes, text: "Verify the network yourself, serve applications or validate blocks." }
-    - { icon: integrate, label: Integrate systems, href: docs:/integrate, text: "Connect management systems, devices, signing tools or other networks." }
+  kicker: The library
+  title: From the Logbook.
+  link: { label: Stories and articles, href: /log }
 
 name:
   kicker: The name
   title: Why 42?
-  lead: "In Douglas Adams's novel, 42 is the answer to the great question of life, the universe and everything. The answer is exact; the meaning is supplied by those who ask. The protocol works the same way: it offers precise, verifiable rules. What is built with them is decided by those who use it."
-  link: { label: The story of the name, href: "/about#why-42" }
+  lead: "In a very serious novel about the universe, the answer to the great question turned out to be 42, and ships crossed the galaxy thanks to an infinite improbability drive. We kept the number, the idea of the engine and the healthy habit of not taking ourselves too seriously."
+  link: { label: The story of the name, href: /name }
 
 closing:
-  title: Shared infrastructure, rules in plain sight.
-  lead: A ledger that many keep at once. Rules that apply the same way to everyone. The improbable, made possible.
-  primary: { label: How it works, href: "docs:/protocol" }
-  secondary: { label: Read the Logbook, href: /log }
+  title: The improbable, under way.
+  lead: Without asking permission. Without asking for faith. With a towel nearby, just in case.
+  primary: { label: Meet the project, href: /about }
+  secondary: { label: Run your own node, href: "docs:/operate/nodes" }
 ---
