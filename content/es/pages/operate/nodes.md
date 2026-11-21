@@ -62,7 +62,7 @@ Para empezar, el nodo necesita el **archivo génesis** de la red y al menos un *
 | Dato | Red principal | Red de pruebas |
 |---|---|---|
 | Chain ID (nativo) | `infinite_421018-1` | `infinite_421018001-1` |
-| Archivo génesis | [genesis.json ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json ↗](https://assets.infinitedrive.xyz/testnet/genesis.json) |
+| Archivo génesis | [genesis.json](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json](https://assets.infinitedrive.xyz/testnet/genesis.json) |
 
 Pares iniciales:
 
@@ -70,7 +70,7 @@ Pares iniciales:
 - **Red de pruebas.** `ed3a45ee1ad114830afe6de7dc90c61f893c04da@server-xenia88.infinitedrive.xyz:26666`
 
 :::aside
-Los pares iniciales los publican sus operadores en el [archivo de datos de la red ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json). Una vez conectado, el nodo descubre al resto de la red por su cuenta.
+Los pares iniciales los publican sus operadores en el [archivo de datos de la red](https://assets.infinitedrive.xyz/mainnet/network-data.json). Una vez conectado, el nodo descubre al resto de la red por su cuenta.
 :::
 
 ## De nodo a validador {#ledger}

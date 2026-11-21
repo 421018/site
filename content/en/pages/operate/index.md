@@ -15,7 +15,7 @@ A new node needs three pieces of data to join the network: the native chain ID, 
 | Data | Mainnet | Testnet |
 |---|---|---|
 | Chain ID (native) | `infinite_421018-1` | `infinite_421018001-1` |
-| Genesis file | [genesis.json ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json ↗](https://assets.infinitedrive.xyz/testnet/genesis.json) |
+| Genesis file | [genesis.json](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json](https://assets.infinitedrive.xyz/testnet/genesis.json) |
 
 Seed peers:
 

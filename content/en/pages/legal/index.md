@@ -86,7 +86,7 @@ The Console connects to the wallet of the person using it. So that anyone can ch
 The protocol software is built on open-source software from the Cosmos ecosystem, such as Cosmos SDK, CometBFT and ibc-go, developed by third parties and also published under the Apache 2.0 license. Their copyright and attribution notices are kept intact in the LICENSE and NOTICE files of the public repository, as that license requires.
 
 :::aside
-[Full license (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Full license (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.en) · [LICENSE and NOTICE files in the repository]
+[Full license (Apache License 2.0)](https://www.apache.org/licenses/LICENSE-2.0) · [Full license (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.en) · [LICENSE and NOTICE files in the repository]
 :::
 
 ## Third-party links and services {#third-parties}

@@ -24,8 +24,8 @@ Algunas fuentes las mantienen los contribuidores del protocolo; otras, como los 
 |---|---|
 | Los bloques y las transacciones | [Explorador](/get-started/connect#explorers) |
 | El conjunto activo de validadores y su poder de voto | [Explorador](/get-started/connect#explorers) |
-| Los parámetros de la red | [Parámetros de red](/get-started/connect#parameters) · [Archivo de datos de la red ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) |
-| El estado inicial de la red | [Archivo génesis ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) |
+| Los parámetros de la red | [Parámetros de red](/get-started/connect#parameters) · [Archivo de datos de la red](https://assets.infinitedrive.xyz/mainnet/network-data.json) |
+| El estado inicial de la red | [Archivo génesis](https://assets.infinitedrive.xyz/mainnet/genesis.json) |
 
 ## Gobernanza {#governance}
 

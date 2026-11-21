@@ -1,42 +1,23 @@
 ---
-import { getFooter, getSiteText } from '../site';
-import { getBlog, getPosts, postHref, categoryOf } from '../blog';
-import { isLinkAvailable, langOf, resolveHref } from '../i18n';
+/**
+ * Footer of 42 Protocol: compact, one line. The first column of site.md →
+ * footer.columns is the site's navigation; the second holds the sibling site
+ * (42 Chain), shown as an external link with its short line.
+ */
+import { getSiteText } from '../site';
+import { homeHref, isExternal, isLinkAvailable, langOf, resolveHref } from '../i18n';
 const lang = langOf(Astro);
 const text = await getSiteText(lang);
-const resolve = (links: { label: string; href: string }[]) => links.filter((l) => isLinkAvailable(l.href)).map((l) => ({ ...l, href: resolveHref(l.href, lang) }));
-// The footer shared by the areas of 42 (site.md → footer.columns); without it, one column per section.
-const columns = text.footer.columns
-  ? text.footer.columns.map((c) => ({ key: '', label: c.label, links: resolve(c.links) })).filter((c) => c.links.length)
-  : await derived();
+type FLink = { label: string; href: string; text?: string };
+const resolve = (links: FLink[]) => links.filter((l) => isLinkAvailable(l.href)).map((l) => ({ ...l, href: resolveHref(l.href, lang) }));
+const [nav, family] = (text.footer.columns ?? []).map((c) => ({ label: c.label, links: resolve(c.links) }));
 const baseLinks = resolve(text.footer.links);
-
-async function derived() {
-  const columns = await getFooter(lang);
-  // Posts whose category has a path (e.g. use-cases) are listed in that section's column.
-  const blog = await getBlog(lang);
-  if (blog) {
-    for (const p of await getPosts(lang)) {
-      const col = columns.find((c) => c.key === categoryOf(blog, p).path);
-      col?.links.push({ href: postHref(blog, p), label: p.data.title });
-    }
-  }
-  if (text.footer.extra) columns.push({ key: '', label: text.footer.extra.label, links: resolve(text.footer.extra.links) });
-  return columns;
-}
 ---
-<footer class="site-footer">
-  <div class="inner">
-    <slot />
-    <div class="fcols">
-      {columns.map((col) => (
-        <div>
-          <p class="lbl">{col.label}</p>
-          {col.links.map((l) => <a class="flink" href={l.href}>{l.label}</a>)}
-        </div>
-      ))}
-    </div>
-    <div aria-hidden="true" class="megatype"><span class="megatype-note">And remember</span><span class="megatype-word"><span>DON'T</span><span class="megatype-sp"> </span><span>PANIC</span></span></div>
-    <div class="fbase"><span>{baseLinks.map((l) => <><a class="flink-b" href={l.href}>{l.label}</a> · </>)}{text.footer.credit} · {text.footer.license}</span><span>{text.footer.note}</span></div>
+<footer class="pf">
+  <div class="pf-in">
+    <a class="pf-brand" href={homeHref(lang)} aria-label={text.header.homeLink}><span class="mark">42</span>{text.header.brand}</a>
+    {nav && <nav aria-label={nav.label}>{nav.links.map((l) => <a class:list={{ ext: isExternal(l.href) }} href={l.href}>{l.label}</a>)}</nav>}
+    {family && family.links.map((l) => <a class:list={['pf-fam', { ext: isExternal(l.href) }]} href={l.href}>{family.label}: <b>{l.label}</b>{l.text && <>, {l.text}</>}</a>)}
   </div>
+  <div class="pf-base"><span>{baseLinks.map((l) => <><a class:list={{ ext: isExternal(l.href) }} href={l.href}>{l.label}</a> · </>)}{text.footer.license}</span><span>{text.footer.note}</span></div>
 </footer>

@@ -62,7 +62,7 @@ To start, the node needs the network's **genesis file** and at least one **seed 
 | Data | Mainnet | Testnet |
 |---|---|---|
 | Chain ID (native) | `infinite_421018-1` | `infinite_421018001-1` |
-| Genesis file | [genesis.json ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json ↗](https://assets.infinitedrive.xyz/testnet/genesis.json) |
+| Genesis file | [genesis.json](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json](https://assets.infinitedrive.xyz/testnet/genesis.json) |
 
 Seed peers:
 
@@ -70,7 +70,7 @@ Seed peers:
 - **Testnet.** `ed3a45ee1ad114830afe6de7dc90c61f893c04da@server-xenia88.infinitedrive.xyz:26666`
 
 :::aside
-Seed peers are published by their operators in the [network data file ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json). Once connected, the node discovers the rest of the network on its own.
+Seed peers are published by their operators in the [network data file](https://assets.infinitedrive.xyz/mainnet/network-data.json). Once connected, the node discovers the rest of the network on its own.
 :::
 
 ## From node to validator {#ledger}

@@ -54,3 +54,6 @@ export const resolveHref = (href: string, lang: string = defaultLang) => {
   if (!href.startsWith('/') || href.startsWith('//') || /^\/(docs|consola)(\/|$|#)/.test(href)) return href;
   return withLang(href, lang);
 };
+
+/** True for a resolved link that leaves this site (another product or any external URL). */
+export const isExternal = (href: string) => /^https?:\/\//.test(href);

@@ -41,8 +41,8 @@ Estos son los datos que suele pedir una integración, y dónde se publican:
 | Identificadores de red | Uno para la red principal y otro para la red de pruebas · [Parámetros de red](/get-started/connect#parameters) |
 | Puntos de conexión | Los ofrecen proveedores independientes, o un nodo propio · [Directorio de proveedores](/get-started/connect#providers) |
 | Interfaces del nodo | JSON-RPC compatible con la EVM, RPC de CometBFT y gRPC · [Directorio por tipo de servicio](/get-started/connect#providers) |
-| Datos de red legibles por máquina | Todos los parámetros, puntos de conexión y exploradores en un archivo JSON · [red principal ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) · [red de pruebas ↗](https://assets.infinitedrive.xyz/testnet/network-data.json) |
-| API de explorador | API de Blockscout para consultar bloques, transacciones y contratos · [red principal ↗](https://scan.infinitedrive.xyz/api-docs) · [red de pruebas ↗](https://testnet-scan.infinitedrive.xyz/api-docs) |
+| Datos de red legibles por máquina | Todos los parámetros, puntos de conexión y exploradores en un archivo JSON · [red principal](https://assets.infinitedrive.xyz/mainnet/network-data.json) · [red de pruebas](https://assets.infinitedrive.xyz/testnet/network-data.json) |
+| API de explorador | API de Blockscout para consultar bloques, transacciones y contratos · [red principal](https://scan.infinitedrive.xyz/api-docs) · [red de pruebas](https://testnet-scan.infinitedrive.xyz/api-docs) |
 | Unidad y denominación base | Improbability, símbolo 42, 18 decimales · denominación base `drop` (`tdrop` en la red de pruebas) · [Drops y cups](/protocol/fees#drops-and-cups) |
 | Formatos de dirección | Formato 0x, compatible con la EVM, y formato propio de la red; los dos corresponden a la misma cuenta |
 | Finalidad | Un registro es definitivo en cuanto su bloque se confirma; no hacen falta confirmaciones adicionales |

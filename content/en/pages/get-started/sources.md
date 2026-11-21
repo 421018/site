@@ -24,8 +24,8 @@ Some sources are maintained by the protocol's contributors; others, such as the 
 |---|---|
 | Blocks and transactions | [Explorer](/get-started/connect#explorers) |
 | The active validator set and its voting power | [Explorer](/get-started/connect#explorers) |
-| The network parameters | [Network parameters](/get-started/connect#parameters) · [Network data file ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) |
-| The network's initial state | [Genesis file ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) |
+| The network parameters | [Network parameters](/get-started/connect#parameters) · [Network data file](https://assets.infinitedrive.xyz/mainnet/network-data.json) |
+| The network's initial state | [Genesis file](https://assets.infinitedrive.xyz/mainnet/genesis.json) |
 
 ## Governance {#governance}
 

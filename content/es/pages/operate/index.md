@@ -15,7 +15,7 @@ Un nodo nuevo necesita tres datos para unirse a la red: el chain ID nativo, el a
 | Dato | Red principal | Red de pruebas |
 |---|---|---|
 | Chain ID (nativo) | `infinite_421018-1` | `infinite_421018001-1` |
-| Archivo génesis | [genesis.json ↗](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json ↗](https://assets.infinitedrive.xyz/testnet/genesis.json) |
+| Archivo génesis | [genesis.json](https://assets.infinitedrive.xyz/mainnet/genesis.json) | [genesis.json](https://assets.infinitedrive.xyz/testnet/genesis.json) |
 
 Pares iniciales:
 

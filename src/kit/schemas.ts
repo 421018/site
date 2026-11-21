@@ -144,14 +144,6 @@ export const siteTextSchema = z
         links: z.array(headerLink).default([]),
         /** Optional highlighted button at the end of the header, e.g. the documentation. */
         cta: link.optional(),
-        /**
-         * Switch between the areas of 42 (Chain · Protocol), at the far right of
-         * the header. `current: true` marks the area this app is.
-         */
-        areas: z
-          .object({ label: z.string(), items: z.array(z.object({ label: z.string(), href: z.string(), current: z.boolean().default(false) }).strict()).min(2) })
-          .strict()
-          .optional(),
         /** A notice shown under the header on every page, e.g. "under construction". */
         notice: z.object({ label: z.string(), text: z.string() }).strict().optional(),
         /** Documentation: accessible names of the theme button. */
@@ -179,10 +171,11 @@ export const siteTextSchema = z
         /** Optional extra column, e.g. the tools: documentation and console. */
         extra: z.object({ label: z.string(), links: z.array(link) }).strict().optional(),
         /**
-         * Footer shared by every area of 42: when set, these columns replace the
-         * ones derived from the sections, and `links` go in the bottom line.
+         * Footer: the first column is the site's own navigation; a second one
+         * holds the sibling site (an external link, with a short `text`).
+         * `links` go in the bottom line.
          */
-        columns: z.array(z.object({ label: z.string(), links: z.array(link) }).strict()).optional(),
+        columns: z.array(z.object({ label: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), text: z.string().optional() }).strict()) }).strict()).optional(),
         links: z.array(link).default([]),
       })
       .strict(),

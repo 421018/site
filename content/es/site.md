@@ -8,7 +8,8 @@ tagline: Documentación técnica # tab title of the home page: "<name> — <tagl
 description: Documentación técnica de 42 Chain y del Protocolo 42. Conectarse, construir aplicaciones, integrar sistemas y operar nodos.
 
 header:
-  homeLink: Documentación de 42 Chain, inicio
+  brand: Protocol # word next to the 42 mark
+  homeLink: 42 Protocol, inicio
   home: Inicio # first item of the main menu and of the breadcrumbs
   mainNav: Principal
   menuButton: Menú
@@ -25,33 +26,23 @@ header:
     unavailable: La búsqueda está disponible en la versión publicada del sitio.
   links:
     - { label: Consola, href: "console:/" }
-  areas: # the areas of 42, at the far right of the header
-    label: Áreas de 42
-    items:
-      - { label: Chain, href: "site:/", current: false }
-      - { label: Protocol, href: "/", current: true }
 
 footer:
   credit: Documentación de código abierto
   license: Textos CC BY 4.0
-  note: © 2026 Los contribuidores de 42 Chain
-  # Shared by every area of 42 (Chain and Protocol): only the main ways in.
+  note: © 2026 Los contribuidores de 42
   columns:
-    - label: Chain
-      links:
-        - { label: Bitácora, href: "site:/log" }
-        - { label: Proyecto, href: "site:/about" }
-        - { label: Preguntas, href: "site:/faq" }
-    - label: Protocol
+    - label: 42 Protocol
       links:
         - { label: Documentación, href: "/" }
         - { label: Consola, href: "console:/" }
-    - label: Código abierto
-      links:
         - { label: Contribuir, href: "/open-source" }
-        - { label: Seguridad y reportes, href: "/open-source/security" }
+        - { label: Seguridad, href: "/open-source/security" }
+        - { label: Legal, href: "/legal" }
+    - label: De la misma familia
+      links:
+        - { label: 42 Chain, href: "site:/", text: "el proyecto" }
   links: # bottom line
-    - { label: Legal, href: "/legal" }
     - { label: "@42protocol en X", href: "https://x.com/42protocol" }
 
 page:

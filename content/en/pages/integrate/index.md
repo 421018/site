@@ -41,8 +41,8 @@ These are the data an integration usually asks for, and where they are published
 | Network identifiers | One for the mainnet and one for the testnet · [Network parameters](/get-started/connect#parameters) |
 | Connection points | Offered by independent providers, or your own node · [Provider directory](/get-started/connect#providers) |
 | Node interfaces | EVM-compatible JSON-RPC, CometBFT RPC and gRPC · [Directory by service type](/get-started/connect#providers) |
-| Machine-readable network data | All parameters, connection points and explorers in a JSON file · [mainnet ↗](https://assets.infinitedrive.xyz/mainnet/network-data.json) · [testnet ↗](https://assets.infinitedrive.xyz/testnet/network-data.json) |
-| Explorer API | Blockscout API for querying blocks, transactions and contracts · [mainnet ↗](https://scan.infinitedrive.xyz/api-docs) · [testnet ↗](https://testnet-scan.infinitedrive.xyz/api-docs) |
+| Machine-readable network data | All parameters, connection points and explorers in a JSON file · [mainnet](https://assets.infinitedrive.xyz/mainnet/network-data.json) · [testnet](https://assets.infinitedrive.xyz/testnet/network-data.json) |
+| Explorer API | Blockscout API for querying blocks, transactions and contracts · [mainnet](https://scan.infinitedrive.xyz/api-docs) · [testnet](https://testnet-scan.infinitedrive.xyz/api-docs) |
 | Unit and base denomination | Improbability, symbol 42, 18 decimals · base denomination `drop` (`tdrop` on the testnet) · [Drops and cups](/protocol/fees#drops-and-cups) |
 | Address formats | The 0x format, compatible with the EVM, and the network's own format; the two correspond to the same account |
 | Finality | A record is final as soon as its block is confirmed; no additional confirmations are needed |
