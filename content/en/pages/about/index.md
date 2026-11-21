@@ -97,8 +97,8 @@ These are the project's only official channels. If a channel does not appear her
 
 | Channel | What it is for | Address |
 |---|---|---|
-| Chain | The project, the Logbook and frequently asked questions | 42chain.org |
-| Protocol | Documentation, technical reference and tools | 42protocol.dev |
+| Site | The project, the Logbook and frequently asked questions | 42chain.org |
+| Documentation | Infinite Drive, technical reference and tools | 42chain.org/docs |
 | X | Project announcements | @42protocol |
 | Repository | Source code, technical questions, bug reports and contributions | [repository] |
 | Security email | Private reports of vulnerabilities in the code | [security email] |

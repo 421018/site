@@ -4,6 +4,9 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const DIST = 'dist';
+// Paths served by another app on the same domain (e.g. `--skip /docs`): not checked here.
+const si = process.argv.indexOf('--skip');
+const SKIP = si > 0 ? process.argv[si + 1].replace(/\/$/, '') : '';
 if (!existsSync(DIST)) { console.error('✗ dist/ does not exist: run `npm run build` first.'); process.exit(1); }
 
 const files = [];
@@ -23,6 +26,7 @@ for (const [from, doc] of pages) {
   for (const [, href] of doc.matchAll(/href="([^"]+)"/g)) {
     if (/^(https?:|mailto:|tel:)/.test(href)) continue;
     const [path, hash] = href.split('#');
+    if (SKIP && (path === SKIP || path.startsWith(SKIP + '/'))) continue;
     if (assets.has(path)) continue;
     const target = path === '' ? from : (path.replace(/\/$/, '') || '/');
     const page = pages.get(target);

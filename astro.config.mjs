@@ -10,6 +10,9 @@ import { SITE, LINKS, EDIT_BASE } from './src/config.ts';
 export default defineConfig({
   ...sharedConfig({ catalog: '', defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: Object.keys(SITE.languages), widgets: widgetNames, linkBases: { docs: LINKS.docs, console: LINKS.console } }),
   site: SITE.url,
+  // In development the documentation runs on its own server (its repo, port 4322);
+  // /docs is proxied to it so links between the two work as they will in production.
+  vite: { server: { proxy: { '/docs': 'http://localhost:4322' } } },
   integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) }), kit({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: SITE.languages, editBase: EDIT_BASE, links: { docs: LINKS.docs, console: LINKS.console } })],
   i18n: {
     defaultLocale: SITE.defaultLang,
@@ -18,7 +21,6 @@ export default defineConfig({
   },
   // Internal shortcuts used in content. Change the targets in src/config.ts.
   redirects: {
-    '/docs': LINKS.docs,
     ...(LINKS.console ? { '/consola': LINKS.console } : {}),
     // "Implementar" moved to the documentation (Spanish).
     '/implementar': `${LINKS.docs}/es/build/applications`,

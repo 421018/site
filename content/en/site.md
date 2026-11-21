@@ -17,6 +17,7 @@ header:
   submenu: show pages # accessible name of a section's menu arrow: "Protocol: show pages"
   links:
     - { label: Logbook, href: /log, weight: 1 } # weight places it among the sections
+    - { label: Documentation, href: "docs:/", weight: 10 }
 
 footer:
   credit: Open-source project
@@ -29,10 +30,8 @@ footer:
         - { label: Logbook, href: "/log" }
         - { label: Project, href: "/about" }
         - { label: Questions, href: "/faq" }
+        - { label: Documentation, href: "docs:/" }
         - { label: Legal, href: "/legal" }
-    - label: From the same family
-      links:
-        - { label: 42 Protocol, href: "docs:/", text: "Technical documentation, Console and network status" }
   links: # bottom line
     - { label: "@42protocol on X", href: "https://x.com/42protocol" }
 

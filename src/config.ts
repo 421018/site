@@ -18,8 +18,8 @@ export const SITE = {
 };
 
 export const LINKS = {
-  /** Protocol: the documentation and the technical tools of 42. */
-  docs: 'https://42protocol.dev',
+  /** The documentation, on the same domain (its own repo, served at 42chain.org/docs). */
+  docs: '/docs',
   /** The console is not launched yet: without a URL, every link to it is left out. */
   console: undefined as string | undefined,
   repo: 'https://github.com/deep-thought-labs/infinite-app',

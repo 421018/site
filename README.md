@@ -1,8 +1,15 @@
 # 42 Chain
 
 The 42 Chain site (42chain.org): the project, the Bitácora and frequently
-asked questions. The technical documentation and tools live in 42 Protocol
-(42protocol.dev), a separate repository.
+asked questions. The documentation is part of the same site, at
+**42chain.org/docs**, built from its own repository.
+
+## Deploying
+
+Each repository deploys on its own. On Cloudflare, a route sends
+`42chain.org/docs*` to the documentation project and everything else here.
+In development, `npm run dev` proxies /docs to the documentation's dev
+server on port 4322, so links between the two work locally.
 
 ## Structure
 

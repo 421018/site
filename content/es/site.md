@@ -17,6 +17,7 @@ header:
   submenu: ver páginas # accessible name of a section's menu arrow: "Protocolo: ver páginas"
   links:
     - { label: Bitácora, href: /log, weight: 1 } # weight places it among the sections
+    - { label: Documentación, href: "docs:/", weight: 10 }
 
 footer:
   credit: Proyecto de código abierto
@@ -29,10 +30,8 @@ footer:
         - { label: Bitácora, href: "/log" }
         - { label: Proyecto, href: "/about" }
         - { label: Preguntas, href: "/faq" }
+        - { label: Documentación, href: "docs:/" }
         - { label: Legal, href: "/legal" }
-    - label: De la misma familia
-      links:
-        - { label: 42 Protocol, href: "docs:/", text: "Documentación técnica, Consola y estado de la red" }
   links: # bottom line
     - { label: "@42protocol en X", href: "https://x.com/42protocol" }
 

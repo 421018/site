@@ -97,8 +97,8 @@ Estos son los únicos canales oficiales del proyecto. Si un canal no aparece aqu
 
 | Canal | Para qué sirve | Dirección |
 |---|---|---|
-| Chain | El proyecto, la Bitácora y las preguntas frecuentes | 42chain.org |
-| Protocol | Documentación, referencia técnica y herramientas | 42protocol.dev |
+| Sitio | El proyecto, la Bitácora y las preguntas frecuentes | 42chain.org |
+| Documentación | Infinite Drive, referencia técnica y herramientas | 42chain.org/docs |
 | X | Anuncios del proyecto | @42protocol |
 | Repositorio | Código fuente, preguntas técnicas, reportes de errores y contribuciones | [repositorio] |
 | Correo de seguridad | Reportes privados de vulnerabilidades del código | [correo de seguridad] |
