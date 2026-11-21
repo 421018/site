@@ -12,7 +12,6 @@ import { getMenu, getSiteText, menuPanel } from '../site';
 import { blogHref, getBlog, hasBlogIndex } from '../blog';
 import { homeHref, isLinkAvailable, langOf, languages, resolveHref } from '../i18n';
 import Search from './Search.astro';
-import AreaSwitch from './AreaSwitch.astro';
 interface Props {
   current?: string;
   /** The current page in other languages ({ lang: href }); languages without it link to their home page. */
@@ -93,7 +92,6 @@ const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind
       {text.header.cta && <a class="ml cta" href={resolveHref(text.header.cta.href, lang)}>{text.header.cta.label}</a>}
     </nav>
   </details>
-  {text.header.areas && <div class="hend"><span class="hsep" aria-hidden="true"></span><AreaSwitch /></div>}
 </header>
 
 <script>

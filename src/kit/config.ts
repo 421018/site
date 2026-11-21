@@ -85,6 +85,15 @@ export function sharedConfig({ catalog, defaultLang, sourceLang, widgets = [], l
         subsets: ['latin', 'latin-ext'],
         fallbacks: ['ui-monospace', 'SF Mono', 'Menlo', 'monospace'],
       },
+      {
+        provider: fontProviders.google(),
+        name: 'Newsreader',
+        cssVariable: '--font-newsreader',
+        weights: ['400', '500'],
+        styles: ['normal', 'italic'],
+        subsets: ['latin', 'latin-ext'],
+        fallbacks: ['Georgia', 'Iowan Old Style', 'serif'],
+      },
     ],
     // Content Security Policy: Astro hashes its own scripts and styles. Inline
     // style attributes are allowed because the design uses them; scripts are not.

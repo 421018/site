@@ -144,14 +144,6 @@ export const siteTextSchema = z
         links: z.array(headerLink).default([]),
         /** Optional highlighted button at the end of the header, e.g. the documentation. */
         cta: link.optional(),
-        /**
-         * Switch between the areas of 42 (Chain · Protocol), at the far right of
-         * the header. `current: true` marks the area this app is.
-         */
-        areas: z
-          .object({ label: z.string(), items: z.array(z.object({ label: z.string(), href: z.string(), current: z.boolean().default(false) }).strict()).min(2) })
-          .strict()
-          .optional(),
         /** A notice shown under the header on every page, e.g. "under construction". */
         notice: z.object({ label: z.string(), text: z.string() }).strict().optional(),
         /** Documentation: accessible names of the theme button. */
@@ -179,10 +171,12 @@ export const siteTextSchema = z
         /** Optional extra column, e.g. the tools: documentation and console. */
         extra: z.object({ label: z.string(), links: z.array(link) }).strict().optional(),
         /**
-         * Footer shared by every area of 42: when set, these columns replace the
-         * ones derived from the sections, and `links` go in the bottom line.
+         * Footer columns: when set, they replace the ones derived from the
+         * sections. A link may carry a short line (`text`). `links` go in the bottom line.
          */
-        columns: z.array(z.object({ label: z.string(), links: z.array(link) }).strict()).optional(),
+        columns: z.array(z.object({ label: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), text: z.string().optional() }).strict()) }).strict()).optional(),
+        /** Short line under the mark at the start of the footer. */
+        tagline: z.string().optional(),
         links: z.array(link).default([]),
       })
       .strict(),
@@ -217,6 +211,8 @@ export const siteTextSchema = z
         readingTime: z.string(),
         onThisPost: z.string(),
         keepReading: z.string(),
+        /** Label of the band that leads to the next story ("Siguiente historia"). */
+        nextStory: z.string().optional(),
         editPost: z.string(),
         /** Caption before the photo credit: "Imagen ilustrativa." */
         illustrative: z.string(),

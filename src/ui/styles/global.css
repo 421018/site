@@ -1,7 +1,9 @@
-/* 42 Chain — global styles. All rights reserved (see LICENSE).
-   Galactic, sober, legible: a calm dark space, one cold accent (aurora) for
-   functional details and one warm accent (star) for ships and lore. Text never
-   sits on an illustration: always on a plain field. Nothing pulses. */
+/* 42 Chain — global styles.
+   A magazine in three grounds: night (the cover and brand moments), paper
+   (everything that is read) and hull (feature bands between two paper
+   sections). One cold accent (aurora) and one warm accent (star), each with a
+   darker twin for paper. Text never sits on an illustration: always on a
+   plain field. Nothing pulses. */
 
 :root {
   --acc: #5BF0C8;        /* aurora */
@@ -16,18 +18,22 @@
   --fg-2: #C5CCD4;
   --fg-3: #A3ADB8;       /* dust */
   --fg-4: #8792A0;
-  /* reading surface (interiors) */
-  --bg: #F4F3EF;
-  --ink: #2E3338;
-  --head: #0B0D10;
-  --muted: #5A6067;
-  --rule: #DDDBD4;
-  --rule2: #BDBAB2;
-  --panel: #EAE9E3;
-  --link: #0A7A5E;
+  --casco: #0C1A1D;      /* hull: feature bands */
+  /* paper: everything that is read */
+  --bg: #F4F1EA;
+  --ink: #1F262E;
+  --head: #11161D;
+  --muted: #4A525C;
+  --rule: #DCD6C8;
+  --rule2: #BDB6A6;
+  --panel: #EAE5DA;
+  --card: #FFFFFF;
+  --link: #0A6B53;
+  --amber: #8A5A00;      /* the star accent on paper */
   /* Self-hosted at build time (astro.config.mjs → fonts). */
   --font: var(--font-geist);
   --mono: var(--font-geist-mono);
+  --serif: var(--font-newsreader);
 }
 /* Each section overrides --acc and --link from its index.md (section.accent / section.ink). */
 
@@ -75,10 +81,7 @@ img, svg { display: block; }
 /* highlighted header button (e.g. the documentation) */
 .hcta { display: inline-flex; align-items: center; min-height: 40px; margin-left: 10px; padding: 0 16px; border-radius: 999px; background: var(--fg); color: var(--night); text-decoration: none; font-size: 14px; font-weight: 500; }
 .hcta:hover { background: #fff; }
-/* Areas of 42 (Chain · Protocol): always at the far right, also on narrow screens. */
-.site-header .menu, .site-header .menu-m { margin-left: auto; }
-.hend { display: flex; align-items: center; gap: 14px; }
-.hsep { width: 1px; height: 24px; background: #26303A; }
+
 .nl.lang { font-family: var(--mono); font-size: 12px; }
 .ml.sub { min-height: 38px; padding-left: 26px; font-size: 14px; }
 .ml.cta { color: var(--fg); font-weight: 500; }
@@ -96,6 +99,12 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
   .menu { display: none; }
   .menu-m { display: block; }
 }
+
+/* ---------- links that leave the site ---------- */
+/* Another site (42 Protocol) or any external URL: an arrow after the label.
+   Decorative only: the label already names where the link goes. */
+.ext::after, .ext .fl-l::after, .prose a[href^="http"]::after { content: "\00a0\2197" / ""; }
+.ext.wtext::after { content: none; }
 
 /* ---------- buttons & links ---------- */
 .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; transition: background .25s, color .25s, border-color .25s; }
@@ -152,8 +161,13 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 /* ---------- footer ---------- */
 .site-footer { border-top: 1px solid var(--line-d); padding: 56px clamp(16px, 4vw, 56px) 36px; overflow: hidden; }
 .site-footer .inner { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
-.fcols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.fcols { display: flex; flex-wrap: wrap; gap: 32px 72px; }
 .fcols > div { display: flex; flex-direction: column; }
+.fcols > .fbrand { margin-right: auto; max-width: 320px; gap: 14px; }
+.fbrand p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--fg-4); }
+.flink.wtext { display: flex; flex-direction: column; gap: 2px; max-width: 280px; }
+.flink .fl-l { color: var(--fg-2); }
+.flink .fl-t { font-size: 14px; line-height: 1.5; color: var(--fg-4); }
 .fcols .lbl { margin: 0 0 14px; color: var(--fg-4); }
 .flink { color: var(--fg-3); text-decoration: none; font-size: 15px; padding: 8px 0; display: inline-block; }
 .flink:hover { color: var(--acc); }
@@ -177,7 +191,14 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 /* ---------- interior: dark band ---------- */
 /* decorations are clipped in their own layer so the header menu can overflow the band */
 .band-deco { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.band-top { position: relative; padding: 22px clamp(16px, 4vw, 56px) 18px; border-bottom: 1px solid var(--line-d); background-color: var(--night); }
+.band-top { position: relative; padding: 10px clamp(16px, 4vw, 56px); background-color: var(--night); }
+/* Reading progress under the slim header (scroll-driven; hidden where unsupported). */
+.progress { display: none; }
+@supports (animation-timeline: scroll()) {
+  .progress { display: block; position: sticky; top: 0; z-index: 20; height: 3px; background: #1A2129; }
+  .progress::before { content: ""; display: block; height: 3px; background: var(--star); transform-origin: 0 50%; animation: readprog linear both; animation-timeline: scroll(root); }
+  @keyframes readprog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+}
 .band-deco .band-orbit { position: absolute; right: clamp(0px, 4vw, 80px); top: 64px; width: min(520px, 42vw); height: auto; }
 /* keeps the title on a plain field: the illustration fades out behind the text */
 .band-field { position: absolute; inset: 0; background: linear-gradient(90deg, var(--night) 0%, var(--night) 45%, rgba(4,6,11,0) 75%); pointer-events: none; }
@@ -188,14 +209,16 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .rd { background: var(--bg); color: var(--ink); font-size: 16.5px; line-height: 1.7; }
 .lay { max-width: 1240px; margin: 0 auto; padding: 24px clamp(16px, 4vw, 56px) 80px; display: flex; justify-content: center; }
 .rd main { flex: 999 1 560px; min-width: 0; max-width: 760px; }
-.dochead { max-width: 1240px; margin: 0 auto; padding: 64px 0 72px; }
+.dochead { max-width: 1240px; margin: 0 auto; padding: 72px clamp(16px, 4vw, 56px) 8px; }
 .dochead .crumbs-d a { color: inherit; text-decoration: none; }
 .dochead .crumbs-d a:hover { text-decoration: underline; text-underline-offset: 3px; }
-.dochead .dk { margin: 0 0 16px; font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
-.dochead h1 { margin: 0; max-width: 760px; font-size: clamp(34px, 5vw, 60px); font-weight: 500; line-height: 1.02; letter-spacing: -.04em; color: var(--fg); }
-.dochead .ds { margin: 20px 0 0; max-width: 640px; font-size: 18px; line-height: 1.6; color: var(--fg-2); }
-.dochead .dm { margin: 24px 0 0; font-family: var(--mono); font-size: 12px; color: var(--fg-4); }
-.dochead .dm a { color: var(--fg-3); }
+/* Pages without a side index: the title lines up with the text column. */
+.solo .dochead { max-width: calc(760px + 2 * clamp(16px, 4vw, 56px)); }
+.dochead .dk { margin: 0 0 16px; font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+.dochead h1 { margin: 0; max-width: 820px; font-size: clamp(36px, 5vw, 64px); font-weight: 500; line-height: 1.02; letter-spacing: -.04em; color: var(--head); }
+.dochead .ds { margin: 20px 0 0; max-width: 680px; font-size: 19px; line-height: 1.6; color: var(--muted); }
+.dochead .dm { margin: 24px 0 0; padding-bottom: 28px; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.dochead .dm a { color: var(--muted); }
 
 /* prose: every h2 opens a numbered section */
 .prose { counter-reset: sec; }
@@ -417,20 +440,35 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 }
 
 /* ---------- blog ("Bitácora") ---------- */
-.post-band, .blog-band { background-color: var(--night); overflow: hidden; }
-.post-head { position: relative; max-width: 880px; margin: 0 auto; padding: 48px 0 112px; }
-.crumbs { font-size: 13.5px; color: var(--fg-3); }
-.crumbs a { color: var(--fg-3); }
-.crumbs a:hover { color: var(--acc); }
-.post-meta, .pc-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin: 0; font-size: 13.5px; color: var(--fg-3); }
-.post-meta { margin-top: 28px; }
-.post-meta .pill { color: var(--acc); border-color: color-mix(in srgb, var(--acc) 40%, transparent); }
-.post-head h1 { margin: 20px 0 0; font-size: clamp(36px, 5.4vw, 60px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 500; }
-.post-sum { margin: 22px 0 0; font-size: 19px; line-height: 1.6; color: var(--fg-2); }
-.post-by { margin: 28px 0 0; font-size: 14px; color: var(--fg-3); }
-.post-by a { color: var(--fg-3); }
-.post-cover { max-width: 1100px; margin: -80px auto 0; padding: 0 clamp(16px, 4vw, 40px); position: relative; }
-.post-cover .duo { border-radius: 24px; aspect-ratio: 5 / 2; }
+/* Interiors: a slim night header, then everything on paper. */
+.post-head { max-width: 880px; margin: 0 auto; padding: 72px clamp(16px, 4vw, 40px) 48px; }
+.crumbs { font-family: var(--mono); font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); }
+.crumbs a { color: var(--amber); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.post-meta, .pc-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin: 0; font-size: 13.5px; color: var(--muted); }
+.post-meta { margin-top: 20px; }
+.post-meta .pill { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 40%, transparent); }
+.post-head h1 { margin: 20px 0 0; font-size: clamp(38px, 5.4vw, 64px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 500; color: var(--head); }
+.post-sum { margin: 22px 0 0; font-size: 20px; line-height: 1.6; color: var(--muted); }
+.post-by { margin: 24px 0 0; font-size: 14px; color: var(--muted); }
+.post-by a { color: var(--muted); }
+/* Stories read like a book: centred serif title, italic lead, serif body with a drop cap, no date. */
+.story .post-head { text-align: center; max-width: 760px; }
+.story .post-meta { justify-content: center; }
+.story .post-head h1 { font-family: var(--serif); font-size: clamp(46px, 7vw, 84px); line-height: 1; letter-spacing: -0.02em; }
+.story .post-sum { font-family: var(--serif); font-style: italic; font-size: 22px; line-height: 1.5; max-width: 600px; margin-left: auto; margin-right: auto; }
+.story .prose { font-family: var(--serif); font-size: 21px; line-height: 1.72; color: var(--ink); }
+.story .prose > p:first-of-type::first-letter { float: left; font-size: 4.2em; line-height: .8; padding: 10px 12px 0 0; color: var(--amber); font-weight: 500; }
+.story .prose h2 { font-family: var(--font); }
+.story .lay main { max-width: 680px; }
+@media (max-width: 700px) { .story .prose { font-size: 19px; } }
+.post-next { margin-top: 32px; background: var(--casco); }
+.post-next a { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 44px clamp(16px, 4vw, 40px); color: #F1F5F4; text-decoration: none; }
+.post-next .pn-k { font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
+.post-next .pn-t { font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.01em; }
+.post-next a:hover .pn-t { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.post-cover { max-width: 1100px; margin: 8px auto 0; padding: 0 clamp(16px, 4vw, 40px); position: relative; }
+.post-cover .duo { border-radius: 18px; aspect-ratio: 5 / 2; }
 .post-cover figcaption { margin-top: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
 .post-lay { gap: 56px; padding-top: 32px; }
 .post-toc { flex: 0 0 200px; padding-top: 60px; font-size: 14px; }
@@ -438,8 +476,8 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .post-toc nav { display: flex; flex-direction: column; gap: 10px; border-left: 1px solid var(--rule); padding-left: 14px; position: sticky; top: 24px; }
 .post-toc a { color: var(--muted); text-decoration: none; line-height: 1.35; }
 .post-toc a:hover { color: var(--link); }
-.post-more { max-width: 1100px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px) 96px; }
-.post-more .pm-k { margin: 0 0 18px; padding-top: 36px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.post-more { max-width: 1100px; margin: 0 auto; padding: 56px clamp(16px, 4vw, 40px) 96px; }
+.post-more .pm-k { margin: 0 0 18px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .pm-grid, .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 /* cards */
 .pcard { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: #fff; border: 1px solid var(--rule); color: var(--ink); text-decoration: none; transition: border-color .2s; }
@@ -449,8 +487,8 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .pc-art { display: flex; align-items: center; justify-content: center; background-color: var(--night-2); }
 .pc-body { display: flex; flex-direction: column; gap: 12px; padding: 20px 22px 24px; }
 .pc-meta { color: var(--muted); font-size: 12.5px; }
-.pc-meta .pill { color: var(--link); border-color: color-mix(in srgb, var(--link) 35%, transparent); }
-.pcard b { font-size: 20px; line-height: 1.25; letter-spacing: -0.015em; font-weight: 500; color: var(--head); }
+.pc-meta .pill { color: var(--amber); border-color: color-mix(in srgb, var(--amber) 35%, transparent); }
+.pcard b { font-family: var(--serif); font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; font-weight: 500; color: var(--head); }
 .pc-sum { font-size: 14.5px; line-height: 1.6; color: var(--ink); }
 .pcard.compact { flex-direction: row; align-items: center; gap: 14px; padding: 10px; }
 .pcard.compact .pc-img { flex: none; width: 96px; height: 76px; border-radius: 10px; overflow: hidden; }
@@ -458,17 +496,16 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .pcard.compact .pc-body { padding: 0; gap: 8px; }
 .pcard.compact b { font-size: 15.5px; }
 /* index */
-.blog-art { position: absolute; right: clamp(16px, 5vw, 80px); top: 90px; width: min(420px, 40vw); height: auto; }
-.blog-head { position: relative; max-width: 1280px; margin: 0 auto; padding: 56px 0 72px; }
-.blog-head .lbl { margin: 0 0 16px; color: var(--star); letter-spacing: .14em; }
-.blog-head h1 { margin: 0; max-width: 680px; font-size: clamp(38px, 5vw, 64px); line-height: 1; letter-spacing: -0.045em; font-weight: 500; }
-.blog-head p:not(.lbl) { margin: 20px 0 0; max-width: 600px; font-size: 18px; line-height: 1.6; color: var(--fg-2); }
-.blog-in { max-width: 1280px; margin: 0 auto; padding: 56px clamp(16px, 4vw, 40px) 120px; }
+.blog-head { max-width: 1280px; margin: 0 auto; padding: 72px clamp(16px, 4vw, 40px) 0; }
+.blog-head .lbl { margin: 0 0 16px; color: var(--amber); letter-spacing: .14em; }
+.blog-head h1 { margin: 0; max-width: 760px; font-family: var(--serif); font-size: clamp(44px, 6vw, 76px); line-height: 1; letter-spacing: -0.02em; font-weight: 500; color: var(--head); }
+.blog-head p:not(.lbl) { margin: 20px 0 0; max-width: 640px; font-size: 19px; line-height: 1.6; color: var(--muted); }
+.blog-in { max-width: 1280px; margin: 0 auto; padding: 48px clamp(16px, 4vw, 40px) 120px; }
 .feat { display: flex; flex-wrap: wrap; border-radius: 24px; overflow: hidden; background: #fff; border: 1px solid var(--rule); color: var(--ink); text-decoration: none; }
 .feat:hover { border-color: var(--link); }
 .feat-img { flex: 1 1 520px; min-height: 360px; margin: 0; }
 .feat-body { flex: 1 1 400px; min-width: 0; padding: clamp(28px, 4vw, 44px); display: flex; flex-direction: column; justify-content: center; gap: 16px; }
-.feat-body b { font-size: clamp(28px, 3vw, 38px); line-height: 1.08; letter-spacing: -0.03em; font-weight: 500; color: var(--head); }
+.feat-body b { font-family: var(--serif); font-size: clamp(32px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -0.015em; font-weight: 500; color: var(--head); }
 .feat-body .pc-sum { font-size: 16.5px; line-height: 1.65; }
 .feat-by { font-size: 14px; color: var(--muted); }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 56px 0 28px; }
@@ -478,7 +515,6 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 @media (max-width: 1000px) { .post-toc { display: none; } }
 @media (max-width: 900px) {
   .pm-grid, .pgrid { grid-template-columns: 1fr; }
-  .blog-art { opacity: .35; }
   .post-cover .duo { aspect-ratio: 4 / 3; }
 }
 

@@ -9,40 +9,31 @@ tagline: Protocolo abierto de infraestructura # tab title of the home page: "<na
 description: "42 Chain ejecuta el Protocolo 42, un protocolo de código abierto para construir infraestructura sobre un registro compartido: datos que varias personas pueden comprobar y reglas que valen igual para todas." # default meta description
 
 header:
-  homeLink: 42, inicio # accessible name of the logo link
+  brand: Chain # word next to the 42 mark
+  homeLink: 42 Chain, inicio # accessible name of the logo link
   mainNav: Principal # accessible name of the main menu
   menuButton: Menú # label of the collapsed main menu on narrow screens
   languageNav: Idioma # accessible name of the language switcher
   submenu: ver páginas # accessible name of a section's menu arrow: "Protocolo: ver páginas"
   links:
     - { label: Bitácora, href: /log, weight: 1 } # weight places it among the sections
-  areas: # the areas of 42, at the far right of the header
-    label: Áreas de 42
-    items:
-      - { label: Chain, href: "/", current: true }
-      - { label: Protocol, href: "docs:/", current: false }
 
 footer:
   credit: Proyecto de código abierto
   license: Textos CC BY 4.0
-  note: © 2026 Los contribuidores de 42 Chain
-  # Shared by every area of 42 (Chain and Protocol): only the main ways in.
+  note: © 2026 Los contribuidores de 42
+  tagline: Un registro que muchos guardan a la vez, contado a bordo.
   columns:
-    - label: Chain
+    - label: Explorar
       links:
         - { label: Bitácora, href: "/log" }
         - { label: Proyecto, href: "/about" }
         - { label: Preguntas, href: "/faq" }
-    - label: Protocol
+        - { label: Legal, href: "/legal" }
+    - label: De la misma familia
       links:
-        - { label: Documentación, href: "docs:/" }
-        - { label: Consola, href: "console:/" }
-    - label: Código abierto
-      links:
-        - { label: Contribuir, href: "docs:/open-source" }
-        - { label: Seguridad y reportes, href: "docs:/open-source/security" }
+        - { label: 42 Protocol, href: "docs:/", text: "Documentación técnica, Consola y estado de la red" }
   links: # bottom line
-    - { label: Legal, href: "/legal" }
     - { label: "@42protocol en X", href: "https://x.com/42protocol" }
 
 page:
@@ -65,6 +56,7 @@ blog:
   readingTime: "{n} min de lectura"
   onThisPost: En esta entrada
   keepReading: Sigue leyendo
+  nextStory: Siguiente historia
   editPost: Editar esta entrada ↗
   illustrative: Imagen ilustrativa.
   categories:

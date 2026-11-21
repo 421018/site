@@ -1,8 +1,9 @@
 ---
 /**
- * A blog post: dark band with category, reading time, date, title and
- * summary; the cover photo; the text on the reading surface with "En esta
- * entrada" (its h2 headings); and related posts.
+ * A blog post: a slim night header and, on paper, category, reading time,
+ * date, title and summary; the cover photo; the text with "En esta entrada"
+ * (its h2 headings); the next story; and related posts. Stories (category
+ * "historia") read like a book: serif, drop cap, no date.
  */
 import { Image } from 'astro:assets';
 import kit from 'virtual:42chain/kit';
@@ -22,6 +23,10 @@ const published = postDate(post);
 const date = published && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(published);
 const toc = headings.filter((h) => h.depth === 2);
 const related = await relatedPosts(post);
+// Stories read like a book; the next story of the same kind gets its own band.
+const story = cat.id === 'historia';
+const next = story ? related.find((r) => r.data.category === post.data.category) : undefined;
+const more = related.filter((r) => r !== next);
 const { header: { home }, page: ui } = await getSiteText(lang);
 const original = post.fallbackOf;
 const canonicalHref = original ? withLang(postHref(blog, post).replace(langPrefix(lang), '') || '/', sourceLang) : undefined;
@@ -30,17 +35,18 @@ const index = blogHref(blog, lang);
 const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.id}`;
 ---
 <Base title={post.data.title} description={post.data.summary} canonicalHref={canonicalHref}>
-  <section class="band-top post-band stars">
+  <section class="band-top">
     <Header current={cat.path} currentHref={cat.path ? undefined : index} />
+  </section>
+  <div class="progress" aria-hidden="true"></div>
+  <div class:list={['rd', { story }]}>
     <div class="post-head">
       <nav class="crumbs" aria-label={cat.path ? cat.plural : blog.kicker}>{home && <><a href={homeHref(lang)}>{home}</a> <span aria-hidden="true">/</span> </>}{cat.path ? <a href={catHref}>{cat.plural}</a> : <><a href={index}>{blog.kicker}</a> <span aria-hidden="true">/</span> <a href={catHref}>{cat.plural}</a></>}</nav>
-      <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{!cat.path && date && <span>{date}</span>}</p>
+      <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{!story && !cat.path && date && <span>{date}</span>}</p>
       <h1>{post.data.title}</h1>
       <p class="post-sum">{post.data.summary}</p>
       <p class="post-by">{blog.byline}{kit.editBase && <> · <a href={kit.editBase + catalogRelative(post.filePath!)}>{blog.editPost}</a></>}</p>
     </div>
-  </section>
-  <div class="rd">
     {post.data.image && (
       <figure class="post-cover">
         <div class="duo" style={`--tint: ${categoryTint(blog, cat.id)}`}><Image src={post.data.image as never} alt={post.data.alt!} widths={[800, 1200, 1600]} sizes="(max-width: 1100px) 100vw, 1100px" /></div>
@@ -59,10 +65,15 @@ const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.i
         <div class="prose"><slot /></div>
       </main>
     </div>
-    {related.length > 0 && (
+    {next && (
+      <section class="post-next">
+        <a href={postHref(blog, next)}><span class="pn-k">{blog.nextStory ?? blog.keepReading}</span><span class="pn-t">{next.data.title} →</span></a>
+      </section>
+    )}
+    {more.length > 0 && (
       <section class="post-more">
         <p class="pm-k">{blog.keepReading}</p>
-        <div class="pm-grid">{related.map((r) => <PostCard post={r} blog={blog} compact />)}</div>
+        <div class="pm-grid">{more.map((r) => <PostCard post={r} blog={blog} compact />)}</div>
       </section>
     )}
   </div>

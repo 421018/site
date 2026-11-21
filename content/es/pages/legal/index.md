@@ -66,7 +66,7 @@ Los textos de este sitio y los datos de la red que publica, como parámetros y l
 La licencia de los textos no incluye el diseño, la interfaz, el código ni los elementos de marca, como el logotipo y la identidad visual, del sitio, la documentación y la Consola. Esos elementos no pueden copiarse ni reutilizarse sin autorización.
 
 :::aside
-[Licencia completa (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.es) · [Archivos LICENSE y NOTICE en el repositorio]
+[Licencia completa (Apache License 2.0)](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es) · [Archivos LICENSE y NOTICE en el repositorio]
 :::
 
 ## Enlaces y servicios de terceros {#third-parties}

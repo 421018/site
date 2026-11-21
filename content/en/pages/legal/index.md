@@ -66,7 +66,7 @@ The text of this site and the network data it publishes, such as parameters and 
 The text license does not include the design, the interface, the code or the brand elements, such as the logo and the visual identity, of the site, the documentation and the Console. Those elements may not be copied or reused without permission.
 
 :::aside
-[Full license (Apache License 2.0) ↗](https://www.apache.org/licenses/LICENSE-2.0) · [Full license (CC BY 4.0) ↗](https://creativecommons.org/licenses/by/4.0/deed.en) · [LICENSE and NOTICE files in the repository]
+[Full license (Apache License 2.0)](https://www.apache.org/licenses/LICENSE-2.0) · [Full license (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.en) · [LICENSE and NOTICE files in the repository]
 :::
 
 ## Third-party links and services {#third-parties}
