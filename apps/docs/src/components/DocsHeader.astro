@@ -4,11 +4,10 @@
  * switch (shared with the network widgets on the page), theme, language and
  * links; below, one tab per section.
  */
-import Search from '@42chain/kit/components/Search.astro';
-import AreaSwitch from '@42chain/kit/components/AreaSwitch.astro';
-import NetworkSwitch from '@42chain/network/components/NetworkSwitch.astro';
-import { getMenu, getSiteText } from '@42chain/kit/site';
-import { homeHref, isLinkAvailable, langOf, languages, resolveHref } from '@42chain/kit/i18n';
+import Search from '../kit/components/Search.astro';
+import NetworkSwitch from '../network/components/NetworkSwitch.astro';
+import { getMenu, getSiteText } from '../kit/site';
+import { homeHref, isLinkAvailable, langOf, languages, resolveHref } from '../kit/i18n';
 interface Props { current?: string; alternates?: Record<string, string> }
 const { current, alternates = {} } = Astro.props;
 const lang = langOf(Astro);
@@ -27,7 +26,6 @@ const switcher = await Promise.all(
       {text.header.themeDark && <button type="button" class="dh-theme" data-theme-toggle data-dark={text.header.themeDark} data-light={text.header.themeLight} aria-label={text.header.themeDark}><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 9.5 A5.5 5.5 0 1 1 6.5 3 A4.5 4.5 0 0 0 13 9.5 Z" /></svg></button>}
       {switcher.map((l) => <a class="dh-link mono" href={l.href} hreflang={l.lang} lang={l.lang} aria-label={`${text.header.languageNav}: ${l.label}`}>{l.lang.toUpperCase()}</a>)}
       {text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) => <a class="dh-link" href={resolveHref(l.href, lang)}>{l.label}</a>)}
-      {text.header.areas && <><span class="dh-sep" aria-hidden="true"></span><AreaSwitch /></>}
     </div>
   </div>
   {text.header.notice && (

@@ -1,0 +1,192 @@
+---
+/**
+ * The project page (/about). The texts come from content/<lang>/project.md;
+ * this file only decides how they look: a night cover with the section and
+ * the title, then paper for the reading, a hull band for the quote and night
+ * for where we are going.
+ */
+import { getEntry } from 'astro:content';
+import Base from '../kit/layouts/Base.astro';
+import Header from '../kit/components/Header.astro';
+import Footer from '../kit/components/Footer.astro';
+import { isExternal, langOf, langPrefix, languages, resolveHref } from '../kit/i18n';
+import EngineMesh from '../ui/art/EngineMesh.astro';
+
+const lang = langOf(Astro);
+const entry = await getEntry('project', lang);
+if (!entry) throw new Error(`Missing content/${lang}/project.md`);
+const { title, description, kicker, what, beliefs, quote, organization, work, vision, doors } = entry.data;
+const alternates = Object.fromEntries(languages.map((l) => [l, `${langPrefix(l)}/about`]));
+const paragraphs = (text: string) => text.split(/\n\s*\n/).map((p) => p.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
+const go = (href: string) => resolveHref(href, lang);
+/** Line icons for the convictions (stroke only, they take the text colour). */
+const icons: Record<string, string> = {
+  open: '<path d="M8 11 V7 a4 4 0 0 1 8 0"/><rect x="5" y="11" width="14" height="9" rx="2"/>',
+  privacy: '<path d="M2 12 C5 7 9 5 12 5 C15 5 19 7 22 12 C19 17 15 19 12 19 C9 19 5 17 2 12 Z"/><path d="M4 20 L20 4"/>',
+  code: '<path d="M8 7 L3 12 L8 17 M16 7 L21 12 L16 17"/>',
+  vote: '<path d="M5 12 L10 17 L19 7"/>',
+  verify: '<circle cx="11" cy="11" r="6"/><path d="M15.5 15.5 L20 20 M8.5 11 L10.5 13 L14 9"/>',
+  node: '<rect x="4" y="4" width="16" height="6" rx="2"/><rect x="4" y="14" width="16" height="6" rx="2"/>',
+};
+const cardIcons = [icons.code, icons.node, icons.vote, '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>'];
+---
+<Base title={title} description={description} alternates={alternates}>
+<section class="pj-cover stars">
+<svg class="pj-orbit" aria-hidden="true" viewBox="0 0 520 420"><ellipse cx="260" cy="210" rx="230" ry="62" fill="none" stroke="rgba(255,255,255,.10)" transform="rotate(-12 260 210)" /><ellipse cx="260" cy="210" rx="170" ry="44" fill="none" stroke="rgba(91,240,200,.28)" stroke-dasharray="2 7" transform="rotate(-12 260 210)" /><circle cx="260" cy="210" r="78" fill="#0E1C24" stroke="rgba(91,240,200,.4)" /><circle cx="458" cy="150" r="7" fill="#F2C879" /><circle cx="80" cy="262" r="4" fill="#ECEFF4" /></svg>
+<div class="pj-field" aria-hidden="true"></div>
+<div class="pj-in">
+<Header currentHref={`${langPrefix(lang)}/about`} alternates={alternates} />
+<div class="pj-head">
+<p class="pj-k">{kicker}</p>
+<h1>{title}</h1>
+</div>
+</div>
+</section>
+
+<div class="pj">
+<section id={what.id} class="pj-sec">
+<div class="pj-read">
+<p class="pj-chap">{what.kicker}</p>
+<h2>{what.title}</h2>
+{paragraphs(what.body).map((p) => <p>{p}</p>)}
+</div>
+<figure class="pj-fig">
+<div class="pj-dark"><EngineMesh {...what.art} /></div>
+<figcaption>{what.caption}</figcaption>
+</figure>
+</section>
+
+<section id={beliefs.id} class="pj-sec">
+<div class="pj-read">
+<p class="pj-chap">{beliefs.kicker}</p>
+<h2>{beliefs.title}</h2>
+{paragraphs(beliefs.body).map((p) => <p>{p}</p>)}
+<p class="pj-sources">{beliefs.sources.map((s, i) => <>{i > 0 && ' · '}<a href={go(s.href)}>{s.label}</a></>)}</p>
+</div>
+<div class="pj-wide">
+<div class="pj-beliefs">
+{beliefs.items.map((b) => (
+<div class="pj-belief">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[b.icon]} />
+<p class="pj-bt">{b.title}</p>
+<p class="pj-bx">{b.text}</p>
+<span class="pj-bs">{b.source}</span>
+</div>
+))}
+</div>
+<p class="pj-note">{beliefs.note}</p>
+</div>
+</section>
+
+<section class="pj-quote"><p>{quote}</p></section>
+
+<section id={organization.id} class="pj-sec">
+<div class="pj-read">
+<p class="pj-chap">{organization.kicker}</p>
+<h2>{organization.title}</h2>
+{paragraphs(organization.body).map((p) => <p>{p}</p>)}
+</div>
+<div class="pj-wide pj-cards">
+{organization.cards.map((c, i) => (
+<div class="pj-card">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" set:html={cardIcons[i]} />
+<b>{c.title}</b><span>{c.text}</span>
+</div>
+))}
+</div>
+</section>
+
+<section id={work.id} class="pj-sec">
+<div class="pj-read">
+<p class="pj-chap">{work.kicker}</p>
+<h2>{work.title}</h2>
+{paragraphs(work.body).map((p) => <p>{p}</p>)}
+</div>
+<ol class="pj-wide pj-steps">
+{work.steps.map((s, i) => <li class:list={{ last: i === work.steps.length - 1 }}><span class="pj-n"><span>{String(i + 1).padStart(2, '0')}</span><i /></span><span>{s}</span></li>)}
+</ol>
+</section>
+
+<section id={vision.id} class="pj-vision stars">
+<div class="pj-vin">
+<div><p class="pj-chap">{vision.kicker}</p><p class="pj-vt">{vision.title}</p></div>
+<div>{paragraphs(vision.body).map((p) => <p>{p}</p>)}</div>
+</div>
+</section>
+
+<section class="pj-sec pj-last">
+<div class="pj-wide pj-doors">
+{doors.map((d, i) => (
+<a class:list={['pj-door', { dark: i === 0, ext: isExternal(go(d.href)) }]} href={go(d.href)}>
+{i === 0 && <svg aria-hidden="true" viewBox="0 0 200 120" class="pj-door-art"><ellipse cx="100" cy="70" rx="90" ry="22" fill="none" stroke="rgba(242,200,121,.5)" transform="rotate(-12 100 70)" /><circle cx="100" cy="70" r="36" fill="#111A24" stroke="rgba(255,255,255,.16)" /></svg>}
+<span class="pj-dk">{d.kicker}</span><b>{d.title}</b><span class="pj-dt">{d.text}</span>
+</a>
+))}
+</div>
+</section>
+</div>
+<Footer />
+</Base>
+
+<style is:global>
+.pj-cover{position:relative;overflow:hidden;background-color:var(--night);color:var(--fg)}
+.pj-orbit{position:absolute;right:clamp(0px,4vw,80px);top:70px;width:min(520px,40vw);height:auto}
+.pj-field{position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,var(--night) 40%,rgba(4,6,11,0) 72%)}
+.pj-in{position:relative;max-width:1280px;margin:0 auto;padding:22px clamp(16px,4vw,40px) 0}
+.pj-head{max-width:760px;padding:96px 0 112px}
+.pj-k{margin:0 0 16px;font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--star)}
+.pj-head h1{margin:0;font-family:var(--serif);font-size:clamp(44px,6vw,78px);font-weight:500;line-height:1.02;letter-spacing:-0.015em}
+.pj{background:var(--bg);color:var(--ink)}
+.pj-sec{padding:96px 0 0}
+.pj-last{padding-bottom:112px}
+.pj-read{max-width:720px;margin:0 auto;padding:0 clamp(16px,4vw,24px);box-sizing:content-box}
+.pj-chap{margin:0 0 16px;font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.pj-read h2{margin:0 0 24px;font-family:var(--serif);font-size:clamp(32px,4vw,46px);font-weight:500;line-height:1.1;letter-spacing:-0.01em;color:var(--head)}
+.pj-read p{margin:0 0 1.2em;font-size:18.5px;line-height:1.75}
+.pj-read a{color:var(--link)}
+.pj-sources{font-family:var(--mono);font-size:13px}
+.pj-wide{max-width:1040px;margin:24px auto 0;padding:0 clamp(16px,4vw,24px)}
+.pj-fig{max-width:1100px;margin:40px auto 0;padding:0 clamp(16px,4vw,24px)}
+.pj-dark{border-radius:20px;background:var(--night);padding:28px 24px 20px}
+.pj-fig figcaption{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.pj-beliefs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 40px}
+.pj-belief{padding-top:20px;border-top:1px solid var(--rule);color:var(--link)}
+.pj-belief svg{display:block;margin-bottom:14px}
+.pj-bt{margin:0 0 8px;font-family:var(--serif);font-size:25px;line-height:1.2;color:var(--head)}
+.pj-bx{margin:0 0 10px;font-size:16px;line-height:1.7;color:var(--muted)}
+.pj-bs{font-family:var(--mono);font-size:11.5px;color:var(--amber)}
+.pj-note{margin:40px 0 0;max-width:720px;font-size:16px;line-height:1.7;color:var(--muted)}
+.pj-quote{margin-top:96px;background:var(--casco);padding:96px clamp(16px,4vw,40px);text-align:center}
+.pj-quote p{margin:0 auto;max-width:860px;font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.4vw,42px);line-height:1.3;color:#F1F5F4}
+.pj-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:960px}
+.pj-card{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:14px;background:var(--card);border:1px solid var(--rule);color:var(--link)}
+.pj-card b{font-size:15px;font-weight:600;color:var(--head)}
+.pj-card span{font-size:13.5px;line-height:1.45;color:var(--muted)}
+.pj-steps{list-style:none;max-width:960px;display:flex;flex-wrap:wrap;gap:20px 12px;padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--rule);box-sizing:border-box}
+.pj-steps li{flex:1 1 160px;display:flex;flex-direction:column;gap:10px;min-width:0;font-size:15px;line-height:1.45}
+.pj-n{display:flex;align-items:center;gap:8px}
+.pj-n span{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--link);color:var(--link);font-family:var(--mono);font-size:13px}
+.pj-n i{flex:1;height:1px;background:var(--rule2)}
+.pj-steps li.last .pj-n span{background:var(--amber);border-color:var(--amber);color:#fff}
+.pj-steps li.last .pj-n i{display:none}
+.pj-vision{margin-top:96px;background-color:var(--night);color:var(--fg)}
+.pj-vin{max-width:1280px;margin:0 auto;padding:104px clamp(16px,4vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px;align-items:center}
+.pj-vision .pj-chap{color:var(--acc)}
+.pj-vt{margin:0;font-family:var(--serif);font-size:clamp(32px,3.6vw,46px);line-height:1.12;color:#F1F5F4}
+.pj-vin p:not(.pj-chap):not(.pj-vt){margin:0 0 1.1em;font-size:18px;line-height:1.7;color:var(--fg-2)}
+.pj-doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:960px}
+.pj-door{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;min-height:220px;padding:32px;border-radius:18px;background:var(--card);border:1px solid var(--rule);color:var(--ink);text-decoration:none;box-sizing:border-box}
+.pj-door.dark{background:var(--night);border-color:var(--night);color:var(--fg)}
+.pj-door-art{position:absolute;right:-20px;bottom:-10px;width:220px;height:auto}
+.pj-dk{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.pj-door.dark .pj-dk{color:var(--star)}
+.pj-door b{font-family:var(--serif);font-size:32px;font-weight:500;line-height:1.1;color:var(--head)}
+.pj-door.dark b{color:var(--fg)}
+.pj-dt{position:relative;max-width:320px;font-size:15.5px;line-height:1.55;color:var(--muted)}
+.pj-door.dark .pj-dt{color:var(--fg-3)}
+@media (max-width:900px){
+.pj-orbit{display:none}
+.pj-beliefs,.pj-doors,.pj-vin{grid-template-columns:1fr}
+.pj-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>

@@ -1,0 +1,19 @@
+---
+/** 404 page of the current language (its site.md → notFound). Apps render it from src/pages/404.astro and src/pages/<lang>/404.astro. */
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import { getSiteText } from '../site';
+import { homeHref, langOf } from '../i18n';
+const lang = langOf(Astro);
+const { notFound } = await getSiteText(lang);
+---
+<Base title={notFound.title}>
+  <section class="band-top stars" style="min-height: 80vh; display: flex; flex-direction: column">
+    <Header />
+    <div style="position: relative; margin: auto 0; padding: 80px 0">
+      <p class="lbl" style="color: var(--fg-4); margin: 0 0 18px">{notFound.label}</p>
+      <h1 style="margin: 0; font-size: clamp(40px, 6vw, 80px); font-weight: 600; letter-spacing: -0.045em; line-height: 1">{notFound.heading}</h1>
+      <a class="btn btn-g" href={homeHref(lang)} style="margin-top: 36px">{notFound.action}</a>
+    </div>
+  </section>
+</Base>

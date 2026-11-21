@@ -1,1 +1,1 @@
-/// <reference types="@42chain/kit/virtual" />
+/// <reference types="./kit/virtual" />

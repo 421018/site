@@ -1,0 +1,144 @@
+# Interface text of the widgets and data views (:::widget blocks), in Spanish.
+# Every language has a file with exactly the same keys (en.yaml…); the
+# validator checks it. {name} marks a value the widget fills in.
+
+common:
+  simulator: Simulador interactivo
+  calculator: Calculadora interactiva
+  tool: Herramienta
+  decimal: "," # decimal separator in numbers shown by widgets
+  thousands: "." # thousands separator
+
+hashChain:
+  meta: Cadena de huellas · SHA-256
+  blocks:
+    - Ana preparó la masa de las 6
+    - Ana horneó la tanda
+    - El pan salió hacia Bruno
+    - Bruno recibió la tanda
+  block: Bloque {n}
+  data: Datos
+  prevHash: Huella del bloque anterior
+  hash: Huella de este bloque
+  intactTitle: Cadena íntegra
+  intactText: Cada bloque guarda la huella del anterior, y todas coinciden.
+  alteredTitle: Alteración detectada
+  alteredNext: La huella del bloque {n} cambió y ya no coincide con la que guarda el bloque {next}. Cualquier nodo lo detecta.
+  alteredLast: La huella del bloque {n} cambió y ya no coincide con la que confirmaron los validadores. Cualquier nodo lo detecta.
+  reset: Restaurar los datos
+  note: "Cambia una letra en los datos de cualquier bloque. Ilustrativo: la red calcula las huellas sobre el contenido completo de cada bloque."
+
+consensus:
+  meta: "Ronda de consenso · bloque #"
+  phases: [Propuesta, Pre-voto, Pre-compromiso, Confirmado]
+  offline: Poder de voto fuera de línea
+  runningTitle: Produciendo bloques
+  runningText: Los validadores en línea suman más de dos tercios del poder de voto. Los bloques se siguen confirmando.
+  haltedTitle: Pausa
+  haltedText: Sin más de dos tercios en línea no se confirma ningún bloque. La red se detiene y continúa cuando se recupera la mayoría.
+  note: Mueve el control para desconectar validadores. Simulación ilustrativa con 30 validadores de igual poder de voto.
+
+vote:
+  meta: "Mismas reglas que el ejemplo: quórum {q}% · umbral {t}% · veto {v}%"
+  turnout: Participación
+  yes: Sí
+  no: "No"
+  veto: No con veto
+  abstain: "Abstención: {n}% de los votos emitidos"
+  quorum: Quórum alcanzado
+  threshold: Sí supera el umbral
+  vetoBelow: Veto bajo su umbral
+  pass: Sí
+  fail: "No"
+  approved: Aprobada
+  approvedNote: Se cumplen las tres condiciones.
+  noQuorum: No alcanza quórum
+  noQuorumNote: Se rechaza por falta de participación.
+  vetoed: Rechazada por veto
+  vetoedNote: El veto supera su umbral; el depósito se pierde.
+  rejected: Rechazada
+  rejectedNote: Los votos a favor no superan el umbral.
+
+ibc:
+  meta: Transferencia de 10 unidades por IBC
+  source: Cuenta de origen
+  escrow: Reserva de la conexión
+  relayer: Retransmisor
+  networkB: Red B
+  destination: Cuenta de destino
+  lightClient: Cliente ligero de 42
+  validProof: Prueba válida
+  previous: ← Anterior
+  next: Siguiente →
+  timeoutToggle: Simular que no se entrega
+  note: Ilustrativo. Un retransmisor puede entregar el mensaje o no entregarlo, pero no puede alterarlo.
+  steps:
+    start:
+      title: "Inicio"
+      text: "La cuenta de origen tiene 100 unidades en 42."
+    locked:
+      title: "1. Bloqueo"
+      text: "La cuenta envía la transferencia. El protocolo bloquea 10 unidades en la reserva de la conexión, dentro de 42."
+    relayed:
+      title: "2. Traslado"
+      text: "Un retransmisor lleva el mensaje a la red B, junto con la prueba de que las unidades quedaron bloqueadas."
+    verified:
+      title: "3. Verificación"
+      text: "La red B comprueba la prueba con su cliente ligero de 42. Nadie tiene que confiar en el retransmisor."
+    minted:
+      title: "4. Representación"
+      text: "La red B crea 10 unidades que representan a las bloqueadas y las entrega en la cuenta de destino."
+    acknowledged:
+      title: "5. Confirmación"
+      text: "Un retransmisor lleva la confirmación de vuelta a 42. La transferencia está completa."
+    lost:
+      title: "2. Sin entrega"
+      text: "Ningún retransmisor entrega el mensaje antes del plazo fijado en la transferencia."
+    expired:
+      title: "3. Vencimiento"
+      text: "La transferencia vence y las 10 unidades vuelven a la cuenta de origen. En ningún momento pasaron a manos de un tercero."
+
+fees:
+  meta: tarifa = gas × (tarifa base + propina)
+  operation: Operación
+  presets: [Transferencia simple, Registro en un contrato, Contrato complejo]
+  gasUnits: "{n} de gas"
+  baseFee: Tarifa base por unidad de gas
+  tip: Propina
+  noTip: Sin propina
+  fee: Tarifa
+  note: Valores ilustrativos. La tarifa base real cambia con cada bloque, y la billetera la muestra antes de firmar.
+
+units:
+  cups: Cups (Improbability)
+  drops: Drops
+  badCups: Escribe un número con hasta 18 decimales.
+  badDrops: Los drops son un número entero.
+  note: "Los contratos y las interfaces propias de la red trabajan en drops: es la cantidad que se escribe en una transacción."
+
+network:
+  switchLabel: Red
+  name: Nombre de la red
+  evmChainId: Chain ID (EVM)
+  nativeChainId: Chain ID (nativo)
+  identifier: Identificador técnico
+  unit: Unidad nativa
+  unitValue: "{name} · símbolo {symbol}"
+  decimals: Decimales
+  base: Denominación base
+  prefix: Prefijo de dirección nativa
+  prefixValue: direcciones {example}
+  blockTime: Tiempo de bloque
+  data: Datos de red
+  copy: Copiar
+  copyLabel: Copiar {url}
+  copied: Copiado
+  copyManual: Selecciona y copia
+  noProviders: Todavía no hay proveedores de este servicio en la {network}.
+  addMeta: Billeteras compatibles con la EVM (EIP-3085)
+  add: Añadir {name}
+  addNote: La billetera muestra los datos y pide confirmación antes de añadir la red. El punto de conexión es el primero del directorio; puedes cambiarlo después en la billetera.
+  noWallet: No se detectó una billetera compatible con la EVM en este navegador. Puedes añadir la red a mano con los datos de la tabla.
+  added: "{name} está disponible en tu billetera."
+  cancelled: Se canceló la solicitud en la billetera.
+  addFailed: La billetera no pudo añadir la red. Puedes añadirla a mano con los datos de la tabla.

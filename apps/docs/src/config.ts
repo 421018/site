@@ -1,10 +1,12 @@
 /**
  * Technical settings of the documentation site. Visitor-facing text lives in
- * the catalog's docs/site.md. Every value in [brackets] is a placeholder to replace
+ * content/<lang>/site.md. The documentation is served at 42chain.org/docs. Every value in [brackets] is a placeholder to replace
  * before going live.
  */
 export const SITE = {
-  url: 'https://42protocol.dev',
+  url: 'https://42chain.org',
+  /** Served under the main site, at 42chain.org/docs (no subdomain). */
+  base: '/docs',
   /** Language at the site root; the others are served under /<lang>/. */
   defaultLang: 'en',
   /** Language the content is written in first; pages not yet translated show it, with a notice. */
@@ -17,7 +19,12 @@ export const SITE = {
 };
 
 export const LINKS = {
-  site: 'https://42chain.org',
+  /**
+   * The magazine, on the same domain: links to it are internal. In development
+   * each repo runs its own server, so `npm run dev` points SITE_URL at the
+   * magazine's (http://localhost:4321).
+   */
+  site: process.env.SITE_URL ?? '/',
   /** The console is not launched yet: without a URL, every link to it is left out. */
   console: undefined as string | undefined,
   content: 'https://github.com/deep-thought-labs/infinite-app',

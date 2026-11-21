@@ -1,0 +1,117 @@
+---
+/**
+ * Site header: brand, main menu, search, language switcher and an optional
+ * highlighted button. Sections with `dropdown: true` open a panel with their
+ * pages on hover, keyboard focus or a tap on their arrow; without JavaScript
+ * the section link still leads to its index page. Header links with a
+ * `weight` are placed among the sections.
+ */
+import kit from 'virtual:42chain/kit';
+import Icon from '../../ui/art/Icon.astro';
+import { getMenu, getSiteText, menuPanel } from '../site';
+import { blogHref, getBlog, hasBlogIndex } from '../blog';
+import { homeHref, isLinkAvailable, langOf, languages, resolveHref } from '../i18n';
+import Search from './Search.astro';
+interface Props {
+  current?: string;
+  /** The current page in other languages ({ lang: href }); languages without it link to their home page. */
+  alternates?: Record<string, string>;
+  /** Marks a header link as current (e.g. the blog). */
+  currentHref?: string;
+}
+const { current, alternates = {}, currentHref } = Astro.props;
+const lang = langOf(Astro);
+const menu = await getMenu(lang);
+const text = await getSiteText(lang);
+const switcher = await Promise.all(
+  languages.filter((l) => l !== lang).map(async (l) => ({ lang: l, href: alternates[l] ?? homeHref(l), label: (await getSiteText(l)).language })),
+);
+type Item =
+  | { kind: 'section'; weight: number; key: string; label: string; href: string; panel?: ReturnType<typeof menuPanel> }
+  | { kind: 'link'; weight: number; label: string; href: string };
+const items: Item[] = [
+  ...menu.map((s) => ({ kind: 'section' as const, weight: s.weight, key: s.key, label: s.label, href: s.href, panel: s.dropdown ? menuPanel(s) : undefined })),
+  ...text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) => ({ kind: 'link' as const, weight: l.weight ?? Infinity, label: l.label, href: resolveHref(l.href, lang) })),
+].sort((a, b) => a.weight - b.weight);
+// The blog link only appears once the blog index has posts of its own.
+const blog = await getBlog(lang);
+if (blog && !(await hasBlogIndex(lang))) {
+  const i = items.findIndex((x) => x.kind === 'link' && x.href === blogHref(blog, lang));
+  if (i >= 0) items.splice(i, 1);
+}
+const atHome = Astro.url.pathname.replace(/\/$/, '') === homeHref(lang).replace(/\/$/, '');
+const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind === 'link' && !!currentHref && i.href === currentHref);
+---
+<header class="site-header">
+  <a class="brand" href={homeHref(lang)} aria-label={text.header.homeLink}>
+    <span class="mark">42</span>{text.header.brand && <span class="name">{text.header.brand}</span>}
+  </a>
+  <nav class="menu" aria-label={text.header.mainNav}>
+    {text.header.home && <a class:list={['nl', { on: atHome }]} href={homeHref(lang)} data-label={text.header.home} aria-current={atHome ? 'page' : undefined}>{text.header.home}</a>}
+    {items.map((i, n) => i.kind === 'section' && i.panel ? (
+      <div class="dd" data-dd>
+        <a class:list={['nl', { on: isOn(i) }]} href={i.href} data-label={i.label} aria-current={isOn(i) ? 'true' : undefined}>{i.label}</a>
+        <button type="button" class="dd-t" aria-expanded="false" aria-controls={`dd-${n}`} aria-label={text.header.submenu ? `${i.label}: ${text.header.submenu}` : i.label}>
+          <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 L5 6.5 L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+        <div class="dd-panel" id={`dd-${n}`}>
+          <div class="dd-grid">
+            {i.panel.items.map((p) => (
+              <a class="dd-item" href={p.href}>
+                {p.icon && <Icon name={p.icon} size={26} class="dd-ic" />}
+                <span><b>{p.label}</b>{p.text && <span>{p.text}</span>}</span>
+              </a>
+            ))}
+          </div>
+          <a class="dd-feat stars" href={i.panel.featured.href}>
+            <b>{i.panel.featured.label}</b>
+            <span>{i.panel.featured.text}</span>
+          </a>
+        </div>
+      </div>
+    ) : (
+      <a class:list={['nl', { on: isOn(i) }]} href={i.href} data-label={i.label} aria-current={isOn(i) ? 'true' : undefined}>{i.label}</a>
+    ))}
+    {kit.search && text.header.search && <Search text={text.header.search} />}
+    {switcher.map((l) => <a class="nl lang" href={l.href} hreflang={l.lang} lang={l.lang} data-label={l.label} aria-label={`${text.header.languageNav}: ${l.label}`}>{l.lang.toUpperCase()}</a>)}
+    {text.header.cta && <a class="hcta" href={resolveHref(text.header.cta.href, lang)}>{text.header.cta.label}</a>}
+  </nav>
+  {/* Narrow screens: the same links behind a disclosure (no script, CSP-safe). */}
+  <details class="menu-m">
+    <summary class="nl">{text.header.menuButton}</summary>
+    <nav aria-label={text.header.mainNav}>
+      {text.header.home && <a class:list={['ml', { on: atHome }]} href={homeHref(lang)} aria-current={atHome ? 'page' : undefined}>{text.header.home}</a>}
+      {items.map((i) => (
+        <>
+          <a class:list={['ml', { on: isOn(i) }]} href={i.href} aria-current={isOn(i) ? 'true' : undefined}>{i.label}</a>
+          {i.kind === 'section' && i.panel && i.panel.items.map((p) => <a class="ml sub" href={p.href}>{p.label}</a>)}
+        </>
+      ))}
+      {kit.search && text.header.search && <button type="button" class="ml" data-search-open>{text.header.search.label}</button>}
+      {switcher.map((l) => <a class="ml" href={l.href} hreflang={l.lang} lang={l.lang}>{l.label}</a>)}
+      {text.header.cta && <a class="ml cta" href={resolveHref(text.header.cta.href, lang)}>{text.header.cta.label}</a>}
+    </nav>
+  </details>
+</header>
+
+<script>
+  // Section panels: the arrow button opens and closes them (touch, keyboard);
+  // hover and focus open them with CSS. Escape or a click elsewhere closes.
+  const dds = [...document.querySelectorAll<HTMLElement>('[data-dd]')];
+  const close = (except?: HTMLElement) => dds.forEach((d) => {
+    if (d === except) return;
+    d.classList.remove('open');
+    d.querySelector('.dd-t')?.setAttribute('aria-expanded', 'false');
+  });
+  dds.forEach((d) => {
+    const t = d.querySelector<HTMLButtonElement>('.dd-t')!;
+    t.addEventListener('click', () => {
+      const open = !d.classList.contains('open');
+      close(d);
+      d.classList.toggle('open', open);
+      t.setAttribute('aria-expanded', String(open));
+    });
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('click', (e) => { if (!(e.target as HTMLElement).closest('[data-dd]')) close(); });
+</script>

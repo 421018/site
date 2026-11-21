@@ -1,0 +1,34 @@
+---
+// Parameters of each network, one table per network (from networks.yaml).
+import { getDirectory, pick } from '../directory';
+import { langOf } from '../../kit/i18n';
+import { fill, ui } from '../../kit/dictionary';
+const lang = langOf(Astro);
+const t = ui(lang).network;
+const { networks } = await getDirectory();
+const hex = (n: number) => '0x' + n.toString(16);
+---
+{networks.map((n) => (
+  <div data-for-net={n.id}>
+    <p class="net-cap">{pick(n.label, lang)}</p>
+    <table>
+      <tbody>
+        <tr><td>{t.name}</td><td>{n.name}</td></tr>
+        <tr><td>{t.evmChainId}</td><td>{n.evmChainId} (<code>{hex(n.evmChainId)}</code>)</td></tr>
+        <tr><td>{t.nativeChainId}</td><td><code>{n.chainId}</code></td></tr>
+        <tr><td>{t.identifier}</td><td><code>{n.identifier}</code></td></tr>
+        <tr><td>{t.unit}</td><td>{fill(t.unitValue, { name: n.unit.name, symbol: n.unit.symbol })}</td></tr>
+        <tr><td>{t.decimals}</td><td>{n.unit.decimals}</td></tr>
+        <tr><td>{t.base}</td><td><code>{n.unit.base}</code></td></tr>
+        <tr><td>{t.prefix}</td><td><code>{n.bech32Prefix}</code> ({t.prefixValue.split('{example}')[0]}<code>{n.bech32Prefix}1…</code>{t.prefixValue.split('{example}')[1]})</td></tr>
+        <tr><td>{t.blockTime}</td><td>{n.blockTime}</td></tr>
+        <tr><td>{t.data}</td><td><a href={n.data}>network-data.json ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+))}
+
+<style>
+  .net-cap { margin: 20px 0 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--link); }
+  td:first-child { width: 40%; }
+</style>

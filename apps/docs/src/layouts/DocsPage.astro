@@ -4,12 +4,12 @@
  * (with "Copiar página": the page as Markdown), "En esta página" on the right.
  */
 import kit from 'virtual:42chain/kit';
-import Base from '@42chain/kit/layouts/Base.astro';
-import Footer from '@42chain/kit/components/Footer.astro';
-import SideNav from '@42chain/kit/components/SideNav.astro';
-import { catalogRelative } from '@42chain/kit/catalog';
-import { getAlternates, getSection, getSiteText, hrefOf, lastCommitDate, pageLang, pagePath, prevNext, sectionKey, sideIndex, type Page } from '@42chain/kit/site';
-import { homeHref, sourceLang, withLang } from '@42chain/kit/i18n';
+import Base from '../kit/layouts/Base.astro';
+import Footer from '../kit/components/Footer.astro';
+import SideNav from '../kit/components/SideNav.astro';
+import { catalogRelative } from '../kit/catalog';
+import { getAlternates, getSection, getSiteText, hrefOf, lastCommitDate, pageLang, pagePath, prevNext, sectionKey, sideIndex, type Page } from '../kit/site';
+import { homeHref, sourceLang, withLang } from '../kit/i18n';
 import DocsHeader from '../components/DocsHeader.astro';
 import '../styles/docs.css';
 interface Props { page: Page; headings: { depth: number; slug: string; text: string }[] }

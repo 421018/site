@@ -1,0 +1,47 @@
+---
+import { getFooter, getSiteText } from '../site';
+import { getBlog, getPosts, postHref, categoryOf } from '../blog';
+import { homeHref, isExternal, isLinkAvailable, langOf, resolveHref } from '../i18n';
+const lang = langOf(Astro);
+const text = await getSiteText(lang);
+type FLink = { label: string; href: string; text?: string };
+const resolve = (links: FLink[]) => links.filter((l) => isLinkAvailable(l.href)).map((l) => ({ ...l, href: resolveHref(l.href, lang) }));
+// The site's own footer (site.md → footer.columns); without it, one column per section.
+const columns: { key: string; label: string; links: FLink[] }[] = text.footer.columns
+  ? text.footer.columns.map((c) => ({ key: '', label: c.label, links: resolve(c.links) })).filter((c) => c.links.length)
+  : await derived();
+const baseLinks = resolve(text.footer.links);
+
+async function derived() {
+  const columns: { key: string; label: string; links: FLink[] }[] = await getFooter(lang);
+  // Posts whose category has a path are listed in that section's column.
+  const blog = await getBlog(lang);
+  if (blog) {
+    for (const p of await getPosts(lang)) {
+      const col = columns.find((c) => c.key === categoryOf(blog, p).path);
+      col?.links.push({ href: postHref(blog, p), label: p.data.title });
+    }
+  }
+  if (text.footer.extra) columns.push({ key: '', label: text.footer.extra.label, links: resolve(text.footer.extra.links) });
+  return columns;
+}
+---
+<footer class="site-footer">
+  <div class="inner">
+    <slot />
+    <div class="fcols">
+      <div class="fbrand">
+        <a class="brand" href={homeHref(lang)} aria-label={text.header.homeLink}><span class="mark">42</span>{text.header.brand && <span class="name">{text.header.brand}</span>}</a>
+        {text.footer.tagline && <p>{text.footer.tagline}</p>}
+      </div>
+      {columns.map((col) => (
+        <div>
+          <p class="lbl">{col.label}</p>
+          {col.links.map((l) => <a class:list={['flink', { ext: isExternal(l.href), wtext: !!l.text }]} href={l.href}><span class="fl-l">{l.label}</span>{l.text && <span class="fl-t">{l.text}</span>}</a>)}
+        </div>
+      ))}
+    </div>
+    <div aria-hidden="true" class="megatype"><span class="megatype-note">And remember</span><span class="megatype-word"><span>DON'T</span><span class="megatype-sp"> </span><span>PANIC</span></span></div>
+    <div class="fbase"><span>{baseLinks.map((l) => <><a class="flink-b" href={l.href}>{l.label}</a> · </>)}{text.footer.license}</span><span>{text.footer.note}</span></div>
+  </div>
+</footer>

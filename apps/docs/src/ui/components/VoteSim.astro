@@ -1,0 +1,91 @@
+---
+// Illustrative vote count. Same rules and starting values as the worked
+// example in protocol/governance.md: the mainnet rules (quorum 33.4 %, threshold 50 %, veto 33.4 %;
+// 45 % turnout with 25 Yes, 12 No, 3 Veto and 5 Abstain: the votes are illustrative).
+// Text: catalog ui/<lang>.yaml → vote.
+import { langOf } from '../../kit/i18n';
+import { fill, ui } from '../../kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.vote;
+const Q = 33.4, T = 50, V = 33.4;
+const num = (n: number) => String(n).replace('.', d.common.decimal);
+const sliders = [
+  ['turn', t.turnout, 45],
+  ['yes', t.yes, 56],
+  ['no', t.no, 27],
+  ['veto', t.veto, 7],
+] as const;
+const i18n = JSON.stringify({
+  abstain: t.abstain, pass: t.pass, fail: t.fail,
+  approved: [t.approved, t.approvedNote], noQuorum: [t.noQuorum, t.noQuorumNote], vetoed: [t.vetoed, t.vetoedNote], rejected: [t.rejected, t.rejectedNote],
+});
+---
+<div class="widget sim" data-vote data-q={Q} data-t={T} data-v={V} data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{fill(t.meta, { q: num(Q), t: num(T), v: num(V) })}</span></div>
+  <div class="grid">
+    {sliders.map(([k, label, val]) => (
+      <div>
+        <div class="lab"><label for={'g-' + k}>{label}</label><span class="mono" data-val={k}>{val}%</span></div>
+        <input id={'g-' + k} class="range" type="range" min="0" max="100" value={val} data-key={k} />
+      </div>
+    ))}
+  </div>
+  <div class="vbar" aria-hidden="true"><span data-w="yes" class="y"></span><span data-w="no" class="n"></span><span data-w="veto" class="x"></span><span data-w="abs" class="a"></span></div>
+  <p class="abs" data-abs>{fill(t.abstain, { n: 10 })}</p>
+  <div class="chk"><span>{t.quorum}</span><span class="mono" data-r="1"></span></div>
+  <div class="chk"><span>{t.threshold}</span><span class="mono" data-r="2"></span></div>
+  <div class="chk"><span>{t.vetoBelow}</span><span class="mono" data-r="3"></span></div>
+  <div class="res" role="status"><span class="rt" data-result></span><span class="rn" data-note></span></div>
+</div>
+
+<style>
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+  .lab { display: flex; justify-content: space-between; color: #fff; }
+  .vbar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--w-rule); margin: 14px 0 6px; }
+  .vbar span { display: block; height: 100%; transition: width .35s cubic-bezier(.16,1,.3,1); }
+  .vbar .y { background: var(--acc); } .vbar .n { background: #8E98A3; } .vbar .x { background: #F07A62; } .vbar .a { background: #3A424B; }
+  .abs { margin: 0 0 12px; font-family: var(--mono); font-size: 11.5px; color: var(--w-dim); }
+  .chk { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--w-rule); font-size: 14.5px; }
+  .chk .ok { color: var(--acc); } .chk .bad { color: #F07A62; }
+  .res { margin-top: 12px; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--acc); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .res.bad { border-color: #F07A62; }
+  .rt { font-size: 18px; font-weight: 600; color: #fff; }
+  .rn { font-size: 14px; color: var(--w-dim); }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-vote]').forEach((root) => {
+    const Q = +root.dataset.q!, T = +root.dataset.t!, V = +root.dataset.v!;
+    const st: Record<string, number> = { turn: 45, yes: 56, no: 27, veto: 7 };
+    const inputs = [...root.querySelectorAll<HTMLInputElement>('input[data-key]')];
+    const $ = (s: string) => root.querySelector<HTMLElement>(s)!;
+    const t = JSON.parse(root.dataset.i18n!) as Record<'abstain' | 'pass' | 'fail', string> & Record<'approved' | 'noQuorum' | 'vetoed' | 'rejected', [string, string]>;
+    const paint = () => {
+      const abs = Math.max(0, 100 - st.yes - st.no - st.veto);
+      const nonAbs = st.yes + st.no + st.veto;
+      const ok1 = st.turn >= Q, ok2 = nonAbs > 0 && (st.yes / nonAbs) * 100 > T, ok3 = st.veto < V;
+      inputs.forEach((i) => { i.value = String(st[i.dataset.key!]); $(`[data-val=${i.dataset.key}]`).textContent = st[i.dataset.key!] + '%'; });
+      $('[data-w=yes]').style.width = st.yes + '%';
+      $('[data-w=no]').style.width = st.no + '%';
+      $('[data-w=veto]').style.width = st.veto + '%';
+      $('[data-w=abs]').style.width = abs + '%';
+      $('[data-abs]').textContent = t.abstain.replace('{n}', String(abs));
+      const set = (n: string, ok: boolean, txt: string) => { const e = $(`[data-r="${n}"]`); e.textContent = txt; e.className = 'mono ' + (ok ? 'ok' : 'bad'); };
+      const yn = (ok: boolean) => (ok ? t.pass : t.fail);
+      set('1', ok1, `${yn(ok1)} · ${st.turn}%`);
+      set('2', ok2, yn(ok2));
+      set('3', ok3, `${yn(ok3)} · ${st.veto}%`);
+      const [result, note] = !ok1 ? t.noQuorum : !ok3 ? t.vetoed : !ok2 ? t.rejected : t.approved;
+      $('[data-result]').textContent = result; $('[data-note]').textContent = note;
+      $('.res').classList.toggle('bad', !(ok1 && ok2 && ok3));
+    };
+    inputs.forEach((i) => i.addEventListener('input', () => {
+      const k = i.dataset.key!, v = parseInt(i.value, 10) || 0;
+      if (k === 'turn') st.turn = v;
+      else { const others = (k === 'yes' ? 0 : st.yes) + (k === 'no' ? 0 : st.no) + (k === 'veto' ? 0 : st.veto); st[k] = Math.max(0, Math.min(v, 100 - others)); }
+      paint();
+    }));
+    paint();
+  });
+</script>

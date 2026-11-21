@@ -1,0 +1,93 @@
+---
+// Full-text search with Pagefind, for apps with `search: true` in the kit
+// settings. The index is built after the site (`pagefind --site dist`) and
+// served from the site itself: no external service. The Pagefind script is
+// loaded only when the dialog opens. Open with the button, "/" or Ctrl/⌘+K.
+interface Props { text: { label: string; close: string; noResults: string; unavailable: string } }
+const { text } = Astro.props;
+const { label } = text;
+---
+<button type="button" class="nl sbtn" data-search-open aria-haspopup="dialog">
+  <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M11 11 L14.5 14.5" stroke="currentColor" stroke-width="1.6"></path></svg>
+  <span>{label}</span>
+</button>
+<dialog class="search" aria-label={label} data-search data-no-results={text.noResults} data-unavailable={text.unavailable}>
+  <!-- Results are created by the script below, so their styles are :global() inside .sres. -->
+  <div class="sbox">
+    <input type="search" placeholder={label} autocomplete="off" spellcheck="false" data-search-input />
+    <button type="button" class="sclose" data-search-close aria-label={text.close}>Esc</button>
+  </div>
+  <p class="smsg" role="status" data-search-msg></p>
+  <ol class="sres" data-search-results></ol>
+</dialog>
+
+<style>
+  .sbtn { flex-direction: row; gap: 8px; border: 0; background: transparent; font: inherit; font-size: 14.5px; cursor: pointer; }
+  .sbtn::after { display: none; }
+  .search { width: min(720px, calc(100vw - 32px)); max-height: min(640px, calc(100vh - 80px)); margin: 72px auto auto; padding: 0; border: 1px solid #2A313A; border-radius: 14px; background: #0B0F14; color: #C9D0D6; }
+  .search::backdrop { background: rgba(5, 7, 10, .7); backdrop-filter: blur(4px); }
+  .sbox { display: flex; gap: 8px; padding: 12px; border-bottom: 1px solid #1E242B; }
+  .sbox input { flex: 1; min-height: 44px; padding: 0 12px; border: 1px solid #2A313A; border-radius: 10px; background: #05070A; color: #fff; font: inherit; font-size: 16px; }
+  .sbox input:focus { outline: 2px solid var(--acc); outline-offset: 1px; }
+  .sclose { min-height: 44px; padding: 0 12px; border: 1px solid #2A313A; border-radius: 10px; background: transparent; color: #8A939C; font-family: var(--mono); font-size: 12px; cursor: pointer; }
+  .smsg { margin: 0; padding: 10px 16px 0; min-height: 1.2em; font-size: 13.5px; color: #8A939C; }
+  .smsg:empty { display: none; }
+  .sres { list-style: none; margin: 0; padding: 8px; overflow-y: auto; max-height: 520px; }
+  .sres :global(li) { margin: 0; }
+  .sres :global(a) { display: block; padding: 10px 12px; border-radius: 10px; color: #C9D0D6; text-decoration: none; }
+  .sres :global(a:hover), .sres :global(a:focus-visible) { background: #121820; outline: none; }
+  .sres :global(b) { display: block; color: #fff; font-size: 15px; margin-bottom: 4px; }
+  .sres :global(a > span) { display: block; font-size: 13.5px; line-height: 1.5; color: #8A939C; }
+  .sres :global(mark) { background: color-mix(in srgb, var(--acc) 30%, transparent); color: #fff; border-radius: 2px; }
+</style>
+
+<script>
+  type Result = { url: string; meta: { title?: string }; excerpt: string };
+  type Pagefind = { search: (q: string) => Promise<{ results: { data: () => Promise<Result> }[] }> };
+  const dialog = document.querySelector<HTMLDialogElement>('[data-search]');
+  if (dialog) {
+    const input = dialog.querySelector<HTMLInputElement>('[data-search-input]')!;
+    const list = dialog.querySelector<HTMLOListElement>('[data-search-results]')!;
+    const msg = dialog.querySelector<HTMLElement>('[data-search-msg]')!;
+    let pf: Pagefind | null = null, seq = 0, timer = 0;
+    const load = async () => {
+      if (pf) return pf;
+      const url = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/pagefind/pagefind.js`;
+      pf = (await import(/* @vite-ignore */ url)) as Pagefind;
+      return pf;
+    };
+    const open = () => { if (!dialog.open) { dialog.showModal(); input.focus(); input.select(); } };
+    const run = async () => {
+      const q = input.value.trim(), mine = ++seq;
+      if (!q) { list.replaceChildren(); msg.textContent = ''; return; }
+      try {
+        const res = await (await load()).search(q);
+        const data = await Promise.all(res.results.slice(0, 8).map((r) => r.data()));
+        if (mine !== seq) return;
+        msg.textContent = data.length ? '' : dialog.dataset.noResults ?? '';
+        list.replaceChildren(...data.map((d) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = d.url.replace(/\/$/, '') || '/';
+          const b = document.createElement('b');
+          b.textContent = d.meta.title ?? d.url;
+          const s = document.createElement('span');
+          s.innerHTML = d.excerpt; // Pagefind's excerpt of our own pages, with <mark> around matches
+          a.append(b, s);
+          li.append(a);
+          return li;
+        }));
+      } catch {
+        if (mine === seq) msg.textContent = dialog.dataset.unavailable ?? '';
+      }
+    };
+    document.querySelectorAll('[data-search-open]').forEach((b) => b.addEventListener('click', open));
+    dialog.querySelector('[data-search-close]')!.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    input.addEventListener('input', () => { clearTimeout(timer); timer = window.setTimeout(run, 120); });
+    document.addEventListener('keydown', (e) => {
+      const typing = e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
+      if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || (e.key === '/' && !typing)) { e.preventDefault(); open(); }
+    });
+  }
+</script>

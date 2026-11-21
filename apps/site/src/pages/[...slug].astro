@@ -1,11 +1,11 @@
 ---
 import { render } from 'astro:content';
-import Doc from '@42chain/kit/layouts/Doc.astro';
-import Post from '@42chain/kit/layouts/Post.astro';
-import BlogIndex from '@42chain/kit/layouts/BlogIndex.astro';
-import Splice from '@42chain/widgets/Splice.astro';
-import { getAllPages, hrefOf } from '@42chain/kit/site';
-import { getBlog, getBlogRoutes, postLang } from '@42chain/kit/blog';
+import Doc from '../kit/layouts/Doc.astro';
+import Post from '../kit/layouts/Post.astro';
+import BlogIndex from '../kit/layouts/BlogIndex.astro';
+import Splice from '../widgets/Splice.astro';
+import { getAllPages, hrefOf } from '../kit/site';
+import { getBlog, getBlogRoutes, postLang } from '../kit/blog';
 
 // Every interior page, blog index and post of every language:
 // /protocol/consensus, /en/protocol/consensus, /log, /use-cases/traceability…

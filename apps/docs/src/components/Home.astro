@@ -5,12 +5,12 @@
  * protocol and quick data of the default network, from the catalog's network data.
  */
 import { getEntry } from 'astro:content';
-import Base from '@42chain/kit/layouts/Base.astro';
-import Footer from '@42chain/kit/components/Footer.astro';
-import { getMenu, homeAlternates } from '@42chain/kit/site';
-import { langOf } from '@42chain/kit/i18n';
-import { ui } from '@42chain/kit/dictionary';
-import { getDirectory, firstOf, pick } from '@42chain/network/directory';
+import Base from '../kit/layouts/Base.astro';
+import Footer from '../kit/components/Footer.astro';
+import { getMenu, homeAlternates } from '../kit/site';
+import { langOf, resolveHref } from '../kit/i18n';
+import { ui } from '../kit/dictionary';
+import { getDirectory, firstOf, pick } from '../network/directory';
 import DocsHeader from './DocsHeader.astro';
 import '../styles/docs.css';
 
@@ -56,7 +56,7 @@ const tones = ['mint', 'blue', 'amber', 'stone'];
           <p class="dk">{layers.title}</p>
           {layers.items.map((l, i) => {
             const inner = <><span><b>{l.label}</b> <span>· {l.text}</span></span><span class="tag">{l.tag}</span></>;
-            return l.href ? <a class:list={['layer', tones[i % tones.length]]} href={l.href}>{inner}</a> : <div class:list={['layer', tones[i % tones.length]]}>{inner}</div>;
+            return l.href ? <a class:list={['layer', tones[i % tones.length]]} href={resolveHref(l.href, lang)}>{inner}</a> : <div class:list={['layer', tones[i % tones.length]]}>{inner}</div>;
           })}
         </div>
       )}

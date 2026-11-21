@@ -1,0 +1,101 @@
+---
+// Illustrative hash chain: four blocks; each hash is SHA-256 of (previous hash | data).
+// The recorded hashes are computed from the original data when the page loads;
+// editing a block recomputes its hash and shows where the chain stops matching.
+// Text: catalog ui/<lang>.yaml → hashChain.
+import { langOf } from '../../kit/i18n';
+import { fill, ui } from '../../kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.hashChain;
+const blocks: string[] = t.blocks;
+const i18n = JSON.stringify({ intact: [t.intactTitle, t.intactText], altered: t.alteredTitle, next: t.alteredNext, last: t.alteredLast });
+---
+<div class="widget hc" data-hashchain data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{t.meta}</span></div>
+  <ol class="blocks">
+    {blocks.map((data, i) => (
+      <li class="blk" data-i={i}>
+        <span class="bn">{fill(t.block, { n: i + 1 })}</span>
+        <label class="lb" for={`hc-${i}`}>{t.data}</label>
+        <input id={`hc-${i}`} class="in" type="text" value={data} data-orig={data} spellcheck="false" />
+        <span class="lb">{t.prevHash}</span>
+        <code class="h" data-prev>…</code>
+        <span class="lb">{t.hash}</span>
+        <code class="h" data-hash>…</code>
+      </li>
+    ))}
+  </ol>
+  <div class="status" role="status">
+    <span class="mono" data-title>{t.intactTitle}</span>
+    <span data-desc>{t.intactText}</span>
+  </div>
+  <button type="button" class="reset" data-reset hidden>{t.reset}</button>
+  <p class="w-note">{t.note}</p>
+</div>
+
+<style>
+  .blocks { list-style: none; margin: 0 0 18px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .blk { position: relative; margin: 0; padding: 14px; border: 1px solid var(--w-rule); border-radius: 12px; display: flex; flex-direction: column; gap: 4px; transition: border-color .3s, background .3s; }
+  .blk + .blk::before { content: "→"; position: absolute; left: -12px; top: 50%; transform: translate(-50%, -50%); color: var(--w-dim); }
+  .blk.bad { border-color: #F07A62; background: rgba(240, 122, 98, .08); }
+  .blk.broken::before { color: #F07A62; content: "✕"; }
+  .bn { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: #fff; margin-bottom: 4px; }
+  .lb { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); margin-top: 6px; }
+  .in { width: 100%; box-sizing: border-box; min-height: 40px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--w-rule); background: rgba(255,255,255,.04); color: #fff; font: inherit; font-size: 14px; }
+  .in:focus { outline: 2px solid var(--acc); outline-offset: 1px; }
+  .h { font-family: var(--mono); font-size: 12px; color: var(--acc); word-break: break-all; background: none; border: 0; padding: 0; }
+  .blk.bad [data-hash], .blk.broken [data-prev] { color: #F07A62; }
+  .status { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--acc); }
+  .status .mono { font-size: 12.5px; white-space: nowrap; color: #fff; }
+  .hc.altered .status { border-color: #F07A62; }
+  .hc.altered .status .mono { color: #F07A62; }
+  .reset { margin-top: 12px; min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--w-rule); background: transparent; color: #fff; font: inherit; font-size: 14.5px; cursor: pointer; }
+  .reset:hover { border-color: var(--acc); }
+  @media (max-width: 900px) { .blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); } .blk + .blk::before { display: none; } }
+  @media (max-width: 520px) { .blocks { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  const hex = async (text: string) => {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+  };
+  const short = (h: string) => h.slice(0, 16) + '…';
+  document.querySelectorAll<HTMLElement>('[data-hashchain]').forEach(async (root) => {
+    const items = [...root.querySelectorAll<HTMLElement>('.blk')];
+    const inputs = items.map((li) => li.querySelector<HTMLInputElement>('input')!);
+    const title = root.querySelector('[data-title]')!;
+    const desc = root.querySelector('[data-desc]')!;
+    const reset = root.querySelector<HTMLButtonElement>('[data-reset]')!;
+    const t = JSON.parse(root.dataset.i18n!) as { intact: [string, string]; altered: string; next: string; last: string };
+    const genesis = '0'.repeat(64);
+    // Hashes as recorded in the chain, from the original data.
+    const recorded: string[] = [];
+    for (let i = 0; i < inputs.length; i++) recorded.push(await hex((recorded[i - 1] ?? genesis) + '|' + inputs[i].dataset.orig));
+    let seq = 0;
+    const paint = async () => {
+      const mine = ++seq;
+      const current = await Promise.all(inputs.map((inp, i) => hex((recorded[i - 1] ?? genesis) + '|' + inp.value)));
+      if (mine !== seq) return;
+      let first = -1;
+      items.forEach((li, i) => {
+        li.querySelector('[data-prev]')!.textContent = short(recorded[i - 1] ?? genesis);
+        li.querySelector('[data-hash]')!.textContent = short(current[i]);
+        const bad = current[i] !== recorded[i];
+        li.classList.toggle('bad', bad);
+        li.classList.toggle('broken', i > 0 && current[i - 1] !== recorded[i - 1]);
+        if (bad && first < 0) first = i;
+      });
+      const altered = first >= 0;
+      root.classList.toggle('altered', altered);
+      reset.hidden = !altered;
+      title.textContent = altered ? t.altered : t.intact[0];
+      desc.textContent = !altered
+        ? t.intact[1]
+        : (first < items.length - 1 ? t.next : t.last).replace('{n}', String(first + 1)).replace('{next}', String(first + 2));
+    };
+    inputs.forEach((inp) => inp.addEventListener('input', paint));
+    reset.addEventListener('click', () => { inputs.forEach((inp) => (inp.value = inp.dataset.orig!)); paint(); });
+    paint();
+  });
+</script>

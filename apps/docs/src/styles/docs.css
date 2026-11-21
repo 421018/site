@@ -26,9 +26,7 @@
 .dh-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
 .dh-link:hover { color: var(--head); }
 .dh-link.mono { font-family: var(--mono); font-size: 12px; }
-/* Areas of 42 (Chain · Protocol), at the far right; colors follow the theme. */
-.dh-sep { width: 1px; height: 24px; margin: 0 6px; background: var(--rule); }
-.dh { --areas-line: var(--rule); --areas-bg: var(--soft); --areas-ink: var(--muted); --areas-on: var(--surface); --areas-on-ink: var(--head); }
+
 .dh-tabs { max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
 .dh-tabs a { flex: none; padding: 12px 14px; color: var(--muted); text-decoration: none; font-size: 14px; border-bottom: 2px solid transparent; }
 .dh-tabs a:hover { color: var(--head); }
@@ -64,7 +62,18 @@
 @media (max-width: 1180px) { .dh-net { display: none; } }
 @media (max-width: 640px) { .dh-link:not(.mono) { display: none; } .dh-search .sbtn span { display: none; } }
 /* the footer keeps the brand's dark space in both themes */
-[data-product="docs"] .site-footer { background: var(--night); color: var(--fg); }
+/* Footer: compact, on the theme's soft ground; the sibling site is an external link. */
+.pf { border-top: 1px solid var(--rule); background: var(--soft); color: var(--muted); font-size: 14px; }
+.pf-in { max-width: 1280px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px; }
+.pf-brand { display: inline-flex; align-items: center; gap: 8px; margin-right: auto; color: var(--head); text-decoration: none; font-weight: 600; font-size: 15px; }
+.pf-brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 7px; background: var(--head); color: var(--bg); font-family: var(--mono); font-size: 12px; }
+.pf nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.pf a { color: var(--muted); text-decoration: none; }
+.pf a:hover { color: var(--link); }
+.pf .pf-fam b { color: var(--head); font-weight: 500; }
+.pf-base { max-width: 1280px; margin: 0 auto; padding: 16px 24px 24px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 12px; }
+/* Links that leave the site (42 Chain or any external URL): an arrow after the label. */
+.ext::after, [data-product="docs"] .prose a[href^="http"]:not([href^="http://localhost"])::after { content: "\00a0\2197" / ""; }
 /* notice under the header (e.g. under construction): visible on every page */
 .dh-notice { background: #FBEFD3; border-top: 1px solid #EBD29A; border-bottom: 1px solid #EBD29A; color: #5C4410; }
 [data-theme="dark"] .dh-notice { background: #2A2210; border-color: #4A3B17; color: #F2D58E; }

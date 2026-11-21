@@ -1,31 +1,30 @@
 {
-  "name": "@42chain/docs",
+  "name": "42protocol-site",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Documentation of 42 Chain and the Protocolo 42 (42protocol.dev).",
-  "license": "UNLICENSED",
+  "description": "42 Protocol: documentation, technical reference and tools (42protocol.dev).",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "SITE_URL=http://localhost:4321 astro dev --port 4322",
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "check": "astro check",
-    "check:links": "check-links",
-    "verify": "astro check && npm run build && check-links"
+    "check:links": "node scripts/check-links.mjs --base /docs",
+    "verify": "astro check && npm run build && node scripts/check-links.mjs --base /docs"
   },
   "dependencies": {
-    "@42chain/catalog": "*",
-    "@42chain/kit": "*",
-    "@42chain/network": "*",
-    "@42chain/ui": "*",
-    "@42chain/widgets": "*",
     "@astrojs/markdown-satteri": "0.4.10",
     "@astrojs/sitemap": "3.7.5",
-    "astro": "7.4.12"
+    "astro": "7.4.12",
+    "satteri": "0.11.7",
+    "yaml": "2.9.1"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
-    "pagefind": "1.6.0",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "pagefind": "1.6.0"
+  },
+  "engines": {
+    "node": ">=22.23.4"
   }
 }
