@@ -89,7 +89,7 @@ Muchos riesgos para una persona no vienen del protocolo, sino de su propio entor
 - **Guarda tu frase de recuperación fuera de línea.** La frase de recuperación permite reconstruir tu llave privada. Quien la tiene controla tu cuenta.
 - **Nadie del proyecto te pedirá tus llaves.** Nadie que participe en el protocolo o en la red necesita tu llave privada ni tu frase de recuperación. Quien te la pide intenta engañarte.
 - **Revisa lo que firmas.** Antes de firmar, lee en tu billetera qué hace la transacción y a qué contrato llama.
-- **Usa los canales del proyecto.** Verifica cualquier anuncio, enlace o aplicación en los [canales del proyecto](site:/about#channels).
+- **Usa los canales del proyecto.** Verifica cualquier anuncio, enlace o aplicación en los [canales del proyecto](site:/channels).
 
 ## Por qué el protocolo lo hace así {#why}
 

@@ -89,7 +89,7 @@ Many risks for a person do not come from the protocol, but from their own enviro
 - **Keep your recovery phrase offline.** The recovery phrase lets you reconstruct your private key. Whoever has it controls your account.
 - **Nobody from the project will ask you for your keys.** Nobody who takes part in the protocol or the network needs your private key or your recovery phrase. Whoever asks you for it is trying to deceive you.
 - **Review what you sign.** Before signing, read in your wallet what the transaction does and which contract it calls.
-- **Use the project's channels.** Verify any announcement, link or application against the [project's channels](site:/about#channels).
+- **Use the project's channels.** Verify any announcement, link or application against the [project's channels](site:/channels).
 
 ## Why the protocol does it this way {#why}
 
