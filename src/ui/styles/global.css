@@ -103,7 +103,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 /* ---------- links that leave the site ---------- */
 /* Another site (42 Protocol) or any external URL: an arrow after the label.
    Decorative only: the label already names where the link goes. */
-.ext::after, .ext .fl-l::after, .prose a[href^="http"]::after { content: "\00a0\2197" / ""; }
+.ext::after, .ext .fl-l::after, .prose a[href^="http"]:not([href^="http://localhost"])::after { content: "\00a0\2197" / ""; }
 .ext.wtext::after { content: none; }
 
 /* ---------- buttons & links ---------- */

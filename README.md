@@ -8,8 +8,9 @@ asked questions. The documentation is part of the same site, at
 
 Each repository deploys on its own. On Cloudflare, a route sends
 `42chain.org/docs*` to the documentation project and everything else here.
-In development, `npm run dev` proxies /docs to the documentation's dev
-server on port 4322, so links between the two work locally.
+In development each repo runs its own server: `npm run dev` here (port 4321)
+and in the documentation's repo (port 4322, at /docs). Links between the two
+point at the other server, so both must be running.
 
 ## Structure
 

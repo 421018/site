@@ -18,8 +18,12 @@ export const SITE = {
 };
 
 export const LINKS = {
-  /** The documentation, on the same domain (its own repo, served at 42chain.org/docs). */
-  docs: '/docs',
+  /**
+   * The documentation, on the same domain (its own repo, served at 42chain.org/docs).
+   * In development each repo runs its own server, so `npm run dev` points
+   * DOCS_URL at the documentation's (http://localhost:4322/docs).
+   */
+  docs: process.env.DOCS_URL ?? '/docs',
   /** The console is not launched yet: without a URL, every link to it is left out. */
   console: undefined as string | undefined,
   repo: 'https://github.com/deep-thought-labs/infinite-app',

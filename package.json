@@ -5,7 +5,7 @@
   "type": "module",
   "description": "42 Chain: the project, the Bitácora and frequently asked questions (42chain.org).",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "DOCS_URL=http://localhost:4322/docs astro dev --port 4321",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
