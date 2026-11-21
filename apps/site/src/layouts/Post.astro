@@ -14,7 +14,7 @@ import PostCard from '@42chain/base/kit/components/PostCard.astro';
 import { catalogRelative } from '@42chain/base/kit/catalog';
 import { homeHref, langPrefix, sourceLang, withLang } from '@42chain/base/kit/i18n';
 import { getSiteText } from '@42chain/base/kit/site';
-import { blogHref, categoryOf, categoryTint, postDate, postHref, postLang, readingMinutes, relatedPosts, type Blog, type Post } from '@42chain/base/kit/blog';
+import { blogHref, categoryOf, getBlogPosts, categoryTint, postDate, postHref, postLang, readingMinutes, relatedPosts, type Blog, type Post } from '@42chain/base/kit/blog';
 interface Props { post: Post; blog: Blog; headings: { depth: number; slug: string; text: string }[] }
 const { post, blog, headings } = Astro.props;
 const lang = postLang(post);
@@ -31,8 +31,10 @@ const { header: { home }, page: ui } = await getSiteText(lang);
 const original = post.fallbackOf;
 const canonicalHref = original ? withLang(postHref(blog, post).replace(langPrefix(lang), '') || '/', sourceLang) : undefined;
 const index = blogHref(blog, lang);
-// A category with its own path (use-cases) belongs to that section; the others to the blog.
-const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : `${index}#${cat.id}`;
+// A category with its own path belongs to that section; the others to the blog, at its
+// filter (the index only shows filters when there is more than one post).
+const filters = (await getBlogPosts(lang)).length > 1;
+const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : filters ? `${index}#${cat.id}` : index;
 ---
 <Base title={post.data.title} description={post.data.summary} canonicalHref={canonicalHref}>
   <section class="band-top">

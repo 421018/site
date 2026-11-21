@@ -10,10 +10,16 @@ import { SITE, LINKS, EDIT_BASE } from './src/config.ts';
 // The blog used to be the Bitácora, at /log: every old address goes to its new one.
 /** @param {string} lang */
 const posts = (lang) => readdirSync(new URL(`./content/${lang}/posts`, import.meta.url)).filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3));
+const retired = ['agreements-unknown', 'collective-memory', 'commons-governance', 'conditional-access', 'contribution-proofs', 'digital-provenance', 'resource-coordination', 'sovereign-identity'];
 const logRedirects = Object.fromEntries(
   Object.keys(SITE.languages).flatMap((lang) => {
     const p = lang === SITE.defaultLang ? '' : `/${lang}`;
-    return [[`${p}/log`, `${p}/blog`], ...posts(SITE.sourceLang).map((slug) => [`${p}/log/${slug}`, `${p}/blog/${slug}`])];
+    return [
+      [`${p}/log`, `${p}/blog`],
+      ...posts(SITE.sourceLang).map((slug) => [`${p}/log/${slug}`, `${p}/blog/${slug}`]),
+      // Posts retired with the old use cases: their addresses go to the blog.
+      ...retired.flatMap((slug) => [[`${p}/log/${slug}`, `${p}/blog`], [`${p}/blog/${slug}`, `${p}/blog`]]),
+    ];
   }),
 );
 
@@ -76,15 +82,15 @@ export default defineConfig({
     // questions; the technical reference, contributing and security live in Protocol.
     '/protocol': `${LINKS.docs}/protocol`,
     '/use-cases': '/blog',
-    '/use-cases/agreements-unknown': '/blog/agreements-unknown',
-    '/use-cases/collective-memory': '/blog/collective-memory',
-    '/use-cases/commons-governance': '/blog/commons-governance',
-    '/use-cases/conditional-access': '/blog/conditional-access',
-    '/use-cases/contribution-proofs': '/blog/contribution-proofs',
-    '/use-cases/digital-provenance': '/blog/digital-provenance',
-    '/use-cases/resource-coordination': '/blog/resource-coordination',
+    '/use-cases/agreements-unknown': '/blog',
+    '/use-cases/collective-memory': '/blog',
+    '/use-cases/commons-governance': '/blog',
+    '/use-cases/conditional-access': '/blog',
+    '/use-cases/contribution-proofs': '/blog',
+    '/use-cases/digital-provenance': '/blog',
+    '/use-cases/resource-coordination': '/blog',
     '/use-cases/restaurant-sign': '/blog/restaurant-sign',
-    '/use-cases/sovereign-identity': '/blog/sovereign-identity',
+    '/use-cases/sovereign-identity': '/blog',
     '/open-source': '/about',
     '/open-source/verify': `${LINKS.docs}/get-started/sources`,
     '/open-source/faq': '/faq',
@@ -92,15 +98,15 @@ export default defineConfig({
     '/open-source/security': `${LINKS.docs}/open-source/security`,
     '/es/protocol': `${LINKS.docs}/es/protocol`,
     '/es/use-cases': '/es/blog',
-    '/es/use-cases/agreements-unknown': '/es/blog/agreements-unknown',
-    '/es/use-cases/collective-memory': '/es/blog/collective-memory',
-    '/es/use-cases/commons-governance': '/es/blog/commons-governance',
-    '/es/use-cases/conditional-access': '/es/blog/conditional-access',
-    '/es/use-cases/contribution-proofs': '/es/blog/contribution-proofs',
-    '/es/use-cases/digital-provenance': '/es/blog/digital-provenance',
-    '/es/use-cases/resource-coordination': '/es/blog/resource-coordination',
+    '/es/use-cases/agreements-unknown': '/es/blog',
+    '/es/use-cases/collective-memory': '/es/blog',
+    '/es/use-cases/commons-governance': '/es/blog',
+    '/es/use-cases/conditional-access': '/es/blog',
+    '/es/use-cases/contribution-proofs': '/es/blog',
+    '/es/use-cases/digital-provenance': '/es/blog',
+    '/es/use-cases/resource-coordination': '/es/blog',
     '/es/use-cases/restaurant-sign': '/es/blog/restaurant-sign',
-    '/es/use-cases/sovereign-identity': '/es/blog/sovereign-identity',
+    '/es/use-cases/sovereign-identity': '/es/blog',
     '/es/open-source': '/es/about',
     '/es/open-source/verify': `${LINKS.docs}/es/get-started/sources`,
     '/es/open-source/faq': '/es/faq',

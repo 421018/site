@@ -21,7 +21,8 @@ const lang = langOf(Astro);
 const entry = await getEntry('home', lang);
 if (!entry) throw new Error(`Missing content/${lang}/home.md`);
 const { title, description, hero, editorial, engine, beliefs, story, vision, work, blog: latest, name, closing } = entry.data;
-// The blog: the featured post (else the newest) leads, three more beside it; the same post is the story band.
+// The blog: the featured post (else the newest) is the story band; the library repeats it with up to
+// three more, so it only shows once there are others.
 const blog = await getBlog(lang);
 const posts = blog ? await getBlogPosts(lang) : [];
 const lead = posts.find((p) => p.data.featured) ?? posts[0];
@@ -118,6 +119,8 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 </div>
 </section>
 
+{/* The library appears once there is more than the story above to show. */}
+{more.length > 0 && (
 <section id="blog" class="band paper tight">
 <div class="wrap">
 <div class="headrow">
@@ -142,6 +145,7 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 )}
 </div>
 </section>
+)}
 
 <section id="why-42" class="band night">
 <div class="wrap lore-row">

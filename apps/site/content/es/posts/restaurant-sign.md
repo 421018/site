@@ -4,7 +4,7 @@ summary: "En un rincón de la galaxia, el letrero de un restaurante anunciaba so
 category: historia
 featured: true
 weight: 5
-image: ../../images/casos/letrero.jpg
+image: ../../images/blog/letrero.jpg
 alt: "Un restaurante remoto en una estación espacial, con un letrero que anuncia sopa y una nave aparcada al lado"
 credit: "Imagen generada"
 ---
@@ -16,7 +16,7 @@ No había sopa. Margarete lo sabía. La cocina lo sabía. Probablemente lo sabí
 Una nave llegó un jueves. El piloto había organizado la tarde alrededor de la sopa, que es el tipo de plan que solo parece pequeño hasta que falla. Entró, la pidió, y Margarete le explicó, con la amabilidad de quien ya ha tenido esta conversación, que la sopa era un error. No un error de la cocina. Un error del letrero. Y que el letrero no era suyo, aunque estuviera clavado en su pared.
 
 :::figure[Margarete tacha la sopa del letrero. El piloto mira.]
-![Margarete tacha la palabra sopa en el menú del restaurante mientras el piloto espera en la barra](../../images/casos/letrero-menu.jpg)
+![Margarete tacha la palabra sopa en el menú del restaurante mientras el piloto espera en la barra](../../images/blog/letrero-menu.jpg)
 :::
 
 El piloto no se sorprendió. Había cruzado más sistemas de los que la mayoría de la gente sabe nombrar y había visto letreros que anunciaban puertos ya demolidos, tarifas de otro siglo y, en una ocasión memorable, un planeta entero que había decidido no existir los fines de semana. Había aprendido que el problema casi nunca es el letrero. Es quién tiene permiso para tocarlo. Así que, en lugar de quejarse, que es lo que hacen los viajeros con menos kilómetros, sacó del bolsillo un aparato parecido a una tableta, algo gastado, con letras grandes y amables en la tapa.
