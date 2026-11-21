@@ -8,7 +8,7 @@
  * network/. dataFile() resolves them through the installed catalog package.
  */
 import { z } from 'astro/zod';
-import { catalogPath } from '../kit/catalog';
+import { catalogPath } from '@42chain/base/kit/catalog';
 
 /** Absolute path of a network data file in the catalog: networks, services or providers. */
 export const dataFile = (name: 'networks' | 'services' | 'providers') => catalogPath('network', `${name}.yaml`);

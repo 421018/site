@@ -6,11 +6,11 @@
  * for where we are going.
  */
 import { getEntry } from 'astro:content';
-import Base from '../kit/layouts/Base.astro';
-import Header from '../kit/components/Header.astro';
-import Footer from '../kit/components/Footer.astro';
-import { isExternal, langOf, langPrefix, languages, resolveHref } from '../kit/i18n';
-import EngineMesh from '../ui/art/EngineMesh.astro';
+import Base from '@42chain/base/kit/layouts/Base.astro';
+import Header from '@42chain/base/kit/components/Header.astro';
+import Footer from './Footer.astro';
+import { isExternal, langOf, langPrefix, languages, resolveHref } from '@42chain/base/kit/i18n';
+import EngineMesh from '../art/EngineMesh.astro';
 
 const lang = langOf(Astro);
 const entry = await getEntry('project', lang);

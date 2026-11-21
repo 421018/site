@@ -1,0 +1,72 @@
+---
+/**
+ * The blog index of a language: title band, the featured post (the newest
+ * with featured: true, else the newest), category filters and the other posts.
+ * Filters need JavaScript; without it every post is listed. A #<category>
+ * in the URL preselects that category.
+ */
+import { Image } from 'astro:assets';
+import Base from '@42chain/base/kit/layouts/Base.astro';
+import Header from '@42chain/base/kit/components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PostCard from '@42chain/base/kit/components/PostCard.astro';
+import { blogHref, categoryOf, categoryTint, getBlog, getBlogPosts, postHref, postDate, readingMinutes } from '@42chain/base/kit/blog';
+interface Props { lang: string }
+const { lang } = Astro.props;
+const blog = (await getBlog(lang))!;
+const posts = await getBlogPosts(lang);
+const featured = posts.find((p) => p.data.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
+const fcat = categoryOf(blog, featured);
+const used = blog.categories.filter((c) => posts.some((p) => p.data.category === c.id));
+const date = (d: Date | undefined) => d && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(d);
+const fdate = date(postDate(featured));
+---
+<Base title={blog.kicker} description={blog.lead}>
+  <section class="band-top blog-band stars">
+    <Header currentHref={blogHref(blog, lang)} />
+    <svg class="blog-art" aria-hidden="true" viewBox="0 0 420 220"><path d="M20 190 C120 170 200 110 300 80" fill="none" stroke="rgba(242,200,121,.5)" stroke-dasharray="1 6" /><g fill="#0B1018" stroke="#5BF0C8" stroke-opacity=".7"><rect x="80" y="166" width="12" height="12" rx="3" /><rect x="180" y="126" width="12" height="12" rx="3" /></g><g transform="translate(312 76) rotate(-22)"><path d="M0 0 L-16 -6 L-12 0 L-16 6 Z" fill="#ECEFF4" /><path d="M-12 0 L-22 0" stroke="#F2C879" stroke-width="2" stroke-linecap="round" /></g><circle cx="380" cy="40" r="16" fill="#111A24" stroke="rgba(255,255,255,.16)" /></svg>
+    <div class="blog-head">
+      <p class="lbl">{blog.kicker}</p>
+      <h1>{blog.title}</h1>
+      <p>{blog.lead}</p>
+    </div>
+  </section>
+  <div class="rd blog-rd">
+    <div class="blog-in">
+      <a class="feat" href={postHref(blog, featured)}>
+        {featured.data.image && <figure class="duo feat-img" style={`--tint: ${categoryTint(blog, fcat.id)}`}><Image src={featured.data.image as never} alt={featured.data.alt!} widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 55vw" /></figure>}
+        <span class="feat-body">
+          <span class="pc-meta"><span class="pill">{fcat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(featured)))}</span>{fdate && <span>{fdate}</span>}</span>
+          <b>{featured.data.title}</b>
+          <span class="pc-sum">{featured.data.summary}</span>
+          <span class="feat-by">{blog.byline}</span>
+        </span>
+      </a>
+      {rest.length > 0 && (
+        <div data-blog>
+          <div class="filters" role="group" aria-label={blog.filterLabel}>
+            <button type="button" aria-pressed="true" data-filter="">{blog.all}</button>
+            {used.map((c) => <button type="button" id={c.id} aria-pressed="false" data-filter={c.id}>{c.plural}</button>)}
+          </div>
+          <div class="pgrid">{rest.map((p) => <PostCard post={p} blog={blog} />)}</div>
+        </div>
+      )}
+    </div>
+  </div>
+  <Footer />
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-blog]').forEach((root) => {
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-cat]')];
+    const apply = (cat: string) => {
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === cat)));
+      cards.forEach((c) => { c.hidden = !!cat && c.dataset.cat !== cat; });
+    };
+    buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.filter!)));
+    const hash = location.hash.slice(1);
+    if (buttons.some((b) => b.dataset.filter === hash)) apply(hash);
+  });
+</script>

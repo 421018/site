@@ -1,0 +1,26 @@
+{
+  "name": "@42chain/base",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "What both 42 Chain apps share: links and languages, content schemas, header, base layout, search, illustrations, Markdown directives and the link checker.",
+  "license": "UNLICENSED",
+  "exports": {
+    "./*.astro": "./*.astro",
+    "./*.ts": "./*.ts",
+    "./*.mjs": "./*.mjs",
+    "./*.css": "./*.css",
+    "./*": "./*.ts"
+  },
+  "bin": {
+    "check-links": "./scripts/check-links.mjs"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  },
+  "peerDependencies": {
+    "astro": "^7.4.0",
+    "@astrojs/markdown-satteri": "*",
+    "satteri": "*"
+  }
+}

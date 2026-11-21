@@ -1,0 +1,23 @@
+---
+/**
+ * Footer of 42 Protocol: compact, one line. The first column of site.md →
+ * footer.columns is the site's navigation; the second holds the sibling site
+ * (42 Chain), shown as an external link with its short line.
+ */
+import { getSiteText } from '@42chain/base/kit/site';
+import { homeHref, isExternal, isLinkAvailable, langOf, resolveHref } from '@42chain/base/kit/i18n';
+const lang = langOf(Astro);
+const text = await getSiteText(lang);
+type FLink = { label: string; href: string; text?: string };
+const resolve = (links: FLink[]) => links.filter((l) => isLinkAvailable(l.href)).map((l) => ({ ...l, href: resolveHref(l.href, lang) }));
+const [nav, family] = (text.footer.columns ?? []).map((c) => ({ label: c.label, links: resolve(c.links) }));
+const baseLinks = resolve(text.footer.links);
+---
+<footer class="pf">
+  <div class="pf-in">
+    <a class="pf-brand" href={homeHref(lang)} aria-label={text.header.homeLink}><span class="mark">42</span>{text.header.brand}</a>
+    {nav && <nav aria-label={nav.label}>{nav.links.map((l) => <a class:list={{ ext: isExternal(l.href) }} href={l.href}>{l.label}</a>)}</nav>}
+    {family && family.links.map((l) => <a class:list={['pf-fam', { ext: isExternal(l.href) }]} href={l.href}>{family.label}: <b>{l.label}</b>{l.text && <>, {l.text}</>}</a>)}
+  </div>
+  <div class="pf-base"><span>{baseLinks.map((l) => <><a class:list={{ ext: isExternal(l.href) }} href={l.href}>{l.label}</a> · </>)}{text.footer.license}</span><span>{text.footer.note}</span></div>
+</footer>

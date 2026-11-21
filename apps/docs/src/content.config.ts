@@ -1,13 +1,13 @@
 /**
  * Content model of the documentation site. Interior pages and site-wide text
- * use the schemas in src/kit; network data comes from
+ * use the schemas in packages/base/kit; network data comes from
  * content/network/ (networks, services, providers).
  */
 import { defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { pageSchema, pagesLoader, perLanguage, siteTextSchema } from './kit/schemas';
-import { catalogPath } from './kit/catalog';
+import { pageSchema, pagesLoader, perLanguage, siteTextSchema } from '@42chain/base/kit/schemas';
+import { catalogPath } from '@42chain/base/kit/catalog';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from './network/schemas';
 
 const pages = defineCollection({ loader: pagesLoader(catalogPath()), schema: pageSchema });

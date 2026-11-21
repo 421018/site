@@ -1,1 +1,1 @@
-/// <reference types="./kit/virtual" />
+/// <reference path="../../../packages/base/kit/virtual.d.ts" />

@@ -1,0 +1,63 @@
+---
+// Converts between cups (whole Improbability, up to 18 decimals) and drops
+// (the base denomination: 1 cup = 10^18 drops), in both directions, with exact
+// BigInt arithmetic. Accepts a comma or a dot as the decimal separator.
+// Text: catalog ui/<lang>.yaml → units.
+import { langOf } from '@42chain/base/kit/i18n';
+import { ui } from '@42chain/base/kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.units;
+const i18n = JSON.stringify({ badCups: t.badCups, badDrops: t.badDrops, decimal: d.common.decimal });
+---
+<div class="widget uc" data-units data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.tool}</span><span class="w-meta">1 cup = 1 Improbability = 10¹⁸ drops</span></div>
+  <div class="pair">
+    <label class="f"><span class="lb">{t.cups}</span><input type="text" inputmode="decimal" value="1" data-cups spellcheck="false" autocomplete="off" /></label>
+    <span class="eq" aria-hidden="true">=</span>
+    <label class="f"><span class="lb">{t.drops}</span><input type="text" inputmode="numeric" value="1000000000000000000" data-drops spellcheck="false" autocomplete="off" /></label>
+  </div>
+  <p class="msg" role="status" data-msg></p>
+  <p class="w-note">{t.note}</p>
+</div>
+
+<style>
+  .pair { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: end; }
+  .f { display: flex; flex-direction: column; gap: 6px; }
+  .lb { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); }
+  .f input { width: 100%; box-sizing: border-box; min-height: 48px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--w-rule); background: rgba(255,255,255,.04); color: #fff; font-family: var(--mono); font-size: 15px; }
+  .f input:focus { outline: 2px solid var(--acc); outline-offset: 1px; }
+  .eq { padding-bottom: 12px; color: var(--w-dim); font-size: 18px; }
+  .msg { margin: 10px 0 0; min-height: 1.4em; font-size: 13.5px; color: #F07A62; }
+  @media (max-width: 560px) { .pair { grid-template-columns: 1fr; } .eq { display: none; } }
+</style>
+
+<script>
+  const ONE = 10n ** 18n;
+  const toDrops = (cups: string): bigint | null => {
+    const m = cups.trim().replace(',', '.').match(/^(\d*)(?:\.(\d*))?$/);
+    if (!m || (m[1] === '' && !m[2])) return null;
+    const frac = m[2] ?? '';
+    if (frac.length > 18) return null;
+    return BigInt(m[1] || '0') * ONE + BigInt((frac + '0'.repeat(18)).slice(0, 18) || '0');
+  };
+  document.querySelectorAll<HTMLElement>('[data-units]').forEach((root) => {
+    const t = JSON.parse(root.dataset.i18n!) as { badCups: string; badDrops: string; decimal: string };
+    const toCups = (drops: bigint) => {
+      const frac = (drops % ONE).toString().padStart(18, '0').replace(/0+$/, '');
+      return (drops / ONE).toString() + (frac ? t.decimal + frac : '');
+    };
+    const cups = root.querySelector<HTMLInputElement>('[data-cups]')!;
+    const drops = root.querySelector<HTMLInputElement>('[data-drops]')!;
+    const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    cups.addEventListener('input', () => {
+      const d = toDrops(cups.value);
+      msg.textContent = d === null ? t.badCups : '';
+      if (d !== null) drops.value = d.toString();
+    });
+    drops.addEventListener('input', () => {
+      const ok = /^\d+$/.test(drops.value.trim());
+      msg.textContent = ok ? '' : t.badDrops;
+      if (ok) cups.value = toCups(BigInt(drops.value.trim()));
+    });
+  });
+</script>

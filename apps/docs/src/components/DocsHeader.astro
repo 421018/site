@@ -4,10 +4,10 @@
  * switch (shared with the network widgets on the page), theme, language and
  * links; below, one tab per section.
  */
-import Search from '../kit/components/Search.astro';
+import Search from '@42chain/base/kit/components/Search.astro';
 import NetworkSwitch from '../network/components/NetworkSwitch.astro';
-import { getMenu, getSiteText } from '../kit/site';
-import { homeHref, isLinkAvailable, langOf, languages, resolveHref } from '../kit/i18n';
+import { getMenu, getSiteText } from '@42chain/base/kit/site';
+import { homeHref, isLinkAvailable, langOf, languages, resolveHref } from '@42chain/base/kit/i18n';
 interface Props { current?: string; alternates?: Record<string, string> }
 const { current, alternates = {} } = Astro.props;
 const lang = langOf(Astro);

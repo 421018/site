@@ -1,0 +1,76 @@
+---
+// Illustrative consensus round with 30 validators of equal voting power.
+// Text: catalog ui/<lang>.yaml → consensus.
+import { langOf } from '@42chain/base/kit/i18n';
+import { fill, ui } from '@42chain/base/kit/dictionary';
+const d = ui(langOf(Astro));
+const t = d.consensus;
+const phases: string[] = t.phases;
+const i18n = JSON.stringify({ running: [t.runningTitle, t.runningText], halted: [t.haltedTitle, t.haltedText], thousands: d.common.thousands });
+---
+<div class="widget sim" data-consensus data-i18n={i18n}>
+  <div class="w-head"><span class="w-tag">{d.common.simulator}</span><span class="w-meta">{t.meta}<span data-round>{(4218307).toLocaleString('en').replace(/,/g, d.common.thousands)}</span></span></div>
+  <div class="phases">
+    {phases.map((p, i) => (
+      <div class="phase" data-phase={i}><span class="mono">0{i + 1}</span><span>{p}</span></div>
+    ))}
+  </div>
+  <div class="row">
+    <label for="off42" class="bl">{t.offline}</label>
+    <span class="mono big" data-off-label>10%</span>
+  </div>
+  <input id="off42" class="range" type="range" min="0" max="60" step="1" value="10" />
+  <div class="vgrid" aria-hidden="true">{Array.from({ length: 30 }, () => <span class="v up"></span>)}</div>
+  <div class="status" role="status">
+    <span class="mono" data-title>{t.runningTitle}</span>
+    <span data-desc>{t.runningText}</span>
+  </div>
+  <p class="w-note">{t.note}</p>
+</div>
+
+<style>
+  .bl { margin: 0; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--w-fg); }
+  .phases { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .phase { flex: 1; min-width: 110px; padding: 12px; border: 1px solid var(--w-rule); border-radius: 10px; display: flex; flex-direction: column; gap: 4px; color: var(--w-dim); font-size: 14.5px; font-weight: 500; transition: all .45s cubic-bezier(.16,1,.3,1); }
+  .phase .mono { font-size: 11px; font-weight: 400; }
+  .phase.on { border-color: var(--acc); color: #fff; background: color-mix(in srgb, var(--acc) 12%, transparent); }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .big { font-size: 20px; color: #fff; }
+  .vgrid { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 6px; margin: 14px 0 18px; }
+  .v { aspect-ratio: 1; border-radius: 5px; transition: background .3s, border-color .3s; }
+  .v.up { background: color-mix(in srgb, var(--acc) 75%, transparent); }
+  .v.down { border: 1px dashed var(--w-dim); }
+  .status { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--acc); }
+  .status .mono { font-size: 12.5px; white-space: nowrap; color: #fff; }
+  .sim.halted .status { border-color: #F2A93B; }
+  .sim.halted .status .mono { color: #F2A93B; }
+  @media (max-width: 900px) { .vgrid { grid-template-columns: repeat(10, minmax(0, 1fr)); } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-consensus]').forEach((root) => {
+    const range = root.querySelector<HTMLInputElement>('input[type=range]')!;
+    const offLabel = root.querySelector('[data-off-label]')!;
+    const roundEl = root.querySelector('[data-round]')!;
+    const phases = [...root.querySelectorAll<HTMLElement>('[data-phase]')];
+    const dots = [...root.querySelectorAll<HTMLElement>('.v')];
+    const title = root.querySelector('[data-title]')!;
+    const desc = root.querySelector('[data-desc]')!;
+    const t = JSON.parse(root.dataset.i18n!) as { running: [string, string]; halted: [string, string]; thousands: string };
+    let phase = 0, round = 4218307, off = 10;
+    const halted = () => (off * 30) / 100 >= 10;
+    const paint = () => {
+      const down = Math.round((off * 30) / 100);
+      dots.forEach((d, i) => { d.className = i >= 30 - down ? 'v down' : 'v up'; });
+      offLabel.textContent = off + '%';
+      roundEl.textContent = round.toString().replace(/\B(?=(\d{3})+(?!\d))/g, t.thousands);
+      phases.forEach((p, i) => p.classList.toggle('on', !halted() && i === phase));
+      root.classList.toggle('halted', halted());
+      [title.textContent, desc.textContent] = halted() ? t.halted : t.running;
+    };
+    range.addEventListener('input', () => { off = parseInt(range.value, 10) || 0; paint(); });
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) setInterval(() => { if (halted()) return; phase = (phase + 1) % 4; if (phase === 0) round++; paint(); }, 650);
+    paint();
+  });
+</script>

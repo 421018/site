@@ -14,8 +14,8 @@
  */
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
-import { pageSchema, pagesLoader, perLanguage, postSchema, postsLoader, siteTextSchema } from './kit/schemas';
-import { catalogPath } from './kit/catalog';
+import { pageSchema, pagesLoader, perLanguage, postSchema, postsLoader, siteTextSchema } from '@42chain/base/kit/schemas';
+import { catalogPath } from '@42chain/base/kit/catalog';
 
 const pages = defineCollection({ loader: pagesLoader(catalogPath()), schema: pageSchema });
 const posts = defineCollection({ loader: postsLoader(catalogPath()), schema: ({ image }) => postSchema(image) });

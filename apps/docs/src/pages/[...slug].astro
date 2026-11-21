@@ -2,8 +2,8 @@
 import { render } from 'astro:content';
 import DocsPage from '../layouts/DocsPage.astro';
 import Splice from '../widgets/Splice.astro';
-import { getAllPages, hrefOf } from '../kit/site';
-import { withoutBase } from '../kit/i18n';
+import { getAllPages, hrefOf } from '@42chain/base/kit/site';
+import { withoutBase } from '@42chain/base/kit/i18n';
 
 // Every interior page of every language: /get-started/connect, /en/get-started/connect…
 export async function getStaticPaths() {

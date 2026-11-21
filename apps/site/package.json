@@ -1,5 +1,5 @@
 {
-  "name": "42chain-site",
+  "name": "@42chain/site",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -9,10 +9,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "check:links": "node scripts/check-links.mjs --skip /docs",
-    "verify": "astro check && npm run build && node scripts/check-links.mjs --skip /docs"
+    "check:links": "check-links --skip /docs",
+    "verify": "astro check && npm run build && check-links --skip /docs"
   },
   "dependencies": {
+    "@42chain/base": "*",
     "@astrojs/markdown-satteri": "0.4.10",
     "@astrojs/sitemap": "3.7.5",
     "astro": "7.4.12",
@@ -22,8 +23,5 @@
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "typescript": "6.0.3"
-  },
-  "engines": {
-    "node": ">=22.23.4"
   }
 }

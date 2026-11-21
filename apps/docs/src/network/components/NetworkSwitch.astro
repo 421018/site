@@ -4,8 +4,8 @@
 // each block under its own label. Several switches on a page stay in sync, and
 // the choice is remembered in this browser when storage is available.
 import { getDirectory, pick } from '../directory';
-import { langOf } from '../../kit/i18n';
-import { ui } from '../../kit/dictionary';
+import { langOf } from '@42chain/base/kit/i18n';
+import { ui } from '@42chain/base/kit/dictionary';
 const lang = langOf(Astro);
 const t = ui(lang).network;
 const { networks } = await getDirectory();

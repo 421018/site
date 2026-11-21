@@ -5,11 +5,11 @@
  * protocol and quick data of the default network, from the catalog's network data.
  */
 import { getEntry } from 'astro:content';
-import Base from '../kit/layouts/Base.astro';
-import Footer from '../kit/components/Footer.astro';
-import { getMenu, homeAlternates } from '../kit/site';
-import { langOf, resolveHref } from '../kit/i18n';
-import { ui } from '../kit/dictionary';
+import Base from '@42chain/base/kit/layouts/Base.astro';
+import Footer from './Footer.astro';
+import { getMenu, homeAlternates } from '@42chain/base/kit/site';
+import { langOf, resolveHref } from '@42chain/base/kit/i18n';
+import { ui } from '@42chain/base/kit/dictionary';
 import { getDirectory, firstOf, pick } from '../network/directory';
 import DocsHeader from './DocsHeader.astro';
 import '../styles/docs.css';

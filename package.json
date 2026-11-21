@@ -1,0 +1,23 @@
+{
+  "name": "42chain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "42 Chain websites: the site (42chain.org) and the documentation (42chain.org/docs), with their shared base.",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @42chain/site & npm run dev -w @42chain/docs & wait",
+    "dev:site": "npm run dev -w @42chain/site",
+    "dev:docs": "npm run dev -w @42chain/docs",
+    "build": "npm run build --workspaces --if-present",
+    "check": "npm run check --workspaces --if-present",
+    "verify": "npm run verify --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}
