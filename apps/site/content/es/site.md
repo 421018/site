@@ -16,7 +16,7 @@ header:
   languageNav: Idioma # accessible name of the language switcher
   submenu: ver páginas # accessible name of a section's menu arrow: "Protocolo: ver páginas"
   links:
-    - { label: Bitácora, href: /log, weight: 1 } # weight places it among the sections
+    - { label: Blog, href: /blog, weight: 1 } # weight places it among the sections
     - { label: Proyecto, href: /about, weight: 2 }
     - { label: Documentación, href: "docs:/", weight: 10 }
 
@@ -28,7 +28,7 @@ footer:
   columns:
     - label: Explorar
       links:
-        - { label: Bitácora, href: "/log" }
+        - { label: Blog, href: "/blog" }
         - { label: Proyecto, href: "/about" }
         - { label: Preguntas, href: "/faq" }
         - { label: Documentación, href: "docs:/" }
@@ -46,8 +46,8 @@ page:
 # The blog. Posts live in posts/ next to this file; a category with "path"
 # serves its posts there instead of under the blog.
 blog:
-  path: log
-  kicker: Bitácora
+  path: blog
+  kicker: Blog
   title: Historias improbables y artículos.
   lead: Relatos de lo que pasa cuando un registro lo guardan muchos a la vez, y textos con punto de vista sobre la infraestructura compartida.
   all: Todas

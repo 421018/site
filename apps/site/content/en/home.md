@@ -13,7 +13,7 @@ hero:
     42 Chain is blockchain infrastructure.
     An improbabilistic distributed ledger.
   primary: { label: Start reading, href: "/#editorial" }
-  secondary: { label: Read the Logbook, href: /log }
+  secondary: { label: Read the blog, href: /blog }
 
 editorial:
   kicker: Editorial
@@ -57,7 +57,7 @@ beliefs:
   link: { label: "Everything we believe, in the project", href: "/about#beliefs" }
 
 story:
-  kicker: A story from the Logbook
+  kicker: A story from the blog
   link: Read the story
 
 vision:
@@ -76,12 +76,12 @@ work:
     We polish, improve and align the node's code with the base it is built on, so that Infinite Drive stays stable and meets the highest standards of the industry. It is the kind of work you only notice when it is missing.
 
     What gets built on top is not ours to decide: builders and users make use of it freely, for their own purposes.
-  link: { label: "The latest, in the Logbook", href: /log }
+  link: { label: "The latest, on the blog", href: /blog }
 
-log:
+blog:
   kicker: The library
-  title: From the Logbook.
-  link: { label: Stories and articles, href: /log }
+  title: From the blog.
+  link: { label: Stories and articles, href: /blog }
 
 name:
   kicker: The name

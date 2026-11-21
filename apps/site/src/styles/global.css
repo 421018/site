@@ -439,7 +439,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
   .prose .facts { grid-template-columns: 1fr; }
 }
 
-/* ---------- blog ("Bitácora") ---------- */
+/* ---------- blog ---------- */
 /* Interiors: a slim night header, then everything on paper. */
 .post-head { max-width: 880px; margin: 0 auto; padding: 72px clamp(16px, 4vw, 40px) 48px; }
 .crumbs { font-family: var(--mono); font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); }

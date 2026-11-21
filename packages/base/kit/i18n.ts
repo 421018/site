@@ -23,7 +23,7 @@ export const langSegment = (lang: string) => (lang === defaultLang ? '' : `/${la
 /** URL prefix of a language inside this app: the base path, then the language ("/docs/es"). */
 export const langPrefix = (lang: string) => base + langSegment(lang);
 
-/** A root-relative path in a language, without any base path: ("/log", "es") → "/es/log". */
+/** A root-relative path in a language, without any base path: ("/blog", "es") → "/es/blog". */
 const inLang = (path: string, lang: string) => {
   const seg = langSegment(lang);
   if (!seg) return path;

@@ -11,7 +11,7 @@ These are the project's only official channels. If a channel does not appear her
 
 | Channel | What it is for | Address |
 |---|---|---|
-| Site | The project, the Logbook and frequently asked questions | 42chain.org |
+| Site | The project, the blog and frequently asked questions | 42chain.org |
 | Documentation | Infinite Drive, technical reference and tools | 42chain.org/docs |
 | X | Project announcements | @42protocol |
 | Repository | Source code, technical questions, bug reports and contributions | [repository] |

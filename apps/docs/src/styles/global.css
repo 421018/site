@@ -416,7 +416,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
   .prose .facts { grid-template-columns: 1fr; }
 }
 
-/* ---------- blog ("Bitácora") ---------- */
+/* ---------- blog ---------- */
 .post-band, .blog-band { background-color: var(--night); overflow: hidden; }
 .post-head { position: relative; max-width: 880px; margin: 0 auto; padding: 48px 0 112px; }
 .crumbs { font-size: 13.5px; color: var(--fg-3); }

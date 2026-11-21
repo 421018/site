@@ -4,7 +4,7 @@
  * - `pages`: one Markdown file per interior page under content/<lang>/pages/.
  *   The folder is the section and the file path is the URL. The `index.md` of
  *   each folder also describes its section (`section:` block).
- * - `posts`: the blog ("Bitácora"), one Markdown file per post under content/<lang>/posts/.
+ * - `posts`: the blog, one Markdown file per post under content/<lang>/posts/.
  * - `home`: the text of the home page (content/<lang>/home.md, frontmatter only).
  * - `project`: the text of the project page, /about (content/<lang>/project.md, frontmatter only).
  * - `site`: site-wide text: brand, footer, interface labels, 404 (content/<lang>/site.md).
@@ -41,14 +41,14 @@ const home = defineCollection({
       engine: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), art: engineArt, caption: z.string(), link: cta }).strict(),
       /** What we believe: a few convictions (the project page has them all). */
       beliefs: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), items: z.array(z.object({ title: z.string(), text: z.string() }).strict()).min(1).max(3), link: cta }).strict(),
-      /** A story from the Bitácora, full width: the featured post. */
+      /** A story from the blog, full width: the featured post. */
       story: z.object({ kicker: z.string(), link: z.string() }).strict(),
       /** Where we are going, told as a scene. */
       vision: z.object({ kicker: z.string(), title: z.string(), body: prose, link: cta }).strict(),
       /** What is being worked on now. */
       work: z.object({ kicker: z.string(), title: z.string(), body: prose, link: cta }).strict(),
-      /** Latest entries from the Bitácora (the blog); the posts come from the blog itself. */
-      log: z.object({ kicker: z.string(), title: z.string(), link: cta }).strict(),
+      /** Latest entries from the blog; the posts come from the blog itself. */
+      blog: z.object({ kicker: z.string(), title: z.string(), link: cta }).strict(),
       name: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), link: cta }).strict(),
       closing: z.object({ title: z.string(), lead: z.string().optional(), primary: cta, secondary: cta }).strict(),
     })

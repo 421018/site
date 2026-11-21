@@ -83,7 +83,7 @@ export const pagesLoader = (base: string) =>
   });
 
 /**
- * Blog posts ("Bitácora"): one Markdown file per post in <lang>/posts/.
+ * Blog posts: one Markdown file per post in <lang>/posts/.
  * The id is the language and the file name: es/posts/traceability.md →
  * es/traceability. The URL depends on the category (site.md → blog).
  */
@@ -196,10 +196,10 @@ export const siteTextSchema = z
       })
       .strict(),
     notFound: z.object({ title: z.string(), label: z.string(), heading: z.string(), action: z.string() }).strict(),
-    /** The blog ("Bitácora"), for apps that have one: its URL, texts and categories. */
+    /** The blog, for apps that have one: its URL, texts and categories. */
     blog: z
       .object({
-        /** URL segment of the blog: "log" → /log (and /en/log). */
+        /** URL segment of the blog: "blog" → /blog (and /es/blog). */
         path: z.string().regex(/^[a-z0-9-]+$/),
         kicker: z.string(),
         title: z.string(),

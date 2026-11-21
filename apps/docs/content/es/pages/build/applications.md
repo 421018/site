@@ -20,7 +20,7 @@ No todo tiene que vivir en la cadena. Lo que debe ser verificable y compartido v
 Por ejemplo, en un registro de certificados, el contrato guarda la huella de cada certificado y quién lo emitió. El documento completo se queda en los sistemas del emisor. Cualquiera puede comprobar, con la huella, que un documento es auténtico.
 
 :::aside
-[Bitácora →](site:/log) · [Cómo se ejecutan los contratos →](/protocol/execution)
+[Blog →](site:/blog) · [Cómo se ejecutan los contratos →](/protocol/execution)
 :::
 
 ## La EVM, en la práctica {#evm}

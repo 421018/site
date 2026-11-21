@@ -8,7 +8,7 @@ import { getAllPages, hrefOf } from '@42chain/base/kit/site';
 import { getBlog, getBlogRoutes, postLang } from '@42chain/base/kit/blog';
 
 // Every interior page, blog index and post of every language:
-// /protocol/consensus, /en/protocol/consensus, /log, /use-cases/traceability…
+// /protocol/consensus, /en/protocol/consensus, /blog, /use-cases/traceability…
 export async function getStaticPaths() {
   const pages = (await getAllPages()).map((page) => ({ params: { slug: hrefOf(page).slice(1) }, props: { kind: 'page' as const, page } }));
   const blog = (await getBlogRoutes()).map((r) => ({ params: { slug: r.href.slice(1) }, props: r.props }));

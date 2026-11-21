@@ -13,7 +13,7 @@ hero:
     42 Chain es infraestructura de cadena de bloques.
     Un registro distribuido improbabilístico.
   primary: { label: Empezar a leer, href: "/#editorial" }
-  secondary: { label: Leer la Bitácora, href: /log }
+  secondary: { label: Leer el blog, href: /blog }
 
 editorial:
   kicker: Editorial
@@ -57,7 +57,7 @@ beliefs:
   link: { label: "Todo lo que creemos, en el proyecto", href: "/about#beliefs" }
 
 story:
-  kicker: Una historia de la Bitácora
+  kicker: Una historia del blog
   link: Leer la historia
 
 vision:
@@ -76,12 +76,12 @@ work:
     Pulimos, mejoramos y alineamos el código del nodo con la base sobre la que está construido, para que Infinite Drive sea estable y esté a la altura de los mejores estándares de la industria. Es el tipo de trabajo que solo se nota cuando falta.
 
     Lo que se construya encima no lo decidimos nosotros: quienes construyen y quienes lo usan lo aprovechan libremente, para sus propios fines.
-  link: { label: "Lo último, en la Bitácora", href: /log }
+  link: { label: "Lo último, en el blog", href: /blog }
 
-log:
+blog:
   kicker: La biblioteca
-  title: Desde la Bitácora.
-  link: { label: Historias y artículos, href: /log }
+  title: Desde el blog.
+  link: { label: Historias y artículos, href: /blog }
 
 name:
   kicker: El nombre

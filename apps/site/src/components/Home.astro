@@ -20,8 +20,8 @@ import RingedPlanet from '@42chain/base/ui/art/RingedPlanet.astro';
 const lang = langOf(Astro);
 const entry = await getEntry('home', lang);
 if (!entry) throw new Error(`Missing content/${lang}/home.md`);
-const { title, description, hero, editorial, engine, beliefs, story, vision, work, log, name, closing } = entry.data;
-// The Bitácora: the featured post (else the newest) leads, three more beside it; the same post is the story band.
+const { title, description, hero, editorial, engine, beliefs, story, vision, work, blog: latest, name, closing } = entry.data;
+// The blog: the featured post (else the newest) leads, three more beside it; the same post is the story band.
 const blog = await getBlog(lang);
 const posts = blog ? await getBlogPosts(lang) : [];
 const lead = posts.find((p) => p.data.featured) ?? posts[0];
@@ -118,11 +118,11 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 </div>
 </section>
 
-<section id="log" class="band paper tight">
+<section id="blog" class="band paper tight">
 <div class="wrap">
 <div class="headrow">
-<div><p class="k">{log.kicker}</p><h2 class="h2">{log.title}</h2></div>
-<a class="more" href={go(log.link.href)}>{log.link.label} →</a>
+<div><p class="k">{latest.kicker}</p><h2 class="h2">{latest.title}</h2></div>
+<a class="more" href={go(latest.link.href)}>{latest.link.label} →</a>
 </div>
 {blog && lead && (
 <div class="logs">
@@ -235,7 +235,7 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 .story-title{margin:0 0 18px;font-family:var(--serif);font-size:clamp(34px,4vw,52px);line-height:1.05;font-weight:500;color:var(--fg)}
 .story-sum{margin:0;font-family:var(--serif);font-size:clamp(20px,2vw,25px);line-height:1.5;color:#D5DAE0}
 
-/* bitácora */
+/* blog */
 .headrow{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--head)}
 .headrow .more{margin-top:0}
 .logs{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 56px;margin-top:48px}

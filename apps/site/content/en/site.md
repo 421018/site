@@ -16,7 +16,7 @@ header:
   languageNav: Language # accessible name of the language switcher
   submenu: show pages # accessible name of a section's menu arrow: "Protocol: show pages"
   links:
-    - { label: Logbook, href: /log, weight: 1 } # weight places it among the sections
+    - { label: Blog, href: /blog, weight: 1 } # weight places it among the sections
     - { label: Project, href: /about, weight: 2 }
     - { label: Documentation, href: "docs:/", weight: 10 }
 
@@ -28,7 +28,7 @@ footer:
   columns:
     - label: Explore
       links:
-        - { label: Logbook, href: "/log" }
+        - { label: Blog, href: "/blog" }
         - { label: Project, href: "/about" }
         - { label: Questions, href: "/faq" }
         - { label: Documentation, href: "docs:/" }
@@ -47,8 +47,8 @@ page:
 # The blog. Posts live in posts/ next to this file; until a post is translated,
 # the Spanish one is shown. Category ids are shared with the other languages.
 blog:
-  path: log
-  kicker: Logbook
+  path: blog
+  kicker: Blog
   title: Improbable stories and articles.
   lead: Tales of what happens when many keep the same ledger at once, and pieces with a point of view on shared infrastructure.
   all: All

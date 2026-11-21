@@ -15,7 +15,7 @@ Un proyecto de infraestructura de código abierto: un registro que muchas partes
 :::
 
 :::faq[¿Para qué sirve 42 Chain?]
-Para que varias personas compartan un registro sin que ninguna tenga que custodiarlo sola: un certificado que se comprueba solo, el recorrido de un producto, el historial de una reparación y un acuerdo que no decide una sola persona. Si una sola persona genera y consulta los datos, una base de datos tradicional es más sencilla. [Bitácora](/log)
+Para que varias personas compartan un registro sin que ninguna tenga que custodiarlo sola: un certificado que se comprueba solo, el recorrido de un producto, el historial de una reparación y un acuerdo que no decide una sola persona. Si una sola persona genera y consulta los datos, una base de datos tradicional es más sencilla. [Blog](/blog)
 :::
 
 :::faq[¿Necesito permiso para usar la red?]

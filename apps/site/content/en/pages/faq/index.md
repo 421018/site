@@ -15,7 +15,7 @@ An open-source infrastructure project: a ledger that many parties keep at once, 
 :::
 
 :::faq[What is 42 Chain for?]
-So that several people can share a ledger without any one of them having to hold it alone: a certificate that checks itself, the path of a product, the history of a repair and an agreement that no single person decides. If one person both produces and looks up the data, a traditional database is simpler. [Logbook](/log)
+So that several people can share a ledger without any one of them having to hold it alone: a certificate that checks itself, the path of a product, the history of a repair and an agreement that no single person decides. If one person both produces and looks up the data, a traditional database is simpler. [Blog](/blog)
 :::
 
 :::faq[Do I need permission to use the network?]
