@@ -7,6 +7,7 @@ and look:
 |---|---|---|---|---|
 | The site: home, project, blog, questions | `/`, `/es/…` | `content/site/` | `src/site/` | `@42chain/ui/site.css` |
 | The documentation | `/docs`, `/docs/es/…` | `content/docs/` | `src/docs/` | `@42chain/ui/docs.css` |
+| The console | `/console`, `/console/es/…` | `content/console/` | `src/console/` | `@42chain/ui/console.css` |
 
 ## Structure
 
@@ -30,5 +31,8 @@ other area.
 
 ## Commands
 
-From the repository root or this folder: `npm run dev` (http://localhost:4321,
-documentation at `/docs`), `npm run build`, `npm run preview`, `npm run verify`.
+Run them from the repository root (the app needs the workspace package
+`packages/ui`): `npm run dev` (http://localhost:4321), `npm run build`,
+`npm run preview` (the built site on http://localhost:4300), `npm run verify`.
+Requirements, background servers and deployment: see the
+[repository README](../../README.md).

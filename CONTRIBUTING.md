@@ -27,15 +27,17 @@ Thanks for helping improve the site and the documentation. Most contributions ar
 ## Working locally
 
 ```bash
-npm install        # Node 22 or later
-npm run validate   # run before opening a pull request
+nvm use            # Node 24, from .nvmrc
+npm ci             # from the repository root
+npm run dev        # http://localhost:4321
+npm run verify     # run before opening a pull request
 ```
 
-The validator checks front matter, sections, blocks, widgets, diagrams, images, internal links and network data against the [content contract](contract/). The full site is built by the preview on your pull request.
+`npm run verify` checks types, builds the whole site (the content schemas stop the build on a misspelled or missing field, an unknown block or widget) and checks every internal link and anchor. The same check runs on your pull request, and Cloudflare Pages builds a preview of it. The [README](README.md#local-development) has the details.
 
 ## Guidelines
 
-**Language.** Visitor-facing text is Spanish. Front matter keys, block names, this documentation and commit messages are English. Page URLs (folder and file names) are Spanish because they are public addresses.
+**Language.** Visitor-facing text exists in English (at the root) and Spanish (under `/es`), written in Spanish first: a page not yet translated shows the Spanish one with a notice. Front matter keys, block names, page URLs (folder and file names), this documentation and commit messages are English.
 
 **Content.**
 

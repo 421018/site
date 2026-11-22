@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev --port 4321",
     "build": "astro build && pagefind --site dist/docs",
-    "preview": "astro preview --port 4321",
+    "preview": "astro preview --port 4300",
     "check": "astro check",
     "check:links": "node scripts/check-links.mjs",
     "verify": "astro check && npm run build && node scripts/check-links.mjs"
