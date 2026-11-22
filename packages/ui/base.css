@@ -214,8 +214,23 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .megatype { container-type: inline-size; user-select: none; }
 .megatype-note { display: block; margin: 0 0 10px; font-size: clamp(15px, 1.35vw, 20px); font-weight: 400; letter-spacing: 0; line-height: 1.3; color: #2A323C; }
 /* Sized from the phrase width so the outline fills the footer column. On a narrow column the two words stack and grow to that same edge. */
-.megatype-word { display: block; white-space: nowrap; font-size: 17.8cqi; font-weight: 600; letter-spacing: -0.06em; line-height: .85; color: transparent; -webkit-text-stroke: 1px #2A323C; transition: -webkit-text-stroke-color .6s; }
-.megatype:hover .megatype-word { -webkit-text-stroke-color: var(--acc); }
+/* DON'T PANIC: the brand's light runs slowly through the letters; at rest it glows faintly
+   inside a thin outline, under the pointer it lights up in full. --mt is the light's strength. */
+@property --mt { syntax: '<number>'; inherits: true; initial-value: .3; }
+.megatype { --mt: .3; transition: --mt .9s cubic-bezier(.16,1,.3,1); }
+.megatype:hover { --mt: 1; }
+.megatype-word { display: block; white-space: nowrap; font-size: 17.8cqi; font-weight: 600; letter-spacing: -0.06em; line-height: .85;
+  background-image: linear-gradient(100deg,
+    color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 0%,
+    color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 25%,
+    color-mix(in srgb, #F2C879 calc(var(--mt) * 100%), transparent) 50%,
+    color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 75%,
+    color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 100%);
+  background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, #5BF0C8 calc(40% - var(--mt) * 40%), #2A323C);
+  animation: mtflow 16s linear infinite; }
+.megatype:hover .megatype-word { animation-duration: 6s; filter: drop-shadow(0 0 28px rgba(91,240,200,.25)); }
+@keyframes mtflow { to { background-position: -200% 0; } }
 @container (max-width: 540px) { .megatype-word { font-size: 36.5cqi; line-height: .92; } .megatype-word > span { display: block; } .megatype-word > .megatype-sp { display: none; } }
 .fbase { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--fg-4); }
 .flink-b { color: inherit; text-decoration: none; }
