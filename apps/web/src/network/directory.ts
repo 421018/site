@@ -16,7 +16,7 @@ export type Network = CollectionEntry<'networks'>['data'];
 export type Service = CollectionEntry<'services'>['data'];
 export type Provider = CollectionEntry<'providers'>['data'];
 
-/** Collections come back sorted by id; restore the order of the YAML file, which carries meaning (defaults, display order). */
+/** Collections come back sorted by id; restore the order of the YAML file for networks and services (display order). Providers are then listed alphabetically: all are equal. */
 function inFileOrder<T extends { id: string }>(name: 'networks' | 'services' | 'providers', items: T[]): T[] {
   const text = readFileSync(dataFile(name), 'utf8');
   const order = [...text.matchAll(/^\s*-\s*\{?\s*id:\s*([a-z0-9-]+)/gm)].map((m) => m[1]);
@@ -29,7 +29,9 @@ export function getDirectory() {
   return (cache ??= (async () => {
     const networks = inFileOrder('networks', (await getCollection('networks')).map((e) => e.data));
     const services = inFileOrder('services', (await getCollection('services')).map((e) => e.data));
-    const providers = inFileOrder('providers', (await getCollection('providers')).map((e) => e.data));
+    // All providers are equal: a neutral, stated order (alphabetical by provider, then address), never the file's.
+    const byName = new Intl.Collator('en', { sensitivity: 'base' });
+    const providers = (await getCollection('providers')).map((e) => e.data).sort((a, b) => byName.compare(a.provider, b.provider) || a.url.localeCompare(b.url));
     const nets = new Set(networks.map((n) => n.id));
     const svcs = new Set(services.map((s) => s.id));
     const bad = providers.filter((p) => !nets.has(p.network) || !svcs.has(p.service));
@@ -43,6 +45,6 @@ export function getDirectory() {
   })());
 }
 
-/** First provider of a service in a network: the default one. */
-export const firstOf = (providers: Provider[], network: string, service: string) =>
-  providers.find((p) => p.network === network && p.service === service);
+/** Every provider of a service in a network, in the directory's neutral order (alphabetical by provider). No provider is a default. */
+export const allOf = (providers: Provider[], network: string, service: string) =>
+  providers.filter((p) => p.network === network && p.service === service);

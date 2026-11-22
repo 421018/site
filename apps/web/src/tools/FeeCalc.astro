@@ -8,11 +8,12 @@
 // Text: catalog ui/<lang>.yaml → fees.
 import { langOf } from '../kit/i18n';
 import { fill, ui } from '../kit/dictionary';
-import { firstOf, getDirectory, pick } from '../network/directory';
+import { allOf, getDirectory, pick } from '../network/directory';
 const lang = langOf(Astro);
 const d = ui(lang);
 const { networks, providers } = await getDirectory();
-const rpc = Object.fromEntries(networks.map((n) => { const p = firstOf(providers, n.id, 'evm'); return [n.id, p ? { url: p.url, provider: p.provider, label: pick(n.label, lang) } : null]; }));
+// Every access point of each network; the script tries them in random order (no provider is a default).
+const rpc = Object.fromEntries(networks.map((n) => [n.id, { label: pick(n.label, lang), points: allOf(providers, n.id, 'evm').map((p) => ({ url: p.url, provider: p.provider })) }]));
 const t = d.fees;
 const group = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, d.common.thousands);
 const presets = ['21000', '50000', '250000'].map((gas, i) => [gas, t.presets[i] as string] as const);
@@ -85,7 +86,7 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
       return group(int) + (frac ? decimal + frac : '');
     };
     const t = JSON.parse(root.dataset.i18n!) as Record<string, string>;
-    const rpc = JSON.parse(root.dataset.rpc!) as Record<string, { url: string; provider: string; label: string } | null>;
+    const rpc = JSON.parse(root.dataset.rpc!) as Record<string, { label: string; points: { url: string; provider: string }[] }>;
     const live = root.querySelector<HTMLElement>('[data-live]')!;
     const liveText = root.querySelector('[data-live-text]')!;
     const useLive = root.querySelector<HTMLButtonElement>('[data-use-live]')!;
@@ -121,15 +122,22 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
     const read = async () => {
       const net = document.documentElement.dataset.net ?? root.dataset.defaultNet!;
       const r = rpc[net];
-      if (!r) return;
-      try {
-        const res = await fetch(r.url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] }) });
-        const price = BigInt((await res.json()).result);
-        if (price <= 0n) throw new Error('no price');
-        onChain = price;
-        liveText.textContent = t.live.replace('{network}', r.label).replace('{provider}', r.provider).replace('{time}', clock.format(new Date()));
-        setBase(price);
-      } catch {
+      if (!r || !r.points.length) return;
+      // Random order each time; the first that answers is used and named.
+      const order = [...r.points].sort(() => Math.random() - 0.5);
+      let got: { price: bigint; provider: string } | null = null;
+      for (const p of order) {
+        try {
+          const res = await fetch(p.url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] }) });
+          const price = BigInt((await res.json()).result);
+          if (price > 0n) { got = { price, provider: p.provider }; break; }
+        } catch { /* try the next access point */ }
+      }
+      if (got) {
+        onChain = got.price;
+        liveText.textContent = t.live.replace('{network}', r.label).replace('{provider}', got.provider).replace('{time}', clock.format(new Date()));
+        setBase(got.price);
+      } else {
         onChain = null;
         liveText.textContent = t.liveUnavailable;
         useLive.hidden = true;

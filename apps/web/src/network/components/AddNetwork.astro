@@ -3,7 +3,7 @@
 // Parameters come from networks.yaml; the RPC and explorer are the first evm and
 // explorer entries of providers.yaml for that network. One button per network,
 // filtered by <NetworkSwitch />.
-import { getDirectory, firstOf } from '../directory';
+import { getDirectory, allOf } from '../directory';
 import { langOf } from '../../kit/i18n';
 import { fill, ui } from '../../kit/dictionary';
 const lang = langOf(Astro);
@@ -12,19 +12,21 @@ const t = d.network;
 const i18n = JSON.stringify({ noWallet: t.noWallet, added: t.added, cancelled: t.cancelled, failed: t.addFailed });
 const { networks, providers } = await getDirectory();
 const buttons = networks.map((n) => {
-  const rpc = firstOf(providers, n.id, 'evm');
-  if (!rpc) throw new Error(`providers.yaml: network "${n.id}" needs at least one evm provider for the wallet button.`);
-  const explorer = firstOf(providers, n.id, 'explorer');
+  // Every public access point and explorer of the network: no provider is a default (the script
+  // shuffles them at each click, so none is always the wallet's first).
+  const rpcs = allOf(providers, n.id, 'evm').map((p) => p.url);
+  if (!rpcs.length) throw new Error(`providers.yaml: network "${n.id}" needs at least one evm provider for the wallet button.`);
+  const explorers = allOf(providers, n.id, 'explorer').map((p) => p.url);
   return {
     id: n.id,
     label: fill(t.add, { name: n.name }),
-    rpcHost: rpc.url.replace(/^https?:\/\//, ''),
+    access: fill(t.addAccess, { n: String(rpcs.length) }),
     params: {
       chainId: '0x' + n.evmChainId.toString(16),
       chainName: n.name,
       nativeCurrency: { name: n.unit.name, symbol: n.unit.symbol, decimals: n.unit.decimals },
-      rpcUrls: [rpc.url],
-      ...(explorer ? { blockExplorerUrls: [explorer.url] } : {}),
+      rpcUrls: rpcs,
+      ...(explorers.length ? { blockExplorerUrls: explorers } : {}),
     },
     chainIdDec: n.evmChainId,
   };
@@ -36,7 +38,7 @@ const buttons = networks.map((n) => {
     {buttons.map((b) => (
       <button type="button" class="add" data-for-net={b.id} data-params={JSON.stringify(b.params)}>
         <b>{b.label}</b>
-        <span>Chain ID {b.chainIdDec} · {b.rpcHost}</span>
+        <span>Chain ID {b.chainIdDec} · {b.access}</span>
       </button>
     ))}
   </div>
@@ -65,6 +67,10 @@ const buttons = networks.map((n) => {
         const eth = (window as unknown as { ethereum?: Eip1193 }).ethereum;
         if (!eth) { say(t.noWallet, true); return; }
         const params = JSON.parse(btn.dataset.params!);
+        // No fixed order: each click gives the wallet the access points and explorers shuffled.
+        const shuffle = (a?: string[]) => a && [...a].sort(() => Math.random() - 0.5);
+        params.rpcUrls = shuffle(params.rpcUrls);
+        if (params.blockExplorerUrls) params.blockExplorerUrls = shuffle(params.blockExplorerUrls);
         try {
           await eth.request({ method: 'wallet_addEthereumChain', params: [params] });
           say(t.added.replace('{name}', params.chainName));

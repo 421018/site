@@ -99,4 +99,6 @@ The services that appear on 42chain.org, such as RPC access points, explorers, f
 
 No service around the project is official, and none should be considered official. Appearing on the site does not make a service official, recommended or guaranteed, and does not imply any relationship with the contributors. All of them are equal: voluntary, community initiatives, each run by whoever offers it, under its own responsibility and its own terms.
 
+Each participant decides how it runs, names and shares its services. The contributors do not restrict, control or influence any of it, and a service's name, whatever it is, does not make it official. The site treats them all the same way: it lists them in alphabetical order, which is not a ranking, and the tools that read the network use all of them without preferring any.
+
 Links to external sites are offered only as reference. Each external site has its own terms.

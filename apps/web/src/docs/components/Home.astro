@@ -13,8 +13,8 @@ import { getMenu, homeAlternates, hrefOf } from '../../kit/site';
 import { langOf, resolveHref, withLang } from '../../kit/i18n';
 import { consoleIcons, areaIcons } from '../../art/areas';
 import { getConsoleText, SCREENS } from '../../console/text';
-import { ui } from '../../kit/dictionary';
-import { getDirectory, firstOf, pick } from '../../network/directory';
+import { fill, ui } from '../../kit/dictionary';
+import { getDirectory, allOf, pick } from '../../network/directory';
 import DocsHeader from './DocsHeader.astro';
 import Icon from '../../art/Icon.astro';
 
@@ -29,7 +29,8 @@ const svg = (d: string, size: number) => `<svg width="${size}" height="${size}" 
 const menu = await getMenu(lang, 'docs');
 const { networks, services, providers } = await getDirectory();
 const net = networks[0];
-const evm = firstOf(providers, net.id, 'evm');
+// No provider is shown as the network's address: how many there are, and the directory.
+const evmProviders = new Set(allOf(providers, net.id, 'evm').map((p) => p.provider)).size;
 const t = ui(lang).network;
 const evmLabel = pick(services.find((s) => s.id === 'evm')!.label, lang);
 const tones = ['mint', 'blue', 'amber', 'stone'];
@@ -122,7 +123,7 @@ const sectionIcons: Record<string, string> = { 'get-started': 'connect', protoco
         <dl>
           <dt>{t.evmChainId}</dt><dd><code>{net.evmChainId}</code></dd>
           <dt>{t.nativeChainId}</dt><dd><code>{net.chainId}</code></dd>
-          {evm && <><dt>{evmLabel}</dt><dd><code>{evm.url.replace(/^https?:\/\//, '')}</code></dd></>}
+          {evmProviders > 0 && <><dt>{evmLabel}</dt><dd><a href={go('/get-started/connect#providers')}>{fill(t.providersCount, { n: String(evmProviders) })}</a></dd></>}
         </dl>
       </div>
     </section>
