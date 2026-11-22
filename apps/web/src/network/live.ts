@@ -78,12 +78,11 @@ export function mountStream(root: HTMLElement, opts: { urls: string[]; chain: nu
   const locale = document.documentElement.lang || undefined;
   const num = new Intl.NumberFormat(locale);
   const one = new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-  const set = (key: string, text: string) => {
-    const v = root.querySelector<HTMLElement>(`[data-v="${key}"]`);
-    if (!v || v.textContent === text) return;
+  const set = (key: string, text: string) => root.querySelectorAll<HTMLElement>(`[data-v="${key}"]`).forEach((v) => {
+    if (v.textContent === text) return;
     v.textContent = text;
     v.classList.remove('tick'); void v.offsetWidth; v.classList.add('tick');
-  };
+  });
   let last = 0;
   let timers: number[] = [];
   let paced = false;

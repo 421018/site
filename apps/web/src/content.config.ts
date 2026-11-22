@@ -46,41 +46,46 @@ const home = defineCollection({
     .object({
       title: z.string().optional(),
       description: z.string().optional(),
-      /** The cover: kept as it is. */
-      hero: z.object({ eyebrow: z.string(), title: z.string(), lead: z.string(), primary: cta, secondary: cta }).strict(),
-      /** The network, now: live figures and the latest blocks, read from the browser. */
-      live: z
+      /** The cover: the two lines that stay, the lead, two actions and the network live along the bottom. */
+      hero: z
+        .object({
+          status: z.string(),
+          title: z.string(),
+          lead: z.string(),
+          primary: cta,
+          secondary: cta,
+          height: z.string(),
+          pace: z.string(),
+          online: z.string(),
+          finality: z.string(),
+          finalityValue: z.string(),
+          chain: z.string(),
+          /** "{n} s", "Bloque {n}", and the line shown when no provider answers. */
+          seconds: z.string(),
+          block: z.string(),
+          unavailable: z.string(),
+        })
+        .strict(),
+      /** What the network offers: six capabilities, each verifiable in the code. */
+      features: z
         .object({
           kicker: z.string(),
           title: z.string(),
           lead: z.string(),
-          height: z.string(),
-          pace: z.string(),
-          online: z.string(),
-          /** "{n} s": the time per block. */
-          seconds: z.string(),
-          /** Label of a block in the stream: "Bloque {n}". */
-          block: z.string(),
-          /** Shown until the first reading arrives, and when no provider answers. */
-          waiting: z.string(),
-          unavailable: z.string(),
+          items: z.array(z.object({ icon: z.enum(iconNames), title: z.string(), text: z.string(), href: z.string().optional() }).strict()).length(6),
+        })
+        .strict(),
+      /** How the protocol is built: its layers, top to bottom, and what connects it to other networks. */
+      stack: z
+        .object({
+          kicker: z.string(),
+          title: z.string(),
+          lead: z.string(),
+          layers: z.array(z.object({ label: z.string(), text: z.string(), tag: z.string() }).strict()).min(3).max(6),
+          side: z.object({ label: z.string(), text: z.string() }).strict(),
           link: cta,
         })
         .strict(),
-      /** The editorial: why now, and the central idea said once. */
-      editorial: z.object({ kicker: z.string(), title: z.string(), body: prose, statement: z.string(), aside: z.string().optional() }).strict(),
-      /** Infinite Drive as a mechanism, drawn. */
-      engine: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), art: engineArt, caption: z.string(), link: cta }).strict(),
-      /** What we believe: a few convictions (the project page has them all). */
-      beliefs: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), items: z.array(z.object({ title: z.string(), text: z.string() }).strict()).min(1).max(3), link: cta }).strict(),
-      /** A story from the blog, full width: the featured post. */
-      story: z.object({ kicker: z.string(), link: z.string() }).strict(),
-      /** Where we are going, told as a scene. */
-      vision: z.object({ kicker: z.string(), title: z.string(), body: prose, link: cta }).strict(),
-      /** What is being worked on now. */
-      work: z.object({ kicker: z.string(), title: z.string(), body: prose, link: cta }).strict(),
-      /** Latest entries from the blog; the posts come from the blog itself. */
-      blog: z.object({ kicker: z.string(), title: z.string(), link: cta }).strict(),
       /** Ways in: one card per kind of visitor. */
       paths: z
         .object({
@@ -89,7 +94,12 @@ const home = defineCollection({
           items: z.array(z.object({ icon: z.enum(iconNames), title: z.string(), text: z.string(), href: z.string() }).strict()).min(2).max(4),
         })
         .strict(),
-      name: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), link: cta }).strict(),
+      /** Principles: short, the full version lives on the project page. */
+      principles: z
+        .object({ kicker: z.string(), title: z.string(), items: z.array(z.object({ title: z.string(), text: z.string() }).strict()).min(2).max(4), link: cta })
+        .strict(),
+      /** A story from the blog: the featured post. */
+      story: z.object({ kicker: z.string(), link: z.string() }).strict(),
       closing: z.object({ title: z.string(), lead: z.string().optional(), primary: cta, secondary: cta }).strict(),
     })
     .strict(),

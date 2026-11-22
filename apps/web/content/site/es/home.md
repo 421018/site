@@ -1,131 +1,110 @@
 ---
-# Home page text. The layout lives in src/components/Home.astro.
-# A line break in a title (written with "|") is shown as a line break on the page.
-# Paragraphs are separated by a blank line. The central idea is said once, in
-# the editorial; the rest of the page lets it be felt without repeating it.
+# Home page text. The layout lives in src/site/components/Home.astro.
+# A line break in the hero title is shown as a line break on the page.
+# Every capability below must be verifiable in the protocol's code.
+
+description: "42 Chain es una red pública de cadena de bloques: compatible con la EVM, con finalidad en un bloque e interoperable por IBC. La impulsa Infinite Drive, un protocolo de código abierto."
 
 hero:
-  eyebrow: Protocolo abierto
+  status: Red principal · en vivo
   title: |
-    Don’t Panic
+    Don’t Panic.
     Esto es infraestructura.
-  lead: |
-    42 Chain es infraestructura de cadena de bloques.
-    Un registro distribuido improbabilístico.
-  primary: { label: Empezar a leer, href: "/#editorial" }
-  secondary: { label: Leer el blog, href: /blog }
-
-live:
-  kicker: La red, ahora
-  title: Mientras lees esto, la red sigue escribiendo.
-  lead: "Cada cuadro es un bloque recién cerrado, leído en este momento desde tu navegador a los proveedores públicos. El dorado es el más nuevo."
+  lead: "42 Chain es una red pública de cadena de bloques: compatible con la EVM, con finalidad en un bloque e interoperable por IBC. La impulsa Infinite Drive, un protocolo de código abierto que cualquiera puede verificar, usar y operar."
+  primary: { label: Empezar a construir, href: "docs:/get-started" }
+  secondary: { label: Ver la red en vivo, href: "console:/" }
   height: Último bloque
   pace: Tiempo por bloque
   online: Proveedores en línea
+  finality: Finalidad
+  finalityValue: 1 bloque
+  chain: Chain ID
   seconds: "{n} s"
   block: "Bloque {n}"
-  waiting: Escuchando a la red…
-  unavailable: Ahora mismo no llega respuesta de los proveedores públicos.
-  link: { label: Abrir la consola, href: "console:/status" }
+  unavailable: Ahora mismo no responden los proveedores públicos.
 
-editorial:
-  kicker: Editorial
-  title: Cada época construye su infraestructura invisible.
-  body: |
-    Los caminos, la electricidad e internet empezaron siendo ideas improbables, de esas que se discuten con escepticismo en reuniones largas. Terminaron siendo cosas en las que nadie piensa. Simplemente están, como el suelo, o el café de los lunes.
-
-    Hoy todo se conecta y casi nada se puede comprobar. Personas, organizaciones, máquinas y programas intercambian datos, valor y decisiones, y cada uno guarda su propia versión de lo ocurrido. Ponerlas de acuerdo es un deporte caro, lento y con muchos árbitros.
-  statement: "Infinite Drive es la nuestra: infraestructura común sobre la que cualquiera puede construir, y en la que cualquiera puede comprobar lo que pasa sin tener que confiar en los demás."
-  aside: "La sostenemos entre todos, y por eso no depende de una sola parte. No pide fe: pide, como mucho, un poco de curiosidad."
-
-engine:
-  kicker: El motor
-  title: En el centro hay un motor, no una oficina.
-  lead: "Infinite Drive sostiene la red y la mantiene conectada. Cada nodo que se suma, en un escritorio, en un aula o en un centro de datos, la hace un poco más fuerte, y todos comprueban lo mismo."
-  art:
-    name: Infinite Drive
-    kicker: El motor
-    aria: Infinite Drive en el centro, como un motor, conectando muchos nodos que forman una sola red
-    labels:
-      - una persona
-      - una comunidad
-      - una estudiante con un portátil viejo
-      - una institución
-      - un programa
-      - una cooperativa
-  caption: Cada punto es un nodo. Juntos forman 42 Chain.
-  link: { label: Cómo funciona el motor, href: "docs:/protocol" }
-
-beliefs:
-  kicker: En qué creemos
-  title: Dos textos de los noventa lo dijeron casi todo. A nosotros nos tocó escribir el código.
-  lead: "La Declaración de independencia del ciberespacio y el Manifiesto cypherpunk imaginaron un espacio al que se entra sin pedir permiso y donde la privacidad se construye en lugar de mendigarse. Treinta años después, seguimos pensando lo mismo, con algo más de café y bastantes menos módems."
+features:
+  kicker: La red
+  title: Lo que ya conoces, sobre una base que no se mueve.
+  lead: Las herramientas estándar de la industria, una confirmación definitiva por bloque y puentes nativos hacia otras redes. Todo en código abierto.
   items:
-    - title: Entrar sin pedir permiso.
-      text: Usar la red, construir sobre ella o tener tu propio nodo no requiere invitación. Ni siquiera la nuestra.
-    - title: Privacidad no es secreto.
-      text: Es decidir qué cuentas y a quién. Lo demás es asunto tuyo.
-    - title: La libertad se escribe en código.
-      text: Abierto, para que cualquiera lo lea, lo use y lo mejore. Las buenas intenciones compilan mal.
-  link: { label: "Todo lo que creemos, en el proyecto", href: "/about#beliefs" }
+    - icon: execution
+      title: Compatible con la EVM
+      text: Solidity, Hardhat, Foundry, ethers y MetaMask funcionan sin cambios. Si ya construyes para la EVM, ya construyes aquí.
+      href: "docs:/build/applications"
+    - icon: consensus
+      title: Finalidad en un bloque
+      text: CometBFT confirma cada bloque de forma definitiva. No hay reorganizaciones ni confirmaciones que esperar.
+      href: "docs:/protocol/consensus"
+    - icon: interop
+      title: Interoperable por IBC
+      text: Transferencias con otras redes por IBC, versiones 1 y 2, y contratos que comprueban datos de otra red con ICS02.
+      href: "docs:/protocol/interoperability"
+    - icon: security
+      title: Firmas de hoy
+      text: Passkeys y chips seguros (P-256) como firma, y EIP-7702 para que una aplicación pague las tarifas de sus usuarios.
+      href: "docs:/build/precompiles"
+    - icon: governance
+      title: Gobernanza en la cadena
+      text: Los cambios del protocolo se proponen, se votan y se aplican en la propia red, a la vista de todos.
+      href: "docs:/protocol/governance"
+    - icon: opensource
+      title: Código abierto
+      text: Todo el código del nodo, bajo Apache 2.0. Cualquiera puede leerlo, revisarlo y operar su propio nodo.
+      href: "docs:/open-source"
 
-story:
-  kicker: Una historia del blog
-  link: Leer la historia
-
-vision:
-  kicker: Hacia dónde vamos
-  title: Si mañana se apaga todo, que tu nodo siga encendido.
-  body: |
-    Imaginamos un día cualquiera en que los grandes servicios de los que todo depende deciden, todos a la vez, tomarse la tarde libre. En muchos escritorios, aulas y armarios, pequeños nodos siguen funcionando como si nada. Nadie entra en pánico. Alguien pone agua para el té.
-
-    Ese es el horizonte: una infraestructura estándar en lo grande y en lo pequeño, que inspira confianza no por quién la desarrolla, sino porque todos la sostenemos. Donde cualquiera, sea técnico, estudiante o simplemente curioso, puede tener su propio nodo y cuidar su parte de la malla.
-  link: { label: Cómo tener tu propio nodo, href: "docs:/operate/nodes" }
-
-work:
-  kicker: Mientras tanto, en la sala de máquinas
-  title: Trabajo poco glamuroso, muy necesario.
-  body: |
-    Pulimos, mejoramos y alineamos el código del nodo con la base sobre la que está construido, para que Infinite Drive sea estable y esté a la altura de los mejores estándares de la industria. Es el tipo de trabajo que solo se nota cuando falta.
-
-    Lo que se construya encima no lo decidimos nosotros: quienes construyen y quienes lo usan lo aprovechan libremente, para sus propios fines.
-  link: { label: "Lo último, en el blog", href: /blog }
-
-blog:
-  kicker: La biblioteca
-  title: Desde el blog.
-  link: { label: Historias y artículos, href: /blog }
+stack:
+  kicker: Infinite Drive
+  title: Un protocolo, cuatro capas, una sola red.
+  lead: Infinite Drive reúne piezas probadas de la industria en un motor coherente. Cada capa hace una cosa, y la hace a la vista.
+  layers:
+    - { label: Ejecución, text: "EVM y funciones propias de la red (precompilados)", tag: Contratos }
+    - { label: Módulos, text: "Cuentas, staking, gobernanza, tarifas y emisión", tag: Lógica }
+    - { label: Consenso, text: "CometBFT: acuerdo bizantino y finalidad en un bloque", tag: Acuerdo }
+    - { label: Red, text: "Nodos que se descubren y comparten bloques entre sí", tag: P2P }
+  side: { label: IBC, text: "Conexión con otras redes, versiones 1 y 2" }
+  link: { label: Cómo funciona el protocolo, href: "docs:/protocol" }
 
 paths:
-  kicker: Por dónde seguir
-  title: Cada quien llega por algo distinto.
+  kicker: Por dónde empezar
+  title: Elige tu camino.
   items:
-    - icon: connect
-      title: Entender
-      text: Qué es 42, en qué creemos y por qué se llama así.
-      href: /about
     - icon: build
-      title: Construir
-      text: Contratos y aplicaciones con las herramientas estándar de la EVM.
+      title: Desarrolladores
+      text: Despliega contratos y aplicaciones con las herramientas estándar de la EVM.
       href: "docs:/build"
     - icon: node
-      title: Tener un nodo
-      text: Suma tu máquina a la red y cuida tu parte de la malla.
+      title: Operadores de nodos
+      text: Suma tu máquina a la red y ayuda a sostenerla.
       href: "docs:/operate/nodes"
-    - icon: consensus
+    - icon: integrate
+      title: Sistemas e instituciones
+      text: Conecta lo que ya tienes y comprueba datos sin intermediarios.
+      href: "docs:/integrate"
+    - icon: connect
       title: Seguir la red
-      text: Estado en vivo, eventos y conexiones, en la consola.
+      text: Estado en vivo, parámetros y herramientas, en la Consola.
       href: "console:/"
 
-name:
-  kicker: El nombre
-  title: ¿Por qué 42?
-  lead: "En una novela muy seria sobre el universo, la respuesta a la gran pregunta resultó ser 42, y las naves cruzaban la galaxia gracias a un motor de improbabilidad infinita. Nos quedamos con el número, con la idea del motor y con la sana costumbre de no tomarnos demasiado en serio."
-  link: { label: La historia del nombre, href: /name }
+principles:
+  kicker: Principios
+  title: Lo que no se negocia.
+  items:
+    - title: Sin pedir permiso.
+      text: Usar la red, construir sobre ella u operar un nodo no requiere invitación de nadie.
+    - title: Comprobable, no creíble.
+      text: Cualquiera puede verificar lo que pasa en la red sin confiar en quien se lo cuenta.
+    - title: Abierto por defecto.
+      text: El código, las reglas y los cambios están a la vista, y cualquiera puede proponer mejoras.
+  link: { label: El proyecto, href: /about }
+
+story:
+  kicker: Desde el blog
+  link: Leer la historia
 
 closing:
-  title: Lo improbable, en marcha.
-  lead: Sin pedir permiso. Sin pedir fe. Con una toalla cerca, por si acaso.
-  primary: { label: Conocer el proyecto, href: /about }
-  secondary: { label: Tener tu propio nodo, href: "docs:/operate/nodes" }
+  title: Don’t Panic. Empieza a construir.
+  lead: La documentación te lleva de cero a tu primer contrato. La Consola te muestra la red en vivo.
+  primary: { label: Ir a la documentación, href: "docs:/get-started" }
+  secondary: { label: Abrir la Consola, href: "console:/" }
 ---

@@ -1,0 +1,61 @@
+---
+/**
+ * The drive field: the brand's signature light. Streams of light gather from
+ * the whole height of the cover into one rail near the bottom (where the live
+ * chain runs), over a faint perspective floor. Pulses travel along the streams
+ * towards the rail. Decorative; stops with prefers-reduced-motion.
+ */
+const W = 1440, H = 760, RAIL = 430;
+const streams = Array.from({ length: 15 }, (_, i) => {
+  const t = i / 14;
+  const y0 = 40 + t * 680;
+  const spread = (t - 0.5) * 2; // -1 … 1
+  const d = `M-40 ${y0.toFixed(0)} C ${380 + spread * 40} ${y0.toFixed(0)}, ${620} ${(RAIL + spread * 30).toFixed(0)}, ${980} ${(RAIL + spread * 10).toFixed(0)} S ${W + 40} ${(RAIL + spread * 2).toFixed(0)}, ${W + 60} ${(RAIL + spread * 2).toFixed(0)}`;
+  return { d, o: 0.22 + (1 - Math.abs(spread)) * 0.5, dur: 5 + ((i * 7) % 5) * 1.1, delay: -((i * 13) % 9) * 0.8, w: 1 + (1 - Math.abs(spread)) * 0.8 };
+});
+const floor = Array.from({ length: 13 }, (_, i) => -720 + i * 240);
+const rows = [0, 14, 34, 62, 100, 150, 210];
+---
+<svg class="drive-field" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="df-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5BF0C8" stop-opacity="0" />
+      <stop offset=".35" stop-color="#5BF0C8" />
+      <stop offset=".7" stop-color="#7C9CFF" />
+      <stop offset="1" stop-color="#F2C879" />
+    </linearGradient>
+    <radialGradient id="df-glow" cx="72%" cy="57%" r="50%">
+      <stop offset="0" stop-color="#5BF0C8" stop-opacity=".22" />
+      <stop offset=".5" stop-color="#7C9CFF" stop-opacity=".08" />
+      <stop offset="1" stop-color="#04060B" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="df-floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5BF0C8" stop-opacity=".18" />
+      <stop offset="1" stop-color="#5BF0C8" stop-opacity="0" />
+    </linearGradient>
+    <filter id="df-blur" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="3" /></filter>
+  </defs>
+  <rect width={W} height={H} fill="url(#df-glow)" class="df-glow" />
+  <g stroke="url(#df-floor)" stroke-width="1" fill="none">
+    {floor.map((x) => <line x1={W * 0.68} y1={RAIL} x2={W * 0.68 + x * 2.2} y2={H} />)}
+    {rows.map((r) => <line x1="0" x2={W} y1={RAIL + r} y2={RAIL + r} />)}
+  </g>
+  <g fill="none" stroke-linecap="round">
+    {streams.map((s) => <path d={s.d} stroke="url(#df-line)" stroke-width={s.w} opacity={s.o} />)}
+  </g>
+  <g fill="none" stroke-linecap="round" class="df-pulses">
+    {streams.map((s, i) => i % 2 === 0 && (
+      <path d={s.d} pathLength="1000" stroke="url(#df-line)" stroke-width={s.w + 2.4} filter="url(#df-blur)" class="df-pulse" style={`animation-duration:${s.dur}s;animation-delay:${s.delay}s`} />
+    ))}
+    {streams.map((s, i) => i % 2 === 0 && (
+      <path d={s.d} pathLength="1000" stroke="#EFFFFA" stroke-width={s.w * 0.9} class="df-pulse" style={`animation-duration:${s.dur}s;animation-delay:${s.delay}s`} />
+    ))}
+  </g>
+</svg>
+<style>
+  .drive-field { display: block; width: 100%; height: 100%; }
+  .df-pulse { stroke-dasharray: 70 930; stroke-dashoffset: 1000; animation: df-run linear infinite; }
+  @keyframes df-run { to { stroke-dashoffset: 0; } }
+  .df-glow { animation: df-breathe 10s ease-in-out infinite alternate; }
+  @keyframes df-breathe { from { opacity: .7; } to { opacity: 1; } }
+</style>

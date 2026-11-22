@@ -22,7 +22,7 @@
   --card: #0B1118;
   --link: #5BF0C8;
   --amber: #F2C879;      /* the star accent */
-  --serif: var(--font-newsreader);
+  --serif: var(--font);   /* one modern sans; the serif is kept for stories only */
   color-scheme: dark;
 }
 /* ---------- links that leave the site ---------- */
@@ -57,7 +57,7 @@
 /* Interiors: a slim night header, then everything on paper. */
 .pc-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; margin: 0; font-size: 13.5px; color: var(--muted); }
 /* Stories read like a book: centred serif title, italic lead, serif body with a drop cap, no date. */
-.story .prose { font-family: var(--serif); font-size: 21px; line-height: 1.72; color: var(--ink); }
+.story .prose { font-family: var(--font-newsreader); font-size: 21px; line-height: 1.72; color: var(--ink); }
 .story .prose > p:first-of-type::first-letter { float: left; font-size: 4.2em; line-height: .8; padding: 10px 12px 0 0; color: var(--amber); font-weight: 500; }
 .story .prose h2 { font-family: var(--font); }
 .story .lay main { max-width: 680px; }
@@ -98,7 +98,7 @@
 .cover-k a { color: inherit; text-decoration: none; }
 .cover-k a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .cover-k span[aria-hidden] { color: var(--fg-4); }
-.cover-head h1 { margin: 0; font-family: var(--serif); font-size: clamp(44px, 6vw, 78px); font-weight: 500; line-height: 1.02; letter-spacing: -0.015em; }
+.cover-head h1 { margin: 0; font-family: var(--font); font-size: clamp(42px, 6vw, 76px); font-weight: 600; line-height: 1; letter-spacing: -0.05em; }
 .cover-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 28px; font-size: 14px; color: var(--fg-3); }
 .cover-meta a { color: var(--fg-2); }
 .cover-meta .pill { color: var(--star); border-color: color-mix(in srgb, var(--star) 40%, transparent); }

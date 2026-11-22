@@ -1,131 +1,110 @@
 ---
-# Home page text (English). The layout lives in src/components/Home.astro.
-# A line break in a title (written with "|") is shown as a line break on the page.
-# Paragraphs are separated by a blank line. The central idea is said once, in
-# the editorial; the rest of the page lets it be felt without repeating it.
+# Home page text (English). The layout lives in src/site/components/Home.astro.
+# A line break in the hero title is shown as a line break on the page.
+# Every capability below must be verifiable in the protocol's code.
+
+description: "42 Chain is a public blockchain network: EVM compatible, with single-block finality and interoperable through IBC. It runs on Infinite Drive, an open-source protocol."
 
 hero:
-  eyebrow: Open protocol
+  status: Mainnet · live
   title: |
-    Don’t Panic
+    Don’t Panic.
     This is infrastructure.
-  lead: |
-    42 Chain is blockchain infrastructure.
-    An improbabilistic distributed ledger.
-  primary: { label: Start reading, href: "/#editorial" }
-  secondary: { label: Read the blog, href: /blog }
-
-live:
-  kicker: The network, now
-  title: While you read this, the network keeps writing.
-  lead: "Each square is a block just closed, read right now from your browser to the public providers. The gold one is the newest."
+  lead: "42 Chain is a public blockchain network: EVM compatible, with single-block finality and interoperable through IBC. It runs on Infinite Drive, an open-source protocol anyone can verify, use and operate."
+  primary: { label: Start building, href: "docs:/get-started" }
+  secondary: { label: See the network live, href: "console:/" }
   height: Latest block
   pace: Time per block
   online: Providers online
+  finality: Finality
+  finalityValue: 1 block
+  chain: Chain ID
   seconds: "{n} s"
   block: "Block {n}"
-  waiting: Listening to the network…
   unavailable: The public providers are not answering right now.
-  link: { label: Open the console, href: "console:/status" }
 
-editorial:
-  kicker: Editorial
-  title: Every age builds its invisible infrastructure.
-  body: |
-    Roads, electricity and the internet all began as improbable ideas, the kind people discuss sceptically in long meetings. They ended up as things nobody thinks about. They are simply there, like the floor, or Monday's coffee.
-
-    Today everything is connected and almost nothing can be checked. People, organizations, machines and programs exchange data, value and decisions, and each keeps its own version of what happened. Getting them to agree is an expensive, slow sport with a great many referees.
-  statement: "Infinite Drive is ours: common infrastructure that anyone can build on, and where anyone can check what happens without having to trust anyone else."
-  aside: "We keep it running together, so it does not depend on any single party. It does not ask for faith: at most, for a little curiosity."
-
-engine:
-  kicker: The engine
-  title: At the centre there is an engine, not an office.
-  lead: "Infinite Drive holds the network up and keeps it connected. Every node that joins, on a desk, in a classroom or in a data centre, makes it a little stronger, and they all check the same thing."
-  art:
-    name: Infinite Drive
-    kicker: The engine
-    aria: Infinite Drive at the centre, like an engine, connecting many nodes that form a single network
-    labels:
-      - a person
-      - a community
-      - a student with an old laptop
-      - an institution
-      - a program
-      - a cooperative
-  caption: Every dot is a node. Together they make 42 Chain.
-  link: { label: How the engine works, href: "docs:/protocol" }
-
-beliefs:
-  kicker: What we believe
-  title: Two texts from the nineties said almost everything. Writing the code fell to us.
-  lead: "A Declaration of the Independence of Cyberspace and A Cypherpunk's Manifesto imagined a space you enter without asking permission, where privacy is built rather than begged for. Thirty years later we still think the same, with rather more coffee and far fewer modems."
+features:
+  kicker: The network
+  title: What you already know, on a base that does not move.
+  lead: The industry's standard tools, one final confirmation per block and native bridges to other networks. All of it open source.
   items:
-    - title: Come in without asking.
-      text: Using the network, building on it or running your own node needs no invitation. Not even ours.
-    - title: Privacy is not secrecy.
-      text: It is deciding what you tell, and to whom. The rest is your business.
-    - title: Freedom is written in code.
-      text: Open, so anyone can read it, use it and improve it. Good intentions compile badly.
-  link: { label: "Everything we believe, in the project", href: "/about#beliefs" }
+    - icon: execution
+      title: EVM compatible
+      text: Solidity, Hardhat, Foundry, ethers and MetaMask work unchanged. If you already build for the EVM, you already build here.
+      href: "docs:/build/applications"
+    - icon: consensus
+      title: Single-block finality
+      text: CometBFT confirms every block for good. No reorganisations, no confirmations to wait for.
+      href: "docs:/protocol/consensus"
+    - icon: interop
+      title: Interoperable through IBC
+      text: Transfers with other networks over IBC, versions 1 and 2, and contracts that check another network's data with ICS02.
+      href: "docs:/protocol/interoperability"
+    - icon: security
+      title: Today's signatures
+      text: Passkeys and secure chips (P-256) as signatures, and EIP-7702 so an application can pay its users' fees.
+      href: "docs:/build/precompiles"
+    - icon: governance
+      title: On-chain governance
+      text: Protocol changes are proposed, voted and applied on the network itself, in plain sight.
+      href: "docs:/protocol/governance"
+    - icon: opensource
+      title: Open source
+      text: All of the node's code, under Apache 2.0. Anyone can read it, review it and run their own node.
+      href: "docs:/open-source"
 
-story:
-  kicker: A story from the blog
-  link: Read the story
-
-vision:
-  kicker: Where we are going
-  title: If everything switches off tomorrow, may your node stay on.
-  body: |
-    We imagine an ordinary day when the big services everything depends on all decide, at once, to take the afternoon off. On many desks, in classrooms and in cupboards, small nodes carry on as if nothing had happened. Nobody panics. Somebody puts the kettle on.
-
-    That is the horizon: standard infrastructure, for big things and small, trusted not because of who develops it but because we all keep it running. Where anyone, technical, student or simply curious, can run their own node and look after their part of the mesh.
-  link: { label: How to run your own node, href: "docs:/operate/nodes" }
-
-work:
-  kicker: Meanwhile, in the engine room
-  title: Unglamorous work, very necessary.
-  body: |
-    We polish, improve and align the node's code with the base it is built on, so that Infinite Drive stays stable and meets the highest standards of the industry. It is the kind of work you only notice when it is missing.
-
-    What gets built on top is not ours to decide: builders and users make use of it freely, for their own purposes.
-  link: { label: "The latest, on the blog", href: /blog }
-
-blog:
-  kicker: The library
-  title: From the blog.
-  link: { label: Stories and articles, href: /blog }
+stack:
+  kicker: Infinite Drive
+  title: One protocol, four layers, one network.
+  lead: Infinite Drive brings proven industry pieces together into one coherent engine. Each layer does one thing, and does it in plain sight.
+  layers:
+    - { label: Execution, text: "The EVM and the network's own functions (precompiles)", tag: Contracts }
+    - { label: Modules, text: "Accounts, staking, governance, fees and issuance", tag: Logic }
+    - { label: Consensus, text: "CometBFT: Byzantine agreement and single-block finality", tag: Agreement }
+    - { label: Network, text: "Nodes that find each other and share blocks", tag: P2P }
+  side: { label: IBC, text: "Connection with other networks, versions 1 and 2" }
+  link: { label: How the protocol works, href: "docs:/protocol" }
 
 paths:
-  kicker: Where to next
-  title: Everyone arrives looking for something different.
+  kicker: Where to start
+  title: Pick your path.
   items:
-    - icon: connect
-      title: Understand
-      text: What 42 is, what we believe and why it has that name.
-      href: /about
     - icon: build
-      title: Build
-      text: Contracts and applications with the standard EVM tools.
+      title: Developers
+      text: Deploy contracts and applications with the standard EVM tools.
       href: "docs:/build"
     - icon: node
-      title: Run a node
-      text: Add your machine to the network and look after your part of the mesh.
+      title: Node operators
+      text: Add your machine to the network and help sustain it.
       href: "docs:/operate/nodes"
-    - icon: consensus
+    - icon: integrate
+      title: Systems and institutions
+      text: Connect what you already have and check data without intermediaries.
+      href: "docs:/integrate"
+    - icon: connect
       title: Follow the network
-      text: Live status, events and connections, in the console.
+      text: Live status, parameters and tools, in the console.
       href: "console:/"
 
-name:
-  kicker: The name
-  title: Why 42?
-  lead: "In a very serious novel about the universe, the answer to the great question turned out to be 42, and ships crossed the galaxy thanks to an infinite improbability drive. We kept the number, the idea of the engine and the healthy habit of not taking ourselves too seriously."
-  link: { label: The story of the name, href: /name }
+principles:
+  kicker: Principles
+  title: What is not up for negotiation.
+  items:
+    - title: No permission needed.
+      text: Using the network, building on it or running a node needs nobody's invitation.
+    - title: Verifiable, not believable.
+      text: Anyone can check what happens on the network without trusting whoever tells them.
+    - title: Open by default.
+      text: The code, the rules and the changes are in plain sight, and anyone can propose improvements.
+  link: { label: The project, href: /about }
+
+story:
+  kicker: From the blog
+  link: Read the story
 
 closing:
-  title: The improbable, under way.
-  lead: Without asking permission. Without asking for faith. With a towel nearby, just in case.
-  primary: { label: Meet the project, href: /about }
-  secondary: { label: Run your own node, href: "docs:/operate/nodes" }
+  title: Don’t Panic. Start building.
+  lead: The documentation takes you from zero to your first contract. The console shows you the network live.
+  primary: { label: Go to the documentation, href: "docs:/get-started" }
+  secondary: { label: Open the console, href: "console:/" }
 ---
