@@ -214,20 +214,20 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .megatype { container-type: inline-size; user-select: none; }
 .megatype-note { display: block; margin: 0 0 10px; font-size: clamp(15px, 1.35vw, 20px); font-weight: 400; letter-spacing: 0; line-height: 1.3; color: #2A323C; }
 /* Sized from the phrase width so the outline fills the footer column. On a narrow column the two words stack and grow to that same edge. */
-/* DON'T PANIC: light on the night, like the rest of the identity. At rest, a fine outline with
-   the brand's gradient flowing faintly inside. Under the pointer, a lamp follows it and lights
+/* DON'T PANIC: light on the night, like the rest of the identity. At rest, a quiet outline with
+   the brand's gradient barely there. Under the pointer, a lamp follows it and lights
    the letters it touches at full strength (--mx, --my from the motion script), and a soft glow
    rises from below. */
-@property --mt { syntax: '<number>'; inherits: false; initial-value: .3; }
+@property --mt { syntax: '<number>'; inherits: false; initial-value: .06; }
 .megatype { position: relative; isolation: isolate; }
 .megatype::before { content: ""; position: absolute; left: 10%; right: 10%; bottom: -40%; height: 90%; z-index: -1; background: radial-gradient(closest-side, rgba(91,240,200,.20), rgba(124,156,255,.10) 55%, transparent); opacity: 0; transform: translateY(12%); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); pointer-events: none; }
 .megatype:hover::before { opacity: 1; transform: none; }
 .megatype-word { position: relative; display: block; white-space: nowrap; font-size: 17.8cqi; font-weight: 600; letter-spacing: -0.06em; line-height: .85;
-  --mt: .3; transition: --mt .8s cubic-bezier(.16,1,.3,1);
+  --mt: .06; transition: --mt .8s cubic-bezier(.16,1,.3,1), -webkit-text-stroke-color .8s;
   background-image: linear-gradient(100deg, color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 0%, color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 25%, color-mix(in srgb, #F2C879 calc(var(--mt) * 100%), transparent) 50%, color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 75%, color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 100%);
   background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px rgba(91,240,200,.3); animation: mtflow 14s linear infinite; }
-.megatype:hover .megatype-word { --mt: .42; }
+  -webkit-text-stroke: 1px rgba(255,255,255,.09); animation: mtflow 14s linear infinite; }
+.megatype:hover .megatype-word { --mt: .38; -webkit-text-stroke-color: rgba(91,240,200,.3); }
 /* the lamp: the same words at full strength, visible only around the pointer */
 .megatype-word::after { content: attr(data-text); position: absolute; inset: 0; white-space: nowrap;
   background-image: linear-gradient(100deg, #5BF0C8 0%, #7C9CFF 25%, #F2C879 50%, #7C9CFF 75%, #5BF0C8 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0;
