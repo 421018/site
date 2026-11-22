@@ -35,7 +35,7 @@ const canonical = new URL(canonicalHref ?? Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     {others.length > 1 && others.map(([l, href]) => <link rel="alternate" hreflang={l} href={new URL(href, Astro.site)} />)}
     {others.length > 1 && alternates[defaultLang] && <link rel="alternate" hreflang="x-default" href={new URL(alternates[defaultLang], Astro.site)} />}
-    {product === 'docs' && <script is:inline>(function(){var d=matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem('42docs-theme')}catch(e){}if(t?t==='dark':d)document.documentElement.dataset.theme='dark'})()</script>}
+    {product === 'docs' && <script is:inline>(function(){var d=matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem('42docs-theme')}catch(e){}if(t?t==='dark':d)document.documentElement.dataset.theme='dark';try{if(localStorage.getItem('42docs-notice')==='off')document.documentElement.dataset.notice='off'}catch(e){}})()</script>}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />

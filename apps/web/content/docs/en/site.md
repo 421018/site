@@ -16,7 +16,8 @@ header:
   languageNav: Language
   notice: # shown under the header on every page while the documentation is being written
     label: Documentation under construction.
-    text: "We are writing and integrating this documentation: many pages are incomplete, some guides do not exist yet and some values may change. Check critical values before using them on the mainnet."
+    text: "Some pages are incomplete and some values may change. Check critical values before using them on the mainnet."
+    close: Dismiss notice
   themeDark: Switch to dark theme
   themeLight: Switch to light theme
   search:

@@ -53,7 +53,7 @@
 .dh { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--rule); }
 .dh-top { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 20px; }
 .dh-brand { display: flex; align-items: center; gap: 10px; color: var(--head); text-decoration: none; font-weight: 500; }
-.dh-mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: var(--head); color: var(--bg); font-family: var(--mono); font-size: 12px; font-weight: 600; }
+.dh-mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; border: 1.5px solid var(--head); color: var(--head); font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -0.04em; }
 .dh-search { flex: 1 1 200px; min-width: 0; max-width: 460px; }
 .dh .dh-search .sbtn { width: 100%; justify-content: flex-start; min-height: 40px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 10px; background: var(--soft); color: var(--muted); }
 .dh .dh-search .sbtn:hover { color: var(--head); background: var(--soft); border-color: var(--rule2); }
@@ -104,9 +104,15 @@
 /* notice under the header (e.g. under construction): visible on every page */
 .dh-notice { background: #FBEFD3; border-top: 1px solid #EBD29A; border-bottom: 1px solid #EBD29A; color: #5C4410; }
 [data-theme="dark"] .dh-notice { background: #2A2210; border-color: #4A3B17; color: #F2D58E; }
-.dh-notice-in { max-width: 1440px; margin: 0 auto; padding: 10px clamp(16px, 3vw, 32px); display: flex; gap: 12px; align-items: flex-start; }
-.dh-notice-in svg { flex: none; margin-top: 2px; }
-.dh-notice p { margin: 0; font-size: 14px; line-height: 1.55; }
+.dh-notice-in { max-width: 1440px; margin: 0 auto; padding: 8px clamp(16px, 3vw, 32px); display: flex; gap: 12px; align-items: center; }
+[data-notice="off"] .dh-notice { display: none; }
+.dh-notice p { flex: 1; min-width: 0; }
+.dh-notice-x { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: transparent; color: inherit; cursor: pointer; }
+.dh-notice-x:hover { background: rgba(0,0,0,.08); }
+[data-theme="dark"] .dh-notice-x:hover { background: rgba(255,255,255,.08); }
+@media (max-width: 760px) { .dh-notice p span { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; } }
+.dh-notice-in > svg { flex: none; }
+.dh-notice p { margin: 0; font-size: 13.5px; line-height: 1.5; }
 .dh-notice b { font-weight: 600; }
 
 /* the language menu and the buttons to the site, in the documentation's light (and dark) theme */

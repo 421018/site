@@ -1,63 +1,65 @@
 ---
 title: "Frequently asked questions"
-summary: "The questions most often asked about 42 as a project, with short answers."
+summary: "Short answers about 42 Chain, Infinite Drive and this site."
 section:
   label: Questions
   weight: 3
-  accent: "#FFB547"
-  ink: "#9A5B00"
 ---
 
-## 42 {#about}
+## The network {#about}
 
 :::faq[What is 42 Chain?]
-An open-source infrastructure project: a ledger that many parties keep at once, with rules that apply the same way to all of them and results that anyone can check. [What 42 is](/about#what-is)
+A public blockchain network, EVM compatible, with single-block finality and interoperable through IBC. It runs on Infinite Drive, an open-source protocol. [The project](/about#what-is)
 :::
 
-:::faq[What is 42 Chain for?]
-So that several people can share a ledger without any one of them having to hold it alone: a certificate that checks itself, the path of a product, the history of a repair and an agreement that no single person decides. If one person both produces and looks up the data, a traditional database is simpler. [Blog](/blog)
+:::faq[How do Infinite Drive and 42 Chain relate?]
+Infinite Drive is the protocol: the rules and the node software. 42 Chain is the public network that runs on it. On the chain, its operational name is `infinite`.
 :::
 
 :::faq[Do I need permission to use the network?]
-No. Anyone can use the network, publish applications or run a node without registering or asking for approval.
+No. Anyone can use the network, deploy contracts or run a node without registering or asking for approval.
 :::
 
 :::faq[What is Improbability?]
-It is the unit with which the ledger is moved and backed. Its symbol is 42. It pays for the work of writing to the ledger and backs those who maintain it. The smallest fraction is called a drop; a whole unit, colloquially, a cup. [Why 42](/name)
+The network's native unit, with the symbol 42. It pays fees and backs the validators. Its smallest fraction is the drop (10⁻¹⁸); one whole unit is known, colloquially, as a cup. [Fees and issuance](docs:/protocol/fees)
 :::
 
-## The project {#project}
+## Build and operate {#project}
+
+:::faq[Can I use my EVM tools?]
+Yes. Solidity, Hardhat, Foundry, ethers and wallets such as MetaMask work with the network. All you need is the chain ID and an RPC address. [Connect](docs:/get-started/connect)
+:::
+
+:::faq[How long until a transaction is final?]
+One block. CometBFT confirms every block for good, with no reorganisations. The time per block is shown live in the [console](console:/status).
+:::
 
 :::faq[Who develops the protocol?]
-Contributors who work in the open, in public repositories. Anyone can join. [Contribute](docs:/open-source)
+Contributors working in the open, in public repositories. Anyone can join. [Contribute](docs:/open-source)
 :::
 
-:::faq[Is there a roadmap?]
-Not one with an end date. The protocol is maintained and improved continuously, and each change is decided by on-chain governance. [Ongoing development](/about#work)
+:::faq[How do the rules change?]
+Through on-chain governance: changes are proposed, tested on the testnet, voted on the network and only then reach the mainnet. [Governance](docs:/protocol/governance)
 :::
 
 :::faq[Where do I ask a technical question?]
-In the public repository's discussion space. It is open to anyone and has no cost. [Technical questions](docs:/open-source#questions)
+In the public repository's discussions. They are open to anyone. [Technical questions](docs:/open-source#questions)
 :::
 
-:::faq[Will someone from the project ask me for my keys?]
-No. No channel of the project will ask you for your recovery phrase or your private keys. Verify any announcement against the [project's channels](/channels).
-:::
+## Security and this site {#legal}
 
-## Legal and use of the site {#legal}
+:::faq[Will anyone from the project ask for my keys?]
+Never. No project channel will ask for your recovery phrase or your private keys. Check any announcement against the [official channels](/channels).
+:::
 
 :::faq[Does this site sell or recommend the native unit?]
-No. This site does not offer, sell or recommend the native unit or any other asset. It does not recommend platforms or intermediaries either.
-:::
-
-:::faq[Who maintains this site?]
-This site and the documentation are maintained by contributors to Protocol 42. The code is open: anyone can review it, propose changes or contribute. [About this site](/legal#independence)
+No. This site does not offer, sell or recommend the native unit or any other asset, nor platforms or intermediaries.
 :::
 
 :::faq[What data does this site collect?]
-None on its own. The site has no forms, uses no cookies or analytics, and serves all of its resources from the site itself. The hosting provider processes technical data of each visit, such as the IP address, in order to deliver the pages. [Privacy](/legal#privacy)
+None on its own: it has no forms, cookies or analytics. The console queries the public RPC providers directly from your browser. The host processes technical data of each visit, such as the IP address, to deliver the pages. [Privacy](/legal#privacy)
 :::
 
 :::aside
-Have a technical question? [Technical questions →](docs:/get-started/faq)
+Looking for something more technical? [Technical questions →](docs:/get-started/faq)
 :::

@@ -5,8 +5,6 @@ section:
   label: The name
   weight: 8
   menu: false # linked from the home and the project page
-  accent: "#F2C879"
-  ink: "#8A5A00"
 ---
 
 ## An exact answer {#answer}

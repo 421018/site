@@ -169,6 +169,8 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .rtoc a[aria-current], .dl-toc a[aria-current] { color: var(--link); box-shadow: inset 2px 0 0 var(--link); }
 .dl-toc a { padding-left: 10px; margin-left: -10px; }
 @media (max-width: 1180px) { .rtoc { display: none; } }
+/* the brand's light: a thin line of the drive gradient under every header (site, docs, console) */
+.hbar::after, .dh::after, .cx-top::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, #5BF0C8 25%, #7C9CFF 55%, #F2C879 80%, transparent); opacity: .45; pointer-events: none; }
 /* ---------- live block stream (network/live.ts mountStream): each block a page joining the chain, the newest in gold ---------- */
 .lb-stream{position:relative;margin:56px 0 0;padding:18px 0 8px;-webkit-mask:linear-gradient(90deg,transparent,#000 22%);mask:linear-gradient(90deg,transparent,#000 22%)}
 .lb-blocks{display:flex;justify-content:flex-end;align-items:flex-end;gap:14px;min-height:78px;margin:0;padding:0 4px 0 0;list-style:none}

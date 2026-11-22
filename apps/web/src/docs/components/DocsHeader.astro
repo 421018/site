@@ -39,7 +39,8 @@ const links = text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) =
     <div class="dh-notice" role="note">
       <div class="dh-notice-in">
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L22 20 H2 Z" /><path d="M12 10 V14 M12 17.5 V17.6" /></svg>
-        <p><b>{text.header.notice.label}</b> {text.header.notice.text}</p>
+        <p><b>{text.header.notice.label}</b> <span>{text.header.notice.text}</span></p>
+        <button type="button" class="dh-notice-x" data-notice-close aria-label={text.header.notice.close ?? '×'}><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3 L11 11 M11 3 L3 11" stroke="currentColor" stroke-width="1.6" /></svg></button>
       </div>
     </div>
   )}
@@ -62,6 +63,10 @@ const links = text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) =
   let saved: string | null = null;
   try { saved = localStorage.getItem(KEY); } catch { /* storage unavailable */ }
   apply(saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches);
+  document.querySelector('[data-notice-close]')?.addEventListener('click', () => {
+    root.dataset.notice = 'off';
+    try { localStorage.setItem('42docs-notice', 'off'); } catch { /* hidden for this page only */ }
+  });
   button?.addEventListener('click', () => {
     const dark = root.dataset.theme !== 'dark';
     apply(dark);

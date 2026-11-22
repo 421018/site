@@ -1,63 +1,65 @@
 ---
 title: "Preguntas frecuentes"
-summary: "Las preguntas que más se hacen sobre 42 como proyecto, con respuestas cortas."
+summary: "Respuestas cortas sobre 42 Chain, Infinite Drive y este sitio."
 section:
   label: Preguntas
   weight: 3
-  accent: "#FFB547"
-  ink: "#9A5B00"
 ---
 
-## 42 {#about}
+## La red {#about}
 
 :::faq[¿Qué es 42 Chain?]
-Un proyecto de infraestructura de código abierto: un registro que muchas partes guardan a la vez, con reglas que valen igual para todas y resultados que cualquiera puede comprobar. [Qué es 42](/about#what-is)
+Una red pública de cadena de bloques, compatible con la EVM, con finalidad en un bloque e interoperable por IBC. Funciona con Infinite Drive, un protocolo de código abierto. [El proyecto](/about#what-is)
 :::
 
-:::faq[¿Para qué sirve 42 Chain?]
-Para que varias personas compartan un registro sin que ninguna tenga que custodiarlo sola: un certificado que se comprueba solo, el recorrido de un producto, el historial de una reparación y un acuerdo que no decide una sola persona. Si una sola persona genera y consulta los datos, una base de datos tradicional es más sencilla. [Blog](/blog)
+:::faq[¿Qué relación hay entre Infinite Drive y 42 Chain?]
+Infinite Drive es el protocolo: las reglas y el software del nodo. 42 Chain es la red pública que funciona con él. En la cadena, su nombre operativo es `infinite`.
 :::
 
 :::faq[¿Necesito permiso para usar la red?]
-No. Cualquiera puede usar la red, publicar aplicaciones u operar un nodo sin registrarse ni pedir aprobación.
+No. Cualquiera puede usar la red, desplegar contratos u operar un nodo sin registrarse ni pedir aprobación.
 :::
 
 :::faq[¿Qué es Improbability?]
-Es la unidad con la que se mueve y se respalda el registro. Su símbolo es 42. Con ella se paga el trabajo de escribir en el registro y se respalda a quienes lo mantienen. La fracción más pequeña se llama drop; una unidad completa, de forma coloquial, cup. [Por qué 42](/name)
+La unidad nativa de la red, con el símbolo 42. Con ella se pagan las tarifas y se respalda a los validadores. Su fracción más pequeña es el drop (10⁻¹⁸); una unidad completa se conoce, de forma coloquial, como cup. [Tarifas y emisión](docs:/protocol/fees)
 :::
 
-## El proyecto {#project}
+## Construir y operar {#project}
+
+:::faq[¿Puedo usar mis herramientas de la EVM?]
+Sí. Solidity, Hardhat, Foundry, ethers y billeteras como MetaMask funcionan con la red. Solo necesitas el chain ID y una dirección RPC. [Conectarse](docs:/get-started/connect)
+:::
+
+:::faq[¿Cuánto tarda una transacción en ser definitiva?]
+Un bloque. CometBFT confirma cada bloque de forma definitiva, sin reorganizaciones. El tiempo por bloque se puede ver en vivo en la [Consola](console:/status).
+:::
 
 :::faq[¿Quién desarrolla el protocolo?]
 Contribuidores que trabajan en abierto, en repositorios públicos. Cualquiera puede sumarse. [Contribuir](docs:/open-source)
 :::
 
-:::faq[¿Hay una hoja de ruta?]
-No con fecha de término. El protocolo se mantiene y se mejora de forma continua, y cada cambio se decide por gobernanza en la cadena. [Desarrollo continuo](/about#work)
+:::faq[¿Cómo cambian las reglas?]
+Por gobernanza en la cadena: los cambios se proponen, se prueban en la red de pruebas, se votan en la red y solo entonces llegan a la red principal. [Gobernanza](docs:/protocol/governance)
 :::
 
 :::faq[¿Dónde hago una pregunta técnica?]
-En el espacio de discusiones del repositorio público. Está abierto a cualquiera y no tiene costo. [Preguntas técnicas](docs:/open-source#questions)
+En las discusiones del repositorio público. Están abiertas a cualquiera. [Preguntas técnicas](docs:/open-source#questions)
 :::
+
+## Seguridad y este sitio {#legal}
 
 :::faq[¿Alguien del proyecto me pedirá mis llaves?]
-No. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Verifica cualquier anuncio en los [canales del proyecto](/channels).
+Nunca. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus llaves privadas. Comprueba cualquier anuncio en los [canales oficiales](/channels).
 :::
-
-## Legal y uso del sitio {#legal}
 
 :::faq[¿Este sitio vende o recomienda la unidad nativa?]
-No. Este sitio no ofrece, no vende y no recomienda la unidad nativa ni ningún otro activo. Tampoco recomienda plataformas ni intermediarios.
-:::
-
-:::faq[¿Quién mantiene este sitio?]
-Este sitio y la documentación son mantenidos por contribuidores del Protocolo 42. El código es abierto: cualquiera puede revisarlo, proponer cambios o contribuir. [Sobre este sitio](/legal#independence)
+No. Este sitio no ofrece, no vende y no recomienda la unidad nativa ni ningún otro activo, ni plataformas o intermediarios.
 :::
 
 :::faq[¿Qué datos recopila este sitio?]
-Ninguno por su cuenta. El sitio no tiene formularios, no usa cookies ni analítica y sirve todos sus recursos desde el propio sitio. El proveedor de alojamiento procesa datos técnicos de cada visita, como la dirección IP, para entregar las páginas. [Privacidad](/legal#privacy)
+Ninguno por su cuenta: no tiene formularios, cookies ni analítica. La Consola consulta los proveedores públicos de RPC directamente desde tu navegador. El alojamiento procesa datos técnicos de cada visita, como la dirección IP, para entregar las páginas. [Privacidad](/legal#privacy)
 :::
 
 :::aside
-¿Tienes una pregunta técnica? [Preguntas técnicas →](docs:/get-started/faq)
+¿Buscas algo más técnico? [Preguntas técnicas →](docs:/get-started/faq)
 :::
