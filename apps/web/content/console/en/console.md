@@ -38,6 +38,9 @@ status:
   wrongChain: Another network
   checking: Checking…
   seconds: "{n} s"
+  chartTitle: Seconds between blocks, last 60
+  chartAvg: "Average: {n} s"
+  chartBar: "Block {h}: {n} s"
   updated: "Updated at {time}"
   noscript: Live status needs JavaScript. Each network's data is in Networks and connections.
 

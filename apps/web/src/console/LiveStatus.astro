@@ -16,7 +16,7 @@ const { full = false } = Astro.props;
 const lang = langOf(Astro);
 const t = (await getConsoleText(lang)).status;
 const { networks, providers } = await getDirectory();
-const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChain, checking: t.checking, seconds: t.seconds, updated: t.updated };
+const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChain, checking: t.checking, seconds: t.seconds, updated: t.updated, chartAvg: t.chartAvg, chartBar: t.chartBar };
 ---
 <div class="cx-live" data-live data-i18n={JSON.stringify(i18n)}>
   {networks.map((n) => {
@@ -30,6 +30,10 @@ const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChai
           <div class="cx-stat"><dt>{t.online}</dt><dd data-v="online">—</dd></div>
           <div class="cx-stat"><dt>{t.gas}</dt><dd data-v="gas">—</dd></div>
         </dl>
+        <figure class="cx-chart" data-chart>
+          <figcaption><span>{t.chartTitle}</span><span class="cx-chart-avg" data-avg></span></figcaption>
+          <div class="cx-chart-plot"><svg viewBox="0 0 600 120" preserveAspectRatio="none" role="img" aria-label={t.chartTitle} data-plot></svg><div class="cx-tip" data-tip hidden></div></div>
+        </figure>
         {full && (
           <div class="cx-wrap" style="margin-top: 14px">
             <table class="cx-table">
@@ -58,7 +62,7 @@ const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChai
 </div>
 
 <script>
-  import { BEHIND, blockPace, readNetwork } from '../network/live';
+  import { BEHIND, blockPace, blockTimes, readNetwork } from '../network/live';
   document.querySelectorAll<HTMLElement>('[data-live]').forEach((root) => {
     const t = JSON.parse(root.dataset.i18n!) as Record<string, string>;
     const locale = document.documentElement.lang || undefined;
@@ -68,6 +72,47 @@ const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChai
     const nets = [...root.querySelectorAll<HTMLElement>('[data-live-net]')];
     const pace = new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
     const paced = new Set<HTMLElement>();
+    // The chart: the time between each of the last 60 blocks, read once and then extended.
+    const SPAN = 60;
+    const series = new Map<HTMLElement, { height: number; time: number }[]>();
+    const draw = (net: HTMLElement) => {
+      const pts = series.get(net) ?? [];
+      const svg = net.querySelector<SVGSVGElement>('[data-plot]');
+      if (!svg || pts.length < 2) return;
+      const gaps = pts.slice(1).map((p, i) => ({ h: p.height, s: p.time - pts[i].time }));
+      const avg = gaps.reduce((a, g) => a + g.s, 0) / gaps.length;
+      const max = Math.max(avg * 2, ...gaps.map((g) => g.s), 1);
+      const w = 600 / SPAN, H = 120;
+      const bars = gaps.map((g, i) => {
+        const x = 600 - (gaps.length - i) * w;
+        const h = Math.max(2, (g.s / max) * (H - 8));
+        return `<rect class="bar${i === gaps.length - 1 ? ' now' : ''}" data-i="${i}" x="${(x + 1).toFixed(1)}" y="${(H - h).toFixed(1)}" width="${(w - 2).toFixed(1)}" height="${h.toFixed(1)}" rx="2" />`;
+      }).join('');
+      const ay = H - (avg / max) * (H - 8);
+      svg.innerHTML = `<line class="avg" x1="0" x2="600" y1="${ay.toFixed(1)}" y2="${ay.toFixed(1)}" />${bars}`;
+      const a = net.querySelector('[data-avg]');
+      if (a) a.textContent = t.chartAvg.replace('{n}', pace.format(avg));
+      (svg as any)._gaps = gaps;
+    };
+    root.querySelectorAll<HTMLElement>('[data-chart]').forEach((fig) => {
+      const svg = fig.querySelector<SVGSVGElement>('[data-plot]')!;
+      const tip = fig.querySelector<HTMLElement>('[data-tip]')!;
+      svg.addEventListener('pointermove', (e) => {
+        const gaps = (svg as any)._gaps as { h: number; s: number }[] | undefined;
+        if (!gaps) return;
+        const r = svg.getBoundingClientRect();
+        const slot = Math.floor(((e.clientX - r.left) / r.width) * SPAN);
+        const i = gaps.length - (SPAN - slot);
+        const g = gaps[i];
+        svg.querySelectorAll('.bar.hover').forEach((b) => b.classList.remove('hover'));
+        if (!g) { tip.hidden = true; return; }
+        svg.querySelector(`.bar[data-i="${i}"]`)?.classList.add('hover');
+        tip.textContent = t.chartBar.replace('{h}', num.format(g.h)).replace('{n}', String(g.s));
+        tip.hidden = false;
+        tip.style.left = `${Math.min(Math.max(e.clientX - r.left, 60), r.width - 60)}px`;
+      });
+      svg.addEventListener('pointerleave', () => { tip.hidden = true; svg.querySelectorAll('.bar.hover').forEach((b) => b.classList.remove('hover')); });
+    });
     const set = (el: Element, key: string, text: string) => { const v = el.querySelector(`[data-v="${key}"]`); if (v) v.textContent = text; };
     const refresh = async () => {
       if (document.hidden) return;
@@ -91,6 +136,14 @@ const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChai
           set(net, 'gas', `${gwei.format(top.gas / 1e9)} gwei`);
           // Time per block: averaged over the last 50 blocks, read once (no need to wait for a second reading).
           if (!paced.has(net) && best && topUrl) { paced.add(net); blockPace(topUrl, best).then((s) => s && set(net, 'pace', t.seconds.replace('{n}', pace.format(s)))); }
+          if (best && topUrl) {
+            const pts = series.get(net) ?? [];
+            const lastH = pts.at(-1)?.height ?? best.height - SPAN - 1;
+            if (best.height > lastH) blockTimes(topUrl, Math.max(lastH + 1, best.height - SPAN), best.height).then((more) => {
+              const all = [...(series.get(net) ?? []), ...more].filter((p, i, a) => a.findIndex((q) => q.height === p.height) === i).slice(-(SPAN + 1));
+              series.set(net, all); draw(net);
+            });
+          }
         }
       }));
       const upd = root.querySelector('[data-live-updated]');

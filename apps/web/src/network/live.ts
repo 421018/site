@@ -121,3 +121,19 @@ export function mountStream(root: HTMLElement, opts: { urls: string[]; chain: nu
   setInterval(refresh, interval);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
 }
+
+/** Timestamps of the blocks from..to (inclusive): [{ height, time }], oldest first. Batches of 40 (providers cap batch size). */
+export async function blockTimes(url: string, from: number, to: number): Promise<{ height: number; time: number }[]> {
+  const heights = Array.from({ length: Math.max(0, to - from + 1) }, (_, i) => from + i);
+  const chunks = Array.from({ length: Math.ceil(heights.length / 40) }, (_, i) => heights.slice(i * 40, i * 40 + 40));
+  const read = async (hs: number[]) => {
+    try {
+      const body = JSON.stringify(hs.map((h) => ({ jsonrpc: '2.0', id: h, method: 'eth_getBlockByNumber', params: ['0x' + h.toString(16), false] })));
+      const data = (await (await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body })).json()) as { id: number; result?: { timestamp: string } }[];
+      return Array.isArray(data) ? data.filter((d) => d.result).map((d) => ({ height: d.id, time: parseInt(d.result!.timestamp, 16) })) : [];
+    } catch {
+      return [];
+    }
+  };
+  return (await Promise.all(chunks.map(read))).flat().sort((a, b) => a.height - b.height);
+}

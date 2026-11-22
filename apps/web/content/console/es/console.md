@@ -38,6 +38,9 @@ status:
   wrongChain: Otra red
   checking: Consultando…
   seconds: "{n} s" # tiempo por bloque, con un decimal
+  chartTitle: Segundos entre bloques, últimos 60
+  chartAvg: "Promedio: {n} s"
+  chartBar: "Bloque {h}: {n} s"
   updated: "Actualizado a las {time}"
   noscript: El estado en vivo necesita JavaScript. Los datos de cada red están en Redes y conexiones.
 

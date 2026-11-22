@@ -180,6 +180,10 @@ const consoleText = defineCollection({
           ok: z.string(), behind: z.string(), down: z.string(), downNote: z.string(), wrongChain: z.string(), checking: z.string(),
           /** "{n} s" */
           seconds: z.string(),
+          /** The chart of the time between the latest blocks: title, "average {n} s", one bar "Block {h}: {n} s". */
+          chartTitle: z.string(),
+          chartAvg: z.string(),
+          chartBar: z.string(),
           /** "Updated at {time}" */
           updated: z.string(),
           noscript: z.string(),
