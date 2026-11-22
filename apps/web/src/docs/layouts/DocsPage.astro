@@ -53,7 +53,7 @@ const markdown = `# ${page.data.title}\n\n${page.data.summary}\n\n${page.body ??
     {ui.onThisPage && toc.length > 1 && (
       <aside class="dl-toc">
         <p>{ui.onThisPage}</p>
-        <nav aria-label={ui.onThisPage}>{toc.map((h) => <a class:list={{ sub: h.depth === 3 }} href={`#${h.slug}`}>{h.text}</a>)}</nav>
+        <nav aria-label={ui.onThisPage} data-toc>{toc.map((h) => <a class:list={{ sub: h.depth === 3 }} href={`#${h.slug}`}>{h.text}</a>)}</nav>
       </aside>
     )}
   </div>

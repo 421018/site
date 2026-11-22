@@ -159,6 +159,16 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 @keyframes tick { from { color: var(--aurora); text-shadow: 0 0 18px rgba(91,240,200,.6); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; } }
 
+/* right-hand index of a reading page: the heading being read is marked */
+.rtoc { flex: 0 0 210px; margin-left: 48px; padding-top: 56px; font-size: 13.5px; }
+.rtoc p { margin: 0 0 12px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.rtoc nav { position: sticky; top: 104px; display: flex; flex-direction: column; border-left: 1px solid var(--rule); }
+.rtoc a, .dl-toc a { transition: color .2s, box-shadow .2s; }
+.rtoc a { margin-left: -1px; padding: 6px 0 6px 14px; color: var(--muted); text-decoration: none; line-height: 1.35; }
+.rtoc a:hover { color: var(--head); }
+.rtoc a[aria-current], .dl-toc a[aria-current] { color: var(--link); box-shadow: inset 2px 0 0 var(--link); }
+.dl-toc a { padding-left: 10px; margin-left: -10px; }
+@media (max-width: 1180px) { .rtoc { display: none; } }
 /* ---------- live block stream (network/live.ts mountStream): each block a page joining the chain, the newest in gold ---------- */
 .lb-stream{position:relative;margin:56px 0 0;padding:18px 0 8px;-webkit-mask:linear-gradient(90deg,transparent,#000 22%);mask:linear-gradient(90deg,transparent,#000 22%)}
 .lb-blocks{display:flex;justify-content:flex-end;align-items:flex-end;gap:14px;min-height:78px;margin:0;padding:0 4px 0 0;list-style:none}

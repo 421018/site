@@ -9,8 +9,9 @@ import { homeHref, sourceLang, withLang } from '../../kit/i18n';
 import kit from 'virtual:42chain/kit';
 import { catalogRelative } from '../../kit/catalog';
 
-interface Props { page: Page }
-const { page } = Astro.props;
+interface Props { page: Page; headings?: { depth: number; slug: string; text: string }[] }
+const { page, headings = [] } = Astro.props;
+const toc = headings.filter((h) => h.depth === 2);
 const lang = pageLang(page);
 const section = await getSection(lang, sectionKey(page));
 const home = await getSection(lang, section.home);
@@ -22,6 +23,8 @@ const { prev, next } = prevNext(section, page);
 const updated = page.data.updated ?? lastCommitDate(page.filePath);
 const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(updated);
 const { page: ui, header } = await getSiteText(lang);
+const docsUi = (await getSiteText(lang, 'docs')).page;
+const onThisPage = docsUi.onThisPage;
 // Not translated yet: the source-language text, with a notice; search engines are pointed to the original.
 const original = page.fallbackOf;
 const canonicalHref = original ? withLang('/' + pagePath(page), sourceLang) : undefined;
@@ -43,7 +46,7 @@ const crumbs = [
   <div class:list={['rd', 'covered', { solo: !showSide }]}>
     <div class="lay">
       {showSide && <SideNav nav={nav} path={path} />}
-      <main lang={original ? sourceLang : undefined}>
+      <main lang={original ? sourceLang : undefined} data-page={pagePath(page)}>
         {original && ui.untranslated && <p class="untranslated" lang={lang}>{ui.untranslated}</p>}
         <div class="prose">
           <slot />
@@ -55,6 +58,12 @@ const crumbs = [
           </nav>
         )}
       </main>
+      {onThisPage && toc.length > 2 && (
+        <aside class="rtoc">
+          <p>{onThisPage}</p>
+          <nav aria-label={onThisPage} data-toc>{toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}</nav>
+        </aside>
+      )}
     </div>
   </div>
   <Footer alternates={alternates} />

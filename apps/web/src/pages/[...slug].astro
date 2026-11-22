@@ -21,6 +21,6 @@ const rendered = props.kind === 'page' ? await render(props.page.fallbackOf ?? p
 const Content = rendered?.Content;
 const blog = props.kind === 'post' ? (await getBlog(postLang(props.post)))! : undefined;
 ---
-{props.kind === 'page' && Content && <Doc page={props.page}><Splice widgets={siteWidgets}><Content /></Splice></Doc>}
+{props.kind === 'page' && Content && <Doc page={props.page} headings={rendered!.headings}><Splice widgets={siteWidgets}><Content /></Splice></Doc>}
 {props.kind === 'post' && Content && blog && <Post post={props.post} blog={blog} headings={rendered!.headings}><Splice widgets={siteWidgets}><Content /></Splice></Post>}
 {props.kind === 'blog' && <BlogIndex lang={props.lang} />}
