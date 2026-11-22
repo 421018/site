@@ -1,0 +1,12 @@
+{
+  "name": "@42chain/ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The look of 42chain.org: shared design tokens and rules, and the stylesheet of each section (site, documentation).",
+  "license": "UNLICENSED",
+  "exports": {
+    "./site.css": "./site.css",
+    "./docs.css": "./docs.css",
+    "./tokens.css": "./tokens.css"
+  }
+}

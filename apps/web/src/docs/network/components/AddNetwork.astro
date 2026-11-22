@@ -4,8 +4,8 @@
 // explorer entries of providers.yaml for that network. One button per network,
 // filtered by <NetworkSwitch />.
 import { getDirectory, firstOf } from '../directory';
-import { langOf } from '@42chain/base/kit/i18n';
-import { fill, ui } from '@42chain/base/kit/dictionary';
+import { langOf } from '../../../kit/i18n';
+import { fill, ui } from '../../../kit/dictionary';
 const lang = langOf(Astro);
 const d = ui(lang);
 const t = d.network;

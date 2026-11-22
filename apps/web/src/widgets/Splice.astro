@@ -4,13 +4,13 @@
  * :::widget{name="x"} into an empty <div data-widget="x"></div>; this component
  * renders the page (its default slot), cuts it at those markers and puts the
  * real component in each place. Content stays plain Markdown, with no code.
+ *
+ * Each area passes its own widgets (src/site/widgets.ts, src/docs/widgets.ts),
+ * so a page only carries the components, and the styles, of its area.
  */
-import HashChain from './HashChain.astro';
-import type { WidgetName } from './names';
-
-const components: Record<WidgetName, (props: Record<string, never>) => unknown> = {
-  'hash-chain': HashChain,
-};
+import type { Widgets } from './names';
+interface Props { widgets: Widgets }
+const { widgets } = Astro.props;
 
 const html = await Astro.slots.render('default');
 // split() with a capture group alternates: html, name, html, name, html…
@@ -18,7 +18,7 @@ const parts = html.split(/<div data-widget="([a-z0-9-]+)"><\/div>/);
 ---
 {parts.map((part, i) => {
   if (i % 2 === 0) return <Fragment set:html={part} />;
-  const Widget = components[part as WidgetName];
-  if (!Widget) throw new Error(`Unknown widget "${part}" in the page.`);
+  const Widget = widgets[part];
+  if (!Widget) throw new Error(`Widget "${part}" is not available in this area of the site.`);
   return <Widget />;
 })}

@@ -1,7 +1,7 @@
 ---
-import { getFooter, getSiteText } from '@42chain/base/kit/site';
-import { getBlog, getPosts, postHref, categoryOf } from '@42chain/base/kit/blog';
-import { homeHref, isExternal, isLinkAvailable, langOf, resolveHref } from '@42chain/base/kit/i18n';
+import { getFooter, getSiteText } from '../../kit/site';
+import { getBlog, getPosts, postHref, categoryOf } from '../../kit/blog';
+import { homeHref, isExternal, isLinkAvailable, langOf, resolveHref } from '../../kit/i18n';
 const lang = langOf(Astro);
 const text = await getSiteText(lang);
 type FLink = { label: string; href: string; text?: string };

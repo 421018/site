@@ -1,15 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { kit } from '@42chain/base/kit/integration';
-import { sharedConfig } from '@42chain/base/kit/config';
+import { kit } from './src/kit/integration';
+import { sharedConfig } from './src/kit/config';
 import { widgetNames } from './src/widgets/names';
 import { readdirSync } from 'node:fs';
 import { SITE, LINKS, EDIT_BASE } from './src/config.ts';
 
 // The blog used to be the Bitácora, at /log: every old address goes to its new one.
 /** @param {string} lang */
-const posts = (lang) => readdirSync(new URL(`./content/${lang}/posts`, import.meta.url)).filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3));
+const posts = (lang) => readdirSync(new URL(`./content/site/${lang}/posts`, import.meta.url)).filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3));
 const retired = ['agreements-unknown', 'collective-memory', 'commons-governance', 'conditional-access', 'contribution-proofs', 'digital-provenance', 'resource-coordination', 'sovereign-identity'];
 const logRedirects = Object.fromEntries(
   Object.keys(SITE.languages).flatMap((lang) => {
@@ -23,11 +23,13 @@ const logRedirects = Object.fromEntries(
   }),
 );
 
-// Markdown, fonts, CSP and i18n are set up in packages/base/kit/config.ts.
+// One app for 42chain.org: the site at / and the documentation at /docs (src/pages/docs/).
+// Markdown, fonts, CSP and i18n are set up in src/kit/config.ts.
 export default defineConfig({
-  ...sharedConfig({ catalog: '', defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: Object.keys(SITE.languages), widgets: widgetNames, linkBases: { docs: LINKS.docs, console: LINKS.console } }),
+  // Search (Pagefind, in the documentation) runs WebAssembly, so scripts may use 'wasm-unsafe-eval'.
+  ...sharedConfig({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: Object.keys(SITE.languages), widgets: widgetNames, consoleUrl: LINKS.console, scriptSources: ["'wasm-unsafe-eval'"] }),
   site: SITE.url,
-  integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) }), kit({ styles: ['./src/styles/global.css'], defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: SITE.languages, editBase: EDIT_BASE, links: { docs: LINKS.docs, console: LINKS.console } })],
+  integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) }), kit({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: SITE.languages, editBase: EDIT_BASE, links: { console: LINKS.console } })],
   i18n: {
     defaultLocale: SITE.defaultLang,
     locales: Object.keys(SITE.languages),
@@ -38,12 +40,12 @@ export default defineConfig({
     ...logRedirects,
     ...(LINKS.console ? { '/consola': LINKS.console } : {}),
     // "Implementar" moved to the documentation (Spanish).
-    '/implementar': `${LINKS.docs}/es/build/applications`,
-    '/implementar/conectarse': `${LINKS.docs}/es/get-started/connect`,
-    '/implementar/nodos': `${LINKS.docs}/es/operate/nodes`,
-    '/implementar/integrar': `${LINKS.docs}/es/integrate`,
-    '/en/implement': `${LINKS.docs}/build/applications`,
-    '/en/implement/connect': `${LINKS.docs}/get-started/connect`,
+    '/implementar': `/docs/es/build/applications`,
+    '/implementar/conectarse': `/docs/es/get-started/connect`,
+    '/implementar/nodos': `/docs/es/operate/nodes`,
+    '/implementar/integrar': `/docs/es/integrate`,
+    '/en/implement': `/docs/build/applications`,
+    '/en/implement/connect': `/docs/get-started/connect`,
     // Spanish URLs before paths became English; Spanish now lives under /es.
     '/casos-de-uso': '/es/blog',
     '/casos-de-uso/autorizaciones': '/es/blog',
@@ -54,33 +56,33 @@ export default defineConfig({
     '/casos-de-uso/registros-verificables': '/es/blog',
     '/casos-de-uso/trazabilidad': '/es/blog',
     '/codigo-abierto': '/es/about',
-    '/codigo-abierto/contribuir': `${LINKS.docs}/es/open-source`,
+    '/codigo-abierto/contribuir': `/docs/es/open-source`,
     '/codigo-abierto/preguntas-frecuentes': '/es/faq',
-    '/codigo-abierto/seguridad': `${LINKS.docs}/es/open-source/security`,
-    '/codigo-abierto/verificar': `${LINKS.docs}/es/get-started/sources`,
-    '/protocolo': `${LINKS.docs}/es/protocol`,
-    '/protocolo/consenso': `${LINKS.docs}/es/protocol/consensus`,
-    '/protocolo/ejecucion': `${LINKS.docs}/es/protocol/execution`,
-    '/protocolo/gobernanza': `${LINKS.docs}/es/protocol/governance`,
-    '/protocolo/interoperabilidad': `${LINKS.docs}/es/protocol/interoperability`,
-    '/protocolo/seguridad': `${LINKS.docs}/es/protocol/security`,
-    '/protocolo/tarifas': `${LINKS.docs}/es/protocol/fees`,
+    '/codigo-abierto/seguridad': `/docs/es/open-source/security`,
+    '/codigo-abierto/verificar': `/docs/es/get-started/sources`,
+    '/protocolo': `/docs/es/protocol`,
+    '/protocolo/consenso': `/docs/es/protocol/consensus`,
+    '/protocolo/ejecucion': `/docs/es/protocol/execution`,
+    '/protocolo/gobernanza': `/docs/es/protocol/governance`,
+    '/protocolo/interoperabilidad': `/docs/es/protocol/interoperability`,
+    '/protocolo/seguridad': `/docs/es/protocol/security`,
+    '/protocolo/tarifas': `/docs/es/protocol/fees`,
     // The study of each piece moved to the documentation.
-    '/protocol/consensus': `${LINKS.docs}/protocol/consensus`,
-    '/protocol/execution': `${LINKS.docs}/protocol/execution`,
-    '/protocol/fees': `${LINKS.docs}/protocol/fees`,
-    '/protocol/interoperability': `${LINKS.docs}/protocol/interoperability`,
-    '/protocol/governance': `${LINKS.docs}/protocol/governance`,
-    '/protocol/security': `${LINKS.docs}/protocol/security`,
-    '/es/protocol/consensus': `${LINKS.docs}/es/protocol/consensus`,
-    '/es/protocol/execution': `${LINKS.docs}/es/protocol/execution`,
-    '/es/protocol/fees': `${LINKS.docs}/es/protocol/fees`,
-    '/es/protocol/interoperability': `${LINKS.docs}/es/protocol/interoperability`,
-    '/es/protocol/governance': `${LINKS.docs}/es/protocol/governance`,
-    '/es/protocol/security': `${LINKS.docs}/es/protocol/security`,
+    '/protocol/consensus': `/docs/protocol/consensus`,
+    '/protocol/execution': `/docs/protocol/execution`,
+    '/protocol/fees': `/docs/protocol/fees`,
+    '/protocol/interoperability': `/docs/protocol/interoperability`,
+    '/protocol/governance': `/docs/protocol/governance`,
+    '/protocol/security': `/docs/protocol/security`,
+    '/es/protocol/consensus': `/docs/es/protocol/consensus`,
+    '/es/protocol/execution': `/docs/es/protocol/execution`,
+    '/es/protocol/fees': `/docs/es/protocol/fees`,
+    '/es/protocol/interoperability': `/docs/es/protocol/interoperability`,
+    '/es/protocol/governance': `/docs/es/protocol/governance`,
+    '/es/protocol/security': `/docs/es/protocol/security`,
     // 42 Chain and 42 Protocol (2026-11): the Chain site keeps the project, the Bitácora and the
     // questions; the technical reference, contributing and security live in Protocol.
-    '/protocol': `${LINKS.docs}/protocol`,
+    '/protocol': `/docs/protocol`,
     '/use-cases': '/blog',
     '/use-cases/agreements-unknown': '/blog',
     '/use-cases/collective-memory': '/blog',
@@ -92,11 +94,11 @@ export default defineConfig({
     '/use-cases/restaurant-sign': '/blog/restaurant-sign',
     '/use-cases/sovereign-identity': '/blog',
     '/open-source': '/about',
-    '/open-source/verify': `${LINKS.docs}/get-started/sources`,
+    '/open-source/verify': `/docs/get-started/sources`,
     '/open-source/faq': '/faq',
-    '/open-source/contributing': `${LINKS.docs}/open-source`,
-    '/open-source/security': `${LINKS.docs}/open-source/security`,
-    '/es/protocol': `${LINKS.docs}/es/protocol`,
+    '/open-source/contributing': `/docs/open-source`,
+    '/open-source/security': `/docs/open-source/security`,
+    '/es/protocol': `/docs/es/protocol`,
     '/es/use-cases': '/es/blog',
     '/es/use-cases/agreements-unknown': '/es/blog',
     '/es/use-cases/collective-memory': '/es/blog',
@@ -108,17 +110,17 @@ export default defineConfig({
     '/es/use-cases/restaurant-sign': '/es/blog/restaurant-sign',
     '/es/use-cases/sovereign-identity': '/es/blog',
     '/es/open-source': '/es/about',
-    '/es/open-source/verify': `${LINKS.docs}/es/get-started/sources`,
+    '/es/open-source/verify': `/docs/es/get-started/sources`,
     '/es/open-source/faq': '/es/faq',
-    '/es/open-source/contributing': `${LINKS.docs}/es/open-source`,
-    '/es/open-source/security': `${LINKS.docs}/es/open-source/security`,
-    '/about/how-it-works': `${LINKS.docs}/protocol`,
-    '/es/about/how-it-works': `${LINKS.docs}/es/protocol`,
-    '/about/verify': `${LINKS.docs}/get-started/sources`,
-    '/es/about/verify': `${LINKS.docs}/es/get-started/sources`,
+    '/es/open-source/contributing': `/docs/es/open-source`,
+    '/es/open-source/security': `/docs/es/open-source/security`,
+    '/about/how-it-works': `/docs/protocol`,
+    '/es/about/how-it-works': `/docs/es/protocol`,
+    '/about/verify': `/docs/get-started/sources`,
+    '/es/about/verify': `/docs/es/get-started/sources`,
     // English used to live under /en; it is now at the root.
     '/en': '/',
-    '/en/protocol': `${LINKS.docs}/protocol`,
-    '/en/protocol/consensus': `${LINKS.docs}/protocol/consensus`,
+    '/en/protocol': `/docs/protocol`,
+    '/en/protocol/consensus': `/docs/protocol/consensus`,
   },
 });

@@ -1,6 +1,6 @@
 ---
 import { Font } from 'astro:assets';
-import { defaultLang, langOf, ogLocale } from '../i18n';
+import { areaOf, defaultLang, langOf, ogLocale } from '../i18n';
 import { getSiteText } from '../site';
 
 interface Props {
@@ -12,12 +12,12 @@ interface Props {
   product?: string;
   /** Canonical URL when it is another page (a page shown untranslated points to its original). */
   canonicalHref?: string;
-  /** Section colors (frontmatter `section.accent` / `section.ink`); the defaults live in the app's global.css. */
+  /** Section colors (frontmatter `section.accent` / `section.ink`); the defaults live in the section's stylesheet (@42chain/ui). */
   accent?: string;
   ink?: string;
 }
 const lang = langOf(Astro);
-const text = await getSiteText(lang);
+const text = await getSiteText(lang, areaOf(Astro));
 const { title, description = text.description, accent, ink, alternates = {}, product, canonicalHref } = Astro.props;
 const others = Object.entries(alternates);
 const colors = [accent && `--acc: ${accent}`, ink && `--link: ${ink}`].filter(Boolean).join('; ') || undefined;
@@ -34,7 +34,7 @@ const canonical = new URL(canonicalHref ?? Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     {others.length > 1 && others.map(([l, href]) => <link rel="alternate" hreflang={l} href={new URL(href, Astro.site)} />)}
     {others.length > 1 && alternates[defaultLang] && <link rel="alternate" hreflang="x-default" href={new URL(alternates[defaultLang], Astro.site)} />}
-    <link rel="icon" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -43,7 +43,7 @@ const canonical = new URL(canonicalHref ?? Astro.url.pathname, Astro.site);
     <meta property="og:locale" content={ogLocale(lang)} />
     <meta name="twitter:card" content="summary" />
     <meta name="theme-color" content="#05070A" />
-    <link rel="sitemap" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/sitemap-index.xml`} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-geist" preload={[{ subset: 'latin' }]} />
     <Font cssVariable="--font-geist-mono" />
     <Font cssVariable="--font-newsreader" />

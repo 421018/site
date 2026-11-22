@@ -38,7 +38,7 @@ Once it is fixed, what happened is published in the security notices, and the co
 
 This channel is only for vulnerabilities in the code. It does not handle:
 
-- **Network support.** For technical questions, use the [repository's discussion space](site:/about#questions).
+- **Network support.** For technical questions, use the [official channels](site:/channels).
 - **Accounts or units.** Nobody can restore a private key or reverse a confirmed transaction, and this channel does not manage anyone's accounts, units or funds.
 - **Third-party services.** Wallets, RPC providers, explorers and applications are responsible for their own services.
 

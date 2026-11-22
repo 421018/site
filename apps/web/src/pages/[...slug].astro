@@ -1,11 +1,13 @@
 ---
+import '@42chain/ui/site.css';
 import { render } from 'astro:content';
-import Doc from '../layouts/Doc.astro';
-import Post from '../layouts/Post.astro';
-import BlogIndex from '../layouts/BlogIndex.astro';
+import Doc from '../site/layouts/Doc.astro';
+import Post from '../site/layouts/Post.astro';
+import BlogIndex from '../site/layouts/BlogIndex.astro';
 import Splice from '../widgets/Splice.astro';
-import { getAllPages, hrefOf } from '@42chain/base/kit/site';
-import { getBlog, getBlogRoutes, postLang } from '@42chain/base/kit/blog';
+import { siteWidgets } from '../site/widgets';
+import { getAllPages, hrefOf } from '../kit/site';
+import { getBlog, getBlogRoutes, postLang } from '../kit/blog';
 
 // Every interior page, blog index and post of every language:
 // /protocol/consensus, /en/protocol/consensus, /blog, /use-cases/traceability…
@@ -19,6 +21,6 @@ const rendered = props.kind === 'page' ? await render(props.page.fallbackOf ?? p
 const Content = rendered?.Content;
 const blog = props.kind === 'post' ? (await getBlog(postLang(props.post)))! : undefined;
 ---
-{props.kind === 'page' && Content && <Doc page={props.page}><Splice><Content /></Splice></Doc>}
-{props.kind === 'post' && Content && blog && <Post post={props.post} blog={blog} headings={rendered!.headings}><Splice><Content /></Splice></Post>}
+{props.kind === 'page' && Content && <Doc page={props.page}><Splice widgets={siteWidgets}><Content /></Splice></Doc>}
+{props.kind === 'post' && Content && blog && <Post post={props.post} blog={blog} headings={rendered!.headings}><Splice widgets={siteWidgets}><Content /></Splice></Post>}
 {props.kind === 'blog' && <BlogIndex lang={props.lang} />}

@@ -3,8 +3,8 @@
 // alternative path where no relayer delivers the packet and the transfer times out.
 // Steps and wording follow protocol/interoperability.md.
 // Text: catalog ui/<lang>.yaml → ibc.
-import { langOf } from '@42chain/base/kit/i18n';
-import { ui } from '@42chain/base/kit/dictionary';
+import { langOf } from '../../kit/i18n';
+import { ui } from '../../kit/dictionary';
 const d = ui(langOf(Astro));
 const t = d.ibc;
 const i18n = JSON.stringify({ steps: t.steps, valid: t.validProof });

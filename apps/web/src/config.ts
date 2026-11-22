@@ -1,8 +1,6 @@
 /**
- * Technical settings. Visitor-facing text lives in the catalog's site/<lang>/site.md.
- * Every value in [brackets] is a placeholder to replace before going live.
- * Content links to /docs (and /consola, once the console launches); they redirect to the URLs below
- * (see astro.config.mjs).
+ * Technical settings of 42chain.org: the site at the root and the documentation
+ * at /docs. Visitor-facing text lives in content/<area>/<lang>/site.md.
  */
 export const SITE = {
   url: 'https://42chain.org',
@@ -10,7 +8,7 @@ export const SITE = {
   defaultLang: 'en',
   /** Language the content is written in first; pages not yet translated show it, with a notice. */
   sourceLang: 'es',
-  /** Languages, each with its folder in the catalog (<app>/<lang>/). */
+  /** Languages, each with its folder in each area's content (content/<area>/<lang>/). */
   languages: {
     en: { ogLocale: 'en_US' },
     es: { ogLocale: 'es_ES' },
@@ -18,12 +16,6 @@ export const SITE = {
 };
 
 export const LINKS = {
-  /**
-   * The documentation, on the same domain (its own repo, served at 42chain.org/docs).
-   * In development each repo runs its own server, so `npm run dev` points
-   * DOCS_URL at the documentation's (http://localhost:4322/docs).
-   */
-  docs: process.env.DOCS_URL ?? '/docs',
   /** The console is not launched yet: without a URL, every link to it is left out. */
   console: undefined as string | undefined,
   repo: 'https://github.com/deep-thought-labs/infinite-app',

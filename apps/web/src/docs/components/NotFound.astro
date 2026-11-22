@@ -1,0 +1,9 @@
+---
+/** 404 page of the documentation: the shared one, with the documentation's search in its header. */
+import NotFound from '../../kit/components/NotFound.astro';
+import Search from '../../kit/components/Search.astro';
+import { getSiteText } from '../../kit/site';
+import { langOf } from '../../kit/i18n';
+const { header } = await getSiteText(langOf(Astro), 'docs');
+---
+<NotFound>{header.search && <Search slot="search" text={header.search} />}</NotFound>

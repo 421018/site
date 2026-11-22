@@ -6,14 +6,18 @@
 import { execFileSync } from 'node:child_process';
 import { basename, dirname, resolve } from 'node:path';
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
-import { homeHref, langPrefix, languages, resolveHref, sourceLang } from './i18n';
+import { homeHref, langPrefix, languages, resolveHref, sourceLang, type Area } from './i18n';
 
 /**
- * A page of a language. When the language has no translation yet, it is the
- * source-language page served at this language's URL: `fallbackOf` is that
- * page (render it, link its file) and the page shows a notice.
+ * A page of a language in an area (site or docs). When the language has no
+ * translation yet, it is the source-language page served at this language's
+ * URL: `fallbackOf` is that page (render it, link its file) and the page shows a notice.
  */
-export type Page = CollectionEntry<'pages'> & { fallbackOf?: CollectionEntry<'pages'> };
+type PageEntry = CollectionEntry<'pages'>;
+export type Page = PageEntry & { area: Area; fallbackOf?: PageEntry };
+
+/** Content collections of each area: its interior pages and its site-wide text. */
+const COLLECTIONS = { site: { pages: 'pages', text: 'site' }, docs: { pages: 'docsPages', text: 'docsSite' } } as const;
 export type Link = { href: string; label: string };
 export type Section = {
   key: string;
@@ -47,28 +51,30 @@ const isIndex = (p: Page) => !pagePath(p).includes('/');
 const depthOf = (p: Page) => pagePath(p).split('/').length - 1;
 /** The page's slug at the section level, or its group's slug. */
 const topOf = (p: Page) => pagePath(p).split('/')[1] ?? '';
-export const hrefOf = (p: Page) => `${langPrefix(pageLang(p))}/${pagePath(p)}`;
+export const hrefOf = (p: Page) => `${langPrefix(pageLang(p), p.area)}/${pagePath(p)}`;
 export const menuLabel = (p: Page) => p.data.menuTitle ?? p.data.title;
 
-let cache: Promise<Map<string, Map<string, Section>>> | undefined;
+const cache = new Map<Area, Promise<Map<string, Map<string, Section>>>>();
 
-/** Sections of every language, validated. Throws with a clear message on inconsistent content. */
-function allSections() {
-  return (cache ??= build());
+/** Sections of every language of an area, validated. Throws with a clear message on inconsistent content. */
+function allSections(area: Area) {
+  if (!cache.has(area)) cache.set(area, build(area));
+  return cache.get(area)!;
 }
 
-/** The sections of one language. */
-export async function getSections(lang: string): Promise<Map<string, Section>> {
-  return (await allSections()).get(lang) ?? new Map();
+/** The sections of one language in an area. */
+export async function getSections(lang: string, area: Area = 'site'): Promise<Map<string, Section>> {
+  return (await allSections(area)).get(lang) ?? new Map();
 }
 
-/** Every page of every language that is published (for getStaticPaths). */
-export async function getAllPages(): Promise<Page[]> {
-  return [...(await allSections()).values()].flatMap((m) => [...m.values()].flatMap((s) => s.pages));
+/** Every published page of every language in an area (for getStaticPaths). */
+export async function getAllPages(area: Area = 'site'): Promise<Page[]> {
+  return [...(await allSections(area)).values()].flatMap((m) => [...m.values()].flatMap((s) => s.pages));
 }
 
-async function build() {
-  const own: Page[] = await getCollection('pages', (p) => import.meta.env.DEV || !p.data.draft);
+async function build(area: Area) {
+  const entries = (await getCollection(COLLECTIONS[area].pages, (p) => import.meta.env.DEV || !p.data.draft)) as PageEntry[];
+  const own: Page[] = entries.map((p) => ({ ...p, area }));
   // Every language has every page: pages not translated yet are the source-language page.
   const ownIds = new Set(own.map((p) => p.id));
   const fallbacks: Page[] = languages
@@ -81,14 +87,14 @@ async function build() {
   for (const p of pages) {
     const lang = pageLang(p);
     const sections = byLang.get(lang);
-    if (!sections) { errors.push(`${p.filePath}: "${lang}" is not a language of this app (${languages.join(', ')}).`); continue; }
+    if (!sections) { errors.push(`${p.filePath}: "${lang}" is not a language of the site (${languages.join(', ')}).`); continue; }
     if (pagePath(p) === '') errors.push(`${p.filePath}: the home page is edited in the language's home.md, not in pages/.`);
     if (isIndex(p)) {
       const s = p.data.section;
       if (!s) { errors.push(`${p.filePath}: a section's index.md needs a "section:" block.`); continue; }
       sections.set(pagePath(p), {
         key: pagePath(p), lang, label: s.label, weight: s.weight, href: hrefOf(p), accent: s.accent, ink: s.ink,
-        numbered: s.numbered, sequential: s.sequential, menu: s.menu, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links.map((l) => ({ ...l, href: resolveHref(l.href, lang) })), attached: [],
+        numbered: s.numbered, sequential: s.sequential, menu: s.menu, dropdown: s.dropdown, home: pagePath(p), pages: [], links: s.links.map((l) => ({ ...l, href: resolveHref(l.href, lang, area) })), attached: [],
       });
     } else if (p.data.section) {
       errors.push(`${p.filePath}: "section:" is only allowed in the folder's index.md.`);
@@ -139,21 +145,21 @@ async function build() {
  * A translation lives at the same path in its language's folder.
  */
 export async function getAlternates(page: Page): Promise<Record<string, string>> {
-  const all = await getAllPages();
+  const all = await getAllPages(page.area);
   // Only real translations: a page shown in the source language is not a version of its own.
   return Object.fromEntries(all.filter((p) => pagePath(p) === pagePath(page) && !p.fallbackOf).map((p) => [pageLang(p), hrefOf(p)]));
 }
 
-/** Home pages of every language, as { lang: href } (alternates of the home and 404 pages). */
-export const homeAlternates = () => Object.fromEntries(languages.map((l) => [l, homeHref(l)]));
+/** Home pages of every language in an area, as { lang: href } (alternates of the home and 404 pages). */
+export const homeAlternates = (area: Area = 'site') => Object.fromEntries(languages.map((l) => [l, homeHref(l, area)]));
 
-/** Sections shown in the main menu and footer, in order. */
-export async function getMenu(lang: string): Promise<Section[]> {
-  return [...(await getSections(lang)).values()].filter((s) => s.home === s.key && s.menu !== false).sort((a, b) => a.weight - b.weight);
+/** Sections of an area shown in its main menu and footer, in order. */
+export async function getMenu(lang: string, area: Area = 'site'): Promise<Section[]> {
+  return [...(await getSections(lang, area)).values()].filter((s) => s.home === s.key && s.menu !== false).sort((a, b) => a.weight - b.weight);
 }
 
-export async function getSection(lang: string, key: string): Promise<Section> {
-  const s = (await getSections(lang)).get(key);
+export async function getSection(lang: string, key: string, area: Area = 'site'): Promise<Section> {
+  const s = (await getSections(lang, area)).get(key);
   if (!s) throw new Error(`Unknown section: ${lang}/${key}`);
   return s;
 }
@@ -196,8 +202,8 @@ export function menuPanel(s: Section) {
 }
 
 /** Footer columns: one per main-menu section with its pages, links and attached section index pages. */
-export async function getFooter(lang: string) {
-  return (await getMenu(lang)).map((s) => ({
+export async function getFooter(lang: string, area: Area = 'site') {
+  return (await getMenu(lang, area)).map((s) => ({
     key: s.key,
     label: s.label,
     links: [
@@ -225,9 +231,9 @@ export function lastCommitDate(filePath: string | undefined): Date | undefined {
   }
 }
 
-/** Site-wide visitor-facing text of a language (the app's <lang>/site.md in the catalog). */
-export async function getSiteText(lang: string) {
-  const entry = await getEntry('site', lang);
-  if (!entry) throw new Error(`Missing the app's ${lang}/site.md in the content catalog`);
+/** Visitor-facing text of an area in a language (content/<area>/<lang>/site.md). */
+export async function getSiteText(lang: string, area: Area = 'site') {
+  const entry = await getEntry(COLLECTIONS[area].text, lang);
+  if (!entry) throw new Error(`Missing content/${area}/${lang}/site.md`);
   return entry.data;
 }

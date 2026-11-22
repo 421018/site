@@ -1,17 +1,18 @@
 ---
+import '@42chain/ui/docs.css';
 import { render } from 'astro:content';
-import DocsPage from '../layouts/DocsPage.astro';
-import Splice from '../widgets/Splice.astro';
-import { getAllPages, hrefOf } from '@42chain/base/kit/site';
-import { withoutBase } from '@42chain/base/kit/i18n';
+import DocsPage from '../../docs/layouts/DocsPage.astro';
+import Splice from '../../widgets/Splice.astro';
+import { docsWidgets } from '../../docs/widgets';
+import { getAllPages, hrefOf } from '../../kit/site';
 
 // Every interior page of every language: /get-started/connect, /en/get-started/connect…
 export async function getStaticPaths() {
-  return (await getAllPages()).map((page) => ({ params: { slug: withoutBase(hrefOf(page)).slice(1) }, props: { page } }));
+  return (await getAllPages('docs')).map((page) => ({ params: { slug: hrefOf(page).slice('/docs/'.length) }, props: { page } }));
 }
 const { page } = Astro.props;
 const { Content, headings } = await render(page.fallbackOf ?? page);
 ---
 <DocsPage page={page} headings={headings}>
-  <Splice><Content /></Splice>
+  <Splice widgets={docsWidgets}><Content /></Splice>
 </DocsPage>

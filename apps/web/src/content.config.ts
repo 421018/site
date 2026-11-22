@@ -1,24 +1,33 @@
 /**
- * Content model. Everything the site shows comes from these collections:
+ * Content model. Everything 42chain.org shows comes from these collections,
+ * one set per area: the site (content/site/) and the documentation
+ * (content/docs/, served under /docs).
  *
- * - `pages`: one Markdown file per interior page under content/<lang>/pages/.
+ * The site:
+ * - `pages`: one Markdown file per interior page under site/<lang>/pages/.
  *   The folder is the section and the file path is the URL. The `index.md` of
  *   each folder also describes its section (`section:` block).
- * - `posts`: the blog, one Markdown file per post under content/<lang>/posts/.
- * - `home`: the text of the home page (content/<lang>/home.md, frontmatter only).
- * - `project`: the text of the project page, /about (content/<lang>/project.md, frontmatter only).
- * - `site`: site-wide text: brand, footer, interface labels, 404 (content/<lang>/site.md).
+ * - `posts`: the blog, one Markdown file per post under site/<lang>/posts/.
+ * - `home`: the text of the home page (site/<lang>/home.md, frontmatter only).
+ * - `project`: the text of the project page, /about (site/<lang>/project.md, frontmatter only).
+ * - `site`: site-wide text: brand, footer, interface labels, 404 (site/<lang>/site.md).
+ *
+ * The documentation: `docsPages`, `docsHome` and `docsSite`, the same kinds of
+ * files under docs/<lang>/, plus the network data in docs/network/
+ * (`networks`, `services`, `providers`).
  *
  * The schemas are strict: a misspelled or missing field stops the build with
  * the file and field name.
  */
 import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
-import { pageSchema, pagesLoader, perLanguage, postSchema, postsLoader, siteTextSchema } from '@42chain/base/kit/schemas';
-import { catalogPath } from '@42chain/base/kit/catalog';
+import { pageSchema, pagesLoader, perLanguage, postSchema, postsLoader, siteTextSchema } from './kit/schemas';
+import { file } from 'astro/loaders';
+import { catalogPath } from './kit/catalog';
+import { dataFile, networkSchema, providerSchema, serviceSchema } from './docs/network/schemas';
 
-const pages = defineCollection({ loader: pagesLoader(catalogPath()), schema: pageSchema });
-const posts = defineCollection({ loader: postsLoader(catalogPath()), schema: ({ image }) => postSchema(image) });
+const pages = defineCollection({ loader: pagesLoader(catalogPath('site')), schema: pageSchema });
+const posts = defineCollection({ loader: postsLoader(catalogPath('site')), schema: ({ image }) => postSchema(image) });
 
 const cta = z.object({ label: z.string(), href: z.string() }).strict();
 
@@ -28,7 +37,7 @@ const prose = z.string();
 const engineArt = z.object({ name: z.string(), kicker: z.string(), labels: z.array(z.string()).min(1).max(6), aria: z.string() }).strict();
 
 const home = defineCollection({
-  loader: perLanguage(catalogPath(), 'home.md'),
+  loader: perLanguage(catalogPath('site'), 'home.md'),
   schema: z
     .object({
       title: z.string().optional(),
@@ -57,7 +66,7 @@ const home = defineCollection({
 
 /** The project page (/about): the same kind of structured text as the home page. */
 const project = defineCollection({
-  loader: perLanguage(catalogPath(), 'project.md'),
+  loader: perLanguage(catalogPath('site'), 'project.md'),
   schema: z
     .object({
       title: z.string(),
@@ -75,9 +84,37 @@ const project = defineCollection({
 });
 
 const site = defineCollection({
-  loader: perLanguage(catalogPath(), 'site.md'),
+  loader: perLanguage(catalogPath('site'), 'site.md'),
   schema: siteTextSchema,
 });
 
+/* ---------- the documentation (/docs) ---------- */
 
-export const collections = { pages, posts, home, project, site };
+const docsPages = defineCollection({ loader: pagesLoader(catalogPath('docs')), schema: pageSchema });
+const docsHome = defineCollection({
+  loader: perLanguage(catalogPath('docs'), 'home.md'),
+  schema: z
+    .object({
+      eyebrow: z.string(),
+      title: z.string(),
+      lead: z.string(),
+      searchPrompt: z.string(),
+      /** "How the protocol is built": its layers, top to bottom. */
+      layers: z
+        .object({
+          title: z.string(),
+          items: z.array(z.object({ label: z.string(), text: z.string(), tag: z.string(), href: z.string().optional() }).strict()),
+        })
+        .strict()
+        .optional(),
+      /** Title of the quick network data panel (from the catalog's network data). */
+      quickData: z.string().optional(),
+    })
+    .strict(),
+});
+const docsSite = defineCollection({ loader: perLanguage(catalogPath('docs'), 'site.md'), schema: siteTextSchema });
+const networks = defineCollection({ loader: file(dataFile('networks')), schema: networkSchema });
+const services = defineCollection({ loader: file(dataFile('services')), schema: serviceSchema });
+const providers = defineCollection({ loader: file(dataFile('providers')), schema: providerSchema });
+
+export const collections = { pages, posts, home, project, site, docsPages, docsHome, docsSite, networks, services, providers };

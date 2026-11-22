@@ -1,7 +1,7 @@
 ---
-// Full-text search with Pagefind, for apps with `search: true` in the kit
-// settings. The index is built after the site (`pagefind --site dist`) and
-// served from the site itself: no external service. The Pagefind script is
+// Full-text search of the documentation with Pagefind. The index is built
+// after the site (`pagefind --site dist/docs`) and served from /docs/pagefind:
+// no external service. The Pagefind script is
 // loaded only when the dialog opens. Open with the button, "/" or Ctrl/⌘+K.
 interface Props { text: { label: string; close: string; noResults: string; unavailable: string } }
 const { text } = Astro.props;
@@ -52,7 +52,7 @@ const { label } = text;
     let pf: Pagefind | null = null, seq = 0, timer = 0;
     const load = async () => {
       if (pf) return pf;
-      const url = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/pagefind/pagefind.js`;
+      const url = '/docs/pagefind/pagefind.js';
       pf = (await import(/* @vite-ignore */ url)) as Pagefind;
       return pf;
     };

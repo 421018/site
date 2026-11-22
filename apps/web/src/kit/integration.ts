@@ -1,22 +1,21 @@
 /**
- * Astro integration of the shared engine. It exposes the app's settings to the
- * kit's layouts and components as `virtual:42chain/kit`, so the same components
- * serve every app without importing an app's own config file.
+ * Astro integration of the kit. It exposes the site's settings to the kit's
+ * layouts and components as `virtual:42chain/kit`, so they do not import the
+ * site's config file.
  *
- *   integrations: [kit({ defaultLang: 'en', …, styles: ['./src/styles/global.css'] })]
+ *   integrations: [kit({ defaultLang: 'en', sourceLang: 'es', languages: { … } })]
  */
 import type { AstroIntegration } from 'astro';
+import { copyFileSync, existsSync } from 'node:fs';
 import type { KitConfig } from './types';
 
 const ID = 'virtual:42chain/kit';
 
-export function kit({ styles = [], ...config }: KitConfig & { styles?: string[] }): AstroIntegration {
+export function kit(config: KitConfig): AstroIntegration {
   return {
     name: '@42chain/kit',
     hooks: {
-      'astro:config:setup': ({ updateConfig, injectScript, config: astro }) => {
-        // The app's own stylesheets (e.g. './src/styles/global.css'), on every page.
-        for (const href of styles) injectScript('page-ssr', `import ${JSON.stringify(new URL(href, astro.root).pathname)};`);
+      'astro:config:setup': ({ updateConfig }) => {
         updateConfig({
           vite: {
             plugins: [
@@ -28,6 +27,13 @@ export function kit({ styles = [], ...config }: KitConfig & { styles?: string[] 
             ],
           },
         });
+      },
+      // Cloudflare serves the nearest 404.html: the documentation gets its own.
+      'astro:build:done': ({ dir }) => {
+        for (const lang of ['', ...Object.keys(config.languages).filter((l) => l !== config.defaultLang).map((l) => `/${l}`)]) {
+          const from = new URL(`./docs${lang}/404/index.html`, dir);
+          if (existsSync(from)) copyFileSync(from, new URL(`./docs${lang}/404.html`, dir));
+        }
       },
     },
   };

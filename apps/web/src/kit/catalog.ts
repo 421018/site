@@ -6,7 +6,7 @@ import { join, relative, resolve } from 'node:path';
 
 const root = resolve(process.cwd(), 'content');
 
-/** Absolute path inside content/, e.g. catalogPath('es', 'pages'). */
+/** Absolute path inside content/, e.g. catalogPath('docs', 'es', 'pages'). */
 export const catalogPath = (...parts: string[]) => join(root, ...parts);
 
 /** Path of a content file relative to the repository (used by "edit this page"). */

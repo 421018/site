@@ -1,8 +1,8 @@
 /**
- * Astro settings shared by every app: Markdown with the ::: content blocks,
- * self-hosted fonts and the Content-Security-Policy. An app spreads them into
- * its own defineConfig() and adds what is specific to it (site URL,
- * integrations, redirects, languages).
+ * Astro settings of the site: Markdown with the ::: content blocks,
+ * self-hosted fonts and the Content-Security-Policy. astro.config.mjs spreads
+ * them into its defineConfig() and adds the site URL, integrations, redirects
+ * and languages.
  */
 import { fontProviders } from 'astro/config';
 import type { AstroUserConfig } from 'astro';
@@ -12,51 +12,50 @@ import { relative, sep } from 'node:path';
 import { catalogPath } from './catalog';
 
 export interface SharedOptions {
-  /** The app's folder in the content catalog: "site" or "docs". */
-  catalog: string;
   /** Language served at the root (no prefix in URLs). */
   defaultLang: string;
   /** Source language: its folder is the fallback for diagrams missing in a translation. */
   sourceLang: string;
   /** Names accepted by :::widget (from src/widgets/names.ts). */
   widgets?: readonly string[];
-  /** Base URLs of the other products for site:, docs: and console: links in content. */
-  linkBases?: Record<string, string | undefined>;
-  /** The app's languages (folders in the catalog). */
+  /** The console's URL for console: links in content; without it they are an error. */
+  consoleUrl?: string;
+  /** The site's languages (folders in each area's content). */
   languages?: string[];
-  /** Path where the app is served (Astro `base`), e.g. '/docs'; '' at the domain root. */
-  urlBase?: string;
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
 }
 
-export function sharedConfig({ catalog, defaultLang, sourceLang, widgets = [], linkBases = {}, languages = [], scriptSources = [], urlBase = '' }: SharedOptions): AstroUserConfig {
-  const base = catalogPath(catalog);
-  const langOfFile = (file: string | undefined) => {
-    const rel = file ? relative(base, file) : '';
-    const lang = rel && !rel.startsWith('..') ? rel.split(sep)[0] : '';
-    return languages.includes(lang) ? lang : sourceLang;
+/** Areas and the path each is served at (the same as AREAS in i18n.ts, which needs the virtual module). */
+const AREAS: Record<string, string> = { site: '', docs: '/docs' };
+
+export function sharedConfig({ defaultLang, sourceLang, widgets = [], consoleUrl, languages = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
+  // A content file belongs to an area (content/<area>/<lang>/…) and a language.
+  const placeOf = (file: string | undefined) => {
+    const [area = 'site', lang = ''] = file ? relative(catalogPath(), file).split(sep) : [];
+    return { area: area in AREAS ? area : 'site', lang: languages.includes(lang) ? lang : sourceLang };
   };
-  // A page in <catalog>/<lang>/pages/… reads <lang>/diagrams/, then the source language's.
-  const diagramsDirs = (file: string | undefined) =>
-    [...new Set([langOfFile(file), sourceLang])].map((l) => catalogPath(catalog, l, 'diagrams'));
-  // Content links are written without a language prefix; each gets its file's.
-  const withLang = (path: string, lang: string) => {
-    const prefix = lang === defaultLang ? '' : `/${lang}`;
+  // A page in <area>/<lang>/pages/… reads <area>/<lang>/diagrams/, then the source language's.
+  const diagramsDirs = (file: string | undefined) => {
+    const { area, lang } = placeOf(file);
+    return [...new Set([lang, sourceLang])].map((l) => catalogPath(area, l, 'diagrams'));
+  };
+  // Content links are written without a language prefix; each gets its file's area and language.
+  const withLang = (path: string, lang: string, area: string) => {
+    const prefix = AREAS[area] + (lang === defaultLang ? '' : `/${lang}`);
     if (!prefix || path === prefix || path.startsWith(prefix + '/') || path.startsWith(prefix + '#')) return path;
     return path === '/' ? prefix : path.startsWith('/#') ? prefix + path.slice(1) : prefix + path;
   };
   const resolveLink = (url: string, file: string | undefined) => {
+    const { area, lang } = placeOf(file);
     const m = url.match(/^(site|docs|console):(\/.*)$/);
     if (m) {
-      const linkBase = linkBases[m[1]];
-      if (!linkBase) throw new Error(`"${m[1]}:" links are not available in this app.`);
-      return linkBase.replace(/\/$/, '') + (m[1] === 'console' ? m[2] : withLang(m[2], langOfFile(file))) || '/';
+      if (m[1] !== 'console') return withLang(m[2], lang, m[1]);
+      if (!consoleUrl) throw new Error('"console:" links are not available until the console has a URL.');
+      return consoleUrl.replace(/\/$/, '') + m[2];
     }
     if (!url.startsWith('/') || url.startsWith('//') || /^\/(docs|consola)(\/|$|#)/.test(url)) return undefined;
-    // Inside this app: its base path first ('/docs'), then the language.
-    const local = withLang(url, langOfFile(file));
-    return urlBase ? (local === '/' ? urlBase : urlBase + local) : local;
+    return withLang(url, lang, area);
   };
   return {
     trailingSlash: 'never',

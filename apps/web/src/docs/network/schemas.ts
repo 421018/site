@@ -5,13 +5,13 @@
  *   networks: defineCollection({ loader: file(dataFile('networks')), schema: networkSchema })
  *
  * The YAML files live in the content folder, under
- * network/. dataFile() resolves them through the installed catalog package.
+ * network/. dataFile() finds them in content/docs/network/.
  */
 import { z } from 'astro/zod';
-import { catalogPath } from '@42chain/base/kit/catalog';
+import { catalogPath } from '../../kit/catalog';
 
 /** Absolute path of a network data file in the catalog: networks, services or providers. */
-export const dataFile = (name: 'networks' | 'services' | 'providers') => catalogPath('network', `${name}.yaml`);
+export const dataFile = (name: 'networks' | 'services' | 'providers') => catalogPath('docs', 'network', `${name}.yaml`);
 
 const id = z.string().regex(/^[a-z0-9-]+$/);
 

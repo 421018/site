@@ -5,20 +5,19 @@
  * protocol and quick data of the default network, from the catalog's network data.
  */
 import { getEntry } from 'astro:content';
-import Base from '@42chain/base/kit/layouts/Base.astro';
+import Base from '../../kit/layouts/Base.astro';
 import Footer from './Footer.astro';
-import { getMenu, homeAlternates } from '@42chain/base/kit/site';
-import { langOf, resolveHref } from '@42chain/base/kit/i18n';
-import { ui } from '@42chain/base/kit/dictionary';
+import { getMenu, homeAlternates } from '../../kit/site';
+import { langOf, resolveHref } from '../../kit/i18n';
+import { ui } from '../../kit/dictionary';
 import { getDirectory, firstOf, pick } from '../network/directory';
 import DocsHeader from './DocsHeader.astro';
-import '../styles/docs.css';
 
 const lang = langOf(Astro);
-const entry = await getEntry('home', lang);
+const entry = await getEntry('docsHome', lang);
 if (!entry) throw new Error(`Missing docs/${lang}/home.md in the content catalog`);
 const { eyebrow, title, lead, searchPrompt, layers, quickData } = entry.data;
-const menu = await getMenu(lang);
+const menu = await getMenu(lang, 'docs');
 const { networks, services, providers } = await getDirectory();
 const net = networks[0];
 const evm = firstOf(providers, net.id, 'evm');
@@ -26,8 +25,8 @@ const t = ui(lang).network;
 const evmLabel = pick(services.find((s) => s.id === 'evm')!.label, lang);
 const tones = ['mint', 'blue', 'amber', 'stone'];
 ---
-<Base alternates={homeAlternates()} product="docs">
-  <DocsHeader alternates={homeAlternates()} />
+<Base alternates={homeAlternates('docs')} product="docs">
+  <DocsHeader alternates={homeAlternates('docs')} />
   <div class="dhome">
     <section class="dh-hero">
       <p class="dh-eyebrow">{eyebrow}</p>
@@ -56,7 +55,7 @@ const tones = ['mint', 'blue', 'amber', 'stone'];
           <p class="dk">{layers.title}</p>
           {layers.items.map((l, i) => {
             const inner = <><span><b>{l.label}</b> <span>· {l.text}</span></span><span class="tag">{l.tag}</span></>;
-            return l.href ? <a class:list={['layer', tones[i % tones.length]]} href={resolveHref(l.href, lang)}>{inner}</a> : <div class:list={['layer', tones[i % tones.length]]}>{inner}</div>;
+            return l.href ? <a class:list={['layer', tones[i % tones.length]]} href={resolveHref(l.href, lang, 'docs')}>{inner}</a> : <div class:list={['layer', tones[i % tones.length]]}>{inner}</div>;
           })}
         </div>
       )}

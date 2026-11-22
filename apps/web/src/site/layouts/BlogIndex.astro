@@ -6,11 +6,11 @@
  * in the URL preselects that category.
  */
 import { Image } from 'astro:assets';
-import Base from '@42chain/base/kit/layouts/Base.astro';
-import Header from '@42chain/base/kit/components/Header.astro';
+import Base from '../../kit/layouts/Base.astro';
+import Header from '../../kit/components/Header.astro';
 import Footer from '../components/Footer.astro';
-import PostCard from '@42chain/base/kit/components/PostCard.astro';
-import { blogHref, categoryOf, categoryTint, getBlog, getBlogPosts, postHref, postDate, readingMinutes } from '@42chain/base/kit/blog';
+import PostCard from '../../kit/components/PostCard.astro';
+import { blogHref, categoryOf, categoryTint, getBlog, getBlogPosts, postHref, postDate, readingMinutes } from '../../kit/blog';
 interface Props { lang: string }
 const { lang } = Astro.props;
 const blog = (await getBlog(lang))!;

@@ -38,7 +38,7 @@ Una vez corregida, lo ocurrido se publica en los avisos de seguridad, y se recon
 
 Este canal es solo para vulnerabilidades del código. No atiende:
 
-- **Soporte de la red.** Para preguntas técnicas, usa el [espacio de discusiones del repositorio](site:/about#questions).
+- **Soporte de la red.** Para preguntas técnicas, usa los [canales oficiales](site:/channels).
 - **Cuentas o unidades.** Nadie puede restablecer una llave privada ni revertir una transacción confirmada, y este canal no gestiona cuentas, unidades ni fondos de nadie.
 - **Servicios de terceros.** Las billeteras, los proveedores de RPC, los exploradores y las aplicaciones responden por sus propios servicios.
 

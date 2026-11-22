@@ -3,8 +3,8 @@
 // example in protocol/governance.md: the mainnet rules (quorum 33.4 %, threshold 50 %, veto 33.4 %;
 // 45 % turnout with 25 Yes, 12 No, 3 Veto and 5 Abstain: the votes are illustrative).
 // Text: catalog ui/<lang>.yaml → vote.
-import { langOf } from '@42chain/base/kit/i18n';
-import { fill, ui } from '@42chain/base/kit/dictionary';
+import { langOf } from '../../kit/i18n';
+import { fill, ui } from '../../kit/dictionary';
 const d = ui(langOf(Astro));
 const t = d.vote;
 const Q = 33.4, T = 50, V = 33.4;

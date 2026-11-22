@@ -7,15 +7,15 @@
  */
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
-import Base from '@42chain/base/kit/layouts/Base.astro';
-import Header from '@42chain/base/kit/components/Header.astro';
+import Base from '../../kit/layouts/Base.astro';
+import Header from '../../kit/components/Header.astro';
 import Footer from './Footer.astro';
-import { isExternal, langOf, resolveHref } from '@42chain/base/kit/i18n';
-import { homeAlternates } from '@42chain/base/kit/site';
-import { categoryOf, getBlog, getBlogPosts, postHref, readingMinutes } from '@42chain/base/kit/blog';
-import PageRing from '../art/PageRing.astro';
-import EngineMesh from '../art/EngineMesh.astro';
-import RingedPlanet from '@42chain/base/ui/art/RingedPlanet.astro';
+import { isExternal, langOf, resolveHref } from '../../kit/i18n';
+import { homeAlternates } from '../../kit/site';
+import { categoryOf, getBlog, getBlogPosts, postHref, readingMinutes } from '../../kit/blog';
+import PageRing from '../../art/PageRing.astro';
+import EngineMesh from '../../art/EngineMesh.astro';
+import RingedPlanet from '../../art/RingedPlanet.astro';
 
 const lang = langOf(Astro);
 const entry = await getEntry('home', lang);

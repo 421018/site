@@ -3,8 +3,8 @@
 // The recorded hashes are computed from the original data when the page loads;
 // editing a block recomputes its hash and shows where the chain stops matching.
 // Text: catalog ui/<lang>.yaml → hashChain.
-import { langOf } from '@42chain/base/kit/i18n';
-import { fill, ui } from '@42chain/base/kit/dictionary';
+import { langOf } from '../../kit/i18n';
+import { fill, ui } from '../../kit/dictionary';
 const d = ui(langOf(Astro));
 const t = d.hashChain;
 const blocks: string[] = t.blocks;

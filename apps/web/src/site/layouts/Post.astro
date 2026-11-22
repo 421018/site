@@ -7,14 +7,14 @@
  */
 import { Image } from 'astro:assets';
 import kit from 'virtual:42chain/kit';
-import Base from '@42chain/base/kit/layouts/Base.astro';
-import Header from '@42chain/base/kit/components/Header.astro';
+import Base from '../../kit/layouts/Base.astro';
+import Header from '../../kit/components/Header.astro';
 import Footer from '../components/Footer.astro';
-import PostCard from '@42chain/base/kit/components/PostCard.astro';
-import { catalogRelative } from '@42chain/base/kit/catalog';
-import { homeHref, langPrefix, sourceLang, withLang } from '@42chain/base/kit/i18n';
-import { getSiteText } from '@42chain/base/kit/site';
-import { blogHref, categoryOf, getBlogPosts, categoryTint, postDate, postHref, postLang, readingMinutes, relatedPosts, type Blog, type Post } from '@42chain/base/kit/blog';
+import PostCard from '../../kit/components/PostCard.astro';
+import { catalogRelative } from '../../kit/catalog';
+import { homeHref, langPrefix, sourceLang, withLang } from '../../kit/i18n';
+import { getSiteText } from '../../kit/site';
+import { blogHref, categoryOf, getBlogPosts, categoryTint, postDate, postHref, postLang, readingMinutes, relatedPosts, type Blog, type Post } from '../../kit/blog';
 interface Props { post: Post; blog: Blog; headings: { depth: number; slug: string; text: string }[] }
 const { post, blog, headings } = Astro.props;
 const lang = postLang(post);
@@ -62,7 +62,7 @@ const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : filters ? `${inde
           <nav aria-label={blog.onThisPost}>{toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}</nav>
         </aside>
       )}
-      <main data-pagefind-body={kit.search && !original ? true : undefined} lang={original ? sourceLang : undefined}>
+      <main lang={original ? sourceLang : undefined}>
         {original && ui.untranslated && <p class="untranslated" lang={lang}>{ui.untranslated}</p>}
         <div class="prose"><slot /></div>
       </main>

@@ -11,7 +11,7 @@
  */
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { iconNames } from '../ui/art/icons.ts';
+import { iconNames } from '../art/icons.ts';
 
 const color = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'use a 6-digit hex color, e.g. "#5BF0C8"');
 const link = z.object({ label: z.string(), href: z.string() }).strict();

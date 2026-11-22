@@ -1,19 +1,19 @@
 {
-  "name": "@42chain/site",
+  "name": "@42chain/web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "42 Chain: the project, the Bitácora and frequently asked questions (42chain.org).",
+  "description": "42chain.org: the site (home, project, blog, questions) and the documentation at /docs.",
   "scripts": {
-    "dev": "DOCS_URL=http://localhost:4322/docs astro dev --port 4321",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "astro dev --port 4321",
+    "build": "astro build && pagefind --site dist/docs",
+    "preview": "astro preview --port 4321",
     "check": "astro check",
-    "check:links": "check-links --skip /docs",
-    "verify": "astro check && npm run build && check-links --skip /docs"
+    "check:links": "node scripts/check-links.mjs",
+    "verify": "astro check && npm run build && node scripts/check-links.mjs"
   },
   "dependencies": {
-    "@42chain/base": "*",
+    "@42chain/ui": "*",
     "@astrojs/markdown-satteri": "0.4.10",
     "@astrojs/sitemap": "3.7.5",
     "astro": "7.4.12",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "pagefind": "1.6.0"
   }
 }

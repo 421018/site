@@ -1,0 +1,21 @@
+/* 42 Chain — design tokens shared by every section: the night palette, the
+   accents and the type. Each section adds its paper palette in its own file
+   (site.css, docs.css). Fonts are self-hosted at build time (astro.config.mjs → fonts). */
+
+:root {
+  --acc: #5BF0C8;        /* aurora */
+  --star: #F2C879;       /* ships, lore */
+  --nebula: #7C9CFF;
+  --night: #04060B;      /* void */
+  --night-2: #070B12;
+  --hull: #0B1018;       /* cards on dark */
+  --line-d: #161C25;
+  --line-d2: #26303A;
+  --fg: #ECEFF4;
+  --fg-2: #C5CCD4;
+  --fg-3: #A3ADB8;       /* dust */
+  --fg-4: #8792A0;
+  /* Self-hosted at build time (astro.config.mjs → fonts). */
+  --font: var(--font-geist);
+  --mono: var(--font-geist-mono);
+}
