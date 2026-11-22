@@ -26,7 +26,7 @@ Los contribuidores mantienen código fuente: el software del protocolo (el nodo)
 Lo que ocurre en la cadena no está en sus manos:
 
 - **La gobernanza de la red.** Cada red que ejecuta el protocolo la operan sus validadores, y sus reglas solo cambian mediante gobernanza en la cadena: propuestas que votan los validadores y quienes les delegan unidades. Una versión nueva del software llega a una red solo si esa red la aprueba y sus validadores la adoptan. Los contribuidores pueden proponer cambios como cualquiera, pero no los deciden. [Gobernanza](docs:/protocol/governance)
-- **Las aplicaciones y los servicios.** Los contratos, las aplicaciones, las billeteras, los proveedores de RPC, los exploradores y los demás servicios construidos sobre la red o a su alrededor son de quienes los construyen y operan, que responden por ellos.
+- **Las aplicaciones y los servicios.** Los contratos, las aplicaciones, las billeteras, los proveedores de RPC, los exploradores y los demás servicios construidos sobre la red o a su alrededor son de quienes los construyen y operan, que responden por ellos. Ninguno es oficial. [Servicios de terceros](#third-parties)
 - **Las operaciones en la cadena.** Cada transacción la firma y la envía su usuario, que la decide y responde por ella. Los contribuidores no custodian unidades ni llaves de nadie, y no pueden revertir transacciones ni recuperar el acceso a una cuenta.
 
 ## Sin garantías {#warranties}
@@ -95,6 +95,8 @@ El software del protocolo se construye sobre software de código abierto del eco
 
 ## Enlaces y servicios de terceros {#third-parties}
 
-Los validadores, los proveedores de RPC y de exploradores, y las aplicaciones mencionados en 42chain.org son independientes y responden por sus propios servicios. Que aparezcan aquí no implica respaldo ni relación comercial.
+Los servicios que aparecen en 42chain.org, como puntos de acceso RPC, exploradores, faucets, validadores o aplicaciones, aparecen solo a título informativo. Figuran porque forman parte de un repositorio abierto de datos de la red, en el que cualquiera puede proponer agregar, modificar o quitar una entrada. El único propósito de ese listado es mantener un catálogo comunitario de los servicios disponibles alrededor de la red.
+
+Ningún servicio alrededor del proyecto es oficial, ni debe considerarse oficial. Aparecer en el sitio no convierte a un servicio en oficial, recomendado ni garantizado, ni implica relación alguna con los contribuidores. Todos son iguales: iniciativas voluntarias y comunitarias, cada una operada por quien la ofrece, bajo su propia responsabilidad y sus propias condiciones.
 
 Los enlaces a sitios externos se ofrecen solo como referencia. Cada sitio externo tiene sus propias condiciones.

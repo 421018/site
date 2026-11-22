@@ -26,7 +26,7 @@ The contributors maintain source code: the protocol software (the node) and the 
 What happens on the chain is not in their hands:
 
 - **Governance of the network.** Each network that runs the protocol is operated by its validators, and its rules change only through on-chain governance: proposals that the validators and those who delegate units to them vote on. A new version of the software reaches a network only if that network approves it and its validators adopt it. The contributors can propose changes like anyone else, but they do not decide them. [Governance](docs:/protocol/governance)
-- **Applications and services.** Contracts, applications, wallets, RPC providers, explorers and other services built on or around the network belong to those who build and run them, who are responsible for them.
+- **Applications and services.** Contracts, applications, wallets, RPC providers, explorers and other services built on or around the network belong to those who build and run them, who are responsible for them. None of them is official. [Third-party services](#third-parties)
 - **Operations on the chain.** Every transaction is signed and sent by its user, who decides it and is responsible for it. The contributors do not hold anyone's units or keys, and cannot reverse transactions or restore access to an account.
 
 ## No warranties {#warranties}
@@ -95,6 +95,8 @@ The protocol software is built on open-source software from the Cosmos ecosystem
 
 ## Third-party links and services {#third-parties}
 
-The validators, the RPC and explorer providers, and the applications mentioned on 42chain.org are independent and responsible for their own services. Their appearance here does not imply endorsement or a commercial relationship.
+The services that appear on 42chain.org, such as RPC access points, explorers, faucets, validators or applications, appear for information only. They are listed because they are part of an open repository of network data, in which anyone can propose to add, change or remove an entry. The only purpose of that list is to keep a community catalog of the services available around the network.
+
+No service around the project is official, and none should be considered official. Appearing on the site does not make a service official, recommended or guaranteed, and does not imply any relationship with the contributors. All of them are equal: voluntary, community initiatives, each run by whoever offers it, under its own responsibility and its own terms.
 
 Links to external sites are offered only as reference. Each external site has its own terms.
