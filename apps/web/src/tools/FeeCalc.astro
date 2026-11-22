@@ -4,8 +4,8 @@
 // tarifas.md: 21,000 gas at 0.000001 per gas unit = 0.021. Values are examples;
 // the real base fee is the one the wallet shows for the current block.
 // Text: catalog ui/<lang>.yaml → fees.
-import { langOf } from '../../kit/i18n';
-import { fill, ui } from '../../kit/dictionary';
+import { langOf } from '../kit/i18n';
+import { fill, ui } from '../kit/dictionary';
 const d = ui(langOf(Astro));
 const t = d.fees;
 const group = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, d.common.thousands);

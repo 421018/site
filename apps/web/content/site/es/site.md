@@ -20,6 +20,7 @@ header:
     - { label: Blog, href: /blog, weight: 1 } # weight places it among the sections
     - { label: Proyecto, href: /about, weight: 2 }
     - { label: Documentación, href: "docs:/", weight: 10 }
+    - { label: Consola, href: "console:/", weight: 11 }
 
 footer:
   credit: Proyecto de código abierto
@@ -33,6 +34,7 @@ footer:
         - { label: Proyecto, href: "/about" }
         - { label: Preguntas, href: "/faq" }
         - { label: Documentación, href: "docs:/" }
+        - { label: Consola, href: "console:/" }
         - { label: Legal, href: "/legal" }
   links: # bottom line
     - { label: "@42protocol en X", href: "https://x.com/42protocol" }

@@ -4,8 +4,15 @@ import sitemap from '@astrojs/sitemap';
 import { kit } from './src/kit/integration';
 import { sharedConfig } from './src/kit/config';
 import { widgetNames } from './src/widgets/names';
-import { readdirSync } from 'node:fs';
-import { SITE, LINKS, EDIT_BASE } from './src/config.ts';
+import { readdirSync, readFileSync } from 'node:fs';
+import { parse } from 'yaml';
+import { SITE, EDIT_BASE } from './src/config.ts';
+
+// The console reads the public EVM RPC endpoints from the browser (network status):
+// each provider's origin is allowed in connect-src, straight from the provider directory.
+/** @type {{ service: string, url: string }[]} */
+const providers = parse(readFileSync(new URL('./content/docs/network/providers.yaml', import.meta.url), 'utf8'));
+const rpcOrigins = [...new Set(providers.filter((p) => p.service === 'evm').map((p) => new URL(p.url).origin))];
 
 // The blog used to be the Bitácora, at /log: every old address goes to its new one.
 /** @param {string} lang */
@@ -27,9 +34,9 @@ const logRedirects = Object.fromEntries(
 // Markdown, fonts, CSP and i18n are set up in src/kit/config.ts.
 export default defineConfig({
   // Search (Pagefind, in the documentation) runs WebAssembly, so scripts may use 'wasm-unsafe-eval'.
-  ...sharedConfig({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: Object.keys(SITE.languages), widgets: widgetNames, consoleUrl: LINKS.console, scriptSources: ["'wasm-unsafe-eval'"] }),
+  ...sharedConfig({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: Object.keys(SITE.languages), widgets: widgetNames, scriptSources: ["'wasm-unsafe-eval'"], connectSources: rpcOrigins }),
   site: SITE.url,
-  integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) }), kit({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: SITE.languages, editBase: EDIT_BASE, links: { console: LINKS.console } })],
+  integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) }), kit({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: SITE.languages, editBase: EDIT_BASE })],
   i18n: {
     defaultLocale: SITE.defaultLang,
     locales: Object.keys(SITE.languages),
@@ -38,7 +45,8 @@ export default defineConfig({
   // Internal shortcuts used in content. Change the targets in src/config.ts.
   redirects: {
     ...logRedirects,
-    ...(LINKS.console ? { '/consola': LINKS.console } : {}),
+    '/consola': '/console',
+    '/es/consola': '/console/es',
     // "Implementar" moved to the documentation (Spanish).
     '/implementar': `/docs/es/build/applications`,
     '/implementar/conectarse': `/docs/es/get-started/connect`,

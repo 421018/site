@@ -3,8 +3,8 @@
 // and filtered by the network chosen with <NetworkSwitch />. Endpoints get a copy
 // button; explorers and faucets, which are web pages, get a link.
 import { getDirectory, pick } from '../directory';
-import { langOf } from '../../../kit/i18n';
-import { fill, ui } from '../../../kit/dictionary';
+import { langOf } from '../../kit/i18n';
+import { fill, ui } from '../../kit/dictionary';
 const lang = langOf(Astro);
 const t = ui(lang).network;
 const i18n = JSON.stringify({ copy: t.copy, copied: t.copied, manual: t.copyManual });

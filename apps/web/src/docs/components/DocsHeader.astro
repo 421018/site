@@ -6,7 +6,8 @@
  */
 import Search from '../../kit/components/Search.astro';
 import LangMenu from '../../kit/components/LangMenu.astro';
-import NetworkSwitch from '../network/components/NetworkSwitch.astro';
+import { areaIcons } from '../../art/areas';
+import NetworkSwitch from '../../network/components/NetworkSwitch.astro';
 import { getMenu, getSiteText } from '../../kit/site';
 import { homeHref, isLinkAvailable, langOf, resolveHref } from '../../kit/i18n';
 interface Props { current?: string; alternates?: Record<string, string> }
@@ -16,7 +17,6 @@ const menu = await getMenu(lang, 'docs');
 const text = await getSiteText(lang, 'docs');
 // Links to the site or the console change the whole view: buttons with an icon, like the
 // site's "Documentation" button. Back to the site: an arrow.
-const icon = { site: '<path d="M14 6 L8 12 L14 18" />', console: '<path d="M5 7 L10 12 L5 17 M12 17 H19" />' } as Record<string, string>;
 const links = text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) => ({ label: l.label, href: resolveHref(l.href, lang, 'docs'), to: l.href.match(/^(site|console):/)?.[1] }));
 ---
 <header class="dh">
@@ -29,7 +29,7 @@ const links = text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) =
       <LangMenu alternates={alternates} />
       {links.map((l) => l.to ? (
         <a class:list={['htool', `to-${l.to}`]} href={l.href} aria-label={l.label}>
-          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={icon[l.to]} />
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={areaIcons[l.to as 'site' | 'console']} />
           <span>{l.label}</span>
         </a>
       ) : <a class="dh-link" href={l.href}>{l.label}</a>)}

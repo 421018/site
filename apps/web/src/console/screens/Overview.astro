@@ -1,0 +1,23 @@
+---
+/** Console overview: the live figures of the selected network and a door to each screen. */
+import Console from '../Console.astro';
+import LiveStatus from '../LiveStatus.astro';
+import { langOf, withLang } from '../../kit/i18n';
+import { consoleIcons } from '../../art/areas';
+import { getConsoleText, SCREENS } from '../text';
+const lang = langOf(Astro);
+const t = await getConsoleText(lang);
+const doors = SCREENS.filter((s) => s.id !== 'overview') as { id: 'status' | 'events' | 'networks' | 'tools'; path: string }[];
+---
+<Console screen="overview" kicker={t.overview.kicker} title={t.overview.title} lead={t.overview.lead}>
+  <h2 class="cx-h2">{t.overview.live}</h2>
+  <LiveStatus />
+  <div class="cx-grid" style="margin-top: 36px">
+    {doors.map((d) => (
+      <a class="cx-card" href={withLang(`/${d.path}`, lang, 'console')}>
+        <b><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={consoleIcons[d.id]} />{t.nav[d.id]}</b>
+        <span>{t.overview.cards[d.id]}</span>
+      </a>
+    ))}
+  </div>
+</Console>

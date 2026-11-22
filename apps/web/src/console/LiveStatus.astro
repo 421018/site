@@ -1,0 +1,129 @@
+---
+/**
+ * Live status of each network, read from the browser: every public EVM RPC in
+ * the provider directory is asked, in one batch, for its chain id, latest
+ * block and gas price, every ten seconds (paused while the tab is hidden).
+ * Shows the latest block, the time per block (measured between two readings,
+ * so the visitor's clock does not matter), the providers online and the gas price;
+ * `full` adds a row per provider. The network switch shows one network at a
+ * time; without JavaScript, a note.
+ */
+import { getDirectory, pick } from '../network/directory';
+import { langOf } from '../kit/i18n';
+import { getConsoleText } from './text';
+interface Props { full?: boolean }
+const { full = false } = Astro.props;
+const lang = langOf(Astro);
+const t = (await getConsoleText(lang)).status;
+const { networks, providers } = await getDirectory();
+const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChain, checking: t.checking, seconds: t.seconds, updated: t.updated };
+---
+<div class="cx-live" data-live data-i18n={JSON.stringify(i18n)}>
+  {networks.map((n) => {
+    const evm = providers.filter((p) => p.network === n.id && p.service === 'evm');
+    return (
+      <section data-for-net={n.id} data-live-net={n.id} data-chain={n.evmChainId}>
+        <div class="cx-net"><b>{pick(n.label, lang)}</b><code>{n.chainId}</code></div>
+        <dl class="cx-stats">
+          <div class="cx-stat"><dt>{t.height}</dt><dd data-v="height">—</dd></div>
+          <div class="cx-stat"><dt>{t.blockTime}</dt><dd data-v="pace">—</dd></div>
+          <div class="cx-stat"><dt>{t.online}</dt><dd data-v="online">—</dd></div>
+          <div class="cx-stat"><dt>{t.gas}</dt><dd data-v="gas">—</dd></div>
+        </dl>
+        {full && (
+          <div class="cx-wrap" style="margin-top: 14px">
+            <table class="cx-table">
+              <thead><tr><th>{t.provider}</th><th class="cx-col-url">{t.endpoint}</th><th>{t.state}</th><th class="num">{t.height}</th><th class="num">{t.latency}</th></tr></thead>
+              <tbody>
+                {evm.map((p) => (
+                  <tr data-rpc={p.url}>
+                    <td>{p.provider}</td>
+                    <td class="cx-url cx-col-url">{p.url.replace(/^https:\/\//, '')}</td>
+                    <td><span class="cx-st" data-s="checking" data-v="state">{t.checking}</span></td>
+                    <td class="num" data-v="height">—</td>
+                    <td class="num" data-v="ms">—</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {!full && evm.map((p) => <span hidden data-rpc={p.url}></span>)}
+      </section>
+    );
+  })}
+  <p class="cx-note" data-live-updated aria-live="polite"></p>
+  {full && <p class="cx-note">{t.downNote}</p>}
+  <noscript><p class="cx-note">{t.noscript}</p></noscript>
+</div>
+
+<script>
+  type Probe = { ok: true; ms: number; chain: number; height: number; time: number; gas: number } | { ok: false };
+  const BEHIND = 3; // blocks behind the network's latest before a provider counts as behind
+  const body = JSON.stringify([
+    { jsonrpc: '2.0', id: 1, method: 'eth_chainId', params: [] },
+    { jsonrpc: '2.0', id: 2, method: 'eth_getBlockByNumber', params: ['latest', false] },
+    { jsonrpc: '2.0', id: 3, method: 'eth_gasPrice', params: [] },
+  ]);
+  async function probe(url: string): Promise<Probe> {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 6000);
+    const t0 = performance.now();
+    try {
+      const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body, signal: ctl.signal });
+      const data = (await res.json()) as { id: number; result: any }[];
+      const r = Object.fromEntries(data.map((x) => [x.id, x.result]));
+      return { ok: true, ms: Math.round(performance.now() - t0), chain: parseInt(r[1], 16), height: parseInt(r[2].number, 16), time: parseInt(r[2].timestamp, 16), gas: parseInt(r[3], 16) };
+    } catch {
+      return { ok: false };
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  document.querySelectorAll<HTMLElement>('[data-live]').forEach((root) => {
+    const t = JSON.parse(root.dataset.i18n!) as Record<string, string>;
+    const locale = document.documentElement.lang || undefined;
+    const num = new Intl.NumberFormat(locale);
+    const gwei = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 });
+    const clock = new Intl.DateTimeFormat(locale, { timeStyle: 'medium' });
+    const nets = [...root.querySelectorAll<HTMLElement>('[data-live-net]')];
+    const pace = new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    // network → first block seen (height, time): the time per block is measured from there.
+    const first = new Map<HTMLElement, { height: number; time: number }>();
+    const set = (el: Element, key: string, text: string) => { const v = el.querySelector(`[data-v="${key}"]`); if (v) v.textContent = text; };
+    const refresh = async () => {
+      if (document.hidden) return;
+      await Promise.all(nets.map(async (net) => {
+        const chain = Number(net.dataset.chain);
+        const rows = [...net.querySelectorAll<HTMLElement>('[data-rpc]')];
+        const results = await Promise.all(rows.map((row) => probe(row.dataset.rpc!)));
+        const good = results.filter((r): r is Extract<Probe, { ok: true }> => r.ok && r.chain === chain);
+        const top = good.reduce((m, r) => (r.height > m.height ? r : m), { height: 0, time: 0, gas: 0 } as { height: number; time: number; gas: number });
+        rows.forEach((row, i) => {
+          const r = results[i];
+          const state = !r.ok ? 'down' : r.chain !== chain ? 'wrong' : r.height < top.height - BEHIND ? 'behind' : 'ok';
+          const label = { down: t.down, wrong: t.wrongChain, behind: t.behind, ok: t.ok }[state];
+          const st = row.querySelector<HTMLElement>('[data-v="state"]');
+          if (st) { st.dataset.s = state; st.textContent = label; }
+          set(row, 'height', r.ok ? num.format(r.height) : '—');
+          set(row, 'ms', r.ok ? `${r.ms} ms` : '—');
+        });
+        const online = good.filter((r) => r.height >= top.height - BEHIND).length;
+        set(net, 'online', `${online} / ${rows.length}`);
+        if (top.height) {
+          set(net, 'height', num.format(top.height));
+          set(net, 'gas', `${gwei.format(top.gas / 1e9)} gwei`);
+          const f = first.get(net);
+          if (!f) first.set(net, { height: top.height, time: top.time });
+          else if (top.height > f.height && top.time > f.time) set(net, 'pace', t.seconds.replace('{n}', pace.format((top.time - f.time) / (top.height - f.height))));
+        }
+      }));
+      const upd = root.querySelector('[data-live-updated]');
+      if (upd) upd.textContent = t.updated.replace('{time}', clock.format(new Date()));
+    };
+    // A second reading soon after the first, so the time per block shows quickly; then every ten seconds.
+    refresh().then(() => setTimeout(refresh, 4000));
+    setInterval(refresh, 10_000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+  });
+</script>

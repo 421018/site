@@ -1,0 +1,23 @@
+---
+import '@42chain/ui/console.css';
+// Every console screen in every language: /console, /console/status, /console/es/status…
+import Overview from '../../console/screens/Overview.astro';
+import Status from '../../console/screens/Status.astro';
+import Events from '../../console/screens/Events.astro';
+import Networks from '../../console/screens/Networks.astro';
+import Tools from '../../console/screens/Tools.astro';
+import { languages, langSegment } from '../../kit/i18n';
+import { SCREENS } from '../../console/text';
+
+export function getStaticPaths() {
+  return languages.flatMap((lang) =>
+    SCREENS.map((s) => ({ params: { path: [langSegment(lang).slice(1), s.path].filter(Boolean).join('/') || undefined }, props: { screen: s.id } })),
+  );
+}
+const { screen } = Astro.props;
+---
+{screen === 'overview' && <Overview />}
+{screen === 'status' && <Status />}
+{screen === 'events' && <Events />}
+{screen === 'networks' && <Networks />}
+{screen === 'tools' && <Tools />}

@@ -14,7 +14,10 @@
  *
  * The documentation: `docsPages`, `docsHome` and `docsSite`, the same kinds of
  * files under docs/<lang>/, plus the network data in docs/network/
- * (`networks`, `services`, `providers`).
+ * (`networks`, `services`, `providers`), which the console uses too.
+ *
+ * The console: `consoleSite` (console/<lang>/site.md) and `consoleText`
+ * (console/<lang>/console.md), the texts of its screens.
  *
  * The schemas are strict: a misspelled or missing field stops the build with
  * the file and field name.
@@ -24,7 +27,7 @@ import { z } from 'astro/zod';
 import { pageSchema, pagesLoader, perLanguage, postSchema, postsLoader, siteTextSchema } from './kit/schemas';
 import { file } from 'astro/loaders';
 import { catalogPath } from './kit/catalog';
-import { dataFile, networkSchema, providerSchema, serviceSchema } from './docs/network/schemas';
+import { dataFile, networkSchema, providerSchema, serviceSchema } from './network/schemas';
 
 const pages = defineCollection({ loader: pagesLoader(catalogPath('site')), schema: pageSchema });
 const posts = defineCollection({ loader: postsLoader(catalogPath('site')), schema: ({ image }) => postSchema(image) });
@@ -117,4 +120,34 @@ const networks = defineCollection({ loader: file(dataFile('networks')), schema: 
 const services = defineCollection({ loader: file(dataFile('services')), schema: serviceSchema });
 const providers = defineCollection({ loader: file(dataFile('providers')), schema: providerSchema });
 
-export const collections = { pages, posts, home, project, site, docsPages, docsHome, docsSite, networks, services, providers };
+/* ---------- the console (/console) ---------- */
+
+const head = z.object({ kicker: z.string(), title: z.string(), lead: z.string() }).strict();
+const consoleSite = defineCollection({ loader: perLanguage(catalogPath('console'), 'site.md'), schema: siteTextSchema });
+/** The texts of the console's screens (console/<lang>/console.md); the screens themselves are code. */
+const consoleText = defineCollection({
+  loader: perLanguage(catalogPath('console'), 'console.md'),
+  schema: z
+    .object({
+      nav: z.object({ overview: z.string(), status: z.string(), events: z.string(), networks: z.string(), tools: z.string() }).strict(),
+      overview: head.extend({ live: z.string(), cards: z.object({ status: z.string(), events: z.string(), networks: z.string(), tools: z.string() }).strict() }).strict(),
+      status: head
+        .extend({
+          height: z.string(), blockTime: z.string(), online: z.string(), gas: z.string(),
+          provider: z.string(), endpoint: z.string(), state: z.string(), latency: z.string(),
+          ok: z.string(), behind: z.string(), down: z.string(), downNote: z.string(), wrongChain: z.string(), checking: z.string(),
+          /** "{n} s" */
+          seconds: z.string(),
+          /** "Updated at {time}" */
+          updated: z.string(),
+          noscript: z.string(),
+        })
+        .strict(),
+      events: head.extend({ empty: z.string(), emptyText: z.string(), types: z.string(), typeNames: z.array(z.string()).min(1) }).strict(),
+      networks: head.extend({ params: z.string(), wallet: z.string(), directory: z.string() }).strict(),
+      tools: head,
+    })
+    .strict(),
+});
+
+export const collections = { pages, posts, home, project, site, docsPages, docsHome, docsSite, networks, services, providers, consoleSite, consoleText };

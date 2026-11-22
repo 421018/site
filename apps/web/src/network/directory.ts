@@ -7,7 +7,7 @@
 import { readFileSync } from 'node:fs';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { dataFile } from './schemas';
-import { sourceLang } from '../../kit/i18n';
+import { sourceLang } from '../kit/i18n';
 
 /** A localized value in the page's language, or in the source language. */
 export const pick = (value: Record<string, string>, lang: string) => value[lang] ?? value[sourceLang];

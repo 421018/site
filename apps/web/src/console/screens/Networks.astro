@@ -1,0 +1,20 @@
+---
+/** Networks and connections: parameters, add to wallet and the provider directory (the same components as the documentation). */
+import Console from '../Console.astro';
+import NetworkParams from '../../network/components/NetworkParams.astro';
+import AddNetwork from '../../network/components/AddNetwork.astro';
+import ProviderDirectory from '../../network/components/ProviderDirectory.astro';
+import { langOf } from '../../kit/i18n';
+import { getConsoleText } from '../text';
+const t = (await getConsoleText(langOf(Astro))).networks;
+---
+<Console screen="networks" kicker={t.kicker} title={t.title} lead={t.lead}>
+  <div class="prose">
+    <h2 class="cx-h2">{t.params}</h2>
+    <NetworkParams />
+    <h2 class="cx-h2">{t.wallet}</h2>
+    <AddNetwork />
+    <h2 class="cx-h2">{t.directory}</h2>
+    <ProviderDirectory />
+  </div>
+</Console>

@@ -16,8 +16,8 @@ import { homeHref, langPrefix, languages, resolveHref, sourceLang, type Area } f
 type PageEntry = CollectionEntry<'pages'>;
 export type Page = PageEntry & { area: Area; fallbackOf?: PageEntry };
 
-/** Content collections of each area: its interior pages and its site-wide text. */
-const COLLECTIONS = { site: { pages: 'pages', text: 'site' }, docs: { pages: 'docsPages', text: 'docsSite' } } as const;
+/** Content collections of each area: its interior pages and its site-wide text. The console has no Markdown pages: its screens are code. */
+const COLLECTIONS = { site: { pages: 'pages', text: 'site' }, docs: { pages: 'docsPages', text: 'docsSite' }, console: { pages: undefined, text: 'consoleSite' } } as const;
 export type Link = { href: string; label: string };
 export type Section = {
   key: string;
@@ -73,7 +73,8 @@ export async function getAllPages(area: Area = 'site'): Promise<Page[]> {
 }
 
 async function build(area: Area) {
-  const entries = (await getCollection(COLLECTIONS[area].pages, (p) => import.meta.env.DEV || !p.data.draft)) as PageEntry[];
+  const collection = COLLECTIONS[area].pages;
+  const entries = collection ? ((await getCollection(collection, (p) => import.meta.env.DEV || !p.data.draft)) as PageEntry[]) : [];
   const own: Page[] = entries.map((p) => ({ ...p, area }));
   // Every language has every page: pages not translated yet are the source-language page.
   const ownIds = new Set(own.map((p) => p.id));

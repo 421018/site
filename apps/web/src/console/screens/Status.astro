@@ -1,0 +1,11 @@
+---
+/** Network status: the live figures and every public provider, for the selected network. */
+import Console from '../Console.astro';
+import LiveStatus from '../LiveStatus.astro';
+import { langOf } from '../../kit/i18n';
+import { getConsoleText } from '../text';
+const t = (await getConsoleText(langOf(Astro))).status;
+---
+<Console screen="status" kicker={t.kicker} title={t.title} lead={t.lead}>
+  <LiveStatus full />
+</Console>

@@ -1,10 +1,10 @@
 /**
  * Areas and languages.
  *
- * One app serves two areas of 42chain.org, each with its own content
- * (content/<area>/) and look: the site at the root and the documentation
- * under /docs. Every helper that builds a URL takes the area; it defaults to
- * the site.
+ * One app serves three areas of 42chain.org, each with its own content
+ * (content/<area>/) and look: the site at the root, the documentation under
+ * /docs and the console under /console. Every helper that builds a URL takes
+ * the area; it defaults to the site.
  *
  * The default language is served at the area's root (/protocol, /docs/protocol);
  * every other one under its code (/es/protocol, /docs/es/protocol). Paths and
@@ -21,11 +21,11 @@ export const sourceLang = kit.sourceLang;
 export const languages = Object.keys(kit.languages);
 
 /** The areas of the site and the path each is served at. */
-export const AREAS = { site: '', docs: '/docs' } as const;
+export const AREAS = { site: '', docs: '/docs', console: '/console' } as const;
 export type Area = keyof typeof AREAS;
 
-/** Area of a URL path: /docs… is the documentation; everything else, the site. */
-export const areaOfPath = (path: string): Area => (/^\/docs(\/|$)/.test(path) ? 'docs' : 'site');
+/** Area of a URL path: /docs… is the documentation, /console… the console; everything else, the site. */
+export const areaOfPath = (path: string): Area => (/^\/docs(\/|$)/.test(path) ? 'docs' : /^\/console(\/|$)/.test(path) ? 'console' : 'site');
 
 /** Area of the page being rendered. */
 export const areaOf = (astro: { url: URL }) => areaOfPath(astro.url.pathname);
@@ -52,21 +52,18 @@ export const withLang = (path: string, lang: string, area: Area = 'site') => {
   return path === '/' ? prefix : path.startsWith('/#') ? prefix + path.slice(1) : prefix + path;
 };
 
-/** False for a link to a product that is not available yet (console:/ while the console has no URL). */
-export const isLinkAvailable = (href: string) => !href.startsWith('console:') || !!kit.links?.console;
+/** Every link is available: the three areas are part of the site. Kept for links that may depend on a product later. */
+export const isLinkAvailable = (_href: string) => true;
 
 /**
  * Resolves a content link for a page in `lang` and `area`: /path stays in the
- * area and gets the language prefix; site:/… and docs:/… go to that area;
- * console:/… to the console. /docs, /consola, external and #anchor links pass through.
+ * area and gets the language prefix; site:/…, docs:/… and console:/… go to
+ * that area. /docs, /console, external and #anchor links pass through.
  */
 export const resolveHref = (href: string, lang: string = defaultLang, area: Area = 'site') => {
   const m = href.match(/^(site|docs|console):(\/.*)$/);
-  if (m) {
-    if (m[1] === 'console') return kit.links?.console ? kit.links.console.replace(/\/$/, '') + m[2] : href;
-    return withLang(m[2], lang, m[1] as Area);
-  }
-  if (!href.startsWith('/') || href.startsWith('//') || /^\/(docs|consola)(\/|$|#)/.test(href)) return href;
+  if (m) return withLang(m[2], lang, m[1] as Area);
+  if (!href.startsWith('/') || href.startsWith('//') || /^\/(docs|console|consola)(\/|$|#)/.test(href)) return href;
   return withLang(href, lang, area);
 };
 

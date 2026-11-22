@@ -3,8 +3,8 @@
 // (the base denomination: 1 cup = 10^18 drops), in both directions, with exact
 // BigInt arithmetic. Accepts a comma or a dot as the decimal separator.
 // Text: catalog ui/<lang>.yaml → units.
-import { langOf } from '../../kit/i18n';
-import { ui } from '../../kit/dictionary';
+import { langOf } from '../kit/i18n';
+import { ui } from '../kit/dictionary';
 const d = ui(langOf(Astro));
 const t = d.units;
 const i18n = JSON.stringify({ badCups: t.badCups, badDrops: t.badDrops, decimal: d.common.decimal });

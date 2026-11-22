@@ -18,18 +18,18 @@ export interface SharedOptions {
   sourceLang: string;
   /** Names accepted by :::widget (from src/widgets/names.ts). */
   widgets?: readonly string[];
-  /** The console's URL for console: links in content; without it they are an error. */
-  consoleUrl?: string;
   /** The site's languages (folders in each area's content). */
   languages?: string[];
   /** Extra script-src sources. Pagefind search needs "'wasm-unsafe-eval'". */
   scriptSources?: string[];
+  /** Origins scripts may fetch from (connect-src), e.g. the public RPC endpoints the console reads. */
+  connectSources?: string[];
 }
 
 /** Areas and the path each is served at (the same as AREAS in i18n.ts, which needs the virtual module). */
-const AREAS: Record<string, string> = { site: '', docs: '/docs' };
+const AREAS: Record<string, string> = { site: '', docs: '/docs', console: '/console' };
 
-export function sharedConfig({ defaultLang, sourceLang, widgets = [], consoleUrl, languages = [], scriptSources = [] }: SharedOptions): AstroUserConfig {
+export function sharedConfig({ defaultLang, sourceLang, widgets = [], languages = [], scriptSources = [], connectSources = [] }: SharedOptions): AstroUserConfig {
   // A content file belongs to an area (content/<area>/<lang>/…) and a language.
   const placeOf = (file: string | undefined) => {
     const [area = 'site', lang = ''] = file ? relative(catalogPath(), file).split(sep) : [];
@@ -49,12 +49,8 @@ export function sharedConfig({ defaultLang, sourceLang, widgets = [], consoleUrl
   const resolveLink = (url: string, file: string | undefined) => {
     const { area, lang } = placeOf(file);
     const m = url.match(/^(site|docs|console):(\/.*)$/);
-    if (m) {
-      if (m[1] !== 'console') return withLang(m[2], lang, m[1]);
-      if (!consoleUrl) throw new Error('"console:" links are not available until the console has a URL.');
-      return consoleUrl.replace(/\/$/, '') + m[2];
-    }
-    if (!url.startsWith('/') || url.startsWith('//') || /^\/(docs|consola)(\/|$|#)/.test(url)) return undefined;
+    if (m) return withLang(m[2], lang, m[1]);
+    if (!url.startsWith('/') || url.startsWith('//') || /^\/(docs|console|consola)(\/|$|#)/.test(url)) return undefined;
     return withLang(url, lang, area);
   };
   return {
@@ -104,7 +100,7 @@ export function sharedConfig({ defaultLang, sourceLang, widgets = [], consoleUrl
       csp: {
         styleDirective: { resources: ["'self'", "'unsafe-inline'"] },
         ...(scriptSources.length ? { scriptDirective: { resources: ["'self'", ...scriptSources] } } : {}),
-        directives: ["default-src 'self'", "img-src 'self' data:", "font-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"],
+        directives: ["default-src 'self'", "img-src 'self' data:", "font-src 'self'", `connect-src ${["'self'", ...connectSources].join(' ')}` as `connect-src${string}`, "object-src 'none'", "base-uri 'self'", "form-action 'self'"],
       },
     },
   };

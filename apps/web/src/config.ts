@@ -1,6 +1,6 @@
 /**
- * Technical settings of 42chain.org: the site at the root and the documentation
- * at /docs. Visitor-facing text lives in content/<area>/<lang>/site.md.
+ * Technical settings of 42chain.org: the site at the root, the documentation
+ * at /docs and the console at /console. Visitor-facing text lives in content/<area>/<lang>/site.md.
  */
 export const SITE = {
   url: 'https://42chain.org',
@@ -16,8 +16,6 @@ export const SITE = {
 };
 
 export const LINKS = {
-  /** The console is not launched yet: without a URL, every link to it is left out. */
-  console: undefined as string | undefined,
   repo: 'https://github.com/deep-thought-labs/infinite-app',
   content: 'https://github.com/deep-thought-labs/infinite-app',
 };

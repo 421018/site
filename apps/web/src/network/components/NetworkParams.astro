@@ -1,8 +1,8 @@
 ---
 // Parameters of each network, one table per network (from networks.yaml).
 import { getDirectory, pick } from '../directory';
-import { langOf } from '../../../kit/i18n';
-import { fill, ui } from '../../../kit/dictionary';
+import { langOf } from '../../kit/i18n';
+import { fill, ui } from '../../kit/dictionary';
 const lang = langOf(Astro);
 const t = ui(lang).network;
 const { networks } = await getDirectory();

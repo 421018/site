@@ -1,0 +1,15 @@
+---
+/** Tools: the unit converter and the fee calculator (the same components as the documentation). */
+import Console from '../Console.astro';
+import UnitConverter from '../../tools/UnitConverter.astro';
+import FeeCalc from '../../tools/FeeCalc.astro';
+import { langOf } from '../../kit/i18n';
+import { getConsoleText } from '../text';
+const t = (await getConsoleText(langOf(Astro))).tools;
+---
+<Console screen="tools" kicker={t.kicker} title={t.title} lead={t.lead}>
+  <div class="prose">
+    <UnitConverter />
+    <FeeCalc />
+  </div>
+</Console>

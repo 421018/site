@@ -1,0 +1,19 @@
+---
+/**
+ * Network events. The record lives in its own repository (42chain-events,
+ * specification agreed, not implemented yet); until it is connected and has
+ * events, this screen says so and names the kinds of event it will hold.
+ */
+import Console from '../Console.astro';
+import { langOf } from '../../kit/i18n';
+import { getConsoleText } from '../text';
+const t = (await getConsoleText(langOf(Astro))).events;
+---
+<Console screen="events" kicker={t.kicker} title={t.title} lead={t.lead}>
+  <div class="cx-empty">
+    <b>{t.empty}</b>
+    <p>{t.emptyText}</p>
+  </div>
+  <h2 class="cx-h2">{t.types}</h2>
+  <ul class="cx-tags">{t.typeNames.map((n) => <li>{n}</li>)}</ul>
+</Console>

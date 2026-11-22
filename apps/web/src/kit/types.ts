@@ -17,6 +17,4 @@ export interface KitConfig {
   languages: Record<string, LanguageConfig>;
   /** Prefix of the "edit this page" link: content repository + branch; the file's path in the catalog is appended. Without it, no edit links are shown. */
   editBase?: string;
-  /** URLs of other products: the console, for console: links in front matter (left out while it has none). */
-  links?: { console?: string };
 }
