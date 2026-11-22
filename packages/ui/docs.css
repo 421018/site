@@ -1,4 +1,4 @@
-/* 42 Chain — the documentation (/docs): light by default, with a dark theme;
+/* 42 Chain — the documentation (/docs): the reader's system theme (dark or light), switchable;
    dense, three columns. Shares the type, the brand mark and the base rules with
    the site. Loaded by every page under apps/web/src/pages/docs/. */
 @import './tokens.css';
@@ -43,8 +43,9 @@
   color-scheme: light;
 }
 :root[data-product="docs"][data-theme="dark"] {
-  --bg: #0B0F14; --ink: #C9D0D6; --head: #F1F3F5; --muted: #8E98A3; --rule: #222932; --rule2: #313A45; --panel: #151B23;
-  --surface: #11161D; --soft: #151B23; --link: #5BF0C8;
+  /* the same night as the site and the console */
+  --bg: #070A10; --ink: #C3CBD3; --head: #F1F4F7; --muted: #8C97A4; --rule: #18202A; --rule2: #26303C; --panel: #0D131B;
+  --surface: #0A0F16; --soft: #0E141C; --card: #0B1118; --link: #5BF0C8;
   color-scheme: dark;
 }
 [data-product="docs"] body { background: var(--bg); color: var(--ink); }

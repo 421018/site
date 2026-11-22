@@ -47,59 +47,8 @@ const i18n = { seconds: text.seconds, block: text.block, unavailable: text.unava
 </section>
 
 <script>
-  import { blockPace, readNetwork, reducedMotion } from '../../network/live';
-  const INTERVAL = 10_000;
-  const KEEP = 28; // blocks kept in the stream
+  import { mountStream } from '../../network/live';
   document.querySelectorAll<HTMLElement>('[data-home-live]').forEach((root) => {
-    const t = JSON.parse(root.dataset.i18n!) as Record<string, string>;
-    const urls = JSON.parse(root.dataset.rpcs!) as string[];
-    const chain = Number(root.dataset.chain);
-    const list = root.querySelector<HTMLOListElement>('[data-blocks]')!;
-    const state = root.querySelector<HTMLElement>('[data-state]')!;
-    const locale = document.documentElement.lang || undefined;
-    const num = new Intl.NumberFormat(locale);
-    const one = new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-    const set = (key: string, text: string) => { const v = root.querySelector(`[data-v="${key}"]`); if (v && v.textContent !== text) { v.textContent = text; v.classList.remove('tick'); void (v as HTMLElement).offsetWidth; v.classList.add('tick'); } };
-    let last = 0; // highest block drawn
-    let timers: number[] = [];
-    let paced = false;
-
-    const add = (height: number, quiet = false) => {
-      const li = document.createElement('li');
-      li.className = quiet ? 'lb-b' : 'lb-b new';
-      li.title = t.block.replace('{n}', num.format(height));
-      li.innerHTML = `<span class="lb-sq"></span><span class="lb-n">${String(height).slice(-4)}</span>`;
-      list.querySelector('.now')?.classList.remove('now');
-      li.classList.add('now');
-      list.append(li);
-      while (list.children.length > KEEP) list.firstElementChild!.remove();
-      last = height;
-      set('height', num.format(height));
-    };
-
-    const refresh = async () => {
-      if (document.hidden) return;
-      const { top, topUrl, online } = await readNetwork(urls, chain);
-      set('online', `${online} / ${urls.length}`);
-      if (!top) { if (!last) state.textContent = t.unavailable; return; }
-      state.textContent = '';
-      if (!paced && topUrl) { paced = true; blockPace(topUrl, top).then((s) => s && set('pace', t.seconds.replace('{n}', one.format(s)))); }
-      if (!last) {
-        // First reading: the recent past, at once.
-        for (let h = Math.max(1, top.height - 15); h <= top.height; h++) add(h, true);
-        return;
-      }
-      // Later readings: the new blocks arrive one by one over the next interval.
-      timers.forEach(clearTimeout); timers = [];
-      const from = last + 1;
-      const fresh = Math.min(top.height - last, 10);
-      if (fresh <= 0) return;
-      if (reducedMotion()) { for (let h = top.height - fresh + 1; h <= top.height; h++) add(h, true); return; }
-      const step = INTERVAL / fresh;
-      for (let i = 0; i < fresh; i++) timers.push(window.setTimeout(() => add(Math.max(from, top.height - fresh + 1) + i), i * step));
-    };
-    refresh();
-    setInterval(refresh, INTERVAL);
-    document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+    mountStream(root, { urls: JSON.parse(root.dataset.rpcs!), chain: Number(root.dataset.chain), t: JSON.parse(root.dataset.i18n!) });
   });
 </script>

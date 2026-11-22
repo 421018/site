@@ -11,7 +11,7 @@
   identifier: infinite
   bech32Prefix: infinite
   unit: { name: Improbability, symbol: "42", decimals: 18, base: drop }
-  blockTime: "~2 s"
+  blockTime: "~5 s"
   data: https://assets.infinitedrive.xyz/mainnet/network-data.json
 
 - id: testnet
@@ -22,5 +22,5 @@
   identifier: infinite
   bech32Prefix: infinite
   unit: { name: TestImprobability, symbol: TEST42, decimals: 18, base: tdrop }
-  blockTime: "~2 s"
+  blockTime: "~5 s"
   data: https://assets.infinitedrive.xyz/testnet/network-data.json

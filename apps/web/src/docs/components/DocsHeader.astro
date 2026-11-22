@@ -50,7 +50,8 @@ const links = text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) =
 </header>
 
 <script>
-  // Theme: light by default; the choice is remembered when storage is available.
+  // Theme: the system's (light or dark) until the reader picks one; the choice is remembered
+  // when storage is available. Base.astro applies it before the first paint.
   const KEY = '42docs-theme';
   const root = document.documentElement;
   const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
@@ -60,7 +61,7 @@ const links = text.header.links.filter((l) => isLinkAvailable(l.href)).map((l) =
   };
   let saved: string | null = null;
   try { saved = localStorage.getItem(KEY); } catch { /* storage unavailable */ }
-  apply(saved === 'dark');
+  apply(saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches);
   button?.addEventListener('click', () => {
     const dark = root.dataset.theme !== 'dark';
     apply(dark);

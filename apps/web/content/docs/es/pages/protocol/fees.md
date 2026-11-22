@@ -82,7 +82,7 @@ Las cifras del ejemplo son ilustrativas.
 :::
 
 :::lore[Bitácora del motor]
-El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que miles de computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
+El motor no funciona con vapor ni con electricidad: funciona con improbabilidad. Que muchas computadoras que no se conocen acuerden exactamente lo mismo, bloque tras bloque, no debería ser posible. El motor lo consigue, y cada maniobra consume un poco de combustible.
 
 En la novela de Douglas Adams, el motor de improbabilidad infinita se pone en marcha con una buena taza de té caliente. De ahí viene el nombre de la unidad completa: una cup es la taza que mueve el motor. Cada cup se divide en drops, la cantidad más pequeña que existe, como un átomo.
 

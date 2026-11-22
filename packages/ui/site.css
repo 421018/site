@@ -1,8 +1,7 @@
 /* 42 Chain — the site (/).
-   A magazine in three grounds: night (the cover and brand moments), paper
-   (everything that is read) and hull (feature bands between two paper
-   sections). One cold accent (aurora) and one warm accent (star), each with a
-   darker twin for paper. Text never sits on an illustration: always on a
+   One night in three depths: void (the cover and brand moments), the reading
+   surface (everything that is read) and hull (feature bands). One cold accent
+   (aurora) and one warm accent (star). Text never sits on an illustration: always on a
    plain field. Alive but calm: the motion rules live in base.css.
    Loaded by every page of the site (apps/web/src/pages/); the shared tokens
    and rules come first. */
@@ -10,19 +9,21 @@
 @import './base.css';
 
 :root {
-  --casco: #0C1A1D;      /* hull: feature bands */
-  /* paper: everything that is read */
-  --bg: #F4F1EA;
-  --ink: #1F262E;
-  --head: #11161D;
-  --muted: #4A525C;
-  --rule: #DCD6C8;
-  --rule2: #BDB6A6;
-  --panel: #EAE5DA;
-  --card: #FFFFFF;
-  --link: #0A6B53;
-  --amber: #8A5A00;      /* the star accent on paper */
+  /* One night, three depths. The reading surface is dark too: the whole
+     identity lives in the night, like the documentation and the console. */
+  --casco: #0A1418;      /* hull: feature bands */
+  --bg: #070A10;         /* reading surface */
+  --ink: #C3CBD3;
+  --head: #F1F4F7;
+  --muted: #8C97A4;
+  --rule: #18202A;
+  --rule2: #26303C;
+  --panel: #0D131B;
+  --card: #0B1118;
+  --link: #5BF0C8;
+  --amber: #F2C879;      /* the star accent */
   --serif: var(--font-newsreader);
+  color-scheme: dark;
 }
 /* ---------- links that leave the site ---------- */
 /* Another site (42 Protocol) or any external URL: an arrow after the label.

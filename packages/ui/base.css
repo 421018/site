@@ -158,6 +158,18 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .tick { animation: tick 1.2s cubic-bezier(.16,1,.3,1); }
 @keyframes tick { from { color: var(--aurora); text-shadow: 0 0 18px rgba(91,240,200,.6); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; } }
+
+/* ---------- live block stream (network/live.ts mountStream): each block a page joining the chain, the newest in gold ---------- */
+.lb-stream{position:relative;margin:56px 0 0;padding:18px 0 8px;-webkit-mask:linear-gradient(90deg,transparent,#000 22%);mask:linear-gradient(90deg,transparent,#000 22%)}
+.lb-blocks{display:flex;justify-content:flex-end;align-items:flex-end;gap:14px;min-height:78px;margin:0;padding:0 4px 0 0;list-style:none}
+.lb-b{position:relative;flex:none;display:flex;flex-direction:column;align-items:center;gap:10px}
+.lb-b + .lb-b::before{content:"";position:absolute;right:calc(100% - 1px);top:20px;width:16px;height:1.5px;background:rgba(91,240,200,.45)}
+.lb-sq{width:40px;height:40px;border-radius:10px;border:1.5px solid rgba(91,240,200,.55);background:var(--stream-bg, #0B141B);transition:background .6s,border-color .6s,box-shadow .6s}
+.lb-n{font-family:var(--mono);font-size:11px;color:var(--stream-n, var(--fg-4));font-variant-numeric:tabular-nums}
+.lb-b.now .lb-sq{background:var(--star);border-color:var(--star);box-shadow:0 0 0 6px rgba(242,200,121,.12),0 0 32px rgba(242,200,121,.55)}
+.lb-b.now .lb-n{color:var(--star)}
+.lb-b.new{animation:lb-in .9s cubic-bezier(.16,1,.3,1)}
+@keyframes lb-in{from{opacity:0;transform:translateX(56px) scale(.6)}}
 /* ---------- footer ---------- */
 /* ---------- compact footer: the documentation and the console, each in its palette ---------- */
 .pf { border-top: 1px solid var(--rule); background: var(--soft); color: var(--muted); font-size: 14px; }
@@ -406,7 +418,8 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .post-toc a:hover { color: var(--link); }
 .pm-grid, .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 /* cards */
-.pcard { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: #fff; border: 1px solid var(--rule); color: var(--ink); text-decoration: none; transition: border-color .2s; }
+.pcard { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: var(--card, #fff); border: 1px solid var(--rule); color: var(--ink); text-decoration: none; transition: border-color .3s, transform .45s cubic-bezier(.16,1,.3,1); }
+.pcard:hover { transform: translateY(-4px); }
 .pcard:hover { border-color: var(--link); }
 .pcard[hidden] { display: none; }
 .pc-img { margin: 0; height: 200px; }
@@ -418,14 +431,14 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .pcard.compact .pc-art svg { width: 80px; height: auto; }
 .pcard.compact .pc-body { padding: 0; gap: 8px; }
 .pcard.compact b { font-size: 15.5px; }
-.feat { display: flex; flex-wrap: wrap; border-radius: 24px; overflow: hidden; background: #fff; border: 1px solid var(--rule); color: var(--ink); text-decoration: none; }
+.feat { display: flex; flex-wrap: wrap; border-radius: 24px; overflow: hidden; background: var(--card, #fff); border: 1px solid var(--rule); color: var(--ink); text-decoration: none; }
 .feat:hover { border-color: var(--link); }
 .feat-img { flex: 1 1 520px; min-height: 360px; margin: 0; }
 .feat-body { flex: 1 1 400px; min-width: 0; padding: clamp(28px, 4vw, 44px); display: flex; flex-direction: column; justify-content: center; gap: 16px; }
 .feat-body .pc-sum { font-size: 16.5px; line-height: 1.65; }
 .feat-by { font-size: 14px; color: var(--muted); }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 56px 0 28px; }
-.filters button { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--rule2); background: #fff; color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; }
+.filters button { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--rule2); background: var(--card, #fff); color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; }
 .filters button[aria-pressed="true"] { background: var(--head); color: var(--bg); border-color: var(--head); }
 [data-blog] .pgrid:first-child { margin-top: 56px; }
 @media (max-width: 1000px) { .post-toc { display: none; } }

@@ -82,7 +82,7 @@ The figures in the example are illustrative.
 :::
 
 :::lore[The engine's log]
-The engine does not run on steam or on electricity: it runs on improbability. That thousands of computers which do not know each other should agree on exactly the same thing, block after block, should not be possible. The engine manages it, and each maneuver consumes a little fuel.
+The engine does not run on steam or on electricity: it runs on improbability. That many computers which do not know each other should agree on exactly the same thing, block after block, should not be possible. The engine manages it, and each maneuver consumes a little fuel.
 
 In Douglas Adams's novel, the Infinite Improbability Drive is started with a good hot cup of tea. That is where the name of a whole unit comes from: a cup is the cup that moves the engine. Each cup is divided into drops, the smallest amount that exists, like an atom.
 

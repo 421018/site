@@ -1,6 +1,6 @@
 ---
 title: "Consenso y staking"
-summary: "Miles de computadoras que no se conocen acuerdan el mismo bloque cada dos segundos. Así lo consiguen, y esto es lo que pasa cuando alguna falla o intenta hacer trampa."
+summary: "Computadoras que no se conocen acuerdan cada bloque, uno tras otro. Así lo consiguen, y esto es lo que pasa cuando alguna falla o intenta hacer trampa."
 icon: consensus
 menuText: "Cómo se acuerda cada bloque"
 weight: 10

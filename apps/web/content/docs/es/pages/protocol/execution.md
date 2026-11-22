@@ -8,7 +8,7 @@ weight: 20
 
 ## Del bloque al registro {#state}
 
-Cada vez que alguien registra un dato, aprueba un cambio o mueve unidades, la red tiene que aplicar esa operación exactamente igual en miles de computadoras. De eso se encarga la **ejecución**: toma las transacciones de cada bloque y calcula cómo queda el registro después de aplicarlas.
+Cada vez que alguien registra un dato, aprueba un cambio o mueve unidades, la red tiene que aplicar esa operación exactamente igual en cada nodo. De eso se encarga la **ejecución**: toma las transacciones de cada bloque y calcula cómo queda el registro después de aplicarlas.
 
 Para eso, cada nodo lleva una fotografía del momento actual: cuántas unidades tiene cada cuenta, qué contratos existen y qué datos guarda cada uno. A esa fotografía se le llama **estado**. Cada bloque parte del estado anterior, aplica sus transacciones en orden y produce uno nuevo. Como todos los nodos aplican las mismas transacciones, en el mismo orden y con las mismas reglas, todos llegan al mismo resultado.
 

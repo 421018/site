@@ -140,6 +140,20 @@ const docsHome = defineCollection({
         .optional(),
       /** Title of the quick network data panel (from the catalog's network data). */
       quickData: z.string().optional(),
+      /** The network, live, next to the title: figures and the latest blocks. */
+      live: z
+        .object({ label: z.string(), height: z.string(), pace: z.string(), online: z.string(), seconds: z.string(), block: z.string(), unavailable: z.string(), link: cta })
+        .strict(),
+      /** Pick a starting point: one route per goal, two or three pages in order. */
+      starts: z
+        .object({
+          title: z.string(),
+          lead: z.string().optional(),
+          items: z.array(z.object({ icon: z.enum(iconNames), title: z.string(), steps: z.array(cta).min(1).max(3) }).strict()).min(2).max(6),
+        })
+        .strict(),
+      /** Title of the map of every section and page. */
+      map: z.object({ title: z.string(), lead: z.string().optional() }).strict(),
     })
     .strict(),
 });

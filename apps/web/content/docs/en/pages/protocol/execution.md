@@ -8,7 +8,7 @@ weight: 20
 
 ## From the block to the ledger {#state}
 
-Every time someone records a datum, approves a change or moves units, the network has to apply that operation exactly the same way on thousands of computers. **Execution** takes care of that: it takes the transactions of each block and calculates what the ledger looks like after applying them.
+Every time someone records a datum, approves a change or moves units, the network has to apply that operation exactly the same way on every node. **Execution** takes care of that: it takes the transactions of each block and calculates what the ledger looks like after applying them.
 
 To do that, each node keeps a picture of the current moment: how many units each account has, which contracts exist and what data each one stores. That picture is called the **state**. Each block starts from the previous state, applies its transactions in order and produces a new one. Because every node applies the same transactions, in the same order and with the same rules, they all reach the same result.
 
