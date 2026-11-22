@@ -28,9 +28,9 @@ img, svg { display: block; }
 .nl.on { color: #fff; font-weight: 600; box-shadow: inset 0 -2px 0 var(--aurora); border-radius: 0; }
 /* The header bar: the same box on every page of an area (width, height and
    position), so moving between pages never shifts the menu. */
-.hbar { position: sticky; top: 0; z-index: 30; background-color: var(--night); border-bottom: 1px solid var(--line-d); transition: background-color .35s, border-color .35s; }
-/* once the page scrolls, the bar turns to glass over the content */
-html[data-scrolled] .hbar { background-color: rgba(5,8,13,.86); border-bottom-color: rgba(255,255,255,.07); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); }
+.hbar { position: sticky; top: 0; z-index: 30; background-color: var(--night); border-bottom: 1px solid var(--line-d); transition: border-color .35s, box-shadow .35s; }
+/* once the page scrolls, the bar lifts off the content with a soft shadow (solid: over the paper sections a glass bar turns grey) */
+html[data-scrolled] .hbar { border-bottom-color: rgba(255,255,255,.06); box-shadow: 0 12px 32px -16px rgba(0,0,0,.55); }
 .hbar > .site-header { max-width: 1280px; min-height: 72px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 40px); box-sizing: border-box; flex-wrap: nowrap; }
 .hbar .menu { margin-left: auto; flex-wrap: nowrap; }
 .hside { display: flex; align-items: center; gap: 8px; }
