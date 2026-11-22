@@ -40,7 +40,7 @@ This site is built so that as little data as possible passes through it:
 - **No accounts or forms.** The site does not ask for personal data.
 - **No cookies or analytics.** The site does not use cookies, does not store data in the browser and does not use analytics or advertising tools.
 - **No third-party resources.** Fonts and other resources are served from the site itself. The browser connects to another site only when you follow an external link.
-- **Hosting.** Like any website, the hosting provider ([hosting provider]) processes technical data of each visit, such as the IP address, in order to deliver the pages and protect them from abuse, under its own privacy policy.
+- **Hosting.** Like any website, the hosting provider (Cloudflare) processes technical data of each visit, such as the IP address, in order to deliver the pages and protect them from abuse, under its own privacy policy.
 
 The documentation and the Console state their own privacy terms.
 
