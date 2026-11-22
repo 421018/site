@@ -163,25 +163,26 @@ export const siteTextSchema = z
           .optional(),
       })
       .strict(),
+    /**
+     * The footer of the whole site, written once in the site's site.md: the
+     * documentation and the console show its compact form. Licenses are
+     * explained on the legal page, not here.
+     */
     footer: z
       .object({
-        credit: z.string(),
-        license: z.string(),
+        /** The copyright line: "© 2026 The 42 contributors". */
         note: z.string(),
-        /** Optional extra column, e.g. the tools: documentation and console. */
-        extra: z.object({ label: z.string(), links: z.array(link) }).strict().optional(),
-        /**
-         * Footer columns: when set, they replace the ones derived from the
-         * sections. A link may carry a short line (`text`). `links` go in the bottom line.
-         */
-        columns: z.array(z.object({ label: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), text: z.string().optional() }).strict()) }).strict()).optional(),
-        links: z.array(link).default([]),
-        /** Short line under the mark at the start of the footer. */
+        /** Short line under the mark in the full footer. */
         tagline: z.string().optional(),
-        /** Official profiles, shown as buttons with the network's logo (the site: a large one). */
+        /** The full footer's groups of links (the site). */
+        columns: z.array(z.object({ label: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), text: z.string().optional() }).strict()) }).strict()).optional(),
+        /** The compact footer's links (documentation, console): the site's main destinations. */
+        compact: z.array(link).default([]),
+        /** Official profiles, shown as buttons with the network's logo (large in the full footer). */
         social: z.array(z.object({ network: z.enum(['x']), label: z.string(), handle: z.string(), href: z.url() }).strict()).default([]),
       })
-      .strict(),
+      .strict()
+      .optional(),
     page: z
       .object({
         lastReviewed: z.string(),

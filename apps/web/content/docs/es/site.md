@@ -28,24 +28,6 @@ header:
     - { label: Consola, href: "console:/" }
     - { label: 42 Chain, href: "site:/" }
 
-footer:
-  credit: Documentación de código abierto
-  license: Textos CC BY 4.0
-  note: © 2026 Los contribuidores de 42
-  columns:
-    - label: Documentación
-      links:
-        - { label: Documentación, href: "/" }
-        - { label: Consola, href: "console:/" }
-        - { label: Contribuir, href: "/open-source" }
-        - { label: Seguridad, href: "/open-source/security" }
-        - { label: Legal, href: "/legal" }
-    - label: Inicio
-      links:
-        - { label: 42 Chain, href: "site:/", text: "la revista del proyecto" }
-  social:
-    - { network: x, label: Síguenos en X, handle: "@42protocol", href: "https://x.com/42protocol" }
-
 page:
   lastReviewed: Última revisión
   editPage: Editar esta página ↗

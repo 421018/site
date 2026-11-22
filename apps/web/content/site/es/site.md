@@ -22,9 +22,8 @@ header:
     - { label: Documentación, href: "docs:/", weight: 10 }
     - { label: Consola, href: "console:/", weight: 11 }
 
+# The footer of the whole site: the documentation and the console show its compact form.
 footer:
-  credit: Proyecto de código abierto
-  license: Textos CC BY 4.0
   note: © 2026 Los contribuidores de 42
   tagline: Impulsado por Infinite Drive.
   columns:
@@ -45,7 +44,13 @@ footer:
         - { label: Legal, href: "/legal" }
   social:
     - { network: x, label: Síguenos en X, handle: "@42protocol", href: "https://x.com/42protocol" }
-  links: [] # bottom line
+  compact: # the compact footer of the documentation and the console
+    - { label: 42 Chain, href: "/" }
+    - { label: Blog, href: "/blog" }
+    - { label: Proyecto, href: "/about" }
+    - { label: Documentación, href: "docs:/" }
+    - { label: Consola, href: "console:/" }
+    - { label: Legal, href: "/legal" }
 
 page:
   lastReviewed: Última revisión
