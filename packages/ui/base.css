@@ -226,7 +226,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
   --mt: calc(.02 + var(--mi) * .36);
   background-image: linear-gradient(100deg, color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 0%, color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 25%, color-mix(in srgb, #F2C879 calc(var(--mt) * 100%), transparent) 50%, color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 75%, color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 100%);
   background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, rgba(91,240,200,.32) calc(var(--mi) * 100%), rgba(255,255,255,.05)); animation: mtflow 14s linear infinite; }
+  -webkit-text-stroke: 1px color-mix(in srgb, rgba(91,240,200,.32) calc(var(--mi) * 100%), #2A323C); animation: mtflow 14s linear infinite; }
 /* the lamp: the same words at full strength, visible only around the pointer */
 .megatype-word::after { content: attr(data-text); position: absolute; inset: 0; white-space: nowrap;
   background-image: linear-gradient(100deg, #5BF0C8 0%, #7C9CFF 25%, #F2C879 50%, #7C9CFF 75%, #5BF0C8 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0;
