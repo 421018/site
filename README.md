@@ -29,10 +29,14 @@ Node 22.23.4 or newer (`.nvmrc`). Run them from the repository root.
 | `npm run dev:site`, `npm run dev:docs` | Only one of them |
 | `npm run build` | Build both apps into their `dist/` |
 | `npm run verify` | Types, build and internal links for both (what CI runs) |
+| `npm run preview` | Build both and serve them on one origin, as in production: http://localhost:4300, documentation at `/docs` (no live reload) |
+| `npm run serve` | The same, without building again |
 
-In development the two apps run on separate servers and links between them
-point at the other one, so run both (`npm run dev`). In production they share
-the domain.
+In development (`npm run dev`) the two apps run on separate servers, and links
+between them point at the other one, so the documentation opens on port 4322.
+They cannot share one dev server: both use the same internal paths for their
+scripts (`/@vite/client`, `/src/…`) and would clash. To see the site as it will
+be published, on one address, use `npm run preview`.
 
 ## Deploying
 
