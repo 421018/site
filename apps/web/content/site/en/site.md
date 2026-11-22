@@ -31,17 +31,21 @@ footer:
       links:
         - { label: Home, href: "/" }
         - { label: Blog, href: "/blog" }
-        - { label: Project, href: "/about" }
         - { label: Questions, href: "/faq" }
+    - label: The project
+      links:
+        - { label: Project, href: "/about" }
+        - { label: The name, href: "/name" }
+        - { label: Official channels, href: "/channels" }
     - label: Technical
       links:
         - { label: Documentation, href: "docs:/" }
         - { label: Console, href: "console:/" }
-    - label: The project
+    - label: The network
       links:
-        - { label: Official channels, href: "/channels" }
-        - { label: The name, href: "/name" }
-        - { label: Legal, href: "/legal" }
+        - { label: Network status, href: "console:/status" }
+        - { label: Network events, href: "console:/events" }
+        - { label: Networks and connections, href: "console:/networks" }
   social:
     - { network: x, label: Follow us on X, handle: "@42protocol", href: "https://x.com/42protocol" }
   compact: # the compact footer of the documentation and the console
@@ -51,6 +55,9 @@ footer:
     - { label: Documentation, href: "docs:/" }
     - { label: Console, href: "console:/" }
     - { label: Legal, href: "/legal" }
+  bottom:
+    - { label: Legal, href: "/legal" }
+  backToTop: Back to top
 
 page:
   lastReviewed: Last reviewed

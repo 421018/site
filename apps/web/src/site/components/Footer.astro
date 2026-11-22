@@ -3,15 +3,22 @@ import { getFooter, getSiteText } from '../../kit/site';
 import { getBlog, getPosts, postHref, categoryOf } from '../../kit/blog';
 import { homeHref, isExternal, langOf, resolveHref } from '../../kit/i18n';
 import { socialIcons } from '../../art/areas';
+import LangMenu from '../../kit/components/LangMenu.astro';
 const lang = langOf(Astro);
 const text = await getSiteText(lang);
 const footer = text.footer!;
+interface Props {
+  /** The page in other languages ({ lang: href }), for the language menu. */
+  alternates?: Record<string, string>;
+}
+const { alternates = {} } = Astro.props;
 type FLink = { label: string; href: string; text?: string };
 const resolve = (links: FLink[]) => links.map((l) => ({ ...l, href: resolveHref(l.href, lang) }));
 // The full footer (site.md → footer.columns); without it, one column per section.
 const columns: { key: string; label: string; links: FLink[] }[] = footer.columns
   ? footer.columns.map((c) => ({ key: '', label: c.label, links: resolve(c.links) })).filter((c) => c.links.length)
   : await derived();
+const bottom = resolve(footer.bottom);
 
 async function derived() {
   const columns: { key: string; label: string; links: FLink[] }[] = await getFooter(lang);
@@ -29,27 +36,37 @@ async function derived() {
 <footer class="site-footer">
   <div class="inner">
     <slot />
-    <div class="fgrid">
+    <div class="ftop">
       <div class="fbrand">
         <a class="brand" href={homeHref(lang)} aria-label={text.header.homeLink}><span class="mark">42</span>{text.header.brand && <span class="name">{text.header.brand}</span>}</a>
         {footer.tagline && <p>{footer.tagline}</p>}
-        {footer.social.map((s) => (
-          <a class="fsocial" href={s.href} rel="me">
-            <span class="fs-ic"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" set:html={socialIcons[s.network]} /></span>
-            <span class="fs-t"><span>{s.label}</span><b>{s.handle}</b></span>
-          </a>
-        ))}
       </div>
-      <nav class="fnav" aria-label={text.header.mainNav}>
-        {columns.map((col) => (
-          <div>
-            <p class="lbl">{col.label}</p>
-            {col.links.map((l) => <a class:list={['flink', { ext: isExternal(l.href), wtext: !!l.text }]} href={l.href}><span class="fl-l">{l.label}</span>{l.text && <span class="fl-t">{l.text}</span>}</a>)}
-          </div>
-        ))}
-      </nav>
+      <div class="fside">
+        {footer.social.length > 0 && (
+          <ul class="fsoc">
+            {footer.social.map((s) => (
+              <li><a href={s.href} rel="me" aria-label={`${s.label}: ${s.handle}`} title={s.handle}><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" set:html={socialIcons[s.network]} /></a></li>
+            ))}
+          </ul>
+        )}
+        <LangMenu alternates={alternates} />
+      </div>
+    </div>
+    <nav class="fnav" aria-label={text.header.mainNav}>
+      {columns.map((col) => (
+        <div>
+          <p class="lbl">{col.label}</p>
+          {col.links.map((l) => <a class:list={['flink', { ext: isExternal(l.href), wtext: !!l.text }]} href={l.href}><span class="fl-l">{l.label}</span>{l.text && <span class="fl-t">{l.text}</span>}</a>)}
+        </div>
+      ))}
+    </nav>
+    <div class="fbase">
+      <span>{footer.note}</span>
+      <span class="fbase-r">
+        {bottom.map((l) => <a class="flink-b" href={l.href}>{l.label}</a>)}
+        {footer.backToTop && <a class="flink-b ftop-link" href="#top">{footer.backToTop} <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 10 V2 M2.5 5.5 L6 2 L9.5 5.5" fill="none" stroke="currentColor" stroke-width="1.4" /></svg></a>}
+      </span>
     </div>
     <div aria-hidden="true" class="megatype"><span class="megatype-note">And remember</span><span class="megatype-word"><span>DON'T</span><span class="megatype-sp"> </span><span>PANIC</span></span></div>
-    <div class="fbase"><span>{footer.note}</span></div>
   </div>
 </footer>

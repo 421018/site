@@ -150,6 +150,14 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .pf-social { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--rule); border-radius: 50%; }
 .pf a.pf-social { color: var(--head); }
 .pf a.pf-social:hover { color: var(--head); border-color: var(--link); }
+/* the language menu in the compact footer: the area's palette, opening upwards */
+.pf-side { display: flex; align-items: center; gap: 8px; }
+.pf .lm { --lm-fg: var(--muted); --lm-line: var(--rule); --lm-bg: var(--surface); --lm-hover: var(--soft); --lm-muted: var(--muted); --lm-on: var(--head); }
+.pf .lm-btn:hover, .pf .lm[open] .lm-btn { border-color: var(--link); }
+.pf .lm-check { color: var(--link); }
+.pf .lm-panel { top: auto; bottom: calc(100% + 8px); box-shadow: 0 -12px 40px rgba(0,0,0,.14); }
+.pf a.lm-item { color: var(--lm-fg); }
+.pf a.lm-item.on { color: var(--lm-on); }
 .site-footer { border-top: 1px solid var(--line-d); padding: 56px clamp(16px, 4vw, 56px) 36px; overflow: hidden; }
 .site-footer .inner { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
 .fnav > div { display: flex; flex-direction: column; }

@@ -178,6 +178,10 @@ export const siteTextSchema = z
         columns: z.array(z.object({ label: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), text: z.string().optional() }).strict()) }).strict()).optional(),
         /** The compact footer's links (documentation, console): the site's main destinations. */
         compact: z.array(link).default([]),
+        /** The full footer's bottom line, next to the copyright (e.g. legal). */
+        bottom: z.array(link).default([]),
+        /** Label of the "back to top" link in the full footer. */
+        backToTop: z.string().optional(),
         /** Official profiles, shown as buttons with the network's logo (large in the full footer). */
         social: z.array(z.object({ network: z.enum(['x']), label: z.string(), handle: z.string(), href: z.url() }).strict()).default([]),
       })

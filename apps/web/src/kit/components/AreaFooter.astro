@@ -3,12 +3,19 @@
  * The compact footer, shown by the documentation and the console. It is the
  * whole site's footer (content/site/<lang>/site.md → footer) in short form:
  * the area's mark with the copyright under it, the site's main destinations
- * (footer.compact; the current area marked) and the official profiles.
+ * (footer.compact; the current area marked), the official profiles and the
+ * language menu.
  * Styles: .pf in @42chain/ui/base.css, in each area's palette.
  */
 import { getSiteText } from '../site';
 import { areaOf, homeHref, langOf, resolveHref } from '../i18n';
 import { socialIcons } from '../../art/areas';
+import LangMenu from './LangMenu.astro';
+interface Props {
+  /** The page in other languages ({ lang: href }), for the language menu. */
+  alternates?: Record<string, string>;
+}
+const { alternates = {} } = Astro.props;
 const lang = langOf(Astro);
 const area = areaOf(Astro);
 const own = await getSiteText(lang, area);
@@ -24,10 +31,13 @@ const links = footer.compact.map((l) => ({ label: l.label, href: resolveHref(l.h
     <nav class="pf-nav" aria-label={own.header.mainNav}>
       {links.map((l) => <a href={l.href} aria-current={l.here ? 'true' : undefined}>{l.label}</a>)}
     </nav>
-    {footer.social.map((s) => (
-      <a class="pf-social" href={s.href} rel="me" aria-label={`${s.label}: ${s.handle}`} title={s.handle}>
-        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" set:html={socialIcons[s.network]} />
-      </a>
-    ))}
+    <div class="pf-side">
+      {footer.social.map((s) => (
+        <a class="pf-social" href={s.href} rel="me" aria-label={`${s.label}: ${s.handle}`} title={s.handle}>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" set:html={socialIcons[s.network]} />
+        </a>
+      ))}
+      <LangMenu alternates={alternates} />
+    </div>
   </div>
 </footer>
