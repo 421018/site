@@ -16,6 +16,10 @@ const css = networks
 <div class="netsw" role="group" aria-label={t.switchLabel} data-netsw data-default={networks[0].id} hidden>
   {networks.map((n) => <button type="button" data-net-btn={n.id} aria-pressed="false">{pick(n.label, lang)}</button>)}
 </div>
+{/* Chooses the network as soon as the switch is parsed, before the blocks below it are painted:
+    otherwise the first frame shows every network (the no-script view) and the page jumps when
+    the module script runs. Same choice as the script below (stored, else the page's, else the default). */}
+<script is:inline>(function(s){var d=document.documentElement,b=s.querySelectorAll('[data-net-btn]'),id=null,i,ok=false;try{id=localStorage.getItem('42chain-net')}catch(e){}for(i=0;i<b.length;i++)if(b[i].getAttribute('data-net-btn')===id)ok=true;if(!ok)id=d.dataset.net||s.getAttribute('data-default');d.dataset.net=id;for(i=0;i<b.length;i++)b[i].setAttribute('aria-pressed',String(b[i].getAttribute('data-net-btn')===id));s.hidden=false})(document.currentScript.previousElementSibling)</script>
 <style is:global set:html={css}></style>
 <style>
   /* a pill of two, like the header's switch between areas */

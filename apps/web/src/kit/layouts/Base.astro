@@ -35,6 +35,10 @@ const canonical = new URL(canonicalHref ?? Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     {others.length > 1 && others.map(([l, href]) => <link rel="alternate" hreflang={l} href={new URL(href, Astro.site)} />)}
     {others.length > 1 && alternates[defaultLang] && <link rel="alternate" hreflang="x-default" href={new URL(alternates[defaultLang], Astro.site)} />}
+    {/* Until the first frames are painted, no transition runs (Motion.astro lifts this): states set
+        on load (the current tab, the chosen network, the index mark, the scrolled header) appear at
+        once instead of fading in on every page. */}
+    <script is:inline>document.documentElement.dataset.loading = '';</script>
     {product === 'docs' && <script is:inline>(function(){var d=matchMedia('(prefers-color-scheme: dark)').matches,t=null;try{t=localStorage.getItem('42docs-theme')}catch(e){}if(t?t==='dark':d)document.documentElement.dataset.theme='dark';try{if(localStorage.getItem('42docs-notice')==='off')document.documentElement.dataset.notice='off'}catch(e){}})()</script>}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content={fullTitle} />
@@ -47,7 +51,9 @@ const canonical = new URL(canonicalHref ?? Astro.url.pathname, Astro.site);
     <meta name="theme-color" content="#05070A" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-geist" preload={[{ subset: 'latin' }]} />
-    <Font cssVariable="--font-geist-mono" />
+    {/* Geist Mono too: the 42 mark, the kickers and the figures use it, and without a preload the
+        first frame of every page drew them in the fallback face, then swapped (a visible jump). */}
+    <Font cssVariable="--font-geist-mono" preload={[{ subset: 'latin' }]} />
     <Font cssVariable="--font-newsreader" />
   </head>
   <body id="top">

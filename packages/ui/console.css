@@ -72,6 +72,13 @@ body { background: var(--bg); color: var(--ink); }
 .cx-table tr:last-child td { border-bottom: 0; }
 .cx-table .num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
 .cx-table th.num { text-align: right; }
+/* live tables: fixed columns, so they do not reflow as each provider's figures arrive */
+.cx-fixed { table-layout: fixed; }
+.cx-fixed th:first-child { width: 22%; }
+.cx-fixed th.cx-col-url { width: 36%; }
+.cx-fixed th:nth-child(3) { width: 16%; }
+.cx-fixed th.num { width: 13%; }
+.cx-fixed td { overflow-wrap: anywhere; }
 .cx-url { font-family: var(--mono); font-size: 12.5px; color: var(--muted); word-break: break-all; }
 .cx-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 14px; background: var(--panel); }
 /* status: a dot and a word, never a colour alone; nothing pulses */

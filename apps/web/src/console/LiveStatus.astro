@@ -36,7 +36,7 @@ const i18n = { ok: t.ok, behind: t.behind, down: t.down, wrongChain: t.wrongChai
         </figure>
         {full && (
           <div class="cx-wrap" style="margin-top: 14px">
-            <table class="cx-table">
+            <table class="cx-table cx-fixed">
               <thead><tr><th>{t.provider}</th><th class="cx-col-url">{t.endpoint}</th><th>{t.state}</th><th class="num">{t.height}</th><th class="num">{t.latency}</th></tr></thead>
               <tbody>
                 {evm.map((p) => (
