@@ -6,7 +6,7 @@
 language: English # name of this language in itself, shown in the language switcher
 name: 42 Chain
 tagline: Open infrastructure protocol # tab title of the home page: "<name> — <tagline>"
-description: "42 Chain runs Protocol 42, an open-source protocol for building infrastructure on a shared ledger: data several people can check, and rules that apply the same way to all of them." # default meta description
+description: "42 Chain runs Infinite Drive, an open-source protocol for building infrastructure on a shared ledger: data several people can check, and rules that apply the same way to all of them." # default meta description
 
 header:
   brand: Chain # word next to the 42 mark

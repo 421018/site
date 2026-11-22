@@ -24,22 +24,10 @@ No. Anyone can use the network, deploy contracts or run a node without registeri
 The network's native unit, with the symbol 42. It pays fees and backs the validators. Its smallest fraction is the drop (10⁻¹⁸); one whole unit is known, colloquially, as a cup. [Fees and issuance](docs:/protocol/fees)
 :::
 
-## Build and operate {#project}
+## The project {#project}
 
-:::faq[Can I use my EVM tools?]
-Yes. Solidity, Hardhat, Foundry, ethers and wallets such as MetaMask work with the network. All you need is the chain ID and an RPC address. [Connect](docs:/get-started/connect)
-:::
-
-:::faq[How long until a transaction is final?]
-One block. CometBFT confirms every block for good, with no reorganisations. The time per block is shown live in the [console](console:/status).
-:::
-
-:::faq[Who develops the protocol?]
-Contributors working in the open, in public repositories. Anyone can join. [Contribute](docs:/open-source)
-:::
-
-:::faq[How do the rules change?]
-Through on-chain governance: changes are proposed, tested on the testnet, voted on the network and only then reach the mainnet. [Governance](docs:/protocol/governance)
+:::faq[Who develops the protocol, and who decides its changes?]
+Contributors working in the open, in public repositories; anyone can join. [Contribute](docs:/open-source) No one decides changes alone: they are proposed, tested on the testnet, voted on the network and only then reach the mainnet. [Governance](docs:/protocol/governance)
 :::
 
 :::faq[Where do I ask a technical question?]
@@ -57,9 +45,9 @@ No. This site does not offer, sell or recommend the native unit or any other ass
 :::
 
 :::faq[What data does this site collect?]
-None on its own: it has no forms, cookies or analytics. The console queries the public RPC providers directly from your browser. The host processes technical data of each visit, such as the IP address, to deliver the pages. [Privacy](/legal#privacy)
+None on its own: it has no forms, cookies or analytics, and the few preferences it keeps (theme, network) stay in your browser. The live figures (home page, documentation, Console) are read from your browser from the public RPC providers. The host processes technical data of each visit, such as the IP address, to deliver the pages. [Privacy](/legal#privacy)
 :::
 
 :::aside
-Looking for something more technical? [Technical questions →](docs:/get-started/faq)
+Building, nodes, governance in detail? [Technical questions →](docs:/get-started/faq)
 :::

@@ -70,6 +70,9 @@ export default defineConfig({
   // Internal shortcuts used in content. Change the targets in src/config.ts.
   redirects: {
     ...logRedirects,
+    // One legal page for the whole site: the documentation's own was merged into it.
+    '/docs/legal': '/legal',
+    '/docs/es/legal': '/es/legal',
     '/consola': '/console',
     '/es/consola': '/console/es',
     // "Implementar" moved to the documentation (Spanish).

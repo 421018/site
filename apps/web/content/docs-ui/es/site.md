@@ -5,7 +5,7 @@
 language: Español # name of this language in itself, shown in the language switcher
 name: 42 Chain Docs
 tagline: Documentación técnica # tab title of the home page: "<name> — <tagline>"
-description: Documentación técnica de 42 Chain y del Protocolo 42. Conectarse, construir aplicaciones, integrar sistemas y operar nodos.
+description: Documentación técnica de 42 Chain y de Infinite Drive, su protocolo. Conectarse, construir aplicaciones, integrar sistemas y operar nodos.
 
 header:
   brand: Docs # word next to the 42 mark
