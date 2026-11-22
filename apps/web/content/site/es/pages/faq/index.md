@@ -41,7 +41,7 @@ Nunca. Ningún canal del proyecto te pedirá tu frase de recuperación ni tus ll
 :::
 
 :::faq[¿Este sitio vende o recomienda la unidad nativa?]
-No. Este sitio no ofrece, no vende y no recomienda la unidad nativa ni ningún otro activo, ni plataformas o intermediarios.
+No. Este sitio no ofrece, no vende y no recomienda la unidad nativa, Improbability (42), ni ningún otro activo digital, ni plataformas o intermediarios. Solo menciona la unidad nativa para explicar cómo funciona el protocolo. [Legal](/legal#independence)
 :::
 
 :::faq[¿Qué datos recopila este sitio?]

@@ -19,7 +19,7 @@ Estos avisos cubren todo 42chain.org: el sitio, la [documentación](docs:/) y la
 
 Lo mantienen contribuidores de Infinite Drive y 42 Chain. El código es abierto: cualquiera puede revisarlo, proponer cambios o contribuir. En estos avisos, «los contribuidores» son las personas que escriben, revisan o publican el software del protocolo, el sitio, la documentación o la Consola.
 
-42chain.org no ofrece, no vende y no recomienda la unidad nativa de ninguna red ni ningún otro activo, ni plataformas o intermediarios. Nada en él constituye asesoría financiera, legal, fiscal ni de inversión.
+42chain.org no ofrece, no vende y no recomienda la unidad nativa, Improbability (42), ni ningún otro activo digital, ni plataformas o intermediarios. Sus menciones de la unidad nativa son exclusivamente técnicas: explican cómo funciona el protocolo. Nada en él constituye asesoría financiera, legal, fiscal ni de inversión.
 
 ## Sin garantías {#warranties}
 
@@ -66,7 +66,6 @@ Todo lo que se registra en la red, como direcciones, transacciones o contratos, 
 | Software del protocolo (el nodo) | Apache License 2.0 |
 | Código del sitio, la documentación y la Consola, incluidos su diseño y su interfaz | Apache License 2.0 |
 | Textos y datos del sitio, la documentación y la Consola | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
-| Nombres, logotipos y demás elementos de marca | No se licencian |
 
 Los derechos de autor son de los contribuidores de 42 Chain, que publican su trabajo bajo estas licencias.
 
@@ -77,10 +76,6 @@ La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribu
 ### Qué permite la licencia de los textos
 
 Los textos de 42chain.org y los datos de la red que publica, como parámetros y listas de proveedores, pueden copiarse, traducirse, adaptarse y publicarse en cualquier medio, también con fines comerciales, siempre que se cite la fuente: el nombre del proyecto y un enlace al sitio o a la página de origen. La licencia no autoriza a sugerir una relación o un respaldo que no existe.
-
-### Las marcas
-
-Ninguna de las dos licencias cubre los nombres 42 Chain e Infinite Drive, el logotipo ni la identidad visual del proyecto; la licencia Apache 2.0 lo dice expresamente. Pueden usarse para referirse al proyecto, pero no para presentar como oficial algo que no lo es ni para sugerir una relación o un respaldo que no existe.
 
 ### Software de terceros
 

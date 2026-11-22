@@ -41,7 +41,7 @@ Never. No project channel will ask for your recovery phrase or your private keys
 :::
 
 :::faq[Does this site sell or recommend the native unit?]
-No. This site does not offer, sell or recommend the native unit or any other asset, nor platforms or intermediaries.
+No. This site does not offer, sell or recommend the native unit, Improbability (42), or any other digital asset, nor platforms or intermediaries. It mentions the native unit only to explain how the protocol works. [Legal](/legal#independence)
 :::
 
 :::faq[What data does this site collect?]

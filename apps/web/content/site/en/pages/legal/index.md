@@ -19,7 +19,7 @@ These notices cover all of 42chain.org: the site, the [documentation](docs:/) an
 
 It is maintained by contributors to Infinite Drive and 42 Chain. The code is open: anyone can review it, propose changes or contribute. In these notices, "the contributors" are the people who write, review or publish the protocol software, the site, the documentation or the Console.
 
-42chain.org does not offer, sell or recommend the native unit of any network or any other asset, nor platforms or intermediaries. Nothing on it is financial, legal, tax or investment advice.
+42chain.org does not offer, sell or recommend the native unit, Improbability (42), or any other digital asset, nor platforms or intermediaries. Its mentions of the native unit are exclusively technical: they explain how the protocol works. Nothing on it is financial, legal, tax or investment advice.
 
 ## No warranties {#warranties}
 
@@ -66,7 +66,6 @@ Everything recorded on the network, such as addresses, transactions or contracts
 | Protocol software (the node) | Apache License 2.0 |
 | Code of the site, the documentation and the Console, including their design and interface | Apache License 2.0 |
 | Text and data of the site, the documentation and the Console | Creative Commons Attribution 4.0 International (CC BY 4.0) |
-| Names, logos and other brand elements | Not licensed |
 
 Copyright belongs to the 42 Chain contributors, who publish their work under these licenses.
 
@@ -77,10 +76,6 @@ The Apache 2.0 license lets anyone use, study, modify and distribute the softwar
 ### What the text license allows
 
 The text of 42chain.org and the network data it publishes, such as parameters and provider lists, may be copied, translated, adapted and published in any medium, including for commercial purposes, provided the source is credited: the project name and a link to the site or to the original page. The license does not authorize suggesting a relationship or an endorsement that does not exist.
-
-### Trademarks
-
-Neither license covers the names 42 Chain and Infinite Drive, the logo or the project's visual identity; the Apache 2.0 license says so explicitly. They may be used to refer to the project, but not to present as official something that is not, or to suggest a relationship or an endorsement that does not exist.
 
 ### Third-party software
 
