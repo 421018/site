@@ -214,25 +214,32 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .megatype { container-type: inline-size; user-select: none; }
 .megatype-note { display: block; margin: 0 0 10px; font-size: clamp(15px, 1.35vw, 20px); font-weight: 400; letter-spacing: 0; line-height: 1.3; color: #2A323C; }
 /* Sized from the phrase width so the outline fills the footer column. On a narrow column the two words stack and grow to that same edge. */
-/* DON'T PANIC: the brand's light runs through the letters all the time. Under the pointer
-   the whole block lights up: a moving field of aurora, nebula and star behind, the letters
-   cut out of it in night, and a glow that follows the pointer (--mx, --my from the motion script). */
-.megatype { position: relative; isolation: isolate; margin: 0 -28px; padding: 22px 28px 26px; border-radius: 32px; cursor: default; }
-.megatype::before, .megatype::after { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; opacity: 0; transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); pointer-events: none; }
-.megatype::before { background: linear-gradient(115deg, #5BF0C8 0%, #7C9CFF 28%, #F2C879 52%, #7C9CFF 76%, #5BF0C8 100%); background-size: 300% 300%; transform: scale(.97); animation: mtbg 7s ease-in-out infinite; box-shadow: 0 30px 90px -20px rgba(91,240,200,.45), 0 0 120px -30px rgba(124,156,255,.6); }
-.megatype::after { background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.55), transparent 55%); mix-blend-mode: soft-light; }
+/* DON'T PANIC: light on the night, like the rest of the identity. At rest, a fine outline with
+   the brand's gradient flowing faintly inside. Under the pointer, a lamp follows it and lights
+   the letters it touches at full strength (--mx, --my from the motion script), and a soft glow
+   rises from below. */
+@property --mt { syntax: '<number>'; inherits: false; initial-value: .3; }
+.megatype { position: relative; isolation: isolate; }
+.megatype::before { content: ""; position: absolute; left: 10%; right: 10%; bottom: -40%; height: 90%; z-index: -1; background: radial-gradient(closest-side, rgba(91,240,200,.20), rgba(124,156,255,.10) 55%, transparent); opacity: 0; transform: translateY(12%); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); pointer-events: none; }
 .megatype:hover::before { opacity: 1; transform: none; }
-.megatype:hover::after { opacity: 1; }
-.megatype-word { display: block; white-space: nowrap; font-size: 17.8cqi; font-weight: 600; letter-spacing: -0.06em; line-height: .85;
-  background-image: linear-gradient(100deg, #5BF0C8 0%, #7C9CFF 25%, #F2C879 50%, #7C9CFF 75%, #5BF0C8 100%);
+.megatype-word { position: relative; display: block; white-space: nowrap; font-size: 17.8cqi; font-weight: 600; letter-spacing: -0.06em; line-height: .85;
+  --mt: .3; transition: --mt .8s cubic-bezier(.16,1,.3,1);
+  background-image: linear-gradient(100deg, color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 0%, color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 25%, color-mix(in srgb, #F2C879 calc(var(--mt) * 100%), transparent) 50%, color-mix(in srgb, #7C9CFF calc(var(--mt) * 100%), transparent) 75%, color-mix(in srgb, #5BF0C8 calc(var(--mt) * 100%), transparent) 100%);
   background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
-  opacity: .5; animation: mtflow 10s linear infinite; transition: opacity .4s; }
-.megatype:hover .megatype-word { opacity: 1; background-image: none; color: #04060B; -webkit-text-fill-color: #04060B; }
-.megatype:hover .megatype-note { color: rgba(4,6,11,.7); }
-.megatype-note { position: relative; transition: color .4s; }
+  -webkit-text-stroke: 1px rgba(91,240,200,.3); animation: mtflow 14s linear infinite; }
+.megatype:hover .megatype-word { --mt: .42; }
+/* the lamp: the same words at full strength, visible only around the pointer */
+.megatype-word::after { content: attr(data-text); position: absolute; inset: 0; white-space: nowrap;
+  background-image: linear-gradient(100deg, #5BF0C8 0%, #7C9CFF 25%, #F2C879 50%, #7C9CFF 75%, #5BF0C8 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0;
+  animation: inherit;
+  -webkit-mask-image: radial-gradient(circle 30cqi at var(--mx, 50%) var(--my, 50%), #000 0%, rgba(0,0,0,.6) 40%, transparent 75%);
+  mask-image: radial-gradient(circle 30cqi at var(--mx, 50%) var(--my, 50%), #000 0%, rgba(0,0,0,.6) 40%, transparent 75%);
+  opacity: 0; transition: opacity .5s; filter: drop-shadow(0 0 18px rgba(91,240,200,.35)); pointer-events: none; }
+.megatype:hover .megatype-word::after { opacity: 1; }
+.megatype-note { position: relative; transition: color .5s; }
+.megatype:hover .megatype-note { color: var(--fg-4); }
 @keyframes mtflow { to { background-position: -200% 0; } }
-@keyframes mtbg { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-@container (max-width: 540px) { .megatype-word { font-size: 36.5cqi; line-height: .92; } .megatype-word > span { display: block; } .megatype-word > .megatype-sp { display: none; } }
+@container (max-width: 540px) { .megatype-word::after { display: none; } .megatype-word { font-size: 36.5cqi; line-height: .92; } .megatype-word > span { display: block; } .megatype-word > .megatype-sp { display: none; } }
 .fbase { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--fg-4); }
 .flink-b { color: inherit; text-decoration: none; }
 .flink-b:hover { color: var(--acc); }
