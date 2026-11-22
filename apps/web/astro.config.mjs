@@ -4,7 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import { kit } from './src/kit/integration';
 import { sharedConfig } from './src/kit/config';
 import { widgetNames } from './src/widgets/names';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { extname, join, normalize } from 'node:path';
 import { parse } from 'yaml';
 import { SITE, EDIT_BASE } from './src/config.ts';
 
@@ -30,12 +31,36 @@ const logRedirects = Object.fromEntries(
   }),
 );
 
+// Search in development: the Pagefind index only exists after a build (dist/docs/pagefind, made by
+// `npm run build` or `npm run verify`). The dev server serves that index at /docs/pagefind, so the
+// search works on 4321 too, with the pages as of the last build. Without a build it keeps saying
+// that search needs the published version.
+const pagefindDir = new URL('./dist/docs/pagefind/', import.meta.url).pathname;
+/** @type {Record<string, string>} */
+const pagefindTypes = { '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.wasm': 'application/wasm' };
+/** @returns {import('vite').Plugin} */
+const pagefindInDev = () => ({
+  name: 'pagefind-in-dev',
+  apply: 'serve',
+  configureServer(server) {
+    server.middlewares.use('/docs/pagefind', (req, res, next) => {
+      const path = normalize(decodeURIComponent((req.url ?? '/').split('?')[0])).replace(/^(\.\.(\/|$))+/, '');
+      const file = join(pagefindDir, path);
+      if (!file.startsWith(pagefindDir) || !existsSync(file)) return next();
+      res.setHeader('Content-Type', pagefindTypes[extname(file)] ?? 'application/octet-stream');
+      res.setHeader('Cache-Control', 'no-store');
+      res.end(readFileSync(file));
+    });
+  },
+});
+
 // One app for 42chain.org: the site at / and the documentation at /docs (src/pages/docs/).
 // Markdown, fonts, CSP and i18n are set up in src/kit/config.ts.
 export default defineConfig({
   // Search (Pagefind, in the documentation) runs WebAssembly, so scripts may use 'wasm-unsafe-eval'.
   ...sharedConfig({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: Object.keys(SITE.languages), widgets: widgetNames, scriptSources: ["'wasm-unsafe-eval'"], connectSources: rpcOrigins }),
   site: SITE.url,
+  vite: { plugins: [pagefindInDev()] },
   integrations: [sitemap({ filter: (page) => !/\/404\/?$/.test(page) }), kit({ defaultLang: SITE.defaultLang, sourceLang: SITE.sourceLang, languages: SITE.languages, editBase: EDIT_BASE })],
   i18n: {
     defaultLocale: SITE.defaultLang,
