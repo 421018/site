@@ -1,86 +1,84 @@
 ---
-# Texto de la página del proyecto (/about). El diseño vive en src/components/Project.astro.
+# Texto de la página del proyecto (/about). El diseño vive en src/site/components/Project.astro.
 # Párrafos: separados por una línea en blanco.
 
-title: Infraestructura común, sostenida por quienes la usan.
-description: "Qué es Infinite Drive, en qué creemos, cómo se sostiene, en qué trabajamos y hacia dónde vamos."
+title: Infraestructura abierta, sostenida por quienes la usan.
+description: "Qué es Infinite Drive, sus principios, cómo se gobierna, en qué se trabaja y hacia dónde va."
 kicker: Proyecto
 
 what:
   id: what-is
-  kicker: Qué es Infinite Drive
-  title: Un motor que no elige pasajeros.
+  kicker: Qué es
+  title: Infinite Drive es el protocolo. 42 Chain es la red.
   body: |
-    Infinite Drive, el protocolo 42, es el núcleo de 42 Chain: lleva el registro, aplica las mismas reglas a todo el mundo y deja que cualquiera compruebe lo que ha pasado. Encima, cada quien construye lo que necesite: una aplicación, un servicio, una herramienta para su barrio o para su empresa.
+    Infinite Drive es un protocolo de cadena de bloques de código abierto: define cómo se acuerda cada bloque, cómo se ejecutan los contratos, cómo se pagan las tarifas y cómo cambian las reglas. 42 Chain es la red pública que funciona con él.
 
-    Sirve igual a una persona con un portátil viejo que a una institución con un centro de datos. Las dos entran por la misma puerta, siguen las mismas reglas y pueden comprobar lo mismo. Ninguna necesita confiar en la otra, y tampoco en nosotros.
-  art:
-    name: Infinite Drive
-    kicker: El motor
-    aria: Infinite Drive en el centro, como un motor, conectando muchos nodos que forman una sola red
-    labels:
-      - una persona
-      - una comunidad
-      - una estudiante con un portátil viejo
-      - una institución
-      - un programa
-      - una cooperativa
-  caption: Infinite Drive en el centro; cada punto es un nodo, y juntos forman 42 Chain.
+    Está construido sobre piezas probadas de la industria (CometBFT, el SDK de Cosmos, la EVM e IBC) y se mantiene alineado con ellas. El objetivo es simple de decir y exigente de cumplir: una base estable, verificable y abierta a cualquiera.
+
+facts:
+  title: Ficha técnica
+  items:
+    - { label: Protocolo, value: Infinite Drive }
+    - { label: Red, value: 42 Chain }
+    - { label: Chain ID (EVM), value: "421018", note: "Red de pruebas: 421018001" }
+    - { label: Chain ID (nativo), value: infinite_421018-1 }
+    - { label: Unidad nativa, value: "Improbability · 42", note: "Fracción mínima: drop (10⁻¹⁸)" }
+    - { label: Consenso, value: "CometBFT", note: Finalidad en un bloque }
+    - { label: Código, value: Apache 2.0 }
+    - { label: Textos y datos, value: CC BY 4.0 }
 
 beliefs:
   id: beliefs
-  kicker: En qué creemos
-  title: Lo dijeron en 1993 y en 1996. Seguimos de acuerdo.
+  kicker: Principios
+  title: Seis convicciones que guían cada decisión.
   body: |
-    Nuestros valores vienen de dos textos que imaginaron internet como un lugar libre: la Declaración de independencia del ciberespacio, de John Perry Barlow, y el Manifiesto cypherpunk, de Eric Hughes. No los citamos como consigna. Los hemos traducido a seis convicciones con las que tomamos decisiones.
+    Vienen de dos textos que imaginaron internet como un lugar libre: la Declaración de independencia del ciberespacio, de John Perry Barlow, y el Manifiesto cypherpunk, de Eric Hughes. Tomamos sus valores, no su confrontación.
   sources:
     - { label: "Declaración de independencia del ciberespacio (1996)", href: "https://www.eff.org/cyberspace-independence" }
     - { label: "Manifiesto cypherpunk (1993)", href: "https://www.activism.net/cypherpunk/manifesto.html" }
   items:
-    - { icon: open, title: Entrar sin pedir permiso., text: "Usar la red, construir sobre ella o tener tu propio nodo no requiere invitación de nadie.", source: Barlow }
-    - { icon: privacy, title: Privacidad no es secreto., text: "Es decidir qué cuentas y a quién. Se revela lo necesario y nada más.", source: Hughes }
-    - { icon: code, title: La libertad se escribe en código., text: "Abierto, para que cualquiera lo lea, lo use y lo mejore. Las buenas intenciones compilan mal.", source: Hughes }
-    - { icon: vote, title: Las reglas las sostienen quienes participan., text: "Los cambios se proponen y se votan en la propia red, donde todo el mundo puede verlos.", source: Barlow }
-    - { icon: verify, title: "Comprobar, no confiar.", text: "Nadie tiene que creerle a nadie: cada quien puede verificar lo que pasa por sí mismo.", source: Barlow y Hughes }
-    - { icon: node, title: "Cada quien, su propio nodo.", text: "Para estudiantes y curiosos, no solo para especialistas. Tu infraestructura, bajo tu cuidado.", source: Hughes }
-  note: "Instituciones, empresas y gobiernos son bienvenidos, como cualquiera: por la misma puerta y con las mismas reglas."
-
-quote: "Hace treinta años alguien escribió que la libertad había que construirla. Seguimos en ello, una línea de código a la vez."
+    - { icon: open, title: Sin pedir permiso, text: "Usar la red, construir sobre ella u operar un nodo no requiere invitación de nadie.", source: Barlow }
+    - { icon: privacy, title: Privacidad no es secreto, text: "Es decidir qué se revela y a quién. Lo necesario, y nada más.", source: Hughes }
+    - { icon: code, title: La libertad se escribe en código, text: "Abierto, para que cualquiera lo lea, lo use y lo mejore.", source: Hughes }
+    - { icon: vote, title: Reglas de quienes participan, text: "Los cambios se proponen y se votan en la propia red, a la vista de todos.", source: Barlow }
+    - { icon: verify, title: "Comprobar, no confiar", text: "Cualquiera puede verificar lo que pasa sin creerle a nadie.", source: Barlow y Hughes }
+    - { icon: node, title: "Cada quien, su nodo", text: "Operar un nodo debe estar al alcance de estudiantes y curiosos, no solo de especialistas.", source: Hughes }
+  note: "Instituciones, empresas y gobiernos son bienvenidos en igualdad de condiciones: por la misma puerta y con las mismas reglas."
 
 organization:
   id: organization
-  kicker: Cómo se sostiene
+  kicker: Gobierno
   title: Cada pieza, en manos distintas.
   body: |
-    El código lo escriben y lo revisan contribuidores en abierto. La red la sostienen nodos repartidos por el mundo, y cualquiera puede sumar el suyo. Las reglas cambian solo cuando lo aprueban quienes participan, votando en la propia red. Y lo que se construye encima lo decide quien lo construye.
+    Ninguna parte controla el conjunto. El código se escribe y se revisa en abierto, la red la sostienen nodos independientes, las reglas cambian por votación en la propia cadena y lo que se construye encima lo decide quien lo construye.
   cards:
     - { title: El código, text: "Contribuidores, en abierto" }
-    - { title: La red, text: Nodos de cualquiera }
-    - { title: Las reglas, text: Votadas a la vista }
-    - { title: Lo que se construye, text: "Quien quiera, sin pedir permiso" }
+    - { title: La red, text: Nodos independientes }
+    - { title: Las reglas, text: Votadas en la cadena }
+    - { title: Las aplicaciones, text: "Quien quiera, sin pedir permiso" }
 
 work:
   id: work
-  kicker: En qué trabajamos
-  title: La sala de máquinas.
+  kicker: En qué se trabaja
+  title: Estabilidad primero.
   body: |
-    Pulimos, mejoramos y alineamos el código del nodo con la base sobre la que está construido, para que Infinite Drive sea estable y esté a la altura de los mejores estándares de la industria. Es trabajo poco glamuroso: solo se nota cuando falta. Y cada cambio sigue el mismo camino, sin atajos.
+    El trabajo actual es mantener el nodo alineado con las versiones más recientes de su base, corregir, probar y endurecer. Es el tipo de trabajo que solo se nota cuando falta. Cada cambio sigue el mismo camino, sin atajos.
   steps:
     - Se propone en abierto
     - Se prueba en la red de pruebas
-    - Se vota en la propia red
+    - Se vota en la cadena
     - Llega a la red principal
 
 vision:
   id: vision
-  kicker: Hacia dónde vamos
-  title: Infraestructura estándar, en lo grande y en lo pequeño.
+  kicker: Hacia dónde va
+  title: Una base estándar, para lo grande y para lo pequeño.
   body: |
-    Imaginamos Infinite Drive igual de útil para lo cotidiano que para lo muy específico: un entorno común que inspira confianza no por quién lo desarrolla, sino porque todos lo sostenemos y lo mantenemos resiliente.
-
-    Imaginamos que nadie tenga que depender de infraestructura ajena que no puede controlar. Que cualquiera pueda tener su propio nodo y cuidar su parte de la malla. Y que si un día los sistemas se caen, cada quien mantenga en pie su pedazo, y entre todos, la red.
+    Infraestructura común que inspire confianza no por quién la desarrolla, sino porque cualquiera puede comprobarla y sostenerla. Que nadie dependa de infraestructura ajena que no puede controlar, y que operar un nodo sea tan normal como tener un servidor de correo.
 
 doors:
-  - { kicker: El nombre, title: "¿Por qué 42?", text: "Una novela, un motor de improbabilidad infinita y una taza de té bien preparada.", href: /name }
-  - { kicker: Para no perderse, title: Canales oficiales, text: "Dónde habla el proyecto, y la regla de oro: nadie te pedirá nunca tu frase de recuperación.", href: /channels }
+  - { kicker: Construir, title: Documentación, text: "Del primer contrato a operar un nodo.", href: "docs:/get-started" }
+  - { kicker: En vivo, title: Consola, text: "Estado de la red, parámetros y herramientas.", href: "console:/" }
+  - { kicker: Para no perderse, title: Canales oficiales, text: "Dónde habla el proyecto. Nadie te pedirá nunca tu frase de recuperación.", href: /channels }
+  - { kicker: El nombre, title: "¿Por qué 42?", text: "El origen del nombre, y de la toalla.", href: /name }
 ---

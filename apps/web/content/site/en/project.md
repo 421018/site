@@ -1,86 +1,84 @@
 ---
-# Project page text (/about, English). The layout lives in src/components/Project.astro.
-# Paragraphs are separated by a blank line.
+# Text of the project page (/about). The layout lives in src/site/components/Project.astro.
+# Paragraphs: separated by a blank line.
 
-title: Common infrastructure, kept running by those who use it.
-description: "What Infinite Drive is, what we believe, how it is kept running, what we are working on and where we are going."
+title: Open infrastructure, sustained by those who use it.
+description: "What Infinite Drive is, its principles, how it is governed, what is being worked on and where it is going."
 kicker: Project
 
 what:
   id: what-is
-  kicker: What Infinite Drive is
-  title: An engine that does not choose its passengers.
+  kicker: What it is
+  title: Infinite Drive is the protocol. 42 Chain is the network.
   body: |
-    Infinite Drive, the 42 protocol, is the core of 42 Chain: it keeps the ledger, applies the same rules to everyone and lets anyone check what has happened. On top of it, each of us builds what we need: an application, a service, a tool for a neighbourhood or for a company.
+    Infinite Drive is an open-source blockchain protocol: it defines how each block is agreed, how contracts run, how fees are paid and how the rules change. 42 Chain is the public network that runs on it.
 
-    It serves a person with an old laptop just as it serves an institution with a data centre. Both come in through the same door, follow the same rules and can check the same things. Neither needs to trust the other, nor us.
-  art:
-    name: Infinite Drive
-    kicker: The engine
-    aria: Infinite Drive at the centre, like an engine, connecting many nodes that form a single network
-    labels:
-      - a person
-      - a community
-      - a student with an old laptop
-      - an institution
-      - a program
-      - a cooperative
-  caption: Infinite Drive at the centre; every dot is a node, and together they make 42 Chain.
+    It is built on proven industry pieces (CometBFT, the Cosmos SDK, the EVM and IBC) and kept aligned with them. The goal is simple to state and demanding to meet: a stable, verifiable base, open to anyone.
+
+facts:
+  title: Fact sheet
+  items:
+    - { label: Protocol, value: Infinite Drive }
+    - { label: Network, value: 42 Chain }
+    - { label: Chain ID (EVM), value: "421018", note: "Testnet: 421018001" }
+    - { label: Chain ID (native), value: infinite_421018-1 }
+    - { label: Native unit, value: "Improbability · 42", note: "Smallest fraction: drop (10⁻¹⁸)" }
+    - { label: Consensus, value: "CometBFT", note: Single-block finality }
+    - { label: Code, value: Apache 2.0 }
+    - { label: Texts and data, value: CC BY 4.0 }
 
 beliefs:
   id: beliefs
-  kicker: What we believe
-  title: They said it in 1993 and in 1996. We still agree.
+  kicker: Principles
+  title: Six convictions behind every decision.
   body: |
-    Our values come from two texts that imagined the internet as a free place: A Declaration of the Independence of Cyberspace, by John Perry Barlow, and A Cypherpunk's Manifesto, by Eric Hughes. We do not quote them as slogans. We have translated them into six convictions we make decisions with.
+    They come from two texts that imagined the internet as a free place: John Perry Barlow's Declaration of the Independence of Cyberspace and Eric Hughes's Cypherpunk's Manifesto. We take their values, not their confrontation.
   sources:
     - { label: "A Declaration of the Independence of Cyberspace (1996)", href: "https://www.eff.org/cyberspace-independence" }
     - { label: "A Cypherpunk's Manifesto (1993)", href: "https://www.activism.net/cypherpunk/manifesto.html" }
   items:
-    - { icon: open, title: Come in without asking., text: "Using the network, building on it or running your own node needs nobody's invitation.", source: Barlow }
-    - { icon: privacy, title: Privacy is not secrecy., text: "It is deciding what you tell, and to whom. Reveal what is needed and nothing more.", source: Hughes }
-    - { icon: code, title: Freedom is written in code., text: "Open, so anyone can read it, use it and improve it. Good intentions compile badly.", source: Hughes }
-    - { icon: vote, title: The rules are kept by those who take part., text: "Changes are proposed and voted on in the network itself, where everyone can see them.", source: Barlow }
-    - { icon: verify, title: "Check, don't trust.", text: "Nobody has to believe anybody: each of us can verify what happens for ourselves.", source: Barlow and Hughes }
-    - { icon: node, title: "Everyone, their own node.", text: "For students and the curious, not only for specialists. Your infrastructure, in your care.", source: Hughes }
-  note: "Institutions, companies and governments are welcome, like anyone else: through the same door and under the same rules."
-
-quote: "Thirty years ago someone wrote that freedom had to be built. We are still at it, one line of code at a time."
+    - { icon: open, title: No permission needed, text: "Using the network, building on it or running a node needs nobody's invitation.", source: Barlow }
+    - { icon: privacy, title: Privacy is not secrecy, text: "It is choosing what to reveal and to whom. What is needed, and nothing more.", source: Hughes }
+    - { icon: code, title: Freedom is written in code, text: "Open, so anyone can read it, use it and improve it.", source: Hughes }
+    - { icon: vote, title: Rules of those who take part, text: "Changes are proposed and voted on the network itself, in plain sight.", source: Barlow }
+    - { icon: verify, title: "Verify, don't trust", text: "Anyone can check what happens without believing anyone.", source: Barlow and Hughes }
+    - { icon: node, title: "Everyone, their own node", text: "Running a node should be within reach of students and the curious, not only specialists.", source: Hughes }
+  note: "Institutions, companies and governments are welcome on equal terms: through the same door and under the same rules."
 
 organization:
   id: organization
-  kicker: How it is kept running
+  kicker: Governance
   title: Every piece, in different hands.
   body: |
-    The code is written and reviewed by contributors, in the open. The network is kept up by nodes spread around the world, and anyone can add theirs. The rules change only when those who take part approve it, voting in the network itself. And what is built on top is decided by whoever builds it.
+    No single party controls the whole. The code is written and reviewed in the open, the network is sustained by independent nodes, the rules change by vote on the chain itself, and what is built on top is decided by whoever builds it.
   cards:
     - { title: The code, text: "Contributors, in the open" }
-    - { title: The network, text: Anyone's nodes }
-    - { title: The rules, text: Voted in plain sight }
-    - { title: What gets built, text: "Anyone, without asking" }
+    - { title: The network, text: Independent nodes }
+    - { title: The rules, text: Voted on the chain }
+    - { title: The applications, text: "Anyone, without asking" }
 
 work:
   id: work
-  kicker: What we are working on
-  title: The engine room.
+  kicker: Current work
+  title: Stability first.
   body: |
-    We polish, improve and align the node's code with the base it is built on, so that Infinite Drive stays stable and meets the highest standards of the industry. It is unglamorous work: you only notice it when it is missing. And every change follows the same path, with no shortcuts.
+    The current work is keeping the node aligned with the latest versions of its base, fixing, testing and hardening. It is the kind of work you only notice when it is missing. Every change follows the same path, with no shortcuts.
   steps:
     - Proposed in the open
     - Tested on the testnet
-    - Voted on in the network
+    - Voted on the chain
     - Reaches the mainnet
 
 vision:
   id: vision
-  kicker: Where we are going
-  title: Standard infrastructure, for big things and small.
+  kicker: Where it is going
+  title: A standard base, for big things and small ones.
   body: |
-    We imagine Infinite Drive as useful for everyday things as for very specific ones: a common environment trusted not because of who develops it, but because we all keep it running and keep it resilient.
-
-    We imagine nobody having to depend on someone else's infrastructure that they cannot control. Anyone able to run their own node and look after their part of the mesh. And if one day the systems go down, each of us keeping our own piece standing, and all of us, the network.
+    Common infrastructure that earns trust not because of who builds it, but because anyone can check it and sustain it. Nobody depending on someone else's infrastructure they cannot control, and running a node as ordinary as running a mail server.
 
 doors:
-  - { kicker: The name, title: "Why 42?", text: "A novel, an infinite improbability drive and a properly made cup of tea.", href: /name }
-  - { kicker: To stay safe, title: Official channels, text: "Where the project speaks, and the golden rule: nobody will ever ask for your recovery phrase.", href: /channels }
+  - { kicker: Build, title: Documentation, text: "From the first contract to running a node.", href: "docs:/get-started" }
+  - { kicker: Live, title: Console, text: "Network status, parameters and tools.", href: "console:/" }
+  - { kicker: Stay safe, title: Official channels, text: "Where the project speaks. Nobody will ever ask for your recovery phrase.", href: /channels }
+  - { kicker: The name, title: "Why 42?", text: "Where the name comes from, and the towel.", href: /name }
 ---

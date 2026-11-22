@@ -37,8 +37,6 @@ const cta = z.object({ label: z.string(), href: z.string() }).strict();
 
 /** A block of text: paragraphs separated by a blank line. */
 const prose = z.string();
-/** The illustration of Infinite Drive: the engine, its kicker word and who can be a node. */
-const engineArt = z.object({ name: z.string(), kicker: z.string(), labels: z.array(z.string()).min(1).max(6), aria: z.string() }).strict();
 
 const home = defineCollection({
   loader: perLanguage(catalogPath('site'), 'home.md'),
@@ -113,13 +111,15 @@ const project = defineCollection({
       title: z.string(),
       description: z.string(),
       kicker: z.string(),
-      what: z.object({ id: z.string(), kicker: z.string(), title: z.string(), body: prose, art: engineArt, caption: z.string() }).strict(),
+      /** The project in one screen: what it is, and its identity card (names, identifiers, unit, licences). */
+      what: z.object({ id: z.string(), kicker: z.string(), title: z.string(), body: prose }).strict(),
+      facts: z.object({ title: z.string(), items: z.array(z.object({ label: z.string(), value: z.string(), note: z.string().optional() }).strict()).min(4).max(10) }).strict(),
+      /** Principles: six convictions, from two texts of the nineties. */
       beliefs: z.object({ id: z.string(), kicker: z.string(), title: z.string(), body: prose, sources: z.array(cta).length(2), items: z.array(z.object({ icon: z.enum(['open', 'privacy', 'code', 'vote', 'verify', 'node']), title: z.string(), text: z.string(), source: z.string() }).strict()).min(1), note: z.string() }).strict(),
-      quote: z.string(),
       organization: z.object({ id: z.string(), kicker: z.string(), title: z.string(), body: prose, cards: z.array(z.object({ title: z.string(), text: z.string() }).strict()).length(4) }).strict(),
       work: z.object({ id: z.string(), kicker: z.string(), title: z.string(), body: prose, steps: z.array(z.string()).min(2) }).strict(),
       vision: z.object({ id: z.string(), kicker: z.string(), title: z.string(), body: prose }).strict(),
-      doors: z.array(z.object({ kicker: z.string(), title: z.string(), text: z.string(), href: z.string() }).strict()).length(2),
+      doors: z.array(z.object({ kicker: z.string(), title: z.string(), text: z.string(), href: z.string() }).strict()).min(2).max(4),
     })
     .strict(),
 });
