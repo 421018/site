@@ -12,6 +12,7 @@ header:
   homeLink: 42 Chain Console, overview
   home: Overview # first item of the side menu
   mainNav: Console
+  areasNav: Areas of 42 Chain # accessible name of the switch between the site, the documentation and the console
   menuButton: Menu
   languageNav: Language
   links:

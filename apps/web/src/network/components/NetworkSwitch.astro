@@ -18,9 +18,11 @@ const css = networks
 </div>
 <style is:global set:html={css}></style>
 <style>
-  .netsw { display: inline-flex; gap: 4px; padding: 4px; margin: 4px 0 20px; border: 1px solid var(--rule); border-radius: 12px; background: var(--panel); }
-  .netsw button { min-height: 40px; padding: 0 16px; border: 0; border-radius: 9px; background: transparent; color: var(--muted); font: inherit; font-size: 14.5px; cursor: pointer; }
-  .netsw button[aria-pressed="true"] { background: var(--bg); color: var(--head); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  /* a pill of two, like the header's switch between areas */
+  .netsw { display: inline-flex; gap: 2px; padding: 3px; margin: 4px 0 20px; border: 1px solid var(--rule2); border-radius: 999px; background: transparent; }
+  .netsw button { min-height: 34px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: color .2s, background .2s; }
+  .netsw button:hover { color: var(--head); }
+  .netsw button[aria-pressed="true"] { background: var(--soft); color: var(--head); font-weight: 600; box-shadow: inset 0 0 0 1px var(--rule2); }
   .netsw button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 </style>
 <script>

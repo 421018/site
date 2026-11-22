@@ -12,6 +12,7 @@ header:
   homeLink: Documentación de 42 Chain, inicio
   home: Inicio # first item of the main menu and of the breadcrumbs
   mainNav: Principal
+  areasNav: Áreas de 42 Chain # accessible name of the switch between the site, the documentation and the console
   menuButton: Menú
   languageNav: Idioma
   notice: # shown under the header on every page while the documentation is being written

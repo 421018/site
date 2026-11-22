@@ -135,6 +135,8 @@ export const siteTextSchema = z
         /** Label of the "home" item at the start of the main menu and of the breadcrumbs. */
         home: z.string().optional(),
         mainNav: z.string(),
+        /** Accessible name of the switch between the three areas (documentation, console). */
+        areasNav: z.string().optional(),
         menuButton: z.string(),
         /** Accessible name of the language switcher. */
         languageNav: z.string(),

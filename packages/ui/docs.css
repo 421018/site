@@ -49,7 +49,8 @@
   color-scheme: dark;
 }
 [data-product="docs"] body { background: var(--bg); color: var(--ink); }
-/* header: the shared bar (base.css) over the documentation's 1440px column; in the light theme its colours turn light */
+/* header: the bar shared with the console (base.css), over the same 1440px column and margins
+   (keep these two in step with console.css); in the light theme its colours turn light */
 :root[data-product="docs"] { --hbar-w: 1440px; --hbar-px: clamp(16px, 3vw, 32px); --foot-w: var(--hbar-w); --foot-px: var(--hbar-px);
   /* height of the sticky header (bar and tabs; plus the notice until it is dismissed): what stays visible under it */
   --hbar-h: 158px; scroll-padding-top: calc(var(--hbar-h) + 16px); }
@@ -104,8 +105,7 @@
 .hnotice-x:hover { background: rgba(0,0,0,.08); }
 [data-theme="dark"] .hnotice-x:hover { background: rgba(255,255,255,.08); }
 [data-notice="off"] .hnotice { display: none; }
-/* the pages with network data have their own switch */
-@media (max-width: 1180px) { .hbar .hnet { display: none; } }
+
 @media (max-width: 760px) { .hnotice p span { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; } }
 
 /* the language menu and the buttons to the site, in the documentation's light (and dark) theme */

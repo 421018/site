@@ -3,13 +3,15 @@
  * The header of every page of every area (site, docs, console): the same bar,
  * brand, buttons, language menu and narrow-screen menu, so moving between areas
  * never changes the frame. Each area adds what is its own:
- * - the site: its main menu inline (starting with "home"), with section panels;
- * - the documentation: its search box in the bar ("search" slot) and its
- *   sections as a row of tabs under it;
- * - the console: its screens stay in its side menu; `nav` lists them for the
- *   narrow-screen menu.
- * Controls of an area (network switch, theme) go in the "controls" slot,
- * before the buttons to the other areas; a notice goes in the "below" slot.
+ * - the site: its main menu inline (starting with "home"), with section panels,
+ *   and a button to each other area;
+ * - the documentation and the console share one bar, element for element: the
+ *   documentation's search box ("search" slot), the switch between the three
+ *   areas (the current one marked) and the language, then their sections (the
+ *   documentation's) or screens (the console's, given in `nav`) as tabs under it.
+ *   Moving between the two never moves anything in the header.
+ * Controls of an area (the documentation's theme) go in the "controls" slot, to
+ * the left of the area switch so they never push it; a notice goes in the "below" slot.
  * On the site, a page with search passes it in the "search" slot (inside the menu).
  * Sections with `dropdown: true` open a panel with their
  * pages on hover, keyboard focus or a tap on their arrow; without JavaScript
@@ -28,7 +30,7 @@ interface Props {
   alternates?: Record<string, string>;
   /** Marks a header link as current (e.g. the blog). */
   currentHref?: string;
-  /** The console's screens, for the narrow-screen menu (its side menu holds them on wide screens). */
+  /** The console's screens: its tabs and its narrow-screen menu. */
   nav?: { label: string; href: string; on?: boolean }[];
 }
 const { current, alternates = {}, currentHref, nav } = Astro.props;
@@ -36,8 +38,8 @@ const lang = langOf(Astro);
 const area = areaOf(Astro);
 // The console has no Markdown sections: its screens come in `nav`.
 const menu = area === 'console' ? [] : await getMenu(lang, area);
-// Where the main menu goes: inline in the bar (site) or as tabs under it (docs).
-const tabs = area === 'docs';
+// Where the main menu goes: inline in the bar (site) or as tabs under it (docs, console).
+const tabs = area !== 'site';
 const text = await getSiteText(lang, area);
 type Item =
   | { kind: 'section'; weight: number; key: string; label: string; href: string; panel?: ReturnType<typeof menuPanel> }
@@ -61,13 +63,29 @@ const home = homeHref(lang, area);
 const atHome = Astro.url.pathname.replace(/\/$/, '') === home.replace(/\/$/, '');
 const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind === 'link' && !!currentHref && i.href === currentHref);
 const homeOn = atHome && !current;
+// The documentation and the console: one switch between the three areas, always in the same
+// order and size, the current one marked. Labels come from the site's and the docs' header links.
+const siteText = await getSiteText(lang, 'site');
+const docsText = await getSiteText(lang, 'docs');
+const labelOf = (links: { label: string; href: string }[], to: string) => links.find((l) => l.href.startsWith(`${to}:`))?.label;
+const areas = (['site', 'docs', 'console'] as const).map((to) => ({
+  to,
+  href: resolveHref(`${to}:/`, lang, area),
+  label: (to === 'site' ? labelOf(docsText.header.links, 'site') : labelOf(siteText.header.links, to)) ?? to,
+}));
+// In a switch the site is a place, not a way back: a house instead of the back arrow.
+const homeIcon = '<path d="M4 11 L12 4 L20 11" /><path d="M6.5 9.5 V20 H17.5 V9.5" />';
+const tabItems = nav ?? [
+  ...(text.header.home ? [{ label: text.header.home, href: home, on: homeOn }] : []),
+  ...items.map((i) => ({ label: i.label, href: i.href, on: isOn(i) })),
+];
 ---
 <div class:list={['hbar', `hbar-${area}`]}>
 <header class="site-header">
   <a class="brand" href={home} aria-label={text.header.homeLink}>
     <span class="mark">42</span>{text.header.brand && <span class="name">{text.header.brand}</span>}
   </a>
-  {area === 'docs' && Astro.slots.has('search') && <div class="hsearch"><slot name="search" /></div>}
+  {tabs && Astro.slots.has('search') && <div class="hsearch"><slot name="search" /></div>}
   {area === 'site' && <nav class="menu" aria-label={text.header.mainNav}>
     {text.header.home && <a class:list={['nl', { on: atHome }]} href={home} data-label={text.header.home} aria-current={atHome ? 'page' : undefined}>{text.header.home}</a>}
     {items.map((i, n) => i.kind === 'section' && i.panel ? (
@@ -98,7 +116,17 @@ const homeOn = atHome && !current;
   </nav>}
   <div class="hside">
     <slot name="controls" />
-    {tools.map((t) => (
+    {tabs && (
+      <nav class="harea" aria-label={text.header.areasNav ?? text.header.mainNav}>
+        {areas.map((a) => (
+          <a class:list={['harea-i', { on: a.to === area }]} href={a.href} aria-current={a.to === area ? 'true' : undefined}>
+            <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={a.to === 'site' ? homeIcon : toolIcon[a.to]} />
+            <span>{a.label}</span>
+          </a>
+        ))}
+      </nav>
+    )}
+    {!tabs && tools.map((t) => (
       <a class:list={['htool', `to-${t.to}`]} href={t.href}>
         <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={toolIcon[t.to]} />
         <span>{t.label}</span>
@@ -132,8 +160,7 @@ const homeOn = atHome && !current;
 </header>
 {tabs && (
   <nav class="htabs" aria-label={text.header.mainNav}>
-    {text.header.home && <a class:list={['nl', { on: homeOn }]} href={home} data-label={text.header.home} aria-current={homeOn ? 'page' : undefined}>{text.header.home}</a>}
-    {items.map((i) => <a class:list={['nl', { on: isOn(i) }]} href={i.href} data-label={i.label} aria-current={isOn(i) ? 'true' : undefined}>{i.label}</a>)}
+    {tabItems.map((i) => <a class:list={['nl', { on: i.on }]} href={i.href} data-label={i.label} aria-current={i.on ? 'page' : undefined}>{i.label}</a>)}
   </nav>
 )}
 <slot name="below" />

@@ -1,13 +1,14 @@
 ---
 /**
- * Header of the documentation: the header of every area (kit/components/Header.astro)
- * with what is the documentation's own: the search box in the bar, the network
- * switch (shared with the network widgets on the page) and the theme button
- * before the other areas, the sections as tabs under the bar and the notice.
+ * Header of the documentation: the bar it shares with the console
+ * (kit/components/Header.astro) with what is the documentation's own: the
+ * search box, the theme button, the sections as tabs and the notice. There is
+ * no network switch here: a page whose values differ per network shows each one
+ * under its label, or carries its own switch where those values are (the
+ * network-switch widget).
  */
 import Header from '../../kit/components/Header.astro';
 import Search from '../../kit/components/Search.astro';
-import NetworkSwitch from '../../network/components/NetworkSwitch.astro';
 import { getSiteText } from '../../kit/site';
 import { langOf } from '../../kit/i18n';
 interface Props { current?: string; alternates?: Record<string, string> }
@@ -17,7 +18,6 @@ const text = await getSiteText(langOf(Astro), 'docs');
 <Header current={current} alternates={alternates}>
   {text.header.search && <Search slot="search" text={text.header.search} />}
   <Fragment slot="controls">
-    <div class="hnet"><NetworkSwitch /></div>
     {text.header.themeDark && <button type="button" class="hicon" data-theme-toggle data-dark={text.header.themeDark} data-light={text.header.themeLight} aria-label={text.header.themeDark}><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 9.5 A5.5 5.5 0 1 1 6.5 3 A4.5 4.5 0 0 0 13 9.5 Z" /></svg></button>}
   </Fragment>
   {text.header.notice && (

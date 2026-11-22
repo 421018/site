@@ -1,7 +1,9 @@
 ---
 /**
- * Frame of every console screen: the header of every area with the network
- * switch, the side menu of screens, the screen's heading and the site's footer. The screen's
+ * Frame of every console screen: the bar it shares with the documentation (the
+ * same header, element for element, with the console's screens as its tabs),
+ * the screen's heading, the network switch on the screens whose data depends
+ * on the network (right above that data) and the site's footer. The screen's
  * body goes in the default slot. Styles: @42chain/ui/console.css.
  */
 import Base from '../kit/layouts/Base.astro';
@@ -10,42 +12,35 @@ import Footer from '../site/components/Footer.astro';
 import NetworkSwitch from '../network/components/NetworkSwitch.astro';
 import { getSiteText } from '../kit/site';
 import { langOf, languages, withLang } from '../kit/i18n';
-import { consoleIcons } from '../art/areas';
+import Search from '../kit/components/Search.astro';
 import { getConsoleText, SCREENS, type ScreenId } from './text';
 interface Props { screen: ScreenId; kicker: string; title: string; lead: string }
 const { screen, kicker, title, lead } = Astro.props;
 const lang = langOf(Astro);
-const site = await getSiteText(lang, 'console');
+// The search box is the documentation's (its index lives at /docs/pagefind), so the bar matches.
+const search = (await getSiteText(lang, 'docs')).header.search;
 const t = await getConsoleText(lang);
 const hrefOf = (path: string, l = lang) => withLang(path ? `/${path}` : '/', l, 'console');
 const current = SCREENS.find((s) => s.id === screen)!;
 const alternates = Object.fromEntries(languages.map((l) => [l, hrefOf(current.path, l)]));
 const nav = SCREENS.map((s) => ({ label: t.nav[s.id], href: hrefOf(s.path), on: s.id === screen }));
-const svg = (d: string, size = 18) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+// Screens whose figures depend on the network: the switch goes right above them.
+const perNetwork: ScreenId[] = ['overview', 'status', 'networks'];
 ---
 <Base title={screen === 'overview' ? undefined : t.nav[screen]} alternates={alternates} product="console">
   <div class="cx">
     <Header alternates={alternates} nav={nav}>
-      <div slot="controls" class="hnet"><NetworkSwitch /></div>
+      {search && <Search slot="search" text={search} />}
     </Header>
-    <div class="cx-body">
-      <nav class="cx-side" aria-label={site.header.mainNav}>
-        {SCREENS.map((s, n) => (
-          <a href={nav[n].href} aria-current={nav[n].on ? 'page' : undefined}><Fragment set:html={svg(consoleIcons[s.id])} />{nav[n].label}</a>
-        ))}
-      </nav>
-      <main class="cx-main">
-        <div class="cx-in">
-          <div class="cx-netm"><NetworkSwitch /></div>
-          <header class="cx-head">
-            <p class="cx-k">{kicker}</p>
-            <h1>{title}</h1>
-            <p>{lead}</p>
-          </header>
-          <slot />
-        </div>
-      </main>
-    </div>
+    <main class="cx-main">
+      <header class="cx-head">
+        <p class="cx-k">{kicker}</p>
+        <h1>{title}</h1>
+        <p>{lead}</p>
+      </header>
+      {perNetwork.includes(screen) && <div class="cx-net-sw"><NetworkSwitch /></div>}
+      <slot />
+    </main>
     <Footer alternates={alternates} />
   </div>
 </Base>
