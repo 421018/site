@@ -15,6 +15,19 @@ hero:
   primary: { label: Empezar a leer, href: "/#editorial" }
   secondary: { label: Leer el blog, href: /blog }
 
+live:
+  kicker: La red, ahora
+  title: Mientras lees esto, la red sigue escribiendo.
+  lead: "Cada cuadro es un bloque recién cerrado, leído en este momento desde tu navegador a los proveedores públicos. El dorado es el más nuevo."
+  height: Último bloque
+  pace: Tiempo por bloque
+  online: Proveedores en línea
+  seconds: "{n} s"
+  block: "Bloque {n}"
+  waiting: Escuchando a la red…
+  unavailable: Ahora mismo no llega respuesta de los proveedores públicos.
+  link: { label: Abrir la consola, href: "console:/status" }
+
 editorial:
   kicker: Editorial
   title: Cada época construye su infraestructura invisible.
@@ -82,6 +95,27 @@ blog:
   kicker: La biblioteca
   title: Desde el blog.
   link: { label: Historias y artículos, href: /blog }
+
+paths:
+  kicker: Por dónde seguir
+  title: Cada quien llega por algo distinto.
+  items:
+    - icon: connect
+      title: Entender
+      text: Qué es 42, en qué creemos y por qué se llama así.
+      href: /about
+    - icon: build
+      title: Construir
+      text: Contratos y aplicaciones con las herramientas estándar de la EVM.
+      href: "docs:/build"
+    - icon: node
+      title: Tener un nodo
+      text: Suma tu máquina a la red y cuida tu parte de la malla.
+      href: "docs:/operate/nodes"
+    - icon: consensus
+      title: Seguir la red
+      text: Estado en vivo, eventos y conexiones, en la consola.
+      href: "console:/"
 
 name:
   kicker: El nombre

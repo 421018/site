@@ -1,0 +1,41 @@
+---
+/**
+ * The motion script, on every page: marks the page as scrolled (the glass
+ * header), feeds the pointer position to .spot cards, and moves the layers
+ * of a [data-parallax] scene by their data-depth (in px) as the pointer
+ * crosses it. Nothing here is needed to read or use a page.
+ */
+---
+<script>
+  const root = document.documentElement;
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  const fine = matchMedia('(pointer: fine)');
+  const onScroll = () => root.toggleAttribute('data-scrolled', scrollY > 8);
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  // SVG (SMIL) animations do not obey the CSS media query: stop them here.
+  if (still.matches) document.querySelectorAll('svg').forEach((svg) => svg.pauseAnimations?.());
+
+  document.addEventListener('pointermove', (e) => {
+    if (!fine.matches) return;
+    const card = (e.target as Element).closest?.<HTMLElement>('.spot');
+    if (card) {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    }
+  }, { passive: true });
+
+  document.querySelectorAll<HTMLElement>('[data-parallax]').forEach((scene) => {
+    const layers = [...scene.querySelectorAll<HTMLElement>('[data-depth]')];
+    let frame = 0, x = 0, y = 0;
+    const paint = () => { frame = 0; layers.forEach((l) => { const d = Number(l.dataset.depth); l.style.transform = `translate3d(${(x * d).toFixed(1)}px, ${(y * d).toFixed(1)}px, 0)`; }); };
+    scene.addEventListener('pointermove', (e) => {
+      if (still.matches || !fine.matches) return;
+      const r = scene.getBoundingClientRect();
+      x = (e.clientX - r.left) / r.width - 0.5; y = (e.clientY - r.top) / r.height - 0.5;
+      frame ||= requestAnimationFrame(paint);
+    }, { passive: true });
+    scene.addEventListener('pointerleave', () => { x = 0; y = 0; frame ||= requestAnimationFrame(paint); });
+  });
+</script>

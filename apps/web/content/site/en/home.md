@@ -15,6 +15,19 @@ hero:
   primary: { label: Start reading, href: "/#editorial" }
   secondary: { label: Read the blog, href: /blog }
 
+live:
+  kicker: The network, now
+  title: While you read this, the network keeps writing.
+  lead: "Each square is a block just closed, read right now from your browser to the public providers. The gold one is the newest."
+  height: Latest block
+  pace: Time per block
+  online: Providers online
+  seconds: "{n} s"
+  block: "Block {n}"
+  waiting: Listening to the network…
+  unavailable: The public providers are not answering right now.
+  link: { label: Open the console, href: "console:/status" }
+
 editorial:
   kicker: Editorial
   title: Every age builds its invisible infrastructure.
@@ -82,6 +95,27 @@ blog:
   kicker: The library
   title: From the blog.
   link: { label: Stories and articles, href: /blog }
+
+paths:
+  kicker: Where to next
+  title: Everyone arrives looking for something different.
+  items:
+    - icon: connect
+      title: Understand
+      text: What 42 is, what we believe and why it has that name.
+      href: /about
+    - icon: build
+      title: Build
+      text: Contracts and applications with the standard EVM tools.
+      href: "docs:/build"
+    - icon: node
+      title: Run a node
+      text: Add your machine to the network and look after your part of the mesh.
+      href: "docs:/operate/nodes"
+    - icon: consensus
+      title: Follow the network
+      text: Live status, events and connections, in the console.
+      href: "console:/"
 
 name:
   kicker: The name

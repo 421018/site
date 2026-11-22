@@ -27,6 +27,7 @@ import { z } from 'astro/zod';
 import { pageSchema, pagesLoader, perLanguage, postSchema, postsLoader, siteTextSchema } from './kit/schemas';
 import { file } from 'astro/loaders';
 import { catalogPath } from './kit/catalog';
+import { iconNames } from './art/icons';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from './network/schemas';
 
 const pages = defineCollection({ loader: pagesLoader(catalogPath('site')), schema: pageSchema });
@@ -47,6 +48,25 @@ const home = defineCollection({
       description: z.string().optional(),
       /** The cover: kept as it is. */
       hero: z.object({ eyebrow: z.string(), title: z.string(), lead: z.string(), primary: cta, secondary: cta }).strict(),
+      /** The network, now: live figures and the latest blocks, read from the browser. */
+      live: z
+        .object({
+          kicker: z.string(),
+          title: z.string(),
+          lead: z.string(),
+          height: z.string(),
+          pace: z.string(),
+          online: z.string(),
+          /** "{n} s": the time per block. */
+          seconds: z.string(),
+          /** Label of a block in the stream: "Bloque {n}". */
+          block: z.string(),
+          /** Shown until the first reading arrives, and when no provider answers. */
+          waiting: z.string(),
+          unavailable: z.string(),
+          link: cta,
+        })
+        .strict(),
       /** The editorial: why now, and the central idea said once. */
       editorial: z.object({ kicker: z.string(), title: z.string(), body: prose, statement: z.string(), aside: z.string().optional() }).strict(),
       /** Infinite Drive as a mechanism, drawn. */
@@ -61,6 +81,14 @@ const home = defineCollection({
       work: z.object({ kicker: z.string(), title: z.string(), body: prose, link: cta }).strict(),
       /** Latest entries from the blog; the posts come from the blog itself. */
       blog: z.object({ kicker: z.string(), title: z.string(), link: cta }).strict(),
+      /** Ways in: one card per kind of visitor. */
+      paths: z
+        .object({
+          kicker: z.string(),
+          title: z.string(),
+          items: z.array(z.object({ icon: z.enum(iconNames), title: z.string(), text: z.string(), href: z.string() }).strict()).min(2).max(4),
+        })
+        .strict(),
       name: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), link: cta }).strict(),
       closing: z.object({ title: z.string(), lead: z.string().optional(), primary: cta, secondary: cta }).strict(),
     })

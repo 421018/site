@@ -2,7 +2,9 @@
 /**
  * Infinite Drive as a mechanism: the engine at the centre, ringed by the
  * ledger's pages, and a mesh of nodes around it (the network). Six quiet
- * labels say who can be a node. Static: nothing moves. Words come from the
+ * labels say who can be a node. Alive: points of light travel the mesh
+ * towards the engine and back, the spokes flow, the gold nodes glow in turn and
+ * the ring of pages turns slowly. Stops with prefers-reduced-motion. Words come from the
  * page's content (name, kicker, labels, aria).
  */
 interface Props { name: string; kicker: string; labels: string[]; aria: string }
@@ -30,6 +32,12 @@ const pages = Array.from({ length: 16 }, (_, i) => {
   const a = (2 * Math.PI * i) / 16;
   return { x: cx + 100 * Math.cos(a), y: cy + 100 * Math.sin(a), deg: (a * 180) / Math.PI, newest: i === 4 };
 });
+// A few routes for the travelling points: along the spokes (node → engine) and along mesh links.
+const spokes = nodes.map((n, k) => ({ n, k })).filter(({ n }) => n.ring === 0);
+const routes = [
+  ...spokes.filter((_, i) => i % 2 === 0).map(({ n }, i) => ({ d: `M${n.x.toFixed(1)} ${n.y.toFixed(1)} L${cx} ${cy}`, dur: 3.2 + (i % 3) * 0.7, begin: i * 0.9, gold: true })),
+  ...mesh.filter((_, i) => i % 3 === 0).slice(0, 12).map(([i, j], k) => ({ d: `M${nodes[i].x.toFixed(1)} ${nodes[i].y.toFixed(1)} L${nodes[j].x.toFixed(1)} ${nodes[j].y.toFixed(1)}`, dur: 2.4 + (k % 4) * 0.6, begin: k * 0.55, gold: false })),
+];
 const spots: [number, number][] = [[118, 92], [1010, 110], [80, 560], [925, 585], [1040, 330], [60, 330]];
 ---
 <svg class="engine-mesh" role="img" aria-label={aria} viewBox="0 0 1200 660">
@@ -38,16 +46,25 @@ const spots: [number, number][] = [[118, 92], [1010, 110], [80, 560], [925, 585]
     <radialGradient id="em-core" cx="40%" cy="35%" r="75%"><stop offset="0" stop-color="#1F4A4A" /><stop offset=".5" stop-color="#0E2229" /><stop offset="1" stop-color="#05090E" /></radialGradient>
   </defs>
   {mesh.map(([i, j]) => <line x1={nodes[i].x} y1={nodes[i].y} x2={nodes[j].x} y2={nodes[j].y} stroke="rgba(91,240,200,.22)" stroke-width="1" />)}
-  {nodes.filter((n) => n.ring === 0).map((n) => <line x1={cx} y1={cy} x2={n.x} y2={n.y} stroke="rgba(242,200,121,.35)" stroke-width="1.2" stroke-dasharray="2 5" />)}
-  {nodes.map((n, k) => <circle cx={n.x} cy={n.y} r={7 - n.ring} fill={gold.has(k) ? '#F2C879' : '#0B141B'} stroke={gold.has(k) ? '#F2C879' : '#5BF0C8'} stroke-width="1.4" />)}
+  {nodes.filter((n) => n.ring === 0).map((n) => <line x1={cx} y1={cy} x2={n.x} y2={n.y} stroke="rgba(242,200,121,.35)" stroke-width="1.2" stroke-dasharray="2 5" class="em-spoke" />)}
+  {routes.map((r) => <circle r={r.gold ? 2.6 : 2.2} fill={r.gold ? '#F2C879' : '#8FF5DA'} class="em-pt" opacity="0"><animateMotion dur={`${r.dur}s`} begin={`${r.begin}s`} repeatCount="indefinite" path={r.d} /><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur={`${r.dur}s`} begin={`${r.begin}s`} repeatCount="indefinite" /></circle>)}
+  {nodes.map((n, k) => <circle cx={n.x} cy={n.y} r={7 - n.ring} fill={gold.has(k) ? '#F2C879' : '#0B141B'} stroke={gold.has(k) ? '#F2C879' : '#5BF0C8'} stroke-width="1.4" class:list={{ 'em-gold': gold.has(k) }} style={gold.has(k) ? `animation-delay: ${[...gold].indexOf(k) * -1.6}s` : undefined} />)}
   <circle cx={cx} cy={cy} r="120" fill="url(#em-glow)" />
   <circle cx={cx} cy={cy} r="78" fill="url(#em-core)" stroke="rgba(91,240,200,.55)" stroke-width="1.5" />
-  <circle cx={cx} cy={cy} r="100" fill="none" stroke="rgba(91,240,200,.25)" stroke-dasharray="2 6" />
-  {pages.map((p) => <rect x={p.x - 4.5} y={p.y - 4.5} width="9" height="9" rx="2.5" fill={p.newest ? '#F2C879' : '#0B141B'} stroke={p.newest ? '#F2C879' : '#5BF0C8'} stroke-width="1.2" transform={`rotate(${p.deg} ${p.x} ${p.y})`} />)}
+  <circle class="em-orbit" cx={cx} cy={cy} r="100" fill="none" stroke="rgba(91,240,200,.25)" stroke-dasharray="2 6" />
+  <g class="em-pages">{pages.map((p) => <rect x={p.x - 4.5} y={p.y - 4.5} width="9" height="9" rx="2.5" fill={p.newest ? '#F2C879' : '#0B141B'} stroke={p.newest ? '#F2C879' : '#5BF0C8'} stroke-width="1.2" transform={`rotate(${p.deg} ${p.x} ${p.y})`} />)}</g>
   <text x={cx} y={cy - 4} text-anchor="middle" font-size="17" font-weight="600" fill="#ECEFF4">{name}</text>
   <text x={cx} y={cy + 18} text-anchor="middle" font-family="var(--mono)" font-size="11" letter-spacing="1.5" fill="#5BF0C8">{kicker.toUpperCase()}</text>
   {labels.slice(0, spots.length).map((t, i) => <text x={spots[i][0]} y={spots[i][1]} font-size="13" fill="#A3ADB8">{t}</text>)}
 </svg>
 <style>
   .engine-mesh { display: block; width: 100%; height: auto; font-family: var(--font); }
+  .em-spoke { animation: em-flow 4s linear infinite; }
+  @keyframes em-flow { to { stroke-dashoffset: -28; } }
+  .em-orbit { animation: em-flow 6s linear infinite reverse; }
+  .em-pages { transform-box: view-box; transform-origin: 600px 330px; animation: em-turn 120s linear infinite; }
+  @keyframes em-turn { to { transform: rotate(360deg); } }
+  .em-gold { animation: em-glow 4.8s ease-in-out infinite; }
+  @keyframes em-glow { 0%, 100% { filter: none; } 50% { filter: drop-shadow(0 0 8px rgba(242,200,121,.95)); } }
+  .em-pt { filter: drop-shadow(0 0 4px currentColor); }
 </style>

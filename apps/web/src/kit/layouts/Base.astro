@@ -2,6 +2,7 @@
 import { Font } from 'astro:assets';
 import { areaOf, defaultLang, langOf, ogLocale } from '../i18n';
 import { getSiteText } from '../site';
+import Motion from '../components/Motion.astro';
 
 interface Props {
   title?: string;
@@ -50,5 +51,6 @@ const canonical = new URL(canonicalHref ?? Astro.url.pathname, Astro.site);
   </head>
   <body id="top">
     <slot />
+    <Motion />
   </body>
 </html>

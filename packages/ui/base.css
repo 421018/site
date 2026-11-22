@@ -7,7 +7,7 @@
 
 /* Each section overrides --acc and --link from its index.md (section.accent / section.ink). */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
+html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; scroll-padding-top: 88px; }
 body { margin: 0; background: var(--night); color: var(--fg); font-family: var(--font); overflow-x: hidden; }
 a { color: inherit; }
 img, svg { display: block; }
@@ -28,7 +28,9 @@ img, svg { display: block; }
 .nl.on { color: #fff; font-weight: 600; box-shadow: inset 0 -2px 0 var(--aurora); border-radius: 0; }
 /* The header bar: the same box on every page of an area (width, height and
    position), so moving between pages never shifts the menu. */
-.hbar { position: relative; z-index: 30; background-color: var(--night); border-bottom: 1px solid var(--line-d); }
+.hbar { position: sticky; top: 0; z-index: 30; background-color: var(--night); border-bottom: 1px solid var(--line-d); transition: background-color .35s, border-color .35s; }
+/* once the page scrolls, the bar turns to glass over the content */
+html[data-scrolled] .hbar { background-color: rgba(5,8,13,.86); border-bottom-color: rgba(255,255,255,.07); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); }
 .hbar > .site-header { max-width: 1280px; min-height: 72px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 40px); box-sizing: border-box; flex-wrap: nowrap; }
 .hbar .menu { margin-left: auto; flex-wrap: nowrap; }
 .hside { display: flex; align-items: center; gap: 8px; }
@@ -90,14 +92,20 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .ml.on { color: #fff; font-weight: 600; box-shadow: inset 2px 0 0 var(--aurora); }
 @media (max-width: 960px) { .site-header { flex-wrap: nowrap; } .menu { display: none; } .menu-m { display: block; } .hside .htool, .hside .hcta { display: none; } }
 /* ---------- buttons & links ---------- */
-.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; transition: background .25s, color .25s, border-color .25s; }
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; transition: background .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s; }
+.btn svg { transition: transform .3s cubic-bezier(.16,1,.3,1); }
+.btn:hover svg { transform: translateX(4px); }
+.btn:active { transform: scale(.97); }
 .btn-p { background: var(--fg); color: var(--night); }
-.btn-p:hover { background: #fff; }
+.btn-p:hover { background: #fff; box-shadow: 0 0 0 6px rgba(91,240,200,.12), 0 10px 40px -10px rgba(91,240,200,.55); }
 .btn-g { border: 1px solid rgba(255,255,255,.22); color: var(--fg); background: transparent; }
 .btn-g:hover { border-color: var(--acc); }
 .txl { color: inherit; text-decoration: none; display: inline-flex; gap: 8px; align-items: center; min-height: 44px; margin-top: 28px; border-bottom: 1px solid currentColor; font-size: 15.5px; }
 .txl:hover { color: var(--acc); }
-/* ---------- motion: slow and continuous, or once; never pulsing ---------- */
+/* ---------- motion ----------
+   The site is alive but calm: things enter as you reach them, the art keeps
+   turning slowly, live data arrives when the network writes it, and cards
+   answer the pointer. Everything stops with prefers-reduced-motion. */
 .fade { animation: fadeUp 1.1s cubic-bezier(.16,1,.3,1) backwards; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--acc); }
@@ -133,7 +141,22 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .duo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .duo::after { display: none; }
 .pill { display: inline-flex; align-items: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; border: 1px solid currentColor; border-radius: 999px; padding: 5px 10px; }
-@supports (animation-timeline: view()) { .rv { animation: rv linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; } from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
+/* Reveal on scroll: scroll-driven, no script; where unsupported, everything is simply there. */
+@keyframes rv { from { opacity: 0; transform: translateY(36px); } }
+@supports (animation-timeline: view()) { [data-rv] { animation: rv linear both; animation-timeline: view(); animation-range: entry 0% entry 90%; } }
+/* Cards that answer the pointer: a soft light and a lit edge follow it (--mx, --my set by the motion script). */
+.spot { position: relative; isolation: isolate; }
+.spot::before, .spot::after { content: ""; position: absolute; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s; }
+.spot::before { inset: 0; z-index: -1; background: radial-gradient(480px circle at var(--mx, 50%) var(--my, 0%), rgba(91,240,200,.13), transparent 45%); }
+.spot::after { inset: -1px; padding: 1px; background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 0%), rgba(91,240,200,.85), transparent 60%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+.spot:hover::before, .spot:hover::after, .spot:focus-visible::before, .spot:focus-visible::after { opacity: 1; }
+/* A live mark: a dot with a slow ring around it. */
+.live-dot { position: relative; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--aurora); }
+.live-dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--aurora); animation: livering 2.4s cubic-bezier(.16,1,.3,1) infinite; }
+@keyframes livering { from { transform: scale(1); opacity: .9; } to { transform: scale(3.2); opacity: 0; } }
+/* A figure that just changed lights up for a moment. */
+.tick { animation: tick 1.2s cubic-bezier(.16,1,.3,1); }
+@keyframes tick { from { color: var(--aurora); text-shadow: 0 0 18px rgba(91,240,200,.6); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; } }
 /* ---------- footer ---------- */
 /* ---------- compact footer: the documentation and the console, each in its palette ---------- */
@@ -378,7 +401,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .post-lay { gap: 56px; padding-top: 32px; }
 .post-toc { flex: 0 0 200px; padding-top: 60px; font-size: 14px; }
 .post-toc p { margin: 0 0 12px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.post-toc nav { display: flex; flex-direction: column; gap: 10px; border-left: 1px solid var(--rule); padding-left: 14px; position: sticky; top: 24px; }
+.post-toc nav { display: flex; flex-direction: column; gap: 10px; border-left: 1px solid var(--rule); padding-left: 14px; position: sticky; top: 96px; }
 .post-toc a { color: var(--muted); text-decoration: none; line-height: 1.35; }
 .post-toc a:hover { color: var(--link); }
 .pm-grid, .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }

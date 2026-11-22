@@ -16,11 +16,13 @@ import { categoryOf, getBlog, getBlogPosts, postHref, readingMinutes } from '../
 import PageRing from '../../art/PageRing.astro';
 import EngineMesh from '../../art/EngineMesh.astro';
 import RingedPlanet from '../../art/RingedPlanet.astro';
+import Icon from '../../art/Icon.astro';
+import LiveBand from './LiveBand.astro';
 
 const lang = langOf(Astro);
 const entry = await getEntry('home', lang);
 if (!entry) throw new Error(`Missing content/${lang}/home.md`);
-const { title, description, hero, editorial, engine, beliefs, story, vision, work, blog: latest, name, closing } = entry.data;
+const { title, description, hero, live, editorial, engine, beliefs, story, vision, work, blog: latest, paths, name, closing } = entry.data;
 // The blog: the featured post (else the newest) is the story band; the library repeats it with up to
 // three more, so it only shows once there are others.
 const blog = await getBlog(lang);
@@ -39,9 +41,9 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 ---
 <Base title={title} description={description} alternates={homeAlternates()}>
 <Header alternates={homeAlternates()} />
-<section class="hero">
+<section class="hero" data-parallax>
 <div class="hero-sky stars" aria-hidden="true"></div>
-<div class="hero-art" aria-hidden="true"><PageRing /></div>
+<div class="hero-art" aria-hidden="true"><div data-depth="-24"><PageRing /></div></div>
 <div class="hero-field" aria-hidden="true"></div>
 <div class="hero-in">
 <div class="copy">
@@ -56,11 +58,13 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 </div>
 </section>
 
+<LiveBand text={live} />
+
 <section id="editorial" class="band paper">
 <div class="wrap">
-<p class="k">{editorial.kicker}</p>
-<h2 class="h2 serif wide">{editorial.title}</h2>
-<div class="cols">
+<p class="k" data-rv>{editorial.kicker}</p>
+<h2 class="h2 serif wide" data-rv>{editorial.title}</h2>
+<div class="cols" data-rv>
 <div>{paragraphs(editorial.body).map((p) => <p class="body">{p}</p>)}</div>
 <div><p class="statement">{editorial.statement}</p>{editorial.aside && <p class="aside">{editorial.aside}</p>}</div>
 </div>
@@ -69,11 +73,11 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 
 <section id="engine" class="band night stars">
 <div class="wrap">
-<div class="cols end">
+<div class="cols end" data-rv>
 <div><p class="k">{engine.kicker}</p><h2 class="h2 serif">{engine.title}</h2></div>
 <p class="lead">{engine.lead}</p>
 </div>
-<figure class="engine-fig">
+<figure class="engine-fig" data-rv>
 <EngineMesh {...engine.art} />
 <figcaption><span>{engine.caption}</span><a class:list={{ ext: ext(engine.link.href) }} href={go(engine.link.href)}>{engine.link.label}{!ext(engine.link.href) && ' →'}</a></figcaption>
 </figure>
@@ -82,10 +86,10 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 
 <section id="beliefs" class="band casco">
 <div class="wrap">
-<p class="k">{beliefs.kicker}</p>
-<h2 class="h2 serif wide">{beliefs.title}</h2>
-<p class="lead">{beliefs.lead}</p>
-<div class="beliefs">{beliefs.items.map((b) => <div><p class="b-title">{b.title}</p><p class="b-text">{b.text}</p></div>)}</div>
+<p class="k" data-rv>{beliefs.kicker}</p>
+<h2 class="h2 serif wide" data-rv>{beliefs.title}</h2>
+<p class="lead" data-rv>{beliefs.lead}</p>
+<div class="beliefs">{beliefs.items.map((b) => <div data-rv><p class="b-title">{b.title}</p><p class="b-text">{b.text}</p></div>)}</div>
 <a class="more" href={go(beliefs.link.href)}>{beliefs.link.label} →</a>
 </div>
 </section>
@@ -95,7 +99,7 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 {lead.data.image && <Image class="story-img" src={lead.data.image as never} alt={lead.data.alt!} widths={[800, 1400, 2000]} sizes="100vw" />}
 <div class="story-field" aria-hidden="true"></div>
 <div class="wrap story-in">
-<div class="story-copy">
+<div class="story-copy" data-rv>
 <p class="k star">{story.kicker}</p>
 <p class="story-title">{lead.data.title}</p>
 <p class="story-sum">{lead.data.summary}</p>
@@ -106,14 +110,14 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 )}
 
 <section id="vision" class="band night stars">
-<div class="wrap cols center">
+<div class="wrap cols center" data-rv>
 <div><p class="k">{vision.kicker}</p><h2 class="h2 serif">{vision.title}</h2></div>
 <div>{paragraphs(vision.body).map((p) => <p class="body light">{p}</p>)}<a class:list={['more', { ext: ext(vision.link.href) }]} href={go(vision.link.href)}>{vision.link.label}{!ext(vision.link.href) && ' →'}</a></div>
 </div>
 </section>
 
 <section id="work" class="band paper">
-<div class="wrap cols">
+<div class="wrap cols" data-rv>
 <div><p class="k">{work.kicker}</p><h2 class="h2 serif">{work.title}</h2></div>
 <div>{paragraphs(work.body).map((p) => <p class="body">{p}</p>)}<a class="more" href={go(work.link.href)}>{work.link.label} →</a></div>
 </div>
@@ -147,9 +151,28 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 </section>
 )}
 
+<section id="paths" class="band night paths">
+<div class="wrap">
+<p class="k" data-rv>{paths.kicker}</p>
+<h2 class="h2 serif" data-rv>{paths.title}</h2>
+<ul class="pth">
+{paths.items.map((p, i) => (
+<li data-rv style={`--n:${i}`}>
+<a class:list={['pth-card spot', { ext: ext(p.href) }]} href={go(p.href)}>
+<span class="pth-ic"><Icon name={p.icon} size={30} /></span>
+<b>{p.title}</b>
+<span class="pth-t">{p.text}</span>
+<span class="pth-go" aria-hidden="true"><Fragment set:html={arrow} /></span>
+</a>
+</li>
+))}
+</ul>
+</div>
+</section>
+
 <section id="why-42" class="band night">
 <div class="wrap lore-row">
-<div class="lore-text">
+<div class="lore-text" data-rv>
 <p class="k star">{name.kicker}</p>
 <h2 class="h2">{name.title}</h2>
 <p class="lead">{name.lead}</p>
@@ -161,7 +184,7 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 
 <section id="closing" class="band night closing">
 <div class="wrap">
-<h2 class="h2 serif">{closing.title}</h2>
+<h2 class="h2 serif" data-rv>{closing.title}</h2>
 {closing.lead && <p class="lead">{closing.lead}</p>}
 <div class="acts">
 <a class:list={['btn btn-p', { ext: ext(closing.primary.href) }]} href={go(closing.primary.href)}>{closing.primary.label}{!ext(closing.primary.href) && <Fragment set:html={arrow} />}</a>
@@ -267,6 +290,50 @@ const arrow = '<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true
 .closing .h2{max-width:820px;margin:0 auto}
 .closing .lead{max-width:620px;margin:20px auto 0}
 .closing .acts{justify-content:center}
+
+
+/* live band */
+.lb{position:relative;overflow:hidden;border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d);background:radial-gradient(1200px 400px at 85% 0%,rgba(91,240,200,.07),transparent 60%),var(--night)}
+.lb-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px 56px;align-items:end}
+.lb-head .lead{margin:0}
+.lb-k{display:inline-flex;align-items:center;gap:12px}
+.lb-stream{position:relative;margin:56px 0 0;padding:18px 0 8px;-webkit-mask:linear-gradient(90deg,transparent,#000 22%);mask:linear-gradient(90deg,transparent,#000 22%)}
+.lb-blocks{display:flex;justify-content:flex-end;align-items:flex-end;gap:14px;min-height:78px;margin:0;padding:0 4px 0 0;list-style:none}
+.lb-b{position:relative;flex:none;display:flex;flex-direction:column;align-items:center;gap:10px}
+.lb-b + .lb-b::before{content:"";position:absolute;right:calc(100% - 1px);top:20px;width:16px;height:1.5px;background:rgba(91,240,200,.45)}
+.lb-sq{width:40px;height:40px;border-radius:10px;border:1.5px solid rgba(91,240,200,.55);background:#0B141B;transition:background .6s,border-color .6s,box-shadow .6s}
+.lb-n{font-family:var(--mono);font-size:11px;color:var(--fg-4);font-variant-numeric:tabular-nums}
+.lb-b.now .lb-sq{background:var(--star);border-color:var(--star);box-shadow:0 0 0 6px rgba(242,200,121,.12),0 0 32px rgba(242,200,121,.55)}
+.lb-b.now .lb-n{color:var(--star)}
+.lb-b.new{animation:lb-in .9s cubic-bezier(.16,1,.3,1)}
+@keyframes lb-in{from{opacity:0;transform:translateX(56px) scale(.6)}}
+.lb-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:40px;padding-top:32px;border-top:1px solid var(--line-d)}
+.lb-stats{display:flex;flex-wrap:wrap;gap:24px 56px;margin:0}
+.lb-stats dt{font-size:13px;color:var(--fg-4)}
+.lb-stats dd{margin:8px 0 0;font-family:var(--mono);font-size:clamp(26px,3vw,36px);color:var(--fg);font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.lb-act{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.lb-state{margin:0;font-family:var(--mono);font-size:12.5px;color:var(--fg-4)}
+.lb-state:empty{display:none}
+
+/* paths */
+.paths{background:radial-gradient(900px 500px at 10% 100%,rgba(124,156,255,.08),transparent 60%),var(--night)}
+.pth{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:56px 0 0;padding:0;list-style:none}
+.pth li{display:flex}
+.pth [data-rv]{animation-range:entry calc(var(--n) * 6%) entry 100%}
+.pth-card{flex:1;display:flex;flex-direction:column;gap:12px;min-height:250px;padding:28px 26px 24px;border:1px solid var(--line-d2);border-radius:20px;background:linear-gradient(180deg,#0B1119,#070B11);color:var(--fg-2);text-decoration:none;transition:transform .45s cubic-bezier(.16,1,.3,1),border-color .3s}
+.pth-card:hover{transform:translateY(-6px);border-color:transparent}
+.pth-ic{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;margin-bottom:12px;border-radius:16px;background:rgba(91,240,200,.08);color:var(--aurora);transition:transform .45s cubic-bezier(.16,1,.3,1),background .3s}
+.pth-card:hover .pth-ic{transform:rotate(-8deg) scale(1.08);background:rgba(91,240,200,.16)}
+.pth-card b{font-size:22px;font-weight:600;letter-spacing:-0.02em;color:var(--fg)}
+.pth-t{font-size:15.5px;line-height:1.6;color:var(--fg-3)}
+.pth-go{margin-top:auto;padding-top:16px;color:var(--aurora);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.pth-card:hover .pth-go{transform:translateX(6px)}
+.pth-card.ext::after{content:none}
+
+.hero-art > div{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+@media (max-width:1100px){.pth{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.lb-head{grid-template-columns:1fr}.lb-act{align-items:flex-start}}
+@media (max-width:560px){.pth{grid-template-columns:1fr;gap:12px}.pth-card{min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:16px;padding:20px}.pth-ic{grid-row:span 2;width:48px;height:48px;margin:0}.pth-card b{font-size:19px}.pth-t{grid-column:2;font-size:14.5px}.pth-go{grid-row:1 / span 2;grid-column:3;margin:0;padding:0}.lb-stats{gap:20px 32px}}
 
 @media (max-width:900px){
 .band{padding:84px 0}

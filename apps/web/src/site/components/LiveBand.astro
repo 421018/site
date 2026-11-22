@@ -1,0 +1,105 @@
+---
+/**
+ * The network, now: the home page's live band. The browser reads the main
+ * network's public EVM RPCs (the first network in the directory) every ten
+ * seconds and draws each new block as a page joining the chain, the newest
+ * in gold, like the hero's ring. New blocks found in one reading arrive one
+ * by one over the next interval, so the stream moves at the network's pace.
+ * Figures: latest block, time per block (averaged over the last 50 blocks)
+ * and providers online. Without JavaScript, or with no answer, a quiet line
+ * and the link to the console stay.
+ */
+import { getDirectory } from '../../network/directory';
+import { langOf, resolveHref } from '../../kit/i18n';
+interface Props {
+  text: { kicker: string; title: string; lead: string; height: string; pace: string; online: string; seconds: string; block: string; waiting: string; unavailable: string; link: { label: string; href: string } };
+}
+const { text } = Astro.props;
+const lang = langOf(Astro);
+const { networks, providers } = await getDirectory();
+const net = networks[0];
+const rpcs = providers.filter((p) => p.network === net.id && p.service === 'evm').map((p) => p.url);
+const i18n = { seconds: text.seconds, block: text.block, unavailable: text.unavailable };
+---
+<section id="now" class="band night lb" data-home-live data-chain={net.evmChainId} data-rpcs={JSON.stringify(rpcs)} data-i18n={JSON.stringify(i18n)}>
+  <div class="lb-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="lb-head">
+      <div>
+        <p class="k lb-k" data-rv><span class="live-dot" aria-hidden="true"></span>{text.kicker}</p>
+        <h2 class="h2 serif" data-rv>{text.title}</h2>
+      </div>
+      <p class="lead" data-rv>{text.lead}</p>
+    </div>
+    <div class="lb-stream" aria-hidden="true"><ol class="lb-blocks" data-blocks></ol></div>
+    <div class="lb-foot">
+      <dl class="lb-stats">
+        <div><dt>{text.height}</dt><dd data-v="height">—</dd></div>
+        <div><dt>{text.pace}</dt><dd data-v="pace">—</dd></div>
+        <div><dt>{text.online}</dt><dd data-v="online">—</dd></div>
+      </dl>
+      <div class="lb-act">
+        <p class="lb-state" data-state aria-live="polite">{text.waiting}</p>
+        <a class="btn btn-g" href={resolveHref(text.link.href, lang)}>{text.link.label}<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8 H13 M9 4 L13 8 L9 12" fill="none" stroke="currentColor" stroke-width="1.6" /></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { blockPace, readNetwork, reducedMotion } from '../../network/live';
+  const INTERVAL = 10_000;
+  const KEEP = 28; // blocks kept in the stream
+  document.querySelectorAll<HTMLElement>('[data-home-live]').forEach((root) => {
+    const t = JSON.parse(root.dataset.i18n!) as Record<string, string>;
+    const urls = JSON.parse(root.dataset.rpcs!) as string[];
+    const chain = Number(root.dataset.chain);
+    const list = root.querySelector<HTMLOListElement>('[data-blocks]')!;
+    const state = root.querySelector<HTMLElement>('[data-state]')!;
+    const locale = document.documentElement.lang || undefined;
+    const num = new Intl.NumberFormat(locale);
+    const one = new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    const set = (key: string, text: string) => { const v = root.querySelector(`[data-v="${key}"]`); if (v && v.textContent !== text) { v.textContent = text; v.classList.remove('tick'); void (v as HTMLElement).offsetWidth; v.classList.add('tick'); } };
+    let last = 0; // highest block drawn
+    let timers: number[] = [];
+    let paced = false;
+
+    const add = (height: number, quiet = false) => {
+      const li = document.createElement('li');
+      li.className = quiet ? 'lb-b' : 'lb-b new';
+      li.title = t.block.replace('{n}', num.format(height));
+      li.innerHTML = `<span class="lb-sq"></span><span class="lb-n">${String(height).slice(-4)}</span>`;
+      list.querySelector('.now')?.classList.remove('now');
+      li.classList.add('now');
+      list.append(li);
+      while (list.children.length > KEEP) list.firstElementChild!.remove();
+      last = height;
+      set('height', num.format(height));
+    };
+
+    const refresh = async () => {
+      if (document.hidden) return;
+      const { top, topUrl, online } = await readNetwork(urls, chain);
+      set('online', `${online} / ${urls.length}`);
+      if (!top) { if (!last) state.textContent = t.unavailable; return; }
+      state.textContent = '';
+      if (!paced && topUrl) { paced = true; blockPace(topUrl, top).then((s) => s && set('pace', t.seconds.replace('{n}', one.format(s)))); }
+      if (!last) {
+        // First reading: the recent past, at once.
+        for (let h = Math.max(1, top.height - 15); h <= top.height; h++) add(h, true);
+        return;
+      }
+      // Later readings: the new blocks arrive one by one over the next interval.
+      timers.forEach(clearTimeout); timers = [];
+      const from = last + 1;
+      const fresh = Math.min(top.height - last, 10);
+      if (fresh <= 0) return;
+      if (reducedMotion()) { for (let h = top.height - fresh + 1; h <= top.height; h++) add(h, true); return; }
+      const step = INTERVAL / fresh;
+      for (let i = 0; i < fresh; i++) timers.push(window.setTimeout(() => add(Math.max(from, top.height - fresh + 1) + i), i * step));
+    };
+    refresh();
+    setInterval(refresh, INTERVAL);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+  });
+</script>
