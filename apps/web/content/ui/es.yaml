@@ -107,7 +107,10 @@ fees:
   tip: Propina
   noTip: Sin propina
   fee: Tarifa
-  note: Valores ilustrativos. La tarifa base real cambia con cada bloque, y la billetera la muestra antes de firmar.
+  note: La tarifa base se lee de la red al abrir la página y cambia con cada bloque; la billetera muestra la definitiva antes de firmar.
+  live: "Tarifa base actual · {network} · leída de {provider} a las {time}."
+  useLive: Usar la actual
+  liveUnavailable: No se pudo leer la tarifa actual de la red; se muestra un valor de ejemplo.
 
 units:
   cups: Cups (Improbability)

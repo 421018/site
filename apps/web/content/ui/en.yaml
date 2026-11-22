@@ -107,7 +107,10 @@ fees:
   tip: Tip
   noTip: No tip
   fee: Fee
-  note: Illustrative values. The real base fee changes with every block, and the wallet shows it before signing.
+  note: The base fee is read from the network when the page opens and changes with every block; the wallet shows the final one before signing.
+  live: "Current base fee · {network} · read from {provider} at {time}."
+  useLive: Use the current one
+  liveUnavailable: The network's current fee could not be read; an example value is shown.
 
 units:
   cups: Cups (Improbability)

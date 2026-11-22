@@ -1,18 +1,24 @@
 ---
-// Illustrative fee calculator: fee = gas used × (base fee + tip), shown in drops
-// and in cups (1 cup = 10^18 drops). The default reproduces the worked example in
-// tarifas.md: 21,000 gas at 0.000001 per gas unit = 0.021. Values are examples;
-// the real base fee is the one the wallet shows for the current block.
+// Fee calculator: fee = gas used × (base fee + tip), shown in drops and in cups
+// (1 cup = 10^18 drops). The base fee starts at the network's current one, read
+// from the browser (eth_gasPrice on the first public EVM RPC of the selected
+// network, again when the network switch changes); the slider explores other
+// values. If it cannot be read, the slider's example (10^12 drops, the worked
+// example of the fees page) stays, and the widget says so.
 // Text: catalog ui/<lang>.yaml → fees.
 import { langOf } from '../kit/i18n';
 import { fill, ui } from '../kit/dictionary';
-const d = ui(langOf(Astro));
+import { firstOf, getDirectory, pick } from '../network/directory';
+const lang = langOf(Astro);
+const d = ui(lang);
+const { networks, providers } = await getDirectory();
+const rpc = Object.fromEntries(networks.map((n) => { const p = firstOf(providers, n.id, 'evm'); return [n.id, p ? { url: p.url, provider: p.provider, label: pick(n.label, lang) } : null]; }));
 const t = d.fees;
 const group = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, d.common.thousands);
 const presets = ['21000', '50000', '250000'].map((gas, i) => [gas, t.presets[i] as string] as const);
-const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.thousands });
+const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.thousands, live: t.live, liveUnavailable: t.liveUnavailable });
 ---
-<div class="widget fc" data-fees data-i18n={i18n}>
+<div class="widget fc" data-fees data-i18n={i18n} data-rpc={JSON.stringify(rpc)} data-default-net={networks[0].id}>
   <div class="w-head"><span class="w-tag">{d.common.calculator}</span><span class="w-meta">{t.meta}</span></div>
 
   <fieldset class="presets">
@@ -27,6 +33,7 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
     <span class="val" data-base-label></span>
   </div>
   <input id="fc-base" type="range" min="36" max="52" step="1" value="48" />
+  <p class="live" data-live hidden><span data-live-text></span> <button type="button" class="use" data-use-live hidden>{t.useLive}</button></p>
 
   <fieldset class="presets tip">
     <legend class="lb">{t.tip}</legend>
@@ -44,6 +51,9 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
 </div>
 
 <style>
+  .live { margin: 10px 0 18px; font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--w-dim); }
+  .use { margin-left: 6px; padding: 2px 10px; border: 1px solid var(--w-rule); border-radius: 999px; background: transparent; color: var(--w-fg); font: inherit; cursor: pointer; }
+  .use:hover { border-color: var(--acc); }
   .lb { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); }
   .presets { border: 0; margin: 0 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .presets legend { margin-bottom: 8px; padding: 0; }
@@ -74,6 +84,15 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
       frac = firstSig < 0 ? '' : frac.slice(0, Math.min(18, firstSig + 6)).replace(/0+$/, '');
       return group(int) + (frac ? decimal + frac : '');
     };
+    const t = JSON.parse(root.dataset.i18n!) as Record<string, string>;
+    const rpc = JSON.parse(root.dataset.rpc!) as Record<string, { url: string; provider: string; label: string } | null>;
+    const live = root.querySelector<HTMLElement>('[data-live]')!;
+    const liveText = root.querySelector('[data-live-text]')!;
+    const useLive = root.querySelector<HTMLButtonElement>('[data-use-live]')!;
+    const clock = new Intl.DateTimeFormat(document.documentElement.lang || undefined, { timeStyle: 'short' });
+    /** The base fee in use: the network's (exact) until the slider moves; then the slider's. */
+    let current: bigint | null = null;
+    let onChain: bigint | null = null;
     const base = root.querySelector<HTMLInputElement>('#fc-base')!;
     const baseLabel = root.querySelector('[data-base-label]')!;
     const outCups = root.querySelector('[data-cups]')!;
@@ -82,8 +101,7 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
       const gas = BigInt(root.querySelector<HTMLInputElement>('input[name=fc-gas]:checked')!.value);
       const tip = BigInt(root.querySelector<HTMLInputElement>('input[name=fc-tip]:checked')!.value);
       // Slider in quarter powers of ten: 36 → 10^9 drops, 48 → 10^12, 52 → 10^13 per gas unit.
-      const exp = Number(base.value) / 4;
-      const basePrice = BigInt(Math.round(10 ** exp));
+      const basePrice = current ?? BigInt(Math.round(10 ** (Number(base.value) / 4)));
       const price = basePrice + (basePrice * tip) / 100n;
       const fee = gas * price;
       baseLabel.textContent = `${cups(basePrice)} cups · ${group(basePrice)} drops`;
@@ -91,6 +109,36 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
       outDrops.textContent = `${group(fee)} drops`;
     };
     root.querySelectorAll('input').forEach((i) => i.addEventListener('input', paint));
+    base.addEventListener('input', () => { current = null; useLive.hidden = onChain === null; paint(); });
+    useLive.addEventListener('click', () => { if (onChain !== null) setBase(onChain); });
+    const setBase = (price: bigint) => {
+      current = price;
+      // the slider's nearest quarter power of ten, so it shows roughly where the real value sits
+      base.value = String(Math.min(52, Math.max(36, Math.round(Math.log10(Number(price)) * 4))));
+      useLive.hidden = true;
+      paint();
+    };
+    const read = async () => {
+      const net = document.documentElement.dataset.net ?? root.dataset.defaultNet!;
+      const r = rpc[net];
+      if (!r) return;
+      try {
+        const res = await fetch(r.url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] }) });
+        const price = BigInt((await res.json()).result);
+        if (price <= 0n) throw new Error('no price');
+        onChain = price;
+        liveText.textContent = t.live.replace('{network}', r.label).replace('{provider}', r.provider).replace('{time}', clock.format(new Date()));
+        setBase(price);
+      } catch {
+        onChain = null;
+        liveText.textContent = t.liveUnavailable;
+        useLive.hidden = true;
+      }
+      live.hidden = false;
+    };
     paint();
+    read();
+    // The network switch sets <html data-net>: read the fee of the newly selected network.
+    new MutationObserver(read).observe(document.documentElement, { attributes: true, attributeFilter: ['data-net'] });
   });
 </script>
