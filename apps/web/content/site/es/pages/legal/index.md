@@ -15,11 +15,19 @@ Estos avisos cubren todo 42chain.org: el sitio, la [documentación](docs:/) y la
 
 ## Carácter de este sitio {#independence}
 
-42chain.org es informativo: presenta el proyecto, explica cómo funciona el protocolo y cómo usarlo, y muestra el estado de la red. La operación y las decisiones de cada red que ejecuta el protocolo corresponden a sus validadores mediante gobernanza en la cadena.
-
-Lo mantienen contribuidores de Infinite Drive y 42 Chain. El código es abierto: cualquiera puede revisarlo, proponer cambios o contribuir. En estos avisos, «los contribuidores» son las personas que escriben, revisan o publican el software del protocolo, el sitio, la documentación o la Consola.
+42chain.org es informativo: presenta el proyecto, explica cómo funciona el protocolo y cómo usarlo, y muestra el estado de la red.
 
 42chain.org no ofrece, no vende y no recomienda la unidad nativa, Improbability (42), ni ningún otro activo digital, ni plataformas o intermediarios. Sus menciones de la unidad nativa son exclusivamente técnicas: explican cómo funciona el protocolo. Nada en él constituye asesoría financiera, legal, fiscal ni de inversión.
+
+## Quién hace qué {#roles}
+
+Los contribuidores mantienen código fuente: el software del protocolo (el nodo) y el código de 42chain.org. Ese es su papel. Lo publican en abierto, para que cualquiera pueda revisarlo, proponer cambios o contribuir. En estos avisos, «los contribuidores» son las personas que escriben, revisan o publican ese código, el sitio, la documentación o la Consola.
+
+Lo que ocurre en la cadena no está en sus manos:
+
+- **La gobernanza de la red.** Cada red que ejecuta el protocolo la operan sus validadores, y sus reglas solo cambian mediante gobernanza en la cadena: propuestas que votan los validadores y quienes les delegan unidades. Una versión nueva del software llega a una red solo si esa red la aprueba y sus validadores la adoptan. Los contribuidores pueden proponer cambios como cualquiera, pero no los deciden. [Gobernanza](docs:/protocol/governance)
+- **Las aplicaciones y los servicios.** Los contratos, las aplicaciones, las billeteras, los proveedores de RPC, los exploradores y los demás servicios construidos sobre la red o a su alrededor son de quienes los construyen y operan, que responden por ellos.
+- **Las operaciones en la cadena.** Cada transacción la firma y la envía su usuario, que la decide y responde por ella. Los contribuidores no custodian unidades ni llaves de nadie, y no pueden revertir transacciones ni recuperar el acceso a una cuenta.
 
 ## Sin garantías {#warranties}
 

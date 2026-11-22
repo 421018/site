@@ -15,11 +15,19 @@ These notices cover all of 42chain.org: the site, the [documentation](docs:/) an
 
 ## Nature of this site {#independence}
 
-42chain.org is informational: it presents the project, explains how the protocol works and how to use it, and shows the state of the network. Operation of each network that runs the protocol, and decisions about it, belong to its validators through on-chain governance.
-
-It is maintained by contributors to Infinite Drive and 42 Chain. The code is open: anyone can review it, propose changes or contribute. In these notices, "the contributors" are the people who write, review or publish the protocol software, the site, the documentation or the Console.
+42chain.org is informational: it presents the project, explains how the protocol works and how to use it, and shows the state of the network.
 
 42chain.org does not offer, sell or recommend the native unit, Improbability (42), or any other digital asset, nor platforms or intermediaries. Its mentions of the native unit are exclusively technical: they explain how the protocol works. Nothing on it is financial, legal, tax or investment advice.
+
+## Who does what {#roles}
+
+The contributors maintain source code: the protocol software (the node) and the code of 42chain.org. That is their role. They publish it in the open, so that anyone can review it, propose changes or contribute. In these notices, "the contributors" are the people who write, review or publish that code, the site, the documentation or the Console.
+
+What happens on the chain is not in their hands:
+
+- **Governance of the network.** Each network that runs the protocol is operated by its validators, and its rules change only through on-chain governance: proposals that the validators and those who delegate units to them vote on. A new version of the software reaches a network only if that network approves it and its validators adopt it. The contributors can propose changes like anyone else, but they do not decide them. [Governance](docs:/protocol/governance)
+- **Applications and services.** Contracts, applications, wallets, RPC providers, explorers and other services built on or around the network belong to those who build and run them, who are responsible for them.
+- **Operations on the chain.** Every transaction is signed and sent by its user, who decides it and is responsible for it. The contributors do not hold anyone's units or keys, and cannot reverse transactions or restore access to an account.
 
 ## No warranties {#warranties}
 
