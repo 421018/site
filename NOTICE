@@ -1,13 +1,19 @@
-42 Chain website and documentation engine
-Copyright (c) 2026 The 42 Chain contributors. All rights reserved (see LICENSE).
+42chain.org: the site, the documentation and the console
+Copyright 2026 The 42 Chain contributors
 
-Content catalog (content/): Copyright 2026 The 42 Chain contributors,
-licensed under CC BY 4.0 (see content/LICENSE).
+The code in this repository is licensed under the Apache License,
+Version 2.0 (see LICENSE). The texts and data in apps/web/content/ are
+licensed under Creative Commons Attribution 4.0 International (see
+apps/web/content/LICENSE).
+
+The names 42 Chain and Infinite Drive, the logo and the project's visual
+identity are not licensed (Apache License 2.0, section 6).
 
 This product uses third-party open-source software, each under its own
 license, including:
 - Astro (MIT License)
 - Pagefind (MIT License)
 - Geist and Geist Mono fonts (SIL Open Font License 1.1)
+- Newsreader font (SIL Open Font License 1.1)
 Their license texts are distributed with the packages in node_modules/ and
 with the built site's assets where required.

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "42chain.org: one app (the site and its documentation at /docs) and its style package.",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "workspaces": [
     "apps/*",
     "packages/*"

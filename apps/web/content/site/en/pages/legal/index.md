@@ -50,20 +50,24 @@ Everything recorded on the network, such as addresses, transactions or contracts
 
 | What | License |
 |---|---|
-| Protocol software | Apache License 2.0 |
+| Protocol software (the node) | Apache License 2.0 |
+| Code of the site, the documentation and the Console, including their design and interface | Apache License 2.0 |
 | Text and data of the site, the documentation and the Console | Creative Commons Attribution 4.0 International (CC BY 4.0) |
-| Console logic library: conversions and construction of what the wallet signs | Apache License 2.0 |
-| Design, brand, interface and other code of the site, the documentation and the Console | © 2026 The 42 Chain contributors. All rights reserved |
+| Names, logos and other brand elements | Not licensed |
+
+Copyright belongs to the 42 Chain contributors, who publish their work under these licenses.
 
 ### What the software license allows
 
-The Apache 2.0 license lets anyone use, study, modify and distribute the software, including for commercial purposes, without paying royalties. In return, whoever distributes it must include a copy of the license, keep the copyright and attribution notices, and state which files they modified. The license does not grant the right to use the names of those who contribute to the software.
+The Apache 2.0 license lets anyone use, study, modify and distribute the software, including for commercial purposes, without paying royalties. In return, whoever distributes it must include a copy of the license, keep the copyright and attribution notices, and state which files they modified. Since the Console's code is open too, anyone can check what they are asked to sign.
 
 ### What the text license allows
 
 The text of this site and the network data it publishes, such as parameters and provider lists, may be copied, translated, adapted and published in any medium, including for commercial purposes, provided the source is credited: the project name and a link to the site or to the original page. The license does not authorize suggesting a relationship or an endorsement that does not exist.
 
-The text license does not include the design, the interface, the code or the brand elements, such as the logo and the visual identity, of the site, the documentation and the Console. Those elements may not be copied or reused without permission.
+### Trademarks
+
+Neither license covers the names 42 Chain and Infinite Drive, the logo or the project's visual identity; the Apache 2.0 license says so explicitly. They may be used to refer to the project, but not to present as official something that is not, or to suggest a relationship or an endorsement that does not exist.
 
 :::aside
 [Full license (Apache License 2.0)](https://www.apache.org/licenses/LICENSE-2.0) · [Full license (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.en) · [LICENSE and NOTICE files in the repository]

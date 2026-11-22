@@ -24,7 +24,7 @@ header:
 
 # The footer of the whole site: the documentation and the console show its compact form.
 footer:
-  note: © 2026 Los contribuidores de 42
+  note: © 2026 Los contribuidores de 42 Chain
   tagline: Impulsado por Infinite Drive.
   columns:
     - label: Explorar

@@ -53,7 +53,7 @@ The validator checks front matter, sections, blocks, widgets, diagrams, images, 
 
 ## Licensing of contributions
 
-By contributing, you agree that your contribution is licensed under [CC BY 4.0](LICENSE). Only contribute work that you wrote or that you have the right to publish under this license, including images and diagrams (record an image's author and license in `site/images/CREDITS.md`).
+By contributing, you agree that your contribution is licensed under the same license as the part you change: code under the [Apache License 2.0](LICENSE), texts and data in `apps/web/content/` under [CC BY 4.0](apps/web/content/LICENSE). Only contribute work that you wrote or that you have the right to publish under this license, including images and diagrams (record an image's author and license in `site/images/CREDITS.md`).
 
 ## Code of conduct
 
@@ -88,7 +88,7 @@ Esta guía es para quienes quieren corregir o agregar **textos** del sitio. No h
 - Las cifras y los datos deben coincidir con el protocolo y su documentación.
 - No cambies un ancla `{#…}` sin corregir los enlaces que la usan.
 - No uses HTML ni código: los elementos especiales se escriben con bloques `:::`.
-- Tus textos se publican bajo la licencia [CC BY 4.0](LICENSE).
+- Tus textos se publican bajo la licencia [CC BY 4.0](apps/web/content/LICENSE); el código, bajo la [Apache License 2.0](LICENSE).
 - En el espacio de discusiones del repositorio solo se tratan temas técnicos. Ahí no se ofrecen ni se contratan servicios.
 
 ¿Dudas? [Abre un issue](../../issues/new/choose) y pregunta.

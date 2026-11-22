@@ -50,20 +50,24 @@ Todo lo que se registra en la red, como direcciones, transacciones o contratos, 
 
 | Qué | Licencia |
 |---|---|
-| Software del protocolo | Apache License 2.0 |
+| Software del protocolo (el nodo) | Apache License 2.0 |
+| Código del sitio, la documentación y la Consola, incluidos su diseño y su interfaz | Apache License 2.0 |
 | Textos y datos del sitio, la documentación y la Consola | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
-| Librería de lógica de la Consola: conversiones y construcción de lo que firma la billetera | Apache License 2.0 |
-| Diseño, marca, interfaz y demás código del sitio, la documentación y la Consola | © 2026 Los contribuidores de 42 Chain. Todos los derechos reservados |
+| Nombres, logotipos y demás elementos de marca | No se licencian |
+
+Los derechos de autor son de los contribuidores de 42 Chain, que publican su trabajo bajo estas licencias.
 
 ### Qué permite la licencia del software
 
-La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribuir el software, también con fines comerciales, sin pagar regalías. A cambio, quien lo distribuye debe incluir una copia de la licencia, conservar los avisos de derechos de autor y de atribución, e indicar qué archivos modificó. La licencia no da derecho a usar los nombres de quienes contribuyen al software.
+La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribuir el software, también con fines comerciales, sin pagar regalías. A cambio, quien lo distribuye debe incluir una copia de la licencia, conservar los avisos de derechos de autor y de atribución, e indicar qué archivos modificó. Al ser abierto también el código de la Consola, cualquiera puede comprobar qué se le pide firmar.
 
 ### Qué permite la licencia de los textos
 
 Los textos de este sitio y los datos de la red que publica, como parámetros y listas de proveedores, pueden copiarse, traducirse, adaptarse y publicarse en cualquier medio, también con fines comerciales, siempre que se cite la fuente: el nombre del proyecto y un enlace al sitio o a la página de origen. La licencia no autoriza a sugerir una relación o un respaldo que no existe.
 
-La licencia de los textos no incluye el diseño, la interfaz, el código ni los elementos de marca, como el logotipo y la identidad visual, del sitio, la documentación y la Consola. Esos elementos no pueden copiarse ni reutilizarse sin autorización.
+### Las marcas
+
+Ninguna de las dos licencias cubre los nombres 42 Chain e Infinite Drive, el logotipo ni la identidad visual del proyecto; la licencia Apache 2.0 lo dice expresamente. Pueden usarse para referirse al proyecto, pero no para presentar como oficial algo que no lo es ni para sugerir una relación o un respaldo que no existe.
 
 :::aside
 [Licencia completa (Apache License 2.0)](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es) · [Archivos LICENSE y NOTICE en el repositorio]

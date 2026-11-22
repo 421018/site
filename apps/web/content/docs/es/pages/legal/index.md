@@ -51,10 +51,11 @@ Esta documentación está hecha para que pase por ella la menor cantidad de dato
 - **Sin registro ni formularios.** La documentación no pide datos personales.
 - **Sin cookies ni analítica.** No usa cookies ni herramientas de analítica ni de publicidad. Solo guarda en tu navegador dos preferencias, el tema (claro u oscuro) y la red seleccionada, que no salen de él.
 - **Búsqueda local.** El índice de búsqueda se descarga del propio sitio y lo que buscas no se envía a ningún servidor.
-- **Sin recursos de terceros.** Las fuentes y los demás recursos se sirven desde el propio sitio. El navegador solo se conecta a otro sitio cuando sigues un enlace externo.
+- **Consultas a la red.** La calculadora de tarifas y la Consola leen datos públicos de la red, como el último bloque o el precio del gas, directamente desde tu navegador a los servicios públicos (RPC) de los proveedores independientes del [directorio](/get-started/connect#providers). Esos proveedores reciben tu dirección IP, como en cualquier conexión, según sus propias políticas. No se envía nada más.
+- **Sin otros recursos de terceros.** Las fuentes y los demás recursos se sirven desde el propio sitio. Fuera de esas consultas, el navegador solo se conecta a otro sitio cuando sigues un enlace externo.
 - **Alojamiento.** Como cualquier sitio web, el proveedor de alojamiento ([proveedor de alojamiento]) procesa datos técnicos de cada visita, como la dirección IP, para entregar las páginas y protegerlas de abusos, según su propia política de privacidad.
 
-La Consola indicará sus propias condiciones de privacidad cuando se publique.
+Estas condiciones valen también para la Consola, que solo guarda en tu navegador la red seleccionada.
 
 Todo lo que se registra en la red, como direcciones, transacciones o contratos, es público y permanente, y no puede borrarse. Por eso no conviene registrar datos personales en la cadena. [Qué va dentro y fuera de la cadena](/build/applications#application)
 
@@ -62,24 +63,24 @@ Todo lo que se registra en la red, como direcciones, transacciones o contratos, 
 
 | Qué | Licencia |
 |---|---|
-| Software del protocolo | Apache License 2.0 |
+| Software del protocolo (el nodo) | Apache License 2.0 |
+| Código del sitio, la documentación y la Consola, incluidos su diseño y su interfaz | Apache License 2.0 |
 | Textos y datos del sitio, la documentación y la Consola | Creative Commons Atribución 4.0 Internacional (CC BY 4.0) |
-| Librería de lógica de la Consola: conversiones y construcción de lo que firma la billetera | Apache License 2.0 |
-| Diseño, marca, interfaz y demás código del sitio, la documentación y la Consola | © 2026 Los contribuidores de 42 Chain. Todos los derechos reservados |
+| Nombres, logotipos y demás elementos de marca | No se licencian |
+
+Los derechos de autor son de los contribuidores de 42 Chain, que publican su trabajo bajo estas licencias.
 
 ### Qué permite la licencia del software
 
-La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribuir el software, también con fines comerciales, sin pagar regalías. A cambio, quien lo distribuye debe incluir una copia de la licencia, conservar los avisos de derechos de autor y de atribución, e indicar qué archivos modificó. La licencia no da derecho a usar los nombres de quienes contribuyen al software.
+La licencia Apache 2.0 permite a cualquiera usar, estudiar, modificar y distribuir el software, también con fines comerciales, sin pagar regalías. A cambio, quien lo distribuye debe incluir una copia de la licencia, conservar los avisos de derechos de autor y de atribución, e indicar qué archivos modificó. Al ser abierto también el código de la Consola, cualquiera puede comprobar qué se le pide firmar.
 
 ### Qué permite la licencia de los textos
 
 Los textos de esta documentación y los datos de la red que publica, como parámetros y listas de proveedores, pueden copiarse, traducirse, adaptarse y publicarse en cualquier medio, también con fines comerciales, siempre que se cite la fuente: el nombre del proyecto y un enlace al sitio o a la página de origen. La licencia no autoriza a sugerir una relación o un respaldo que no existe.
 
-La licencia de los textos no incluye el diseño, la interfaz, el código ni los elementos de marca, como el logotipo y la identidad visual, del sitio, la documentación y la Consola. Esos elementos no pueden copiarse ni reutilizarse sin autorización.
+### Las marcas
 
-### Por qué la lógica de la Consola es pública
-
-La Consola se conecta a la billetera de quien la usa. Para que cualquiera pueda comprobar qué se le pide firmar, la lógica que convierte direcciones y unidades y que construye cada operación se publica como una librería aparte, bajo la licencia Apache 2.0. La librería no incluye la interfaz ni el diseño de la Consola.
+Ninguna de las dos licencias cubre los nombres 42 Chain e Infinite Drive, el logotipo ni la identidad visual del proyecto; la licencia Apache 2.0 lo dice expresamente. Pueden usarse para referirse al proyecto, pero no para presentar como oficial algo que no lo es ni para sugerir una relación o un respaldo que no existe.
 
 ### Software de terceros
 
