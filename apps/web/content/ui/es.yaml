@@ -140,9 +140,8 @@ network:
   noProviders: Todavía no hay proveedores de este servicio en la {network}.
   addMeta: Billeteras compatibles con la EVM (EIP-3085)
   add: Añadir {name}
-  addNote: La billetera muestra los datos y pide confirmación antes de añadir la red. Recibe todos los puntos de acceso públicos del directorio, en orden aleatorio, y puedes cambiarlo después en la billetera.
-  addAccess: "puntos de acceso RPC públicos: {n}"
-  providersCount: "proveedores independientes: {n}"
+  addNote: La billetera muestra los datos y pide confirmación antes de añadir la red. Usa el punto de acceso que elijas, el primero del directorio si no eliges otro; puedes cambiarlo después en la billetera.
+  accessPoint: Punto de acceso
   noWallet: No se detectó una billetera compatible con la EVM en este navegador. Puedes añadir la red a mano con los datos de la tabla.
   added: "{name} está disponible en tu billetera."
   cancelled: Se canceló la solicitud en la billetera.

@@ -140,9 +140,8 @@ network:
   noProviders: There are no providers of this service on the {network} yet.
   addMeta: EVM-compatible wallets (EIP-3085)
   add: Add {name}
-  addNote: The wallet shows the details and asks for confirmation before adding the network. It receives every public access point in the directory, in random order, and you can change it later in the wallet.
-  addAccess: "public RPC access points: {n}"
-  providersCount: "independent providers: {n}"
+  addNote: The wallet shows the details and asks for confirmation before adding the network. It uses the access point you choose, the first one in the directory unless you pick another; you can change it later in the wallet.
+  accessPoint: Access point
   noWallet: No EVM-compatible wallet was detected in this browser. You can add the network by hand with the details in the table.
   added: "{name} is available in your wallet."
   cancelled: The request was cancelled in the wallet.

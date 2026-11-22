@@ -12,7 +12,7 @@ import { allOf, getDirectory, pick } from '../network/directory';
 const lang = langOf(Astro);
 const d = ui(lang);
 const { networks, providers } = await getDirectory();
-// Every access point of each network; the script tries them in random order (no provider is a default).
+// Every access point of each network, in the configured order: the first is read unless the visitor picks another.
 const rpc = Object.fromEntries(networks.map((n) => [n.id, { label: pick(n.label, lang), points: allOf(providers, n.id, 'evm').map((p) => ({ url: p.url, provider: p.provider })) }]));
 const t = d.fees;
 const group = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, d.common.thousands);
@@ -35,6 +35,7 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
   </div>
   <input id="fc-base" type="range" min="36" max="52" step="1" value="48" />
   <p class="live" data-live hidden><span data-live-text></span> <button type="button" class="use" data-use-live hidden>{t.useLive}</button></p>
+  <label class="pick" data-pick-row hidden><span>{d.network.accessPoint}</span><select data-rpc-pick></select></label>
 
   <fieldset class="presets tip">
     <legend class="lb">{t.tip}</legend>
@@ -52,6 +53,8 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
 </div>
 
 <style>
+  .pick { display: flex; align-items: center; gap: 10px; margin: -8px 0 18px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); }
+  .pick select { min-height: 32px; padding: 0 10px; border: 1px solid var(--w-rule); border-radius: 10px; background: transparent; color: var(--w-fg); font: inherit; font-size: 12px; letter-spacing: 0; text-transform: none; }
   .live { margin: 10px 0 18px; font-family: var(--mono); font-size: 11.5px; line-height: 1.5; color: var(--w-dim); }
   .use { margin-left: 6px; padding: 2px 10px; border: 1px solid var(--w-rule); border-radius: 999px; background: transparent; color: var(--w-fg); font: inherit; cursor: pointer; }
   .use:hover { border-color: var(--acc); }
@@ -119,24 +122,32 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
       useLive.hidden = true;
       paint();
     };
+    // The access point to read: the first of the network unless the visitor picks another.
+    const pickRow = root.querySelector<HTMLElement>('[data-pick-row]')!;
+    const pick = root.querySelector<HTMLSelectElement>('[data-rpc-pick]')!;
+    let pickNet = '';
+    const fillPick = (net: string) => {
+      const points = rpc[net]?.points ?? [];
+      pick.replaceChildren(...points.map((p, i) => { const o = document.createElement('option'); o.value = String(i); o.textContent = `${p.provider} · ${p.url.replace(/^https?:\/\//, '')}`; return o; }));
+      pickRow.hidden = points.length < 2;
+      pickNet = net;
+    };
     const read = async () => {
       const net = document.documentElement.dataset.net ?? root.dataset.defaultNet!;
       const r = rpc[net];
       if (!r || !r.points.length) return;
-      // Random order each time; the first that answers is used and named.
-      const order = [...r.points].sort(() => Math.random() - 0.5);
-      let got: { price: bigint; provider: string } | null = null;
-      for (const p of order) {
-        try {
-          const res = await fetch(p.url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] }) });
-          const price = BigInt((await res.json()).result);
-          if (price > 0n) { got = { price, provider: p.provider }; break; }
-        } catch { /* try the next access point */ }
-      }
-      if (got) {
-        onChain = got.price;
-        liveText.textContent = t.live.replace('{network}', r.label).replace('{provider}', got.provider).replace('{time}', clock.format(new Date()));
-        setBase(got.price);
+      if (pickNet !== net) fillPick(net);
+      const p = r.points[Number(pick.value) || 0];
+      let price: bigint | null = null;
+      try {
+        const res = await fetch(p.url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_gasPrice', params: [] }) });
+        const v = BigInt((await res.json()).result);
+        if (v > 0n) price = v;
+      } catch { /* this access point did not answer */ }
+      if (price !== null) {
+        onChain = price;
+        liveText.textContent = t.live.replace('{network}', r.label).replace('{provider}', p.provider).replace('{time}', clock.format(new Date()));
+        setBase(price);
       } else {
         onChain = null;
         liveText.textContent = t.liveUnavailable;
@@ -144,6 +155,7 @@ const i18n = JSON.stringify({ decimal: d.common.decimal, thousands: d.common.tho
       }
       live.hidden = false;
     };
+    pick.addEventListener('change', read);
     paint();
     read();
     // The network switch sets <html data-net>: read the fee of the newly selected network.

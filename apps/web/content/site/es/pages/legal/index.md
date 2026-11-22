@@ -99,6 +99,6 @@ Los servicios que aparecen en 42chain.org, como puntos de acceso RPC, explorador
 
 Ningún servicio alrededor del proyecto es oficial, ni debe considerarse oficial. Aparecer en el sitio no convierte a un servicio en oficial, recomendado ni garantizado, ni implica relación alguna con los contribuidores. Todos son iguales: iniciativas voluntarias y comunitarias, cada una operada por quien la ofrece, bajo su propia responsabilidad y sus propias condiciones.
 
-Cada participante decide cómo mantiene, nombra y comparte sus servicios. Los contribuidores no restringen, controlan ni influyen en nada de ello, y el nombre de un servicio, sea cual sea, no lo vuelve oficial. El sitio los trata a todos por igual: los lista en orden alfabético, que no es una clasificación, y las herramientas que leen la red los usan a todos sin preferir a ninguno.
+Cada participante decide cómo mantiene, nombra y comparte sus servicios. Los contribuidores no restringen, controlan ni influyen en nada de ello, y el nombre de un servicio, sea cual sea, no lo vuelve oficial. El orden en que aparecen es el que está configurado en ese repositorio y no es una clasificación: cuando una herramienta necesita uno, empieza por el primero de la lista y te deja elegir cualquier otro.
 
 Los enlaces a sitios externos se ofrecen solo como referencia. Cada sitio externo tiene sus propias condiciones.

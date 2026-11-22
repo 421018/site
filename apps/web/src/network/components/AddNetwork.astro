@@ -12,21 +12,20 @@ const t = d.network;
 const i18n = JSON.stringify({ noWallet: t.noWallet, added: t.added, cancelled: t.cancelled, failed: t.addFailed });
 const { networks, providers } = await getDirectory();
 const buttons = networks.map((n) => {
-  // Every public access point and explorer of the network: no provider is a default (the script
-  // shuffles them at each click, so none is always the wallet's first).
-  const rpcs = allOf(providers, n.id, 'evm').map((p) => p.url);
+  // The network's access points in the configured order: the first is used unless the visitor picks another.
+  const rpcs = allOf(providers, n.id, 'evm');
   if (!rpcs.length) throw new Error(`providers.yaml: network "${n.id}" needs at least one evm provider for the wallet button.`);
-  const explorers = allOf(providers, n.id, 'explorer').map((p) => p.url);
+  const explorer = allOf(providers, n.id, 'explorer')[0];
   return {
     id: n.id,
     label: fill(t.add, { name: n.name }),
-    access: fill(t.addAccess, { n: String(rpcs.length) }),
+    rpcs: rpcs.map((p) => ({ url: p.url, host: p.url.replace(/^https?:\/\//, ''), provider: p.provider })),
     params: {
       chainId: '0x' + n.evmChainId.toString(16),
       chainName: n.name,
       nativeCurrency: { name: n.unit.name, symbol: n.unit.symbol, decimals: n.unit.decimals },
-      rpcUrls: rpcs,
-      ...(explorers.length ? { blockExplorerUrls: explorers } : {}),
+      rpcUrls: [rpcs[0].url],
+      ...(explorer ? { blockExplorerUrls: [explorer.url] } : {}),
     },
     chainIdDec: n.evmChainId,
   };
@@ -36,10 +35,17 @@ const buttons = networks.map((n) => {
   <div class="w-head"><span class="w-tag">{d.common.tool}</span><span class="w-meta">{t.addMeta}</span></div>
   <div class="btns">
     {buttons.map((b) => (
-      <button type="button" class="add" data-for-net={b.id} data-params={JSON.stringify(b.params)}>
-        <b>{b.label}</b>
-        <span>Chain ID {b.chainIdDec} · {b.access}</span>
-      </button>
+      <div class="net" data-for-net={b.id}>
+        <button type="button" class="add" data-params={JSON.stringify(b.params)}>
+          <b>{b.label}</b>
+          <span>Chain ID {b.chainIdDec} · <span data-host>{b.rpcs[0].host}</span></span>
+        </button>
+        {b.rpcs.length > 1 && (
+          <label class="pick"><span>{t.accessPoint}</span>
+            <select data-rpc-pick>{b.rpcs.map((r) => <option value={r.url}>{r.provider} · {r.host}</option>)}</select>
+          </label>
+        )}
+      </div>
     ))}
   </div>
   <p class="msg" role="status" data-msg></p>
@@ -52,6 +58,9 @@ const buttons = networks.map((n) => {
   .add:hover { background: color-mix(in srgb, var(--acc) 20%, transparent); }
   .add b { font-size: 15.5px; font-weight: 600; }
   .add span { font-family: var(--mono); font-size: 11.5px; color: var(--w-dim); }
+  .net { display: flex; flex-direction: column; gap: 8px; }
+  .pick { display: flex; flex-direction: column; gap: 4px; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--w-dim); }
+  .pick select { min-height: 36px; padding: 0 10px; border: 1px solid var(--w-rule); border-radius: 10px; background: transparent; color: var(--w-fg); font: inherit; font-size: 12.5px; letter-spacing: 0; text-transform: none; }
   .msg { margin: 12px 0 0; min-height: 1.6em; font-size: 14px; color: var(--w-fg); }
   .msg.bad { color: #F07A62; }
 </style>
@@ -62,15 +71,18 @@ const buttons = networks.map((n) => {
     const msg = root.querySelector<HTMLElement>('[data-msg]')!;
     const t = JSON.parse(root.dataset.i18n!) as Record<'noWallet' | 'added' | 'cancelled' | 'failed', string>;
     const say = (text: string, bad = false) => { msg.textContent = text; msg.classList.toggle('bad', bad); };
+    root.querySelectorAll<HTMLSelectElement>('[data-rpc-pick]').forEach((sel) => sel.addEventListener('change', () => {
+      const host = sel.closest('.net')?.querySelector('[data-host]');
+      if (host) host.textContent = sel.value.replace(/^https?:\/\//, '');
+    }));
     root.querySelectorAll<HTMLButtonElement>('button[data-params]').forEach((btn) => {
       btn.addEventListener('click', async () => {
         const eth = (window as unknown as { ethereum?: Eip1193 }).ethereum;
         if (!eth) { say(t.noWallet, true); return; }
         const params = JSON.parse(btn.dataset.params!);
-        // No fixed order: each click gives the wallet the access points and explorers shuffled.
-        const shuffle = (a?: string[]) => a && [...a].sort(() => Math.random() - 0.5);
-        params.rpcUrls = shuffle(params.rpcUrls);
-        if (params.blockExplorerUrls) params.blockExplorerUrls = shuffle(params.blockExplorerUrls);
+        // The access point picked next to the button, if any (the first one otherwise).
+        const pick = btn.parentElement?.querySelector<HTMLSelectElement>('[data-rpc-pick]');
+        if (pick) params.rpcUrls = [pick.value];
         try {
           await eth.request({ method: 'wallet_addEthereumChain', params: [params] });
           say(t.added.replace('{name}', params.chainName));
