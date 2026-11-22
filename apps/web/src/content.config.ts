@@ -1,20 +1,22 @@
 /**
  * Content model. Everything 42chain.org shows comes from these collections,
- * one set per area: the site (content/site/) and the documentation
- * (content/docs/, served under /docs).
+ * one set per area: the site (content/site/), the documentation (content/docs/,
+ * served under /docs) and the console (content/console/). Three of these folders
+ * are git submodules, each a repository of its own: content/docs (42chain-docs),
+ * content/blog (42chain-blog) and content/network (42chain-network).
  *
  * The site:
  * - `pages`: one Markdown file per interior page under site/<lang>/pages/.
  *   The folder is the section and the file path is the URL. The `index.md` of
  *   each folder also describes its section (`section:` block).
- * - `posts`: the blog, one Markdown file per post under site/<lang>/posts/.
+ * - `posts`: the blog, one Markdown file per post under blog/<lang>/.
  * - `home`: the text of the home page (site/<lang>/home.md, frontmatter only).
  * - `project`: the text of the project page, /about (site/<lang>/project.md, frontmatter only).
  * - `site`: site-wide text: brand, footer, interface labels, 404 (site/<lang>/site.md).
  *
- * The documentation: `docsPages`, `docsHome` and `docsSite`, the same kinds of
- * files under docs/<lang>/, plus the network data in docs/network/
- * (`networks`, `services`, `providers`), which the console uses too.
+ * The documentation: `docsPages` and `docsHome` under docs/<lang>/, and its
+ * interface texts `docsSite` under docs-ui/<lang>/site.md. The network data in
+ * network/ (`networks`, `services`, `providers`) feeds the docs and the console.
  *
  * The console: `consoleSite` (console/<lang>/site.md) and `consoleText`
  * (console/<lang>/console.md), the texts of its screens.
@@ -31,7 +33,7 @@ import { iconNames } from './art/icons';
 import { dataFile, networkSchema, providerSchema, serviceSchema } from './network/schemas';
 
 const pages = defineCollection({ loader: pagesLoader(catalogPath('site')), schema: pageSchema });
-const posts = defineCollection({ loader: postsLoader(catalogPath('site')), schema: ({ image }) => postSchema(image) });
+const posts = defineCollection({ loader: postsLoader(catalogPath('blog')), schema: ({ image }) => postSchema(image) });
 
 const cta = z.object({ label: z.string(), href: z.string() }).strict();
 
@@ -169,7 +171,8 @@ const docsHome = defineCollection({
     })
     .strict(),
 });
-const docsSite = defineCollection({ loader: perLanguage(catalogPath('docs'), 'site.md'), schema: siteTextSchema });
+// The documentation's interface texts stay with the code; its pages come from the 42chain-docs submodule.
+const docsSite = defineCollection({ loader: perLanguage(catalogPath('docs-ui'), 'site.md'), schema: siteTextSchema });
 const networks = defineCollection({ loader: file(dataFile('networks')), schema: networkSchema });
 const services = defineCollection({ loader: file(dataFile('services')), schema: serviceSchema });
 const providers = defineCollection({ loader: file(dataFile('providers')), schema: providerSchema });

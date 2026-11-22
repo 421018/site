@@ -10,22 +10,35 @@ The code and content of 42chain.org: one static site with three areas.
 
 ## Repositories involved
 
-| Repository | Role | Deployed? |
+The site's code lives here; the content that changes often lives in
+repositories of its own, mounted here as git submodules under `apps/web/content/`.
+
+| Repository | What it holds | Mounted at |
 |---|---|---|
-| **This one** (`42chain-site`) | Everything that is published at 42chain.org: code, texts, network data. | Yes: Cloudflare Pages, see [Production](#production-cloudflare-pages). |
-| `42chain-events` | The record of network events (spec, schema, examples). The console's Events screen will read it; today it does not, and says so. | No. Nothing to run or deploy yet. |
-| [`deep-thought-labs/infinite-app`](https://github.com/deep-thought-labs/infinite-app) | The project's public repository, linked from the footer and the official channels page. | Not part of this build. |
+| **`42chain-site`** (this one) | The code, the site's own texts (home, project, pages), the interface texts of every area. The only one Cloudflare Pages builds. | |
+| `42chain-docs` | The documentation's pages and home, in Markdown. | `apps/web/content/docs` |
+| `42chain-blog` | The blog's posts and their images. | `apps/web/content/blog` |
+| `42chain-network` | Network data: networks, services, providers (read by the docs, the console and the site's CSP). | `apps/web/content/network` |
+| `42chain-events` | The record of network events (spec, schema, examples). The console's Events screen will read it; today it does not. | Not mounted yet |
+| [`deep-thought-labs/infinite-app`](https://github.com/deep-thought-labs/infinite-app) | The project's public repository, linked from the footer and the official channels page. | Not part of the build |
+
+All of them must sit in the **same GitHub organization** and be **public**:
+`.gitmodules` uses relative URLs (`../42chain-docs.git`), resolved against this
+repository's own address, and builds clone them without credentials. Every
+build takes the `main` branch of each content repository; merging there and
+calling the site's deploy hook (each content repository has a workflow for it)
+publishes the change.
 
 Nothing else is needed at build time or at run time: no server, no database,
 no secrets. The console reads the network's public RPC services straight from
-the visitor's browser (`apps/web/content/docs/network/providers.yaml`).
+the visitor's browser.
 
 ## What is in this repository
 
 | Path | What it is |
 |---|---|
 | `apps/web` | The Astro app: routes, components and content of the three areas. See [its README](apps/web/README.md). |
-| `apps/web/content` | Texts and data (Markdown and YAML), in English and Spanish. |
+| `apps/web/content` | Texts and data (Markdown and YAML), in English and Spanish: the site's own (`site/`, `console/`, `docs-ui/`, `ui/`) and the three submodules (`docs/`, `blog/`, `network/`). |
 | `packages/ui` | `@42chain/ui`, the look: design tokens and each area's stylesheet. See [its README](packages/ui/README.md). |
 | `.github/workflows/ci.yml` | CI: types, build and every internal link on each pull request and on `main`. |
 
@@ -41,10 +54,22 @@ It is an npm workspaces monorepo: `apps/web` depends on `packages/ui`, so
 ## Local development
 
 ```bash
+git clone --recurse-submodules https://github.com/<org>/42chain-site.git
+cd 42chain-site
 nvm install && nvm use   # Node 24, from .nvmrc
 npm ci                   # from the repository root
 npm run dev              # http://localhost:4321 (docs at /docs, console at /console)
 ```
+
+Already cloned without the submodules? `git submodule update --init`. To bring
+each content repository to its latest `main` (what production builds):
+`git submodule update --remote`.
+
+**Editing content in a submodule.** `apps/web/content/docs/` (and `blog/`,
+`network/`) is a checkout of its own repository: commit and push there, from
+that folder. The site repository then shows the submodule as changed; commit
+that pointer too only if you want the site to record that content version (the
+production build takes `main` anyway).
 
 | Command (from the root) | What it does |
 |---|---|
@@ -76,13 +101,26 @@ choose this repository, then set:
 |---|---|---|
 | Production branch | `main` | |
 | Framework preset | `None` | The build command below does everything; a preset would replace it. |
-| Build command | `(git fetch --unshallow \|\| true) && npm run build` | If Cloudflare cloned only the last commit, fetch the history so each page's "Last reviewed" date is right. On a full clone the fetch does nothing. |
+| Build command | `git submodule update --init --remote && (git fetch --unshallow \|\| true) && npm run build` | Brings in the content repositories at their `main` (whether or not Cloudflare cloned the submodules), then the site's own history if the clone was shallow, then builds. |
 | Build output directory | `apps/web/dist` | |
 | Root directory (advanced) | *(empty: the repository root)* | Not `apps/web`: the app needs the workspace package `packages/ui`, which only resolves from the root. |
 | Environment variable | `NODE_VERSION` = `24` (Production and Preview) | The build image's default Node is older than the site expects. |
 
 Cloudflare installs the dependencies itself (`npm` with `package-lock.json`)
 before running the build command. **Save and Deploy**.
+
+### Rebuild when content changes (once per content repository)
+
+1. In the Pages project: **Settings → Builds → Add deploy hook**, name it after
+   the repository (for example `42chain-docs`), branch `main`. Copy its URL.
+2. In that content repository on GitHub: **Settings → Secrets and variables →
+   Actions → New repository secret**, name `CF_DEPLOY_HOOK`, value the URL.
+3. From then on, every push to its `main` runs its **Publish** workflow, which
+   calls the hook; the site rebuilds with the new content in a few minutes.
+
+Anyone with a hook URL can start builds: keep it secret, and if it leaks,
+delete the hook and create a new one. Each content repository also runs a
+**Check** workflow on pull requests: it builds the whole site with the change.
 
 What the build publishes, with no further setup:
 
@@ -104,7 +142,7 @@ remove it there first. With the zone on Cloudflare, DNS is set up for you.
 2. The documentation's search finds pages (try "validator").
 3. The console shows live figures (latest block, time per block): if not, a provider is down or its origin is missing from the CSP (it comes from `providers.yaml`; adding a provider needs a new build).
 4. A wrong address shows the 404 page.
-5. "Last reviewed" dates differ from page to page. If they are all the same day, the build ran without history: check the build command.
+5. "Last reviewed" dates come from the content repositories' history. If every page shows the build's own day, the submodules were cloned without history: check the build command.
 
 ### Rolling back
 
@@ -124,7 +162,8 @@ build each page as `folder.html` (`build.format: 'file'`) or link with slashes.
 
 - Site URL, languages, repository links: `apps/web/src/config.ts`.
 - Visitor-facing texts: `apps/web/content/<area>/<lang>/` (`site.md` holds the header and footer).
-- Network data (networks, services, providers): `apps/web/content/docs/network/`.
+- Network data (networks, services, providers): the `42chain-network` repository, at `apps/web/content/network/`.
+- Documentation pages and blog posts: the `42chain-docs` and `42chain-blog` repositories, at `apps/web/content/docs/` and `apps/web/content/blog/`.
 - Licenses: code under Apache 2.0 (`LICENSE`), texts and data under CC BY 4.0 (`apps/web/content/LICENSE`). See `NOTICE`.
 
 How to contribute: [CONTRIBUTING.md](CONTRIBUTING.md). Security reports:

@@ -12,12 +12,12 @@ import { SITE, EDIT_BASE } from './src/config.ts';
 // The console reads the public EVM RPC endpoints from the browser (network status):
 // each provider's origin is allowed in connect-src, straight from the provider directory.
 /** @type {{ service: string, url: string }[]} */
-const providers = parse(readFileSync(new URL('./content/docs/network/providers.yaml', import.meta.url), 'utf8'));
+const providers = parse(readFileSync(new URL('./content/network/providers.yaml', import.meta.url), 'utf8'));
 const rpcOrigins = [...new Set(providers.filter((p) => p.service === 'evm').map((p) => new URL(p.url).origin))];
 
 // The blog used to be the Bitácora, at /log: every old address goes to its new one.
 /** @param {string} lang */
-const posts = (lang) => readdirSync(new URL(`./content/site/${lang}/posts`, import.meta.url)).filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3));
+const posts = (lang) => readdirSync(new URL(`./content/blog/${lang}`, import.meta.url)).filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3));
 const retired = ['agreements-unknown', 'collective-memory', 'commons-governance', 'conditional-access', 'contribution-proofs', 'digital-provenance', 'resource-coordination', 'sovereign-identity'];
 const logRedirects = Object.fromEntries(
   Object.keys(SITE.languages).flatMap((lang) => {

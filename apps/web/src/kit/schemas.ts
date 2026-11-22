@@ -89,12 +89,13 @@ export const pagesLoader = (base: string) =>
   });
 
 /**
- * Blog posts: one Markdown file per post in <lang>/posts/.
- * The id is the language and the file name: es/posts/traceability.md →
+ * Blog posts: one Markdown file per post in <lang>/ (the 42chain-blog submodule).
+ * The id is the language and the file name: es/traceability.md →
  * es/traceability. The URL depends on the category (site.md → blog).
  */
 export const postsLoader = (base: string) =>
-  glob({ pattern: '*/posts/*.md', base, generateId: ({ entry }) => entry.replace(/\.md$/, '').replace(/\/posts\//, '/') });
+  // Language folders only (es/, en/): not images/ or the repository's README.
+  glob({ pattern: '[a-z][a-z]/*.md', base, generateId: ({ entry }) => entry.replace(/\.md$/, '') });
 
 /** Post front matter. `image` is a helper from the collection (image()); the contract export passes a string. */
 export const postSchema = (image: () => z.ZodTypeAny) =>
