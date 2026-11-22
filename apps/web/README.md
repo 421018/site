@@ -13,7 +13,7 @@ and look:
 
 | Path | What it holds |
 |---|---|
-| `content/site/`, `content/docs/` | Each area's texts: one folder per language (`es/`, `en/`) with `home.md`, `pages/` (the site's also `site.md`; the docs' `site.md` is in `content/docs-ui/`). `content/docs/` is the `42chain-docs` submodule; the blog (`content/blog/`) and the network data (`content/network/`) are the `42chain-blog` and `42chain-network` submodules. |
+| `content/site/`, `content/docs/` | Each area's texts: one folder per language (`es/`, `en/`) with `home.md`, `pages/` (the site's also `site.md`; the docs' `site.md` is in `content/docs-ui/`). `content/docs/` is the `docs` submodule; the blog (`content/blog/`) and the network data (`content/network/`) are the `blog` and `network` submodules. |
 | `content/ui/` | Interface strings of widgets, shared. `content/LICENSE`: CC BY 4.0. |
 | `src/pages/` | Routes. Pages under `src/pages/docs/` are the documentation; the rest, the site. Each page imports its area's stylesheet first. |
 | `src/site/`, `src/docs/` | Each area's components, layouts and widgets (`widgets.ts` lists them). |

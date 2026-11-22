@@ -1,12 +1,12 @@
 [submodule "apps/web/content/docs"]
 	path = apps/web/content/docs
-	url = ../42chain-docs.git
+	url = ../docs.git
 	branch = main
 [submodule "apps/web/content/network"]
 	path = apps/web/content/network
-	url = ../42chain-network.git
+	url = ../network.git
 	branch = main
 [submodule "apps/web/content/blog"]
 	path = apps/web/content/blog
-	url = ../42chain-blog.git
+	url = ../blog.git
 	branch = main

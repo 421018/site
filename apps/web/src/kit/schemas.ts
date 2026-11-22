@@ -89,7 +89,7 @@ export const pagesLoader = (base: string) =>
   });
 
 /**
- * Blog posts: one Markdown file per post in <lang>/ (the 42chain-blog submodule).
+ * Blog posts: one Markdown file per post in <lang>/ (the blog submodule).
  * The id is the language and the file name: es/traceability.md →
  * es/traceability. The URL depends on the category (site.md → blog).
  */

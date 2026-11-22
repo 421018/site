@@ -1,5 +1,5 @@
 /**
- * The blog: posts from content/blog/<lang>/ (the 42chain-blog submodule), for apps
+ * The blog: posts from content/blog/<lang>/ (the blog submodule), for apps
  * whose site.md has a `blog` block. A post's URL is /<lang prefix>/<path>/<slug>,
  * where <path> is its category's path (e.g. use-cases) or the blog's.
  */

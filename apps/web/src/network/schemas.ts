@@ -5,7 +5,7 @@
  *   networks: defineCollection({ loader: file(dataFile('networks')), schema: networkSchema })
  *
  * The YAML files live in the content folder, under
- * network/. dataFile() finds them in content/network/ (the 42chain-network submodule).
+ * network/. dataFile() finds them in content/network/ (the network submodule).
  */
 import { z } from 'astro/zod';
 import { catalogPath } from '../kit/catalog';

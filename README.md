@@ -15,15 +15,15 @@ repositories of its own, mounted here as git submodules under `apps/web/content/
 
 | Repository | What it holds | Mounted at |
 |---|---|---|
-| **`42chain-site`** (this one) | The code, the site's own texts (home, project, pages), the interface texts of every area. The only one Cloudflare Pages builds. | |
-| `42chain-docs` | The documentation's pages and home, in Markdown. | `apps/web/content/docs` |
-| `42chain-blog` | The blog's posts and their images. | `apps/web/content/blog` |
-| `42chain-network` | Network data: networks, services, providers (read by the docs, the console and the site's CSP). | `apps/web/content/network` |
-| `42chain-events` | The record of network events (spec, schema, examples). The console's Events screen will read it; today it does not. | Not mounted yet |
+| **`site`** (this one) | The code, the site's own texts (home, project, pages), the interface texts of every area. The only one Cloudflare Pages builds. | |
+| `docs` | The documentation's pages and home, in Markdown. | `apps/web/content/docs` |
+| `blog` | The blog's posts and their images. | `apps/web/content/blog` |
+| `network` | Network data: networks, services, providers (read by the docs, the console and the site's CSP). | `apps/web/content/network` |
+| `events` | The record of network events (spec, schema, examples). The console's Events screen will read it; today it does not. | Not mounted yet |
 | [`deep-thought-labs/infinite-app`](https://github.com/deep-thought-labs/infinite-app) | The project's public repository, linked from the footer and the official channels page. | Not part of the build |
 
 All of them must sit in the **same GitHub organization** and be **public**:
-`.gitmodules` uses relative URLs (`../42chain-docs.git`), resolved against this
+`.gitmodules` uses relative URLs (`../docs.git`), resolved against this
 repository's own address, and builds clone them without credentials. Every
 build takes the `main` branch of each content repository; merging there and
 calling the site's deploy hook (each content repository has a workflow for it)
@@ -54,12 +54,16 @@ It is an npm workspaces monorepo: `apps/web` depends on `packages/ui`, so
 ## Local development
 
 ```bash
-git clone --recurse-submodules https://github.com/<org>/42chain-site.git
-cd 42chain-site
+git clone --recurse-submodules https://github.com/<org>/site.git
+cd site
 nvm install && nvm use   # Node 24, from .nvmrc
 npm ci                   # from the repository root
 npm run dev              # http://localhost:4321 (docs at /docs, console at /console)
 ```
+
+Locally, keep the repositories side by side in one folder, named as on
+GitHub: `42chain/site`, `42chain/docs`, `42chain/blog`, `42chain/network`,
+`42chain/events`. The site's submodules are clones of the others.
 
 Already cloned without the submodules? `git submodule update --init`. To bring
 each content repository to its latest `main` (what production builds):
@@ -112,7 +116,7 @@ before running the build command. **Save and Deploy**.
 ### Rebuild when content changes (once per content repository)
 
 1. In the Pages project: **Settings → Builds → Add deploy hook**, name it after
-   the repository (for example `42chain-docs`), branch `main`. Copy its URL.
+   the repository (for example `docs`), branch `main`. Copy its URL.
 2. In that content repository on GitHub: **Settings → Secrets and variables →
    Actions → New repository secret**, name `CF_DEPLOY_HOOK`, value the URL.
 3. From then on, every push to its `main` runs its **Publish** workflow, which
@@ -162,8 +166,8 @@ build each page as `folder.html` (`build.format: 'file'`) or link with slashes.
 
 - Site URL, languages, repository links: `apps/web/src/config.ts`.
 - Visitor-facing texts: `apps/web/content/<area>/<lang>/` (`site.md` holds the header and footer).
-- Network data (networks, services, providers): the `42chain-network` repository, at `apps/web/content/network/`.
-- Documentation pages and blog posts: the `42chain-docs` and `42chain-blog` repositories, at `apps/web/content/docs/` and `apps/web/content/blog/`.
+- Network data (networks, services, providers): the `network` repository, at `apps/web/content/network/`.
+- Documentation pages and blog posts: the `docs` and `blog` repositories, at `apps/web/content/docs/` and `apps/web/content/blog/`.
 - Licenses: code under Apache 2.0 (`LICENSE`), texts and data under CC BY 4.0 (`apps/web/content/LICENSE`). See `NOTICE`.
 
 How to contribute: [CONTRIBUTING.md](CONTRIBUTING.md). Security reports:

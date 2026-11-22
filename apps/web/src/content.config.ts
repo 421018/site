@@ -2,8 +2,8 @@
  * Content model. Everything 42chain.org shows comes from these collections,
  * one set per area: the site (content/site/), the documentation (content/docs/,
  * served under /docs) and the console (content/console/). Three of these folders
- * are git submodules, each a repository of its own: content/docs (42chain-docs),
- * content/blog (42chain-blog) and content/network (42chain-network).
+ * are git submodules, each a repository of its own: content/docs, content/blog and
+ * content/network (the docs, blog and network repositories).
  *
  * The site:
  * - `pages`: one Markdown file per interior page under site/<lang>/pages/.
@@ -171,7 +171,7 @@ const docsHome = defineCollection({
     })
     .strict(),
 });
-// The documentation's interface texts stay with the code; its pages come from the 42chain-docs submodule.
+// The documentation's interface texts stay with the code; its pages come from the docs submodule.
 const docsSite = defineCollection({ loader: perLanguage(catalogPath('docs-ui'), 'site.md'), schema: siteTextSchema });
 const networks = defineCollection({ loader: file(dataFile('networks')), schema: networkSchema });
 const services = defineCollection({ loader: file(dataFile('services')), schema: serviceSchema });

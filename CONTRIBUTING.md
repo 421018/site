@@ -9,8 +9,8 @@ Thanks for helping improve the site and the documentation. Most contributions ar
 | You want to… | Do this |
 |---|---|
 | Fix a typo or improve a page | Use **Editar esta página ↗** at the top of the page, or edit the file on GitHub, and open a pull request |
-| Add or fix a documentation page, or write a blog post | Do it in the `42chain-docs` or `42chain-blog` repository (each README explains its layout) and open a pull request there |
-| List a provider | Add a line to `providers.yaml` in the `42chain-network` repository and open a pull request there |
+| Add or fix a documentation page, or write a blog post | Do it in the `docs` or `blog` repository (each README explains its layout) and open a pull request there |
+| List a provider | Add a line to `providers.yaml` in the `network` repository and open a pull request there |
 | Translate a page | Follow [Translating](README.md#translating) in the README and open a pull request |
 | Report an error or suggest content | [Open an issue](../../issues/new/choose) |
 | Suggest a design change or a new widget | [Open an issue](../../issues/new/choose); the design and code are maintained separately |
@@ -55,7 +55,7 @@ npm run verify     # run before opening a pull request
 
 ## Licensing of contributions
 
-By contributing, you agree that your contribution is licensed under the same license as the part you change: code under the [Apache License 2.0](LICENSE), texts and data in `apps/web/content/` and in the content repositories (`42chain-docs`, `42chain-blog`, `42chain-network`) under [CC BY 4.0](apps/web/content/LICENSE). Only contribute work that you wrote or that you have the right to publish under this license, including images and diagrams (record an image's author and license in the blog repository's `images/CREDITS.md`).
+By contributing, you agree that your contribution is licensed under the same license as the part you change: code under the [Apache License 2.0](LICENSE), texts and data in `apps/web/content/` and in the content repositories (`docs`, `blog`, `network`) under [CC BY 4.0](apps/web/content/LICENSE). Only contribute work that you wrote or that you have the right to publish under this license, including images and diagrams (record an image's author and license in the blog repository's `images/CREDITS.md`).
 
 ## Code of conduct
 
