@@ -11,6 +11,7 @@ description: "42 Chain ejecuta el Protocolo 42, un protocolo de código abierto 
 header:
   brand: Chain # word next to the 42 mark
   homeLink: 42 Chain, inicio # accessible name of the logo link
+  home: Inicio # first item of the main menu
   mainNav: Principal # accessible name of the main menu
   menuButton: Menú # label of the collapsed main menu on narrow screens
   languageNav: Idioma # accessible name of the language switcher

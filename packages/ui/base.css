@@ -25,7 +25,35 @@ img, svg { display: block; }
 /* reserve the bold width so the active link doesn't shift its neighbours */
 .nl::after { content: attr(data-label); height: 0; overflow: hidden; visibility: hidden; font-weight: 600; pointer-events: none; user-select: none; }
 .nl:hover { color: #fff; background: rgba(17,22,28,.85); }
-.nl.on { color: #fff; font-weight: 600; box-shadow: inset 0 -2px 0 var(--acc); border-radius: 0; }
+.nl.on { color: #fff; font-weight: 600; box-shadow: inset 0 -2px 0 var(--aurora); border-radius: 0; }
+/* The header bar: the same box on every page of an area (width, height and
+   position), so moving between pages never shifts the menu. */
+.hbar { position: relative; z-index: 30; background-color: var(--night); border-bottom: 1px solid var(--line-d); }
+.hbar > .site-header { max-width: 1280px; min-height: 72px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 40px); box-sizing: border-box; flex-wrap: nowrap; }
+.hbar .menu { margin-left: auto; flex-wrap: nowrap; }
+.hside { display: flex; align-items: center; gap: 8px; }
+/* A button to another area (the documentation, back to the site, the console):
+   it changes the whole view, so it looks different from the menu links. */
+.htool { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line-d2); border-radius: 999px; color: var(--fg); text-decoration: none; font-size: 14px; font-weight: 500; transition: border-color .2s, background .2s; }
+.htool svg { color: var(--aurora); flex: none; }
+.htool:hover { border-color: var(--aurora); background: rgba(91,240,200,.06); }
+.ml-sep { height: 1px; margin: 6px 8px; background: #2A313A; }
+.ml.tool { gap: 10px; color: var(--fg); }
+.ml.tool svg { color: var(--aurora); }
+/* language menu: a globe that opens the languages, each in its own name */
+.lm { position: relative; --lm-fg: var(--fg-2); --lm-line: var(--line-d2); --lm-bg: rgba(5,7,10,.97); --lm-hover: rgba(255,255,255,.06); --lm-muted: var(--fg-4); --lm-on: #fff; }
+.lm-btn { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; border: 1px solid var(--lm-line); border-radius: 999px; color: var(--lm-fg); cursor: pointer; list-style: none; transition: border-color .2s, color .2s; }
+.lm-btn::-webkit-details-marker { display: none; }
+.lm-btn:hover, .lm[open] .lm-btn { border-color: var(--aurora); color: var(--lm-on); }
+.lm-chev { opacity: .7; transition: transform .2s; }
+.lm[open] .lm-chev { transform: rotate(180deg); }
+.lm-panel { position: absolute; right: 0; top: calc(100% + 8px); z-index: 45; min-width: 220px; padding: 6px; border: 1px solid var(--lm-line); border-radius: 12px; background: var(--lm-bg); backdrop-filter: blur(8px); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.lm-k { margin: 6px 10px 6px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--lm-muted); }
+.lm-item { display: flex; align-items: center; gap: 10px; min-height: 42px; padding: 0 10px; border-radius: 8px; color: var(--lm-fg); text-decoration: none; font-size: 14.5px; }
+.lm-item:hover { background: var(--lm-hover); color: var(--lm-on); }
+.lm-item.on { color: var(--lm-on); font-weight: 600; }
+.lm-code { margin-left: auto; font-family: var(--mono); font-size: 11.5px; font-weight: 400; color: var(--lm-muted); }
+.lm-check { color: var(--aurora); flex: none; }
 /* section panels (dropdown: true) */
 .dd { display: inline-flex; align-items: center; }
 .dd .nl { padding-right: 4px; }
@@ -49,7 +77,6 @@ img, svg { display: block; }
 /* highlighted header button (e.g. the documentation) */
 .hcta { display: inline-flex; align-items: center; min-height: 40px; margin-left: 10px; padding: 0 16px; border-radius: 999px; background: var(--fg); color: var(--night); text-decoration: none; font-size: 14px; font-weight: 500; }
 .hcta:hover { background: #fff; }
-.nl.lang { font-family: var(--mono); font-size: 12px; }
 .ml.sub { min-height: 38px; padding-left: 26px; font-size: 14px; }
 .ml.cta { color: var(--fg); font-weight: 500; }
 /* collapsed main menu for narrow screens */
@@ -60,11 +87,12 @@ img, svg { display: block; }
 .ml { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; color: var(--fg-3); text-decoration: none; font-size: 15px; }
 .ml:hover { color: #fff; background: rgba(17,22,28,.85); }
 button.ml { width: 100%; border: 0; background: transparent; font: inherit; text-align: left; cursor: pointer; }
-.ml.on { color: #fff; font-weight: 600; box-shadow: inset 2px 0 0 var(--acc); }
+.ml.on { color: #fff; font-weight: 600; box-shadow: inset 2px 0 0 var(--aurora); }
 @media (max-width: 960px) {
   .site-header { flex-wrap: nowrap; }
   .menu { display: none; }
   .menu-m { display: block; }
+  .hside .htool, .hside .hcta { display: none; }
 }
 /* ---------- buttons & links ---------- */
 .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; transition: background .25s, color .25s, border-color .25s; }

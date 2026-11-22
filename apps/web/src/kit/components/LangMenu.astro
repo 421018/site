@@ -1,0 +1,49 @@
+---
+/**
+ * Language menu: a globe button that opens the list of languages, each in its
+ * own name, the current one marked. Works without JavaScript (a disclosure);
+ * the script only closes it on Escape or a click elsewhere. The colors come
+ * from the header it sits in (--lm-* in @42chain/ui).
+ */
+import { areaOf, homeHref, langOf, languages } from '../i18n';
+import { getSiteText } from '../site';
+interface Props {
+  /** The current page in other languages ({ lang: href }); languages without it link to their home page. */
+  alternates?: Record<string, string>;
+}
+const { alternates = {} } = Astro.props;
+const lang = langOf(Astro);
+const area = areaOf(Astro);
+const text = await getSiteText(lang, area);
+// The current language links to this page; on a 404 page there is none, so to its home page.
+const here = /\/404\/?$/.test(Astro.url.pathname) ? homeHref(lang, area) : Astro.url.pathname;
+const items = await Promise.all(
+  languages.map(async (l) => ({ lang: l, label: (await getSiteText(l, area)).language, href: l === lang ? here : alternates[l] ?? homeHref(l, area), current: l === lang })),
+);
+const current = items.find((i) => i.current)!;
+---
+<details class="lm" data-lm>
+  <summary class="lm-btn" aria-label={`${text.header.languageNav}: ${current.label}`} title={text.header.languageNav}>
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9" /><path d="M3 12 H21 M12 3 C9 6 9 18 12 21 M12 3 C15 6 15 18 12 21" /></svg>
+    <svg class="lm-chev" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 L5 6.5 L8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+  </summary>
+  <div class="lm-panel">
+    <p class="lm-k">{text.header.languageNav}</p>
+    {items.map((i) => (
+      <a class:list={['lm-item', { on: i.current }]} href={i.href} hreflang={i.lang} lang={i.lang} aria-current={i.current ? 'true' : undefined}>
+        <span>{i.label}</span>
+        <span class="lm-code">{i.lang.toUpperCase()}</span>
+        {i.current && <svg class="lm-check" width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="1.8" /></svg>}
+      </a>
+    ))}
+  </div>
+</details>
+
+<script>
+  const menus = [...document.querySelectorAll<HTMLDetailsElement>('[data-lm]')];
+  document.addEventListener('click', (e) => menus.forEach((m) => { if (m.open && !m.contains(e.target as Node)) m.open = false; }));
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    menus.forEach((m) => { if (m.open) { m.open = false; m.querySelector('summary')?.focus(); } });
+  });
+</script>

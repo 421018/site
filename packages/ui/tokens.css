@@ -4,6 +4,7 @@
 
 :root {
   --acc: #5BF0C8;        /* aurora */
+  --aurora: #5BF0C8;     /* the brand accent, fixed: navigation marks never take a section's color */
   --star: #F2C879;       /* ships, lore */
   --nebula: #7C9CFF;
   --night: #04060B;      /* void */

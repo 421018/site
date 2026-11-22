@@ -31,11 +31,11 @@ const icons: Record<string, string> = {
 const cardIcons = [icons.code, icons.node, icons.vote, '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>'];
 ---
 <Base title={title} description={description} alternates={alternates}>
+<Header currentHref={`${langPrefix(lang)}/about`} alternates={alternates} />
 <section class="pj-cover stars">
 <svg class="pj-orbit" aria-hidden="true" viewBox="0 0 520 420"><ellipse cx="260" cy="210" rx="230" ry="62" fill="none" stroke="rgba(255,255,255,.10)" transform="rotate(-12 260 210)" /><ellipse cx="260" cy="210" rx="170" ry="44" fill="none" stroke="rgba(91,240,200,.28)" stroke-dasharray="2 7" transform="rotate(-12 260 210)" /><circle cx="260" cy="210" r="78" fill="#0E1C24" stroke="rgba(91,240,200,.4)" /><circle cx="458" cy="150" r="7" fill="#F2C879" /><circle cx="80" cy="262" r="4" fill="#ECEFF4" /></svg>
 <div class="pj-field" aria-hidden="true"></div>
 <div class="pj-in">
-<Header currentHref={`${langPrefix(lang)}/about`} alternates={alternates} />
 <div class="pj-head">
 <p class="pj-k">{kicker}</p>
 <h1>{title}</h1>
@@ -132,7 +132,7 @@ const cardIcons = [icons.code, icons.node, icons.vote, '<rect x="4" y="4" width=
 .pj-cover{position:relative;overflow:hidden;background-color:var(--night);color:var(--fg)}
 .pj-orbit{position:absolute;right:clamp(0px,4vw,80px);top:70px;width:min(520px,40vw);height:auto}
 .pj-field{position:absolute;inset:0;background:linear-gradient(90deg,var(--night) 0%,var(--night) 40%,rgba(4,6,11,0) 72%)}
-.pj-in{position:relative;max-width:1280px;margin:0 auto;padding:22px clamp(16px,4vw,40px) 0}
+.pj-in{position:relative;max-width:1280px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
 .pj-head{max-width:760px;padding:96px 0 112px}
 .pj-k{margin:0 0 16px;font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--star)}
 .pj-head h1{margin:0;font-family:var(--serif);font-size:clamp(44px,6vw,78px);font-weight:500;line-height:1.02;letter-spacing:-0.015em}

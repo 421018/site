@@ -34,9 +34,7 @@ const crumbs = [
 ];
 ---
 <Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates} canonicalHref={canonicalHref}>
-  <section class="band-top">
-    <Header current={home.key} alternates={alternates} />
-  </section>
+  <Header current={home.key} alternates={alternates} />
   <div class:list={['rd', { solo: !showSide }]}>
     <div class="dochead">
       <nav class="dk crumbs-d" aria-label={header.mainNav}>{crumbs.map((c, i) => <>{i > 0 && <span aria-hidden="true"> / </span>}{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</>)}</nav>

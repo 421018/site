@@ -86,7 +86,6 @@
 .dh-theme { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--head); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
 .dh-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
 .dh-link:hover { color: var(--head); }
-.dh-link.mono { font-family: var(--mono); font-size: 12px; }
 
 .dh-tabs { max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
 .dh-tabs a { flex: none; padding: 12px 14px; color: var(--muted); text-decoration: none; font-size: 14px; border-bottom: 2px solid transparent; }
@@ -121,7 +120,7 @@
 @media (max-width: 1000px) { .dl { flex-direction: column; gap: 0; } .dl .side { position: static; max-height: none; } }
 /* the pages with network data have their own switch */
 @media (max-width: 1180px) { .dh-net { display: none; } }
-@media (max-width: 640px) { .dh-link:not(.mono) { display: none; } .dh .dh-search .sbtn span { display: none; } }
+@media (max-width: 640px) { .dh-link { display: none; } .dh .dh-search .sbtn span { display: none; } .dh .htool span { display: none; } .dh .htool { padding: 0 11px; } }
 /* the footer keeps the brand's dark space in both themes */
 /* Footer: compact, on the theme's soft ground; the sibling site is an external link. */
 .pf { border-top: 1px solid var(--rule); background: var(--soft); color: var(--muted); font-size: 14px; }
@@ -142,3 +141,12 @@
 .dh-notice-in svg { flex: none; margin-top: 2px; }
 .dh-notice p { margin: 0; font-size: 14px; line-height: 1.55; }
 .dh-notice b { font-weight: 600; }
+
+/* the language menu and the buttons to the site, in the documentation's light (and dark) theme */
+.dh .lm { --lm-fg: var(--muted); --lm-line: var(--rule); --lm-bg: var(--surface); --lm-hover: var(--soft); --lm-muted: var(--muted); --lm-on: var(--head); }
+.dh .lm-panel { box-shadow: 0 16px 40px rgba(0,0,0,.12); }
+.dh .htool { min-height: 40px; border-color: var(--rule); color: var(--head); background: var(--surface); }
+.dh .htool svg { color: var(--link); }
+.dh .htool:hover { border-color: var(--link); background: var(--soft); }
+.dh .lm-btn:hover, .dh .lm[open] .lm-btn { border-color: var(--link); }
+.dh .lm-check { color: var(--link); }
