@@ -47,6 +47,7 @@ footer:
         - { label: Networks and connections, href: "console:/networks" }
   social:
     - { network: x, label: Follow us on X, handle: "@42protocol", href: "https://x.com/42protocol" }
+    - { network: github, label: Source code on GitHub, handle: "deep-thought-labs/infinite-app", href: "https://github.com/deep-thought-labs/infinite-app" }
   bottom:
     - { label: Legal, href: "/legal" }
   backToTop: Back to top

@@ -189,7 +189,7 @@ export const siteTextSchema = z
         /** Label of the "back to top" link in the full footer. */
         backToTop: z.string().optional(),
         /** Official profiles, shown as buttons with the network's logo (large in the full footer). */
-        social: z.array(z.object({ network: z.enum(['x']), label: z.string(), handle: z.string(), href: z.url() }).strict()).default([]),
+        social: z.array(z.object({ network: z.enum(['x', 'github']), label: z.string(), handle: z.string(), href: z.url() }).strict()).default([]),
       })
       .strict()
       .optional(),

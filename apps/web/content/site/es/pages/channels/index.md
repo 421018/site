@@ -14,7 +14,7 @@ Estos son los únicos canales oficiales del proyecto. Si un canal no aparece aqu
 | Sitio | El proyecto, el blog y las preguntas frecuentes | 42chain.org |
 | Documentación | Infinite Drive, referencia técnica y herramientas | 42chain.org/docs |
 | X | Anuncios del proyecto | @42protocol |
-| Repositorio | Código fuente, preguntas técnicas, reportes de errores y contribuciones | [repositorio] |
+| Repositorio | Código fuente, preguntas técnicas, reportes de errores y contribuciones | [github.com/deep-thought-labs/infinite-app](https://github.com/deep-thought-labs/infinite-app) |
 | Correo de seguridad | Reportes privados de vulnerabilidades del código | [security@42chain.org](mailto:security@42chain.org) |
 | Correo general | Preguntas sobre el proyecto, propuestas de proveedores y cualquier otro asunto | [info@42chain.org](mailto:info@42chain.org) |
 
