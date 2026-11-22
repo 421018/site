@@ -19,7 +19,7 @@
 
   document.addEventListener('pointermove', (e) => {
     if (!fine.matches) return;
-    const card = (e.target as Element).closest?.<HTMLElement>('.spot');
+    const card = (e.target as Element).closest?.<HTMLElement>('.spot, [data-glow]');
     if (card) {
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mx', `${e.clientX - r.left}px`);
