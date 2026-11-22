@@ -1,0 +1,32 @@
+---
+/**
+ * The cover of an interior page of the site: night ground, an orbit drawn on
+ * the right, a small line above the title (the section, or the breadcrumbs)
+ * and the title in the serif. No descriptive line under the title: the page
+ * says it. An optional default slot adds a quiet line of facts (last
+ * reviewed, reading time). Styles: .cover in @42chain/ui/site.css.
+ */
+interface Props {
+  /** The small line above the title: a word, or breadcrumbs (the last one may have no link). */
+  kicker?: string;
+  crumbs?: { href?: string; label: string }[];
+  crumbsLabel?: string;
+  title: string;
+  /** Language of the title when the page is shown untranslated. */
+  titleLang?: string;
+}
+const { kicker, crumbs, crumbsLabel, title, titleLang } = Astro.props;
+---
+<section class="cover stars">
+  <svg class="cover-orbit" aria-hidden="true" viewBox="0 0 520 420"><ellipse cx="260" cy="210" rx="230" ry="62" fill="none" stroke="rgba(255,255,255,.10)" transform="rotate(-12 260 210)" /><ellipse cx="260" cy="210" rx="170" ry="44" fill="none" stroke="rgba(91,240,200,.28)" stroke-dasharray="2 7" transform="rotate(-12 260 210)" /><circle cx="260" cy="210" r="78" fill="#0E1C24" stroke="rgba(91,240,200,.4)" /><circle cx="458" cy="150" r="7" fill="#F2C879" /><circle cx="80" cy="262" r="4" fill="#ECEFF4" /></svg>
+  <div class="cover-field" aria-hidden="true"></div>
+  <div class="cover-in">
+    <div class="cover-head">
+      {crumbs ? (
+        <nav class="cover-k" aria-label={crumbsLabel}>{crumbs.map((c, i) => <>{i > 0 && <span aria-hidden="true"> / </span>}{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</>)}</nav>
+      ) : kicker && <p class="cover-k">{kicker}</p>}
+      <h1 lang={titleLang}>{title}</h1>
+      {Astro.slots.has('default') && <div class="cover-meta"><slot /></div>}
+    </div>
+  </div>
+</section>

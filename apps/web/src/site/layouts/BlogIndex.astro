@@ -7,6 +7,7 @@
  */
 import { Image } from 'astro:assets';
 import Base from '../../kit/layouts/Base.astro';
+import Cover from '../components/Cover.astro';
 import Header from '../../kit/components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../../kit/components/PostCard.astro';
@@ -26,12 +27,8 @@ const alternates = Object.fromEntries(await Promise.all(languages.map(async (l) 
 ---
 <Base title={blog.kicker} description={blog.lead} alternates={alternates}>
   <Header currentHref={blogHref(blog, lang)} alternates={alternates} />
-  <div class="rd blog-rd">
-    <div class="blog-head">
-      <p class="lbl">{blog.kicker}</p>
-      <h1>{blog.title}</h1>
-      <p>{blog.lead}</p>
-    </div>
+  <Cover kicker={blog.kicker} title={blog.title} />
+  <div class="rd blog-rd covered">
     <div class="blog-in">
       <a class="feat" href={postHref(blog, featured)}>
         {featured.data.image && <figure class="duo feat-img" style={`--tint: ${categoryTint(blog, fcat.id)}`}><Image src={featured.data.image as never} alt={featured.data.alt!} widths={[600, 1000]} sizes="(max-width: 900px) 100vw, 55vw" /></figure>}

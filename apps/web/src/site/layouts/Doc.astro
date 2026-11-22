@@ -1,5 +1,6 @@
 ---
 import Base from '../../kit/layouts/Base.astro';
+import Cover from '../components/Cover.astro';
 import Header from '../../kit/components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SideNav from '../../kit/components/SideNav.astro';
@@ -35,13 +36,11 @@ const crumbs = [
 ---
 <Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates} canonicalHref={canonicalHref}>
   <Header current={home.key} alternates={alternates} />
-  <div class:list={['rd', { solo: !showSide }]}>
-    <div class="dochead">
-      <nav class="dk crumbs-d" aria-label={header.mainNav}>{crumbs.map((c, i) => <>{i > 0 && <span aria-hidden="true"> / </span>}{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</>)}</nav>
-      <h1 data-pagefind-meta="title" lang={original ? sourceLang : undefined}>{page.data.title}</h1>
-      <p class="ds">{page.data.summary}</p>
-      <p class="dm">{fmt && <>{ui.lastReviewed}: {fmt}</>}{fmt && kit.editBase && <> · </>}{kit.editBase && <a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a>}</p>
-    </div>
+  <Cover crumbs={crumbs} crumbsLabel={header.mainNav} title={page.data.title} titleLang={original ? sourceLang : undefined}>
+    {fmt && <span>{ui.lastReviewed}: {fmt}</span>}
+    {kit.editBase && <a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a>}
+  </Cover>
+  <div class:list={['rd', 'covered', { solo: !showSide }]}>
     <div class="lay">
       {showSide && <SideNav nav={nav} path={path} />}
       <main lang={original ? sourceLang : undefined}>

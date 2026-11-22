@@ -8,6 +8,7 @@
 import { Image } from 'astro:assets';
 import kit from 'virtual:42chain/kit';
 import Base from '../../kit/layouts/Base.astro';
+import Cover from '../components/Cover.astro';
 import Header from '../../kit/components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../../kit/components/PostCard.astro';
@@ -38,18 +39,24 @@ const alternates = Object.fromEntries(languages.map((l) => [l, withLang(postPath
 // filter (the index only shows filters when there is more than one post).
 const filters = (await getBlogPosts(lang)).length > 1;
 const catHref = cat.path ? `${langPrefix(lang)}/${cat.path}` : filters ? `${index}#${cat.id}` : index;
+// Breadcrumbs above the title: home / blog / category.
+const crumbs = [
+  ...(home ? [{ href: homeHref(lang), label: home }] : []),
+  ...(cat.path ? [] : [{ href: index, label: blog.kicker }]),
+  { href: catHref, label: cat.plural },
+];
 ---
 <Base title={post.data.title} description={post.data.summary} canonicalHref={canonicalHref}>
   <Header current={cat.path} currentHref={cat.path ? undefined : index} alternates={alternates} />
   <div class="progress" aria-hidden="true"></div>
-  <div class:list={['rd', { story }]}>
-    <div class="post-head">
-      <nav class="crumbs" aria-label={cat.path ? cat.plural : blog.kicker}>{home && <><a href={homeHref(lang)}>{home}</a> <span aria-hidden="true">/</span> </>}{cat.path ? <a href={catHref}>{cat.plural}</a> : <><a href={index}>{blog.kicker}</a> <span aria-hidden="true">/</span> <a href={catHref}>{cat.plural}</a></>}</nav>
-      <p class="post-meta"><span class="pill">{cat.label}</span><span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>{!story && !cat.path && date && <span>{date}</span>}</p>
-      <h1>{post.data.title}</h1>
-      <p class="post-sum">{post.data.summary}</p>
-      <p class="post-by">{blog.byline}{kit.editBase && <> · <a href={kit.editBase + catalogRelative(post.filePath!)}>{blog.editPost}</a></>}</p>
-    </div>
+  <Cover crumbs={crumbs} crumbsLabel={cat.path ? cat.plural : blog.kicker} title={post.data.title}>
+    <span class="pill">{cat.label}</span>
+    <span>{blog.readingTime.replace('{n}', String(readingMinutes(post)))}</span>
+    {!story && !cat.path && date && <span>{date}</span>}
+    <span>{blog.byline}</span>
+    {kit.editBase && <a href={kit.editBase + catalogRelative(post.filePath!)}>{blog.editPost}</a>}
+  </Cover>
+  <div class:list={['rd', 'covered', { story }]}>
     {post.data.image && (
       <figure class="post-cover">
         <div class="duo" style={`--tint: ${categoryTint(blog, cat.id)}`}><Image src={post.data.image as never} alt={post.data.alt!} widths={[800, 1200, 1600]} sizes="(max-width: 1100px) 100vw, 1100px" /></div>
