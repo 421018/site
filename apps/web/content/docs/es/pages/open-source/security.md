@@ -10,7 +10,7 @@ weight: 20
 Si encuentras una vulnerabilidad en el software del protocolo, en la Consola o en este sitio, repórtala **en privado** a los mantenedores del código:
 
 - Por el sistema de reportes privados del repositorio afectado, o
-- Por correo a [correo de seguridad].
+- Por correo a [security@42chain.org](mailto:security@42chain.org).
 
 No la publiques ni la reportes en un espacio público hasta que esté corregida. Publicarla antes permitiría que otros la aprovecharan.
 

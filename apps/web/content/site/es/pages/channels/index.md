@@ -15,7 +15,8 @@ Estos son los únicos canales oficiales del proyecto. Si un canal no aparece aqu
 | Documentación | Infinite Drive, referencia técnica y herramientas | 42chain.org/docs |
 | X | Anuncios del proyecto | @42protocol |
 | Repositorio | Código fuente, preguntas técnicas, reportes de errores y contribuciones | [repositorio] |
-| Correo de seguridad | Reportes privados de vulnerabilidades del código | [correo de seguridad] |
+| Correo de seguridad | Reportes privados de vulnerabilidades del código | [security@42chain.org](mailto:security@42chain.org) |
+| Correo general | Preguntas sobre el proyecto, propuestas de proveedores y cualquier otro asunto | [info@42chain.org](mailto:info@42chain.org) |
 
 Los proveedores de RPC y los exploradores son independientes y tienen sus propios dominios. Sus direcciones están en el [directorio de proveedores](docs:/get-started/connect#providers).
 

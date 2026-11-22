@@ -51,5 +51,5 @@ Los puntos de acceso a 42 los ofrecen operadores independientes, cada uno con su
 [Operar tu propio nodo →](/operate/nodes)
 
 :::aside
-Quien opere un servicio público para 42, como un punto de acceso RPC, un explorador o un faucet, puede pedir su inclusión en el directorio escribiendo a [correo de contacto].
+Quien opere un servicio público para 42, como un punto de acceso RPC, un explorador o un faucet, puede pedir su inclusión en el directorio escribiendo a [info@42chain.org](mailto:info@42chain.org).
 :::

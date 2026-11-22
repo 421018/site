@@ -10,7 +10,7 @@ weight: 20
 If you find a vulnerability in the protocol software, in the Console or on this site, report it **in private** to the maintainers of the code:
 
 - Through the affected repository's private reporting system, or
-- By email to [security email].
+- By email to [security@42chain.org](mailto:security@42chain.org).
 
 Do not publish it or report it in a public space until it has been fixed. Publishing it earlier would let others exploit it.
 

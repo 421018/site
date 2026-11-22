@@ -18,7 +18,7 @@ This channel is for vulnerabilities in code only. It does not handle network sup
 **Please don't open a public issue or discussion.** Report privately by either:
 
 - GitHub's [private vulnerability reporting](../../security/advisories/new), or
-- Email to **[security email]**.
+- Email to **[security@42chain.org](mailto:security@42chain.org)**.
 
 Include what you found, where (URL or file), how to reproduce it and its potential impact. Reports are handled confidentially. There is no guaranteed response time. Please allow time for a fix before disclosing the issue publicly.
 

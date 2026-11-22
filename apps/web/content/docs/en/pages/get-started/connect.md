@@ -51,5 +51,5 @@ Access points to 42 are offered by independent operators, each with its own infr
 [Run your own node →](/operate/nodes)
 
 :::aside
-Anyone who runs a public service for 42, such as an RPC access point, an explorer or a faucet, can ask to be added to the directory by writing to [contact email].
+Anyone who runs a public service for 42, such as an RPC access point, an explorer or a faucet, can ask to be added to the directory by writing to [info@42chain.org](mailto:info@42chain.org).
 :::
