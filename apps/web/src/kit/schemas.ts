@@ -164,8 +164,8 @@ export const siteTextSchema = z
       })
       .strict(),
     /**
-     * The footer of the whole site, written once in the site's site.md: the
-     * documentation and the console show its compact form. Licenses are
+     * The footer of the whole site, written once in the site's site.md and
+     * shown by every area (site, documentation, console). Licenses are
      * explained on the legal page, not here.
      */
     footer: z
@@ -176,8 +176,6 @@ export const siteTextSchema = z
         tagline: z.string().optional(),
         /** The full footer's groups of links (the site). */
         columns: z.array(z.object({ label: z.string(), links: z.array(z.object({ label: z.string(), href: z.string(), text: z.string().optional() }).strict()) }).strict()).optional(),
-        /** The compact footer's links (documentation, console): the site's main destinations. */
-        compact: z.array(link).default([]),
         /** The full footer's bottom line, next to the copyright (e.g. legal). */
         bottom: z.array(link).default([]),
         /** Label of the "back to top" link in the full footer. */

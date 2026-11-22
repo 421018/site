@@ -1,16 +1,16 @@
 ---
 /**
- * Frame of every console screen: a top bar (brand, network, the other areas,
- * language), the side menu of screens and the screen's heading. The screen's
+ * Frame of every console screen: the header of every area with the network
+ * switch, the side menu of screens, the screen's heading and the site's footer. The screen's
  * body goes in the default slot. Styles: @42chain/ui/console.css.
  */
 import Base from '../kit/layouts/Base.astro';
-import LangMenu from '../kit/components/LangMenu.astro';
-import Footer from '../kit/components/AreaFooter.astro';
+import Header from '../kit/components/Header.astro';
+import Footer from '../site/components/Footer.astro';
 import NetworkSwitch from '../network/components/NetworkSwitch.astro';
 import { getSiteText } from '../kit/site';
-import { homeHref, langOf, languages, resolveHref, withLang } from '../kit/i18n';
-import { areaIcons, consoleIcons } from '../art/areas';
+import { langOf, languages, withLang } from '../kit/i18n';
+import { consoleIcons } from '../art/areas';
 import { getConsoleText, SCREENS, type ScreenId } from './text';
 interface Props { screen: ScreenId; kicker: string; title: string; lead: string }
 const { screen, kicker, title, lead } = Astro.props;
@@ -20,25 +20,18 @@ const t = await getConsoleText(lang);
 const hrefOf = (path: string, l = lang) => withLang(path ? `/${path}` : '/', l, 'console');
 const current = SCREENS.find((s) => s.id === screen)!;
 const alternates = Object.fromEntries(languages.map((l) => [l, hrefOf(current.path, l)]));
-const tools = site.header.links.map((l) => ({ label: l.label, href: resolveHref(l.href, lang, 'console'), to: l.href.match(/^(site|docs):/)?.[1] as 'site' | 'docs' | undefined }));
+const nav = SCREENS.map((s) => ({ label: t.nav[s.id], href: hrefOf(s.path), on: s.id === screen }));
 const svg = (d: string, size = 18) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
 ---
 <Base title={screen === 'overview' ? undefined : t.nav[screen]} alternates={alternates} product="console">
   <div class="cx">
-    <header class="cx-top">
-      <a class="cx-brand" href={homeHref(lang, 'console')} aria-label={site.header.homeLink}><span class="mark">42</span><span class="name">{site.header.brand}</span></a>
-      <NetworkSwitch />
-      <div class="cx-tools">
-        {tools.map((l) => l.to && (
-          <a class:list={['htool', `to-${l.to}`]} href={l.href} aria-label={l.label}><Fragment set:html={svg(areaIcons[l.to], 16)} /><span>{l.label}</span></a>
-        ))}
-        <LangMenu alternates={alternates} />
-      </div>
-    </header>
+    <Header alternates={alternates} nav={nav}>
+      <div slot="controls" class="hnet"><NetworkSwitch /></div>
+    </Header>
     <div class="cx-body">
       <nav class="cx-side" aria-label={site.header.mainNav}>
-        {SCREENS.map((s) => (
-          <a href={hrefOf(s.path)} aria-current={s.id === screen ? 'page' : undefined}><Fragment set:html={svg(consoleIcons[s.id])} />{t.nav[s.id]}</a>
+        {SCREENS.map((s, n) => (
+          <a href={nav[n].href} aria-current={nav[n].on ? 'page' : undefined}><Fragment set:html={svg(consoleIcons[s.id])} />{nav[n].label}</a>
         ))}
       </nav>
       <main class="cx-main">

@@ -16,6 +16,20 @@
   --fg-2: #C5CCD4;
   --fg-3: #A3ADB8;       /* dust */
   --fg-4: #8792A0;
+  /* The header's colours (base.css → header): the night. The documentation's light theme redefines them inside its bar. */
+  --h-bg: var(--night);
+  --h-fg: var(--fg);
+  --h-dim: var(--fg-3);
+  --h-faint: var(--fg-4);
+  --h-hi: #fff;
+  --h-line: var(--line-d);
+  --h-line2: var(--line-d2);
+  --h-hover: rgba(17,22,28,.85);
+  --h-pop: rgba(5,7,10,.96);
+  --h-pop-line: #2A313A;
+  --h-mark: var(--aurora);
+  --h-tint: rgba(91,240,200,.06);
+  --h-shadow: rgba(0,0,0,.55);
   /* Self-hosted at build time (astro.config.mjs → fonts). */
   --font: var(--font-geist);
   --mono: var(--font-geist-mono);

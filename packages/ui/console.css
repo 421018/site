@@ -1,5 +1,5 @@
-/* 42 Chain — the console (/console): a dark working surface. A top bar
-   (brand, network, the other areas, language), a side menu and panels.
+/* 42 Chain — the console (/console): a dark working surface. The header of
+   every area (full width, with the network switch), a side menu and panels.
    Loaded by every page under apps/web/src/pages/console/. */
 @import './tokens.css';
 @import './base.css';
@@ -21,17 +21,14 @@
 body { background: var(--bg); color: var(--ink); }
 
 /* ---------- frame ---------- */
+/* the shared header (base.css), across the full width like the console itself */
+:root[data-product="console"] { --hbar-w: none; --hbar-px: clamp(16px, 2.5vw, 28px); --foot-w: none; --foot-px: var(--hbar-px); }
 .cx { min-height: 100vh; display: flex; flex-direction: column; }
-.cx-top { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 clamp(16px, 2.5vw, 28px); border-bottom: 1px solid var(--rule); background: rgba(8,11,15,.92); backdrop-filter: blur(10px); }
-.cx-brand { display: flex; align-items: center; gap: 10px; color: var(--head); text-decoration: none; font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
-.cx-brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1.5px solid var(--head); border-radius: 8px; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: -0.04em; }
-.cx .cx-top .netsw { margin: 0 0 0 auto; }
 /* narrow screens: the network switch moves from the bar to the top of the screen */
 .cx-netm { display: none; }
 .cx .cx-netm .netsw { margin: 0 0 24px; }
-.cx-tools { display: flex; align-items: center; gap: 8px; }
 .cx-body { flex: 1; display: grid; grid-template-columns: 232px minmax(0, 1fr); }
-.cx-side { position: sticky; top: 64px; align-self: start; display: flex; flex-direction: column; gap: 2px; padding: 20px 12px; height: calc(100vh - 64px); border-right: 1px solid var(--rule); }
+.cx-side { position: sticky; top: 73px; align-self: start; display: flex; flex-direction: column; gap: 2px; padding: 20px 12px; height: calc(100vh - 73px); border-right: 1px solid var(--rule); }
 .cx-side a { display: flex; align-items: center; gap: 12px; min-height: 42px; padding: 0 12px; border-radius: 9px; color: var(--muted); text-decoration: none; font-size: 14.5px; }
 .cx-side a svg { flex: none; opacity: .85; }
 .cx-side a:hover { color: var(--head); background: var(--soft); }
@@ -100,17 +97,12 @@ body { background: var(--bg); color: var(--ink); }
 
 @media (max-width: 960px) {
   .cx-body { grid-template-columns: 1fr; }
-  .cx-side { position: static; height: auto; flex-direction: row; overflow-x: auto; padding: 8px 12px; border-right: 0; border-bottom: 1px solid var(--rule); }
-  .cx-side a { flex: none; }
-  .cx .cx-top .netsw { display: none; }
-  .cx-top .cx-tools { margin-left: auto; }
+  /* the screens move into the header's Menu, as the site's and the documentation's sections do */
+  .cx-side { display: none; }
   .cx-netm { display: block; }
   .cx-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .cx-grid { grid-template-columns: 1fr; }
-  .cx-tools .htool span { display: none; }
-  .cx-tools .htool { padding: 0 11px; }
-  .cx-brand .name { display: none; }
   .cx-col-url { display: none; }
 }

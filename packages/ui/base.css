@@ -16,37 +16,60 @@ img, svg { display: block; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
 /* ---------- header ---------- */
+/* One header for every area (kit/components/Header.astro). Its colours are --h-* (the night by
+   default, in tokens.css): the documentation's light theme redefines them inside .hbar only, so the
+   footer's brand and language menu stay in the night. Width and side padding (--hbar-w, --hbar-px)
+   follow each area's content: the site's 1280px column, the documentation's 1440px, the console's full width. */
 .site-header { position: relative; z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--fg); }
-.brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1.5px solid var(--fg); border-radius: 9px; font-family: var(--mono); font-weight: 500; font-size: 17px; letter-spacing: -0.04em; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--h-fg); }
+.brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1.5px solid currentColor; border-radius: 9px; font-family: var(--mono); font-weight: 500; font-size: 17px; letter-spacing: -0.04em; }
 .brand .name { font-weight: 600; font-size: 18px; letter-spacing: -0.02em; }
 .menu { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
-.nl { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-height: 44px; padding: 0 14px; font-size: 14.5px; color: var(--fg-3); text-decoration: none; border-radius: 8px; transition: color .2s, background .2s; }
+.nl { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-height: 44px; padding: 0 14px; font-size: 14.5px; color: var(--h-dim); text-decoration: none; border-radius: 8px; transition: color .2s, background .2s; }
 /* reserve the bold width so the active link doesn't shift its neighbours */
 .nl::after { content: attr(data-label); height: 0; overflow: hidden; visibility: hidden; font-weight: 600; pointer-events: none; user-select: none; }
-.nl:hover { color: #fff; background: rgba(17,22,28,.85); }
-.nl.on { color: #fff; font-weight: 600; box-shadow: inset 0 -2px 0 var(--aurora); border-radius: 0; }
+.nl:hover { color: var(--h-hi); background: var(--h-hover); }
+.nl.on { color: var(--h-hi); font-weight: 600; box-shadow: inset 0 -2px 0 var(--h-mark); border-radius: 0; }
 /* The header bar: the same box on every page of an area (width, height and
    position), so moving between pages never shifts the menu. */
-.hbar { position: sticky; top: 0; z-index: 30; background-color: var(--night); border-bottom: 1px solid var(--line-d); transition: border-color .35s, box-shadow .35s; }
+.hbar { position: sticky; top: 0; z-index: 30; background-color: var(--h-bg); border-bottom: 1px solid var(--h-line); transition: border-color .35s, box-shadow .35s; }
 /* once the page scrolls, the bar lifts off the content with a soft shadow (solid: over the paper sections a glass bar turns grey) */
-html[data-scrolled] .hbar { border-bottom-color: rgba(255,255,255,.06); box-shadow: 0 12px 32px -16px rgba(0,0,0,.55); }
-.hbar > .site-header { max-width: 1280px; min-height: 72px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 40px); box-sizing: border-box; flex-wrap: nowrap; }
+html[data-scrolled] .hbar { border-bottom-color: var(--h-line); box-shadow: 0 12px 32px -16px var(--h-shadow); }
+.hbar > .site-header { max-width: var(--hbar-w, 1280px); min-height: 72px; margin: 0 auto; padding: 14px var(--hbar-px, clamp(16px, 4vw, 40px)); box-sizing: border-box; flex-wrap: nowrap; }
 .hbar .menu { margin-left: auto; flex-wrap: nowrap; }
 .hside { display: flex; align-items: center; gap: 8px; }
+/* without a menu in the bar (documentation, console) the controls go to the right */
+.hbar-docs .hside, .hbar-console .hside { margin-left: auto; }
 /* A button to another area (the documentation, back to the site, the console):
    it changes the whole view, so it looks different from the menu links. */
-.htool { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--line-d2); border-radius: 999px; color: var(--fg); text-decoration: none; font-size: 14px; font-weight: 500; transition: border-color .2s, background .2s; }
-.htool svg { color: var(--aurora); flex: none; }
-.htool:hover { border-color: var(--aurora); background: rgba(91,240,200,.06); }
-.ml-sep { height: 1px; margin: 6px 8px; background: #2A313A; }
-.ml.tool { gap: 10px; color: var(--fg); }
-.ml.tool svg { color: var(--aurora); }
+.htool { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--h-line2); border-radius: 999px; color: var(--h-fg); text-decoration: none; font-size: 14px; font-weight: 500; transition: border-color .2s, background .2s; }
+.htool svg { color: var(--h-mark); flex: none; }
+.htool:hover { border-color: var(--h-mark); background: var(--h-tint); }
+/* a round icon button in the bar (the documentation's theme) */
+.hicon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border: 1px solid var(--h-line2); border-radius: 50%; background: transparent; color: var(--h-fg); cursor: pointer; transition: border-color .2s, background .2s; }
+.hicon:hover { border-color: var(--h-mark); background: var(--h-tint); }
+/* the network switch, when it sits in the bar: a pill like the other controls */
+.hbar .hside .hnet .netsw { margin: 0; padding: 3px; border-color: var(--h-line2); border-radius: 999px; background: transparent; }
+.hbar .hside .hnet .netsw button { min-height: 32px; padding: 0 14px; border-radius: 999px; color: var(--h-dim); font-size: 14px; }
+.hbar .hside .hnet .netsw button[aria-pressed="true"] { background: var(--h-hover); color: var(--h-hi); box-shadow: inset 0 0 0 1px var(--h-line2); }
+/* the documentation's search box, in the bar between the brand and the controls */
+.hsearch { flex: 1 1 200px; min-width: 0; max-width: 440px; margin-left: 12px; }
+.hbar .hsearch .sbtn { width: 100%; justify-content: flex-start; min-height: 40px; padding: 0 16px; border: 1px solid var(--h-line2); border-radius: 999px; color: var(--h-faint); }
+.hbar .hsearch .sbtn:hover { color: var(--h-hi); border-color: var(--h-mark); background: var(--h-tint); }
+/* the documentation's sections: a row of tabs under the bar, the same links and active mark as the site's menu */
+.htabs { display: flex; gap: 2px; max-width: var(--hbar-w, 1280px); margin: -6px auto 0; padding: 0 calc(var(--hbar-px, clamp(16px, 4vw, 40px)) - 14px); overflow-x: auto; scrollbar-width: none; }
+.htabs::-webkit-scrollbar { display: none; }
+.htabs .nl { flex: none; min-height: 44px; }
+.htabs .nl:hover { background: transparent; }
+.ml-sep { height: 1px; margin: 6px 8px; background: var(--h-pop-line); }
+.ml.tool { gap: 10px; color: var(--h-fg); }
+.ml.tool svg { color: var(--h-mark); }
 /* language menu: a globe that opens the languages, each in its own name */
-.lm { position: relative; --lm-fg: var(--fg-2); --lm-line: var(--line-d2); --lm-bg: rgba(5,7,10,.97); --lm-hover: rgba(255,255,255,.06); --lm-muted: var(--fg-4); --lm-on: #fff; }
+.lm { position: relative; --lm-fg: var(--fg-2); --lm-line: var(--line-d2); --lm-bg: rgba(5,7,10,.97); --lm-hover: rgba(255,255,255,.06); --lm-muted: var(--fg-4); --lm-on: #fff; --lm-mark: var(--aurora); }
+.hbar .lm { --lm-fg: var(--h-fg); --lm-line: var(--h-line2); --lm-bg: var(--h-pop); --lm-hover: var(--h-hover); --lm-muted: var(--h-faint); --lm-on: var(--h-hi); --lm-mark: var(--h-mark); }
 .lm-btn { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 10px; border: 1px solid var(--lm-line); border-radius: 999px; color: var(--lm-fg); cursor: pointer; list-style: none; transition: border-color .2s, color .2s; }
 .lm-btn::-webkit-details-marker { display: none; }
-.lm-btn:hover, .lm[open] .lm-btn { border-color: var(--aurora); color: var(--lm-on); }
+.lm-btn:hover, .lm[open] .lm-btn { border-color: var(--lm-mark); color: var(--lm-on); }
 .lm-chev { opacity: .7; transition: transform .2s; }
 .lm[open] .lm-chev { transform: rotate(180deg); }
 .lm-panel { position: absolute; right: 0; top: calc(100% + 8px); z-index: 45; min-width: 220px; padding: 6px; border: 1px solid var(--lm-line); border-radius: 12px; background: var(--lm-bg); backdrop-filter: blur(8px); box-shadow: 0 20px 50px rgba(0,0,0,.35); }
@@ -55,7 +78,7 @@ html[data-scrolled] .hbar { border-bottom-color: rgba(255,255,255,.06); box-shad
 .lm-item:hover { background: var(--lm-hover); color: var(--lm-on); }
 .lm-item.on { color: var(--lm-on); font-weight: 600; }
 .lm-code { margin-left: auto; font-family: var(--mono); font-size: 11.5px; font-weight: 400; color: var(--lm-muted); }
-.lm-check { color: var(--aurora); flex: none; }
+.lm-check { color: var(--lm-mark); flex: none; }
 /* section panels (dropdown: true) */
 .dd { display: inline-flex; align-items: center; }
 .dd .nl { padding-right: 4px; }
@@ -80,17 +103,20 @@ html[data-scrolled] .hbar { border-bottom-color: rgba(255,255,255,.06); box-shad
 .hcta { display: inline-flex; align-items: center; min-height: 40px; margin-left: 10px; padding: 0 16px; border-radius: 999px; background: var(--fg); color: var(--night); text-decoration: none; font-size: 14px; font-weight: 500; }
 .hcta:hover { background: #fff; }
 .ml.sub { min-height: 38px; padding-left: 26px; font-size: 14px; }
-.ml.cta { color: var(--fg); font-weight: 500; }
+.ml.cta { font-weight: 500; }
 /* collapsed main menu for narrow screens */
 .menu-m { display: none; position: relative; }
-.menu-m summary { list-style: none; cursor: pointer; border: 1px solid #2A313A; color: var(--fg); }
+.menu-m summary { list-style: none; cursor: pointer; border: 1px solid var(--h-line2); border-radius: 999px; color: var(--h-fg); }
 .menu-m summary::-webkit-details-marker { display: none; }
-.menu-m nav { position: absolute; right: 0; top: calc(100% + 8px); min-width: 260px; max-height: 75vh; overflow-y: auto; display: flex; flex-direction: column; padding: 6px; border: 1px solid #2A313A; border-radius: 10px; background: rgba(5,7,10,.96); backdrop-filter: blur(8px); }
-.ml { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; color: var(--fg-3); text-decoration: none; font-size: 15px; }
-.ml:hover { color: #fff; background: rgba(17,22,28,.85); }
+.menu-m nav { position: absolute; right: 0; top: calc(100% + 8px); min-width: 260px; max-height: 75vh; overflow-y: auto; display: flex; flex-direction: column; padding: 6px; border: 1px solid var(--h-pop-line); border-radius: 12px; background: var(--h-pop); backdrop-filter: blur(8px); box-shadow: 0 20px 50px var(--h-shadow); }
+.ml { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 8px; color: var(--h-dim); text-decoration: none; font-size: 15px; }
+.ml:hover { color: var(--h-hi); background: var(--h-hover); }
 button.ml { width: 100%; border: 0; background: transparent; font: inherit; text-align: left; cursor: pointer; }
-.ml.on { color: #fff; font-weight: 600; box-shadow: inset 2px 0 0 var(--aurora); }
-@media (max-width: 960px) { .site-header { flex-wrap: nowrap; } .menu { display: none; } .menu-m { display: block; } .hside .htool, .hside .hcta { display: none; } }
+.ml.on { color: var(--h-hi); font-weight: 600; box-shadow: inset 2px 0 0 var(--h-mark); }
+.ml.cta { color: var(--h-fg); }
+/* narrow screens: the menu, the tabs and the buttons to other areas go into the Menu disclosure */
+@media (max-width: 960px) { .site-header { flex-wrap: nowrap; } .menu, .htabs { display: none; } .menu-m { display: block; } .hside .htool, .hside .hcta { display: none; } .hside .hnet { display: none; } .hbar .menu-m { margin-left: 0; } }
+@media (max-width: 640px) { .hsearch { flex: 0 0 auto; margin-left: auto; } .hbar-docs .hside { margin-left: 8px; } .hbar .hsearch .sbtn { width: 40px; padding: 0; justify-content: center; } .hbar .hsearch .sbtn span { display: none; } .hbar-docs .brand .name, .hbar-console .brand .name { font-size: 16px; } }
 /* ---------- buttons & links ---------- */
 .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 500; transition: background .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s; }
 .btn svg { transition: transform .3s cubic-bezier(.16,1,.3,1); }
@@ -162,7 +188,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 /* right-hand index of a reading page: the heading being read is marked */
 .rtoc { flex: 0 0 210px; margin-left: 48px; padding-top: 56px; font-size: 13.5px; }
 .rtoc p { margin: 0 0 12px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.rtoc nav { position: sticky; top: 104px; display: flex; flex-direction: column; border-left: 1px solid var(--rule); }
+.rtoc nav { position: sticky; top: calc(var(--hbar-h, 72px) + 32px); display: flex; flex-direction: column; border-left: 1px solid var(--rule); }
 .rtoc a, .dl-toc a { transition: color .2s, box-shadow .2s; }
 .rtoc a { margin-left: -1px; padding: 6px 0 6px 14px; color: var(--muted); text-decoration: none; line-height: 1.35; }
 .rtoc a:hover { color: var(--head); }
@@ -170,7 +196,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .dl-toc a { padding-left: 10px; margin-left: -10px; }
 @media (max-width: 1180px) { .rtoc { display: none; } }
 /* the brand's light: a thin line of the drive gradient under every header (site, docs, console) */
-.hbar::after, .dh::after, .cx-top::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, #5BF0C8 25%, #7C9CFF 55%, #F2C879 80%, transparent); opacity: .45; pointer-events: none; }
+.hbar::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, #5BF0C8 25%, #7C9CFF 55%, #F2C879 80%, transparent); opacity: .45; pointer-events: none; }
 /* ---------- live block stream (network/live.ts mountStream): each block a page joining the chain, the newest in gold ---------- */
 .lb-stream{position:relative;margin:56px 0 0;padding:18px 0 8px;-webkit-mask:linear-gradient(90deg,transparent,#000 22%);mask:linear-gradient(90deg,transparent,#000 22%)}
 .lb-blocks{display:flex;justify-content:flex-end;align-items:flex-end;gap:14px;min-height:78px;margin:0;padding:0 4px 0 0;list-style:none}
@@ -182,31 +208,28 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .lb-b.now .lb-n{color:var(--star)}
 .lb-b.new{animation:lb-in .9s cubic-bezier(.16,1,.3,1)}
 @keyframes lb-in{from{opacity:0;transform:translateX(56px) scale(.6)}}
-/* ---------- footer ---------- */
-/* ---------- compact footer: the documentation and the console, each in its palette ---------- */
-.pf { border-top: 1px solid var(--rule); background: var(--soft); color: var(--muted); font-size: 14px; }
-.pf-in { max-width: 1280px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; }
-.pf-id { display: flex; flex-direction: column; gap: 6px; margin-right: auto; }
-.pf a.pf-brand, .pf-brand { display: inline-flex; align-items: center; gap: 8px; color: var(--head); text-decoration: none; font-weight: 600; font-size: 15px; }
-.pf-brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 7px; background: var(--head); color: var(--bg); font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: -0.04em; }
-.pf-note { font-family: var(--mono); font-size: 12px; color: var(--muted); }
-.pf-nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
-.pf a { color: var(--muted); text-decoration: none; }
-.pf a:hover { color: var(--link); }
-.pf-nav a[aria-current] { color: var(--head); font-weight: 600; }
-.pf-social { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--rule); border-radius: 50%; }
-.pf a.pf-social { color: var(--head); }
-.pf a.pf-social:hover { color: var(--head); border-color: var(--link); }
-/* the language menu in the compact footer: the area's palette, opening upwards */
-.pf-side { display: flex; align-items: center; gap: 8px; }
-.pf .lm { --lm-fg: var(--muted); --lm-line: var(--rule); --lm-bg: var(--surface); --lm-hover: var(--soft); --lm-muted: var(--muted); --lm-on: var(--head); }
-.pf .lm-btn:hover, .pf .lm[open] .lm-btn { border-color: var(--link); }
-.pf .lm-check { color: var(--link); }
-.pf .lm-panel { top: auto; bottom: calc(100% + 8px); box-shadow: 0 -12px 40px rgba(0,0,0,.14); }
-.pf a.lm-item { color: var(--lm-fg); }
-.pf a.lm-item.on { color: var(--lm-on); }
-.site-footer { border-top: 1px solid var(--line-d); padding: 56px clamp(16px, 4vw, 56px) 36px; overflow: hidden; }
-.site-footer .inner { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+/* ---------- footer: the same in every area, always in the night ---------- */
+/* the documentation and the console line it up with their header (--foot-w, --foot-px) */
+.site-footer { border-top: 1px solid var(--line-d); background: var(--night); color: var(--fg); padding: 56px var(--foot-px, clamp(16px, 4vw, 56px)) 36px; overflow: hidden; }
+.site-footer .inner { max-width: var(--foot-w, 1320px); margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+/* the site's footer, in bands: the mark and its line with the profiles and the
+   language above; four groups of links across the full width; the copyright,
+   legal and back to top below; DON'T PANIC closes it */
+.ftop { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding-bottom: 40px; border-bottom: 1px solid var(--line-d); }
+.fbrand { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.fbrand p { margin: 0; font-size: 15px; color: var(--fg-3); }
+.fside { display: flex; align-items: center; gap: 12px; }
+.fsoc { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.fsoc a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line-d2); border-radius: 50%; color: var(--fg-2); transition: border-color .2s, color .2s; }
+.fsoc a:hover { border-color: var(--aurora); color: #fff; }
+.fnav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.site-footer .fbase { padding-top: 24px; border-top: 1px solid var(--line-d); }
+.fbase-r { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.ftop-link { display: inline-flex; align-items: center; gap: 6px; }
+.flink.wtext { display: flex; flex-direction: column; gap: 2px; max-width: 280px; }
+.flink .fl-l { color: var(--fg-2); }
+.flink .fl-t { font-size: 14px; line-height: 1.5; color: var(--fg-4); }
+@media (max-width: 900px) { .fnav { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .fnav > div { display: flex; flex-direction: column; }
 .fnav .lbl { margin: 0 0 14px; color: var(--fg-4); }
 .flink { color: var(--fg-3); text-decoration: none; font-size: 15px; padding: 8px 0; display: inline-block; }
@@ -238,6 +261,8 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 @keyframes mtflow { to { background-position: -200% 0; } }
 @container (max-width: 540px) { .megatype-word::after { display: none; } .megatype-word { font-size: 36.5cqi; line-height: .92; } .megatype-word > span { display: block; } .megatype-word > .megatype-sp { display: none; } }
 .fbase { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--fg-4); }
+.ext .fl-l::after { content: "\00a0\2197" / ""; }
+.ext.wtext::after { content: none; }
 .flink-b { color: inherit; text-decoration: none; }
 .flink-b:hover { color: var(--acc); }
 .fcta { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; align-items: end; }

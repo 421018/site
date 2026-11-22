@@ -49,28 +49,22 @@
   color-scheme: dark;
 }
 [data-product="docs"] body { background: var(--bg); color: var(--ink); }
-/* header */
-.dh { position: sticky; top: 0; z-index: 30; background: var(--surface); border-bottom: 1px solid var(--rule); }
-.dh-top { max-width: 1440px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 32px); display: flex; align-items: center; gap: 20px; }
-.dh-brand { display: flex; align-items: center; gap: 10px; color: var(--head); text-decoration: none; font-weight: 500; }
-.dh-mark { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; border: 1.5px solid var(--head); color: var(--head); font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: -0.04em; }
-.dh-search { flex: 1 1 200px; min-width: 0; max-width: 460px; }
-.dh .dh-search .sbtn { width: 100%; justify-content: flex-start; min-height: 40px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 10px; background: var(--soft); color: var(--muted); }
-.dh .dh-search .sbtn:hover { color: var(--head); background: var(--soft); border-color: var(--rule2); }
-.dh-tools { margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none; }
-.dh .dh-net .netsw { margin: 0; }
-.dh-theme { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); color: var(--head); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
-.dh-link { display: inline-flex; align-items: center; min-height: 40px; padding: 0 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
-.dh-link:hover { color: var(--head); }
+/* header: the shared bar (base.css) over the documentation's 1440px column; in the light theme its colours turn light */
+:root[data-product="docs"] { --hbar-w: 1440px; --hbar-px: clamp(16px, 3vw, 32px); --foot-w: var(--hbar-w); --foot-px: var(--hbar-px);
+  /* height of the sticky header (bar and tabs; plus the notice until it is dismissed): what stays visible under it */
+  --hbar-h: 158px; scroll-padding-top: calc(var(--hbar-h) + 16px); }
+:root[data-product="docs"][data-notice="off"] { --hbar-h: 111px; }
+:root[data-product="docs"]:not([data-theme="dark"]) .hbar {
+  --h-bg: #FFFFFF; --h-fg: #0E1319; --h-dim: #5A636E; --h-faint: #6B7480; --h-hi: #0E1319;
+  --h-line: #E6E4DE; --h-line2: #D9D6CE; --h-hover: #F3F2EE; --h-pop: #FFFFFF; --h-pop-line: #E6E4DE;
+  --h-mark: #0A7A5E; --h-tint: rgba(10,122,94,.06); --h-shadow: rgba(14,19,25,.12);
+}
+:root[data-product="docs"]:not([data-theme="dark"]) .hbar::after { opacity: .7; }
 
-.dh-tabs { max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px); display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-.dh-tabs a { flex: none; padding: 12px 14px; color: var(--muted); text-decoration: none; font-size: 14px; border-bottom: 2px solid transparent; }
-.dh-tabs a:hover { color: var(--head); }
-.dh-tabs a[aria-current="true"] { color: var(--head); font-weight: 500; border-bottom-color: var(--head); }
 /* three columns */
 .dl { max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 32px) 96px; display: flex; gap: 48px; font-size: 16px; line-height: 1.7; color: var(--ink); }
 .dl .sidewrap { flex: 0 0 240px; margin-right: 0; }
-.dl .side { padding-top: 32px; position: sticky; top: 112px; max-height: calc(100vh - 130px); overflow-y: auto; }
+.dl .side { padding-top: 32px; position: sticky; top: var(--hbar-h); max-height: calc(100vh - var(--hbar-h) - 16px); overflow-y: auto; }
 .dl main { flex: 1 1 640px; min-width: 0; max-width: 780px; padding-top: 32px; }
 .dl-crumb { margin: 0; font-size: 13px; color: var(--muted); }
 .dl-crumb a { color: var(--muted); }
@@ -85,7 +79,7 @@
 .dl .prose > h2:first-child { margin-top: 32px; }
 .dl-toc { flex: 0 0 200px; padding-top: 40px; font-size: 13.5px; }
 .dl-toc p { margin: 0 0 10px; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.dl-toc nav { position: sticky; top: 120px; display: flex; flex-direction: column; gap: 8px; }
+.dl-toc nav { position: sticky; top: calc(var(--hbar-h) + 8px); display: flex; flex-direction: column; gap: 8px; }
 .dl-toc a { color: var(--muted); text-decoration: none; line-height: 1.35; }
 .dl-toc a.sub { padding-left: 12px; }
 .dl-toc a:hover { color: var(--link); }
@@ -93,33 +87,25 @@
 [data-product="docs"] .prose pre code { background: transparent; padding: 0; color: inherit; }
 [data-product="docs"] .side a.on, [data-product="docs"] .side-m a.on { color: var(--link); box-shadow: inset 2px 0 0 var(--link); }
 @media (max-width: 1180px) { .dl-toc { display: none; } }
-@media (max-width: 1000px) { .dl { flex-direction: column; gap: 0; } .dl .side { position: static; max-height: none; } }
+@media (max-width: 1000px) { .dl { flex-direction: column; gap: 0; } .dl .sidewrap { flex: none; } .dl .side { position: static; max-height: none; } }
 /* the pages with network data have their own switch */
-@media (max-width: 1180px) { .dh-net { display: none; } }
-@media (max-width: 640px) { .dh-link { display: none; } .dh .dh-search .sbtn span { display: none; } .dh .htool span { display: none; } .dh .htool { padding: 0 11px; } }
 /* the footer keeps the brand's dark space in both themes */
 /* Footer: compact, on the theme's soft ground; the sibling site is an external link. */
 /* Links that leave the site (42 Chain or any external URL): an arrow after the label. */
 .ext::after, [data-product="docs"] .prose a[href^="http"]:not([href^="http://localhost"])::after { content: "\00a0\2197" / ""; }
-/* notice under the header (e.g. under construction): visible on every page */
-.dh-notice { background: #FBEFD3; border-top: 1px solid #EBD29A; border-bottom: 1px solid #EBD29A; color: #5C4410; }
-[data-theme="dark"] .dh-notice { background: #2A2210; border-color: #4A3B17; color: #F2D58E; }
-.dh-notice-in { max-width: 1440px; margin: 0 auto; padding: 8px clamp(16px, 3vw, 32px); display: flex; gap: 12px; align-items: center; }
-[data-notice="off"] .dh-notice { display: none; }
-.dh-notice p { flex: 1; min-width: 0; }
-.dh-notice-x { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 0; border-radius: 8px; background: transparent; color: inherit; cursor: pointer; }
-.dh-notice-x:hover { background: rgba(0,0,0,.08); }
-[data-theme="dark"] .dh-notice-x:hover { background: rgba(255,255,255,.08); }
-@media (max-width: 760px) { .dh-notice p span { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; } }
-.dh-notice-in > svg { flex: none; }
-.dh-notice p { margin: 0; font-size: 13.5px; line-height: 1.5; }
-.dh-notice b { font-weight: 600; }
+/* notice under the header (e.g. under construction): visible on every page until dismissed */
+.hnotice { background: #FBEFD3; border-top: 1px solid #EBD29A; color: #5C4410; }
+[data-theme="dark"] .hnotice { background: #2A2210; border-color: #4A3B17; color: #F2D58E; }
+.hnotice-in { max-width: var(--hbar-w); margin: 0 auto; padding: 8px var(--hbar-px); display: flex; gap: 12px; align-items: center; }
+.hnotice-in > svg { flex: none; }
+.hnotice p { flex: 1; min-width: 0; margin: 0; font-size: 13.5px; line-height: 1.5; }
+.hnotice b { font-weight: 600; }
+.hnotice-x { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 0; border-radius: 50%; background: transparent; color: inherit; cursor: pointer; }
+.hnotice-x:hover { background: rgba(0,0,0,.08); }
+[data-theme="dark"] .hnotice-x:hover { background: rgba(255,255,255,.08); }
+[data-notice="off"] .hnotice { display: none; }
+/* the pages with network data have their own switch */
+@media (max-width: 1180px) { .hbar .hnet { display: none; } }
+@media (max-width: 760px) { .hnotice p span { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; } }
 
 /* the language menu and the buttons to the site, in the documentation's light (and dark) theme */
-.dh .lm { --lm-fg: var(--muted); --lm-line: var(--rule); --lm-bg: var(--surface); --lm-hover: var(--soft); --lm-muted: var(--muted); --lm-on: var(--head); }
-.dh .lm-panel { box-shadow: 0 16px 40px rgba(0,0,0,.12); }
-.dh .htool { min-height: 40px; border-color: var(--rule); color: var(--head); background: var(--surface); }
-.dh .htool svg { color: var(--link); }
-.dh .htool:hover { border-color: var(--link); background: var(--soft); }
-.dh .lm-btn:hover, .dh .lm[open] .lm-btn { border-color: var(--link); }
-.dh .lm-check { color: var(--link); }

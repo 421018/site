@@ -28,26 +28,8 @@
 /* ---------- links that leave the site ---------- */
 /* Another site (42 Protocol) or any external URL: an arrow after the label.
    Decorative only: the label already names where the link goes. */
-.ext::after, .ext .fl-l::after, .prose a[href^="http"]:not([href^="http://localhost"])::after { content: "\00a0\2197" / ""; }
+.ext::after, .prose a[href^="http"]:not([href^="http://localhost"])::after { content: "\00a0\2197" / ""; }
 .ext.wtext::after { content: none; }
-/* the site's footer, in bands: the mark and its line with the profiles and the
-   language above; four groups of links across the full width; the copyright,
-   legal and back to top below; DON'T PANIC closes it */
-.ftop { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px; padding-bottom: 40px; border-bottom: 1px solid var(--line-d); }
-.fbrand { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
-.fbrand p { margin: 0; font-size: 15px; color: var(--fg-3); }
-.fside { display: flex; align-items: center; gap: 12px; }
-.fsoc { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.fsoc a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--line-d2); border-radius: 50%; color: var(--fg-2); transition: border-color .2s, color .2s; }
-.fsoc a:hover { border-color: var(--aurora); color: #fff; }
-.fnav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
-.site-footer .fbase { padding-top: 24px; border-top: 1px solid var(--line-d); }
-.fbase-r { display: flex; flex-wrap: wrap; gap: 8px 24px; }
-.ftop-link { display: inline-flex; align-items: center; gap: 6px; }
-@media (max-width: 900px) { .fnav { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.flink.wtext { display: flex; flex-direction: column; gap: 2px; max-width: 280px; }
-.flink .fl-l { color: var(--fg-2); }
-.flink .fl-t { font-size: 14px; line-height: 1.5; color: var(--fg-4); }
 .band-top { position: relative; padding: 10px clamp(16px, 4vw, 56px); background-color: var(--night); }
 /* Reading progress under the slim header (scroll-driven; hidden where unsupported). */
 .progress { display: none; }
