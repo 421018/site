@@ -26,18 +26,26 @@ footer:
   credit: Proyecto de código abierto
   license: Textos CC BY 4.0
   note: © 2026 Los contribuidores de 42
-  tagline: Funciona sobre Infinite Drive.
+  tagline: Impulsado por Infinite Drive.
   columns:
     - label: Explorar
       links:
+        - { label: Inicio, href: "/" }
         - { label: Blog, href: "/blog" }
         - { label: Proyecto, href: "/about" }
         - { label: Preguntas, href: "/faq" }
+    - label: Técnico
+      links:
         - { label: Documentación, href: "docs:/" }
         - { label: Consola, href: "console:/" }
+    - label: El proyecto
+      links:
+        - { label: Canales oficiales, href: "/channels" }
+        - { label: El nombre, href: "/name" }
         - { label: Legal, href: "/legal" }
-  links: # bottom line
-    - { label: "@42protocol en X", href: "https://x.com/42protocol" }
+  social:
+    - { network: x, label: Síguenos en X, handle: "@42protocol", href: "https://x.com/42protocol" }
+  links: [] # bottom line
 
 page:
   lastReviewed: Última revisión

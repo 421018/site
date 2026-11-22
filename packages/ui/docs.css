@@ -19,7 +19,6 @@
 .site-header .menu, .site-header .menu-m { margin-left: auto; }
 .hend { display: flex; align-items: center; gap: 14px; }
 .hsep { width: 1px; height: 24px; background: #26303A; }
-.fcols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
 .band-top { position: relative; padding: 22px clamp(16px, 4vw, 56px) 18px; border-bottom: 1px solid var(--line-d); background-color: var(--night); }
 /* ---------- blog ---------- */
 .post-band, .blog-band { background-color: var(--night); overflow: hidden; }
@@ -99,15 +98,6 @@
 @media (max-width: 640px) { .dh-link { display: none; } .dh .dh-search .sbtn span { display: none; } .dh .htool span { display: none; } .dh .htool { padding: 0 11px; } }
 /* the footer keeps the brand's dark space in both themes */
 /* Footer: compact, on the theme's soft ground; the sibling site is an external link. */
-.pf { border-top: 1px solid var(--rule); background: var(--soft); color: var(--muted); font-size: 14px; }
-.pf-in { max-width: 1280px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px; }
-.pf-brand { display: inline-flex; align-items: center; gap: 8px; margin-right: auto; color: var(--head); text-decoration: none; font-weight: 600; font-size: 15px; }
-.pf-brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 7px; background: var(--head); color: var(--bg); font-family: var(--mono); font-size: 12px; }
-.pf nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
-.pf a { color: var(--muted); text-decoration: none; }
-.pf a:hover { color: var(--link); }
-.pf .pf-fam b { color: var(--head); font-weight: 500; }
-.pf-base { max-width: 1280px; margin: 0 auto; padding: 16px 24px 24px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 12px; }
 /* Links that leave the site (42 Chain or any external URL): an arrow after the label. */
 .ext::after, [data-product="docs"] .prose a[href^="http"]:not([href^="http://localhost"])::after { content: "\00a0\2197" / ""; }
 /* notice under the header (e.g. under construction): visible on every page */

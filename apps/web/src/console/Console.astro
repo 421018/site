@@ -6,6 +6,7 @@
  */
 import Base from '../kit/layouts/Base.astro';
 import LangMenu from '../kit/components/LangMenu.astro';
+import Footer from '../kit/components/AreaFooter.astro';
 import NetworkSwitch from '../network/components/NetworkSwitch.astro';
 import { getSiteText } from '../kit/site';
 import { homeHref, langOf, languages, resolveHref, withLang } from '../kit/i18n';
@@ -52,6 +53,6 @@ const svg = (d: string, size = 18) => `<svg width="${size}" height="${size}" vie
         </div>
       </main>
     </div>
-    <footer class="cx-foot"><span>{site.footer.credit} · {site.footer.license}</span><span>{site.footer.note}</span></footer>
+    <Footer />
   </div>
 </Base>

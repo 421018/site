@@ -2,6 +2,7 @@
 import { getFooter, getSiteText } from '../../kit/site';
 import { getBlog, getPosts, postHref, categoryOf } from '../../kit/blog';
 import { homeHref, isExternal, isLinkAvailable, langOf, resolveHref } from '../../kit/i18n';
+import { socialIcons } from '../../art/areas';
 const lang = langOf(Astro);
 const text = await getSiteText(lang);
 type FLink = { label: string; href: string; text?: string };
@@ -29,17 +30,25 @@ async function derived() {
 <footer class="site-footer">
   <div class="inner">
     <slot />
-    <div class="fcols">
+    <div class="fgrid">
       <div class="fbrand">
         <a class="brand" href={homeHref(lang)} aria-label={text.header.homeLink}><span class="mark">42</span>{text.header.brand && <span class="name">{text.header.brand}</span>}</a>
         {text.footer.tagline && <p>{text.footer.tagline}</p>}
+        {text.footer.social.map((s) => (
+          <a class="fsocial" href={s.href} rel="me">
+            <span class="fs-ic"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" set:html={socialIcons[s.network]} /></span>
+            <span class="fs-t"><span>{s.label}</span><b>{s.handle}</b></span>
+          </a>
+        ))}
       </div>
-      {columns.map((col) => (
-        <div>
-          <p class="lbl">{col.label}</p>
-          {col.links.map((l) => <a class:list={['flink', { ext: isExternal(l.href), wtext: !!l.text }]} href={l.href}><span class="fl-l">{l.label}</span>{l.text && <span class="fl-t">{l.text}</span>}</a>)}
-        </div>
-      ))}
+      <nav class="fnav" aria-label={text.header.mainNav}>
+        {columns.map((col) => (
+          <div>
+            <p class="lbl">{col.label}</p>
+            {col.links.map((l) => <a class:list={['flink', { ext: isExternal(l.href), wtext: !!l.text }]} href={l.href}><span class="fl-l">{l.label}</span>{l.text && <span class="fl-t">{l.text}</span>}</a>)}
+          </div>
+        ))}
+      </nav>
     </div>
     <div aria-hidden="true" class="megatype"><span class="megatype-note">And remember</span><span class="megatype-word"><span>DON'T</span><span class="megatype-sp"> </span><span>PANIC</span></span></div>
     <div class="fbase"><span>{baseLinks.map((l) => <><a class="flink-b" href={l.href}>{l.label}</a> · </>)}{text.footer.license}</span><span>{text.footer.note}</span></div>

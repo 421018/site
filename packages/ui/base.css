@@ -136,10 +136,22 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 @supports (animation-timeline: view()) { .rv { animation: rv linear both; animation-timeline: view(); animation-range: entry 0% cover 25%; } from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition: none !important; } }
 /* ---------- footer ---------- */
+/* ---------- compact footer: the documentation and the console, each in its palette ---------- */
+.pf { border-top: 1px solid var(--rule); background: var(--soft); color: var(--muted); font-size: 14px; }
+.pf-in { max-width: 1280px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px; }
+.pf-brand { display: inline-flex; align-items: center; gap: 8px; margin-right: auto; color: var(--head); text-decoration: none; font-weight: 600; font-size: 15px; }
+.pf-brand .mark { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 7px; background: var(--head); color: var(--bg); font-family: var(--mono); font-size: 12px; }
+.pf nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.pf a { color: var(--muted); text-decoration: none; }
+.pf a:hover { color: var(--link); }
+.pf .pf-fam b { color: var(--head); font-weight: 500; }
+.pf-base { max-width: 1280px; margin: 0 auto; padding: 16px 24px 24px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 12px; }
+.pf-social { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--rule); border-radius: 50%; color: var(--head); }
+.pf a.pf-social:hover { color: var(--head); border-color: var(--link); }
 .site-footer { border-top: 1px solid var(--line-d); padding: 56px clamp(16px, 4vw, 56px) 36px; overflow: hidden; }
 .site-footer .inner { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
-.fcols > div { display: flex; flex-direction: column; }
-.fcols .lbl { margin: 0 0 14px; color: var(--fg-4); }
+.fnav > div { display: flex; flex-direction: column; }
+.fnav .lbl { margin: 0 0 14px; color: var(--fg-4); }
 .flink { color: var(--fg-3); text-decoration: none; font-size: 15px; padding: 8px 0; display: inline-block; }
 .flink:hover { color: var(--acc); }
 .megatype { container-type: inline-size; user-select: none; }
@@ -351,7 +363,7 @@ button.ml { width: 100%; border: 0; background: transparent; font: inherit; text
 .pn span { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
 .pn .nx { margin-left: auto; text-align: right; }
 @media (max-width: 1000px) { .lay { flex-direction: column; } .sidewrap { flex: none; margin-right: 0; } .side { display: none; } .side-m { display: block; margin: 8px 0 0; border: 1px solid var(--rule); border-radius: 8px; background: var(--bg); } .side-m summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 46px; padding: 0 14px; cursor: pointer; list-style: none; font-size: 14.5px; color: var(--head); } .side-m summary::-webkit-details-marker { display: none; } .side-m[open] summary { border-bottom: 1px solid var(--rule); } .side-m nav { padding: 6px; } }
-@media (max-width: 900px) { .fcols { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fcta { grid-template-columns: 1fr; } .fcta .acts { justify-content: flex-start; } .prose .facts { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .fcta { grid-template-columns: 1fr; } .fcta .acts { justify-content: flex-start; } .prose .facts { grid-template-columns: 1fr; } }
 .post-cover figcaption { margin-top: 10px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
 .post-lay { gap: 56px; padding-top: 32px; }
 .post-toc { flex: 0 0 200px; padding-top: 60px; font-size: 14px; }

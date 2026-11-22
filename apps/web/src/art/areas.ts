@@ -19,3 +19,8 @@ export const consoleIcons = {
   networks: '<circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="6" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="M8.3 11 L15.7 7 M8.3 13 L15.7 17" />',
   tools: '<path d="M14.5 5.5 A4 4 0 0 0 9.8 10.6 L4.5 15.9 A1.8 1.8 0 0 0 7.1 18.5 L12.4 13.2 A4 4 0 0 0 17.5 8.5 L15 11 L13 9 Z" />',
 } as const;
+
+/** Logos of the networks where the project has an official profile (24×24, filled). */
+export const socialIcons = {
+  x: '<path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />',
+} as const;

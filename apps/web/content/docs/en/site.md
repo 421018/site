@@ -43,8 +43,8 @@ footer:
     - label: Home
       links:
         - { label: 42 Chain, href: "site:/", text: "the project's magazine" }
-  links: # bottom line
-    - { label: "@42protocol on X", href: "https://x.com/42protocol" }
+  social:
+    - { network: x, label: Follow us on X, handle: "@42protocol", href: "https://x.com/42protocol" }
 
 page:
   lastReviewed: Last reviewed

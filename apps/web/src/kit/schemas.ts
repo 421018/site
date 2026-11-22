@@ -178,6 +178,8 @@ export const siteTextSchema = z
         links: z.array(link).default([]),
         /** Short line under the mark at the start of the footer. */
         tagline: z.string().optional(),
+        /** Official profiles, shown as buttons with the network's logo (the site: a large one). */
+        social: z.array(z.object({ network: z.enum(['x']), label: z.string(), handle: z.string(), href: z.url() }).strict()).default([]),
       })
       .strict(),
     page: z
