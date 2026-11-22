@@ -48,7 +48,7 @@ type Item =
 // it changes the whole view, so it is shown apart, as a button with its own icon.
 const toOther = (href: string) => { const m = href.match(/^(site|docs|console):/); return m && m[1] !== area ? (m[1] as 'site' | 'docs' | 'console') : undefined; };
 const links = text.header.links.filter((l) => isLinkAvailable(l.href));
-const tools = links.filter((l) => toOther(l.href)).map((l) => ({ label: l.label, href: resolveHref(l.href, lang, area), to: toOther(l.href)! }));
+const tools = links.filter((l) => toOther(l.href)).map((l) => ({ label: l.label, href: resolveHref(l.href, lang, area), to: toOther(l.href)!, icon: l.icon ?? toOther(l.href)! }));
 const items: Item[] = [
   ...menu.map((s) => ({ kind: 'section' as const, weight: s.weight, key: s.key, label: s.label, href: s.href, panel: s.dropdown ? menuPanel(s) : undefined })),
   ...links.filter((l) => !toOther(l.href)).map((l) => ({ kind: 'link' as const, weight: l.weight ?? Infinity, label: l.label, href: resolveHref(l.href, lang, area) })),
@@ -64,14 +64,15 @@ const atHome = Astro.url.pathname.replace(/\/$/, '') === home.replace(/\/$/, '')
 const isOn = (i: Item) => (i.kind === 'section' && i.key === current) || (i.kind === 'link' && !!currentHref && i.href === currentHref);
 const homeOn = atHome && !current;
 // The documentation and the console: one switch between the three areas, always in the same
-// order and size, the current one marked. Labels come from the site's and the docs' header links.
-const siteText = await getSiteText(lang, 'site');
+// order and size, the current one marked. Labels come from the docs' and the console's header links
+// (each names the other two; the site's header only has its Developers button).
 const docsText = await getSiteText(lang, 'docs');
+const consoleText = await getSiteText(lang, 'console');
 const labelOf = (links: { label: string; href: string }[], to: string) => links.find((l) => l.href.startsWith(`${to}:`))?.label;
 const areas = (['site', 'docs', 'console'] as const).map((to) => ({
   to,
   href: resolveHref(`${to}:/`, lang, area),
-  label: (to === 'site' ? labelOf(docsText.header.links, 'site') : labelOf(siteText.header.links, to)) ?? to,
+  label: (to === 'console' ? labelOf(docsText.header.links, 'console') : labelOf(consoleText.header.links, to)) ?? to,
 }));
 // In a switch the site is a place, not a way back: a house instead of the back arrow.
 const homeIcon = '<path d="M4 11 L12 4 L20 11" /><path d="M6.5 9.5 V20 H17.5 V9.5" />';
@@ -128,7 +129,7 @@ const tabItems = nav ?? [
     )}
     {!tabs && tools.map((t) => (
       <a class:list={['htool', `to-${t.to}`]} href={t.href}>
-        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={toolIcon[t.to]} />
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={toolIcon[t.icon]} />
         <span>{t.label}</span>
       </a>
     ))}
@@ -149,7 +150,7 @@ const tabItems = nav ?? [
         {tools.length > 0 && <div class="ml-sep" role="presentation" />}
         {tools.map((t) => (
           <a class="ml tool" href={t.href}>
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={toolIcon[t.to]} />
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={toolIcon[t.icon]} />
             {t.label}
           </a>
         ))}

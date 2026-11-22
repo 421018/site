@@ -2,7 +2,7 @@
 # Home page text of the documentation. The section cards are generated from
 # the sections in pages/ (label and summary of each index.md).
 
-eyebrow: Documentación
+eyebrow: Desarrolladores # this page is the developers' home: the site's Developers button leads here
 title: Todo lo que necesitas para construir y operar sobre 42.
 lead: Cómo funciona Infinite Drive, el protocolo de 42 Chain, y cómo conectarse, construir, integrar sistemas y operar un nodo.
 searchPrompt: Buscar en la documentación
@@ -57,6 +57,11 @@ starts:
       steps:
         - { label: Contribuir, href: /open-source }
         - { label: Seguridad y reportes, href: /open-source/security }
+console:
+  kicker: Consola
+  title: La red, a la vista
+  lead: Junto a la documentación, la consola lee la red en vivo desde tu navegador. Consulta su estado, sigue lo que pasa en ella y obtén lo necesario para conectarte.
+  open: Abrir la consola
 map:
   title: Toda la documentación
   lead: Cada sección y cada página, con lo que encontrarás en ella.

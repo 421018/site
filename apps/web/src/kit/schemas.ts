@@ -16,7 +16,13 @@ import { iconNames } from '../art/icons.ts';
 const color = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'use a 6-digit hex color, e.g. "#5BF0C8"');
 const link = z.object({ label: z.string(), href: z.string() }).strict();
 /** A header link; `weight` places it among the sections of the main menu (none: after them). */
-const headerLink = z.object({ label: z.string(), href: z.string(), weight: z.number().optional() }).strict();
+const headerLink = z.object({
+  label: z.string(),
+  href: z.string(),
+  weight: z.number().optional(),
+  /** Icon of a button to another area (art/areas.ts → areaIcons); without it, that area's own. */
+  icon: z.enum(['site', 'docs', 'console', 'developers']).optional(),
+}).strict();
 
 /** Section settings, only valid in a folder's index.md. */
 export const sectionSchema = z

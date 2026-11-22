@@ -9,6 +9,8 @@ export const areaIcons = {
   site: '<path d="M14 6 L8 12 L14 18" />',
   /** The console: a prompt. */
   console: '<path d="M5 7 L10 12 L5 17 M12 17 H19" />',
+  /** Developers (the documentation's home, with the console one click away): code brackets. */
+  developers: '<path d="M8.5 7 L3.5 12 L8.5 17 M15.5 7 L20.5 12 L15.5 17 M13.5 5 L10.5 19" />',
 } as const;
 
 /** Icons of the console's screens. */

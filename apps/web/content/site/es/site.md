@@ -19,8 +19,7 @@ header:
   links:
     - { label: Blog, href: /blog, weight: 1 } # weight places it among the sections
     - { label: Proyecto, href: /about, weight: 2 }
-    - { label: Documentación, href: "docs:/", weight: 10 }
-    - { label: Consola, href: "console:/", weight: 11 }
+    - { label: Desarrolladores, href: "docs:/", weight: 10, icon: developers } # the documentation's home; the console is one click away from there
 
 # The footer of the whole site: every area (site, documentation, console) shows it.
 footer:
@@ -37,7 +36,7 @@ footer:
         - { label: Proyecto, href: "/about" }
         - { label: El nombre, href: "/name" }
         - { label: Canales oficiales, href: "/channels" }
-    - label: Técnico
+    - label: Desarrolladores
       links:
         - { label: Documentación, href: "docs:/" }
         - { label: Consola, href: "console:/" }

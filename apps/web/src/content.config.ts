@@ -162,6 +162,8 @@ const docsHome = defineCollection({
           items: z.array(z.object({ icon: z.enum(iconNames), title: z.string(), steps: z.array(cta).min(1).max(3) }).strict()).min(2).max(6),
         })
         .strict(),
+      /** The console, as part of the developers' home: its screens (names and texts from console.md) and a way in. */
+      console: z.object({ kicker: z.string(), title: z.string(), lead: z.string(), open: z.string() }).strict().optional(),
       /** Title of the map of every section and page. */
       map: z.object({ title: z.string(), lead: z.string().optional() }).strict(),
     })

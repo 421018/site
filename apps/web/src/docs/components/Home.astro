@@ -1,7 +1,8 @@
 ---
 /**
- * Home page of the documentation: title and search beside the main network,
- * live (figures and the latest blocks); routes by goal; one card per section
+ * Home page of the documentation, the developers' home (the site's Developers
+ * button leads here): title and search beside the main network, live (figures
+ * and the latest blocks); routes by goal; the console and its screens; one card per section
  * (label and summary of its index.md); the layers of the protocol and quick
  * data; and the map of every page.
  */
@@ -9,7 +10,9 @@ import { getEntry } from 'astro:content';
 import Base from '../../kit/layouts/Base.astro';
 import Footer from '../../site/components/Footer.astro';
 import { getMenu, homeAlternates, hrefOf } from '../../kit/site';
-import { langOf, resolveHref } from '../../kit/i18n';
+import { langOf, resolveHref, withLang } from '../../kit/i18n';
+import { consoleIcons, areaIcons } from '../../art/areas';
+import { getConsoleText, SCREENS } from '../../console/text';
 import { ui } from '../../kit/dictionary';
 import { getDirectory, firstOf, pick } from '../../network/directory';
 import DocsHeader from './DocsHeader.astro';
@@ -18,7 +21,11 @@ import Icon from '../../art/Icon.astro';
 const lang = langOf(Astro);
 const entry = await getEntry('docsHome', lang);
 if (!entry) throw new Error(`Missing docs/${lang}/home.md in the content catalog`);
-const { eyebrow, title, lead, searchPrompt, layers, quickData, live, starts, map } = entry.data;
+const { eyebrow, title, lead, searchPrompt, layers, quickData, live, starts, console: consoleBlock, map } = entry.data;
+// The console's screens, named and described by the console's own texts.
+const ct = await getConsoleText(lang);
+const screens = SCREENS.filter((s) => s.id !== 'overview').map((s) => ({ id: s.id, href: withLang(`/${s.path}`, lang, 'console'), label: ct.nav[s.id], text: ct.overview.cards[s.id] }));
+const svg = (d: string, size: number) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
 const menu = await getMenu(lang, 'docs');
 const { networks, services, providers } = await getDirectory();
 const net = networks[0];
@@ -72,6 +79,22 @@ const sectionIcons: Record<string, string> = { 'get-started': 'connect', protoco
         ))}
       </ul>
     </section>
+
+    {consoleBlock && (
+      <section class="dconsole" aria-labelledby="console-t">
+        <div class="dconsole-intro">
+          <p class="dconsole-k"><Fragment set:html={svg(areaIcons.console, 16)} />{consoleBlock.kicker}</p>
+          <h2 id="console-t" class="dsec">{consoleBlock.title}</h2>
+          <p class="dsec-lead">{consoleBlock.lead}</p>
+          <a class="dconsole-open" href={withLang('/', lang, 'console')}>{consoleBlock.open} <span aria-hidden="true">→</span></a>
+        </div>
+        <ul class="dconsole-list">
+          {screens.map((x) => (
+            <li><a href={x.href}><span class="dconsole-ic"><Fragment set:html={svg(consoleIcons[x.id], 20)} /></span><span><b>{x.label}</b><span>{x.text}</span></span></a></li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     <section class="dcards" aria-label={map.title}>
       {menu.map((s) => (
@@ -206,4 +229,17 @@ const sectionIcons: Record<string, string> = { 'get-started': 'connect', protoco
 
   @media (max-width: 1000px) { .dh-hero { grid-template-columns: 1fr; } .dstart-grid, .dcards, .dmap-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 640px) { .dstart-grid, .dcards, .dmap-grid { grid-template-columns: 1fr; } .dh-hero { padding-top: 40px; } }
+  /* the console, part of the developers' home */
+  .dconsole { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 32px 48px; align-items: center; margin: 56px 0 0; padding: clamp(24px, 3vw, 36px); border: 1px solid var(--rule); border-radius: 20px; background: var(--surface); }
+  .dconsole-k { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--link); }
+  .dconsole-open { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; margin-top: 22px; padding: 0 18px; border: 1px solid var(--rule2); border-radius: 999px; color: var(--head); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: border-color .2s, background .2s; }
+  .dconsole-open:hover { border-color: var(--link); background: color-mix(in srgb, var(--link) 7%, transparent); }
+  .dconsole-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .dconsole-list a { display: flex; gap: 14px; height: 100%; box-sizing: border-box; padding: 16px; border: 1px solid var(--rule); border-radius: 14px; color: var(--ink); text-decoration: none; transition: border-color .2s, background .2s; }
+  .dconsole-list a:hover { border-color: color-mix(in srgb, var(--link) 40%, var(--rule)); background: var(--soft); }
+  .dconsole-ic { flex: none; color: var(--link); margin-top: 1px; }
+  .dconsole-list b { display: block; color: var(--head); font-size: 15px; font-weight: 600; }
+  .dconsole-list span span { display: block; margin-top: 4px; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+  @media (max-width: 1000px) { .dconsole { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .dconsole-list { grid-template-columns: 1fr; } }
 </style>
