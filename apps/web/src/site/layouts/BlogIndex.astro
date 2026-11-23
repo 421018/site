@@ -21,7 +21,7 @@ const featured = posts.find((p) => p.data.featured) ?? posts[0];
 const rest = posts.filter((p) => p !== featured);
 const fcat = categoryOf(blog, featured);
 const used = blog.categories.filter((c) => posts.some((p) => p.data.category === c.id));
-const date = (d: Date | undefined) => d && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(d);
+const date = (d: Date | undefined) => d && new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(d);
 const fdate = date(postDate(featured));
 const alternates = Object.fromEntries(await Promise.all(languages.map(async (l) => [l, blogHref((await getBlog(l))!, l)])));
 ---

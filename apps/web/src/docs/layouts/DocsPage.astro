@@ -20,7 +20,7 @@ const nav = sideIndex(home);
 const alternates = await getAlternates(page);
 const { prev, next } = prevNext(section, page);
 const updated = page.data.updated ?? lastCommitDate(page.filePath);
-const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(updated);
+const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(updated) // UTC: the same day locally and in the (UTC) production build;
 const { page: ui, header } = await getSiteText(lang, 'docs');
 const isIndex = page.id.split('/').length === 2;
 const original = page.fallbackOf;
@@ -40,7 +40,7 @@ const markdown = `# ${page.data.title}\n\n${page.data.summary}\n\n${page.body ??
       </div>
       {original && ui.untranslated && <p class="untranslated" lang={lang}>{ui.untranslated}</p>}
       <p class="dl-sum">{page.data.summary}</p>
-      <p class="dl-meta">{fmt && <>{ui.lastReviewed}: {fmt}</>}{fmt && kit.editBase && <> · </>}{kit.editBase && <a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a>}</p>
+      <p class="dl-meta">{fmt && <>{ui.lastUpdated}: {fmt}</>}{fmt && kit.editBase && <> · </>}{kit.editBase && <a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a>}</p>
       <template data-page-md>{markdown}</template>
       <div class="prose"><slot /></div>
       {(prev || next) && (

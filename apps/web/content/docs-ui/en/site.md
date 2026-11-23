@@ -31,7 +31,7 @@ header:
     - { label: 42 Chain, href: "site:/" }
 
 page:
-  lastReviewed: Last reviewed
+  lastUpdated: Last updated
   editPage: Edit this page ↗
   previous: ← Previous
   next: Next →

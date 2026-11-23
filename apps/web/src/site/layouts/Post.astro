@@ -21,7 +21,7 @@ const { post, blog, headings } = Astro.props;
 const lang = postLang(post);
 const cat = categoryOf(blog, post);
 const published = postDate(post);
-const date = published && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(published);
+const date = published && new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(published);
 const toc = headings.filter((h) => h.depth === 2);
 const related = await relatedPosts(post);
 // Stories read like a book; the next story of the same kind gets its own band.

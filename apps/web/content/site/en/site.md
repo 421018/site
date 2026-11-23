@@ -53,7 +53,7 @@ footer:
   backToTop: Back to top
 
 page:
-  lastReviewed: Last reviewed
+  lastUpdated: Last updated
   editPage: Edit this page ↗
   previous: ← Previous
   next: Next →

@@ -4,7 +4,7 @@ import Cover from '../components/Cover.astro';
 import Header from '../../kit/components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SideNav from '../../kit/components/SideNav.astro';
-import { getAlternates, getSection, getSiteText, sideIndex, prevNext, hrefOf, pageLang, pagePath, sectionKey, lastCommitDate, menuLabel, type Page } from '../../kit/site';
+import { getAlternates, getSection, getSiteText, sideIndex, prevNext, hrefOf, pageLang, pagePath, sectionKey, menuLabel, type Page } from '../../kit/site';
 import { homeHref, sourceLang, withLang } from '../../kit/i18n';
 import kit from 'virtual:42chain/kit';
 import { catalogRelative } from '../../kit/catalog';
@@ -20,8 +20,10 @@ const nav = sideIndex(home);
 const showSide = nav.items.length + nav.refs.length > 1;
 const path = hrefOf(page);
 const { prev, next } = prevNext(section, page);
-const updated = page.data.updated ?? lastCommitDate(page.filePath);
-const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long' }).format(updated);
+// Site pages show a date only when they set one on purpose (`updated`, e.g. the legal page): their
+// texts are stable, and a typo fix must not look like a new version. Docs pages use their file's last commit.
+const updated = page.data.updated;
+const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(updated) // UTC: the same day locally and in the (UTC) production build;
 const { page: ui, header } = await getSiteText(lang);
 const docsUi = (await getSiteText(lang, 'docs')).page;
 const onThisPage = docsUi.onThisPage;
@@ -40,7 +42,7 @@ const crumbs = [
 <Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates} canonicalHref={canonicalHref}>
   <Header current={home.key} alternates={alternates} />
   <Cover crumbs={crumbs} crumbsLabel={header.mainNav} title={page.data.title} titleLang={original ? sourceLang : undefined}>
-    {fmt && <span>{ui.lastReviewed}: {fmt}</span>}
+    {fmt && <span>{ui.lastUpdated}: {fmt}</span>}
     {kit.editBase && <a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a>}
   </Cover>
   <div class:list={['rd', 'covered', { solo: !showSide }]}>
