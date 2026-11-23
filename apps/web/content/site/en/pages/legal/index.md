@@ -15,7 +15,7 @@ This site does not offer, sell or recommend the native unit, Improbability (42),
 
 ## Who does what {#roles}
 
-The contributors maintain source code: the software of the protocol and the code of this site. That is their role. They publish it in the open, so that anyone can review it, propose changes or contribute. In these notices, "the contributors" are the people who write, review or publish that code or the content of this site.
+The contributors develop and maintain the project's source code: the software of the protocol and its tools, and the code and content of this site. That is their role. They publish all of it in the open, so that anyone can review it, propose changes or contribute. In these notices, "the contributors" are all the people who write, review or publish any part of that work, whether in the protocol, its tools or this site.
 
 What happens on the chain is not in their hands:
 
