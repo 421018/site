@@ -60,7 +60,7 @@ const crumbs = [
     {post.data.image && (
       <figure class="post-cover">
         <div class="duo" style={`--tint: ${categoryTint(blog, cat.id)}`}><Image src={post.data.image as never} alt={post.data.alt!} widths={[800, 1200, 1600]} sizes="(max-width: 1100px) 100vw, 1100px" /></div>
-        <figcaption>{blog.illustrative} {post.data.credit}.</figcaption>
+        {post.data.credit?.trim() && <figcaption>{post.data.credit.trim()}.</figcaption>}
       </figure>
     )}
     <div class="lay post-lay">

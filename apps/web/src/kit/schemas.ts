@@ -107,7 +107,7 @@ export const postSchema = (image: () => z.ZodTypeAny) =>
       category: z.string(),
       /** Publication date. Without it, the date of the file's last commit. */
       date: z.coerce.date().optional(),
-      /** Optional cover photo (path relative to the post) with its required description and credit. */
+      /** Optional cover photo (path relative to the post). `alt` is required with it; `credit` is optional and, when omitted, the cover has no caption. */
       image: image().optional(),
       alt: z.string().optional(),
       credit: z.string().optional(),
@@ -121,7 +121,7 @@ export const postSchema = (image: () => z.ZodTypeAny) =>
       draft: z.boolean().default(false),
     })
     .strict()
-    .refine((p) => !p.image || (p.alt && p.credit), 'a post with an image needs "alt" and "credit"');
+    .refine((p) => !p.image || p.alt, 'a post with an image needs "alt"');
 
 /** Loader for a per-language file of an app (site.md, home.md); the id is the language: "es", "en". */
 export const perLanguage = (base: string, file: string) =>
@@ -229,8 +229,6 @@ export const siteTextSchema = z
         editPost: z.string(),
         /** Label of the band that leads to the next story ("Siguiente historia"). */
         nextStory: z.string().optional(),
-        /** Caption before the photo credit: "Imagen ilustrativa." */
-        illustrative: z.string(),
         categories: z
           .array(
             z

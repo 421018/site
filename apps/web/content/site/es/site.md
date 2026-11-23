@@ -73,7 +73,6 @@ blog:
   keepReading: Sigue leyendo
   nextStory: Siguiente historia
   editPost: Editar esta entrada ↗
-  illustrative: Imagen ilustrativa.
   categories:
     - { id: historia, label: Historia, plural: Historias }
     - { id: articulo, label: Artículo, plural: Artículos }

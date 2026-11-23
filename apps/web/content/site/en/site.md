@@ -74,7 +74,6 @@ blog:
   keepReading: Keep reading
   nextStory: Next story
   editPost: Edit this post ↗
-  illustrative: Illustrative image.
   categories:
     - { id: historia, label: Story, plural: Stories }
     - { id: articulo, label: Article, plural: Articles }
