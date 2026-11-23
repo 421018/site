@@ -81,7 +81,7 @@ The texts of this site and the network data it publishes, such as parameters and
 
 ### Third-party software
 
-The protocol software, like the code of this site, is built on open-source software from different projects and ecosystems, such as those of Cosmos and Ethereum, developed by third parties and published under their own licenses. Their copyright and attribution notices are kept in the LICENSE and NOTICE files of each repository, as each license requires and in keeping with good open-source practice.
+The protocol software and the code of this site are built on open-source components developed by third parties and distributed under their own licenses. The copyright and attribution notices of those components are preserved in the LICENSE and NOTICE files of each repository, in accordance with the terms of each license and with established open-source practice.
 
 :::aside
 [Full license (Apache License 2.0)](https://www.apache.org/licenses/LICENSE-2.0) · [Full license (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.en) · [LICENSE](https://github.com/deep-thought-labs/infinite-app/blob/master/LICENSE) and [NOTICE](https://github.com/deep-thought-labs/infinite-app/blob/master/NOTICE) in the protocol's repository
