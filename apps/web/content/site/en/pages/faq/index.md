@@ -45,7 +45,7 @@ No. This site does not offer, sell or recommend the native unit, Improbability (
 :::
 
 :::faq[What data does this site collect?]
-None on its own: it has no forms, cookies or analytics, and the few preferences it keeps (theme, network) stay in your browser. The live figures (home page, documentation, Console) are read from your browser from the public RPC providers. The host processes technical data of each visit, such as the IP address, to deliver the pages. [Privacy](/legal#privacy)
+None on its own: it has no forms, cookies or analytics, and the few preferences it keeps (theme, network) stay in your browser. The live figures are read from your browser from the public RPC providers. The host processes technical data of each visit, such as the IP address, to deliver the pages. [Privacy](/legal#privacy)
 :::
 
 :::aside

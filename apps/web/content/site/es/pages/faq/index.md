@@ -45,7 +45,7 @@ No. Este sitio no ofrece, no vende y no recomienda la unidad nativa, Improbabili
 :::
 
 :::faq[¿Qué datos recopila este sitio?]
-Ninguno por su cuenta: no tiene formularios, cookies ni analítica, y las pocas preferencias que guarda (tema, red) se quedan en tu navegador. Las cifras en vivo (portada, documentación, Consola) se leen desde tu navegador a los proveedores públicos de RPC. El alojamiento procesa datos técnicos de cada visita, como la dirección IP, para entregar las páginas. [Privacidad](/legal#privacy)
+Ninguno por su cuenta: no tiene formularios, cookies ni analítica, y las pocas preferencias que guarda (tema, red) se quedan en tu navegador. Las cifras en vivo se leen desde tu navegador a los proveedores públicos de RPC. El alojamiento procesa datos técnicos de cada visita, como la dirección IP, para entregar las páginas. [Privacidad](/legal#privacy)
 :::
 
 :::aside
