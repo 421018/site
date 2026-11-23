@@ -81,7 +81,7 @@ Los textos de este sitio y los datos de la red que publica, como parámetros y l
 
 ### Software de terceros
 
-El software del protocolo se construye sobre software de código abierto del ecosistema Cosmos, como Cosmos SDK, CometBFT e ibc-go, desarrollado por terceros y publicado también bajo la licencia Apache 2.0. Sus avisos de derechos de autor y de atribución se conservan íntegros en los archivos LICENSE y NOTICE del repositorio público, como exige esa licencia.
+El software del protocolo, como el código de este sitio, se construye sobre software de código abierto de distintos proyectos y ecosistemas, como los de Cosmos y Ethereum, desarrollado por terceros y publicado bajo sus propias licencias. Sus avisos de derechos de autor y de atribución se conservan en los archivos LICENSE y NOTICE de cada repositorio, como exige cada licencia y según las buenas prácticas del código abierto.
 
 :::aside
 [Licencia completa (Apache License 2.0)](https://www.apache.org/licenses/LICENSE-2.0) · [Licencia completa (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es) · [LICENSE](https://github.com/deep-thought-labs/infinite-app/blob/master/LICENSE) y [NOTICE](https://github.com/deep-thought-labs/infinite-app/blob/master/NOTICE) en el repositorio del protocolo
