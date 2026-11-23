@@ -20,14 +20,23 @@
   // SVG (SMIL) animations do not obey the CSS media query: stop them here.
   if (still.matches) document.querySelectorAll('svg').forEach((svg) => svg.pauseAnimations?.());
 
-  document.addEventListener('pointermove', (e) => {
-    if (!fine.matches) return;
+  // The light that follows the pointer on .spot cards: at most one update per frame (pointers can
+  // report hundreds of moves per second, far more than the screen can paint).
+  let spotEvent: PointerEvent | null = null, spotFrame = 0;
+  const spot = () => {
+    spotFrame = 0;
+    const e = spotEvent!;
     const card = (e.target as Element).closest?.<HTMLElement>('.spot, [data-glow]');
     if (card) {
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mx', `${e.clientX - r.left}px`);
       card.style.setProperty('--my', `${e.clientY - r.top}px`);
     }
+  };
+  document.addEventListener('pointermove', (e) => {
+    if (!fine.matches) return;
+    spotEvent = e;
+    spotFrame ||= requestAnimationFrame(spot);
   }, { passive: true });
 
   // Proximity: [data-proximity] gets --mi from 0 at its edge to 1 at data-ramp px inside (default 140).
@@ -64,13 +73,16 @@
   document.querySelectorAll<HTMLElement>('[data-toc]').forEach((toc) => {
     const links = new Map([...toc.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')].map((a) => [decodeURIComponent(a.hash.slice(1)), a]));
     const heads = [...links.keys()].map((id) => document.getElementById(id)).filter((h): h is HTMLElement => !!h);
+    let markFrame = 0;
     const mark = () => {
+      markFrame = 0;
       const y = 140;
       let current = heads[0];
       for (const h of heads) if (h.getBoundingClientRect().top < y) current = h;
       links.forEach((a, id) => a.toggleAttribute('aria-current', id === current?.id));
     };
-    addEventListener('scroll', mark, { passive: true });
+    // At most one measure per frame while scrolling.
+    addEventListener('scroll', () => { markFrame ||= requestAnimationFrame(mark); }, { passive: true });
     mark();
   });
 </script>

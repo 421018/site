@@ -33,7 +33,6 @@ const rows = [0, 14, 34, 62, 100, 150, 210];
       <stop offset="0" stop-color="#5BF0C8" stop-opacity=".18" />
       <stop offset="1" stop-color="#5BF0C8" stop-opacity="0" />
     </linearGradient>
-    <filter id="df-blur" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="3" /></filter>
   </defs>
   <rect width={W} height={H} fill="url(#df-glow)" class="df-glow" />
   <g stroke="url(#df-floor)" stroke-width="1" fill="none">
@@ -45,7 +44,7 @@ const rows = [0, 14, 34, 62, 100, 150, 210];
   </g>
   <g fill="none" stroke-linecap="round" class="df-pulses">
     {streams.map((s, i) => i % 2 === 0 && (
-      <path d={s.d} pathLength="1000" stroke="url(#df-line)" stroke-width={s.w + 2.4} filter="url(#df-blur)" class="df-pulse" style={`animation-duration:${s.dur}s;animation-delay:${s.delay}s`} />
+      <path d={s.d} pathLength="1000" stroke="url(#df-line)" stroke-width={s.w + 5} stroke-opacity=".28" class="df-pulse" style={`animation-duration:${s.dur}s;animation-delay:${s.delay}s`} />
     ))}
     {streams.map((s, i) => i % 2 === 0 && (
       <path d={s.d} pathLength="1000" stroke="#EFFFFA" stroke-width={s.w * 0.9} class="df-pulse" style={`animation-duration:${s.dur}s;animation-delay:${s.delay}s`} />
