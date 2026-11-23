@@ -89,10 +89,8 @@ The protocol software and the code of this site are built on open-source compone
 
 ## Third-party links and services {#third-parties}
 
-The services that appear on this site, such as RPC access points, explorers, faucets, validators or applications, appear for information only. They are listed because they are part of an open repository of network data, in which anyone can propose to add, change or remove an entry. The only purpose of that list is to keep a community catalog of the services available around the network.
+The services that appear on this site, such as RPC access points, explorers, faucets, validators or applications, are listed for information only. The list is kept in an open repository, where anyone can propose to add, change or remove an entry, and its only purpose is to serve as a community catalog of the services around the network.
 
-No service around the project is official, and none should be considered official. Appearing on this site does not make a service official, recommended or guaranteed, and does not imply any relationship with the contributors. All of them are equal: voluntary, community initiatives, each run by whoever offers it, under its own responsibility and its own terms.
+None of these services is official. Each is an independent, voluntary initiative, run by whoever offers it under its own responsibility and terms, and appearing on this site implies no endorsement, guarantee or relationship with the contributors. The order of the list is not a ranking: where a tool needs one service, it uses the first listed and lets you choose another.
 
-Each participant decides how it runs, names and shares its services. The contributors do not restrict, control or influence any of it, and a service's name, whatever it is, does not make it official. The order in which they are listed is the one configured in that repository and is not a ranking: where a tool needs one, it starts with the first one listed and lets you choose any other.
-
-Links to external sites are offered only as reference. Each external site has its own terms.
+Links to external sites are offered for reference only; each site has its own terms.

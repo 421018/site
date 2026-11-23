@@ -89,10 +89,8 @@ El software del protocolo y el código de este sitio se construyen sobre compone
 
 ## Enlaces y servicios de terceros {#third-parties}
 
-Los servicios que aparecen en este sitio, como puntos de acceso RPC, exploradores, faucets, validadores o aplicaciones, aparecen solo a título informativo. Figuran porque forman parte de un repositorio abierto de datos de la red, en el que cualquiera puede proponer agregar, modificar o quitar una entrada. El único propósito de ese listado es mantener un catálogo comunitario de los servicios disponibles alrededor de la red.
+Los servicios que aparecen en este sitio, como puntos de acceso RPC, exploradores, faucets, validadores o aplicaciones, se listan solo a título informativo. El listado se mantiene en un repositorio abierto, en el que cualquiera puede proponer agregar, modificar o quitar una entrada, y su único propósito es servir como catálogo comunitario de los servicios alrededor de la red.
 
-Ningún servicio alrededor del proyecto es oficial, ni debe considerarse oficial. Aparecer en este sitio no convierte a un servicio en oficial, recomendado ni garantizado, ni implica relación alguna con los contribuidores. Todos son iguales: iniciativas voluntarias y comunitarias, cada una operada por quien la ofrece, bajo su propia responsabilidad y sus propias condiciones.
+Ninguno de estos servicios es oficial. Cada uno es una iniciativa independiente y voluntaria, operada por quien la ofrece bajo su propia responsabilidad y sus propias condiciones, y aparecer en este sitio no implica respaldo, garantía ni relación alguna con los contribuidores. El orden del listado no es una clasificación: cuando una herramienta necesita un servicio, usa el primero de la lista y te permite elegir otro.
 
-Cada participante decide cómo mantiene, nombra y comparte sus servicios. Los contribuidores no restringen, controlan ni influyen en nada de ello, y el nombre de un servicio, sea cual sea, no lo vuelve oficial. El orden en que aparecen es el que está configurado en ese repositorio y no es una clasificación: cuando una herramienta necesita uno, empieza por el primero de la lista y te deja elegir cualquier otro.
-
-Los enlaces a sitios externos se ofrecen solo como referencia. Cada sitio externo tiene sus propias condiciones.
+Los enlaces a sitios externos se ofrecen solo como referencia; cada sitio tiene sus propias condiciones.
