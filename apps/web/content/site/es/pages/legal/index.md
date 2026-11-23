@@ -15,7 +15,7 @@ Este sitio no ofrece, no vende y no recomienda la unidad nativa, Improbability (
 
 ## Quién hace qué {#roles}
 
-Los contribuidores desarrollan y mantienen el código fuente del proyecto: el software del protocolo y sus herramientas, y el código y el contenido de este sitio. Ese es su papel. Lo publican todo en abierto, para que cualquiera pueda revisarlo, proponer cambios o contribuir. En estos avisos, «los contribuidores» son todas las personas que escriben, revisan o publican cualquier parte de ese trabajo, ya sea del protocolo, de sus herramientas o de este sitio.
+Los contribuidores son las personas que desarrollan, revisan y publican el código fuente y el contenido del proyecto: el software del protocolo y sus herramientas, y este sitio. Ese es su papel, y lo ejercen en abierto, para que cualquiera pueda revisar el trabajo, proponer cambios o contribuir.
 
 Lo que ocurre en la cadena no está en sus manos:
 
