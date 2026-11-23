@@ -21,7 +21,7 @@ Lo que ocurre en la cadena no está en sus manos:
 
 - **La gobernanza de la red.** Cada red que ejecuta el protocolo la operan sus validadores, y sus reglas solo cambian mediante gobernanza en la cadena: propuestas que votan los validadores y quienes les delegan unidades. Una versión nueva del software llega a una red solo si esa red la aprueba y sus validadores la adoptan. Los contribuidores pueden proponer cambios como cualquiera, pero no los deciden. [Gobernanza](docs:/protocol/governance)
 - **Las aplicaciones y los servicios.** Los contratos, las aplicaciones, las billeteras, los proveedores de RPC, los exploradores y los demás servicios construidos sobre la red o a su alrededor son de quienes los construyen y operan, que responden por ellos. Ninguno es oficial. [Servicios de terceros](#third-parties)
-- **Las operaciones en la cadena.** Cada transacción la firma y la envía su usuario, que la decide y responde por ella. Los contribuidores no custodian unidades ni llaves de nadie, y no pueden revertir transacciones ni recuperar el acceso a una cuenta.
+- **Las operaciones en la cadena.** Cada transacción la firma y la envía su usuario, que la decide y responde por ella. Los contribuidores no custodian activos ni llaves de nadie, y no pueden revertir transacciones ni recuperar el acceso a una cuenta.
 
 ## Sin garantías {#warranties}
 

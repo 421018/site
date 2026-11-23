@@ -21,7 +21,7 @@ What happens on the chain is not in their hands:
 
 - **Governance of the network.** Each network that runs the protocol is operated by its validators, and its rules change only through on-chain governance: proposals that the validators and those who delegate units to them vote on. A new version of the software reaches a network only if that network approves it and its validators adopt it. The contributors can propose changes like anyone else, but they do not decide them. [Governance](docs:/protocol/governance)
 - **Applications and services.** Contracts, applications, wallets, RPC providers, explorers and other services built on or around the network belong to those who build and run them, who are responsible for them. None of them is official. [Third-party services](#third-parties)
-- **Operations on the chain.** Every transaction is signed and sent by its user, who decides it and is responsible for it. The contributors do not hold anyone's units or keys, and cannot reverse transactions or restore access to an account.
+- **Operations on the chain.** Every transaction is signed and sent by its user, who decides it and is responsible for it. The contributors do not hold anyone's assets or keys, and cannot reverse transactions or restore access to an account.
 
 ## No warranties {#warranties}
 
