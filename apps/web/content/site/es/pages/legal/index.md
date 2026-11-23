@@ -5,7 +5,6 @@ section:
   label: Legal
   weight: 1
   menu: false # only in the footer
-updated: 2026-11-22 # set by hand when the legal text changes in substance (not on typo fixes)
 ---
 
 ## Carácter de este sitio {#independence}

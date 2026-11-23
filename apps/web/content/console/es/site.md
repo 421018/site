@@ -20,7 +20,6 @@ header:
     - { label: 42 Chain, href: "site:/" }
 
 page:
-  lastUpdated: Última actualización
   editPage: Editar esta página ↗
   previous: ← Anterior
   next: Siguiente →

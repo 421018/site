@@ -20,7 +20,8 @@ const nav = sideIndex(home);
 const alternates = await getAlternates(page);
 const { prev, next } = prevNext(section, page);
 const updated = page.data.updated ?? lastCommitDate(page.filePath);
-const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(updated) // UTC: the same day locally and in the (UTC) production build;
+// Formatted in UTC: the same day locally and in the (UTC) production build.
+const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(updated);
 const { page: ui, header } = await getSiteText(lang, 'docs');
 const isIndex = page.id.split('/').length === 2;
 const original = page.fallbackOf;

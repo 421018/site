@@ -53,7 +53,6 @@ footer:
   backToTop: Volver arriba
 
 page:
-  lastUpdated: Última actualización
   editPage: Editar esta página ↗
   previous: ← Anterior
   next: Siguiente →

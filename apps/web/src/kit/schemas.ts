@@ -65,7 +65,7 @@ export const pageSchema = z
     icon: z.enum(iconNames).optional(),
     /** Order inside the section or group (lower goes first). The index page always goes first. */
     weight: z.number().int().default(100),
-    /** Optional date shown as "last updated". Docs pages default to their file's last commit; site pages show a date only if they set it. */
+    /** Documentation only: the date shown as "last updated"; without it, the file's last commit. Site pages show no date. */
     updated: z.coerce.date().optional(),
     /** Drafts are visible with `npm run dev` and left out of the published site. */
     draft: z.boolean().default(false),
@@ -196,8 +196,8 @@ export const siteTextSchema = z
       .optional(),
     page: z
       .object({
-        /** Label of the page's date: when its file last changed (docs) or the date set in `updated` (site). */
-        lastUpdated: z.string(),
+        /** Documentation only: label of a page's date (its file's last commit, or `updated`). */
+        lastUpdated: z.string().optional(),
         editPage: z.string(),
         previous: z.string(),
         next: z.string(),

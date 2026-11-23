@@ -20,10 +20,6 @@ const nav = sideIndex(home);
 const showSide = nav.items.length + nav.refs.length > 1;
 const path = hrefOf(page);
 const { prev, next } = prevNext(section, page);
-// Site pages show a date only when they set one on purpose (`updated`, e.g. the legal page): their
-// texts are stable, and a typo fix must not look like a new version. Docs pages use their file's last commit.
-const updated = page.data.updated;
-const fmt = updated && new Intl.DateTimeFormat(lang, { dateStyle: 'long', timeZone: 'UTC' }).format(updated) // UTC: the same day locally and in the (UTC) production build;
 const { page: ui, header } = await getSiteText(lang);
 const docsUi = (await getSiteText(lang, 'docs')).page;
 const onThisPage = docsUi.onThisPage;
@@ -42,7 +38,6 @@ const crumbs = [
 <Base title={page.data.title} description={page.data.summary} accent={section.accent} ink={section.ink} alternates={alternates} canonicalHref={canonicalHref}>
   <Header current={home.key} alternates={alternates} />
   <Cover crumbs={crumbs} crumbsLabel={header.mainNav} title={page.data.title} titleLang={original ? sourceLang : undefined}>
-    {fmt && <span>{ui.lastUpdated}: {fmt}</span>}
     {kit.editBase && <a href={kit.editBase + catalogRelative(page.filePath!)}>{ui.editPage}</a>}
   </Cover>
   <div class:list={['rd', 'covered', { solo: !showSide }]}>
